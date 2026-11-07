@@ -1,0 +1,1488 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Trastornos de Ansiedad · Repaso</title>
+<link rel="stylesheet" href="../../fonts/g1c8c15c1ee.css">
+<style>
+/* Layout: expediente clínico — índice fijo a la izquierda, temas como fichas; en móvil el índice pasa a una barra deslizable arriba */
+:root{
+  --bg:#f3f5f7; --paper:#ffffff; --ink:#15233a; --muted:#56657a; --line:#d9e0e8;
+  --accent:#1b6f6a; --accent-soft:#e1f0ee; --alert:#c2533a; --alert-soft:#f8e7e2;
+  --gold:#a77a12; --gold-soft:#f6eed9; --plum:#6c3a63; --plum-soft:#f1e6ef;
+  --shadow:0 1px 2px rgba(21,35,58,.06),0 4px 14px rgba(21,35,58,.05);
+  --f-display:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1622; --paper:#172131; --ink:#e4e9f0; --muted:#9aa8bb; --line:#2a374a;
+  --accent:#5cc2b8; --accent-soft:#163533; --alert:#f08a70; --alert-soft:#3a221d;
+  --gold:#e0b44e; --gold-soft:#342a14; --plum:#d79acb; --plum-soft:#33202f;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1622; --paper:#172131; --ink:#e4e9f0; --muted:#9aa8bb; --line:#2a374a;
+  --accent:#5cc2b8; --accent-soft:#163533; --alert:#f08a70; --alert-soft:#3a221d;
+  --gold:#e0b44e; --gold-soft:#342a14; --plum:#d79acb; --plum-soft:#33202f;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;margin:0}
+a{color:var(--accent)}
+h1,h2,h3,h4{text-wrap:balance;line-height:1.2;margin:0}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+.shell{display:grid;grid-template-columns:260px minmax(0,1fr);max-width:1240px;margin:0 auto;gap:40px;padding-inline:24px}
+nav.toc{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;max-height:100vh;overflow:auto;padding-block:28px}
+.toc .brand{font-family:var(--f-display);font-size:1.6rem;line-height:1.05;margin-bottom:4px}
+.toc .sub{color:var(--muted);font-size:.8rem;margin-bottom:18px}
+.toc ol{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px}
+.toc a{display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:8px;font-size:.9rem;line-height:1.3}
+.toc a .n{font-family:var(--f-mono);font-size:.72rem;min-width:1.4em;color:var(--muted)}
+.toc a:hover{background:var(--paper);color:var(--ink)}
+.toc a.active{background:var(--paper);color:var(--ink);box-shadow:var(--shadow)}
+.toc a.active .n{color:var(--accent)}
+.toc a .ok{margin-left:auto;color:var(--accent);font-size:.8rem;visibility:hidden}
+.toc a.done .ok{visibility:visible}
+.progress{margin-top:18px;font-size:.78rem;color:var(--muted)}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
+
+main{padding-block:28px 80px;min-width:0}
+.hero{padding-block:24px 36px;border-bottom:1px solid var(--line);margin-bottom:36px}
+.eyebrow{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(2.6rem,6vw,4.4rem);line-height:1;margin-top:10px}
+.hero h1 em{color:var(--accent)}
+.hero p{max-width:62ch;color:var(--muted);margin-top:14px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{font-size:.78rem;padding:4px 10px;border-radius:999px;background:var(--paper);border:1px solid var(--line);color:var(--muted)}
+.hero .tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.btn{cursor:pointer;border:1px solid var(--line);background:var(--paper);padding:8px 14px;border-radius:8px;font-size:.88rem;font-weight:500;box-shadow:var(--shadow)}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+section.tema{scroll-margin-top:20px;margin-bottom:64px}
+.tema-head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 18px;margin-bottom:22px}
+.tema-head .num{font-family:var(--f-mono);font-size:.8rem;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:2px 8px}
+.tema-head h2{font-family:var(--f-display);font-weight:400;font-size:clamp(2rem,4vw,2.9rem);flex:1 1 300px}
+.mark{cursor:pointer;font-size:.8rem;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 12px;color:var(--muted)}
+.mark[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+h3{font-size:1.15rem;font-weight:600;margin:34px 0 12px}
+h3 .tag{font-family:var(--f-mono);font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-left:8px}
+h4{font-size:.95rem;font-weight:600;margin-bottom:6px}
+.lead{font-size:1.06rem;max-width:68ch}
+.def{background:var(--paper);border-left:3px solid var(--accent);padding:16px 20px;border-radius:0 10px 10px 0;max-width:72ch;box-shadow:var(--shadow)}
+.def small{display:block;color:var(--muted);margin-top:6px;font-size:.78rem}
+.prose{max-width:70ch;display:flex;flex-direction:column;gap:10px}
+ul.clean{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:4px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr))}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-width:0}
+.card p+p{margin-top:6px}
+.card.alert{background:var(--alert-soft);border-color:transparent}
+.card.gold{background:var(--gold-soft);border-color:transparent}
+.card.teal{background:var(--accent-soft);border-color:transparent}
+.card.plum{background:var(--plum-soft);border-color:transparent}
+.card .k{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+
+.stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr))}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.stat b{display:block;font-family:var(--f-display);font-weight:400;font-size:2.1rem;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.stat span{display:block;font-size:.84rem;color:var(--muted);margin-top:6px;line-height:1.4}
+
+.crit{display:flex;flex-direction:column;gap:8px;max-width:76ch}
+.crit li{list-style:none;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.crit{padding:0;margin:0}
+.crit .L{font-family:var(--f-mono);font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:6px;text-align:center;padding:2px 0;font-size:.85rem}
+.crit .t{min-width:0}
+body.recall .crit .t{filter:blur(6px);cursor:pointer;user-select:none;transition:filter .2s}
+body.recall .crit .t.shown{filter:none}
+
+.pearl{display:flex;gap:12px;align-items:flex-start;background:var(--gold-soft);border-radius:10px;padding:12px 16px;max-width:76ch;margin-top:14px}
+.pearl .ic{font-family:var(--f-mono);font-size:.7rem;font-weight:600;letter-spacing:.1em;color:var(--gold);padding-top:3px;white-space:nowrap}
+
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;background:var(--bg);font-size:.82rem}
+tr:last-child td{border-bottom:0}
+td.good{color:var(--accent)} td.bad{color:var(--alert)}
+
+figure{margin:0}
+.figs{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin-top:16px}
+.fig{background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:zoom-in;padding:0;text-align:left;display:flex;flex-direction:column}
+.fig img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--bg)}
+.fig figcaption{padding:10px 14px;font-size:.82rem;color:var(--muted);line-height:1.4}
+.fig figcaption b{color:var(--ink);font-weight:600}
+.fig.wide{grid-column:1/-1}
+.fig.wide img{object-fit:contain}
+
+/* explorador neuro */
+.neuro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:18px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px}
+.neuro .tabs{display:flex;flex-direction:column;gap:6px}
+.neuro .tabs button{cursor:pointer;text-align:left;background:transparent;border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:.9rem}
+.neuro .tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.neuro .panel img{width:100%;border-radius:8px;cursor:zoom-in;aspect-ratio:16/9;object-fit:cover}
+.neuro .panel h4{margin-top:12px;font-size:1.05rem}
+.neuro .panel p{color:var(--muted);font-size:.92rem;margin-top:4px}
+@media (max-width:720px){.neuro{grid-template-columns:1fr}.neuro .tabs{flex-direction:row;flex-wrap:wrap}}
+
+/* ciclo */
+.cycle{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin-top:6px}
+.cycle .step{flex:1 1 120px;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.88rem;min-width:0}
+.cycle .step b{display:block;font-family:var(--f-mono);font-size:.68rem;color:var(--muted);letter-spacing:.08em}
+.cycle .step.hot{background:var(--alert-soft);border-color:transparent}
+.cycle .step.cool{background:var(--accent-soft);border-color:transparent}
+.cycle .arrow{align-self:center;color:var(--muted);font-family:var(--f-mono)}
+.loopnote{font-size:.82rem;color:var(--alert);margin-top:8px}
+
+/* casos */
+details.case{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:0;max-width:80ch}
+details.case summary{cursor:pointer;padding:14px 18px;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center}
+details.case summary::-webkit-details-marker{display:none}
+details.case summary::before{content:"+";font-family:var(--f-mono);color:var(--accent);width:1em}
+details.case[open] summary::before{content:"−"}
+details.case .body{padding:0 18px 18px;display:flex;flex-direction:column;gap:10px;font-size:.94rem}
+.reveal{border-top:1px dashed var(--line);padding-top:12px}
+.reveal[hidden]{display:none}
+.case .q{color:var(--muted)}
+
+/* quiz */
+.quiz{display:flex;flex-direction:column;gap:14px;margin-top:10px}
+.qitem{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;max-width:80ch}
+.qitem p.qq{font-weight:500;margin-bottom:10px}
+.opts{display:flex;flex-direction:column;gap:6px}
+.opts button{cursor:pointer;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:.9rem}
+.opts button:hover:not(:disabled){border-color:var(--accent)}
+.opts button.right{background:var(--accent-soft);border-color:var(--accent)}
+.opts button.wrong{background:var(--alert-soft);border-color:var(--alert)}
+.opts button:disabled{cursor:default}
+.why{font-size:.86rem;color:var(--muted);margin-top:8px}
+.score{font-family:var(--f-mono);font-size:.85rem;color:var(--muted)}
+
+/* flashcards */
+.flash{display:flex;flex-direction:column;align-items:center;gap:14px;max-width:640px}
+.fcard{width:100%;min-height:210px;perspective:1200px;cursor:pointer;background:none;border:0;padding:0}
+.fcard .in{position:relative;width:100%;min-height:210px;transition:transform .5s;transform-style:preserve-3d}
+.fcard.flip .in{transform:rotateY(180deg)}
+.fcard .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:24px;display:flex;flex-direction:column;justify-content:center;gap:8px;text-align:center;border:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow)}
+.fcard .back{transform:rotateY(180deg);background:var(--accent-soft);border-color:transparent}
+.fcard .face .k{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fcard .front .t{font-family:var(--f-display);font-size:1.7rem;line-height:1.15}
+.fcard .back .t{font-size:1rem}
+.fnav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
+
+/* duraciones */
+.dur{display:flex;flex-direction:column;gap:6px;max-width:820px}
+.dur .row{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr) 92px;gap:12px;align-items:center;font-size:.88rem}
+.dur .track{height:12px;background:var(--line);border-radius:6px;position:relative;overflow:hidden}
+.dur .track i{position:absolute;top:0;bottom:0;left:0;border-radius:6px;background:var(--accent)}
+.dur .track i.short{background:var(--alert)}
+.dur .v{font-family:var(--f-mono);font-size:.8rem;text-align:right}
+@media (max-width:560px){.dur .row{grid-template-columns:minmax(0,1fr) 80px}.dur .track{grid-column:1/-1;order:3}}
+
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(8,12,20,.88);display:flex;align-items:center;justify-content:center;padding:24px;z-index:50;flex-direction:column;gap:12px}
+.lb[hidden]{display:none}
+.lb img{max-width:min(1400px,100%);max-height:84vh;border-radius:8px;background:#fff}
+.lb p{color:#e4e9f0;font-size:.9rem;text-align:center;max-width:70ch}
+.lb button{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:16px;background:#fff;color:#15233a;border:0;border-radius:999px;width:38px;height:38px;cursor:pointer;font-size:1.1rem}
+
+.errata{font-size:.88rem;color:var(--muted)}
+.errata li{margin-bottom:4px}
+footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);padding-top:18px;margin-top:40px}
+
+@media (max-width:900px){
+  .shell{grid-template-columns:minmax(0,1fr);gap:0;padding-inline:16px}
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);max-height:none;overflow:visible;padding-block:10px;border-bottom:1px solid var(--line);margin-inline:-16px;padding-inline:16px}
+  .toc .brand,.toc .sub,.progress{display:none}
+  .toc ol{flex-direction:row;overflow-x:auto;gap:6px;scrollbar-width:none}
+  .toc a{white-space:nowrap;padding:6px 10px;background:var(--paper);border:1px solid var(--line)}
+  .toc a .ok{display:none}
+  section.tema{scroll-margin-top:70px}
+}
+</style>
+
+<div class="shell">
+<nav class="toc" aria-label="Temas">
+  <div class="brand">Psiquiatría clínica</div>
+  <div class="sub">Ansiedad, bipolar, psicosis y TCA</div>
+  <ol id="tocList">
+    <li><a href="#bases"><span class="n">00</span>Bases de la ansiedad<span class="ok">✓</span></a></li>
+    <li><a href="#fobias"><span class="n">01</span>Fobia específica y social<span class="ok">✓</span></a></li>
+    <li><a href="#panico"><span class="n">02</span>Pánico y agorafobia<span class="ok">✓</span></a></li>
+    <li><a href="#tag"><span class="n">03</span>Ansiedad generalizada<span class="ok">✓</span></a></li>
+    <li><a href="#toc"><span class="n">04</span>TOC y relacionados<span class="ok">✓</span></a></li>
+    <li><a href="#tept"><span class="n">05</span>TEPT y estrés agudo<span class="ok">✓</span></a></li>
+    <li><a href="#somaticos"><span class="n">06</span>Síntomas somáticos<span class="ok">✓</span></a></li>
+    <li><a href="#enfermedad"><span class="n">07</span>Ansiedad por enfermedad<span class="ok">✓</span></a></li>
+    <li><a href="#conversion"><span class="n">08</span>Conversión (TSNF)<span class="ok">✓</span></a></li>
+    <li><a href="#facticio"><span class="n">09</span>Trastorno facticio<span class="ok">✓</span></a></li>
+    <li><a href="#bipolar"><span class="n">10</span>Trastorno bipolar I y II<span class="ok">✓</span></a></li>
+    <li><a href="#esquizofrenia"><span class="n">11</span>Esquizofrenia y psicosis<span class="ok">✓</span></a></li>
+    <li><a href="#tca"><span class="n">12</span>Conducta alimentaria<span class="ok">✓</span></a></li>
+    <li><a href="#repaso"><span class="n">★</span>Repaso y autoevaluación</a></li>
+  </ol>
+  <div class="progress"><span id="progTxt">0 de 10 temas repasados</span><div class="bar"><i id="progBar"></i></div></div>
+</nav>
+
+<main>
+<header class="hero">
+  <div class="eyebrow">Psiquiatría Clínica · Dr. Víctor Trejo Terreros</div>
+  <h1>Ansiedad, bipolar, psicosis y <em>alimentación</em></h1>
+  <p>Resumen de las presentaciones de clase (trastornos de ansiedad, trastorno bipolar, espectro de la esquizofrenia y conducta alimentaria), ordenado por tema: definición, criterios DSM‑5, epidemiología, fisiopatología, casos clínicos y preguntas para repasar. Toca cualquier figura para verla en grande.</p>
+  <div class="meta">
+    <span class="chip">13 temas</span><span class="chip">41 figuras de los PDF</span><span class="chip">Casos con respuesta</span><span class="chip">Quiz y tarjetas</span>
+  </div>
+  <div class="tools">
+    <button class="btn" id="recallBtn" aria-pressed="false">Modo memoria: ocultar criterios</button>
+    <a class="btn primary" href="#repaso" style="text-decoration:none">Ir al quiz</a>
+  </div>
+</header>
+
+<!-- ================= 00 BASES ================= -->
+<section class="tema" id="bases" data-t="bases">
+  <div class="tema-head"><span class="num">00</span><h2>Bases de la ansiedad</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+
+  <div class="def">La ansiedad (lat. <i>anxietātem</i>) es una respuesta <b>emocional, cognitiva, fisiológica y conductual</b> orientada hacia la anticipación de una amenaza <b>futura</b>.<small>American Psychiatric Association, 2014</small></div>
+
+  <h3>Miedo vs. ansiedad</h3>
+  <div class="grid g2">
+    <div class="card alert"><div class="k">Miedo</div><h4>Amenaza inmediata e identificable</h4><p>Amenaza → miedo → respuesta autonómica → <b>lucha / huida</b>.</p></div>
+    <div class="card teal"><div class="k">Ansiedad</div><h4>Posibilidad de amenaza futura</h4><p>Posible amenaza → anticipación → <b>vigilancia</b>.</p></div>
+  </div>
+
+  <h3>Neuroanatomía <span class="tag">toca cada estructura</span></h3>
+  <div class="neuro" id="neuro">
+    <div class="tabs" role="tablist"></div>
+    <div class="panel"><img alt="" id="neuroImg"><h4 id="neuroT"></h4><p id="neuroD"></p></div>
+  </div>
+
+  <h3>Fisiología de la respuesta</h3>
+  <div class="grid g2">
+    <div class="card teal"><div class="k">Vía rápida · segundos</div><h4>SNA simpático → catecolaminas</h4><p>Taquicardia, sudoración, temblor, hiperventilación.</p></div>
+    <div class="card alert"><div class="k">Vía sostenida · minutos a horas</div><h4>Eje HHA: CRH → ACTH → cortisol</h4><p>Movilización energética sostenida. Los glucocorticoides inhiben el sistema inmune, el crecimiento y la reproducción, elevan la glucosa y alteran la conducta; retroalimentan negativamente al hipotálamo.</p></div>
+  </div>
+  <div class="figs">
+    <button class="fig" data-src="img/s12.webp"><img src="img/s12.webp" alt="Diagrama de fisiología de la respuesta de ansiedad" loading="lazy"><figcaption><b>Diap. 12.</b> Amenaza → amígdala, ínsula, hipocampo, BNST → hipotálamo y tronco → dos vías.</figcaption></button>
+    <button class="fig" data-src="img/s11.webp"><img src="img/s11.webp" alt="Eje hipotálamo hipófisis suprarrenal" loading="lazy"><figcaption><b>Diap. 11.</b> Eje hipotálamo‑hipófisis‑suprarrenal y efectos de los glucocorticoides.</figcaption></button>
+  </div>
+
+  <h3>De respuesta adaptativa a patológica</h3>
+  <p class="lead" style="margin-bottom:12px">Lo normal: amenaza → respuesta proporcional → adaptación → resolución.</p>
+  <div class="tbl"><table>
+    <tr><th>Ansiedad normal</th><th>Ansiedad patológica</th></tr>
+    <tr><td class="good">Proporcional</td><td class="bad">Excesiva</td></tr>
+    <tr><td class="good">Transitoria</td><td class="bad">Persistente</td></tr>
+    <tr><td class="good">Controlable</td><td class="bad">Difícil de controlar</td></tr>
+    <tr><td class="good">Facilita la adaptación</td><td class="bad">Produce deterioro</td></tr>
+    <tr><td class="good">Evitación flexible</td><td class="bad">Evitación persistente</td></tr>
+    <tr><td class="good">Compatible con el contexto</td><td class="bad">Desproporcionada al contexto</td></tr>
+  </table></div>
+
+  <h3>¿Qué mantiene la ansiedad?</h3>
+  <div class="cycle">
+    <div class="step"><b>1</b>Situación</div><span class="arrow">→</span>
+    <div class="step"><b>2</b>Percepción de amenaza</div><span class="arrow">→</span>
+    <div class="step hot"><b>3</b>Ansiedad</div><span class="arrow">→</span>
+    <div class="step"><b>4</b>Evitación / conducta de seguridad</div><span class="arrow">→</span>
+    <div class="step cool"><b>5</b>Alivio inmediato</div><span class="arrow">→</span>
+    <div class="step"><b>6</b>Refuerzo de la evitación</div>
+  </div>
+  <p class="loopnote">↺ Refuerzo negativo: el alivio hace más probable evitar la próxima vez. Este ciclo aparece en casi todos los temas.</p>
+
+  <h3>Respuesta multidimensional</h3>
+  <div class="grid g4">
+    <div class="card"><div class="k">Cognitivo</div><ul class="clean"><li>Anticipación negativa</li><li>Catastrofización</li><li>Sobrestimar el peligro, subestimar recursos</li><li>Hipervigilancia, mala concentración</li></ul></div>
+    <div class="card"><div class="k">Fisiológico</div><ul class="clean"><li>Taquicardia, palpitaciones, sudoración</li><li>Temblor, hiperventilación</li><li>Opresión torácica, náusea, mareo</li><li>Tensión muscular, parestesias</li></ul></div>
+    <div class="card"><div class="k">Emocional</div><ul class="clean"><li>Temor, inquietud, aprensión</li><li>Nerviosismo, irritabilidad</li><li>Sensación de pérdida de control</li></ul></div>
+    <div class="card"><div class="k">Conductual</div><ul class="clean"><li>Huida y evitación</li><li>Búsqueda de seguridad y compañía</li><li>Comprobaciones repetidas</li><li>Modificación de actividades</li></ul></div>
+  </div>
+
+  <h3>Epidemiología mundial <span class="tag">OMS, sep 2026</span></h3>
+  <div class="stats">
+    <div class="stat"><b>470 M</b><span>personas con un trastorno de ansiedad (2023)</span></div>
+    <div class="stat"><b>5.8 %</b><span>de la población mundial</span></div>
+    <div class="stat"><b>146 M</b><span>niños y adolescentes con trastorno de ansiedad</span></div>
+    <div class="stat"><b>27.6 %</b><span>recibe tratamiento: solo ~1 de cada 4</span></div>
+  </div>
+</section>
+
+<!-- ================= 01 FOBIAS ================= -->
+<section class="tema" id="fobias" data-t="fobias">
+  <div class="tema-head"><span class="num">01</span><h2>Fobia específica y fobia social</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+
+  <h3>Fobia específica</h3>
+  <div class="def">Miedo o ansiedad <b>intensos y desproporcionados</b> ante un objeto o situación específica. La persona reconoce que el miedo es excesivo, pero no puede controlarlo y suele evitar el estímulo.</div>
+
+  <h3>Criterios clínicos <span class="tag">DSM‑5, A–G</span></h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Miedo o ansiedad intensa ante un objeto o situación específica.</span></li>
+    <li><span class="L">B</span><span class="t">El estímulo provoca miedo o ansiedad casi siempre, de forma inmediata.</span></li>
+    <li><span class="L">C</span><span class="t">Se evita activamente o se soporta con ansiedad intensa.</span></li>
+    <li><span class="L">D</span><span class="t">Desproporcionado al peligro real y al contexto sociocultural.</span></li>
+    <li><span class="L">E</span><span class="t">Persistente: <b>≥ 6 meses</b>.</span></li>
+    <li><span class="L">F</span><span class="t">Malestar clínicamente significativo o deterioro social, académico, laboral o personal.</span></li>
+    <li><span class="L">G</span><span class="t">No se explica mejor por otro trastorno (pánico/agorafobia, TOC, TEPT, ansiedad social o por separación).</span></li>
+  </ol>
+
+  <h3>Especificadores (tipo de estímulo)</h3>
+  <div class="grid g4">
+    <div class="card"><div class="k">Animal</div>Arañas, perros, insectos</div>
+    <div class="card"><div class="k">Entorno natural</div>Alturas, tormentas, agua</div>
+    <div class="card"><div class="k">Sangre‑inyección‑herida</div>Agujas, procedimientos</div>
+    <div class="card"><div class="k">Situacional</div>Volar, elevadores, conducir</div>
+    <div class="card"><div class="k">Otro</div>Vómito, atragantamiento, etc.</div>
+  </div>
+
+  <h3>Epidemiología</h3>
+  <div class="stats">
+    <div class="stat"><b>6–9 %</b><span>prevalencia anual en EUA y Europa</span></div>
+    <div class="stat"><b>2–4 %</b><span>América Latina, Asia y África</span></div>
+    <div class="stat"><b>7.1 %</b><span>de la población en México padece algún tipo de fobia (SSA)</span></div>
+  </div>
+  <p class="prose" style="margin-top:10px">Uno de los trastornos de ansiedad más frecuentes. Inicia en la infancia o adolescencia, es más frecuente en mujeres y persiste años si se mantiene la evitación. Puede aparecer con o sin un desencadenante identificable.</p>
+
+  <h3>Fisiopatología y mantenimiento</h3>
+  <div class="grid g2">
+    <div class="card"><ul class="clean"><li><b>Amígdala:</b> detección y respuesta al miedo.</li><li><b>Hipotálamo:</b> activa respuestas autonómicas.</li><li><b>Simpático:</b> taquicardia, sudoración, temblor.</li><li><b>Eje HHA:</b> cortisol.</li><li><b>Corteza prefrontal:</b> regula la respuesta de miedo.</li></ul></div>
+    <div class="card teal"><h4>Dos condicionamientos</h4><p><b>Clásico</b> (origen): un estímulo neutro se asocia con una experiencia desagradable y luego provoca miedo.</p><p><b>Operante</b> (mantenimiento): evitar el estímulo da alivio inmediato; ese alivio refuerza la evitación y la fobia persiste.</p></div>
+  </div>
+  <div class="figs">
+    <button class="fig" data-src="img/s22.webp"><img src="img/s22.webp" alt="Fisiopatología de la fobia específica" loading="lazy"><figcaption><b>Diap. 22.</b> Fisiopatología y tipos de estímulo.</figcaption></button>
+    <button class="fig" data-src="img/s23.webp"><img src="img/s23.webp" alt="Mantenimiento de la fobia" loading="lazy"><figcaption><b>Diap. 23.</b> Mantenimiento de la fobia por condicionamiento.</figcaption></button>
+  </div>
+  <div class="pearl"><span class="ic">PERLA</span><span>Miedo ≠ fobia. La fobia exige miedo intenso + evitación + desproporción + deterioro. Los 6 meses sirven para descartar miedos transitorios de la infancia.</span></div>
+
+  <h3>Fobia social (trastorno de ansiedad social)</h3>
+  <div class="def">Miedo intenso y persistente ante situaciones sociales en las que la persona puede ser <b>observada, evaluada o juzgada</b>. El núcleo no es "estar con gente", sino ser evaluado negativamente, hacer el ridículo o que se noten los síntomas de ansiedad.</div>
+  <div class="meta" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px">
+    <span class="chip">Hablar con desconocidos</span><span class="chip">Reuniones</span><span class="chip">Figuras de autoridad</span><span class="chip">Exponer en clase</span><span class="chip">Hablar en público</span><span class="chip">Escribir siendo observado</span><span class="chip">Entrevistas</span><span class="chip">Comer frente a otros</span><span class="chip">Citas</span>
+  </div>
+
+  <h3>Criterios clínicos <span class="tag">DSM‑5, A–J</span></h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Miedo o ansiedad intensa ante una o más situaciones sociales con posible evaluación por otros.</span></li>
+    <li><span class="L">B</span><span class="t">Teme actuar de cierta manera o mostrar síntomas de ansiedad que se valoren negativamente.</span></li>
+    <li><span class="L">C</span><span class="t">Las situaciones sociales casi siempre provocan miedo o ansiedad.</span></li>
+    <li><span class="L">D</span><span class="t">Se evitan o se soportan con miedo intenso.</span></li>
+    <li><span class="L">E</span><span class="t">Desproporcionado a la amenaza real y al contexto sociocultural.</span></li>
+    <li><span class="L">F</span><span class="t">Persistente, <b>≥ 6 meses</b>.</span></li>
+    <li><span class="L">G</span><span class="t">Malestar o deterioro significativo.</span></li>
+    <li><span class="L">H–J</span><span class="t">No se debe a sustancias ni a otra enfermedad, y no se explica mejor por otro trastorno mental.</span></li>
+  </ol>
+  <p class="prose" style="margin-top:10px"><i>Ejemplo: "Si tiemblo al exponer, todos van a pensar que soy incompetente."</i></p>
+
+  <h3>Epidemiología</h3>
+  <div class="stats">
+    <div class="stat"><b>5–13 %</b><span>prevalencia vital</span></div>
+    <div class="stat"><b>3–7 %</b><span>prevalencia en 12 meses</span></div>
+    <div class="stat"><b>5.5 % vs 1.6 %</b><span>países de ingresos altos vs bajos</span></div>
+    <div class="stat"><b>&lt; 18 años</b><span>inicio frecuente; más diagnosticada en mujeres</span></div>
+  </div>
+  <p class="prose" style="margin-top:10px">Curso crónico si no se trata; afecta escuela, trabajo y relaciones. Comorbilidad frecuente con otros trastornos de ansiedad, depresión y consumo de sustancias.</p>
+
+  <h3>Fisiopatología</h3>
+  <div class="grid g2">
+    <div class="card"><ul class="clean"><li><b>Amígdala:</b> procesamiento aumentado de amenazas sociales.</li><li><b>Corteza prefrontal:</b> interpretación y regulación social.</li><li><b>Ínsula:</b> percepción de síntomas corporales.</li><li><b>Simpático:</b> taquicardia, sudoración, temblor y <b>rubor</b>.</li></ul><p style="margin-top:8px">Hay hipervigilancia hacia las propias señales de ansiedad.</p></div>
+    <button class="fig" data-src="img/s28.webp"><img src="img/s28.webp" alt="Fisiopatología de la fobia social" loading="lazy"><figcaption><b>Diap. 28.</b> Modelo de la fobia social.</figcaption></button>
+  </div>
+  <div class="pearl"><span class="ic">PERLA</span><span>Timidez ≠ trastorno. La evitación puede ser sutil (llegar tarde, quedarse callado, usar el celular). A diferencia del DSM‑IV, los 6 meses aplican a todas las edades. Descartar: pánico, agorafobia, fobia específica, dismórfico corporal, espectro autista y mutismo selectivo.</span></div>
+</section>
+
+<!-- ================= 02 PANICO ================= -->
+<section class="tema" id="panico" data-t="panico">
+  <div class="tema-head"><span class="num">02</span><h2>Trastorno de pánico y agorafobia</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+
+  <h3>Trastorno de pánico</h3>
+  <div class="def">Crisis de pánico <b>recurrentes e inesperadas</b>, con preocupación persistente por volver a tenerlas o por sus consecuencias.</div>
+  <p class="prose" style="margin-top:12px"><b>Crisis de pánico:</b> episodio súbito de miedo o malestar intenso que alcanza su máximo en <b>minutos</b>, incluso sin peligro externo.</p>
+  <div class="meta" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+    <span class="chip">Palpitaciones / taquicardia</span><span class="chip">Sudoración</span><span class="chip">Temblor</span><span class="chip">Falta de aire</span><span class="chip">Opresión torácica</span><span class="chip">Náusea</span><span class="chip">Mareo</span><span class="chip">Escalofríos o calor</span><span class="chip">Desrealización / despersonalización</span><span class="chip">Miedo a perder el control</span><span class="chip">Miedo a morir</span>
+  </div>
+
+  <h3>Criterios clínicos</h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Crisis de pánico recurrentes e <b>inesperadas</b>.</span></li>
+    <li><span class="L">B</span><span class="t">Al menos una crisis seguida de <b>≥ 1 mes</b> de preocupación persistente ("¿y si me vuelve a pasar?") o cambio conductual desadaptativo (p. ej., dejar el ejercicio para que no suba la frecuencia cardiaca).</span></li>
+    <li><span class="L">C</span><span class="t">No se explica por sustancias ni otra enfermedad médica.</span></li>
+    <li><span class="L">D</span><span class="t">No se explica mejor por otro trastorno mental.</span></li>
+  </ol>
+
+  <h3>Epidemiología</h3>
+  <div class="stats">
+    <div class="stat"><b>1 de 10</b><span>tiene crisis aisladas en la vida; el trastorno completo es menos frecuente</span></div>
+    <div class="stat"><b>&lt; 25 años</b><span>inicio típico: adolescencia tardía o adultez temprana</span></div>
+    <div class="stat"><b>~2×</b><span>más frecuente en mujeres</span></div>
+    <div class="stat"><b>4–5 %</b><span>en atención primaria, el doble que en población general</span></div>
+  </div>
+
+  <h3>Fisiopatología</h3>
+  <div class="grid g2">
+    <div class="card"><ul class="clean"><li><b>Amígdala:</b> activa la respuesta de miedo.</li><li><b>Tronco encefálico:</b> respuestas respiratorias y autonómicas.</li><li><b>Simpático:</b> taquicardia, sudoración, temblor.</li><li><b>Hiperventilación:</b> mareo y parestesias.</li><li><b>Interpretación catastrófica:</b> amplifica la ansiedad y cierra el círculo.</li></ul></div>
+    <button class="fig" data-src="img/s34.webp"><img src="img/s34.webp" alt="Fisiopatología del pánico" loading="lazy"><figcaption><b>Diap. 34.</b> Círculo de la crisis de pánico.</figcaption></button>
+  </div>
+
+  <h3>Agorafobia</h3>
+  <div class="def">Miedo intenso a situaciones de las que <b>escapar sería difícil</b> o donde <b>no habría ayuda</b> si aparecen síntomas de pánico o incapacitantes.</div>
+  <h3>Criterios clínicos <span class="tag">DSM‑5, A–I</span></h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Miedo intenso en <b>≥ 2 de 5</b> situaciones: transporte público, espacios abiertos, espacios cerrados, filas o multitudes, estar fuera de casa solo.</span></li>
+    <li><span class="L">B</span><span class="t">Teme no poder escapar o no recibir ayuda si aparecen síntomas de pánico u otros incapacitantes.</span></li>
+    <li><span class="L">C</span><span class="t">Las situaciones provocan ansiedad casi siempre.</span></li>
+    <li><span class="L">D</span><span class="t">Se evitan, requieren acompañante o se soportan con ansiedad intensa.</span></li>
+    <li><span class="L">E</span><span class="t">Desproporcionado al peligro real.</span></li>
+    <li><span class="L">F</span><span class="t">Persiste <b>≥ 6 meses</b>.</span></li>
+    <li><span class="L">G–I</span><span class="t">Deterioro significativo; no se explica mejor por otra enfermedad o trastorno.</span></li>
+  </ol>
+  <div class="stats" style="margin-top:14px">
+    <div class="stat"><b>1.7–2 %</b><span>prevalencia vital</span></div>
+    <div class="stat"><b>2–3.6×</b><span>más frecuente en mujeres</span></div>
+    <div class="stat"><b>~20 años</b><span>edad media de inicio</span></div>
+    <div class="stat"><b>2.4 %</b><span>adolescentes de 13–18 años; 0.61 % en mayores de 55</span></div>
+  </div>
+  <div class="figs">
+    <button class="fig" data-src="img/s37.webp"><img src="img/s37.webp" alt="Criterios de agorafobia" loading="lazy"><figcaption><b>Diap. 37.</b> Criterios e infografía de agorafobia.</figcaption></button>
+    <button class="fig" data-src="img/s39.webp"><img src="img/s39.webp" alt="Fisiopatología de la agorafobia" loading="lazy"><figcaption><b>Diap. 39.</b> Aprendizaje situación‑peligro → evitación → alivio → mantenimiento.</figcaption></button>
+  </div>
+  <div class="pearl"><span class="ic">PERLA</span><span><b>Regla de las 2 situaciones:</b> con una sola situación temida piensa en fobia específica situacional. En el DSM‑5 la agorafobia es independiente del pánico: pueden coexistir, pero uno no requiere al otro. Lo que se teme no es el lugar, sino no poder escapar.</span></div>
+</section>
+
+<!-- ================= 03 TAG ================= -->
+<section class="tema" id="tag" data-t="tag">
+  <div class="tema-head"><span class="num">03</span><h2>Trastorno de ansiedad generalizada</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+  <div class="def">Preocupación <b>excesiva y crónica</b> por sucesos de la vida cotidiana, que suele acompañarse de síntomas somáticos (palpitaciones, tensión muscular, cefalea, sudoración).</div>
+
+  <h3>Criterios DSM‑5 <span class="tag">A–F</span></h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Ansiedad y preocupación excesivas, <b>más días sí que no</b>, durante <b>≥ 6 meses</b>, sobre diversos sucesos o actividades.</span></li>
+    <li><span class="L">B</span><span class="t">Al individuo le es difícil controlar la preocupación.</span></li>
+    <li><span class="L">C</span><span class="t"><b>≥ 3 de 6</b> síntomas: inquietud o nervios de punta · fatiga fácil · dificultad para concentrarse o mente en blanco · irritabilidad · tensión muscular · problemas de sueño.</span></li>
+    <li><span class="L">D</span><span class="t">Malestar clínicamente significativo o deterioro social, laboral u otro.</span></li>
+    <li><span class="L">E</span><span class="t">No se atribuye a sustancias ni a otra afección médica (p. ej., <b>hipertiroidismo</b>).</span></li>
+    <li><span class="L">F</span><span class="t">No se explica mejor por otro trastorno mental.</span></li>
+  </ol>
+  <div class="pearl"><span class="ic">TRUCO</span><span>Los 6 síntomas del criterio C: <b>"FICTIS"</b> → <b>F</b>atiga, <b>I</b>rritabilidad, <b>C</b>oncentración, <b>T</b>ensión muscular, <b>I</b>nquietud, <b>S</b>ueño.</span></div>
+
+  <h3>Características y epidemiología</h3>
+  <div class="grid g3">
+    <div class="card"><div class="k">Curso</div>Desproporcionada y duradera respecto a sus desencadenantes; tiende a la <b>cronicidad</b>.</div>
+    <div class="card"><div class="k">Comorbilidad</div>Muy asociada a otros trastornos ansiosos, depresivos, somatomorfos y por tóxicos, lo que cuestiona su validez diagnóstica.</div>
+    <div class="card"><div class="k">Frecuencia</div><b>3.6 %</b> de la población mundial al año, relación mujer:hombre <b>2:1</b>, inicio en la edad adulta.</div>
+  </div>
+
+  <h3>Fisiopatología</h3>
+  <div class="figs">
+    <button class="fig wide" data-src="img/s44.webp"><img src="img/s44.webp" alt="Fisiopatología del TAG" loading="lazy"><figcaption><b>Diap. 44.</b> Factores predisponentes, circuitos (CPF con menor control, amígdala hiperactiva, hipocampo, eje HHA, locus coeruleus), neurotransmisores (↓GABA, disfunción serotoninérgica, ↑noradrenalina, ↑glutamato) y ciclo de mantenimiento.</figcaption></button>
+  </div>
+
+  <h3>Caso clínico</h3>
+  <details class="case">
+    <summary>Mariana R., 24 años, estudiante de maestría</summary>
+    <div class="body">
+      <p>Ocho meses de preocupación excesiva casi todos los días sobre su trabajo, la escuela, el dinero y la salud y seguridad de su familia. Reconoce que es desproporcionada, pero no puede controlarla: cuando deja un tema, empieza otro. Presenta inquietud, tensión, fatiga, dificultad para concentrarse, irritabilidad e insomnio de conciliación con despertares. Bajó su rendimiento y se aisló. Niega sustancias y fármacos; la valoración médica es normal. Examen mental sin alteraciones perceptivas, con buena conciencia de enfermedad.</p>
+      <p class="q">¿Cumple duración? ¿Cuántos síntomas del criterio C tiene? ¿Qué falta descartar?</p>
+      <button class="btn" data-reveal>Ver respuesta</button>
+      <div class="reveal" hidden>
+        <p><b>Compatible con TAG.</b> A: 8 meses (≥ 6). B: no controla la preocupación. C: <b>6 de 6</b> (inquietud, fatiga, concentración, irritabilidad, tensión, sueño). D: deterioro académico, laboral, social y del sueño. E: sin sustancias, exploración normal (conviene confirmar función tiroidea). F: descartar depresión mayor, TOC (las suyas son preocupaciones reales, no obsesiones intrusivas) y trastorno de pánico.</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- ================= 04 TOC ================= -->
+<section class="tema" id="toc" data-t="toc">
+  <div class="tema-head"><span class="num">04</span><h2>TOC y trastornos relacionados</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+  <div class="grid g2">
+    <div class="def"><b>Obsesión</b> (lat. <i>obsidēre</i>): pensamientos, impulsos o imágenes recurrentes y persistentes que se viven como <b>intrusivos y no deseados</b>.<small>APA, 2014</small></div>
+    <div class="def"><b>Compulsión:</b> conductas repetitivas o actos mentales que la persona se siente impulsada a realizar en respuesta a una obsesión o según reglas rígidas.<small>APA, 2014</small></div>
+  </div>
+
+  <h3>El círculo vicioso</h3>
+  <div class="cycle">
+    <div class="step"><b>I · DISPARADOR</b>Obsesión: "¿y si le contagio algo a mi abuela?"</div><span class="arrow">→</span>
+    <div class="step hot"><b>II · EMOCIÓN</b>Ansiedad / malestar</div><span class="arrow">→</span>
+    <div class="step"><b>III · RESPUESTA</b>Compulsión: lavarse 40 veces, contar, rezar</div><span class="arrow">→</span>
+    <div class="step cool"><b>IV · CONSECUENCIA</b>Alivio temporal</div>
+  </div>
+  <p class="loopnote">↺ Refuerzo negativo: el alivio "enseña" al cerebro que la compulsión funcionó, y la próxima obsesión llega más fuerte.</p>
+
+  <h3>Neurobiología: circuito córtico‑estriado‑tálamo‑cortical</h3>
+  <div class="grid g3">
+    <div class="card"><div class="k">COF y cingulada anterior</div>Detección de errores, procesamiento del peligro, planificación y valoración de consecuencias. En el TOC la saliencia de la amenaza <b>persiste</b> tras la acción correctora → necesidad de repetir.</div>
+    <div class="card"><div class="k">Estriado (caudado y putamen ventral)</div>Recibe aferencias glutamatérgicas corticales. Selección de acciones, aprendizaje por refuerzo, hábitos e inhibición de respuestas competidoras.</div>
+    <div class="card"><div class="k">Vía directa vs indirecta</div><b>Directa ("GO"):</b> corteza → estriado D1 → inhibe GPi/SNr → desinhibe tálamo → excita corteza.<br><b>Indirecta ("STOP"):</b> estriado D2 → GPe → subtalámico → GPi/SNr → frena tálamo.</div>
+  </div>
+  <div class="card alert" style="margin-top:14px;max-width:80ch"><h4>¿Qué falla en el TOC?</h4><p><b>Desbalance:</b> en el bucle orbitofrontal predomina la vía directa sobre la indirecta; el circuito se retroalimenta y no se cierra. <b>Hiperactividad:</b> en neuroimagen, COF, cingulada anterior y caudado están más activos en reposo.</p></div>
+  <div class="figs">
+    <button class="fig" data-src="img/s58.webp"><img src="img/s58.webp" alt="Circuito cortico estriado talamo cortical" loading="lazy"><figcaption><b>Diap. 58.</b> Circuito CSTC y ganglios basales.</figcaption></button>
+    <button class="fig" data-src="img/s62.webp"><img src="img/s62.webp" alt="Vía directa e indirecta" loading="lazy"><figcaption><b>Diap. 62.</b> Vía directa e indirecta.</figcaption></button>
+    <button class="fig" data-src="img/s63.webp"><img src="img/s63.webp" alt="PET en TOC" loading="lazy"><figcaption><b>Diap. 63.</b> PET: control normal vs TOC.</figcaption></button>
+    <button class="fig" data-src="img/s61.webp"><img src="img/s61.webp" alt="Circuitos frontoestriatales" loading="lazy"><figcaption><b>Diap. 61.</b> Circuitos frontoestriatales.</figcaption></button>
+  </div>
+
+  <h3>Criterios DSM‑5 del TOC</h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Obsesiones, compulsiones o ambas. <b>Obsesión:</b> (1) intrusiva, no deseada, causa ansiedad, y (2) la persona intenta ignorarla, suprimirla o neutralizarla. <b>Compulsión:</b> (1) conducta o acto mental repetitivo en respuesta a una obsesión o regla rígida, y (2) busca reducir la ansiedad, pero no se conecta de forma realista con lo temido o es claramente excesiva.</span></li>
+    <li><span class="L">B</span><span class="t">Consume tiempo (<b>&gt; 1 hora al día</b>) o causa malestar o deterioro.</span></li>
+    <li><span class="L">C</span><span class="t">No se atribuye a sustancias ni a otra afección médica.</span></li>
+    <li><span class="L">D</span><span class="t">No se explica mejor por otro trastorno (TAG, dismórfico, acumulación, tricotilomanía, excoriación, TCA, depresión, psicosis, autismo, etc.).</span></li>
+  </ol>
+
+  <h3>Especificador de insight</h3>
+  <div class="grid g3">
+    <div class="card teal"><div class="k">Bueno o aceptable</div>"Definitivamente o probablemente no se quemará."</div>
+    <div class="card gold"><div class="k">Poco insight</div>"Probablemente sí se quemará."</div>
+    <div class="card alert"><div class="k">Ausente / delirante</div>"Estoy convencido de que se quemará." (≈ 4 % o menos)</div>
+  </div>
+
+  <h3>Dimensiones sintomáticas</h3>
+  <div class="grid g4">
+    <div class="card"><div class="k">Limpieza</div>Contaminación, gérmenes → lavar, limpiar.</div>
+    <div class="card"><div class="k">Simetría</div>Orden, que esté "correcto" → repetir, ordenar, contar.</div>
+    <div class="card"><div class="k">Tabú</div>Ideas agresivas, sexuales, religiosas → rituales mentales, rezar.</div>
+    <div class="card"><div class="k">Daño</div>Dañarse o dañar a otros → comprobar, revisar.</div>
+  </div>
+
+  <h3>Epidemiología y factores de riesgo</h3>
+  <div class="stats">
+    <div class="stat"><b>1.2 %</b><span>prevalencia anual en EUA (1.1–1.8 % internacional)</span></div>
+    <div class="stat"><b>1.3 %</b><span>prevalencia vida mundial (Fawcett 2020)</span></div>
+    <div class="stat"><b>1.6×</b><span>más en mujeres adultas; en la infancia predominan varones</span></div>
+    <div class="stat"><b>19.5 años</b><span>edad media de inicio; 25 % ya inició a los 14</span></div>
+    <div class="stat"><b>≈ 3 M</b><span>mexicanos con TOC (UNAM); &lt; 10 % busca ayuda en CDMX</span></div>
+    <div class="stat"><b>7–14 años</b><span>puede tardar el diagnóstico en México</span></div>
+  </div>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card"><div class="k">Temperamentales</div>Síntomas de interiorización, emotividad negativa, inhibición conductual infantil.</div>
+    <div class="card"><div class="k">Ambientales</div>Maltrato físico o sexual infantil, eventos traumáticos; inicio súbito posinfeccioso (síndrome autoinmune).</div>
+    <div class="card"><div class="k">Genéticos</div><b>2×</b> riesgo en familiares de 1er grado; <b>10×</b> si el familiar inició en la infancia. Concordancia 0.57 en monocigóticos vs 0.22 en dicigóticos.</div>
+  </div>
+  <div class="card alert" style="margin-top:14px;max-width:80ch"><h4>Riesgo suicida</h4><p>≈ 50 % tiene pensamientos suicidas en algún momento y hasta 25 % ha tenido intentos; la depresión mayor comórbida aumenta el riesgo. Curso crónico: solo ≈ 20 % remite sin tratamiento, aunque 40 % de quienes inician en la infancia remite en la adultez.</p></div>
+
+  <h3>Comorbilidad</h3>
+  <div class="dur" id="comorb"></div>
+
+  <h3>Diagnóstico diferencial</h3>
+  <div class="tbl"><table>
+    <tr><th>Trastorno</th><th>Clave para distinguirlo del TOC</th></tr>
+    <tr><td>Ansiedad (TAG, fobias)</td><td>Preocupaciones reales, sin rituales; en el TOC el contenido es extraño o mágico</td></tr>
+    <tr><td>Depresión mayor</td><td>Rumiaciones congruentes con el ánimo, no intrusivas ni ligadas a compulsiones</td></tr>
+    <tr><td>Tics y estereotipias</td><td>Movimientos simples precedidos por urgencia sensorial, no por una obsesión</td></tr>
+    <tr><td>Psicosis</td><td>El TOC con poco insight no tiene alucinaciones ni desorganización</td></tr>
+    <tr><td>Juego, sexo, sustancias</td><td>Esas conductas dan placer; la compulsión nunca es placentera</td></tr>
+    <tr><td>TCA</td><td>En el TOC las obsesiones no se limitan al peso o la comida</td></tr>
+    <tr><td><b>TPOC</b> (personalidad)</td><td>Perfeccionismo y control rígido <b>egosintónicos</b> ("así deben hacerse las cosas"), sin intrusiones. El TOC es <b>egodistónico</b>. Coexisten en 23–32 %.</td></tr>
+  </table></div>
+
+  <h3>Casos clínicos rápidos <span class="tag">elige el diagnóstico</span></h3>
+  <div class="quiz" data-quiz="tocCases"></div>
+
+  <h3>Trastornos relacionados</h3>
+  <div class="grid g2">
+    <div class="card">
+      <h4>Trastorno dismórfico corporal (TDC)</h4>
+      <ol class="crit" style="margin-top:8px">
+        <li><span class="L">A</span><span class="t">Preocupación por defectos percibidos en el aspecto, no observables o mínimos para otros.</span></li>
+        <li><span class="L">B</span><span class="t">Conductas repetitivas (espejo, arreglarse, rascarse, pedir que lo tranquilicen) o actos mentales (compararse).</span></li>
+        <li><span class="L">C</span><span class="t">Malestar o deterioro.</span></li>
+        <li><span class="L">D</span><span class="t">No se explica por preocupación por grasa o peso en un TCA.</span></li>
+      </ol>
+      <p style="margin-top:8px;font-size:.9rem">Prevalencia 2.4 % (EUA); 3–8 h al día pensando en el defecto; inicio 12–13 años; 9–15 % de pacientes de dermatología y 7–8 % de cirugía estética. Variantes: <b>dismorfia muscular</b> (varones) y <b>por poderes</b> (defectos en otra persona).</p>
+    </div>
+    <div class="card">
+      <h4>Trastorno de acumulación</h4>
+      <ol class="crit" style="margin-top:8px">
+        <li><span class="L">A</span><span class="t">Dificultad persistente para deshacerse de posesiones, sin importar su valor.</span></li>
+        <li><span class="L">B</span><span class="t">Necesidad percibida de guardarlas y malestar al desecharlas.</span></li>
+        <li><span class="L">C</span><span class="t">Se congestionan las zonas habitables y pierden su uso.</span></li>
+        <li><span class="L">D–F</span><span class="t">Deterioro o entorno inseguro; no por lesión cerebral, EVC, Prader‑Willi, TOC, depresión, psicosis, demencia ni autismo.</span></li>
+      </ol>
+      <p style="margin-top:8px;font-size:.9rem"><b>¿Coleccionista?</b> El coleccionista es ordenado, la casa funciona y siente placer; el acumulador vive en desorden, no puede usar sus espacios y siente angustia al tirar.</p>
+    </div>
+    <div class="card">
+      <h4>Tricotilomanía</h4>
+      <p style="font-size:.9rem">Arrancarse el pelo de forma recurrente con pérdida de pelo, con intentos repetidos de dejarlo, malestar, sin causa dermatológica ni otro trastorno. <b>1–2 %</b> anual, <b>10:1</b> mujeres en adultos, inicio en la pubertad; cuero cabelludo, cejas y pestañas. Tricofagia → <b>tricobezoar</b> (anemia, dolor, vómito, obstrucción).</p>
+    </div>
+    <div class="card">
+      <h4>Excoriación (dermatilomanía)</h4>
+      <p style="font-size:.9rem">Rascarse la piel hasta producir lesiones, con intentos de dejarlo y malestar; no por cocaína, sarna, psicosis, TDC ni autolesión. <b>1.4 %</b> vida, <b>≥ 75 %</b> mujeres; cara, brazos y manos; inicio en la adolescencia, a menudo con acné; ≥ 1 h al día. Complicaciones: infección y cicatrices.</p>
+    </div>
+  </div>
+  <h4 style="margin-top:18px">Si se arranca el pelo o se rasca…</h4>
+  <div class="tbl"><table>
+    <tr><th>Motivo</th><th>Diagnóstico</th></tr>
+    <tr><td>Por tensión, con alivio después</td><td>Tricotilomanía / excoriación</td></tr>
+    <tr><td>Para "mejorar" un defecto del aspecto</td><td>Trastorno dismórfico corporal</td></tr>
+    <tr><td>Por simetría o por lavado excesivo</td><td>TOC</td></tr>
+    <tr><td>Por un delirio o "bichos en la piel"</td><td>Trastorno psicótico</td></tr>
+    <tr><td>Con intención de hacerse daño</td><td>Autolesión no suicida</td></tr>
+    <tr><td>Solo durante estimulantes o cocaína</td><td>Inducido por sustancias</td></tr>
+  </table></div>
+  <div class="pearl"><span class="ic">PISTA</span><span><b>Inducido por sustancias</b> (anfetaminas, cocaína, metales pesados): si los síntomas preceden al consumo o duran más de ≈ 1 mes tras suspenderlo, piensa en TOC primario.</span></div>
+
+  <h3>Caso integrador</h3>
+  <details class="case">
+    <summary>Mariana, 21 años, estudiante de Nutrición</summary>
+    <div class="body">
+      <p>"Me lavo hasta que se siente limpio… y nunca se siente limpio." Se lava y baña hasta 3 h al día, con grietas y dermatitis en manos. Teme contagiar a su abuela ("sé que es exagerado, pero ¿y si…?"). Evita transporte y hospitales, falta a sus prácticas. Al estudiar se arranca las cejas "sin darse cuenta", con zonas ralas; ha intentado dejarlo y no lo hace para verse mejor. Tics motores a los 8 años; su papá "revisa todo 20 veces". Sin sustancias, TSH normal. Últimamente triste y cansada.</p>
+      <button class="btn" data-reveal>Ver diagnóstico</button>
+      <div class="reveal" hidden>
+        <p><b>1. TOC con introspección buena, relacionado con tics</b> (obsesión de contagio + lavado, 3 h/día, "sé que es exagerado", tics a los 8 años).<br><b>2. Tricotilomanía comórbida</b> (no busca verse mejor, así que no es TDC; no es por simetría, así que no es TOC).<br>Las lesiones de las manos se deben al lavado, no a excoriación. <b>Pendiente:</b> evaluar episodio depresivo mayor y riesgo suicida.</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- ================= 05 TEPT ================= -->
+<section class="tema" id="tept" data-t="tept">
+  <div class="tema-head"><span class="num">05</span><h2>Estrés postraumático y estrés agudo</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+  <p class="lead">En el DSM‑5 los <b>trastornos relacionados con traumas y factores de estrés</b> forman una clase nueva, con entidades que en el DSM‑IV estaban entre los de ansiedad, los de inicio en la infancia y los de adaptación.</p>
+  <div class="def" style="margin-top:14px">TEPT: afección que algunas personas desarrollan tras experimentar o presenciar un evento traumático con muerte, lesión grave o violencia sexual, real o amenazada.</div>
+
+  <h3>Historia y etiología</h3>
+  <div class="grid g2">
+    <div class="prose">
+      <p>Antes se llamaba <b>"fatiga del combate"</b> o <b>"neurosis de guerra"</b>. La <i>mirada de las 2000 yardas</i> describe la expresión inerte de quien vivió "un infierno en vida" (pintura de Thomas Lea, batalla de Peleliu).</p>
+      <p><b>Factores que influyen:</b> edad, antecedentes psiquiátricos y proximidad al estresor. El apoyo social tras el evento <b>reduce</b> el riesgo.</p>
+    </div>
+    <button class="fig" data-src="img/s108.webp"><img src="img/s108.webp" alt="La mirada de las 2000 yardas" loading="lazy"><figcaption><b>Diap. 108.</b> The 2000 Yard Stare.</figcaption></button>
+  </div>
+
+  <h3>Criterios DSM‑5 del TEPT <span class="tag">A–H</span></h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t"><b>Exposición</b> a muerte, lesión grave o violencia sexual, real o amenazada (vivida, presenciada, de un familiar cercano o exposición repetida por trabajo).</span></li>
+    <li><span class="L">B</span><span class="t"><b>Intrusión</b> (≥ 1): recuerdos angustiosos recurrentes, pesadillas, flashbacks disociativos, malestar o reactividad fisiológica ante recordatorios.</span></li>
+    <li><span class="L">C</span><span class="t"><b>Evitación</b> persistente de estímulos asociados al trauma.</span></li>
+    <li><span class="L">D</span><span class="t"><b>Alteraciones negativas cognitivas y del ánimo</b> (culpa, desapego, creencias negativas, amnesia del evento).</span></li>
+    <li><span class="L">E</span><span class="t"><b>Alteración de la activación y reactividad:</b> irritabilidad o furia, hipervigilancia, sobresalto exagerado, mala concentración, insomnio.</span></li>
+    <li><span class="L">F</span><span class="t">Duración de B, C, D y E <b>&gt; 1 mes</b>.</span></li>
+    <li><span class="L">G</span><span class="t">Malestar o deterioro significativo.</span></li>
+    <li><span class="L">H</span><span class="t">No se atribuye a sustancias ni a otra afección médica.</span></li>
+  </ol>
+  <div class="pearl"><span class="ic">PERLA</span><span>Mnemotecnia de los grupos: <b>"Intrusión · Evitación · Cognición/ánimo · Activación"</b>. Si los síntomas duran de <b>3 días a 1 mes</b>, el diagnóstico es <b>trastorno de estrés agudo</b> (complemento DSM‑5: ≥ 9 síntomas de intrusión, ánimo negativo, disociación, evitación y alerta); si pasan de 1 mes, TEPT.</span></div>
+
+  <h3>Epidemiología</h3>
+  <div class="stats">
+    <div class="stat"><b>3.9 %</b><span>de la población mundial ha tenido TEPT en su vida</span></div>
+    <div class="stat"><b>Mayoría</b><span>de los expuestos a un trauma no desarrolla TEPT</span></div>
+    <div class="stat"><b>♀ &gt; ♂</b><span>más frecuente en mujeres</span></div>
+  </div>
+
+  <h3>Neurobiología</h3>
+  <div class="tbl"><table>
+    <tr><th>Estructura</th><th>Función normal</th><th>En el TEPT</th></tr>
+    <tr><td><b>Amígdala</b></td><td>Detecta amenazas y genera miedo</td><td class="bad">Hiperactiva: miedo ante estímulos neutros (hipervigilancia, sobresalto)</td></tr>
+    <tr><td><b>Hipocampo</b></td><td>Consolida memoria y la sitúa en tiempo y espacio</td><td class="bad">Hipoactivo y de menor volumen: no distingue pasado de presente → flashbacks</td></tr>
+    <tr><td><b>CPF medial</b></td><td>Inhibe la amígdala; extinción del miedo</td><td class="bad">Hipoactiva: la amígdala queda "desregulada"</td></tr>
+    <tr><td><b>Cingulada anterior</b></td><td>Integra emoción y cognición</td><td class="bad">Actividad alterada: mala regulación emocional y atencional</td></tr>
+    <tr><td><b>Eje HHA</b></td><td>Cortisol sube y vuelve a la basal</td><td class="bad">Cortisol basal <b>bajo</b> con receptores más sensibles (retroalimentación negativa exagerada); no en todos</td></tr>
+    <tr><td><b>Locus coeruleus</b></td><td>Principal fuente de noradrenalina</td><td class="bad">Hiperactivo: taquicardia, sudoración, temblor, sobresalto</td></tr>
+  </table></div>
+  <div class="figs">
+    <button class="fig" data-src="img/s112.webp"><img src="img/s112.webp" alt="Amígdala e hipocampo en TEPT" loading="lazy"><figcaption><b>Diap. 112.</b> Amígdala e hipocampo.</figcaption></button>
+    <button class="fig" data-src="img/s113.webp"><img src="img/s113.webp" alt="Corteza prefrontal medial y cingulada" loading="lazy"><figcaption><b>Diap. 113.</b> CPF medial y cingulada anterior.</figcaption></button>
+    <button class="fig" data-src="img/s114.webp"><img src="img/s114.webp" alt="Eje HHA y locus coeruleus" loading="lazy"><figcaption><b>Diap. 114.</b> Eje HHA y locus coeruleus.</figcaption></button>
+  </div>
+
+  <h3>Caso clínico</h3>
+  <details class="case">
+    <summary>Varón de 17 años, estudiante en internado</summary>
+    <div class="body">
+      <p>Hace ≈ 4 semanas presenció el asesinato de un compañero y sufrió amenaza directa y prolongada contra su vida, con tortura física. Desde entonces: pesadillas con gritos, recuerdos intrusivos, flashbacks en los que se siente "dentro" del evento, evita hablar del tema, se aísla, irritabilidad con explosiones de ira, hipervigilancia, culpa y desconexión. Antecedentes: muerte temprana de figuras parentales, traumas previos y negligencia emocional. Afecto irritable y lábil; juicio conservado.</p>
+      <button class="btn" data-reveal>Ver análisis</button>
+      <div class="reveal" hidden>
+        <p><b>A</b> presenció homicidio y amenaza de muerte · <b>B</b> pesadillas, recuerdos, flashbacks · <b>C</b> evita hablar, se aísla · <b>D</b> culpa, desconexión · <b>E</b> irritabilidad, ira, hipervigilancia, sobresalto · <b>F</b> &gt; 1 mes · <b>G</b> deterioro interpersonal.<br><b>Diagnóstico presuntivo: TEPT.</b> Ojo con el límite de duración: con menos de 1 mes sería trastorno de estrés agudo.</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- ================= 06 SINTOMAS SOMATICOS ================= -->
+<section class="tema" id="somaticos" data-t="somaticos">
+  <div class="tema-head"><span class="num">06</span><h2>Trastorno de síntomas somáticos</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+  <div class="def">Uno o más síntomas somáticos que causan malestar o alteran la vida diaria, con pensamientos, sentimientos o conductas <b>excesivos</b> relacionados con ellos. Lo central no es si el síntoma tiene explicación médica, sino la respuesta psicológica <b>desproporcionada, persistente y disfuncional</b>.</div>
+
+  <h3>Criterios DSM‑5</h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">≥ 1 síntoma somático que causa malestar o altera la vida diaria.</span></li>
+    <li><span class="L">B</span><span class="t">Pensamientos, sentimientos o conductas excesivos (≥ 1): pensamientos desproporcionados sobre la gravedad · ansiedad elevada por la salud · tiempo y energía excesivos dedicados a los síntomas.</span></li>
+    <li><span class="L">C</span><span class="t">El estado sintomático es persistente, típicamente <b>&gt; 6 meses</b>, aunque el síntoma concreto cambie.</span></li>
+  </ol>
+
+  <h3>Epidemiología</h3>
+  <div class="stats">
+    <div class="stat"><b>5–7 %</b><span>de la población general</span></div>
+    <div class="stat"><b>2:1</b><span>mujeres:hombres</span></div>
+    <div class="stat"><b>~17 %</b><span>en atención primaria</span></div>
+  </div>
+  <p class="prose" style="margin-top:10px">Mayor en trastornos funcionales: fibromialgia, síndrome de intestino irritable y fatiga crónica. Puede aparecer en infancia, adolescencia o adultez.</p>
+
+  <h3>Fisiopatología: amplificación somatosensorial</h3>
+  <div class="grid g3">
+    <div class="card"><div class="k">Ínsula</div>Normal: interocepción. Alterada: <b>hiperactiva</b>, amplifica sensaciones normales o menores.</div>
+    <div class="card"><div class="k">Cingulada anterior</div>Normal: integra emoción y cognición. Alterada: interpreta como <b>amenaza</b> sensaciones benignas.</div>
+    <div class="card"><div class="k">Corteza prefrontal</div>Normal: inhibe la atención a señales irrelevantes. Alterada: menor inhibición, cuesta "dejar de atender" al síntoma.</div>
+  </div>
+  <div class="pearl"><span class="ic">CLAVE</span><span>El paciente no "inventa" la sensación: su SNC la amplifica y la interpreta como enfermedad grave. Más ansiedad → más atención al cuerpo → más síntomas.</span></div>
+  <div class="figs">
+    <button class="fig" data-src="img/s100.webp"><img src="img/s100.webp" alt="Ínsula y cingulada anterior" loading="lazy"><figcaption><b>Diap. 100.</b> Ínsula y cingulada anterior.</figcaption></button>
+    <button class="fig" data-src="img/s101.webp"><img src="img/s101.webp" alt="Corteza prefrontal" loading="lazy"><figcaption><b>Diap. 101.</b> Corteza prefrontal y ciclo de amplificación.</figcaption></button>
+  </div>
+</section>
+
+<!-- ================= 07 ANSIEDAD POR ENFERMEDAD ================= -->
+<section class="tema" id="enfermedad" data-t="enfermedad">
+  <div class="tema-head"><span class="num">07</span><h2>Trastorno de ansiedad por enfermedad</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+  <div class="def">Preocupación excesiva por tener o desarrollar una enfermedad grave, con síntomas somáticos <b>ausentes o mínimos</b>. Antes llamado <b>"hipocondría"</b>.</div>
+
+  <h3>Criterios DSM‑5‑TR</h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Preocupación por padecer o adquirir una enfermedad grave.</span></li>
+    <li><span class="L">B</span><span class="t">Síntomas somáticos ausentes o leves.</span></li>
+    <li><span class="L">C</span><span class="t">Ansiedad alta por la salud; se alarma con facilidad.</span></li>
+    <li><span class="L">D</span><span class="t">Comprobación excesiva (autoexploración) o evitación desadaptativa de médicos y hospitales.</span></li>
+    <li><span class="L">E</span><span class="t">Duración <b>≥ 6 meses</b>.</span></li>
+    <li><span class="L">F</span><span class="t">No se explica mejor por síntomas somáticos, TAG, TOC, dismorfia corporal o trastorno delirante.</span></li>
+  </ol>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card teal"><div class="k">Especificador</div><b>Buscador</b> de asistencia (consulta, se hace estudios) vs <b>evitador</b> de asistencia (evita médicos por miedo).</div>
+    <div class="stats" style="grid-template-columns:1fr 1fr"><div class="stat"><b>1.3–10 %</b><span>población general</span></div><div class="stat"><b>3–8 %</b><span>de los pacientes en consulta</span></div></div>
+  </div>
+
+  <h3>Fisiopatología: el ciclo de la comprobación</h3>
+  <div class="cycle">
+    <div class="step"><b>1</b>Sensación normal (palpitación, lunar)</div><span class="arrow">→</span>
+    <div class="step hot"><b>2</b>Interpretación catastrófica: "¿será cáncer?"</div><span class="arrow">→</span>
+    <div class="step"><b>3</b>Ansiedad: ↑ simpático, ↑ cortisol</div><span class="arrow">→</span>
+    <div class="step"><b>4</b>Comprobación: se revisa, busca en internet</div><span class="arrow">→</span>
+    <div class="step cool"><b>5</b>Alivio breve; la duda vuelve</div>
+  </div>
+  <p class="loopnote">↺ El alivio refuerza la comprobación. Amígdala e ínsula hiperactivas producen síntomas reales que "confirman" el miedo. Un estudio normal no basta porque no cambia la interpretación; por eso funciona la TCC.</p>
+  <div class="figs">
+    <button class="fig" data-src="img/s122.webp"><img src="img/s122.webp" alt="Criterios de ansiedad por enfermedad" loading="lazy"><figcaption><b>Diap. 122.</b> Criterios e ilustración.</figcaption></button>
+    <button class="fig" data-src="img/s124.webp"><img src="img/s124.webp" alt="Ciclo de la ansiedad por enfermedad" loading="lazy"><figcaption><b>Diap. 124.</b> Ciclo de mantenimiento.</figcaption></button>
+  </div>
+</section>
+
+<!-- ================= 08 CONVERSION ================= -->
+<section class="tema" id="conversion" data-t="conversion">
+  <div class="tema-head"><span class="num">08</span><h2>Trastorno de conversión</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+  <p class="lead" style="margin-bottom:12px">Trastorno de síntomas neurológicos funcionales (TSNF). Antes "histeria" o "conversión psicógena".</p>
+  <div class="def">Uno o más síntomas de alteración de la función <b>motora o sensitiva voluntaria</b>, sin lesión neurológica estructural que los explique.</div>
+
+  <h3>Criterios DSM‑5‑TR</h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">≥ 1 síntoma de función motora o sensitiva voluntaria alterada.</span></li>
+    <li><span class="L">B</span><span class="t"><b>Incompatibilidad</b> con enfermedades neurológicas reconocidas (signo de Hoover, temblor que cede con la distracción).</span></li>
+    <li><span class="L">C</span><span class="t">No se explica mejor por otro trastorno médico o mental.</span></li>
+    <li><span class="L">D</span><span class="t">Malestar o deterioro funcional, o amerita evaluación médica.</span></li>
+  </ol>
+  <p class="prose" style="margin-top:10px">Se especifica: tipo de síntoma (debilidad, movimientos anormales, crisis, anestesia…), curso (agudo &lt; 6 meses o persistente) y con o sin estresor.</p>
+
+  <h3>Epidemiología</h3>
+  <div class="stats">
+    <div class="stat"><b>~75 %</b><span>mujeres</span></div>
+    <div class="stat"><b>4–12 / 100 000</b><span>incidencia anual (EUA/Europa)</span></div>
+    <div class="stat"><b>80–140 / 100 000</b><span>prevalencia mínima estimada</span></div>
+    <div class="stat"><b>10 %</b><span>de pacientes de neurología general tiene síntomas no explicados</span></div>
+  </div>
+
+  <h3>Fisiopatología: modelo predictivo</h3>
+  <div class="cycle">
+    <div class="step"><b>1</b>Estresor o trauma emocional o físico</div><span class="arrow">→</span>
+    <div class="step"><b>2</b>Expectativa anormal: "mi pierna no funciona"</div><span class="arrow">→</span>
+    <div class="step"><b>3</b>Atención al síntoma refuerza la predicción</div><span class="arrow">→</span>
+    <div class="step hot"><b>4</b>Fallo de agencia: ↓ unión temporoparietal derecha, ↑ amígdala</div><span class="arrow">→</span>
+    <div class="step cool"><b>5</b>Síntoma funcional, no se siente voluntario</div>
+  </div>
+  <p class="loopnote">Estructura sana + procesamiento alterado = síntoma real y reversible. La predicción interna anómala domina sobre la señal sensorial o motora real.</p>
+  <div class="figs">
+    <button class="fig" data-src="img/s129.webp"><img src="img/s129.webp" alt="Fisiopatología de conversión" loading="lazy"><figcaption><b>Diap. 129.</b> Vulnerabilidad + estresor → desregulación → redes límbica, atencional y de agencia.</figcaption></button>
+  </div>
+  <div class="pearl"><span class="ic">NO ES FINGIR</span><span>La persona no controla el síntoma ni lo produce a propósito. En la <b>simulación</b> sí hay engaño consciente con ganancia externa; en el <b>facticio</b> hay engaño sin ganancia externa.</span></div>
+
+  <h3>Ansiedad por enfermedad vs conversión</h3>
+  <div class="tbl"><table>
+    <tr><th></th><th>Ansiedad por enfermedad</th><th>Conversión</th></tr>
+    <tr><td><b>Protagonista</b></td><td>El miedo a una enfermedad grave</td><td>El síntoma motor o sensitivo</td></tr>
+    <tr><td><b>Síntoma físico</b></td><td>Ausente o leve</td><td>Presente, con déficit evidente</td></tr>
+    <tr><td><b>Conducta</b></td><td>Comprobar, buscar reaseguro o evitar</td><td>Atención al síntoma; busca explicación</td></tr>
+    <tr><td><b>Signo clave</b></td><td>Estudios normales que no tranquilizan</td><td>Hoover, mejoría con la distracción</td></tr>
+    <tr><td><b>Tratamiento</b></td><td>TCC e ISRS</td><td>Explicar el diagnóstico, fisioterapia y TCC</td></tr>
+  </table></div>
+
+  <h3>Caso para discutir</h3>
+  <details class="case">
+    <summary>Mujer de 26 años con debilidad en la pierna izquierda</summary>
+    <div class="body">
+      <p>Debilidad desde hace 2 semanas, iniciada un día después de terminar con su pareja. Teme tener esclerosis múltiple como su prima; hace meses revisa su cuerpo a diario y busca síntomas en internet. Vio a 3 médicos con estudios normales y no se tranquiliza. En la exploración, la fuerza mejora cuando se distrae.</p>
+      <button class="btn" data-reveal>¿Diagnóstico principal?</button>
+      <div class="reveal" hidden>
+        <p><b>Trastorno de conversión.</b> Hay déficit físico con signo positivo (mejora con la distracción) tras un estresor. La preocupación por la EM y las comprobaciones sugieren además ansiedad por enfermedad: pueden coexistir.</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- ================= 09 FACTICIO ================= -->
+<section class="tema" id="facticio" data-t="facticio">
+  <div class="tema-head"><span class="num">09</span><h2>Trastorno facticio</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+  <div class="def">El paciente <b>inventa síntomas o produce signos</b> de enfermedad de forma voluntaria, físicos o psicológicos. La motivación es la necesidad de <b>"ser un enfermo"</b> y recibir cuidados, sin una recompensa externa obvia.</div>
+
+  <h3>Dos formas DSM‑5</h3>
+  <div class="grid g2">
+    <div class="card">
+      <h4>Aplicado a uno mismo</h4>
+      <ul class="clean"><li>Falsificación de signos o síntomas, o inducción de lesión, con engaño identificado.</li><li>Se presenta ante los demás como enfermo, incapacitado o lesionado.</li><li>El engaño es evidente aun sin recompensa externa.</li><li>No se explica por otro trastorno (p. ej., delirante).</li><li>Especificar: episodio único o recurrente.</li></ul>
+    </div>
+    <div class="card plum">
+      <h4>Aplicado a otro (por poderes)</h4>
+      <ul class="clean"><li>Falsifica o induce enfermedad <b>en otra persona</b> (víctima).</li><li>Presenta a la víctima como enferma ante los demás.</li><li>El diagnóstico es para el perpetrador, no para la víctima.</li><li>Mismos criterios de engaño sin recompensa externa.</li></ul>
+    </div>
+  </div>
+
+  <h3>Claves clínicas</h3>
+  <div class="grid g3">
+    <div class="card"><div class="k">¿Quién?</div>Mujeres jóvenes solteras (&lt; 40 años) con conflictos interpersonales y <b>profesionales de la salud</b>.</div>
+    <div class="card"><div class="k">¿Cómo?</div>Un solo síntoma fácil de manipular: fiebre facticia, hipoglucemia inducida.</div>
+    <div class="card alert"><div class="k">Forma grave</div><b>Síndrome de Münchausen</b>, más común en hombres.</div>
+  </div>
+  <p class="prose" style="margin-top:12px">El diagnóstico depende de que las pruebas demuestren el carácter facticio o de "cazar" al paciente provocándose las lesiones. Señales: historia inconsistente o dramática, síntomas cambiantes, laboratorios atípicos, múltiples hospitalizaciones, poca mejoría y negación al confrontarlo.</p>
+  <div class="figs">
+    <button class="fig wide" data-src="img/s137.webp"><img src="img/s137.webp" alt="Infografía del trastorno facticio" loading="lazy"><figcaption><b>Diap. 137.</b> Factores predisponentes, mecanismos, manifestaciones y ciclo de mantenimiento.</figcaption></button>
+  </div>
+  <div class="tbl" style="margin-top:16px"><table>
+    <tr><th></th><th>Conversión</th><th>Facticio</th><th>Simulación</th></tr>
+    <tr><td><b>¿Produce el síntoma a propósito?</b></td><td>No</td><td>Sí</td><td>Sí</td></tr>
+    <tr><td><b>¿Ganancia externa?</b></td><td>No</td><td>No (busca el rol de enfermo)</td><td>Sí (dinero, incapacidad, evitar cárcel)</td></tr>
+    <tr><td><b>¿Es trastorno mental?</b></td><td>Sí</td><td>Sí</td><td>No</td></tr>
+  </table></div>
+</section>
+
+<!-- ================= 10 BIPOLAR ================= -->
+<section class="tema" id="bipolar" data-t="bipolar">
+  <div class="tema-head"><span class="num">10</span><h2>Trastorno bipolar I y II</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+  <div class="def">Conjunto de episodios con <b>alteración del estado de ánimo</b>, acompañados de cambios en la energía y en el funcionamiento. El tipo de episodios que la persona ha tenido a lo largo de la vida determina la clasificación.</div>
+
+  <h3>Los tres tipos de episodio</h3>
+  <div class="grid g3">
+    <div class="card alert"><div class="k">Manía · ≥ 7 días</div>Ánimo elevado, expansivo o irritable y más energía, con <b>repercusión grave</b>. Puede requerir hospitalización y tener psicosis.</div>
+    <div class="card gold"><div class="k">Hipomanía · ≥ 4 días</div>Mismo cuadro, menos intenso: cambio <b>observable por otros</b>, sin deterioro importante, sin hospitalización y <b>sin psicosis</b>.</div>
+    <div class="card teal"><div class="k">Depresión mayor · ≥ 2 semanas</div>Ánimo deprimido o pérdida de interés o placer, con otros síntomas y deterioro funcional.</div>
+  </div>
+  <div class="tbl" style="margin-top:14px"><table>
+    <tr><th>Criterio</th><th>Manía</th><th>Hipomanía</th><th>Depresión mayor</th><th>Psicosis</th></tr>
+    <tr><td><b>Estado</b></td><td>↑ ánimo / energía</td><td>↑ ánimo / energía</td><td>↓ ánimo / placer</td><td>Pérdida de contacto con la realidad</td></tr>
+    <tr><td><b>Duración mínima</b></td><td>≥ 7 días (cualquiera si requiere hospitalización)</td><td>≥ 4 días consecutivos</td><td>≥ 2 semanas</td><td>Variable</td></tr>
+    <tr><td><b>Sueño</b></td><td>↓ necesidad de dormir</td><td>↓ necesidad de dormir</td><td>Insomnio o hipersomnia</td><td>Puede alterarse</td></tr>
+    <tr><td><b>Actividad</b></td><td>↑↑ marcada</td><td>↑ aumentada</td><td>↓ disminuida</td><td>Variable</td></tr>
+    <tr><td><b>Funcionamiento</b></td><td class="bad">Deterioro marcado</td><td>Cambio evidente sin deterioro grave</td><td>Deterioro variable</td><td>Generalmente deteriorado</td></tr>
+    <tr><td><b>Psicosis</b></td><td>Puede aparecer</td><td class="good"><b>No</b></td><td>Puede aparecer si es grave</td><td>Fenómeno central</td></tr>
+  </table></div>
+
+  <h3>¿Por qué se divide en I y II?</h3>
+  <div class="grid g2">
+    <div class="card"><div class="k">Tipo I</div><h4>≥ 1 episodio maníaco</h4><p>Puede tener hipomanía o depresión mayor, pero <b>no son necesarias</b> para el diagnóstico.</p></div>
+    <div class="card"><div class="k">Tipo II</div><h4>≥ 1 hipomanía + ≥ 1 depresión mayor</h4><p><b>Nunca</b> ha tenido un episodio maníaco. Muchos pasan largos periodos en depresión persistente de bajo grado.</p></div>
+  </div>
+  <div class="pearl"><span class="ic">PERLA</span><span>El tipo II <b>no es una forma más leve</b>: sus episodios depresivos pueden causar una incapacidad importante. Una sola manía en la vida convierte el diagnóstico en tipo I para siempre.</span></div>
+  <div class="figs">
+    <button class="fig" data-src="img/b8.webp"><img src="img/b8.webp" alt="Espectro bipolar" loading="lazy"><figcaption><b>Espectro bipolar.</b> De depresión severa a manía con psicosis; dónde caen depresión mayor, ciclotimia, bipolar II y bipolar I.</figcaption></button>
+    <button class="fig" data-src="img/b3.webp"><img src="img/b3.webp" alt="Tabla manía vs hipomanía vs depresión vs psicosis" loading="lazy"><figcaption><b>Comparación.</b> Manía, hipomanía, depresión mayor y psicosis.</figcaption></button>
+  </div>
+
+  <h3>Episodio maníaco <span class="tag">DSM‑5, A–D</span></h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Periodo bien definido de ánimo anormal y persistentemente <b>elevado, expansivo o irritable</b> + aumento persistente de la actividad o energía dirigida a objetivos, la mayor parte del día, casi todos los días, <b>≥ 1 semana</b> (o cualquier duración si requiere hospitalización).</span></li>
+    <li><span class="L">B</span><span class="t"><b>≥ 3</b> síntomas (<b>≥ 4</b> si el ánimo solo es irritable): grandiosidad · ↓ necesidad de sueño · verborrea · fuga de ideas · distraibilidad · ↑ actividad dirigida a objetivos o agitación · conductas de alto riesgo.</span></li>
+    <li><span class="L">C</span><span class="t">Gravedad suficiente para causar <b>deterioro importante</b>, requerir <b>hospitalización</b> o con <b>características psicóticas</b>.</span></li>
+    <li><span class="L">D</span><span class="t">No se atribuye a sustancias ni a otra afección médica.</span></li>
+  </ol>
+  <div class="pearl"><span class="ic">TRUCO</span><span>Los 7 síntomas del criterio B: <b>"DIGFAST"</b> → <b>D</b>istraibilidad, <b>I</b>mpulsividad (conductas de riesgo), <b>G</b>randiosidad, <b>F</b>uga de ideas, <b>A</b>ctividad dirigida a objetivos, <b>S</b>ueño disminuido, <b>T</b>alkative (verborrea).</span></div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="k">Actividad dirigida a objetivos</div><ul class="clean"><li>Iniciar múltiples proyectos</li><li>Trabajar o estudiar en exceso</li><li>Ejercicio excesivo</li><li>Más actividad social y sexual</li></ul></div>
+    <div class="card"><div class="k">Conductas de alto riesgo</div><ul class="clean"><li>Gastos excesivos e inversiones imprudentes</li><li>Conducción temeraria</li><li>Apuestas</li><li>Relaciones sexuales impulsivas</li></ul></div>
+  </div>
+
+  <h3>Presentaciones de la manía</h3>
+  <div class="grid g3">
+    <div class="card"><div class="k">Eufórica</div>Ánimo elevado y expansivo con grandiosidad, verborrea, menos sueño e impulsividad.</div>
+    <div class="card"><div class="k">Disfórica o irritable</div>Activación con malestar: tensión, ansiedad, agitación, hostilidad y baja tolerancia a la frustración.</div>
+    <div class="card plum"><div class="k">Con características mixtas</div>Si además se cumplen síntomas depresivos concurrentes.</div>
+  </div>
+
+  <h3>Episodio hipomaníaco <span class="tag">DSM‑5, A–F</span></h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Mismo ánimo y energía que en la manía, durante <b>≥ 4 días consecutivos</b>.</span></li>
+    <li><span class="L">B</span><span class="t">≥ 3 de los mismos 7 síntomas (≥ 4 si solo hay irritabilidad).</span></li>
+    <li><span class="L">C</span><span class="t">Cambio inequívoco del funcionamiento, no característico de la persona.</span></li>
+    <li><span class="L">D</span><span class="t">El cambio es <b>observable por otras personas</b>.</span></li>
+    <li><span class="L">E</span><span class="t"><b>No</b> es tan grave como para causar deterioro importante ni requerir hospitalización; si hay psicosis, por definición es manía.</span></li>
+    <li><span class="L">F</span><span class="t">No se atribuye a sustancias.</span></li>
+  </ol>
+
+  <h3>Episodio de depresión mayor <span class="tag">DSM‑5, A–C</span></h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t"><b>≥ 5 de 9</b> síntomas durante <b>2 semanas</b>, al menos uno es (1) ánimo deprimido o (2) anhedonia: ánimo deprimido · ↓ interés o placer · cambio de peso o apetito · insomnio o hipersomnia · agitación o retraso psicomotor · fatiga · inutilidad o culpa · ↓ concentración · ideas de muerte o suicidio.</span></li>
+    <li><span class="L">B</span><span class="t">Malestar o deterioro significativo.</span></li>
+    <li><span class="L">C</span><span class="t">No se atribuye a sustancias ni a otra afección médica.</span></li>
+  </ol>
+  <div class="pearl"><span class="ic">TRUCO</span><span>Síntomas de depresión: <b>"SIG E CAPS"</b> → <b>S</b>ueño, <b>I</b>nterés, culpa (<b>G</b>uilt), <b>E</b>nergía, <b>C</b>oncentración, <b>A</b>petito, <b>P</b>sicomotor, <b>S</b>uicidio, más el ánimo deprimido.</span></div>
+
+  <h3>Criterios del trastorno</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Bipolar I</h4><ol class="crit" style="margin-top:8px"><li><span class="L">A</span><span class="t">≥ 1 episodio maníaco (A–D).</span></li><li><span class="L">B</span><span class="t">No se explica mejor por esquizoafectivo, esquizofrenia, esquizofreniforme, delirante u otro del espectro psicótico.</span></li></ol></div>
+    <div class="card"><h4>Bipolar II</h4><ol class="crit" style="margin-top:8px"><li><span class="L">A</span><span class="t">≥ 1 hipomanía (A–F) y ≥ 1 depresión mayor (A–C).</span></li><li><span class="L">B</span><span class="t"><b>Nunca</b> ha habido un episodio maníaco.</span></li><li><span class="L">C</span><span class="t">No se explica mejor por un trastorno del espectro psicótico.</span></li><li><span class="L">D</span><span class="t">La depresión o la alternancia frecuente depresión‑hipomanía causan malestar o deterioro.</span></li></ol></div>
+  </div>
+
+  <h3>Epidemiología y pronóstico</h3>
+  <div class="stats">
+    <div class="stat"><b>0.6 %</b><span>bipolar I, prevalencia en un año</span></div>
+    <div class="stat"><b>0.3 %</b><span>bipolar II internacional; 0.8 % en EUA</span></div>
+    <div class="stat"><b>♀ = ♂</b><span>frecuencia similar en ambos sexos</span></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="k">Bipolar I</div><p><b>Riesgo:</b> familiares con trastorno bipolar; más frecuente en países ricos y en personas separadas, divorciadas o viudas.</p><p><b>Pronóstico:</b> la manía con psicosis aumenta la probabilidad de que reaparezca y se asocia a recuperación incompleta entre episodios.</p></div>
+    <div class="card"><div class="k">Bipolar II</div><p><b>Riesgo:</b> familiares con TB‑II; la genética influye en la edad de inicio.</p><p><b>Pronóstico:</b> los <b>ciclos rápidos</b> empeoran el pronóstico; se recupera mejor con menor edad y depresión menos grave; más años de enfermedad dificultan la recuperación funcional.</p></div>
+  </div>
+
+  <h3>Fisiopatología</h3>
+  <div class="grid g3">
+    <div class="card"><div class="k">Genética</div>Alta heredabilidad, poligénica: <b>CACNA1C, ANK3, SCN2A</b>; canales iónicos y Ca²⁺ intracelular alterados.</div>
+    <div class="card"><div class="k">Neurotransmisores</div><b>↑ dopamina</b> (recompensa, grandiosidad, riesgo) + <b>↑ glutamato</b> (excitabilidad) + <b>↓ GABA</b> (menos freno) = desequilibrio excitación/inhibición. En TB‑II también ↑ noradrenalina y ↓ serotonina.</div>
+    <div class="card"><div class="k">Circuitos</div>Disfunción frontolímbica: corteza prefrontal, amígdala, cíngulo y estriado. La manía surge por hiperactivación emocional y menor control inhibitorio.</div>
+    <div class="card"><div class="k">Señalización</div>GSK‑3 y vía del inositol; <b>el litio inhibe GSK‑3</b> y modula la vía del inositol. BDNF ↓, menor neuroplasticidad.</div>
+    <div class="card"><div class="k">Metabolismo y estrés</div>Estrés oxidativo, disfunción mitocondrial; eje HHA con respuesta al estrés alterada.</div>
+    <div class="card"><div class="k">Desencadenantes</div>Estrés, <b>privación de sueño</b> y sustancias.</div>
+  </div>
+  <div class="figs">
+    <button class="fig" data-src="img/b24.webp"><img src="img/b24.webp" alt="Fisiopatología del trastorno bipolar tipo I" loading="lazy"><figcaption><b>Bipolar I.</b> Modelo multifactorial centrado en la manía.</figcaption></button>
+    <button class="fig" data-src="img/b25.webp"><img src="img/b25.webp" alt="Neurotransmisores en el trastorno bipolar" loading="lazy"><figcaption><b>Neurotransmisores.</b> Dopamina ↑, glutamato ↑, GABA ↓.</figcaption></button>
+    <button class="fig wide" data-src="img/b37.webp"><img src="img/b37.webp" alt="Fisiopatología del trastorno bipolar tipo II" loading="lazy"><figcaption><b>Bipolar II.</b> Genética, neurotransmisores, GSK‑3, neuroplasticidad, ritmos circadianos, eje HPA y circuitos.</figcaption></button>
+  </div>
+
+  <h3>Ritmos circadianos y sueño</h3>
+  <p class="prose">Hay mayor vulnerabilidad a la desincronización circadiana. La privación de sueño aumenta la activación dopaminérgica y altera el control frontolímbico, lo que puede desencadenar manía.</p>
+  <div class="cycle">
+    <div class="step"><b>1</b>Menos sueño</div><span class="arrow">→</span>
+    <div class="step hot"><b>2</b>Mayor activación</div><span class="arrow">→</span>
+    <div class="step"><b>3</b>Menor necesidad subjetiva de dormir</div><span class="arrow">→</span>
+    <div class="step hot"><b>4</b>Mayor desregulación</div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card teal"><div class="k">Insomnio</div>"Quiero dormir, pero no puedo."</div>
+    <div class="card alert"><div class="k">Manía</div>"Dormí 3 horas y no necesito más."</div>
+  </div>
+
+  <h3>Caso para practicar</h3>
+  <details class="case">
+    <summary>Mujer de 30 años, traída por su familia</summary>
+    <div class="body">
+      <p>Caso de práctica (no viene en las diapositivas). Hace 9 días duerme 3 horas y dice sentirse "más descansada que nunca". Habla sin parar, salta de tema en tema, inició cuatro negocios y gastó sus ahorros en uno. Afirma que el gobierno la eligió para una misión secreta. Hace 2 años tuvo un episodio depresivo de un mes. Sin consumo de sustancias.</p>
+      <button class="btn" data-reveal>Ver respuesta</button>
+      <div class="reveal" hidden>
+        <p><b>Trastorno bipolar I, episodio actual maníaco con características psicóticas.</b> ≥ 7 días, ≥ 3 síntomas (↓ sueño, verborrea, fuga de ideas, actividad dirigida a objetivos, gastos de riesgo, grandiosidad) y psicosis, que por sí sola excluye hipomanía. El episodio depresivo previo no es necesario para el diagnóstico de tipo I.</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- ================= 11 ESQUIZOFRENIA ================= -->
+<section class="tema" id="esquizofrenia" data-t="esquizofrenia">
+  <div class="tema-head"><span class="num">11</span><h2>Esquizofrenia y otros trastornos psicóticos</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+  <p class="lead">El espectro incluye cinco diagnósticos que se distinguen sobre todo por <b>cuánto duran</b> los síntomas, <b>cuáles</b> aparecen y su relación con el <b>estado de ánimo</b>.</p>
+
+  <h3>La regla de la duración</h3>
+  <div class="grid g4">
+    <div class="card teal"><div class="k">1 día a &lt; 1 mes</div><h4>Psicótico breve</h4>Inicio súbito y retorno completo al funcionamiento previo.</div>
+    <div class="card gold"><div class="k">1 a &lt; 6 meses</div><h4>Esquizofreniforme</h4>Mismo cuadro que la esquizofrenia, sin llegar a 6 meses.</div>
+    <div class="card alert"><div class="k">≥ 6 meses</div><h4>Esquizofrenia</h4>Con ≥ 1 mes de síntomas activos y deterioro.</div>
+    <div class="card plum"><div class="k">≥ 1 mes de delirios</div><h4>Delirante</h4>Delirios sin criterio A de esquizofrenia y con funcionamiento conservado.</div>
+  </div>
+  <div class="pearl"><span class="ic">ÁNIMO</span><span>Si la psicosis aparece <b>solo durante</b> episodios afectivos, es bipolar o depresión mayor con características psicóticas. Si hay ≥ 2 semanas de psicosis <b>sin</b> episodio afectivo y el ánimo alterado ocupa la mayor parte de la enfermedad, es <b>esquizoafectivo</b>.</span></div>
+
+  <h3>Delirio vs alucinación</h3>
+  <div class="grid g2">
+    <div class="card"><div class="k">Delirio · contenido del pensamiento</div>Creencia fija, con convicción intensa, resistente a la evidencia y no explicada por la cultura. "Mis vecinos instalaron cámaras para vigilarme."</div>
+    <div class="card"><div class="k">Alucinación · percepción</div>Percepción sin estímulo externo, en cualquier modalidad; las auditivas son las más frecuentes. "Escucho voces que me amenazan."</div>
+  </div>
+
+  <h3>Esquizofrenia</h3>
+  <div class="def">Trastorno psiquiátrico grave, complejo y generalmente crónico que altera cómo la persona piensa, percibe la realidad, expresa sus emociones y se relaciona con los demás.</div>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card alert"><div class="k">Positivos</div>Aparecen de forma anormal: alucinaciones, delirios, desorganización.</div>
+    <div class="card"><div class="k">Negativos (5 A)</div><b>A</b>bulia (iniciativa) · <b>A</b>logia (habla) · <b>A</b>nhedonia (placer) · <b>A</b>socialidad · <b>A</b>fecto disminuido.</div>
+    <div class="card teal"><div class="k">Cognitivos</div>Memoria de trabajo, atención, concentración y funciones ejecutivas.</div>
+  </div>
+
+  <h3>Criterios DSM‑5‑TR <span class="tag">A–F</span></h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t"><b>≥ 2</b> síntomas durante una parte significativa de <b>1 mes</b>: delirios · alucinaciones · discurso desorganizado · comportamiento muy desorganizado o catatónico · síntomas negativos. Al menos uno debe ser <b>delirio, alucinación o discurso desorganizado</b>.</span></li>
+    <li><span class="L">B</span><span class="t">Deterioro funcional laboral o académico, social o del autocuidado.</span></li>
+    <li><span class="L">C</span><span class="t">Signos continuos <b>≥ 6 meses</b>, con ≥ 1 mes de síntomas activos. Fases: <b>prodrómica</b> (aislamiento, irritabilidad, bajo rendimiento) → <b>activa</b> (psicosis) → <b>residual</b> (síntomas negativos o atenuados).</span></li>
+    <li><span class="L">D</span><span class="t">Descartar esquizoafectivo, bipolar y depresión mayor con características psicóticas.</span></li>
+    <li><span class="L">E</span><span class="t">No por sustancias (anfetaminas, cocaína, cannabis), fármacos (corticosteroides) ni enfermedades neurológicas o metabólicas.</span></li>
+    <li><span class="L">F</span><span class="t">Con antecedente de autismo o trastorno de la comunicación, solo se añade si hay delirios o alucinaciones prominentes ≥ 1 mes.</span></li>
+  </ol>
+
+  <h3>Epidemiología</h3>
+  <div class="stats">
+    <div class="stat"><b>15.4</b><span>casos nuevos por 100 000 habitantes al año</span></div>
+    <div class="stat"><b>277.7</b><span>casos por 100 000 habitantes (prevalencia)</span></div>
+    <div class="stat"><b>0.3–0.7 %</b><span>prevalencia de vida</span></div>
+    <div class="stat"><b>18.ª</b><span>causa mundial de años vividos con discapacidad</span></div>
+    <div class="stat"><b>−15 años</b><span>de esperanza de vida; 5–6 % muere por suicidio</span></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="k">Edad de inicio</div><b>Hombres:</b> 18–25 años, más síntomas negativos y peor funcionamiento. <b>Mujeres:</b> 25–35 años, con un segundo pico después de los 40.</div>
+    <div class="card"><div class="k">Mortalidad y tendencia</div>Enfermedad cardiovascular, metabólica y respiratoria explican gran parte de la muerte prematura. De 1990 a 2021 bajó la incidencia estandarizada, pero subió el número absoluto de casos.</div>
+  </div>
+
+  <h3>Fisiopatología <span class="tag">trastorno del neurodesarrollo</span></h3>
+  <div class="tbl"><table>
+    <tr><th>Mecanismo</th><th>Alteración</th><th>Síntomas</th></tr>
+    <tr><td><b>Vía mesolímbica</b></td><td>Hiperactividad dopaminérgica (D2)</td><td class="bad">Positivos: alucinaciones, delirios, agitación</td></tr>
+    <tr><td><b>Vía mesocortical</b></td><td>Hipoactividad dopaminérgica (D1)</td><td>Negativos y cognitivos: apatía, alogia, déficit de atención y memoria</td></tr>
+    <tr><td><b>Receptores NMDA</b></td><td>Hipofunción en interneuronas GABA (hipótesis glutamatérgica)</td><td>Positivos, negativos y cognitivos</td></tr>
+    <tr><td><b>Neurodesarrollo</b></td><td>Migración neuronal prenatal alterada y <b>poda sináptica excesiva</b> en la adolescencia (complemento C4)</td><td>Inicio en la adultez temprana</td></tr>
+    <tr><td><b>Estructura</b></td><td>Ventriculomegalia, menor volumen prefrontal y temporal medial, disconectividad de sustancia blanca</td><td>—</td></tr>
+    <tr><td><b>Inflamación</b></td><td>Activación microglial (IL‑6, TNF‑α) y estrés oxidativo</td><td>Pérdida sináptica</td></tr>
+  </table></div>
+  <div class="figs">
+    <button class="fig wide" data-src="img/e17.webp"><img src="img/e17.webp" alt="Fisiopatología de la esquizofrenia" loading="lazy"><figcaption><b>Diap. 17.</b> Hipótesis dopaminérgica y glutamatérgica, neurodesarrollo, neuroinflamación y cambios estructurales.</figcaption></button>
+  </div>
+
+  <h3>Trastorno delirante</h3>
+  <div class="def">Uno o más delirios durante <b>≥ 1 mes</b> con funcionamiento relativamente conservado: el paciente puede parecer completamente normal hasta que habla de su idea delirante.</div>
+  <ol class="crit" style="margin-top:14px">
+    <li><span class="L">A</span><span class="t">≥ 1 delirio durante ≥ 1 mes (p. ej., infidelidad sin pruebas).</span></li>
+    <li><span class="L">B</span><span class="t">Nunca se ha cumplido el criterio A de esquizofrenia. Si hay alucinaciones, no son prominentes y se relacionan con el delirio (infestación en un delirio somático).</span></li>
+    <li><span class="L">C</span><span class="t">Fuera del delirio, el funcionamiento no está muy alterado y la conducta no es extravagante.</span></li>
+    <li><span class="L">D</span><span class="t">Los episodios maníacos o depresivos, si los hubo, fueron breves respecto a los periodos delirantes (p. ej., 8 meses de delirio y 3 semanas de depresión).</span></li>
+    <li><span class="L">E</span><span class="t">No se debe a sustancias ni a otra afección, ni se explica mejor por TDC o TOC sin introspección.</span></li>
+  </ol>
+  <div class="grid g4" style="margin-top:14px">
+    <div class="card alert"><div class="k">Persecutorio</div>Persecución, vigilancia o daño. <b>El más frecuente.</b></div>
+    <div class="card"><div class="k">Celotípico</div>Infidelidad de la pareja.</div>
+    <div class="card"><div class="k">Erotomaníaco</div>Alguien está enamorado de él; más frecuente en mujeres.</div>
+    <div class="card"><div class="k">Grandeza</div>Capacidades o identidad extraordinarias.</div>
+    <div class="card"><div class="k">Somático</div>Enfermedad o alteración corporal.</div>
+    <div class="card"><div class="k">Mixto / no especificado</div>Varios temas sin predominio o difícil de clasificar.</div>
+  </div>
+  <div class="stats" style="margin-top:14px">
+    <div class="stat"><b>0.2 %</b><span>prevalencia de vida</span></div>
+    <div class="stat"><b>35–55 años</b><span>inicio típico; ligero predominio femenino</span></div>
+    <div class="stat"><b>1–4 %</b><span>de los ingresos psiquiátricos</span></div>
+    <div class="stat"><b>66 %</b><span>tiene ≥ 1 enfermedad crónica (16 % diabetes; registro DelirAnda)</span></div>
+  </div>
+  <p class="prose" style="margin-top:10px">Factores asociados (no causas demostradas): aislamiento social, edad avanzada, estrés migratorio, bajo nivel socioeconómico y <b>déficits sensoriales</b>; una persona con hipoacusia puede malinterpretar conversaciones.</p>
+  <div class="figs">
+    <button class="fig wide" data-src="img/e37.webp"><img src="img/e37.webp" alt="Fisiopatología del trastorno delirante" loading="lazy"><figcaption><b>Diap. 37.</b> Genética (COMT, DRD2), hiperfunción dopaminérgica, saliencia aberrante, sesgo confirmatorio y pérdida de insight.</figcaption></button>
+  </div>
+
+  <h3>Trastorno psicótico breve</h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">≥ 1 de: delirios, alucinaciones, discurso desorganizado, comportamiento muy desorganizado o catatónico. Al menos uno de los tres primeros; los síntomas negativos no cuentan.</span></li>
+    <li><span class="L">B</span><span class="t">Dura <b>≥ 1 día y &lt; 1 mes</b>, con retorno total al funcionamiento premórbido.</span></li>
+    <li><span class="L">C</span><span class="t">No se explica mejor por un trastorno afectivo con psicosis, esquizofrenia, catatonia, sustancias o una afección médica, ni es una respuesta culturalmente aceptada.</span></li>
+  </ol>
+  <div class="grid g4" style="margin-top:14px">
+    <div class="card"><div class="k">Con estresor notable</div>Psicosis reactiva breve: tras un evento traumático para casi cualquiera.</div>
+    <div class="card"><div class="k">Sin estresor notable</div>Sin desencadenante evidente.</div>
+    <div class="card"><div class="k">Inicio en el periparto</div>Embarazo o primeras 4 semanas posparto; 1–2 por 1000 puérperas.</div>
+    <div class="card alert"><div class="k">Con catatonia</div>Requiere valoración urgente.</div>
+  </div>
+  <p class="prose" style="margin-top:10px"><b>Fisiopatología:</b> modelo estrés‑diátesis. Un estresor agudo hiperactiva el eje HHA → cortisol → más dopamina mesolímbica, sobre una vulnerabilidad previa (rasgos límites, esquizotípicos o paranoides). En el posparto, la caída de estrógenos reduce su efecto protector sobre los receptores D2. Más frecuente en mujeres (~2:1) y en países de ingresos bajos y medios; 2–7 % de los primeros episodios psicóticos.</p>
+  <div class="dur" style="margin-top:12px" id="tpbEvol"></div>
+  <p class="loopnote" style="color:var(--muted)">Evolución: es una "encrucijada diagnóstica" que exige seguimiento a largo plazo.</p>
+
+  <h3>Trastorno esquizofreniforme</h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Mismo criterio A que la esquizofrenia: ≥ 2 síntomas, al menos uno delirio, alucinación o discurso desorganizado.</span></li>
+    <li><span class="L">B</span><span class="t">Dura <b>1 a &lt; 6 meses</b>; puede o no haber deterioro funcional.</span></li>
+    <li><span class="L">C–D</span><span class="t">Descartar esquizoafectivo, trastornos afectivos con psicosis, sustancias y enfermedades médicas.</span></li>
+  </ol>
+  <p class="prose" style="margin-top:10px">Poco frecuente, más en adultos jóvenes. Parte de los diagnósticos cambia a esquizofrenia con el seguimiento.</p>
+
+  <h3>Trastorno esquizoafectivo</h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Síntomas del criterio A de esquizofrenia <b>simultáneos</b> con un episodio afectivo mayor (depresión o manía).</span></li>
+    <li><span class="L">B</span><span class="t">Delirios o alucinaciones durante <b>≥ 2 semanas sin</b> episodio afectivo.</span></li>
+    <li><span class="L">C</span><span class="t">Los episodios afectivos están presentes la <b>mayor parte</b> de la duración total de la enfermedad.</span></li>
+    <li><span class="L">D</span><span class="t">No se atribuye a sustancias, medicamentos ni otra afección médica.</span></li>
+  </ol>
+  <div class="pearl"><span class="ic">EJEMPLO</span><span>Juan, 25 años: 8 semanas de depresión mayor con voces y delirio de vigilancia, y luego 3 semanas más de psicosis sin depresión. Hubo coincidencia (A), psicosis aislada ≥ 2 semanas (B) y la depresión ocupó 8 de 11 semanas (C).</span></div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="k">Tipos</div><b>Bipolar</b> (F25.0): episodios de manía, con o sin depresión. <b>Depresivo</b> (F25.1): solo depresión mayor. Los especificadores de curso se aplican tras 1 año de evolución.</div>
+    <div class="card"><div class="k">Epidemiología</div>≈ <b>0.3 %</b> de vida, menos que la esquizofrenia; más en mujeres, sobre todo el tipo depresivo; inicio en la adultez temprana.</div>
+  </div>
+  <div class="figs">
+    <button class="fig" data-src="img/e65.webp"><img src="img/e65.webp" alt="Especificadores del trastorno esquizoafectivo" loading="lazy"><figcaption><b>Diap. 65.</b> Especificadores clínicos.</figcaption></button>
+    <button class="fig" data-src="img/e67.webp"><img src="img/e67.webp" alt="Fisiopatología del trastorno esquizoafectivo" loading="lazy"><figcaption><b>Diap. 67.</b> Continuo psicosis‑ánimo y genética compartida.</figcaption></button>
+  </div>
+
+  <h3>Casos clínicos <span class="tag">elige el diagnóstico</span></h3>
+  <div class="quiz" data-quiz="psicosis"></div>
+</section>
+
+<!-- ================= 12 TCA ================= -->
+<section class="tema" id="tca" data-t="tca">
+  <div class="tema-head"><span class="num">12</span><h2>Trastornos de la conducta alimentaria</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+  <div class="def">Alteración persistente de la alimentación o de la conducta relacionada con ella, que modifica el <b>consumo</b> o la <b>absorción</b> de alimentos y deteriora de forma significativa la <b>salud física</b> o el <b>funcionamiento psicosocial</b>.</div>
+
+  <h3>Cómo distinguirlos</h3>
+  <div class="tbl"><table>
+    <tr><th></th><th>Atracones</th><th>Bulimia nerviosa</th><th>Anorexia nerviosa</th></tr>
+    <tr><td><b>Conducta central</b></td><td>Atracones sin compensación</td><td>Atracones + conductas compensatorias</td><td>Restricción de la ingesta</td></tr>
+    <tr><td><b>Peso</b></td><td>Sobrepeso u obesidad frecuentes</td><td>Normal o ligeramente alto</td><td class="bad">Significativamente bajo</td></tr>
+    <tr><td><b>Frecuencia y duración</b></td><td>≥ 1 por semana, 3 meses</td><td>≥ 1 por semana, 3 meses</td><td>Sin mínimo de frecuencia; subtipo según los últimos 3 meses</td></tr>
+    <tr><td><b>Autoevaluación por peso y figura</b></td><td>No es criterio</td><td>Sí</td><td>Sí, con distorsión de la imagen</td></tr>
+    <tr><td><b>Gravedad según</b></td><td>Atracones por semana</td><td>Conductas compensatorias por semana</td><td>IMC</td></tr>
+    <tr><td><b>Mujer:hombre</b></td><td>1.6 % vs 0.8 % (el más común en hombres)</td><td>10:1</td><td>10:1</td></tr>
+  </table></div>
+  <div class="pearl"><span class="ic">REGLA</span><span>Si hay bajo peso significativo, la anorexia tiene prioridad: atracones y purgas en alguien con bajo peso son <b>anorexia tipo atracones/purgas</b>, no bulimia. La bulimia "no se produce exclusivamente durante episodios de anorexia".</span></div>
+
+  <h3>Trastorno por atracón</h3>
+  <p class="prose">Episodios recurrentes en que la persona come, en poco tiempo, mucho más de lo habitual y siente que no puede parar, aun sin hambre física, seguidos de vergüenza, culpa o tristeza. No hay vómito, laxantes ni otra compensación.</p>
+  <ol class="crit" style="margin-top:12px">
+    <li><span class="L">A</span><span class="t">Atracones recurrentes: (1) cantidad claramente superior a la que la mayoría comería en un periodo similar y (2) sensación de <b>pérdida de control</b>.</span></li>
+    <li><span class="L">B</span><span class="t"><b>≥ 3 de 5</b>: comer mucho más rápido · hasta sentirse desagradablemente lleno · grandes cantidades sin hambre · comer solo por vergüenza · sentirse luego a disgusto, deprimido o avergonzado.</span></li>
+    <li><span class="L">C</span><span class="t">Malestar intenso por los atracones.</span></li>
+    <li><span class="L">D</span><span class="t"><b>≥ 1 vez por semana durante 3 meses</b>.</span></li>
+    <li><span class="L">E</span><span class="t">Sin conductas compensatorias recurrentes y no solo durante una bulimia o anorexia.</span></li>
+  </ol>
+  <p class="prose" style="margin-top:10px">Curso persistente y crónico si no se trata. Se asocia a obesidad y problemas metabólicos; heredabilidad moderada, con factores de riesgo compartidos con la obesidad y los trastornos del ánimo.</p>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="k">Fisiopatología</div><ul class="clean"><li><b>Desencadenantes:</b> estrés, emociones negativas, restricción, alimentos muy apetecibles.</li><li><b>Recompensa:</b> la vía dopaminérgica mesolímbica (ATV → núcleo accumbens) responde de más a la comida.</li><li><b>Menor conectividad frontoestriatal:</b> la corteza prefrontal controla peor los impulsos.</li><li><b>Mantenimiento:</b> el alivio emocional temporal refuerza el atracón y forma un hábito.</li></ul></div>
+    <button class="fig" data-src="img/t10.webp"><img src="img/t10.webp" alt="Fisiopatología del atracón" loading="lazy"><figcaption><b>Diap. 10.</b> Fisiopatología del atracón.</figcaption></button>
+  </div>
+
+  <h3>Bulimia nerviosa</h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Atracones recurrentes (cantidad excesiva + pérdida de control).</span></li>
+    <li><span class="L">B</span><span class="t">Conductas compensatorias inapropiadas recurrentes: vómito autoprovocado, laxantes, diuréticos, ayuno o ejercicio excesivo.</span></li>
+    <li><span class="L">C</span><span class="t">Ambos <b>≥ 1 vez por semana durante 3 meses</b>.</span></li>
+    <li><span class="L">D</span><span class="t">La autoevaluación depende indebidamente de la constitución y el peso.</span></li>
+    <li><span class="L">E</span><span class="t">No ocurre exclusivamente durante episodios de anorexia nerviosa.</span></li>
+  </ol>
+  <div class="stats" style="margin-top:14px">
+    <div class="stat"><b>1–1.5 %</b><span>prevalencia a 12 meses en mujeres jóvenes</span></div>
+    <div class="stat"><b>10:1</b><span>mujeres:hombres</span></div>
+    <div class="stat"><b>Adolescencia tardía</b><span>pico de inicio; los atracones suelen empezar tras una dieta</span></div>
+  </div>
+  <p class="prose" style="margin-top:10px">Curso crónico e intermitente, con remisiones y recaídas; con tratamiento muchos logran la remisión completa. Puede pasar desapercibida por el peso normal. Complicaciones: alteraciones electrolíticas, daño dental y problemas gastrointestinales.</p>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="k">Fisiopatología (Monteleone 2019)</div><ul class="clean"><li><b>Recompensa:</b> la comida tiene más valor gratificante; peor control de impulsos.</li><li><b>Hambre y saciedad:</b> respuestas variables de péptido YY e insulina; estrógenos, progesterona y orexinas modulan la ingesta.</li><li><b>Eje HHA:</b> ↑ cortisol; el atracón se vuelve una forma de regular emociones negativas.</li><li><b>Ciclo:</b> restricción → atracón → compensación → culpa y más restricción.</li></ul></div>
+    <button class="fig" data-src="img/t17.webp"><img src="img/t17.webp" alt="Fisiopatología de la bulimia nerviosa" loading="lazy"><figcaption><b>Diap. 17.</b> Fisiopatología de la bulimia nerviosa.</figcaption></button>
+  </div>
+  <div class="cycle" style="margin-top:14px">
+    <div class="step"><b>1</b>Restricción o preocupación por la comida</div><span class="arrow">→</span>
+    <div class="step hot"><b>2</b>Atracón con pérdida de control</div><span class="arrow">→</span>
+    <div class="step"><b>3</b>Conducta compensatoria</div><span class="arrow">→</span>
+    <div class="step"><b>4</b>Culpa y malestar</div>
+  </div>
+  <p class="loopnote">↺ La culpa lleva a más restricción, lo que aumenta el hambre y la vulnerabilidad al siguiente atracón.</p>
+
+  <h3>Anorexia nerviosa</h3>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t"><b>Restricción</b> de la ingesta energética que lleva a un <b>peso significativamente bajo</b> para la edad, el sexo, el desarrollo y la salud.</span></li>
+    <li><span class="L">B</span><span class="t"><b>Miedo intenso</b> a ganar peso o conducta persistente que lo impide, aun con peso muy bajo.</span></li>
+    <li><span class="L">C</span><span class="t">Alteración de la percepción del propio peso o figura, autoevaluación dominada por ellos, o falta de reconocimiento de la gravedad del bajo peso.</span></li>
+  </ol>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card teal"><div class="k">Restrictivo</div>En los últimos 3 meses, sin atracones ni purgas recurrentes: dieta, ayuno, ejercicio excesivo.</div>
+    <div class="card alert"><div class="k">Atracones / purgas</div>En los últimos 3 meses, atracones o purgas recurrentes: vómito, laxantes, diuréticos, enemas.</div>
+  </div>
+  <div class="dur" style="margin-top:14px" id="imc"></div>
+  <p class="loopnote" style="color:var(--muted)">Gravedad en adultos según IMC (kg/m²). En niños y adolescentes se usa el percentil.</p>
+  <div class="stats" style="margin-top:12px">
+    <div class="stat"><b>0.4 %</b><span>prevalencia a 12 meses en mujeres jóvenes</span></div>
+    <div class="stat"><b>10:1</b><span>mujeres:hombres</span></div>
+    <div class="stat"><b>Muy alta</b><span>mortalidad de los trastornos mentales: desnutrición y suicidio</span></div>
+  </div>
+  <p class="prose" style="margin-top:10px">Inicia en la adolescencia o adultez temprana, a menudo tras un evento estresante o una dieta. Curso variable: un solo episodio, ganancias y pérdidas fluctuantes, o crónico.</p>
+
+  <h3>Fisiopatología de la anorexia</h3>
+  <div class="tbl"><table>
+    <tr><th>Sistema</th><th>Cambio</th><th>Consecuencia</th></tr>
+    <tr><td><b>Apetito</b></td><td>↓ leptina, ↑ grelina, ↑ péptido YY</td><td>Señales de hambre y saciedad alteradas</td></tr>
+    <tr><td><b>Eje reproductivo</b></td><td>↓ GnRH, LH y FSH → ↓ estrógenos</td><td class="bad">Amenorrea, menor fertilidad</td></tr>
+    <tr><td><b>Eje tiroideo</b></td><td>↓ conversión T4 → T3, ↑ rT3</td><td class="bad">Bradicardia, intolerancia al frío</td></tr>
+    <tr><td><b>GH / IGF‑1</b></td><td>↑ GH con resistencia, ↓ IGF‑1</td><td>Pérdida muscular, menos formación ósea</td></tr>
+    <tr><td><b>Suprarrenal</b></td><td>↑ cortisol</td><td>Catabolismo, ánimo</td></tr>
+    <tr><td><b>Hueso y energía</b></td><td>Más resorción que formación; ↓ gasto energético</td><td class="bad">Osteopenia, osteoporosis, fracturas, hipotermia</td></tr>
+  </table></div>
+  <div class="figs">
+    <button class="fig wide" data-src="img/t24.webp"><img src="img/t24.webp" alt="Fisiopatología de la anorexia nerviosa" loading="lazy"><figcaption><b>Diap. 24.</b> Restricción prolongada → señales hormonales → ejes endocrinos → consecuencias.</figcaption></button>
+  </div>
+
+  <h3>Casos para practicar <span class="tag">complemento, no vienen en las diapositivas</span></h3>
+  <div class="quiz" data-quiz="tca"></div>
+</section>
+
+<!-- ================= REPASO ================= -->
+<section class="tema" id="repaso">
+  <div class="tema-head"><span class="num">★</span><h2>Repaso y autoevaluación</h2></div>
+
+  <h3>Duraciones mínimas <span class="tag">la pregunta de examen clásica</span></h3>
+  <div class="dur" id="durs"></div>
+
+  <h3>Tarjetas de memoria</h3>
+  <div class="flash">
+    <button class="fcard" id="fcard" aria-label="Voltear tarjeta"><div class="in"><div class="face front"><span class="k" id="fTema"></span><span class="t" id="fQ"></span><span class="k">toca para voltear</span></div><div class="face back"><span class="t" id="fA"></span></div></div></button>
+    <div class="fnav"><button class="btn" id="fPrev">← Anterior</button><span class="score" id="fCount"></span><button class="btn" id="fNext">Siguiente →</button><button class="btn" id="fShuf">Barajar</button></div>
+  </div>
+
+  <h3>Quiz final <span class="tag" id="qScore"></span></h3>
+  <div class="quiz" data-quiz="final"></div>
+  <div style="margin-top:12px"><button class="btn" id="qReset">Reiniciar quiz</button></div>
+
+  <h3>Notas sobre las diapositivas</h3>
+  <p class="prose" style="margin-bottom:8px">Detalles que encontré al leer el PDF, por si el equipo quiere corregirlos antes de presentar:</p>
+  <ul class="errata">
+    <li>Diap. 35 (pánico, DSM‑5) repite el texto de fobia social (6 meses, criterios A–J, timidez). En pánico el criterio B es <b>≥ 1 mes</b>.</li>
+    <li>Diap. 100–101 (síntomas somáticos) dicen "Alteración en TEPT"; el contenido corresponde al trastorno de síntomas somáticos.</li>
+    <li>Diap. 123 y 130 llevan el título "Ansiedad por enfermedad", pero el contenido (síntoma neurológico funcional, fallo de agencia) es de conversión.</li>
+    <li>"Generalidaza" en el índice y la portada del Tema 3; el Tema 6 aparece antes que el Tema 5.</li>
+  </ul>
+  <p class="prose" style="margin:14px 0 8px"><b>Trastorno bipolar:</b></p>
+  <ul class="errata">
+    <li>Episodio hipomaníaco, criterio E (diapositivas 18 y 33): copia el texto de la manía. En el DSM‑5 la hipomanía <b>no</b> es lo bastante grave para causar deterioro importante ni hospitalización, y si hay psicosis es manía.</li>
+    <li>Diapositiva 6: "cualquier duración si ≥ 4 días consecutivos" mezcla dos criterios. La manía dura ≥ 7 días o cualquier duración si requiere hospitalización; la hipomanía, ≥ 4 días.</li>
+    <li>Diapositiva 34 (bipolar II) dice que la depresión mayor "no es necesaria para el diagnóstico"; en el tipo II sí es obligatoria.</li>
+    <li>Falta el matiz del criterio B: si el ánimo solo es irritable se requieren ≥ 4 síntomas, no 3.</li>
+  </ul>
+  <p class="prose" style="margin:14px 0 8px"><b>Esquizofrenia y psicosis:</b></p>
+  <ul class="errata">
+    <li>Diap. 3, 14, 15 y 68 conservan texto de la plantilla ("Autora: Elena Paula 20.10.2030"), y los metadatos del PDF dicen "Agencia de marketing".</li>
+    <li>Diap. 74 (estudiante de 22 años, 48 h de evolución): el trastorno psicótico breve solo se confirma cuando el paciente recupera por completo su funcionamiento; mientras tanto el diagnóstico es provisional.</li>
+    <li>Diap. 82 (esquizofreniforme, 3 meses): si aún no se ha recuperado, el DSM‑5‑TR pide anotarlo como "provisional".</li>
+    <li>Erratas menores: "Transtorno", "audibles de determinar" (difíciles), "Alucionaciones", "Erotomatico".</li>
+  </ul>
+  <p class="prose" style="margin:14px 0 8px"><b>Conducta alimentaria:</b></p>
+  <ul class="errata">
+    <li>Diap. 9 y 16 (gravedad): el DSM‑5 pone el extremo en <b>≥ 14</b> episodios por semana, no "&gt; 14"; con "&gt; 14", 14 quedaría sin categoría.</li>
+    <li>Diap. 23 (anorexia): la gravedad leve es <b>IMC ≥ 17</b>, no "IMC 17".</li>
+    <li>La presentación no incluye casos clínicos; los de esta sección son de práctica.</li>
+    <li>Erratas menores: "catidad", "circustancias parecidad", "recurrentees", "inlcuso", "epis0dio", "contnuo".</li>
+  </ul>
+
+  <footer>Basado en "Psiquiatría · Trastornos de Ansiedad", Equipo I: Israel Barraza Padua, Emilio Morayta Bulos, Marcos David Reynah, María José Fuentes y Daniela Allende Olivier. Fuentes citadas en el PDF: DSM‑5 (APA, 2014), OMS 2026, Fawcett 2020, Caraveo y Colmenares 2004, UNAM Global. Trastorno bipolar I y II: Victoria Carbajal, Florencia Vila, Yuleny Cervantes, Isis Santamaría y María Fernanda Cordero. Espectro de la esquizofrenia: Valeria Cristela Mejía Vázquez, Sofía Morrugares Sánchez, Diana Ximena González Abadía e Ivanna Valeria Moreno Rocha. Conducta alimentaria: Ximena Salinas Aragón, Casandra Lobato Domínguez, Betsabeth Ramos Rugerio y Rafael Carrera Cuéllar. Los datos marcados como complemento (estrés agudo, el caso de práctica de bipolar y las mnemotecnias) provienen del DSM‑5, no de las diapositivas.</footer>
+</section>
+</main>
+</div>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Figura ampliada"><button id="lbClose" aria-label="Cerrar">✕</button><img id="lbImg" alt=""><p id="lbCap"></p></div>
+
+<script>
+(function(){
+  const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+  /* Neuro explorer */
+  const neuro=[
+    {n:"Amígdala",img:"img/s6.webp",d:"Identifica relevancia y amenaza: detecta estímulos relevantes, aprende el miedo (asociación estímulo‑amenaza) y activa respuestas defensivas."},
+    {n:"Ínsula",img:"img/s7.webp",d:"Interocepción: percibe latidos, respiración, tensión y sensaciones gastrointestinales. Sensación corporal → interpretación amenazante → ansiedad → mayor sensación corporal."},
+    {n:"Hipocampo",img:"img/s8.webp",d:"Responde \"¿en qué contexto ocurrió esta amenaza?\". Los esteroides reducen la excitabilidad neuronal, inhiben la neurogénesis en el giro dentado y atrofian dendritas de las piramidales de CA3."},
+    {n:"Corteza prefrontal",img:"img/s9.webp",d:"Regulación cortical: evaluación racional, regulación emocional, reinterpretación cognitiva e inhibición o modulación de respuestas. Equilibra el procesamiento de amenaza."},
+    {n:"BNST, SGPA y locus coeruleus",img:"img/s10.webp",d:"BNST (núcleo del lecho de la estría terminal): amenaza incierta, prolongada o impredecible, la base de la ansiedad sostenida. Sustancia gris periacueductal: inmovilidad mientras se evalúa el peligro. Locus coeruleus: aumenta el tono simpático (noradrenalina)."},
+    {n:"Miedo vs ansiedad (arte)",img:"img/s4.webp",d:"Diapositiva 4: el miedo ante el león presente frente a la ansiedad del paisaje vacío donde el león podría aparecer."}
+  ];
+  const tabs=document.querySelector('#neuro .tabs');
+  function showNeuro(i){
+    tabs.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-selected',i===j));
+    const x=neuro[i];const im=document.getElementById('neuroImg');im.src=x.img;im.alt=x.n;im.dataset.src=x.img;im.dataset.cap=x.n;
+    document.getElementById('neuroT').textContent=x.n;document.getElementById('neuroD').textContent=x.d;
+  }
+  neuro.forEach((x,i)=>{const b=document.createElement('button');b.role='tab';b.textContent=x.n;b.onclick=()=>showNeuro(i);tabs.appendChild(b)});
+  showNeuro(0);
+
+  /* Lightbox */
+  const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap');
+  function openLb(src,cap){lbImg.src=src;lbImg.alt=cap||'';lbCap.textContent=cap||'';lb.hidden=false;document.getElementById('lbClose').focus()}
+  document.addEventListener('click',e=>{
+    const f=e.target.closest('.fig');if(f){openLb(f.dataset.src,f.querySelector('figcaption')?.textContent);return}
+    if(e.target.id==='neuroImg'){openLb(e.target.dataset.src,e.target.dataset.cap)}
+  });
+  lb.addEventListener('click',e=>{if(e.target!==lbImg)lb.hidden=true});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.hidden=true});
+
+  /* Reveal */
+  document.querySelectorAll('[data-reveal]').forEach(b=>b.onclick=()=>{const r=b.nextElementSibling;r.hidden=!r.hidden;b.textContent=r.hidden?b.dataset.l||'Ver respuesta':'Ocultar';if(!b.dataset.l)b.dataset.l=b.textContent});
+  document.querySelectorAll('[data-reveal]').forEach(b=>b.dataset.l=b.textContent);
+
+  /* Recall mode */
+  const rb=document.getElementById('recallBtn');
+  rb.onclick=()=>{const on=!document.body.classList.contains('recall');document.body.classList.toggle('recall',on);rb.setAttribute('aria-pressed',on);rb.textContent=on?'Modo memoria activo: toca un criterio para verlo':'Modo memoria: ocultar criterios';document.querySelectorAll('.crit .t.shown').forEach(t=>t.classList.remove('shown'))};
+  document.addEventListener('click',e=>{const t=e.target.closest('.crit .t');if(t&&document.body.classList.contains('recall'))t.classList.toggle('shown')});
+
+  /* Progress */
+  const done=new Set(store.get('ans_done')||[]);
+  const total=document.querySelectorAll('section.tema[data-t]').length;
+  function paint(){
+    document.querySelectorAll('section.tema[data-t]').forEach(s=>{const t=s.dataset.t,on=done.has(t);const m=s.querySelector('.mark');m.setAttribute('aria-pressed',on);m.textContent=on?'✓ Repasado':'Marcar como repasado';const a=document.querySelector('.toc a[href="#'+s.id+'"]');a&&a.classList.toggle('done',on)});
+    document.getElementById('progTxt').textContent=done.size+' de '+total+' temas repasados';document.getElementById('progBar').style.width=(done.size/total*100)+'%';
+  }
+  document.querySelectorAll('section.tema[data-t] .mark').forEach(m=>m.onclick=()=>{const t=m.closest('section').dataset.t;done.has(t)?done.delete(t):done.add(t);store.set('ans_done',[...done]);paint()});
+  paint();
+
+  /* Active TOC */
+  const links=[...document.querySelectorAll('.toc a')];
+  const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+en.target.id));const a=links.find(l=>l.classList.contains('active'));if(a&&window.innerWidth<=900)a.scrollIntoView({block:'nearest',inline:'center'})}})},{rootMargin:'-30% 0px -65% 0px'});
+  document.querySelectorAll('section.tema').forEach(s=>io.observe(s));
+
+  /* Bars */
+  function bars(el,rows,max,fmt){el.innerHTML=rows.map(r=>`<div class="row"><span>${r[0]}</span><div class="track"><i class="${r[3]||''}" style="width:${Math.max(2,r[1]/max*100)}%"></i></div><span class="v">${r[2]}</span></div>`).join('')}
+  bars(document.getElementById('comorb'),[["Cualquier trastorno de ansiedad",76,"76 %"],["Depresivo o bipolar",63,"63 %"],["Depresión mayor",41,"41 %"],["Personalidad obsesivo‑compulsiva",32,"23–32 %"],["Trastorno de tics",30,"hasta 30 %"]],100);
+  bars(document.getElementById('durs'),[
+    ["Estrés agudo",1,"3 d – 1 mes","short"],["Trastorno de pánico",1,"≥ 1 mes","short"],["TEPT",1.05,"> 1 mes","short"],
+    ["Fobia específica",6,"≥ 6 meses"],["Fobia social",6,"≥ 6 meses"],["Agorafobia",6,"≥ 6 meses"],["TAG",6,"≥ 6 meses"],["Síntomas somáticos",6,"> 6 meses"],["Ansiedad por enfermedad",6,"≥ 6 meses"],
+    ["Hipomanía",0.13,"≥ 4 días","short"],["Manía",0.23,"≥ 7 días","short"],["Depresión mayor",0.47,"≥ 2 semanas","short"],
+    ["Psicótico breve",0.5,"1 d – < 1 mes","short"],["Trastorno delirante",1,"≥ 1 mes","short"],["Esquizofreniforme",3.5,"1 – < 6 meses"],["Esquizofrenia",6,"≥ 6 meses"],
+    ["Atracón / bulimia",3,"≥ 1/sem × 3 meses"],["Anorexia (subtipo)",3,"últimos 3 meses"]
+  ],6);
+  bars(document.getElementById('imc'),[["Leve",4,"IMC ≥ 17"],["Moderado",3,"16 – 16.99"],["Grave",2,"15 – 15.99","short"],["Extremo",1,"< 15","short"]],4);
+  bars(document.getElementById('tpbEvol'),[["Sigue como psicótico breve",55,"55 %"],["Evoluciona a esquizofrenia",25,"25 %","short"],["Pasa a trastorno afectivo",12,"12 %"]],100);
+
+  /* Flashcards */
+  let cards=[
+    ["Bases","¿Qué distingue al miedo de la ansiedad?","Miedo: amenaza inmediata e identificable → lucha/huida. Ansiedad: posible amenaza futura → anticipación y vigilancia."],
+    ["Bases","¿Qué estructura procesa la amenaza incierta y prolongada?","El BNST (núcleo del lecho de la estría terminal)."],
+    ["Bases","Las dos vías de la respuesta al estrés","Rápida (segundos): simpático → catecolaminas. Sostenida (minutos–horas): eje HHA → CRH → ACTH → cortisol."],
+    ["Bases","¿Qué mantiene la ansiedad?","Refuerzo negativo: evitación → alivio inmediato → se refuerza la evitación."],
+    ["Fobias","Condicionamiento que origina vs que mantiene una fobia","Clásico la origina (asociación estímulo‑experiencia negativa); operante la mantiene (el alivio de evitar refuerza)."],
+    ["Fobias","Núcleo de la fobia social","Miedo a la evaluación negativa y a que se noten los síntomas de ansiedad."],
+    ["Fobias","Signo simpático característico de la fobia social","El rubor (además de taquicardia, sudoración y temblor)."],
+    ["Pánico","¿Cuánto debe durar la preocupación tras una crisis?","≥ 1 mes de preocupación persistente o cambio conductual."],
+    ["Agorafobia","¿Cuántas situaciones se requieren?","≥ 2 de 5: transporte, espacios abiertos, cerrados, filas/multitudes, fuera de casa solo."],
+    ["TAG","Síntomas del criterio C (cuántos)","≥ 3 de 6: inquietud, fatiga, concentración, irritabilidad, tensión muscular, sueño."],
+    ["TAG","Prevalencia anual y relación por sexo","3.6 % mundial; mujeres:hombres 2:1."],
+    ["TOC","¿Qué falla en el circuito CSTC?","Predomina la vía directa sobre la indirecta en el bucle orbitofrontal; hiperactividad de COF, cingulada anterior y caudado."],
+    ["TOC","Criterio B del TOC","Más de 1 hora al día o malestar/deterioro significativo."],
+    ["TOC","TOC vs TPOC","TOC: obsesiones intrusivas, egodistónico. TPOC: perfeccionismo rígido sin intrusiones, egosintónico."],
+    ["TOC","Concordancia en gemelos","0.57 monocigóticos vs 0.22 dicigóticos."],
+    ["Relacionados","Complicación de la tricofagia","Tricobezoar: anemia, dolor, vómito, obstrucción o perforación intestinal."],
+    ["Relacionados","Coleccionista vs acumulador","Coleccionista: orden, casa funcional, placer. Acumulador: desorden, espacios inutilizables, angustia al tirar."],
+    ["TEPT","Los 4 grupos de síntomas","Intrusión, evitación, alteraciones cognitivas/ánimo, alteración de activación y reactividad."],
+    ["TEPT","¿Cómo está el cortisol basal?","Bajo, con receptores de glucocorticoides más sensibles (no en todos los pacientes)."],
+    ["TEPT","¿Por qué hay flashbacks?","Hipocampo hipoactivo y de menor volumen: no etiqueta el recuerdo como pasado."],
+    ["Somáticos","¿Qué es lo central del diagnóstico?","La respuesta psicológica desproporcionada al síntoma, no si tiene explicación médica."],
+    ["Ansiedad por enf.","Nombre anterior y especificadores","Hipocondría. Tipo buscador vs evitador de asistencia."],
+    ["Conversión","Signo clásico de incompatibilidad neurológica","Signo de Hoover; el temblor o la debilidad mejora con la distracción."],
+    ["Conversión","Hallazgo neurofuncional del fallo de agencia","↓ actividad de la unión temporoparietal derecha y ↑ amígdala."],
+    ["Facticio","Facticio vs simulación","Ambos fingen a propósito; el facticio no tiene ganancia externa (busca el rol de enfermo), la simulación sí."],
+    ["Facticio","Forma grave y su predominio","Síndrome de Münchausen, más común en hombres."],
+    ["Bipolar","¿Qué se necesita para bipolar I?","Al menos un episodio maníaco. La depresión y la hipomanía no son necesarias."],
+    ["Bipolar","¿Qué se necesita para bipolar II?","≥ 1 hipomanía + ≥ 1 depresión mayor, y nunca un episodio maníaco."],
+    ["Bipolar","Duración de manía vs hipomanía","Manía ≥ 7 días (o cualquiera si hay hospitalización); hipomanía ≥ 4 días consecutivos."],
+    ["Bipolar","Tres datos que convierten una hipomanía en manía","Deterioro importante, hospitalización o psicosis."],
+    ["Bipolar","Mnemotecnia de síntomas de manía","DIGFAST: distraibilidad, impulsividad, grandiosidad, fuga de ideas, actividad, sueño ↓, verborrea. ≥ 3 (≥ 4 si solo irritable)."],
+    ["Bipolar","Neurotransmisores en la manía","↑ dopamina, ↑ glutamato, ↓ GABA: desequilibrio excitación/inhibición."],
+    ["Bipolar","¿Sobre qué actúa el litio?","Inhibe GSK‑3 y modula la vía del inositol."],
+    ["Bipolar","Insomnio vs ↓ necesidad de sueño","Insomnio: quiere dormir y no puede. Manía: duerme poco y no siente necesidad de más."],
+    ["Psicosis","Duración: breve, esquizofreniforme, esquizofrenia","1 día a < 1 mes · 1 a < 6 meses · ≥ 6 meses (con ≥ 1 mes activo)."],
+    ["Psicosis","Criterio A de esquizofrenia","≥ 2 de 5 síntomas por 1 mes; al menos uno es delirio, alucinación o discurso desorganizado."],
+    ["Psicosis","Las 5 A de los síntomas negativos","Abulia, alogia, anhedonia, asocialidad y afecto disminuido."],
+    ["Psicosis","Vía mesolímbica vs mesocortical","Mesolímbica hiperactiva (D2) → positivos. Mesocortical hipoactiva (D1) → negativos y cognitivos."],
+    ["Psicosis","Poda sináptica en la esquizofrenia","Excesiva en la adolescencia, ligada al complemento C4."],
+    ["Psicosis","Subtipo más frecuente de trastorno delirante","Persecutorio. El erotomaníaco es más frecuente en mujeres."],
+    ["Psicosis","Clave del trastorno delirante","Funcionamiento conservado fuera del delirio; nunca cumplió criterio A de esquizofrenia."],
+    ["Psicosis","Criterio B del esquizoafectivo","≥ 2 semanas de delirios o alucinaciones sin episodio afectivo."],
+    ["Psicosis","¿Qué pasa con el psicótico breve a largo plazo?","55 % se mantiene, 25 % evoluciona a esquizofrenia y 12 % a trastorno afectivo."],
+    ["TCA","Atracón vs bulimia","Ambos tienen atracones ≥ 1/semana por 3 meses; solo la bulimia tiene conductas compensatorias."],
+    ["TCA","Criterio B del trastorno por atracón","≥ 3 de 5: comer rápido, hasta llenarse de más, sin hambre, solo por vergüenza, culpa después."],
+    ["TCA","¿Cómo se mide la gravedad en cada TCA?","Atracón: atracones/semana. Bulimia: conductas compensatorias/semana. Anorexia: IMC."],
+    ["TCA","Gravedad de la anorexia por IMC","Leve ≥ 17 · moderado 16–16.99 · grave 15–15.99 · extremo < 15."],
+    ["TCA","Subtipos de anorexia","Restrictivo vs atracones/purgas, según los últimos 3 meses."],
+    ["TCA","Hormonas del apetito en la anorexia","↓ leptina, ↑ grelina, ↑ péptido YY."],
+    ["TCA","¿Por qué hay amenorrea y bradicardia en la anorexia?","↓ GnRH/LH/FSH → ↓ estrógenos; ↓ conversión T4 → T3 → bradicardia e intolerancia al frío."],
+    ["TCA","TCA más frecuente en hombres","Trastorno por atracón (0.8 % vs 1.6 % en mujeres)."]
+  ];
+  let fi=0;const fc=document.getElementById('fcard');
+  function drawF(){const c=cards[fi];fc.classList.remove('flip');document.getElementById('fTema').textContent=c[0];document.getElementById('fQ').textContent=c[1];document.getElementById('fA').textContent=c[2];document.getElementById('fCount').textContent=(fi+1)+' / '+cards.length}
+  fc.onclick=()=>fc.classList.toggle('flip');
+  document.getElementById('fNext').onclick=()=>{fi=(fi+1)%cards.length;drawF()};
+  document.getElementById('fPrev').onclick=()=>{fi=(fi-1+cards.length)%cards.length;drawF()};
+  document.getElementById('fShuf').onclick=()=>{for(let i=cards.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[cards[i],cards[j]]=[cards[j],cards[i]]}fi=0;drawF()};
+  drawF();
+
+  /* Quizzes */
+  const Q={
+    tocCases:[
+      {q:"Mujer de 29 años, contadora: rehace el trabajo de sus compañeros porque está \"mal hecho\", se queda horas extra para que todo quede perfecto y se irrita si le piden flexibilidad. Cree que su forma es la correcta.",o:["TOC","Trastorno de personalidad obsesivo‑compulsiva","TAG"],a:1,w:"Perfeccionismo, rigidez y control egosintónicos, sin obsesiones intrusivas ni compulsiones que neutralicen ansiedad."},
+      {q:"Hombre de 35 años revisa varias veces al día sus cuentas, mensajes y calendario por miedo a olvidar pagos o perder el trabajo; además se preocupa por la salud de sus padres y el dinero.",o:["TOC","TAG","TPOC"],a:1,w:"Son preocupaciones sobre problemas reales en múltiples dominios, no obsesiones intrusivas con rituales."},
+      {q:"Hombre de 27 años piensa repetidamente que pudo haber atropellado a alguien sin darse cuenta. Sabe que es improbable, pero regresa por la misma ruta a comprobar, unas 2 horas al día.",o:["TAG","Trastorno psicótico","TOC"],a:2,w:"Obsesión intrusiva (\"¿y si atropellé a alguien?\") → ansiedad → compulsión de comprobar → alivio; > 1 h/día con deterioro e insight conservado."}
+    ],
+    psicosis:[
+      {q:"Mujer de 19 años: desde hace 9 meses escucha voces que comentan sus pensamientos, cree que otros le introducen ideas y que recibe mensajes en objetos; los últimos 4 meses, discurso desorganizado, abulia y caída académica. Sin sustancias ni episodios afectivos.",o:["Esquizofreniforme","Esquizofrenia","Trastorno delirante"],a:1,w:"Delirios de influencia y referencia, alucinaciones, desorganización y síntomas negativos durante 9 meses (≥ 6) con deterioro."},
+      {q:"Candace, 15 años: hace 8 meses está convencida de que sus hermanos conspiran para que su mamá desconfíe de ella. Sin alucinaciones ni desorganización; sigue con la escuela, sus amistades y su novio.",o:["Esquizofrenia","Trastorno delirante, tipo persecutorio","Trastorno paranoide de la personalidad"],a:1,w:"Delirio persecutorio ≥ 1 mes, pensamiento organizado y funcionamiento conservado fuera del delirio."},
+      {q:"Elsa, 21 años: tras la muerte de sus padres, desde hace 3 meses cree tener poderes de hielo, escucha voces que le ordenan alejarse de su hermana, desorganización y aislamiento. Sin episodios afectivos ni sustancias.",o:["Psicótico breve","Esquizofreniforme","Esquizofrenia"],a:1,w:"Cuadro de esquizofrenia de 1 a < 6 meses."},
+      {q:"Bob Esponja: tras estrés extremo y privación de sueño, de forma súbita grita que las cangreburgers lo quieren devorar, con neologismos, voces y agitación. A las 24–48 h despierta lúcido y vuelve por completo a su funcionamiento.",o:["Psicótico breve con factor de estrés notable","Esquizofreniforme","Manía con psicosis"],a:0,w:"Inicio abrupto tras un estresor, < 1 mes y retorno completo al nivel previo: psicosis reactiva breve."},
+      {q:"Juan, 25 años: depresión mayor de 8 semanas con voces y delirio de vigilancia; al ceder la depresión, la psicosis sigue 3 semanas más.",o:["Depresión mayor con psicosis","Trastorno esquizoafectivo, tipo depresivo","Esquizofrenia"],a:1,w:"Coinciden psicosis y ánimo, hay ≥ 2 semanas de psicosis sin episodio afectivo y la depresión ocupa la mayor parte de la enfermedad."}
+    ],
+    tca:[
+      {q:"Mujer de 19 años con IMC 22. Desde hace 5 meses tiene atracones unas 3 veces por semana y después se provoca el vómito. Dice que \"vale lo que pesa\".",o:["Trastorno por atracón","Bulimia nerviosa, leve","Anorexia, tipo atracones/purgas"],a:1,w:"Atracones + compensación ≥ 1/semana por 3 meses, autoevaluación por el peso y peso normal. 1–3 compensaciones por semana = leve."},
+      {q:"Mujer de 17 años con IMC 15.5, amenorrea y miedo intenso a engordar. En los últimos 3 meses usa laxantes varias veces por semana.",o:["Bulimia nerviosa","Anorexia nerviosa, atracones/purgas, grave","Anorexia nerviosa, restrictiva, moderada"],a:1,w:"Con bajo peso significativo es anorexia; las purgas definen el subtipo; IMC 15–15.99 = grave."},
+      {q:"Hombre de 40 años con obesidad: atracones 5 veces por semana desde hace 1 año, come a escondidas y se siente avergonzado. No vomita ni hace ejercicio compensatorio.",o:["Trastorno por atracón, moderado","Bulimia nerviosa","Obesidad sin trastorno mental"],a:0,w:"Atracones con pérdida de control, ≥ 3 rasgos del criterio B, sin compensación. 4–7 por semana = moderado."}
+    ],
+    final:[
+      {q:"La ansiedad, según la APA, se orienta hacia…",o:["Una amenaza inmediata","La anticipación de una amenaza futura","Un estímulo condicionado presente"],a:1,w:"El miedo responde a la amenaza inmediata; la ansiedad anticipa una futura."},
+      {q:"¿Qué estructura percibe las señales internas del cuerpo (interocepción)?",o:["Hipocampo","Ínsula","Locus coeruleus"],a:1,w:"La ínsula integra latidos, respiración, tensión y sensaciones gastrointestinales."},
+      {q:"Un paciente teme solo volar en avión y lo evita desde hace 1 año. ¿Diagnóstico más probable?",o:["Agorafobia","Fobia específica situacional","Trastorno de pánico"],a:1,w:"Con una sola situación temida se piensa en fobia específica; la agorafobia exige ≥ 2."},
+      {q:"Duración mínima de la preocupación tras las crisis en el trastorno de pánico:",o:["2 semanas","1 mes","6 meses"],a:1,w:"Criterio B: ≥ 1 mes de preocupación o cambio conductual."},
+      {q:"¿Cuántos síntomas del criterio C requiere el TAG en adultos?",o:["1 de 6","3 de 6","5 de 9"],a:1,w:"≥ 3 de 6: inquietud, fatiga, concentración, irritabilidad, tensión y sueño."},
+      {q:"¿Qué afección médica se menciona como exclusión típica en el TAG (criterio E)?",o:["Hipotiroidismo","Hipertiroidismo","Diabetes"],a:1,w:"El hipertiroidismo puede producir ansiedad, taquicardia y temblor."},
+      {q:"En el TOC, la neuroimagen muestra en reposo:",o:["Hipoactividad del caudado","Hiperactividad de COF, cingulada anterior y caudado","Atrofia hipocampal aislada"],a:1,w:"Hiperactividad del bucle orbitofrontal con predominio de la vía directa."},
+      {q:"\"Estoy convencido de que se quemará la casa si no reviso.\" Este paciente con TOC tiene insight…",o:["Bueno","Pobre","Ausente / creencias delirantes"],a:2,w:"La convicción total corresponde a insight ausente (≈ 4 % o menos)."},
+      {q:"La compulsión del TOC, a diferencia del juego patológico:",o:["Produce placer","Nunca es placentera","Siempre es mental"],a:1,w:"Juego, sexo y sustancias dan placer; la compulsión del TOC alivia ansiedad pero no da placer."},
+      {q:"Un paciente se arranca el pelo para \"emparejar\" un defecto que cree tener en las cejas. Piensa en:",o:["Tricotilomanía","Trastorno dismórfico corporal","Excoriación"],a:1,w:"Si es para mejorar un defecto percibido del aspecto, es TDC."},
+      {q:"En el TEPT, el hipocampo está…",o:["Hiperactivo","Hipoactivo y con menor volumen","Sin cambios"],a:1,w:"Por eso no distingue pasado de presente y aparecen flashbacks."},
+      {q:"Síntomas postraumáticos que llevan 2 semanas tras un asalto:",o:["TEPT","Trastorno de estrés agudo","Trastorno de adaptación"],a:1,w:"De 3 días a 1 mes es estrés agudo; más de 1 mes, TEPT."},
+      {q:"En el trastorno de síntomas somáticos lo esencial es:",o:["Que el síntoma no tenga explicación médica","La respuesta psicológica excesiva al síntoma","Que el síntoma sea neurológico"],a:1,w:"Puede haber o no explicación médica; lo que define es la respuesta desproporcionada."},
+      {q:"Preocupación de 1 año por tener cáncer, sin síntomas, con autoexploración diaria. Diagnóstico:",o:["Síntomas somáticos","Ansiedad por enfermedad","Conversión"],a:1,w:"Síntomas ausentes o leves + preocupación ≥ 6 meses + comprobación."},
+      {q:"La fuerza de una pierna \"paralizada\" mejora al distraer a la paciente. Sugiere:",o:["Simulación","Trastorno de conversión","Esclerosis múltiple"],a:1,w:"Incompatibilidad neurológica con signo positivo, sin intención consciente."},
+      {q:"Enfermera que se inyecta insulina para provocarse hipoglucemias, sin ganancia económica:",o:["Simulación","Trastorno facticio aplicado a uno mismo","Trastorno de conversión"],a:1,w:"Engaño intencional sin recompensa externa; frecuente en profesionales de la salud."},
+      {q:"Paciente con 5 días de ánimo expansivo, menos sueño y verborrea, notado por su familia, sin deterioro ni psicosis. El episodio es:",o:["Maníaco","Hipomaníaco","Mixto"],a:1,w:"≥ 4 días, observable por otros, sin deterioro importante ni psicosis = hipomanía."},
+      {q:"Un paciente con varias depresiones mayores presenta un único episodio maníaco con delirios. Diagnóstico:",o:["Bipolar II","Bipolar I","Depresión mayor con psicosis"],a:1,w:"Una sola manía en la vida basta para bipolar I."},
+      {q:"¿Cuál de estos hallazgos descarta bipolar II?",o:["Depresión de 3 semanas","Hipomanía de 4 días","Antecedente de un episodio maníaco"],a:2,w:"Criterio B del bipolar II: nunca ha habido un episodio maníaco."},
+      {q:"\"Dormí 3 horas y no necesito más.\" Esto describe:",o:["Insomnio","Disminución de la necesidad de sueño","Hipersomnia"],a:1,w:"En la manía duerme poco sin sentir cansancio; en el insomnio quiere dormir y no puede."},
+      {q:"Con ánimo solo irritable, ¿cuántos síntomas del criterio B pide el episodio maníaco?",o:["3","4","5"],a:1,w:"Con ánimo elevado o expansivo bastan 3; si solo es irritable, se requieren 4."},
+      {q:"¿Qué síntoma NO puede ser el único síntoma obligatorio del criterio A de esquizofrenia?",o:["Alucinaciones","Síntomas negativos","Discurso desorganizado"],a:1,w:"Al menos uno de los síntomas debe ser delirio, alucinación o discurso desorganizado."},
+      {q:"Hipofunción de los receptores NMDA en interneuronas GABA corresponde a la hipótesis…",o:["Dopaminérgica","Glutamatérgica","Serotoninérgica"],a:1,w:"La hipótesis glutamatérgica explica síntomas positivos, negativos y cognitivos."},
+      {q:"Hombre de 60 años con hipoacusia, convencido desde hace 2 años de que sus vecinos lo vigilan; trabaja y se relaciona con normalidad. Diagnóstico:",o:["Esquizofrenia de inicio tardío","Trastorno delirante","Trastorno psicótico breve"],a:1,w:"Delirio persecutorio ≥ 1 mes con funcionamiento conservado; el déficit sensorial es un factor asociado."},
+      {q:"Psicosis de 3 semanas que inicia 10 días después del parto y remite por completo:",o:["Psicótico breve con inicio en el periparto","Esquizofreniforme","Depresión posparto"],a:0,w:"< 1 mes con retorno completo, dentro de las 4 semanas posparto."},
+      {q:"Inicio típico de la esquizofrenia en hombres:",o:["12–17 años","18–25 años","25–35 años"],a:1,w:"Hombres 18–25; mujeres 25–35, con segundo pico después de los 40."},
+      {q:"¿Cuál es el criterio de frecuencia y duración común a la bulimia y al trastorno por atracón?",o:["2 veces por semana durante 6 meses","1 vez por semana durante 3 meses","Diario durante 1 mes"],a:1,w:"El DSM‑5 pide ≥ 1 episodio por semana durante 3 meses en ambos."},
+      {q:"Paciente con anorexia, frecuencia cardiaca de 48 lpm e intolerancia al frío. ¿Qué cambio hormonal lo explica mejor?",o:["↑ conversión de T4 a T3","↓ conversión de T4 a T3 con ↑ rT3","↑ leptina"],a:1,w:"La desnutrición reduce la T3 activa para ahorrar energía: bradicardia y menor gasto energético."},
+      {q:"Una paciente con anorexia tiene IMC 16.4. Su gravedad es:",o:["Leve","Moderada","Grave"],a:1,w:"IMC 16–16.99 = moderada."},
+      {q:"¿Qué distingue a la anorexia restrictiva del subtipo atracones/purgas?",o:["El IMC","Si hubo atracones o purgas recurrentes en los últimos 3 meses","La edad de inicio"],a:1,w:"El subtipo se define por la conducta de los últimos 3 meses."}
+    ]
+  };
+  let right=0,answered=0;
+  function renderQuiz(el){
+    const key=el.dataset.quiz;const isFinal=key==='final';
+    el.innerHTML='';
+    Q[key].forEach((it,qi)=>{
+      const d=document.createElement('div');d.className='qitem';
+      d.innerHTML=`<p class="qq">${isFinal?(qi+1)+'. ':''}${it.q}</p><div class="opts"></div><p class="why" hidden></p>`;
+      const opts=d.querySelector('.opts');
+      it.o.forEach((o,oi)=>{const b=document.createElement('button');b.textContent=o;b.onclick=()=>{
+        opts.querySelectorAll('button').forEach((x,xi)=>{x.disabled=true;if(xi===it.a)x.classList.add('right')});
+        if(oi!==it.a)b.classList.add('wrong');
+        const w=d.querySelector('.why');w.hidden=false;w.textContent=(oi===it.a?'Correcto. ':'Incorrecto. ')+it.w;
+        if(isFinal){answered++;if(oi===it.a)right++;updScore()}
+      };opts.appendChild(b)});
+      el.appendChild(d);
+    });
+  }
+  function updScore(){document.getElementById('qScore').textContent=answered?`${right} / ${answered} correctas`:Q.final.length+' preguntas'}
+  document.querySelectorAll('[data-quiz]').forEach(renderQuiz);updScore();
+  document.getElementById('qReset').onclick=()=>{right=0;answered=0;renderQuiz(document.querySelector('[data-quiz="final"]'));updScore()};
+})();
+</script>
+
+</body></html>

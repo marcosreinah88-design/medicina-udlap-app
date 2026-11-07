@@ -1,0 +1,485 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Calculadora GEB y GET</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/gcac46c5b05.css">
+<style>
+/* Layout: ficha clínica de una columna; panel de datos arriba, tabla comparativa de fórmulas, luego módulos (kcal/kg, quemados, macros). */
+:root{
+  --bg:#F3F6F5; --surface:#FFFFFF; --sunk:#E7EEEC; --fg:#15211E; --muted:#56655F; --line:#D2DDD9;
+  --accent:#0E6656; --accent-soft:#D6ECE6; --ink2:#7A3E62;
+  --ok:#1E7A3A; --warn:#9A5B00; --warn-bg:#FCF0DC; --bad:#A3302A; --bad-bg:#F8E1DF;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1614; --surface:#16211E; --sunk:#1D2A27; --fg:#E4EEEA; --muted:#9DB0A9; --line:#2C3B37;
+  --accent:#5CC6AE; --accent-soft:#1C3A33; --ink2:#E09ABF;
+  --ok:#6FD08A; --warn:#E8B45C; --warn-bg:#33270F; --bad:#F08A80; --bad-bg:#3A1C1A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1614; --surface:#16211E; --sunk:#1D2A27; --fg:#E4EEEA; --muted:#9DB0A9; --line:#2C3B37;
+  --accent:#5CC6AE; --accent-soft:#1C3A33; --ink2:#E09ABF;
+  --ok:#6FD08A; --warn:#E8B45C; --warn-bg:#33270F; --bad:#F08A80; --bad-bg:#3A1C1A; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:980px;margin:0 auto;padding-block:20px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:22px}
+header h1{font-family:var(--f-display);font-weight:700;font-size:clamp(1.7rem,5vw,2.5rem);line-height:1.1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+header p{margin:6px 0 0;color:var(--muted);max-width:65ch}
+.eq{font-family:var(--f-mono);font-size:.86rem}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:4px;overflow-x:auto;padding-block:6px;border-bottom:1px solid var(--line)}
+nav.tabs a{flex:0 0 auto;text-decoration:none;color:var(--muted);font-weight:600;padding:8px 14px;border-radius:999px}
+nav.tabs a[aria-current="page"]{background:var(--accent);color:var(--bg)}
+nav.tabs a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.view{display:flex;flex-direction:column;gap:22px}
+h2{font-family:var(--f-display);font-weight:700;font-size:1.35rem;margin:0;text-wrap:balance}
+h3{font-family:var(--f-display);font-weight:600;font-size:1.08rem;margin:0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);min-width:0}
+input,select{font:inherit;font-size:1rem;text-transform:none;letter-spacing:0;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%;min-width:0}
+input[type=checkbox]{width:auto}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{flex:1;font:inherit;font-weight:600;border:0;background:var(--bg);color:var(--muted);padding:9px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--f-mono);font-size:.82rem;background:var(--sunk);border-radius:999px;padding:4px 10px}
+.chip b{font-weight:600}
+.chip.warn{background:var(--warn-bg);color:var(--warn)}
+.chip.ok{background:var(--accent-soft);color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:end}
+.row>*{flex:1 1 180px;min-width:0}
+.check{display:flex;gap:8px;align-items:center;font-size:.95rem;text-transform:none;letter-spacing:0;color:var(--fg);font-weight:400}
+.hint{font-size:.88rem;color:var(--muted);margin:0}
+.tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;background:var(--sunk)}
+td.num{font-family:var(--f-mono);text-align:right;white-space:nowrap}
+td.big{font-family:var(--f-mono);font-weight:600;font-size:1.05rem;text-align:right;white-space:nowrap;color:var(--accent)}
+.fname{font-weight:700}
+.fsub{display:block;font-size:.82rem;color:var(--muted)}
+.bar{height:6px;border-radius:3px;background:var(--sunk);margin-top:6px;overflow:hidden;min-width:80px}
+.bar i{display:block;height:100%;background:var(--accent)}
+.tag{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:1px 7px;border-radius:999px;margin-left:6px;vertical-align:2px}
+.tag.rec{background:var(--accent-soft);color:var(--accent)}
+.tag.mx{background:var(--sunk);color:var(--ink2)}
+.tag.na{background:var(--warn-bg);color:var(--warn)}
+.cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.stat{background:var(--sunk);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat .k{font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700}
+.stat .v{font-family:var(--f-mono);font-size:1.25rem;font-weight:600}
+.stat .s{font-size:.85rem;color:var(--muted)}
+.fix{display:grid;grid-template-columns:1fr;gap:10px}
+.fix article{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.was,.now{display:flex;gap:8px;align-items:flex-start;margin:0;font-size:.95rem}
+.was span,.now span{flex:0 0 auto;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-radius:4px;padding:2px 6px;margin-top:2px}
+.was span{background:var(--bad-bg);color:var(--bad)}
+.now span{background:var(--accent-soft);color:var(--accent)}
+.was{color:var(--muted)}
+.sev{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.sev.err{color:var(--bad)} .sev.imp{color:var(--warn)} .sev.okk{color:var(--ok)}
+.formula{display:flex;flex-direction:column;gap:8px}
+.formula pre{margin:0;font-family:var(--f-mono);font-size:.88rem;background:var(--sunk);border-radius:8px;padding:10px 12px;overflow-x:auto;white-space:pre}
+ol.src{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px}
+a{color:var(--accent)}
+.macro-out td.num{color:var(--fg)}
+.sum{font-family:var(--f-mono);font-weight:600}
+.sum.bad{color:var(--bad)}
+footer{color:var(--muted);font-size:.85rem;max-width:70ch}
+@media (prefers-reduced-motion:no-preference){.bar i{transition:width .25s ease}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Calculadora GEB y GET</h1>
+  <p>Captura los datos una vez y ve el gasto energético basal (GEB) y total (GET) con cada fórmula de tus apuntes, ya revisadas y completadas con fuentes. Viene llena con el ejemplo del PDF (hombre, 20 años, 75 kg, 183 cm), que reproduce sus resultados.</p>
+</header>
+
+<nav class="tabs" aria-label="Secciones">
+  <a href="#calcular">Calcular</a>
+  <a href="#formulas">Fórmulas</a>
+  <a href="#correcciones">Correcciones al PDF</a>
+  <a href="#fuentes">Fuentes</a>
+</nav>
+
+<!-- ================= CALCULAR ================= -->
+<section class="view" id="v-calcular">
+  <div class="panel">
+    <h2>Datos de la persona</h2>
+    <div class="grid">
+      <label class="f">Sexo
+        <div class="seg" role="group" aria-label="Sexo">
+          <button type="button" id="sx-h" aria-pressed="true">Hombre</button>
+          <button type="button" id="sx-m" aria-pressed="false">Mujer</button>
+        </div>
+      </label>
+      <label class="f" for="edad">Edad (años)<input id="edad" type="number" inputmode="decimal" min="10" max="110" value="20"></label>
+      <label class="f" for="peso">Peso actual (kg)<input id="peso" type="number" inputmode="decimal" min="20" max="300" step="0.1" value="75"></label>
+      <label class="f" for="talla">Estatura (cm)<input id="talla" type="number" inputmode="decimal" min="100" max="230" step="0.5" value="183"></label>
+      <label class="f" for="grasa">% grasa (opcional)<input id="grasa" type="number" inputmode="decimal" min="3" max="70" step="0.1" placeholder="p. ej. 18"></label>
+    </div>
+    <div class="chips" id="antro"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Factores que se multiplican</h2>
+    <div class="row">
+      <label class="f" for="faScale">Escala de actividad física
+        <select id="faScale">
+          <option value="curso">Del curso (1.1 a 1.5)</option>
+          <option value="long">Clásica Harris-Benedict (1.2 a 1.9)</option>
+          <option value="fao">FAO/OMS/UNU 2004, NAF (1.4 a 2.4)</option>
+          <option value="custom">Escribir mi propio FA</option>
+        </select>
+      </label>
+      <label class="f" for="faLevel" id="faLevelWrap">Nivel
+        <select id="faLevel"></select>
+      </label>
+      <label class="f" for="faCustom" id="faCustomWrap" hidden>FA
+        <input id="faCustom" type="number" step="0.01" min="1" max="2.5" value="1.4">
+      </label>
+    </div>
+    <label class="check" for="eta"><input type="checkbox" id="eta"> Sumar efecto termogénico de los alimentos (ETA = 10 %)</label>
+    <p class="hint" id="etaHint"></p>
+    <div class="row">
+      <label class="f" for="fe">Factor de lesión / estrés
+        <select id="fe"></select>
+      </label>
+      <label class="f" for="feVal">Valor usado<input id="feVal" type="number" step="0.01" min="1" max="2.5" value="1"></label>
+      <label class="f" for="emb">Embarazo o lactancia
+        <select id="emb">
+          <option value="0">No aplica</option>
+          <option value="0.1">1.er trimestre (+0 kcal)</option>
+          <option value="340">2.º trimestre (+340 kcal)</option>
+          <option value="452">3.er trimestre (+452 kcal)</option>
+          <option value="330">Lactancia 0 a 6 meses (+330 kcal)</option>
+          <option value="400">Lactancia 7 a 12 meses (+400 kcal)</option>
+        </select>
+      </label>
+    </div>
+    <p class="hint" id="feHint"></p>
+    <p class="hint eq" id="getEq"></p>
+  </div>
+
+  <div>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>Fórmula</th><th style="text-align:right">GEB</th><th style="text-align:right">GET</th><th style="min-width:110px">Comparación</th></tr></thead>
+        <tbody id="resBody"></tbody>
+      </table>
+    </div>
+    <p class="hint" style="margin-top:8px">Todas son estimaciones. Entre fórmulas la diferencia suele ser de 100 a 300 kcal; en paciente hospitalizado la calorimetría indirecta es el estándar.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Fórmula de emergencia (kcal por kg)</h2>
+    <p class="hint">No lleva factor de actividad. Se multiplica un rango de kcal/kg por el peso que corresponda a la situación.</p>
+    <div class="row">
+      <label class="f" for="cond">Situación clínica<select id="cond"></select></label>
+      <label class="f" for="wType">Peso usado
+        <select id="wType">
+          <option value="actual">Peso actual</option>
+          <option value="ideal">Peso ideal</option>
+          <option value="ajustado">Peso ajustado</option>
+        </select>
+      </label>
+      <label class="f" for="piMethod">Peso ideal por
+        <select id="piMethod">
+          <option value="imc">IMC 22 × talla²</option>
+          <option value="hamwi">Hamwi</option>
+        </select>
+      </label>
+    </div>
+    <div class="cards" id="emgOut"></div>
+    <p class="hint" id="emgNote"></p>
+  </div>
+
+  <div class="panel">
+    <h2>Paciente quemado</h2>
+    <div class="row">
+      <label class="f" for="scq">% superficie corporal quemada (SCQ)<input id="scq" type="number" min="0" max="100" step="1" value="30"></label>
+    </div>
+    <div class="cards" id="burnOut"></div>
+    <p class="hint">Estas fórmulas tienden a sobreestimar el gasto en quemaduras extensas; se usan cuando no hay calorimetría y se ajustan con la evolución del peso.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Distribución de macronutrientes</h2>
+    <div class="row">
+      <label class="f" for="mSrc">GET de partida<select id="mSrc"></select></label>
+      <label class="f" for="mCustom" id="mCustomWrap" hidden>kcal<input id="mCustom" type="number" value="2300"></label>
+    </div>
+    <div class="grid">
+      <label class="f" for="pP">Proteína %<input id="pP" type="number" min="5" max="40" value="15"></label>
+      <label class="f" for="pC">Hidratos de carbono %<input id="pC" type="number" min="20" max="75" value="55"></label>
+      <label class="f" for="pL">Lípidos %<input id="pL" type="number" min="10" max="50" value="30"></label>
+    </div>
+    <div class="tablebox macro-out">
+      <table>
+        <thead><tr><th>Macro</th><th style="text-align:right">kcal</th><th style="text-align:right">gramos</th><th>Revisión</th></tr></thead>
+        <tbody id="mBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FÓRMULAS ================= -->
+<section class="view" id="v-formulas" hidden>
+  <div class="panel">
+    <h2>Componentes del gasto energético total</h2>
+    <p class="hint">GET = GEB + ETA + actividad física. En la práctica: <span class="eq">GET = GEB × FA</span>, y si la escala de FA no incluye la digestión se agrega ETA: <span class="eq">GET = GEB × FA × 1.10</span>. En hospital se multiplica además por el factor de lesión.</p>
+    <div class="cards">
+      <div class="stat"><span class="k">GEB / TMB</span><span class="s">Energía para mantener órganos y procesos celulares en reposo. 60 a 70 % del GET.</span></div>
+      <div class="stat"><span class="k">ETA</span><span class="s">Digestión, absorción y metabolismo de los alimentos. Cerca de 10 % del GET.</span></div>
+      <div class="stat"><span class="k">Actividad física</span><span class="s">El componente más variable: 15 a 30 % o más del GET.</span></div>
+    </div>
+  </div>
+
+  <div class="panel formula">
+    <h3>Harris-Benedict original (1918)</h3>
+    <pre>Hombre: 66.47 + 13.75·P + 5.003·T − 6.755·E
+Mujer:  655.1 + 9.563·P + 1.850·T − 4.676·E</pre>
+    <p class="hint">P = kg, T = cm, E = años. La versión redondeada de los apuntes (66 + 13.7P + 5T − 6.8E) es correcta. Sobreestima el GEB entre 5 y 15 %, sobre todo en obesidad.</p>
+  </div>
+  <div class="panel formula">
+    <h3>Harris-Benedict revisada (Roza y Shizgal, 1984)</h3>
+    <pre>Hombre: 88.362 + 13.397·P + 4.799·T − 5.677·E
+Mujer:  447.593 + 9.247·P + 3.098·T − 4.330·E</pre>
+  </div>
+  <div class="panel formula">
+    <h3>Mifflin-St Jeor (1990)</h3>
+    <pre>Hombre: 10·P + 6.25·T − 5·E + 5
+Mujer:  10·P + 6.25·T − 5·E − 161</pre>
+    <p class="hint">Coeficientes originales 9.99 y 4.92; el redondeo cambia menos de 10 kcal. Fue la más precisa en adultos sanos con peso normal y con obesidad en la revisión sistemática de la Academia de Nutrición (Frankenfield 2005). Vale para ambos grupos, no solo obesidad.</p>
+  </div>
+  <div class="panel formula">
+    <h3>Owen (1986 mujeres, 1987 hombres)</h3>
+    <pre>Hombre: 879 + 10.2·P
+Mujer:  795 + 7.18·P</pre>
+    <p class="hint">Solo usa peso. Correcta en los apuntes.</p>
+  </div>
+  <div class="panel formula">
+    <h3>FAO/OMS/UNU (1985, basada en Schofield)</h3>
+    <pre>Edad      Hombre            Mujer
+10–18     17.5·P + 651      12.2·P + 746
+18–30     15.3·P + 679      14.7·P + 496
+30–60     11.6·P + 879       8.7·P + 829
+> 60      13.5·P + 487      10.5·P + 596</pre>
+    <p class="hint">Se usa con los niveles de actividad física (NAF) de FAO 2004, que ya incluyen el ETA.</p>
+  </div>
+  <div class="panel formula">
+    <h3>Valencia (población mexicana, 1994)</h3>
+    <pre>Edad      Hombre            Mujer
+18–30     13.37·P + 747     11.02·P + 679
+30–60     13.08·P + 693     10.92·P + 677
+> 60      14.21·P + 429     10.98·P + 520</pre>
+    <p class="hint">Desarrollada con adultos del norte de México; es la que usan las Recomendaciones de ingestión de nutrimentos para la población mexicana.</p>
+  </div>
+  <div class="panel formula">
+    <h3>Katch-McArdle (requiere % de grasa)</h3>
+    <pre>GEB = 370 + 21.6 · MLG      MLG = P × (1 − %grasa/100)</pre>
+    <p class="hint">Útil en deportistas; depende de qué tan bien se midió la grasa.</p>
+  </div>
+  <div class="panel formula">
+    <h3>Peso ideal y peso ajustado</h3>
+    <pre>Peso ideal (IMC 22) = 22 × talla(m)²
+Hamwi hombre = 48 + 2.7 kg por cada pulgada sobre 152.4 cm
+Hamwi mujer  = 45.5 + 2.2 kg por cada pulgada sobre 152.4 cm
+Peso ajustado = PI + 0.25 × (peso actual − PI)</pre>
+    <p class="hint">El peso ajustado se usa en obesidad (peso actual mayor a 120 % del ideal) para la fórmula de kcal/kg.</p>
+  </div>
+  <div class="panel formula">
+    <h3>Quemados</h3>
+    <pre>Curreri adulto 16–59 a: 25·P + 40·%SCQ
+Curreri adulto ≥ 60 a:  20·P + 65·%SCQ
+Davies adulto:          20·P + 70·%SCQ
+Davies niño:            60·P + 35·%SCQ</pre>
+    <p class="hint">La fórmula “niños 60 kcal/kg + 35 kcal × %SCQ” de los apuntes es la de Davies y Liljedahl para niños.</p>
+  </div>
+</section>
+
+<!-- ================= CORRECCIONES ================= -->
+<section class="view" id="v-correcciones" hidden>
+  <p class="hint">Revisé el PDF punto por punto. Lo que está bien se queda igual; abajo va lo que cambié o completé.</p>
+  <div class="fix" id="fixList"></div>
+</section>
+
+<!-- ================= FUENTES ================= -->
+<section class="view" id="v-fuentes" hidden>
+  <div class="panel">
+    <h2>Fuentes</h2>
+    <ol class="src">
+      <li>Harris JA, Benedict FG. A biometric study of human basal metabolism. <i>Proc Natl Acad Sci USA</i> 1918;4:370-3. <a href="https://pubmed.ncbi.nlm.nih.gov/16576330/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Roza AM, Shizgal HM. The Harris Benedict equation reevaluated. <i>Am J Clin Nutr</i> 1984;40:168-82. <a href="https://pubmed.ncbi.nlm.nih.gov/6741850/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Mifflin MD, St Jeor ST, et al. A new predictive equation for resting energy expenditure in healthy individuals. <i>Am J Clin Nutr</i> 1990;51:241-7. <a href="https://pubmed.ncbi.nlm.nih.gov/2305711/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Owen OE, et al. A reappraisal of caloric requirements in healthy women (1986) and in men (1987). <i>Am J Clin Nutr</i>. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Owen+OE+reappraisal+caloric+requirements" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Schofield WN. Predicting basal metabolic rate, new standards and review of previous work. <i>Hum Nutr Clin Nutr</i> 1985;39 Suppl 1:5-41. <a href="https://pubmed.ncbi.nlm.nih.gov/4044297/" target="_blank" rel="noopener">PubMed</a>; FAO/WHO/UNU. Energy and protein requirements. WHO TRS 724, 1985.</li>
+      <li>FAO/WHO/UNU. Human energy requirements (niveles de actividad física, NAF). 2004. <a href="https://www.fao.org/3/y5686e/y5686e00.htm" target="_blank" rel="noopener">FAO</a></li>
+      <li>Valencia ME, Moya SY, McNeill G, Haggarty P. Basal metabolic rate and body fatness of adult men in northern Mexico. <i>Eur J Clin Nutr</i> 1994;48:205-11. <a href="https://agris.fao.org/search/es/records/65dfad740f3e94b9e5db44b6" target="_blank" rel="noopener">AGRIS</a>; Valencia ME. Energía. En: Bourges H, Casanueva E, Rosado J. <i>Recomendaciones de ingestión de nutrimentos para la población mexicana</i>. Panamericana, 2009.</li>
+      <li>Frankenfield D, Roth-Yousey L, Compher C. Comparison of predictive equations for resting metabolic rate in healthy nonobese and obese adults: a systematic review. <i>J Am Diet Assoc</i> 2005;105:775-89. <a href="https://pubmed.ncbi.nlm.nih.gov/15883556/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Clark A, Imran J, Madni T, Wolf SE. Nutrition and metabolism in burn patients. <i>Burns Trauma</i> 2017;5:11 (tabla de Curreri, Davies, Toronto, Ireton-Jones). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5393025/" target="_blank" rel="noopener">PMC</a></li>
+      <li>McClave SA, et al. Guidelines for the provision and assessment of nutrition support therapy in the adult critically ill patient (SCCM/ASPEN). <i>JPEN</i> 2016;40:159-211. <a href="https://pubmed.ncbi.nlm.nih.gov/26773077/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Arends J, et al. ESPEN guidelines on nutrition in cancer patients. <i>Clin Nutr</i> 2017;36:11-48. <a href="https://pubmed.ncbi.nlm.nih.gov/27637832/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Volkert D, et al. ESPEN guideline on clinical nutrition and hydration in geriatrics. <i>Clin Nutr</i> 2019;38:10-47. <a href="https://pubmed.ncbi.nlm.nih.gov/30005900/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Ikizler TA, et al. KDOQI clinical practice guideline for nutrition in CKD: 2020 update. <i>Am J Kidney Dis</i> 2020;76(3 Suppl 1):S1-S107. <a href="https://pubmed.ncbi.nlm.nih.gov/32829751/" target="_blank" rel="noopener">PubMed</a></li>
+      <li>Institute of Medicine. Dietary Reference Intakes for Energy, Carbohydrate, Fiber, Fat, Fatty Acids, Cholesterol, Protein, and Amino Acids. 2005 (AMDR, 130 g de HCO, kcal extra en embarazo y lactancia). <a href="https://nap.nationalacademies.org/catalog/10490" target="_blank" rel="noopener">National Academies</a></li>
+      <li>Long CL, et al. Metabolic response to injury and illness: estimation of energy and protein needs from indirect calorimetry and nitrogen balance. <i>JPEN</i> 1979;3:452-6 (factores de lesión). <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Long+CL+1979+metabolic+response+to+injury+and+illness+JPEN" target="_blank" rel="noopener">PubMed</a></li>
+      <li>OMS. Actividad física, nota descriptiva (directrices 2020). <a href="https://www.who.int/es/news-room/fact-sheets/detail/physical-activity" target="_blank" rel="noopener">OMS</a></li>
+      <li>Spiegel K, et al. Sleep curtailment in healthy young men is associated with decreased leptin levels, elevated ghrelin levels, and increased hunger and appetite. <i>Ann Intern Med</i> 2004;141:846-50. <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Spiegel+2004+sleep+curtailment+leptin+ghrelin" target="_blank" rel="noopener">PubMed</a></li>
+    </ol>
+  </div>
+</section>
+
+<footer>Herramienta de estudio. Los rangos clínicos cambian según guía y paciente; confirma con tu docente o la guía vigente antes de usarlos en un paciente real.</footer>
+</div>
+
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const r0=n=>Math.round(n).toLocaleString('es-MX');
+const r1=n=>(Math.round(n*10)/10).toLocaleString('es-MX');
+
+const FA={
+  curso:[["Sedentario (no hace ejercicio)",1.1],["Ligera (≈3 h por semana)",1.2],["Moderada (≈6 h por semana)",1.3],["Activa",1.4],["Muy activa (entrena varias horas al día)",1.5]],
+  long:[["Sedentario",1.2],["Ligera (1 a 3 días/sem)",1.375],["Moderada (3 a 5 días/sem)",1.55],["Intensa (6 a 7 días/sem)",1.725],["Muy intensa (2 veces al día o trabajo físico)",1.9]],
+  fao:[["Sedentario o ligero (NAF 1.40 a 1.69)",1.53],["Activo o moderado (NAF 1.70 a 1.99)",1.76],["Vigoroso (NAF 2.00 a 2.40)",2.25]]
+};
+const FE=[
+  ["Ninguno",1,1,1,""],
+  ["Cirugía menor (Long)",1.2,1.2,1.2,"Long 1979."],
+  ["Fractura de hueso largo",1.15,1.3,1.2,"Apuntes: 1.15 a 1.2; Long reporta hasta 1.3 a 1.35 en trauma esquelético."],
+  ["Traumatismo múltiple",1.3,1.55,1.4,""],
+  ["Traumatismo craneal grave",1.3,1.5,1.4,"En el PDF dice “1.3 a .1.5”: es 1.3 a 1.5."],
+  ["Traumatismo múltiple con sepsis",1.5,1.75,1.6,""],
+  ["Sepsis grave (Long)",1.6,1.6,1.6,"Long 1979."],
+  ["Quemadura 10 % SCQ",1.25,1.25,1.25,""],
+  ["Quemadura 20 % SCQ",1.5,1.5,1.5,""],
+  ["Quemadura 30 % SCQ",1.7,1.7,1.7,""],
+  ["Quemadura 40 % SCQ",1.85,1.85,1.85,""],
+  ["Quemadura 50 % SCQ",2.0,2.0,2.0,""],
+  ["Quemadura ≥ 75 % SCQ",2.0,2.1,2.1,""]
+];
+const COND=[
+  // label, min, max, peso sugerido, nota
+  ["Peso normal",25,30,"actual","Igual que en los apuntes."],
+  ["Bajo peso / desnutrición (repleción)",35,40,"actual","Apuntes: “>35”. Si hay riesgo de síndrome de realimentación se empieza con 10 a 20 kcal/kg y se sube en días."],
+  ["Obesidad",20,25,"ajustado","Usar peso ajustado o ideal, no el actual. En el crítico con obesidad ASPEN 2016 pide 11 a 14 kcal/kg de peso actual (IMC 30 a 50) o 22 a 25 kcal/kg de peso ideal (IMC > 50)."],
+  ["Paciente crítico (UCI)",25,30,"actual","ASPEN/SCCM 2016, si no hay calorimetría."],
+  ["Cáncer, mantener peso",25,30,"actual","ESPEN 2017: 25 a 30 kcal/kg. Los apuntes dicen 25 a 35."],
+  ["Cáncer, repletar",35,45,"actual","Valor de los apuntes para recuperar peso; ESPEN no da una cifra separada, se ajusta con la respuesta del peso."],
+  ["Postrauma",25,35,"actual","ASPEN usa 25 a 30 en el crítico."],
+  ["ERC sin diálisis",30,35,"actual","KDOQI 2020 da 25 a 35 kcal/kg según edad, sexo y actividad."],
+  ["Hemodiálisis",30,35,"actual","KDOQI 2020: 25 a 35; ESPEN: 30 a 35."],
+  ["Diálisis peritoneal",25,35,"actual","Restar las kcal de la glucosa absorbida del dializado."],
+  ["Postrasplante agudo",30,35,"actual",""],
+  ["Postrasplante tardío",25,30,"actual",""],
+  ["Adulto mayor",25,30,"actual","ESPEN geriatría 2019 usa 30 kcal/kg como valor orientativo y se individualiza."]
+];
+const FIXES=[
+  ["err","Recomendación de la OMS","“150 horas de ejercicio semanales mínimo”.","150 a 300 minutos por semana de actividad aeróbica moderada, o 75 a 150 de vigorosa, más fortalecimiento muscular 2 o más días. Hacer más de 300 min/semana da beneficio adicional."],
+  ["err","Balance energético positivo","“Se gasta la misma energía que se consume (superávit)”.","Positivo: se consume más de lo que se gasta (superávit, se gana peso). Equilibrio o neutro: ingreso igual al gasto. Negativo: se gasta más de lo que se consume (déficit)."],
+  ["err","Harris-Benedict y el FA","“Multiplicar por el factor de actividad física para sacar el GEB” y “GET = GEB + ETA”.","El GEB sale de la fórmula. GEB × FA da el GET. Si se suma ETA, GET = GEB × FA × 1.10. El ejemplo del PDF lo confirma: (1872 + 187) × 1.4 = 2882."],
+  ["imp","Escala de factor de actividad","Dos listas que no coinciden (“Intenso 4 o 5 horas diarias 1.5” y luego sedentario 1.1 a muy activo 1.5).","Se unificó en una escala del curso de 1.1 a 1.5. Ojo: es más baja que las escalas internacionales (Harris-Benedict clásica 1.2 a 1.9; FAO/OMS NAF 1.4 a 2.4, que ya incluye ETA). La calculadora deja escoger cualquiera."],
+  ["imp","Uso de ETA inconsistente","En Harris-Benedict se suma ETA; en Owen y Mifflin no.","La calculadora lo deja como opción para todas las fórmulas. Con la escala FAO se desactiva porque ya viene incluido."],
+  ["imp","Mifflin “para obesidad y sobrepeso”","Se presenta como fórmula solo para obesidad.","Se validó en personas con peso normal y con obesidad. La revisión de Frankenfield 2005 la señala como la más precisa en ambos grupos. Fórmula correcta (coeficientes originales 9.99 y 4.92)."],
+  ["imp","Fórmula de emergencia","No dice qué peso usar.","En obesidad se usa peso ajustado o ideal. Se agregaron paciente crítico y las cifras de ASPEN, ESPEN y KDOQI junto a las de los apuntes."],
+  ["imp","“Bajo peso > 35”","Sin límite superior ni precaución.","35 a 40 kcal/kg como meta, pero si hay riesgo de realimentación se inicia bajo y se progresa."],
+  ["imp","Hidratos de carbono 45 a 60 %","Rango de distribución.","El rango aceptable del IOM (AMDR) es 45 a 65 %. El mínimo de 130 g/día sí es correcto."],
+  ["imp","Quemados niños","“60 kcal/kg/día + 35 kcal % SCQ/día”.","Es la fórmula de Davies para niños: 60 × kg + 35 × %SCQ. Para adultos se agregaron Curreri (25 × kg + 40 × %SCQ) y Davies adulto (20 × kg + 70 × %SCQ)."],
+  ["imp","Traumatismo craneal","“1.3 a .1.5”.","Error de dedo: 1.3 a 1.5."],
+  ["imp","Periodo perinatal","“20 a 24 SDG hasta 7 a 28 días después del nacimiento”.","Definición OMS (CIE-10): desde las 22 semanas completas de gestación hasta 7 días completos después del nacimiento. Término: 37 a 41.6 SDG (a término completo 39 a 40.6)."],
+  ["okk","Se confirmaron sin cambios","Owen, Mifflin, Harris-Benedict (redondeada), ETA 10 %, proteína 10 a 35 % y 0.8 g/kg, lípidos 20 a 35 %, factores de quemadura, grelina baja y leptina alta con buen sueño.","Correctos. Los ejemplos del PDF se reproducen con hombre de 20 años, 75 kg y 183 cm: Owen 1644, Mifflin 1798, Harris-Benedict 1872 (redondeada)."]
+];
+
+let st={sexo:'h',edad:20,peso:75,talla:183,grasa:'',faScale:'curso',faLevel:3,faCustom:1.4,eta:false,fe:0,feVal:1,emb:'0',cond:0,wType:'actual',piMethod:'imc',scq:30,mSrc:'mifflin',mCustom:2300,pP:15,pC:55,pL:30};
+try{const s=JSON.parse(localStorage.getItem('kcalcalc')||'null');if(s)st=Object.assign(st,s);}catch(e){}
+const save=()=>{try{localStorage.setItem('kcalcalc',JSON.stringify(st));}catch(e){}};
+
+// fill selects
+function fillFA(){ const sel=$('faLevel'); sel.innerHTML=''; (FA[st.faScale]||[]).forEach((o,i)=>{const op=document.createElement('option');op.value=i;op.textContent=o[0]+' · '+o[1];sel.appendChild(op);}); if(st.faLevel>=sel.options.length) st.faLevel=sel.options.length-1; sel.value=st.faLevel; }
+FE.forEach((o,i)=>{const op=document.createElement('option');op.value=i;op.textContent=o[0]+(o[1]===o[2]?(i?' · '+o[1]:''):' · '+o[1]+' a '+o[2]);$('fe').appendChild(op);});
+COND.forEach((o,i)=>{const op=document.createElement('option');op.value=i;op.textContent=o[0]+' · '+o[1]+' a '+o[2]+' kcal/kg';$('cond').appendChild(op);});
+$('fixList').innerHTML=FIXES.map(f=>`<article><span class="sev ${f[0]}">${f[0]==='err'?'Error corregido':f[0]==='imp'?'Precisión o complemento':'Correcto'}</span><h3>${f[1]}</h3><p class="was"><span>PDF</span>${f[2]}</p><p class="now"><span>${f[0]==='okk'?'Revisión':'Corregido'}</span>${f[3]}</p></article>`).join('');
+
+function formulas(s){
+  const {sexo:x,edad:E,peso:P,talla:T}=s; const h=x==='h'; const out=[];
+  out.push({id:'hb',n:'Harris-Benedict original',sub:'1918 · tiende a sobreestimar',geb:h?66.47+13.75*P+5.003*T-6.755*E:655.1+9.563*P+1.85*T-4.676*E});
+  out.push({id:'hbr',n:'Harris-Benedict revisada',sub:'Roza y Shizgal 1984',geb:h?88.362+13.397*P+4.799*T-5.677*E:447.593+9.247*P+3.098*T-4.33*E});
+  out.push({id:'mifflin',n:'Mifflin-St Jeor',sub:'1990 · la más precisa en adultos sanos y con obesidad',tag:'rec',geb:10*P+6.25*T-5*E+(h?5:-161)});
+  out.push({id:'owen',n:'Owen',sub:'Solo peso',geb:h?879+10.2*P:795+7.18*P});
+  let fao,fb; if(E<10){fao=null;}else if(E<18){fao=h?17.5*P+651:12.2*P+746;fb='10–18 a';}else if(E<30){fao=h?15.3*P+679:14.7*P+496;fb='18–30 a';}else if(E<60){fao=h?11.6*P+879:8.7*P+829;fb='30–60 a';}else{fao=h?13.5*P+487:10.5*P+596;fb='> 60 a';}
+  out.push({id:'fao',n:'FAO/OMS/UNU',sub:fao?'1985 · banda '+fb:'Solo desde 10 años',geb:fao});
+  let va,vb; if(E<18){va=null;}else if(E<30){va=h?13.37*P+747:11.02*P+679;vb='18–30 a';}else if(E<60){va=h?13.08*P+693:10.92*P+677;vb='30–60 a';}else{va=h?14.21*P+429:10.98*P+520;vb='> 60 a';}
+  out.push({id:'valencia',n:'Valencia',sub:va?'Población mexicana · banda '+vb:'Solo adultos (≥ 18 a)',tag:'mx',geb:va});
+  const g=parseFloat(s.grasa); const km=(g>0&&g<80)?370+21.6*P*(1-g/100):null;
+  out.push({id:'km',n:'Katch-McArdle',sub:km?'MLG '+r1(P*(1-g/100))+' kg':'Escribe el % de grasa para calcularla',geb:km});
+  return out;
+}
+function faVal(){ if(st.faScale==='custom') return parseFloat(st.faCustom)||1; return (FA[st.faScale][st.faLevel]||[0,1])[1]; }
+function pesos(){ const m=st.talla/100; const imc=st.peso/(m*m); let pi; if(st.piMethod==='hamwi'){const inch=Math.max(0,(st.talla-152.4)/2.54); pi=st.sexo==='h'?48+2.7*inch:45.5+2.2*inch;} else pi=22*m*m; const paj=st.peso>pi?pi+0.25*(st.peso-pi):st.peso; return {imc,pi,paj}; }
+function imcCat(i){return i<18.5?'Bajo peso':i<25?'Normal':i<30?'Sobrepeso':i<35?'Obesidad I':i<40?'Obesidad II':'Obesidad III';}
+
+function render(){
+  // inputs to UI
+  $('sx-h').setAttribute('aria-pressed',st.sexo==='h'); $('sx-m').setAttribute('aria-pressed',st.sexo==='m');
+  ['edad','peso','talla','grasa','faCustom','feVal','scq','mCustom','pP','pC','pL'].forEach(k=>{if(document.activeElement!==$(k)) $(k).value=st[k];});
+  $('faScale').value=st.faScale; fillFA(); $('faLevelWrap').hidden=st.faScale==='custom'; $('faCustomWrap').hidden=st.faScale!=='custom';
+  const fao=st.faScale==='fao'; if(fao) st.eta=false; $('eta').checked=st.eta; $('eta').disabled=fao;
+  $('etaHint').textContent=fao?'Los NAF de FAO/OMS ya incluyen el ETA, por eso no se suma.':'En los apuntes el ETA se sumó solo en Harris-Benedict (1872 × 1.4 × 1.1 = 2882). Owen y Mifflin se calcularon sin él.';
+  $('fe').value=st.fe; $('emb').value=st.emb; $('cond').value=st.cond; $('wType').value=st.wType; $('piMethod').value=st.piMethod;
+  const fe=FE[st.fe]; $('feHint').textContent=(fe[1]!==fe[2]?'Rango '+fe[1]+' a '+fe[2]+'. ':'')+fe[4]+(st.fe>0?' Las guías actuales (ASPEN, ESPEN) prefieren calorimetría o 25 a 30 kcal/kg; los factores de estrés suelen sobreestimar.':'');
+  const E=+st.edad,P=+st.peso,T=+st.talla; const valid=E>0&&P>0&&T>0;
+  const {imc,pi,paj}=pesos();
+  $('antro').innerHTML=valid?`<span class="chip">IMC <b>${r1(imc)}</b> · ${imcCat(imc)}</span><span class="chip">Peso ideal <b>${r1(pi)} kg</b></span><span class="chip ${P>1.2*pi?'warn':''}">Peso ajustado <b>${r1(paj)} kg</b>${P>1.2*pi?' · usar en obesidad':''}</span>`+(E<18?'<span class="chip warn">Fórmulas de adulto; en menores de 18 solo aplica FAO/OMS</span>':''):'<span class="chip warn">Completa edad, peso y estatura</span>';
+  const fa=faVal(), feV=parseFloat(st.feVal)||1, emb=Math.floor(parseFloat(st.emb)||0), etaF=st.eta?1.1:1;
+  $('getEq').textContent=`GET = GEB × ${fa}${st.eta?' × 1.10 (ETA)':''}${feV!==1?' × '+feV+' (lesión)':''}${emb?' + '+emb+' kcal':''}`;
+  const fs=formulas({sexo:st.sexo,edad:E,peso:P,talla:T,grasa:st.grasa}).map(f=>Object.assign(f,{get:f.geb?f.geb*fa*etaF*feV+emb:null}));
+  const max=Math.max(...fs.filter(f=>f.get).map(f=>f.get),1);
+  $('resBody').innerHTML=fs.map(f=>`<tr><td><span class="fname">${f.n}</span>${f.tag==='rec'?'<span class="tag rec">Recomendada</span>':f.tag==='mx'?'<span class="tag mx">México</span>':''}${!f.geb?'<span class="tag na">No aplica</span>':''}<span class="fsub">${f.sub}</span></td><td class="num">${valid&&f.geb?r0(f.geb):'—'}</td><td class="big">${valid&&f.get?r0(f.get):'—'}</td><td><div class="bar"><i style="width:${valid&&f.get?(f.get/max*100):0}%"></i></div></td></tr>`).join('');
+  // emergencia
+  const c=COND[st.cond]; const w=st.wType==='ideal'?pi:st.wType==='ajustado'?paj:P;
+  $('emgOut').innerHTML=valid?`<div class="stat"><span class="k">${c[0]}</span><span class="v">${r0(c[1]*w)} a ${r0(c[2]*w)} kcal</span><span class="s">${c[1]} a ${c[2]} kcal/kg × ${r1(w)} kg (${st.wType==='actual'?'peso actual':st.wType==='ideal'?'peso ideal':'peso ajustado'})</span></div><div class="stat"><span class="k">Punto medio</span><span class="v">${r0((c[1]+c[2])/2*w)} kcal</span><span class="s">${(c[1]+c[2])/2} kcal/kg${c[0]==='Peso normal'&&P===75?' · el PDF usó 30 kcal/kg = 2250':''}</span></div>`:'';
+  $('emgNote').textContent=(c[3]!==st.wType?'Para esta situación se sugiere usar '+(c[3]==='ajustado'?'peso ajustado o ideal':'peso '+c[3])+'. ':'')+c[4];
+  // quemados
+  const scq=Math.min(100,Math.max(0,parseFloat(st.scq)||0));
+  const cur=E>=60?20*P+65*scq:25*P+40*scq;
+  $('burnOut').innerHTML=valid?`<div class="stat"><span class="k">Curreri ${E>=60?'≥ 60 a':'16 a 59 a'}</span><span class="v">${r0(cur)} kcal</span><span class="s">${E>=60?'20':'25'} × ${r1(P)} + ${E>=60?'65':'40'} × ${scq}</span></div><div class="stat"><span class="k">Davies adulto</span><span class="v">${r0(20*P+70*scq)} kcal</span><span class="s">20 × ${r1(P)} + 70 × ${scq}</span></div><div class="stat"><span class="k">Davies niño</span><span class="v">${r0(60*P+35*scq)} kcal</span><span class="s">60 × ${r1(P)} + 35 × ${scq} · solo pediatría</span></div>`:'';
+  // macros
+  const ms=$('mSrc'); const prev=st.mSrc; ms.innerHTML=fs.filter(f=>f.get).map(f=>`<option value="${f.id}">${f.n} · ${r0(f.get)} kcal</option>`).join('')+'<option value="custom">Otra cantidad</option>';
+  if(![...ms.options].some(o=>o.value===prev)) st.mSrc='mifflin'; ms.value=st.mSrc; $('mCustomWrap').hidden=st.mSrc!=='custom';
+  const kcal=st.mSrc==='custom'?(parseFloat(st.mCustom)||0):(fs.find(f=>f.id===st.mSrc)||{}).get||0;
+  const pP=+st.pP||0,pC=+st.pC||0,pL=+st.pL||0,sum=pP+pC+pL;
+  const gP=kcal*pP/100/4,gC=kcal*pC/100/4,gL=kcal*pL/100/9;
+  const chk=(ok,t)=>`<span class="chip ${ok?'ok':'warn'}">${t}</span>`;
+  $('mBody').innerHTML=`<tr><td>Proteína</td><td class="num">${r0(kcal*pP/100)}</td><td class="num">${r0(gP)} g</td><td>${chk(pP>=10&&pP<=35,'AMDR 10 a 35 %')} ${chk(gP/P>=0.8,r1(gP/P)+' g/kg (mín. 0.8)')}</td></tr>
+  <tr><td>Hidratos de carbono</td><td class="num">${r0(kcal*pC/100)}</td><td class="num">${r0(gC)} g</td><td>${chk(pC>=45&&pC<=65,'AMDR 45 a 65 %')} ${chk(gC>=130,'mín. 130 g')}</td></tr>
+  <tr><td>Lípidos</td><td class="num">${r0(kcal*pL/100)}</td><td class="num">${r0(gL)} g</td><td>${chk(pL>=20&&pL<=35,'AMDR 20 a 35 %')}</td></tr>
+  <tr><td><b>Total</b></td><td class="num"><b>${r0(kcal)}</b></td><td></td><td><span class="sum ${sum!==100?'bad':''}">${sum} %${sum!==100?' · debe sumar 100 %':''}</span></td></tr>`;
+  save();
+}
+
+// events
+$('sx-h').onclick=()=>{st.sexo='h';render();}; $('sx-m').onclick=()=>{st.sexo='m';render();};
+['edad','peso','talla','grasa','faCustom','feVal','scq','mCustom','pP','pC','pL'].forEach(k=>$(k).addEventListener('input',e=>{st[k]=e.target.value;render();}));
+$('faScale').onchange=e=>{st.faScale=e.target.value;st.faLevel=st.faScale==='curso'?3:st.faScale==='long'?2:1;render();};
+$('faLevel').onchange=e=>{st.faLevel=+e.target.value;render();};
+$('eta').onchange=e=>{st.eta=e.target.checked;render();};
+$('fe').onchange=e=>{st.fe=+e.target.value;st.feVal=FE[st.fe][3];render();};
+$('emb').onchange=e=>{st.emb=e.target.value;render();};
+$('cond').onchange=e=>{st.cond=+e.target.value;st.wType=COND[st.cond][3];render();};
+$('wType').onchange=e=>{st.wType=e.target.value;render();};
+$('piMethod').onchange=e=>{st.piMethod=e.target.value;render();};
+$('mSrc').onchange=e=>{st.mSrc=e.target.value;render();};
+
+// tabs
+const views=['calcular','formulas','correcciones','fuentes'];
+function route(){const h=(location.hash||'#calcular').slice(1);const v=views.includes(h)?h:'calcular';views.forEach(n=>{$('v-'+n).hidden=n!==v;});document.querySelectorAll('nav.tabs a').forEach(a=>{if(a.getAttribute('href')==='#'+v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});}
+window.addEventListener('hashchange',route); route();
+render();
+})();
+</script>
+
+</body></html>

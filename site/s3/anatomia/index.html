@@ -1,0 +1,1145 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Anatomía II · Digestivo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/ge80cf7bfde.css">
+<style>
+/* Layout: lámina de atlas. Banda oscura con la regla vertebral (niveles de los troncos), pestañas, y debajo temas plegables con índice lateral. Color = territorio arterial. */
+:root{
+  --bg:#f3f5f7; --panel:#ffffff; --sunk:#e8ecf0; --ink:#161b21; --muted:#56626e; --line:#cfd6dd;
+  --art:#b3202a; --art-soft:#f8e3e4; --ven:#2456a6; --ven-soft:#e2eaf8;
+  --tc:#b3202a; --ams:#9a5f08; --ami:#6a43b0; --ili:#2f6a8c;
+  --tc-soft:#f8e3e4; --ams-soft:#f6ead3; --ami-soft:#ece5f8; --ili-soft:#dfedf4;
+  --good:#1d7a4a; --good-soft:#dcf1e5; --bad:#b3261e; --bad-soft:#f8dedb;
+  --band:#1c1214; --band-ink:#f1e9e9; --band-muted:#b9a8a9; --band-acc:#ff8a8f;
+  --display:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1317; --panel:#161c22; --sunk:#11161b; --ink:#e3e8ec; --muted:#97a3ae; --line:#28323b;
+  --art:#ff6f76; --art-soft:#3a1518; --ven:#82abff; --ven-soft:#152238;
+  --tc:#ff6f76; --ams:#f0b44c; --ami:#b99bff; --ili:#7fbbe0;
+  --tc-soft:#3a1518; --ams-soft:#33260f; --ami-soft:#271d3d; --ili-soft:#13293a;
+  --good:#5fd394; --good-soft:#12291d; --bad:#ff8a80; --bad-soft:#2e1513; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1317; --panel:#161c22; --sunk:#11161b; --ink:#e3e8ec; --muted:#97a3ae; --line:#28323b;
+  --art:#ff6f76; --art-soft:#3a1518; --ven:#82abff; --ven-soft:#152238;
+  --tc:#ff6f76; --ams:#f0b44c; --ami:#b99bff; --ili:#7fbbe0;
+  --tc-soft:#3a1518; --ams-soft:#33260f; --ami-soft:#271d3d; --ili-soft:#13293a;
+  --good:#5fd394; --good-soft:#12291d; --bad:#ff8a80; --bad-soft:#2e1513; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+button{font:inherit;color:inherit}
+a{color:var(--art)}
+:focus-visible{outline:2px solid var(--art);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Cabecera */
+.top{background:var(--band);color:var(--band-ink);padding-block:20px 0}
+.top-in{max-width:1200px;margin:0 auto;display:grid;gap:14px}
+.brand{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+.brand h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,6vw,56px);line-height:.95;margin:0;text-wrap:balance}
+.brand h1 i{color:var(--band-acc)}
+.brand .sub{font-size:14px;color:var(--band-muted);max-width:46ch;margin:6px 0 0}
+.overlay{font-family:var(--mono);font-size:11.5px;color:var(--band-muted);line-height:1.6;text-align:right}
+.overlay b{color:var(--band-acc);font-weight:500}
+/* regla vertebral */
+.spine{position:relative;height:56px;margin-top:4px}
+.spine-line{position:absolute;left:0;right:0;top:20px;height:2px;background:linear-gradient(90deg,rgba(255,255,255,.15),rgba(255,255,255,.35),rgba(255,255,255,.15))}
+.vert{position:absolute;top:12px;transform:translateX(-50%);display:grid;justify-items:center;gap:3px;cursor:default}
+.vert i{display:block;width:14px;height:18px;border-radius:3px;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.06)}
+.vert.k i{border-color:var(--band-acc);background:rgba(255,138,143,.18)}
+.vert em{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--band-ink)}
+.vert span{font-size:10.5px;color:var(--band-muted);white-space:nowrap;line-height:1.1;text-align:center}
+@media (max-width:640px){.vert span{display:none}.vert:not(.k){opacity:.6}}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin-top:4px}
+.tab{background:none;border:0;border-bottom:3px solid transparent;color:var(--band-muted);padding:10px 14px;font-family:var(--display);font-size:21px;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--band-ink);border-color:var(--band-acc)}
+.tab:hover{color:var(--band-ink)}
+
+.wrap{max-width:1200px;margin:0 auto;padding-block:24px 64px}
+.study{display:grid;grid-template-columns:240px minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:880px){.study{grid-template-columns:minmax(0,1fr)}.side{display:none}}
+.side{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto;padding-right:4px}
+.side h3{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin:16px 0 4px;color:var(--muted);font-weight:500}
+.side a{display:flex;gap:8px;align-items:center;padding:3px 6px;border-radius:4px;color:var(--ink);text-decoration:none;font-size:14px;line-height:1.35}
+.side a:hover{background:var(--sunk)}
+.dot{flex:0 0 8px;height:8px;border-radius:50%;border:1.5px solid var(--line)}
+.dot.on{background:var(--good);border-color:var(--good)}
+.prog{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px}
+.bar{height:6px;background:var(--sunk);border-radius:3px;overflow:hidden;margin-top:6px}
+.bar>span{display:block;height:100%;background:var(--good);transition:width .3s}
+
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.search{flex:1 1 260px;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);font:inherit}
+.btn{border:1px solid var(--line);background:var(--panel);padding:8px 12px;border-radius:6px;cursor:pointer;font-size:15px}
+.btn:hover{border-color:var(--art)}
+.btn.pri{background:var(--art);border-color:var(--art);color:var(--bg);font-weight:600}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px;scrollbar-width:thin}
+.chips.wrapy{flex-wrap:wrap;overflow:visible}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:5px 12px;font-size:14px;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip .sw{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:1px}
+
+.unit{margin-bottom:36px;scroll-margin-top:12px}
+.unit-h{display:flex;align-items:baseline;gap:12px;border-bottom:1.5px solid var(--ink);padding-bottom:6px;margin-bottom:12px}
+.unit-h h2{font-family:var(--display);font-size:34px;font-weight:400;margin:0;line-height:1.05;text-wrap:balance}
+.unit-h .c{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+
+details.topic{background:var(--panel);border:1px solid var(--line);border-radius:6px;margin-bottom:8px;scroll-margin-top:12px}
+details.topic[open]{border-color:var(--muted)}
+details.topic>summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:center;padding:12px 14px}
+details.topic>summary::-webkit-details-marker{display:none}
+.chev{flex:0 0 auto;width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);transition:transform .15s}
+details[open] .chev{transform:rotate(45deg)}
+.tt{font-weight:600;font-size:17px;line-height:1.3;flex:1;min-width:0}
+.tag{font-family:var(--mono);font-size:10.5px;padding:1px 6px;border-radius:3px;white-space:nowrap;border:1px solid var(--line);color:var(--muted)}
+.tag.irr{color:var(--art);border-color:var(--art);background:var(--art-soft)}
+.tag.dk{color:var(--ven);border-color:var(--ven);background:var(--ven-soft)}
+.done-pill{font-family:var(--mono);font-size:10.5px;color:var(--good);background:var(--good-soft);padding:1px 6px;border-radius:3px}
+.body{padding:2px 18px 18px 36px;display:grid;gap:12px}
+@media (max-width:560px){.body{padding:2px 14px 14px 14px}.tag.hide-m{display:none}}
+.sum{margin:0;max-width:72ch}
+.body h4{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:6px 0 0;font-weight:500}
+.keys{margin:0;padding-left:18px;display:grid;gap:6px;max-width:78ch}
+.keys li::marker{color:var(--art)}
+.keys b{font-weight:600}
+.perla{background:var(--art-soft);border-left:3px solid var(--art);padding:10px 12px;border-radius:0 4px 4px 0;font-size:15px;max-width:78ch}
+.perla strong{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--art);margin-right:6px;font-weight:500}
+.dkbox{background:var(--ven-soft);border-left:3px solid var(--ven);padding:10px 12px;border-radius:0 4px 4px 0;font-size:15px;max-width:78ch;display:grid;gap:4px}
+.dkbox strong{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ven);font-weight:500}
+.dkbox p{margin:0}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.gray-link{display:inline-flex;gap:8px;align-items:center;font-size:13.5px;border:1px solid var(--line);border-radius:999px;padding:4px 10px 4px 4px;text-decoration:none;color:var(--ink);background:var(--bg)}
+.gray-link b{font-family:var(--mono);font-size:10.5px;font-weight:500;background:var(--ink);color:var(--bg);border-radius:999px;padding:2px 7px}
+.gray-link:hover{border-color:var(--art)}
+.goto{font-size:14px;border:1px solid var(--art);color:var(--art);background:none;border-radius:6px;padding:6px 10px;cursor:pointer}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+mark{background:var(--ams-soft);color:inherit;border-radius:2px}
+.own{margin:0;display:grid;gap:6px;max-width:560px}
+.own button{padding:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;cursor:zoom-in;background:#fff;display:block}
+.own img{display:block;width:100%;height:auto}
+.own figcaption{font-size:13px;color:var(--muted)}
+
+/* Irrigación */
+.irr-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+@media (max-width:960px){.irr-grid{grid-template-columns:minmax(0,1fr)}}
+.pane{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;min-width:0}
+.pane h3{font-family:var(--display);font-weight:400;font-size:28px;margin:0 0 4px;line-height:1.1}
+.pane .lead{margin:0 0 12px;color:var(--muted);font-size:15px;max-width:70ch}
+.modebar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden}
+.seg button{border:0;background:var(--panel);padding:7px 12px;cursor:pointer;font-size:14px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.treebox{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--bg)}
+#tree{display:block;min-width:780px;width:100%;height:auto}
+.swipe{display:none;font-size:13px;color:var(--muted);margin:0 0 6px}
+@media (max-width:820px){.swipe{display:block}}
+#tree text{font-family:var(--body);font-size:13px;fill:var(--ink);cursor:pointer;paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round}
+#tree text.big{font-family:var(--mono);font-size:11px;letter-spacing:.06em;font-weight:500}
+#tree .e{fill:none;stroke-width:2.4;stroke-linecap:round;transition:opacity .2s,stroke-width .2s}
+#tree .hit{fill:none;stroke:transparent;stroke-width:16;cursor:pointer}
+#tree .nd{stroke:var(--bg);stroke-width:2;cursor:pointer}
+#tree.focus .e,#tree.focus .nd,#tree.focus text{opacity:.18}
+#tree.focus .on,#tree.focus text.on{opacity:1}
+#tree .e.on{stroke-width:4}
+#tree .e.sub{opacity:.55!important}
+#tree.blind text.lf{opacity:0}
+#tree.blind text.lf.rev{opacity:1}
+#tree text.ok{fill:var(--good)} #tree text.ko{fill:var(--bad)}
+.t-tc{stroke:var(--tc);fill:var(--tc)} .t-ams{stroke:var(--ams);fill:var(--ams)} .t-ami{stroke:var(--ami);fill:var(--ami)} .t-ili{stroke:var(--ili);fill:var(--ili)} .t-ao{stroke:var(--ink);fill:var(--ink)}
+.info{position:sticky;top:12px;display:grid;gap:10px}
+.info .nm{font-family:var(--display);font-size:28px;line-height:1.05;margin:0}
+.info dl{margin:0;display:grid;gap:8px}
+.info dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.info dd{margin:0;font-size:15px}
+.trunkpill{display:inline-block;font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:999px}
+.p-tc{background:var(--tc-soft);color:var(--tc)} .p-ams{background:var(--ams-soft);color:var(--ams)} .p-ami{background:var(--ami-soft);color:var(--ami)} .p-ili{background:var(--ili-soft);color:var(--ili)} .p-ao{background:var(--sunk);color:var(--ink)}
+.path{font-size:13.5px;color:var(--muted);line-height:1.5}
+.path b{color:var(--ink);font-weight:600}
+.qbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--ink);color:var(--bg);border-radius:6px;padding:10px 12px;margin-bottom:10px}
+.qbar .ask{font-size:17px;flex:1;min-width:200px}
+.qbar .ask b{color:var(--band-acc)}
+.qbar .sc{font-family:var(--mono);font-size:13px}
+.qbar .btn{background:transparent;color:var(--bg);border-color:rgba(255,255,255,.4)}
+@media (max-width:960px){.info{position:static}}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted);margin-top:8px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:18px;height:4px;border-radius:2px;display:inline-block}
+
+#map{display:block;width:100%;max-width:560px;height:auto;margin:0 auto}
+#map .sg{cursor:pointer;transition:opacity .2s,filter .2s}
+#map .sg:hover{filter:brightness(1.08)}
+#map .sg{outline:none}
+#map .sg:focus-visible{filter:drop-shadow(0 0 4px var(--art))}
+#map.focus .sg{opacity:.25}
+#map.focus .sg.on{opacity:1}
+#map text{font-family:var(--body);font-size:12px;fill:var(--ink);pointer-events:none;paint-order:stroke;stroke:var(--panel);stroke-width:3px}
+#map .wm{font-family:var(--mono);font-size:10px;fill:var(--bad)}
+.f-tc{fill:var(--tc-soft);stroke:var(--tc)} .f-ams{fill:var(--ams-soft);stroke:var(--ams)} .f-ami{fill:var(--ami-soft);stroke:var(--ami)} .f-mix{fill:var(--ili-soft);stroke:var(--ili)} .f-neu{fill:var(--sunk);stroke:var(--muted)}
+.s-tc{stroke:var(--tc)} .s-ams{stroke:var(--ams)} .s-ami{stroke:var(--ami)} .s-mix{stroke:var(--ili)}
+.map-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start;margin-top:22px}
+@media (max-width:960px){.map-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* Flashcards */
+.fc-wrap{max-width:720px;margin:0 auto;display:grid;gap:14px}
+.card{min-height:260px;border-radius:10px;border:1px solid var(--line);background:var(--panel);display:grid;place-items:center;padding:30px 24px;text-align:center;cursor:pointer;position:relative;perspective:1000px}
+.card.back{background:var(--band);color:var(--band-ink);border-color:var(--band)}
+.card .lbl{position:absolute;top:10px;left:12px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.card.back .lbl,.card.back .hint{color:var(--band-muted)}
+.card .q{font-size:clamp(19px,2.8vw,24px);font-weight:500;line-height:1.4;max-width:44ch}
+.card.back .q{font-family:var(--display);font-size:clamp(24px,3.4vw,32px);font-weight:400}
+.card .ex{font-size:14px;color:var(--band-muted);margin-top:10px;max-width:52ch}
+.card .hint{position:absolute;bottom:10px;left:0;right:0;font-size:12px;color:var(--muted)}
+.fc-ctrl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.counter{text-align:center;font-family:var(--mono);font-size:13px;color:var(--muted)}
+
+/* Examen */
+.qz{max-width:780px;margin:0 auto;display:grid;gap:14px}
+.qcard{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px}
+.qmeta{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:10px;flex-wrap:wrap}
+.qtext{font-size:19px;font-weight:500;margin:0 0 14px;line-height:1.4}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--bg);padding:11px 14px;border-radius:6px;cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+.opt:hover:not([disabled]){border-color:var(--art)}
+.opt .l{font-family:var(--mono);font-size:13px;color:var(--muted);padding-top:2px}
+.opt.ok{border-color:var(--good);background:var(--good-soft)}
+.opt.ko{border-color:var(--bad);background:var(--bad-soft)}
+.opt[disabled]{cursor:default}
+.expl{margin-top:14px;padding:12px 14px;border-radius:6px;background:var(--sunk);font-size:15px}
+.expl b.ok{color:var(--good)} .expl b.ko{color:var(--bad)}
+.score{font-family:var(--display);font-size:72px;line-height:1;margin:0}
+.miss{margin:0;padding-left:18px;display:grid;gap:8px}
+.setup{display:grid;gap:12px}
+.setup h3{font-family:var(--display);font-weight:400;font-size:30px;margin:0}
+
+/* Tablas */
+.tables{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:18px}
+.tbl{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 16px;min-width:0}
+.tbl h3{font-family:var(--display);font-weight:400;font-size:26px;margin:0 0 8px;line-height:1.1}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:10.5px;font-weight:500;text-transform:uppercase;color:var(--muted);letter-spacing:.05em}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td .k{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.note{font-size:13px;color:var(--muted);margin:8px 0 0}
+
+/* Láminas */
+.plates{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:12px}
+.plate{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px;display:grid;gap:6px;text-decoration:none;color:var(--ink)}
+.plate:hover{border-color:var(--art)}
+.plate .fig{font-family:var(--mono);font-size:11px;color:var(--art)}
+.plate .cap{font-family:var(--display);font-size:21px;line-height:1.15}
+.plate .use{font-size:13.5px;color:var(--muted)}
+.plate .go{font-size:13px;color:var(--art)}
+.sec-h{font-family:var(--display);font-weight:400;font-size:32px;margin:26px 0 10px}
+.ownrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+
+.foot{font-size:13px;color:var(--muted);margin-top:30px;border-top:1px solid var(--line);padding-top:12px;max-width:90ch}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(3,6,8,.96);display:grid;grid-template-rows:auto 1fr auto;color:#eef1f3;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.lb-top{display:flex;justify-content:flex-end;padding:10px 16px}
+.lb-stage{display:grid;place-items:center;min-height:0;padding:0 12px;overflow:auto}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;background:#fff;border-radius:4px}
+.lb-cap{padding:12px 16px 18px;text-align:center;font-size:15px;max-width:80ch;margin:0 auto}
+.lb-btn{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:6px;cursor:pointer;font-size:20px;line-height:1;padding:8px 12px}
+</style>
+
+<header class="top gut">
+  <div class="top-in">
+    <div class="brand">
+      <div>
+        <h1>Anatomía II <i>·</i> Digestivo</h1>
+        <p class="sub">Del tubo digestivo al páncreas, con la irrigación como eje. Para el 2º parcial.</p>
+      </div>
+      <div class="overlay">MED 5º · ANATOMÍA II<br><b id="ov-n">0</b> temas · <b>9</b> unidades</div>
+    </div>
+    <div class="spine" id="spine" aria-label="Niveles vertebrales de referencia"></div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-view="study">Resumen</button>
+      <button class="tab" role="tab" aria-selected="false" data-view="irr">Irrigación</button>
+      <button class="tab" role="tab" aria-selected="false" data-view="fc">Flashcards</button>
+      <button class="tab" role="tab" aria-selected="false" data-view="tab">Tablas rápidas</button>
+      <button class="tab" role="tab" aria-selected="false" data-view="lam">Láminas</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap gut">
+  <section id="v-study">
+    <div class="study">
+      <aside class="side" id="side"></aside>
+      <div style="min-width:0">
+        <div class="tools">
+          <input id="q" class="search" type="search" placeholder="Buscar: Riolano, Calot, Auerbach, gastroduodenal…" aria-label="Buscar en el resumen">
+          <button class="btn" id="openAll">Abrir todo</button>
+          <button class="btn" id="closeAll">Cerrar todo</button>
+        </div>
+        <div class="chips" id="uchips"></div>
+        <div id="units"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-irr" hidden>
+    <div class="irr-grid">
+      <div class="pane">
+        <h3>Árbol arterial del tubo digestivo</h3>
+        <p class="lead">Toca cualquier arteria para ver de dónde sale, qué irriga y qué te pueden preguntar. Filtra por órgano, revisa las anastomosis o practica ubicando arterias con los nombres ocultos.</p>
+        <div class="modebar">
+          <div class="seg" role="group" aria-label="Modo">
+            <button id="mExp" aria-pressed="true">Explorar</button>
+            <button id="mQuiz" aria-pressed="false">Practicar</button>
+          </div>
+          <button class="btn" id="clr">Limpiar</button>
+        </div>
+        <div class="qbar" id="qbar" hidden>
+          <div class="ask" id="qask"></div>
+          <div class="sc" id="qsc"></div>
+          <button class="btn" id="qskip">Otra</button>
+        </div>
+        <div class="chips wrapy" id="orgchips" aria-label="Filtrar por órgano"></div>
+        <div class="chips wrapy" id="anachips" aria-label="Anastomosis"></div>
+        <p class="swipe">Desliza el árbol hacia los lados para ver todas las ramas.</p>
+        <div class="treebox"><svg id="tree" role="img" aria-label="Árbol de ramas de la aorta abdominal hacia el tubo digestivo"></svg></div>
+        <div class="legend">
+          <span><i style="background:var(--tc)"></i>Tronco celíaco · intestino anterior</span>
+          <span><i style="background:var(--ams)"></i>Mesentérica superior · intestino medio</span>
+          <span><i style="background:var(--ami)"></i>Mesentérica inferior · intestino posterior</span>
+          <span><i style="background:var(--ili)"></i>Ilíaca interna · recto y ano</span>
+        </div>
+      </div>
+      <aside class="pane info" id="info"></aside>
+    </div>
+
+    <div class="map-grid">
+      <div class="pane">
+        <h3>Mapa de territorios</h3>
+        <p class="lead">Cada segmento está coloreado según el tronco que lo irriga. Tócalo para ver arterias, drenaje venoso y los límites que más se preguntan.</p>
+        <svg id="map" viewBox="0 0 560 610" role="img" aria-label="Esquema del tubo digestivo coloreado por territorio arterial"></svg>
+      </div>
+      <aside class="pane info" id="minfo"></aside>
+    </div>
+  </section>
+
+  <section id="v-fc" hidden>
+    <div class="fc-wrap">
+      <div class="chips wrapy" id="fchips"></div>
+      <div class="counter" id="fcount"></div>
+      <div class="card" id="fcard" tabindex="0" role="button" aria-label="Voltear tarjeta"></div>
+      <div class="fc-ctrl">
+        <button class="btn" id="fPrev">Anterior</button>
+        <button class="btn" id="fAgain">Repasar otra vez</button>
+        <button class="btn pri" id="fKnow">La sé</button>
+        <button class="btn" id="fShuf">Barajar</button>
+      </div>
+      <p class="counter">Toca la tarjeta o pulsa espacio para voltear. Flechas para avanzar.</p>
+    </div>
+  </section>
+
+
+  <section id="v-tab" hidden>
+    <div class="tables" id="tables"></div>
+  </section>
+
+  <section id="v-lam" hidden>
+    <h2 class="sec-h" style="margin-top:0">Tus dibujos</h2>
+    <div class="ownrow" id="ownrow"></div>
+    <h2 class="sec-h">Láminas del Gray (1918)</h2>
+    <p class="note" style="margin:0 0 12px;max-width:80ch">Ilustraciones de dominio público de <i>Anatomy of the Human Body</i> de Henry Gray (20ª ed., 1918), alojadas en Wikimedia Commons. Cada tarjeta abre la lámina en tamaño completo.</p>
+    <div class="plates" id="plates"></div>
+  </section>
+
+  <p class="foot">Hecho con tus apuntes de Notion (Medicina › 5to semestre › Anatomia 2, de «Tubo digestivo» a «Pancreas») enfocado en los temas del 2º parcial. Se corrigieron errores de dedo evidentes; lo marcado como «complemento» no venía en tus notas y sale de Moore y Gray para estudiantes. Láminas: Henry Gray, <i>Anatomy of the Human Body</i> (1918), dominio público vía Wikimedia Commons.</p>
+</main>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <div class="lb-top"><button class="lb-btn" id="lbX" aria-label="Cerrar">✕</button></div>
+  <div class="lb-stage"><img id="lbI" alt=""></div>
+  <p class="lb-cap" id="lbC"></p>
+</div>
+
+<script>
+const UNITS=[
+ {id:"u1",t:"Pared del tubo y cavidad oral"},
+ {id:"u2",t:"Esófago"},
+ {id:"u3",t:"Cavidad abdominal"},
+ {id:"u4",t:"Estómago"},
+ {id:"u5",t:"Intestino delgado"},
+ {id:"u6",t:"Intestino grueso, recto y ano"},
+ {id:"u7",t:"Hígado y vía biliar"},
+ {id:"u8",t:"Páncreas"},
+ {id:"u9",t:"Irrigación integrada"}
+];
+const SPINE=[
+ {v:"T10",l:"Hiato esofágico"},{v:"T11"},{v:"T12",l:"Tronco celíaco",k:1},{v:"L1",l:"AMS · píloro",k:1},{v:"L2",l:"Páncreas"},{v:"L3",l:"AMI",k:1},{v:"L4",l:"Bifurcación aórtica"},{v:"L5"},{v:"S3",l:"Inicio del recto"}
+];
+/* Láminas del Gray 1918 en Wikimedia Commons */
+const GRAY={
+ 531:["La aorta abdominal y sus ramas","Vista de conjunto: tronco celíaco, AMS y AMI saliendo de la aorta."],
+ 532:["El tronco celíaco y sus ramas (hígado levantado)","Gástrica izquierda, hepática común y esplénica; arcadas de las curvaturas."],
+ 533:["El tronco celíaco y sus ramas (estómago levantado)","Esplénica sobre el borde del páncreas, gastroduodenal y pancreaticoduodenales."],
+ 538:["Colon sigmoide y recto: ramas de la mesentérica inferior","Sigmoideas, rectal superior y sus anastomosis."],
+ 1083:["Vasos sanguíneos del recto y del ano","Rectales superior, media e inferior."],
+ 1077:["Cara posterior del recto","Relaciones del recto tras quitar sacro y cóccix."],
+ 1032:["Posición y relaciones del esófago (vista posterior)","Trayecto cervical y en mediastino posterior."],
+ 1033:["Corte del esófago humano","Capas: mucosa, submucosa, muscular y adventicia."],
+ 1085:["Hígado, vista anterior","Lóbulos derecho e izquierdo y ligamento falciforme."],
+ 1087:["Hígado, vista posterior","Cara visceral: lóbulos caudado y cuadrado, vesícula, hilio."],
+ 1098:["El duodeno y el páncreas","Las 4 porciones del duodeno abrazando la cabeza del páncreas."],
+ 1099:["El páncreas y el duodeno por detrás","Relación con vasos mesentéricos y colédoco."],
+ 1100:["El conducto pancreático","Wirsung y Santorini; ampolla hepatopancreática."],
+ 1097:["Corte transversal a nivel de L1","Relaciones del páncreas con aorta, cava y riñones."],
+ 1223:["Proyección de hígado, estómago e intestino grueso","Anatomía de superficie del abdomen."],
+ 1225:["Proyección de duodeno, páncreas y riñones","Anatomía de superficie del abdomen."],
+ 1042:["Fosa duodenoyeyunal","Flexura duodenoyeyunal (ligamento de Treitz)."],
+ 994:["Corte sagital de nariz, boca, faringe y laringe","Cavidad oral, paladar y lengua."]
+};
+const OWN={
+ colon:["img/colon.webp","Irrigación del colon (dibujo de tus apuntes)"],
+ delgado:["img/delgado.webp","Irrigación del intestino delgado (dibujo de tus apuntes)"],
+ pancreas:["img/pancreas.webp","Irrigación del páncreas (dibujo de tus apuntes)"]
+};
+
+const VF=["Verdadero","Falso"];
+const DECK=[];
+/* Preguntas extra de práctica (redactadas aparte, no son las del examen). t: tema */
+const EXTRA=[
+ {t:"boca",q:["¿Cuál de estos músculos cambia la FORMA de la lengua (intrínseco)?",["Geniogloso","Vertical de la lengua","Hiogloso","Estilogloso"],1,"Los intrínsecos (longitudinales, transverso y vertical) están dentro de la lengua. Geniogloso, hiogloso y estilogloso son extrínsecos: mueven la lengua de lugar."]},
+ {t:"boca",q:["El tejido más duro del cuerpo humano es…",["La dentina","El cemento","El esmalte","El hueso cortical"],2,"El esmalte, que recubre la corona del diente."]},
+ {t:"pared",q:["El plexo mientérico (Auerbach) se localiza…",["En la mucosa","En la submucosa","Entre las capas circular y longitudinal de la muscular","En la serosa"],2,"Auerbach = entre las dos capas musculares; Meissner = submucosa."]},
+ {t:"esofago",q:["La metaplasia del esófago distal por reflujo crónico se conoce como…",["Acalasia","Esófago de Barrett","Divertículo de Zenker","Hernia hiatal"],1,"Barrett: epitelio plano → cilíndrico intestinal en la línea Z."]},
+ {t:"regiones",q:["¿Cuántas regiones se usan para la exploración topográfica del abdomen?",["4","6","9","12"],2,"9 regiones; la alternativa simple son 4 cuadrantes."]},
+ {t:"regiones",q:["En el hombre, el conducto inguinal contiene…",["Ligamento redondo","Cordón espermático","Uréter","Arteria femoral"],1,"Hombre: cordón espermático. Mujer: ligamento redondo del útero."]},
+ {t:"peritoneo",q:["Las arcadas arteriales del yeyuno y el íleon viajan en…",["El omento mayor","El omento menor","El mesenterio","El mesocolon transverso"],2,"El mesenterio fija las asas a la pared posterior y lleva sus vasos."]},
+ {t:"estomago",q:["La capa muscular más interna del estómago es la…",["Longitudinal","Circular","Oblicua","Muscular de la mucosa"],2,"Oblicua: la capa extra, junto a la submucosa."]},
+ {t:"estomago",q:["El esfínter que regula el vaciamiento gástrico hacia el duodeno es el…",["Esofágico inferior","Pilórico","De Oddi","Ileocecal"],1,"Esfínter pilórico."]},
+ {t:"glandulas",q:["La grelina se produce principalmente en…",["El antro","El fondo gástrico","El duodeno","El páncreas"],1,"En el fondo. En el antro están las células G (gastrina)."]},
+ {t:"glandulas",q:["Un paciente sin células parietales tendrá déficit de…",["Vitamina K","Vitamina B12","Hierro únicamente","Lipasa"],1,"Sin factor intrínseco no se absorbe la B12 (anemia perniciosa)."]},
+ {t:"irr-est",q:["¿Qué arteria NO participa en la curvatura mayor?",["Gastroomental derecha","Gastroomental izquierda","Gástrica derecha"],2,"La gástrica derecha va por la curvatura menor."]},
+ {t:"duodeno",q:["La papila duodenal menor recibe el…",["Colédoco","Conducto de Santorini","Conducto cístico","Conducto de Wirsung"],1,"Santorini (accesorio) → papila menor. Colédoco + Wirsung → papila mayor (D2)."]},
+ {t:"yeyuno",q:["Los quilomicrones absorbidos en la vellosidad entran a…",["La vénula","El quilífero (linfático)","La arteriola","La vena porta directamente"],1,"Los lípidos van por el linfático central."]},
+ {t:"yeyuno",q:["¿Qué fracción del intestino delgado (sin duodeno) corresponde al yeyuno?",["1/5","2/5","3/5","4/5"],1,"Yeyuno 2/5 (≈2.5 m); íleon 3/5 (≈3.5 m)."]},
+ {t:"colon",q:["¿Qué ángulo separa el colon transverso del descendente?",["Hepático","Esplénico","Ileocecal","Rectosigmoideo"],1,"Ángulo esplénico. El hepático separa ascendente y transverso."]},
+ {t:"colon",q:["Los divertículos son más frecuentes en el sigmoides porque…",["Es el segmento más ancho","Tiene el menor diámetro y la mayor presión","No tiene tenias","Es retroperitoneal"],1,"Menor diámetro + mayor presión."]},
+ {t:"colon",q:["Además de agua y electrolitos, el colon absorbe…",["Vitamina B12","Vitamina K de origen bacteriano","Hierro","Sales biliares"],1,"La vitamina K que producen las bacterias."]},
+ {t:"recto",q:["¿Qué esfínter anal es involuntario?",["Externo","Interno","Ambos","Ninguno"],1,"El interno es liso; el externo es estriado y voluntario."]},
+ {t:"recto",q:["La línea pectínea también se llama…",["Línea Z","Línea dentada","Línea alba","Línea arcuata"],1,"Línea dentada; ahí terminan columnas y criptas anales."]},
+ {t:"irr-colon",q:["¿Cuál de estas arterias NO sale de la AMS?",["Ileocólica","Cólica derecha","Cólica izquierda","Cólica media"],2,"La cólica izquierda es de la AMI."]},
+ {t:"irr-colon",q:["En una angiografía, la arcada que conecta la AMS con la AMI cerca de la raíz del mesenterio es…",["Arteria marginal","Arco de Riolano","Arcada pancreaticoduodenal","Rectal media"],1,"Arco de Riolano (cólica media ↔ cólica izquierda)."]},
+ {t:"higado",q:["En la clasificación de Couinaud, el segmento IV corresponde a…",["Lóbulo caudado","Medial izquierdo (cuadrado)","Lateral izquierdo","Anterior derecho"],1,"IV = medial izquierdo; la línea de Cantlie lo separa del hígado derecho (V y VIII)."]},
+ {t:"higado",q:["La línea de Cantlie va del lecho de la vesícula a…",["La vena porta","La vena cava inferior","El ligamento redondo","El hiato esofágico"],1,"Vesícula → VCI: divide hígado derecho e izquierdo funcionales."]},
+ {t:"vesicula",q:["Durante una colecistectomía, ¿qué arteria se busca dentro del triángulo de Calot?",["Hepática común","Cística","Gastroduodenal","Gástrica derecha"],1,"La cística, rama de la hepática derecha."]},
+ {t:"via",q:["¿Cuál es la porción del colédoco que atraviesa la pared del duodeno?",["Supraduodenal","Retroduodenal","Intrapancreática","Intramural"],3,"La intramural (intraduodenal), justo antes de la ampolla."]},
+ {t:"pancreas",q:["¿Qué porcentaje del páncreas es endocrino?",["2%","25%","50%","98%"],0,"2% endocrino (islotes); 98% exocrino."]},
+ {t:"irr-panc",q:["¿Qué rama de la esplénica irriga el cuello y el cuerpo del páncreas?",["Pancreática dorsal","Gastroomental izquierda","Gástricas cortas","Pancreaticoduodenal inferior"],0,"Pancreática dorsal."]},
+ {t:"irr-panc",q:["Las pancreaticoduodenales superiores nacen de la…",["Mesentérica superior","Esplénica","Gastroduodenal","Hepática propia"],2,"Gastroduodenal (vía hepática común, tronco celíaco)."]},
+ {t:"tc",q:["La arteria gastroomental izquierda es rama de la…",["Gástrica izquierda","Esplénica","Gastroduodenal","Hepática común"],1,"Esplénica, igual que las gástricas cortas."]}
+];
+
+
+/* Temas. s: resumen · k: puntos clave · p: perla · img: dibujo propio · g: láminas Gray · go: arteria del explorador · f: flashcards · q: preguntas */
+const T=[
+/* U1 */
+{id:"pared",u:"u1",t:"Pared del tubo digestivo",m:"HISTOLOGÍA",
+s:"Todo el tubo, del esófago al recto, tiene el mismo plan de 4 capas, con variantes según el segmento. Vasos y nervios llegan a cada asa por su mesenterio.",
+k:["<b>Mucosa</b> (la más interna): epitelio, lámina propia y muscular de la mucosa.",
+"<b>Submucosa</b>: tejido conectivo con glándulas, vasos sanguíneos, linfáticos, nervios parasimpáticos y el <b>plexo de Meissner</b> (submucoso).",
+"<b>Muscular externa</b>: capa circular interna y longitudinal externa. Entre ambas está el <b>plexo de Auerbach</b> (mientérico), que controla la peristalsis.",
+"<b>Serosa</b> (la más externa): conectivo + peritoneo visceral; sirve para que las asas no se peguen. Donde no hay peritoneo (esófago torácico, parte del recto) se llama <b>adventicia</b>.",
+"Variantes: el estómago agrega una 3ª capa muscular (oblicua); el colon concentra la longitudinal en 3 tenias."],
+p:"Regla para no confundirte: <b>M</b>eissner = sub<b>m</b>ucosa; <b>A</b>uerbach = entre l<b>a</b>s c<b>a</b>pas musculares.",
+g:[1033],
+f:[["¿En qué capa está el plexo de Meissner?","En la submucosa."],["¿Dónde está el plexo de Auerbach?","En la muscular externa, entre la capa circular y la longitudinal."],["¿Qué diferencia hay entre serosa y adventicia?","La serosa tiene peritoneo; la adventicia es solo conectivo (p. ej. esófago)."]],
+q:[["¿Qué capa contiene glándulas, vasos y el plexo de Meissner?",["Mucosa","Submucosa","Muscular externa","Serosa"],1,"La submucosa."]]},
+
+{id:"boca",u:"u1",t:"Cavidad oral, lengua y dientes",m:"BOCA",
+s:"La boca empieza la digestión mecánica y química. Está limitada por labios, mejillas, paladar y piso de la boca, con la lengua como órgano muscular central.",
+k:["<b>Labios</b>: piel por fuera, mucosa por dentro; la unión es muy sensible. La línea de contacto de los labios cerrados es la <b>fisura oral</b>.",
+"<b>Mejillas</b>: formadas sobre todo por el <b>buccinador</b>, con tejido adiposo y glándulas mucosas.",
+"<b>Paladar duro</b>: 4 huesos, 2 maxilares (procesos palatinos) y 2 palatinos (láminas horizontales). <b>Paladar blando</b>: músculo en arco que separa boca de nasofaringe; de su centro cuelga la úvula.",
+"<b>Lengua</b>: raíz, cuerpo y punta. Papilas gustativas en dorso y bordes; las <b>circunvaladas</b> forman la V lingual. El frenillo la ancla al piso de la boca. Irrigación: arteria lingual → <b>arteria profunda de la lengua</b>.",
+"<b>Músculos intrínsecos</b> (longitudinales superior e inferior, transverso y vertical): cambian la <b>forma</b>; importantes para hablar y masticar. <b>Extrínsecos</b> (<b>geniogloso</b>, hiogloso, estilogloso, palatogloso): cambian la <b>posición</b>; deglución y habla.",
+"<b>Dientes</b>: corona, cuello y raíz. Capas: <b>esmalte</b> (el tejido más duro del cuerpo), dentina, pulpa y cemento."],
+p:"Los extrínsecos terminan en «-gloso» y nacen en un hueso o estructura vecina (geni-, hio-, estilo-, palato-). Si el nombre dice de dónde viene, es extrínseco.",
+g:[994],
+f:[["¿Qué huesos forman el paladar duro?","2 maxilares y 2 palatinos."],["Intrínsecos vs extrínsecos de la lengua","Intrínsecos cambian la forma; extrínsecos (geniogloso, hiogloso, estilogloso, palatogloso) cambian la posición."],["¿Cuál es la capa más dura del diente?","El esmalte."]],
+q:[["¿Qué músculo forma la mayor parte de la mejilla?",["Masetero","Buccinador","Orbicular de los labios","Cigomático mayor"],1,"El buccinador."]]},
+
+{id:"saliva",u:"u1",t:"Glándulas salivales",m:"BOCA",
+s:"Tres pares de glándulas mayores producen cerca de 1 L de saliva en 24 h.",
+k:["<b>Parótida</b>: la más grande; saliva serosa con enzimas. Su conducto es el de <b>Stensen</b>, que se abre frente al 2º molar superior.",
+"<b>Submandibular</b>: produce enzimas y moco (mixta). Conducto de Wharton (complemento).",
+"<b>Sublingual</b>: la más pequeña; saliva y moco.",
+"En tu clase: la parótida aporta el 95% del litro diario y el 5% restante mantiene limpios y cómodos los tejidos orales.",
+"Complemento: en reposo la submandibular produce la mayor parte; al estimular (comer) domina la parótida.",
+"La saliva aporta el agua necesaria para la <b>hidrólisis</b>, esencial en la digestión."],
+f:[["¿Cómo se llama el conducto de la parótida?","Conducto de Stensen."],["¿Cuánta saliva se produce al día?","Alrededor de 1 L."]],
+q:[["¿Cuál es la glándula salival más pequeña?",["Parótida","Submandibular","Sublingual"],2,"La sublingual."]]},
+
+/* U2 */
+{id:"esofago",u:"u2",t:"Esófago",m:"ESÓFAGO",irr:1,go:"gi",
+s:"Primer segmento del tubo digestivo propiamente dicho: va de la faringe al estómago, mide unos 25 cm y termina en un esfínter. Atraviesa el diafragma por el hiato esofágico a nivel de T10.",
+k:["<b>Epitelio</b>: plano (escamoso) estratificado no queratinizado. En endoscopia se ve rosa y brillante (hidratado).",
+"<b>Músculo</b>: tercio superior estriado (esquelético), medio mixto, inferior liso. Dos capas: longitudinal externa y circular interna.",
+"<b>No tiene serosa</b>: tiene adventicia. Solo la porción abdominal está cubierta por peritoneo.",
+"Porción abdominal: en tu clase ~5 cm (Moore la describe más corta, 1.25–2.5 cm).",
+"<b>El cardias no es muy fuerte</b>: lo que evita el reflujo es la longitud de la porción abdominal y el hiato en T10.",
+"<b>Línea Z</b>: unión escamocolumnar entre esófago y estómago. Ahí aparece el <b>esófago de Barrett</b>.",
+"Hiperplasia = más células. Metaplasia = una célula madura cambia a otra madura (Barrett). Displasia = epitelio inmaduro, lesión precursora.",
+"La comida llega al estómago a velocidad controlada para que se acomode; una distensión brusca puede provocar un reflejo vagal. Ayuno de 8 h antes de anestesia porque se pierde el control consciente que impide el regreso del contenido.",
+"<b>Irrigación</b> (complemento): cervical por la tiroidea inferior, torácica por ramas esofágicas de la aorta, abdominal por la <b>gástrica izquierda</b> (y frénica inferior). Las venas de la porción abdominal drenan a la porta por la gástrica izquierda: por eso aparecen <b>várices esofágicas</b> en la hipertensión portal."],
+p:"Barrett = metaplasia (escamoso → cilíndrico intestinal) en la línea Z por reflujo crónico. Es reversible en teoría, pero predispone a adenocarcinoma.",
+g:[1032,1033],
+f:[["¿Cuánto mide el esófago?","Unos 25 cm."],["¿Qué epitelio cubre el esófago?","Plano (escamoso) estratificado no queratinizado."],["¿Qué tipo de músculo tiene el tercio superior del esófago?","Estriado esquelético."],["¿Dónde se forma el esófago de Barrett?","En la línea Z (unión escamocolumnar)."],["¿Qué arteria irriga el esófago abdominal?","La gástrica izquierda (rama del tronco celíaco)."]],
+q:[["¿Qué capa externa tiene el esófago torácico?",["Serosa","Adventicia","Peritoneo visceral","Mucosa muscular"],1,"Adventicia; solo el tramo abdominal tiene peritoneo."],
+["¿Qué evita principalmente el reflujo según tu clase?",["Un cardias muy potente","La porción abdominal y el hiato esofágico en T10","El píloro","La válvula de Heister"],1,"El cardias es débil; ayudan la porción abdominal y el hiato."],
+["La metaplasia se define como…",["Aumento del número de células","Cambio de una célula madura a otra madura","Epitelio inmaduro irreversible","Muerte celular programada"],1,"Metaplasia: madura → madura (Barrett)."]]},
+
+/* U3 */
+{id:"regiones",u:"u3",t:"Regiones y pared abdominal",m:"ABDOMEN",
+s:"Para explorar y ubicar órganos el abdomen se divide en 9 regiones (o en 4 cuadrantes). La pared tiene capas que se atraviesan en orden en cualquier abordaje quirúrgico.",
+k:["<b>9 regiones</b>: hipocondrio derecho, epigastrio, hipocondrio izquierdo · flanco derecho, mesogastrio (umbilical), flanco izquierdo · fosa ilíaca derecha, hipogastrio, fosa ilíaca izquierda.",
+"<b>Capas de la pared</b>: piel → fascia superficial con su capa grasa (<b>Camper</b>) y su capa membranosa (<b>Scarpa</b>) → músculos (oblicuo externo, oblicuo interno, transverso; recto al centro) → fascia transversalis → grasa extraperitoneal → peritoneo parietal.",
+"Nota: en tus apuntes Camper y Scarpa quedaron al revés. Camper es la grasa superficial; Scarpa la membranosa profunda.",
+"Retorno venoso superficial: sobre la grasa del abdomen. Profundo: cava y porta.",
+"Dermatomas: <b>T7</b> justo por debajo del xifoides, <b>T10</b> en el ombligo, L1 en la región inguinal.",
+"<b>Conducto inguinal</b>: en el hombre pasa el cordón espermático; en la mujer, el <b>ligamento redondo del útero</b>. En ambos, el nervio ilioinguinal.",
+"El estómago queda en diagonal: ocupa hipocondrio izquierdo, epigastrio y llega al hipocondrio derecho."],
+g:[1223,1225],
+f:[["¿En cuántas regiones se divide el abdomen?","9 regiones (o 4 cuadrantes)."],["¿Qué dermatoma corresponde al ombligo?","T10."],["¿Qué pasa por el conducto inguinal en la mujer?","El ligamento redondo del útero."]],
+q:[["¿Cuál es la región central del abdomen?",["Epigastrio","Mesogastrio (umbilical)","Hipogastrio","Flanco"],1,"Mesogastrio o región umbilical."]]},
+
+{id:"peritoneo",u:"u3",t:"Peritoneo, omentos y mesenterio",m:"ABDOMEN",
+s:"El peritoneo parietal tapiza la pared y el visceral cubre los órganos. Entre ambos queda la cavidad peritoneal; detrás del parietal está el retroperitoneo. El mesenterio es la doble hoja que lleva vasos «de atrás hacia adelante».",
+k:["<b>Omento mayor</b>: cuelga de la curvatura mayor del estómago, de tejido graso; protege y mantiene la temperatura de los órganos («sábana»). Se une por detrás al colon transverso (<b>ligamento gastrocólico</b>).",
+"Es el «<b>policía del abdomen</b>»: se mueve y abraza una perforación (p. ej. un divertículo roto con peritonitis) para contenerla.",
+"El omento mayor <b>no</b> lleva las arcadas del yeyuno e íleon: esas viajan en el <b>mesenterio</b>, que fija las asas a la pared posterior.",
+"<b>Omento menor</b>: de la curvatura menor al hígado; recubre la vía biliar. Su borde libre (ligamento hepatoduodenal) lleva colédoco, vena porta y arteria hepática propia.",
+"Tiene una pequeña puerta, el <b>foramen omental</b> (de Winslow), que da entrada a la transcavidad de los epiplones (bolsa omental).",
+"El tubo digestivo superior termina en la última porción del duodeno, en el <b>ligamento de Treitz</b>: arriba = sangrado de tubo digestivo alto; abajo = bajo.",
+"Complemento, órganos retroperitoneales: duodeno (2ª a 4ª porción), páncreas (salvo la cola), colon ascendente y descendente, recto, riñones, aorta y cava."],
+g:[1042],
+f:[["¿Por qué se le llama «policía del abdomen» al omento mayor?","Porque se mueve y envuelve zonas inflamadas o perforadas para aislarlas."],["¿Qué estructura lleva las arcadas del yeyuno e íleon?","El mesenterio."],["¿Qué marca el ligamento de Treitz?","El fin del tubo digestivo alto (flexura duodenoyeyunal)."],["¿Qué hay en el borde libre del omento menor?","Colédoco, vena porta y arteria hepática propia."]],
+q:[["¿Qué orificio comunica la cavidad peritoneal mayor con la bolsa omental?",["Hiato esofágico","Foramen omental (de Winslow)","Anillo inguinal profundo","Foramen de Bochdalek"],1,"El foramen omental o epiploico."],
+["El ligamento gastrocólico pertenece al…",["Omento menor","Omento mayor","Mesenterio","Mesocolon sigmoide"],1,"Es la parte del omento mayor entre estómago y colon transverso."]]},
+
+/* U4 */
+{id:"estomago",u:"u4",t:"Estómago: partes y capas",m:"ESTÓMAGO",
+s:"Bolsa muy distensible (1–1.5 L) bajo el diafragma y el hígado. Lo primero que se llena es el fondo y después el cuerpo.",
+k:["<b>Divisiones</b>: cardias (unión con el esófago) → fondo (por arriba y a la izquierda) → cuerpo (central) → antro (parte baja antes del píloro) → píloro (a la derecha), con conducto y esfínter pilórico.",
+"<b>Curvatura menor</b> (derecha, cóncava) y <b>curvatura mayor</b> (izquierda, convexa).",
+"<b>3 capas musculares</b>: longitudinal (externa), circular (media) y <b>oblicua</b>, la capa «extra», que es la más interna: queda <b>entre la circular y la submucosa</b>.",
+"Esfínteres: esofágico inferior (cardias) y pilórico.",
+"El aviso para que el píloro se abra es la <b>dilatación del antro</b>.",
+"<b>Estenosis hipertrófica del píloro</b>: el píloro se engrosa y cierra con fuerza exagerada; se trata con piloromiotomía.",
+"Mucosa con pliegues (rugosidades); las glándulas gástricas quedan por debajo de los pliegues y secretan el jugo gástrico."],
+g:[532,1223],
+f:[["¿Cuál es la capa muscular extra del estómago?","La oblicua (la más interna)."],["¿Entre qué capas está la oblicua?","Entre la circular y la submucosa."],["¿Qué estimula la apertura del píloro?","La dilatación del antro."],["¿Capacidad del estómago?","1 a 1.5 L."]],
+q:[["¿Qué parte del estómago se llena primero?",["Antro","Fondo","Píloro","Cardias"],1,"Primero el fondo, luego el cuerpo."]]},
+
+{id:"glandulas",u:"u4",t:"Glándulas gástricas y secreciones",m:"ESTÓMAGO",
+s:"Las glándulas gástricas contienen varios tipos celulares, cada uno con su producto y su estímulo.",
+k:["<b>Células mucosas del cuello</b>: moco y bicarbonato (barrera que protege el epitelio). Son las primeras de la glándula.",
+"<b>Células parietales</b>: <b>HCl</b> (activa la pepsina, mata bacterias) y <b>factor intrínseco</b> (se une a la B12 para absorberla en el íleon). Las estimulan acetilcolina, gastrina e histamina.",
+"<b>Células principales</b>: pepsinógeno (proteínas) y lipasa gástrica (grasas).",
+"<b>Células tipo enterocromafín (ECL)</b>: histamina, que estimula el ácido.",
+"<b>Células D</b>: somatostatina, que inhibe el ácido (se liberan cuando hay ácido en el estómago).",
+"<b>Células G</b>: gastrina, en el <b>antro</b>; estimula el ácido.",
+"<b>Grelina</b>: «hormona del hambre» o de los antojos; se produce sobre todo en el <b>fondo</b> gástrico, no en el antro."],
+p:"Trampa frecuente: la grelina NO es del antro. En el antro está la gastrina (células G).",
+f:[["¿Qué secretan las células parietales?","HCl y factor intrínseco."],["¿Qué secretan las células principales?","Pepsinógeno y lipasa gástrica."],["¿Qué hormona inhibe la secreción de ácido?","La somatostatina (células D)."],["¿Dónde se produce sobre todo la grelina?","En el fondo gástrico."]],
+q:[["¿Qué célula produce gastrina?",["Parietal","Principal","G","D"],2,"Células G, sobre todo en el antro."],
+["El factor intrínseco es necesario para absorber…",["Hierro","Vitamina K","Vitamina B12","Ácido fólico"],2,"Se absorbe en el íleon terminal."]]},
+
+{id:"irr-est",u:"u4",t:"Irrigación del estómago",m:"IRRIGACIÓN",irr:1,go:"gi",
+s:"Todo el estómago depende del tronco celíaco. Cada curvatura tiene una arcada formada por dos arterias que se anastomosan.",
+k:["<b>Curvatura menor</b>: <b>gástrica izquierda</b> (rama directa del tronco celíaco) + <b>gástrica derecha</b> (de la hepática propia).",
+"<b>Curvatura mayor</b>: <b>gastroomental (gastroepiploica) derecha</b> (de la gastroduodenal) + <b>gastroomental izquierda</b> (de la esplénica).",
+"<b>Fondo</b>: <b>gástricas cortas</b> (de la esplénica).",
+"Drenaje venoso: venas gástricas → vena porta. La gástrica izquierda conecta con las esofágicas (várices).",
+"La gastroduodenal pasa por detrás de la 1ª porción del duodeno: una úlcera duodenal posterior puede erosionarla y sangrar."],
+p:"Truco: las «izquierdas» vienen de arriba y la izquierda del paciente (gástrica izq del tronco, gastroomental izq de la esplénica); las «derechas» vienen de la hepática.",
+g:[532,533],
+f:[["¿Qué dos arterias forman la arcada de la curvatura menor?","Gástrica izquierda (tronco celíaco) y gástrica derecha (hepática propia)."],["¿Qué dos arterias forman la arcada de la curvatura mayor?","Gastroomental derecha (gastroduodenal) y gastroomental izquierda (esplénica)."],["¿Qué irriga el fondo gástrico?","Las arterias gástricas cortas (esplénica)."]],
+q:[["La arteria gástrica derecha suele nacer de la…",["Esplénica","Hepática propia","Gastroduodenal","Mesentérica superior"],1,"De la hepática propia (a veces de la hepática común)."],
+["La gastroomental derecha es rama de la…",["Gastroduodenal","Esplénica","Gástrica izquierda","Cólica media"],0,"Gastroduodenal."],
+["Las arterias gástricas cortas salen de la…",["Gástrica izquierda","Hepática común","Esplénica","Gastroduodenal"],2,"Esplénica, hacia el fondo."]]},
+
+/* U5 */
+{id:"duodeno",u:"u5",t:"Duodeno",m:"DELGADO",irr:1,go:"pdsa",
+s:"Primera parte del intestino delgado: unos 25 cm en forma de C que abraza la cabeza del páncreas. La mayor parte es retroperitoneal.",
+k:["<b>D1 · superior</b>: incluye el bulbo; por detrás pasa la gastroduodenal. Sitio típico de úlcera.",
+"<b>D2 · descendente</b>: aquí está la <b>papila duodenal mayor</b>, donde desembocan colédoco y Wirsung (ampolla de Vater). Arriba, la papila menor (Santorini).",
+"<b>D3 · horizontal</b>: cruza entre la aorta y la arteria mesentérica superior.",
+"<b>D4 · ascendente</b>: termina en la flexura duodenoyeyunal, sostenida por el ligamento de Treitz.",
+"<b>Irrigación</b>: proximal a la papila, ramas del tronco celíaco (gastroduodenal → pancreaticoduodenales superiores); distal, de la AMS (pancreaticoduodenales inferiores). La papila marca el límite entre intestino anterior y medio."],
+p:"Papila mayor = 2ª porción (descendente). La 3ª porción es la que cruza entre aorta y AMS.",
+img:"pancreas",g:[1098,1042],
+f:[["¿En qué porción del duodeno está la papila mayor?","En la segunda (descendente)."],["¿Cuánto mide el duodeno?","Unos 25 cm."],["¿Qué porción del duodeno pasa entre la aorta y la AMS?","La tercera (horizontal)."]],
+q:[["¿Qué estructura sostiene la flexura duodenoyeyunal?",["Ligamento falciforme","Ligamento de Treitz","Ligamento gastrocólico","Ligamento redondo"],1,"Ligamento de Treitz (músculo suspensorio del duodeno)."]]},
+
+{id:"yeyuno",u:"u5",t:"Yeyuno, íleon y vellosidades",m:"DELGADO",irr:1,go:"yey",
+s:"El intestino delgado mide unos 6 m de largo y 2.5 cm de ancho. Tras el duodeno siguen el yeyuno (2.5 m) y el íleon (3.5 m), ambos colgados del mesenterio.",
+k:["<b>Íleon</b> es la parte más larga (3.5 m, 3/5); yeyuno 2.5 m (2/5); duodeno 25 cm.",
+"La superficie está cubierta de <b>vellosidades</b>: cada una tiene una arteriola, una vénula y un <b>vaso linfático (quilífero)</b>, que absorbe los lípidos.",
+"Cada enterocito tiene unas 1700 <b>microvellosidades</b> (en tus apuntes aparece como «vellosidades por célula»). Todo junto aumenta la superficie cientos de veces.",
+"<b>Irrigación</b>: aa. yeyunales e ileales de la AMS, que forman <b>arcadas anastomóticas</b> en el mesenterio y terminan en <b>arterias rectas</b>.",
+"Yeyuno: 1–2 filas de arcadas y vasos rectos largos. Íleon: 3–5 filas de arcadas y vasos rectos cortos, más grasa en el mesenterio.",
+"Complemento: el íleon terminal absorbe la B12 (con factor intrínseco) y las sales biliares; tiene placas de Peyer."],
+img:"delgado",g:[531],
+f:[["¿Cuál es la porción más larga del intestino delgado?","El íleon (≈3.5 m)."],["¿Qué estructura de la vellosidad absorbe lípidos?","El vaso linfático central (quilífero)."],["Arcadas y vasos rectos: yeyuno vs íleon","Yeyuno: pocas arcadas, vasos rectos largos. Íleon: muchas arcadas, vasos rectos cortos."]],
+q:[["¿Qué contiene cada vellosidad intestinal?",["Solo capilares","Arteriola, vénula y vaso linfático","Una glándula de Brunner","Un nódulo linfático"],1,"Arteriola, vénula y quilífero."],
+["¿Dónde se ven más filas de arcadas y vasos rectos cortos?",["Yeyuno","Íleon","Duodeno","Colon"],1,"Íleon."]]},
+
+/* U6 */
+{id:"colon",u:"u6",t:"Ciego y colon",m:"GRUESO",
+s:"El intestino grueso mide 1.5 m (90–120 cm) y unos 6 cm de ancho. Absorbe agua, electrolitos y la vitamina K producida por las bacterias.",
+k:["<b>Ciego</b>: primeros 5–8 cm, por debajo de la válvula ileocecal. Del ciego cuelga el apéndice.",
+"<b>Colon ascendente</b> (retroperitoneal) → <b>ángulo hepático</b> → <b>transverso</b> (intraperitoneal, con mesocolon) → <b>ángulo esplénico</b> → <b>descendente</b> (retroperitoneal) → <b>sigmoides</b> (intraperitoneal, con mesosigmoides).",
+"El <b>ángulo hepático</b> separa ascendente y transverso; el <b>esplénico</b>, transverso y descendente.",
+"<b>Sigmoides</b>: la parte de menor diámetro y mayor presión → divertículos.",
+"Rasgos del colon: <b>tenias</b> (3 bandas de músculo longitudinal), <b>haustras</b> (saculaciones) y <b>apéndices epiploicos</b> (grasa).",
+"<b>Ciego</b>: intraperitoneal y móvil. Moore matiza que casi siempre está cubierto de peritoneo, pero no suele tener un mesenterio propio."],
+g:[1223],
+f:[["¿Qué parte del colon tiene mayor presión y menor diámetro?","El sigmoides."],["¿Qué divide el ángulo hepático?","El colon ascendente del transverso."],["¿Qué vitamina se absorbe en el colon?","La vitamina K."],["3 rasgos externos del colon","Tenias, haustras y apéndices epiploicos."]],
+q:[["¿Qué segmentos del colon son retroperitoneales?",["Transverso y sigmoides","Ascendente y descendente","Ciego y transverso","Todos"],1,"Ascendente y descendente."]]},
+
+{id:"recto",u:"u6",t:"Recto y canal anal",m:"GRUESO",irr:1,go:"rs",
+s:"El recto almacena las heces y el canal anal controla su salida. La línea pectínea divide dos mundos con irrigación, drenaje e inervación distintos.",
+k:["<b>Recto</b>: capacidad de 200 ml a 1 L (dato de tu clase). Tiene pliegues transversos, las <b>válvulas de Houston</b>.",
+"<b>Canal anal</b>: columnas anales y <b>criptas de Morgagni</b>, que terminan en la <b>línea pectínea (dentada)</b>.",
+"<b>Esfínter interno</b>: músculo liso, involuntario, continuación de la capa circular. <b>Esfínter externo</b>: músculo <b>estriado</b>, voluntario (nervio pudendo).",
+"<b>Irrigación</b>: rectal superior (AMI), rectal media (ilíaca interna) y rectal inferior (pudenda interna).",
+"Por arriba de la línea pectínea: venas → porta (rectal superior); hemorroides internas, indoloras. Por debajo: venas → cava (rectales media e inferior); hemorroides externas, dolorosas.",
+"El plexo venoso rectal es una <b>anastomosis portocava</b>."],
+p:"Válvulas de Houston = recto. Válvulas de Heister = conducto cístico. Las confunden mucho.",
+img:"colon",g:[1083,538,1077],
+f:[["¿En qué línea están las criptas de Morgagni?","En la línea pectínea (dentada)."],["¿Qué esfínter anal es estriado?","El externo."],["¿Cuáles son las 3 arterias rectales y su origen?","Superior (AMI), media (ilíaca interna) e inferior (pudenda interna)."],["Capacidad del recto según tu clase","200 ml a 1 L."]],
+q:[["¿Qué pliegues tiene el recto?",["Válvulas de Heister","Válvulas de Houston","Válvulas conniventes","Haustras"],1,"Houston."],
+["Las hemorroides externas duelen porque…",["Están sobre la línea pectínea","Están bajo la línea pectínea, con inervación somática","Drenan a la porta","Son de músculo liso"],1,"Debajo de la línea pectínea la inervación es somática (pudendo)."]]},
+
+{id:"irr-colon",u:"u6",t:"Irrigación del colon",m:"IRRIGACIÓN",irr:1,go:"cm",
+s:"El colon derecho es intestino medio (AMS) y el izquierdo es intestino posterior (AMI). El límite está en la unión de los 2/3 proximales con el 1/3 distal del transverso.",
+k:["<b>AMS</b>: <b>ileocólica</b> (ciego, apéndice, íleon terminal, inicio del ascendente; da ramas cólica, ileal, cecales anterior y posterior y apendicular), <b>cólica derecha</b> (ascendente) y <b>cólica media</b> (2/3 proximales del transverso).",
+"<b>AMI</b>: <b>cólica izquierda</b> (1/3 distal del transverso y descendente; ramas ascendente y descendente), <b>sigmoideas</b> y <b>rectal superior</b> (terminal).",
+"<b>Arteria marginal</b> (de Drummond): arcada continua paralela al borde del colon; de ella salen las arterias rectas.",
+"<b>Arco de Riolano</b>: anastomosis entre la cólica media (AMS) y la cólica izquierda (AMI), cerca de la raíz del mesenterio.",
+"Puntos críticos (complemento): <b>Griffiths</b> en el ángulo esplénico y <b>Sudeck</b> en la unión rectosigmoidea. Ahí la anastomosis es débil y aparece la colitis isquémica.",
+"La arteria apendicular corre por el mesoapéndice; es terminal, por eso el apéndice inflamado se necrosa rápido."],
+p:"Ileocólica, cólica derecha y media = AMS («derechas y medias»). Cólica izquierda, sigmoideas y rectal superior = AMI.",
+img:"colon",g:[538,531],
+f:[["¿Qué une el arco de Riolano?","La cólica media (AMS) con la cólica izquierda (AMI)."],["¿De qué arteria sale la apendicular?","De la ileocólica (AMS)."],["¿Cuál es la rama terminal de la AMI?","La rectal superior."],["¿Qué es la arteria marginal de Drummond?","La arcada continua junto al borde del colon de la que salen las arterias rectas."]],
+q:[["El tercio distal del colon transverso lo irriga la…",["Cólica media","Cólica izquierda","Cólica derecha","Ileocólica"],1,"Cólica izquierda (AMI)."],
+["¿En qué punto la irrigación del colon es más precaria?",["Ciego","Ángulo hepático","Ángulo esplénico","Colon ascendente"],2,"Ángulo esplénico (punto de Griffiths)."]]},
+
+/* U7 */
+{id:"higado",u:"u7",t:"Hígado: lóbulos, segmentos e irrigación",m:"HÍGADO",irr:1,go:"hp",
+s:"La glándula más grande del cuerpo, en el hipocondrio derecho y el epigastrio. Recibe sangre doble: la vena porta (≈75%, nutrientes del intestino) y la arteria hepática (≈25%, oxígeno).",
+k:["<b>Lóbulos anatómicos</b>: separados por el <b>ligamento falciforme</b>. El izquierdo es 1/6 del hígado; el derecho, 5/6, con los lóbulos cuadrado y caudado en la cara visceral.",
+"En la cara visceral, la fisura del <b>ligamento redondo</b> (vena umbilical obliterada) y la del <b>ligamento venoso</b> (conducto venoso) limitan el lóbulo izquierdo de los lóbulos cuadrado y caudado.",
+"<b>División funcional</b> (complemento): la <b>línea de Cantlie</b> (lecho de la vesícula → VCI) separa hígado derecho e izquierdo. Couinaud: I caudado · II–III lateral izquierdo · IV medial izquierdo · V–VIII derecho (anterior V y VIII, posterior VI y VII).",
+"<b>Arterias</b>: la hepática común da la gastroduodenal y sigue como hepática propia, que se divide en <b>hepática derecha</b> (da la <b>cística</b>) e <b>izquierda</b>.",
+"<b>Venas hepáticas</b>: derecha, media (central) e izquierda, que desembocan en la cava inferior.",
+"<b>Lobulillo hepático</b>: vena central en el centro; espacios porta (rama de porta, arteria y conducto biliar) en la periferia.",
+"<b>Funciones</b>: desintoxicación (amoníaco → urea), secreción de bilis (sales biliares de colesterol que emulsifican grasas, ≈0.5 L/día), almacenamiento (glucógeno, cobre, hierro, vitaminas A, D, E y K), coagulación (protrombina, heparina) y células de <b>Kupffer</b> (fagocitos).",
+"Bilirrubina <b>directa</b> elevada: obstrucción (lito o tumor en la vía biliar). <b>Indirecta</b>: falla de la «fábrica» (hepatitis)."],
+p:"El borde libre del omento menor (ligamento hepatoduodenal) lleva la tríada portal: colédoco (derecha), arteria hepática propia (izquierda) y vena porta (atrás).",
+g:[1085,1087,532],
+f:[["¿Qué separa los lóbulos derecho e izquierdo en la cara diafragmática?","El ligamento falciforme."],["¿Qué es la línea de Cantlie?","La línea vesícula–VCI que divide el hígado funcional en derecho e izquierdo."],["¿Qué porcentaje del flujo hepático aporta la porta?","Alrededor del 75%."],["¿Qué son las células de Kupffer?","Macrófagos (fagocitos) hepáticos."],["¿Bilirrubina directa elevada sugiere…?","Obstrucción de la vía biliar (lito o tumor)."]],
+q:[["¿De qué arteria nace la hepática propia?",["Tronco celíaco directamente","Hepática común","Gastroduodenal","Mesentérica superior"],1,"La hepática común se divide en gastroduodenal y hepática propia."],
+["¿A dónde drenan las venas hepáticas?",["Vena porta","Vena cava inferior","Vena esplénica","Vena ácigos"],1,"A la cava inferior."]]},
+
+{id:"vesicula",u:"u7",t:"Vesícula biliar",m:"VESÍCULA",irr:1,go:"cis",
+s:"Saco en forma de pera de 7–10 cm de largo por 3 cm de ancho, bajo la cara visceral del hígado. Almacena, concentra y expulsa la bilis.",
+k:["Capas: mucosa, muscular y serosa. La mucosa rugosa se expande y guarda <b>30–50 ml</b> de bilis.",
+"Partes: fondo, cuerpo y cuello. La última parte es la <b>bolsa de Hartmann</b>, donde se atoran los litos.",
+"El conducto cístico tiene las <b>válvulas espirales de Heister</b>.",
+"<b>Arteria cística</b>: rama de la <b>hepática derecha</b>.",
+"<b>Triángulo de Calot</b> (cistohepático): conducto cístico, conducto hepático común y cara visceral del lóbulo derecho. Dentro está la arteria cística; se diseca en toda colecistectomía."],
+p:"Arteria cística ← hepática derecha, dentro del triángulo de Calot.",
+g:[1087],
+f:[["¿De dónde sale la arteria cística?","De la hepática derecha."],["¿Qué forma el triángulo de Calot?","Conducto cístico, hepático común y cara visceral del hígado (lóbulo derecho)."],["¿Dónde se atoran los litos?","En la bolsa de Hartmann."],["¿Capacidad de la vesícula?","30–50 ml."]],
+q:[["¿Qué contiene el triángulo de Calot?",["La vena porta","La arteria cística","El colédoco","La arteria gastroduodenal"],1,"La arteria cística."],
+["Las válvulas de Heister están en…",["El recto","El conducto cístico","El colédoco","El duodeno"],1,"Conducto cístico."]]},
+
+{id:"via",u:"u7",t:"Vía biliar, colédoco y ampolla de Vater",m:"VÍA BILIAR",
+s:"La bilis sale del hígado por conductos que se van uniendo hasta el colédoco, que desemboca en la 2ª porción del duodeno.",
+k:["Conductillos → <b>hepáticos derecho e izquierdo</b> → <b>hepático común</b>.",
+"Hepático común + <b>cístico</b> = <b>colédoco</b>.",
+"<b>Porciones del colédoco</b>: supraduodenal → retroduodenal → retropancreática → intrapancreática → intramural (se une al conducto pancreático).",
+"<b>Ampolla de Vater</b> (hepatopancreática): unión del colédoco y el Wirsung. Se abre en la <b>papila duodenal mayor</b> (D2), cerrada por el <b>esfínter de Oddi</b>.",
+"<b>CPRE</b>: colangiopancreatografía retrógrada endoscópica; entra por la papila para ver y tratar la vía biliar y pancreática."],
+g:[1100,1099],
+f:[["¿Qué conductos forman el colédoco?","Hepático común + cístico."],["Porciones del colédoco","Supraduodenal, retroduodenal, retropancreática, intrapancreática e intramural."],["¿Qué esfínter cierra la ampolla de Vater?","El esfínter de Oddi."]],
+q:[["¿Qué forma la ampolla de Vater?",["Cístico + hepático común","Colédoco + Wirsung","Wirsung + Santorini","Hepáticos derecho e izquierdo"],1,"Colédoco + Wirsung."]]},
+
+/* U8 */
+{id:"pancreas",u:"u8",t:"Páncreas: partes y función",m:"PÁNCREAS",
+s:"Glándula rosa grisácea de 12–15 cm, retroperitoneal (salvo la cola), a la altura de L1–L2. Tiene una parte exocrina enorme y una endocrina pequeña.",
+k:["Partes: <b>cabeza</b> (en la C del duodeno), <b>cuello</b> (delante de los vasos mesentéricos y la porta), <b>cuerpo</b> y <b>cola</b> (hacia el hilio del bazo).",
+"<b>Exocrino, 98%</b>: acinos que segregan enzimas digestivas y drenan por conductillos al conducto principal, que se vacía al duodeno.",
+"<b>Endocrino, 2%</b>: islotes incrustados entre los acinos; su secreción pasa directo a los capilares. Células <b>beta</b> → insulina; células <b>alfa</b> → glucagón.",
+"<b>Conducto de Wirsung</b> (principal) → papila mayor. En un 25% hay un conducto accesorio, el de <b>Santorini</b>, que sale por la papila menor.",
+"El jugo pancreático degrada proteínas: en la <b>pancreatitis</b> se libera dentro de la glándula y la autodigiere."],
+p:"98% exocrino (acinos) / 2% endocrino (islotes con células alfa y beta).",
+g:[1098,1100,1097],
+f:[["¿Qué porcentaje del páncreas es exocrino?","98%."],["¿Qué secretan las células beta y las alfa?","Beta: insulina. Alfa: glucagón."],["¿Cómo se llama el conducto accesorio del páncreas?","Conducto de Santorini (papila menor)."],["¿Cuánto mide el páncreas?","12–15 cm."]],
+q:[["¿Qué parte del páncreas está en la concavidad del duodeno?",["Cola","Cuerpo","Cuello","Cabeza"],3,"La cabeza."]]},
+
+{id:"irr-panc",u:"u8",t:"Irrigación del páncreas",m:"IRRIGACIÓN",irr:1,go:"gdu",
+s:"La cabeza recibe sangre de dos troncos (celíaco y AMS) mediante arcadas pancreaticoduodenales. Cuello, cuerpo y cola dependen de la esplénica.",
+k:["Ramas del tronco celíaco: <b>hepática común</b>, <b>gástrica izquierda</b> y <b>esplénica</b>.",
+"De la hepática común sale la <b>gastroduodenal</b>, que da las <b>pancreaticoduodenales superiores anterior y posterior</b> (cabeza) y la gastroomental derecha.",
+"De la <b>AMS</b> sale la <b>pancreaticoduodenal inferior</b> (anterior y posterior), que se anastomosa con las superiores: arcadas anterior y posterior alrededor de la cabeza.",
+"Cuello y cuerpo: <b>pancreática dorsal</b>. Cuerpo y cola: <b>pancreática magna</b> y <b>arteria de la cola</b>, todas de la <b>esplénica</b>.",
+"La esplénica corre tortuosa por el borde superior del páncreas y también da las gástricas cortas y la gastroomental izquierda.",
+"Venas: drenan a la esplénica y a la mesentérica superior, que se unen detrás del cuello para formar la porta."],
+p:"Para ubicarlas en cualquier esquema: el tronco celíaco al centro; la esplénica corre a la izquierda por el borde superior del páncreas; la hepática común va a la derecha y baja como gastroduodenal por detrás del duodeno.",
+img:"pancreas",g:[533,1099],
+f:[["¿Qué arterias irrigan la cabeza del páncreas?","Pancreaticoduodenales superiores (gastroduodenal) e inferiores (AMS)."],["¿De qué arteria sale la pancreática dorsal?","De la esplénica."],["¿Qué 3 ramas da el tronco celíaco?","Hepática común, gástrica izquierda y esplénica."]],
+q:[["La pancreaticoduodenal inferior es rama de la…",["Gastroduodenal","Esplénica","Mesentérica superior","Mesentérica inferior"],2,"AMS."],
+["¿Qué arteria corre por el borde superior del páncreas?",["Hepática común","Esplénica","Gástrica izquierda","Cólica media"],1,"La esplénica, tortuosa."]]},
+
+/* U9 */
+{id:"tc",u:"u9",t:"Tronco celíaco",m:"IRRIGACIÓN",irr:1,go:"tc",
+s:"Primera rama ventral de la aorta abdominal, a nivel de T12, justo bajo el hiato aórtico. Irriga el intestino anterior: esófago abdominal, estómago, duodeno hasta la papila, hígado, vesícula, páncreas y bazo.",
+k:["Trípode de Haller: <b>gástrica izquierda</b>, <b>esplénica</b> y <b>hepática común</b>.",
+"<b>Gástrica izquierda</b>: la más pequeña; sube a la curvatura menor y da ramas esofágicas.",
+"<b>Esplénica</b>: la más grande; tortuosa, por el borde superior del páncreas. Da pancreáticas (dorsal, magna, cola), gástricas cortas y gastroomental izquierda.",
+"<b>Hepática común</b>: va a la derecha y se divide en <b>gastroduodenal</b> y <b>hepática propia</b> (que da gástrica derecha, hepática derecha con la cística, y hepática izquierda)."],
+img:"pancreas",g:[532,533,531],
+f:[["¿A qué nivel sale el tronco celíaco?","T12."],["¿Cuál es la rama más grande del tronco celíaco?","La esplénica."],["¿Qué irriga el tronco celíaco?","El intestino anterior: esófago abdominal, estómago, duodeno proximal, hígado, vesícula, páncreas y bazo."]],
+q:[["¿Cuál NO es rama directa del tronco celíaco?",["Gástrica izquierda","Esplénica","Gastroduodenal","Hepática común"],2,"La gastroduodenal sale de la hepática común."]]},
+
+{id:"ams",u:"u9",t:"Arteria mesentérica superior",m:"IRRIGACIÓN",irr:1,go:"ams",
+s:"Nace de la aorta a nivel de L1, por detrás del cuello del páncreas, y baja por delante de la 3ª porción del duodeno. Irriga el intestino medio: del duodeno distal a la papila hasta los 2/3 proximales del transverso.",
+k:["Ramas en orden: <b>pancreaticoduodenal inferior</b> → <b>yeyunales e ileales</b> (por su lado izquierdo) → <b>ileocólica</b>, <b>cólica derecha</b> y <b>cólica media</b> (por su lado derecho).",
+"Yeyunales e ileales forman arcadas en el mesenterio y terminan en arterias rectas.",
+"La ileocólica da la rama cólica, la ileal, las cecales anterior y posterior y la apendicular.",
+"La cólica media forma el arco de Riolano con la cólica izquierda."],
+img:"delgado",g:[531,1099],
+f:[["¿A qué nivel sale la AMS?","L1."],["¿Hasta dónde irriga la AMS?","Hasta los 2/3 proximales del colon transverso."],["¿Qué porción del duodeno cruza por detrás de la AMS?","La tercera."]],
+q:[["¿Cuál es rama de la AMS?",["Cólica izquierda","Sigmoidea","Cólica media","Rectal superior"],2,"La cólica media."]]},
+
+{id:"ami",u:"u9",t:"Arteria mesentérica inferior",m:"IRRIGACIÓN",irr:1,go:"ami",
+s:"Nace de la aorta a nivel de L3. Irriga el intestino posterior: 1/3 distal del transverso, descendente, sigmoides y parte superior del recto.",
+k:["Ramas: <b>cólica izquierda</b> (ascendente y descendente), <b>sigmoideas</b> (2–4) y <b>rectal superior</b>, su rama terminal.",
+"La rectal superior se bifurca sobre el recto y se anastomosa con las rectales media e inferior.",
+"La vena mesentérica inferior suele desembocar en la vena esplénica."],
+img:"colon",g:[538,531],
+f:[["¿A qué nivel sale la AMI?","L3."],["Ramas de la AMI","Cólica izquierda, sigmoideas y rectal superior."]],
+q:[["La rama terminal de la AMI es la…",["Sigmoidea","Rectal superior","Rectal media","Cólica izquierda"],1,"Rectal superior."]]},
+
+{id:"anast",u:"u9",t:"Anastomosis y sistema porta",m:"IRRIGACIÓN",irr:1,
+s:"Las arcadas conectan territorios: si un tronco se ocluye, otro puede suplirlo. En el lado venoso, la porta recoge todo el tubo y se comunica con la cava en puntos clínicos.",
+k:["<b>Curvatura menor</b>: gástrica izquierda ↔ gástrica derecha.",
+"<b>Curvatura mayor</b>: gastroomental izquierda ↔ gastroomental derecha.",
+"<b>Cabeza del páncreas</b>: pancreaticoduodenales superiores (celíaco) ↔ inferiores (AMS).",
+"<b>Colon</b>: arco de Riolano y arteria marginal de Drummond (AMS ↔ AMI).",
+"<b>Recto</b>: rectal superior ↔ media ↔ inferior.",
+"<b>Vena porta</b>: se forma detrás del cuello del páncreas por la unión de la <b>mesentérica superior</b> y la <b>esplénica</b> (que ya recibió a la mesentérica inferior).",
+"<b>Anastomosis portocava</b> (se dilatan en hipertensión portal): esofágicas (várices), rectales (hemorroides), paraumbilicales (cabeza de medusa) y retroperitoneales."],
+g:[531,1083],
+f:[["¿Qué venas forman la porta?","Mesentérica superior + esplénica, detrás del cuello del páncreas."],["4 sitios de anastomosis portocava","Esófago, recto, región paraumbilical y retroperitoneo."],["¿Qué anastomosis une celíaco y AMS?","Las arcadas pancreaticoduodenales de la cabeza del páncreas."]],
+q:[["La «cabeza de medusa» es una dilatación de venas…",["Esofágicas","Rectales","Paraumbilicales","Esplénicas"],2,"Paraumbilicales."]]}
+];
+
+/* Árbol arterial para el explorador. p: padre · tr: tronco · s: nombre corto · n: nombre completo · i: irriga · x: perla · o: órganos */
+const NODES=[
+ {id:"ao",s:"AORTA ABDOMINAL",n:"Aorta abdominal",tr:"ao",i:"Da las tres ramas ventrales impares del tubo digestivo: tronco celíaco (T12), AMS (L1) y AMI (L3). Se bifurca en las ilíacas comunes en L4.",o:[]},
+ {id:"tc",p:"ao",s:"TRONCO CELÍACO",n:"Tronco celíaco",tr:"tc",lv:"T12",i:"Intestino anterior: esófago abdominal, estómago, duodeno hasta la papila, hígado, vesícula, páncreas y bazo.",x:"Trípode de Haller: gástrica izquierda, esplénica y hepática común.",o:[]},
+ {id:"gi",p:"tc",s:"Gástrica izquierda",n:"Arteria gástrica izquierda",tr:"tc",i:"Curvatura menor del estómago y esófago abdominal.",x:"La rama más pequeña del tronco. Se anastomosa con la gástrica derecha en la curvatura menor.",o:["est","eso"]},
+ {id:"eso",p:"gi",s:"Rr. esofágicas",n:"Ramas esofágicas",tr:"tc",i:"Porción abdominal del esófago.",x:"Las venas acompañantes drenan a la porta: várices esofágicas en hipertensión portal.",o:["eso"]},
+ {id:"esp",p:"tc",s:"Esplénica",n:"Arteria esplénica",tr:"tc",i:"Bazo, cuello, cuerpo y cola del páncreas, fondo y curvatura mayor del estómago.",x:"La más grande y tortuosa; corre por el borde superior del páncreas.",o:["bazo"]},
+ {id:"pd",p:"esp",s:"Pancreática dorsal",n:"Arteria pancreática dorsal",tr:"tc",i:"Cuello y cuerpo del páncreas.",x:"La primera rama pancreática de la esplénica; baja por detrás del cuello.",o:["panc"]},
+ {id:"pm",p:"esp",s:"Pancreática magna",n:"Arteria pancreática magna",tr:"tc",i:"Cuerpo y cola del páncreas.",o:["panc"]},
+ {id:"pc",p:"esp",s:"A. de la cola",n:"Arteria de la cola del páncreas",tr:"tc",i:"Cola del páncreas, cerca del hilio esplénico.",o:["panc"]},
+ {id:"gc",p:"esp",s:"Gástricas cortas",n:"Arterias gástricas cortas",tr:"tc",i:"Fondo del estómago.",x:"Viajan por el ligamento gastroesplénico.",o:["est"]},
+ {id:"goi",p:"esp",s:"Gastroomental izq.",n:"Arteria gastroomental (gastroepiploica) izquierda",tr:"tc",i:"Mitad izquierda de la curvatura mayor y omento mayor.",x:"Rama de la esplénica. Se anastomosa con la gastroomental derecha.",o:["est"]},
+ {id:"hc",p:"tc",s:"Hepática común",n:"Arteria hepática común",tr:"tc",i:"Hígado, vesícula, estómago (curvaturas derechas), duodeno proximal y cabeza del páncreas.",x:"Se divide en gastroduodenal y hepática propia.",o:[]},
+ {id:"hp",p:"hc",s:"Hepática propia",n:"Arteria hepática propia",tr:"tc",i:"Hígado y vesícula.",x:"Viaja en el borde libre del omento menor (ligamento hepatoduodenal) con el colédoco y la porta.",o:["hig"]},
+ {id:"hd",p:"hp",s:"Hepática der.",n:"Arteria hepática derecha",tr:"tc",i:"Hígado derecho funcional.",x:"Da la arteria cística.",o:["hig"]},
+ {id:"cis",p:"hd",s:"Cística",n:"Arteria cística",tr:"tc",i:"Vesícula biliar.",x:"Rama de la hepática derecha, dentro del triángulo de Calot (cístico, hepático común y cara visceral del hígado).",o:["hig"]},
+ {id:"hi",p:"hp",s:"Hepática izq.",n:"Arteria hepática izquierda",tr:"tc",i:"Hígado izquierdo funcional (segmentos II, III y IV).",o:["hig"]},
+ {id:"gdr",p:"hp",s:"Gástrica derecha",n:"Arteria gástrica derecha",tr:"tc",i:"Porción derecha de la curvatura menor y píloro.",x:"Habitualmente nace de la hepática propia; a veces de la hepática común. Se anastomosa con la gástrica izquierda.",o:["est"]},
+ {id:"gdu",p:"hc",s:"Gastroduodenal",n:"Arteria gastroduodenal",tr:"tc",i:"Píloro, duodeno proximal, cabeza del páncreas y curvatura mayor derecha.",x:"Pasa por detrás de D1: una úlcera duodenal posterior puede erosionarla.",o:["duo"]},
+ {id:"pdsa",p:"gdu",s:"Pancreaticoduod. sup. ant.",n:"Arteria pancreaticoduodenal superior anterior",tr:"tc",i:"Cara anterior de la cabeza del páncreas y duodeno.",x:"Se anastomosa con la pancreaticoduodenal inferior anterior (AMS).",o:["panc","duo"]},
+ {id:"pdsp",p:"gdu",s:"Pancreaticoduod. sup. post.",n:"Arteria pancreaticoduodenal superior posterior",tr:"tc",i:"Cara posterior de la cabeza del páncreas, duodeno y colédoco distal.",x:"Rama de la gastroduodenal. Se anastomosa con la pancreaticoduodenal inferior posterior.",o:["panc","duo"]},
+ {id:"god",p:"gdu",s:"Gastroomental der.",n:"Arteria gastroomental (gastroepiploica) derecha",tr:"tc",i:"Mitad derecha de la curvatura mayor y omento mayor.",x:"Se anastomosa con la gastroomental izquierda.",o:["est"]},
+ {id:"ams",p:"ao",s:"MESENTÉRICA SUPERIOR",n:"Arteria mesentérica superior",tr:"ams",lv:"L1",i:"Intestino medio: duodeno distal a la papila, yeyuno, íleon, ciego, apéndice, colon ascendente y 2/3 proximales del transverso.",x:"Pasa por delante de D3; la vena renal izquierda pasa entre ella y la aorta.",o:[]},
+ {id:"pdi",p:"ams",s:"Pancreaticoduod. inf.",n:"Arteria pancreaticoduodenal inferior",tr:"ams",i:"Cabeza del páncreas y duodeno distal.",x:"Primera rama de la AMS; se divide en anterior y posterior.",o:["panc","duo"]},
+ {id:"pdia",p:"pdi",s:"Rama anterior",n:"Pancreaticoduodenal inferior anterior",tr:"ams",i:"Cara anterior de la cabeza del páncreas.",x:"Arcada anterior con la superior anterior (celíaco).",o:["panc","duo"]},
+ {id:"pdip",p:"pdi",s:"Rama posterior",n:"Pancreaticoduodenal inferior posterior",tr:"ams",i:"Cara posterior de la cabeza del páncreas.",x:"Arcada posterior con la superior posterior. En tus apuntes: «se anastomosa con las anteriores».",o:["panc","duo"]},
+ {id:"yey",p:"ams",s:"Aa. yeyunales",n:"Arterias yeyunales",tr:"ams",i:"Yeyuno.",x:"1–2 filas de arcadas y vasos rectos largos.",o:["del"]},
+ {id:"ile",p:"ams",s:"Aa. ileales",n:"Arterias ileales",tr:"ams",i:"Íleon.",x:"3–5 filas de arcadas y vasos rectos cortos.",o:["del"]},
+ {id:"ic",p:"ams",s:"Ileocólica",n:"Arteria ileocólica",tr:"ams",i:"Íleon terminal, ciego, apéndice e inicio del colon ascendente.",x:"La última rama derecha de la AMS.",o:["ciego","col"]},
+ {id:"icc",p:"ic",s:"R. cólica",n:"Rama cólica (ascendente) de la ileocólica",tr:"ams",i:"Inicio del colon ascendente.",o:["col"]},
+ {id:"ici",p:"ic",s:"R. ileal",n:"Rama ileal de la ileocólica",tr:"ams",i:"Íleon terminal.",x:"Se anastomosa con la última arteria ileal.",o:["del"]},
+ {id:"cea",p:"ic",s:"Cecal anterior",n:"Arteria cecal anterior",tr:"ams",i:"Cara anterior del ciego.",o:["ciego"]},
+ {id:"cep",p:"ic",s:"Cecal posterior",n:"Arteria cecal posterior",tr:"ams",i:"Cara posterior del ciego.",o:["ciego"]},
+ {id:"apx",p:"ic",s:"Apendicular",n:"Arteria apendicular",tr:"ams",i:"Apéndice vermiforme.",x:"Corre por el mesoapéndice y es terminal: la apendicitis se complica rápido con necrosis.",o:["ciego"]},
+ {id:"cd",p:"ams",s:"Cólica derecha",n:"Arteria cólica derecha",tr:"ams",i:"Colon ascendente y ángulo hepático.",x:"Rama directa de la AMS, entre la ileocólica y la cólica media.",o:["col"]},
+ {id:"cm",p:"ams",s:"Cólica media",n:"Arteria cólica media",tr:"ams",i:"2/3 proximales del colon transverso.",x:"Viaja en el mesocolon transverso. Forma el arco de Riolano con la cólica izquierda.",o:["col"]},
+ {id:"ami",p:"ao",s:"MESENTÉRICA INFERIOR",n:"Arteria mesentérica inferior",tr:"ami",lv:"L3",i:"Intestino posterior: 1/3 distal del transverso, descendente, sigmoides y recto superior.",o:[]},
+ {id:"ci",p:"ami",s:"Cólica izquierda",n:"Arteria cólica izquierda",tr:"ami",i:"1/3 distal del transverso, ángulo esplénico y colon descendente.",x:"Su rama ascendente forma el arco de Riolano con la cólica media.",o:["col"]},
+ {id:"cia",p:"ci",s:"R. ascendente",n:"Rama ascendente de la cólica izquierda",tr:"ami",i:"Transverso distal y ángulo esplénico.",o:["col"]},
+ {id:"cid",p:"ci",s:"R. descendente",n:"Rama descendente de la cólica izquierda",tr:"ami",i:"Colon descendente.",o:["col"]},
+ {id:"sig",p:"ami",s:"Aa. sigmoideas",n:"Arterias sigmoideas",tr:"ami",i:"Colon descendente distal y sigmoides.",x:"Son 2 a 4; viajan en el mesosigmoides.",o:["col"]},
+ {id:"rs",p:"ami",s:"Rectal superior",n:"Arteria rectal superior",tr:"ami",i:"Recto superior y canal anal por arriba de la línea pectínea.",x:"Rama terminal de la AMI. Su vena drena a la porta.",o:["rec"]},
+ {id:"ili",p:"ao",s:"ILÍACA INTERNA",n:"Arteria ilíaca interna (vía ilíaca común)",tr:"ili",lv:"L4",i:"Vísceras pélvicas, incluido el recto medio e inferior.",x:"Simplificado: en realidad nace de la ilíaca común.",o:[]},
+ {id:"rm",p:"ili",s:"Rectal media",n:"Arteria rectal media",tr:"ili",i:"Recto medio e inferior.",o:["rec"]},
+ {id:"pud",p:"ili",s:"Pudenda interna",n:"Arteria pudenda interna",tr:"ili",i:"Periné.",o:[]},
+ {id:"ri",p:"pud",s:"Rectal inferior",n:"Arteria rectal inferior",tr:"ili",i:"Canal anal por debajo de la línea pectínea y esfínter externo.",o:["rec"]}
+];
+const ORGANS=[["est","Estómago"],["eso","Esófago"],["duo","Duodeno"],["panc","Páncreas"],["hig","Hígado y vesícula"],["bazo","Bazo"],["del","Yeyuno e íleon"],["ciego","Ciego y apéndice"],["col","Colon"],["rec","Recto y ano"]];
+const ANAST=[
+ {id:"a1",n:"Curvatura menor",v:["gi","gdr"],d:"Gástrica izquierda (tronco celíaco) ↔ gástrica derecha (hepática propia)."},
+ {id:"a2",n:"Curvatura mayor",v:["goi","god"],d:"Gastroomental izquierda (esplénica) ↔ gastroomental derecha (gastroduodenal)."},
+ {id:"a3",n:"Arcadas pancreaticoduodenales",v:["pdsa","pdsp","pdia","pdip"],d:"Superiores (gastroduodenal, celíaco) ↔ inferiores (AMS). Une intestino anterior y medio alrededor de la cabeza del páncreas."},
+ {id:"a4",n:"Arco de Riolano",v:["cm","cia"],d:"Cólica media (AMS) ↔ rama ascendente de la cólica izquierda (AMI). Junto con la arteria marginal de Drummond une intestino medio y posterior."},
+ {id:"a5",n:"Recto",v:["rs","rm","ri"],d:"Rectal superior (AMI) ↔ media (ilíaca interna) ↔ inferior (pudenda interna). Su plexo venoso es anastomosis portocava."}
+];
+
+/* Mapa de territorios */
+const SEGS=[
+ {id:"m-eso",n:"Esófago abdominal",c:"tc",a:"Gástrica izquierda (rr. esofágicas) y frénica inferior izquierda.",v:"Gástrica izquierda → porta (y ácigos por arriba): várices esofágicas.",e:"Intestino anterior.",nd:"eso"},
+ {id:"m-est",n:"Estómago",c:"tc",a:"Curvatura menor: gástricas izquierda y derecha. Curvatura mayor: gastroomentales derecha e izquierda. Fondo: gástricas cortas.",v:"Venas gástricas → porta.",e:"Intestino anterior.",nd:"gi"},
+ {id:"m-hig",n:"Hígado",c:"tc",a:"Hepática propia → hepáticas derecha e izquierda. Además recibe la vena porta (≈75% del flujo).",v:"Venas hepáticas derecha, media e izquierda → cava inferior.",e:"Intestino anterior (divertículo hepático).",nd:"hp"},
+ {id:"m-ves",n:"Vesícula biliar",c:"tc",a:"Arteria cística (de la hepática derecha), en el triángulo de Calot.",v:"Venas císticas → porta o directo al hígado.",e:"Intestino anterior.",nd:"cis"},
+ {id:"m-bazo",n:"Bazo",c:"tc",a:"Arteria esplénica.",v:"Vena esplénica → porta.",e:"Mesodermo del mesogastrio dorsal (no es tubo digestivo, pero lo irriga el celíaco).",nd:"esp"},
+ {id:"m-d1",n:"Duodeno proximal (D1 y D2 hasta la papila)",c:"tc",a:"Gastroduodenal → pancreaticoduodenales superiores; supraduodenal.",v:"Pancreaticoduodenales → porta.",e:"Intestino anterior. La papila mayor marca el límite con el intestino medio.",nd:"gdu"},
+ {id:"m-d2",n:"Duodeno distal (D2 bajo la papila, D3 y D4)",c:"ams",a:"Pancreaticoduodenales inferiores (AMS).",v:"Vena mesentérica superior → porta.",e:"Intestino medio.",nd:"pdi"},
+ {id:"m-panc",n:"Páncreas",c:"mix",a:"Cabeza: pancreaticoduodenales superiores (celíaco) e inferiores (AMS). Cuello, cuerpo y cola: pancreática dorsal, magna y de la cola (esplénica).",v:"Venas pancreáticas → esplénica y mesentérica superior → porta.",e:"Yemas dorsal y ventral del intestino anterior; recibe sangre de dos troncos.",nd:"gdu"},
+ {id:"m-yey",n:"Yeyuno",c:"ams",a:"Arterias yeyunales: 1–2 filas de arcadas, vasos rectos largos.",v:"Vena mesentérica superior.",e:"Intestino medio.",nd:"yey"},
+ {id:"m-ile",n:"Íleon",c:"ams",a:"Arterias ileales: 3–5 filas de arcadas, vasos rectos cortos. Íleon terminal: rama ileal de la ileocólica.",v:"Vena mesentérica superior.",e:"Intestino medio.",nd:"ile"},
+ {id:"m-ciego",n:"Ciego y apéndice",c:"ams",a:"Ileocólica: cecales anterior y posterior, apendicular.",v:"Vena ileocólica → mesentérica superior.",e:"Intestino medio.",nd:"apx"},
+ {id:"m-asc",n:"Colon ascendente",c:"ams",a:"Cólica derecha y rama cólica de la ileocólica.",v:"Vena mesentérica superior.",e:"Intestino medio.",nd:"cd"},
+ {id:"m-tr1",n:"Transverso, 2/3 proximales",c:"ams",a:"Cólica media.",v:"Vena mesentérica superior.",e:"Intestino medio.",nd:"cm"},
+ {id:"m-tr2",n:"Transverso, 1/3 distal y ángulo esplénico",c:"ami",a:"Rama ascendente de la cólica izquierda. Arco de Riolano y arteria marginal conectan con la cólica media.",v:"Vena mesentérica inferior → esplénica.",e:"Intestino posterior. Punto de Griffiths: zona límite, vulnerable a isquemia.",nd:"cia"},
+ {id:"m-desc",n:"Colon descendente",c:"ami",a:"Cólica izquierda (rama descendente) y sigmoideas altas.",v:"Vena mesentérica inferior.",e:"Intestino posterior.",nd:"cid"},
+ {id:"m-sig",n:"Sigmoides",c:"ami",a:"Arterias sigmoideas.",v:"Vena mesentérica inferior.",e:"Intestino posterior. Menor diámetro y mayor presión: divertículos.",nd:"sig"},
+ {id:"m-rec",n:"Recto",c:"ami",a:"Rectal superior (AMI), rectal media (ilíaca interna) y rectal inferior (pudenda interna).",v:"Arriba de la línea pectínea → porta; abajo → cava. Anastomosis portocava (hemorroides).",e:"Intestino posterior (por arriba de la línea pectínea). Punto de Sudeck en la unión rectosigmoidea.",nd:"rs"}
+];
+
+/* Tablas rápidas */
+const TABLES=[
+ {t:"Irrigación por órgano",h:["Órgano","Arterias","Tronco"],r:[
+  ["Esófago abdominal","Gástrica izquierda","tc"],
+  ["Estómago, curvatura menor","Gástrica izquierda + gástrica derecha","tc"],
+  ["Estómago, curvatura mayor","Gastroomental izquierda + derecha","tc"],
+  ["Fondo gástrico","Gástricas cortas","tc"],
+  ["Hígado","Hepática propia (der. e izq.) + vena porta","tc"],
+  ["Vesícula","Cística (de la hepática derecha)","tc"],
+  ["Duodeno proximal","Gastroduodenal, pancreaticoduodenales sup.","tc"],
+  ["Cabeza del páncreas","Pancreaticoduodenales sup. (celíaco) e inf. (AMS)","mix"],
+  ["Cuerpo y cola del páncreas","Pancreática dorsal, magna y de la cola","tc"],
+  ["Yeyuno e íleon","Yeyunales e ileales","ams"],
+  ["Ciego y apéndice","Ileocólica (cecales, apendicular)","ams"],
+  ["Colon ascendente","Cólica derecha, ileocólica","ams"],
+  ["Transverso 2/3 prox.","Cólica media","ams"],
+  ["Transverso 1/3 distal, descendente","Cólica izquierda","ami"],
+  ["Sigmoides","Sigmoideas","ami"],
+  ["Recto","Rectal sup. (AMI), media (il. interna), inf. (pudenda)","ami"]]},
+ {t:"Ramas de los troncos",h:["Tronco","Nivel","Ramas"],r:[
+  ["Tronco celíaco","T12","Gástrica izquierda · esplénica (pancreáticas, gástricas cortas, gastroomental izq.) · hepática común (gastroduodenal, hepática propia)"],
+  ["Mesentérica superior","L1","Pancreaticoduodenal inf. · yeyunales · ileales · ileocólica · cólica derecha · cólica media"],
+  ["Mesentérica inferior","L3","Cólica izquierda · sigmoideas · rectal superior"]],mono:1},
+ {t:"Capas del tubo digestivo",h:["Capa","Contiene"],r:[
+  ["Mucosa","Epitelio, lámina propia, muscular de la mucosa"],
+  ["Submucosa","Glándulas, vasos, nervios, plexo de Meissner"],
+  ["Muscular externa","Circular interna, longitudinal externa; plexo de Auerbach entre ellas"],
+  ["Serosa / adventicia","Conectivo ± peritoneo visceral"]]},
+ {t:"Células gástricas",h:["Célula","Secreta","Función"],r:[
+  ["Mucosa del cuello","Moco, HCO₃⁻","Barrera y amortiguador"],
+  ["Parietal","HCl, factor intrínseco","Activa pepsina; absorción de B12"],
+  ["Principal","Pepsinógeno, lipasa","Digiere proteínas y grasas"],
+  ["ECL","Histamina","Estimula ácido"],
+  ["D","Somatostatina","Inhibe ácido"],
+  ["G (antro)","Gastrina","Estimula ácido"],
+  ["Fondo","Grelina","Hambre"]]},
+ {t:"Porciones del duodeno",h:["Porción","Clave"],r:[
+  ["D1 superior","Bulbo; gastroduodenal por detrás; úlceras"],
+  ["D2 descendente","Papila mayor (ampolla de Vater) y menor"],
+  ["D3 horizontal","Pasa entre aorta y AMS"],
+  ["D4 ascendente","Flexura duodenoyeyunal, ligamento de Treitz"]]},
+ {t:"Yeyuno vs íleon",h:["","Yeyuno","Íleon"],r:[
+  ["Longitud","2.5 m (2/5)","3.5 m (3/5)"],
+  ["Arcadas","1–2 filas","3–5 filas"],
+  ["Vasos rectos","Largos","Cortos"],
+  ["Grasa mesentérica","Poca","Abundante"],
+  ["Absorción especial","—","B12, sales biliares"]]},
+ {t:"Medidas para memorizar",h:["Estructura","Dato"],r:[
+  ["Esófago","25 cm; hiato en T10"],["Estómago","1–1.5 L"],["Intestino delgado","6 m × 2.5 cm"],["Duodeno","25 cm"],["Intestino grueso","1.5 m × 6 cm"],["Ciego","5–8 cm"],["Recto","200 ml – 1 L"],["Vesícula","7–10 cm; 30–50 ml"],["Páncreas","12–15 cm; 98% exocrino"],["Saliva","1 L/día"],["Bilis","≈0.5 L/día"]],mono:1},
+ {t:"Epónimos",h:["Nombre","Qué es"],r:[
+  ["Auerbach","Plexo mientérico (entre capas musculares)"],["Meissner","Plexo submucoso"],["Stensen","Conducto parotídeo"],["Treitz","Ligamento de la flexura duodenoyeyunal"],["Winslow","Foramen omental"],["Vater","Ampolla hepatopancreática"],["Oddi","Esfínter de la ampolla"],["Wirsung","Conducto pancreático principal"],["Santorini","Conducto pancreático accesorio"],["Hartmann","Bolsa del cuello vesicular"],["Heister","Válvulas del cístico"],["Calot","Triángulo con la arteria cística"],["Houston","Válvulas del recto"],["Morgagni","Columnas y criptas anales"],["Riolano","Arco cólica media ↔ cólica izquierda"],["Drummond","Arteria marginal del colon"],["Kupffer","Macrófagos hepáticos"]]}
+];
+
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const NS="http://www.w3.org/2000/svg";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const strip=s=>String(s).replace(/<[^>]+>/g,"");
+const norm=s=>strip(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const store={get(k,d){try{const v=localStorage.getItem("anat2dig:"+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem("anat2dig:"+k,JSON.stringify(v))}catch(e){}}};
+const TOP=Object.fromEntries(T.map(t=>[t.id,t]));
+EXTRA.forEach(x=>{(TOP[x.t].q=TOP[x.t].q||[]).push(x.q)});
+const ND=Object.fromEntries(NODES.map(n=>[n.id,n]));
+const TRN={tc:"Tronco celíaco",ams:"Mesentérica superior",ami:"Mesentérica inferior",ili:"Ilíaca interna",ao:"Aorta",mix:"Celíaco + AMS"};
+const grayURL=n=>"https://commons.wikimedia.org/wiki/File:Gray"+n+".png";
+let done=new Set(store.get("done",[]));
+
+/* ---------- cabecera ---------- */
+const nq=T.reduce((a,t)=>a+(t.q?t.q.length:0),0)+DECK.length;
+$("#ov-n").textContent=T.length;
+const spine=$("#spine");
+SPINE.forEach((v,i)=>{const d=document.createElement("div");d.className="vert"+(v.k?" k":"");d.style.left=(4+i*(92/(SPINE.length-1)))+"%";d.innerHTML=`<i></i><em>${v.v}</em>${v.l?`<span>${esc(v.l)}</span>`:""}`;if(v.l)d.title=v.v+": "+v.l;spine.appendChild(d)});
+
+/* ---------- pestañas ---------- */
+const views=["study","irr","fc","tab","lam"];
+function show(v,push){if(!views.includes(v))v="study";$$(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.view===v));views.forEach(x=>{$("#v-"+x).hidden=x!==v});if(push){try{history.replaceState(null,"","#"+v)}catch(e){}}}
+$$(".tab").forEach(b=>b.addEventListener("click",()=>{show(b.dataset.view,true);window.scrollTo({top:0})}));
+const h0=(location.hash||"").slice(1); show(views.includes(h0)?h0:"study");
+
+/* ---------- lightbox ---------- */
+const lb=$("#lb");
+function openLB(src,cap){$("#lbI").src=src;$("#lbI").alt=cap;$("#lbC").textContent=cap;lb.hidden=false;$("#lbX").focus()}
+$("#lbX").onclick=()=>{lb.hidden=true};
+lb.addEventListener("click",e=>{if(e.target===lb||e.target.classList.contains("lb-stage"))lb.hidden=true});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!lb.hidden)lb.hidden=true});
+
+/* ---------- resumen ---------- */
+let unitFilter=null, query="";
+function topicHTML(t){
+  const hl=s=>{if(!query)return s;const q=query.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");return s.replace(new RegExp("(?![^<]*>)("+q+")","gi"),"<mark>$1</mark>")};
+  const dks=DECK.filter(d=>d.t===t.id);
+  let b=`<p class="sum">${hl(t.s)}</p><h4>Puntos clave</h4><ul class="keys">${t.k.map(k=>`<li>${hl(k)}</li>`).join("")}</ul>`;
+  if(t.p)b+=`<div class="perla"><strong>Perla</strong>${hl(t.p)}</div>`;
+  if(dks.length)b+=`<div class="dkbox"><strong>Así viene en tu mazo</strong>${dks.map(d=>`<p>${esc(d.q)} <b>→ ${esc(d.o[d.c])}</b></p>`).join("")}</div>`;
+  if(t.img){const o=OWN[t.img];b+=`<figure class="own"><button data-lb="${o[0]}" data-cap="${esc(o[1])}"><img src="${o[0]}" alt="${esc(o[1])}" loading="lazy"></button><figcaption>${esc(o[1])}. Toca para ampliar.</figcaption></figure>`}
+  const extras=[];
+  if(t.go)extras.push(`<button class="goto" data-go="${t.go}">Ver en el árbol arterial</button>`);
+  (t.g||[]).forEach(n=>extras.push(`<a class="gray-link" href="${grayURL(n)}" target="_blank" rel="noopener"><b>Gray ${n}</b>${esc(GRAY[n][0])}</a>`));
+  if(extras.length)b+=`<div class="row">${extras.join("")}</div>`;
+  b+=`<div class="row"><label class="btn" style="display:inline-flex;gap:8px;align-items:center"><input type="checkbox" id="dn-${t.id}" data-done="${t.id}" ${done.has(t.id)?"checked":""}> Lo domino</label></div>`;
+  return `<details class="topic" id="t-${t.id}"><summary><span class="chev"></span><span class="tt">${hl(esc(t.t))}</span>${t.irr?'<span class="tag irr">IRRIGACIÓN</span>':""}${dks.length?`<span class="tag dk hide-m">MAZO ${dks.length}</span>`:""}${done.has(t.id)?'<span class="done-pill">✓</span>':""}<span class="tag hide-m">${t.m}</span></summary><div class="body">${b}</div></details>`;
+}
+function renderStudy(){
+  const box=$("#units");let html="",n=0;const qn=norm(query);
+  UNITS.forEach(u=>{
+    if(unitFilter&&unitFilter!==u.id)return;
+    let ts=T.filter(t=>t.u===u.id);
+    if(qn)ts=ts.filter(t=>norm([t.t,t.s,t.k.join(" "),t.p||""].join(" ")).includes(qn));
+    if(!ts.length)return;n+=ts.length;
+    html+=`<section class="unit" id="${u.id}"><div class="unit-h"><h2>${esc(u.t)}</h2><span class="c">${ts.filter(t=>done.has(t.id)).length}/${ts.length}</span></div>${ts.map(topicHTML).join("")}</section>`;
+  });
+  box.innerHTML=html||`<div class="empty">Nada coincide con «${esc(query)}».</div>`;
+  if(qn)$$("#units details").forEach(d=>d.open=true);
+  renderSide();
+}
+function renderSide(){
+  const tot=T.length,dn=T.filter(t=>done.has(t.id)).length;
+  let h=`<h3>Progreso</h3><div class="prog">${dn}/${tot} temas dominados</div><div class="bar"><span style="width:${tot?dn/tot*100:0}%"></span></div>`;
+  UNITS.forEach(u=>{h+=`<h3>${esc(u.t)}</h3>`+T.filter(t=>t.u===u.id).map(t=>`<a href="#t-${t.id}" data-jump="${t.id}"><span class="dot ${done.has(t.id)?"on":""}"></span>${esc(t.t)}</a>`).join("")});
+  $("#side").innerHTML=h;
+}
+$("#uchips").innerHTML=`<button class="chip" aria-pressed="true" data-u="">Todo</button>`+UNITS.map(u=>`<button class="chip" aria-pressed="false" data-u="${u.id}">${esc(u.t)}</button>`).join("");
+$("#uchips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;unitFilter=b.dataset.u||null;$$("#uchips .chip").forEach(c=>c.setAttribute("aria-pressed",c===b));renderStudy()});
+let qt;$("#q").addEventListener("input",e=>{clearTimeout(qt);qt=setTimeout(()=>{query=e.target.value.trim();renderStudy()},160)});
+$("#openAll").onclick=()=>$$("#units details").forEach(d=>d.open=true);
+$("#closeAll").onclick=()=>$$("#units details").forEach(d=>d.open=false);
+document.addEventListener("change",e=>{const id=e.target.dataset&&e.target.dataset.done;if(!id)return;e.target.checked?done.add(id):done.delete(id);store.set("done",[...done]);const open=$$("#units details[open]").map(d=>d.id);renderStudy();open.forEach(i=>{const d=document.getElementById(i);if(d)d.open=true})});
+document.addEventListener("click",e=>{
+  const j=e.target.closest("[data-jump]");if(j){e.preventDefault();jumpTopic(j.dataset.jump);return}
+  const l=e.target.closest("[data-lb]");if(l){openLB(l.dataset.lb,l.dataset.cap);return}
+  const g=e.target.closest("[data-go]");if(g){show("irr",true);setMode("exp");select(g.dataset.go);$("#tree").scrollIntoView({behavior:"smooth",block:"center"});return}
+});
+function jumpTopic(id){show("study",true);if(unitFilter||query){unitFilter=null;query="";$("#q").value="";$$("#uchips .chip").forEach((c,i)=>c.setAttribute("aria-pressed",i===0));renderStudy()}const d=document.getElementById("t-"+id);if(d){d.open=true;d.scrollIntoView({behavior:"smooth",block:"start"})}}
+renderStudy();
+
+/* ---------- árbol arterial ---------- */
+const svg=$("#tree");
+const kids={};NODES.forEach(n=>{if(n.p)(kids[n.p]=kids[n.p]||[]).push(n.id)});
+const COL=182,ROW=25,GAP=18,X0=34,Y0=30;
+let cur=Y0,maxDepth=0;
+function lay(id,d){const n=ND[id];n.d=d;n.X=X0+d*COL;maxDepth=Math.max(maxDepth,d);const ch=kids[id]||[];
+  if(!ch.length){n.Y=cur;cur+=ROW;return}
+  ch.forEach((c,i)=>{if(id==="ao"&&i>0)cur+=GAP;lay(c,d+1)});
+  n.Y=id==="ao"?Y0:(ND[ch[0]].Y+ND[ch[ch.length-1]].Y)/2;}
+lay("ao",0);
+const W=X0+maxDepth*COL+30,H=cur+4;
+svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+const anc=id=>{const a=[];let n=ND[id];while(n){a.push(n.id);n=n.p?ND[n.p]:null}return a};
+const desc=id=>{const out=[];(kids[id]||[]).forEach(c=>{out.push(c,...desc(c))});return out};
+const el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e};
+const gE=el("g",{}),gH=el("g",{}),gN=el("g",{}),gT=el("g",{});
+const trunkTop=ND[kids.ao[0]].Y,trunkBot=ND[kids.ao[kids.ao.length-1]].Y;
+el("line",{x1:X0,y1:trunkTop-14,x2:X0,y2:trunkBot+12,class:"e t-ao","data-n":"ao","stroke-width":7},gE);
+const aoT=el("text",{x:X0-12,y:(trunkTop+trunkBot)/2,class:"big","text-anchor":"middle",transform:`rotate(-90 ${X0-12} ${(trunkTop+trunkBot)/2})`,"data-n":"ao"},gT);aoT.textContent="AORTA ABDOMINAL";
+const trunks=new Set(["ao","tc","ams","ami","ili"]);
+NODES.forEach(n=>{if(!n.p)return;const p=ND[n.p];
+  const d=n.p==="ao"?`M${p.X} ${n.Y} H${n.X}`:`M${p.X} ${p.Y} V${n.Y} H${n.X}`;
+  el("path",{d,class:"e t-"+n.tr,"data-n":n.id,"stroke-width":n.p==="ao"?4:2.4},gE);
+  el("path",{d,class:"hit","data-n":n.id},gH);
+  el("circle",{cx:n.X,cy:n.Y,r:kids[n.id]?5:4,class:"nd t-"+n.tr,"data-n":n.id},gN);
+  const tx=el("text",{x:n.X-7,y:n.Y-6,"text-anchor":"end",class:(trunks.has(n.id)?"big ":"lf ")+"","data-n":n.id},gT);tx.textContent=n.s;
+  if(n.lv){const lv=el("text",{x:n.X+8,y:n.Y+4,class:"big","data-n":n.id},gT);lv.textContent=n.lv;lv.style.fill="var(--muted)"}
+});
+const info=$("#info");
+function pill(tr){return `<span class="trunkpill p-${tr}">${TRN[tr]}</span>`}
+function defaultInfo(){info.innerHTML=`<p class="nm">Elige una arteria</p><p class="path">Toca una rama, una etiqueta o un punto del árbol. También puedes filtrar por órgano o tocar una anastomosis.</p>
+<dl><dt>Los tres troncos</dt><dd>${pill("tc")} T12 · intestino anterior</dd><dd>${pill("ams")} L1 · intestino medio</dd><dd>${pill("ami")} L3 · intestino posterior</dd>
+<dt>Límites que se preguntan</dt><dd>Anterior/medio: papila duodenal mayor (D2). Medio/posterior: unión de 2/3 proximales y 1/3 distal del transverso.</dd></dl>`}
+function clearHL(){svg.classList.remove("focus");$$("#tree .on").forEach(e=>e.classList.remove("on","sub"))}
+function hl(ids,subIds){clearHL();svg.classList.add("focus");const S=new Set(ids),U=new Set(subIds||[]);
+  $$("#tree [data-n]").forEach(e=>{const k=e.dataset.n;if(S.has(k))e.classList.add("on");else if(U.has(k))e.classList.add("on","sub")})}
+function select(id){const n=ND[id];if(!n)return;const a=anc(id),ds=desc(id);hl(a,ds);
+  const route=a.slice().reverse().map(k=>k===id?`<b>${esc(ND[k].s)}</b>`:esc(ND[k].s.charAt(0)+ND[k].s.slice(1).toLowerCase())).join(" → ");
+  const dk=DECK.filter(d=>d.n===id);const tps=T.filter(t=>t.go===id);
+  const ch=kids[id]||[];
+  info.innerHTML=`<div>${pill(n.tr)}${n.lv?` <span class="trunkpill p-ao">${n.lv}</span>`:""}</div><p class="nm">${esc(n.n)}</p><p class="path">${route}</p>
+<dl>${n.p&&n.p!=="ao"?`<dt>Origen</dt><dd>${esc(ND[n.p].n)}</dd>`:""}<dt>Irriga</dt><dd>${esc(n.i)}</dd>${n.x?`<dt>Perla</dt><dd>${esc(n.x)}</dd>`:""}
+${ch.length?`<dt>Ramas</dt><dd class="row">${ch.map(c=>`<button class="chip" data-sel="${c}">${esc(ND[c].s)}</button>`).join("")}</dd>`:""}
+${dk.length?`<dt>En tu mazo</dt>${dk.map(d=>`<dd>${esc(d.q)} <b>→ ${esc(d.o[d.c])}</b></dd>`).join("")}`:""}
+${tps.length?`<dt>Tema</dt><dd class="row">${tps.map(t=>`<button class="chip" data-jump="${t.id}">${esc(t.t)}</button>`).join("")}</dd>`:""}</dl>`;
+  $$("#orgchips .chip,#anachips .chip").forEach(c=>c.setAttribute("aria-pressed","false"));
+}
+info.addEventListener("click",e=>{const b=e.target.closest("[data-sel]");if(b)select(b.dataset.sel)});
+$("#orgchips").innerHTML=ORGANS.map(([k,l])=>`<button class="chip" aria-pressed="false" data-org="${k}">${l}</button>`).join("");
+$("#anachips").innerHTML=ANAST.map(a=>`<button class="chip" aria-pressed="false" data-an="${a.id}"><span class="sw" style="background:var(--art)"></span>${a.n}</button>`).join("");
+$("#orgchips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b||mode==="quiz")return;const k=b.dataset.org;const lab=ORGANS.find(o=>o[0]===k)[1];
+  const hit=NODES.filter(n=>n.o.includes(k));const ids=new Set();hit.forEach(n=>anc(n.id).forEach(a=>ids.add(a)));hl([...ids]);
+  $$("#orgchips .chip,#anachips .chip").forEach(c=>c.setAttribute("aria-pressed",c===b));
+  const byTr={};hit.forEach(n=>(byTr[n.tr]=byTr[n.tr]||[]).push(n));
+  info.innerHTML=`<p class="nm">${lab}</p><p class="path">${hit.length} arterias resaltadas en el árbol.</p><dl>${Object.keys(byTr).map(tr=>`<dt>${TRN[tr]}</dt><dd class="row">${byTr[tr].map(n=>`<button class="chip" data-sel="${n.id}">${esc(n.s)}</button>`).join("")}</dd>`).join("")}</dl>`});
+$("#anachips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b||mode==="quiz")return;const a=ANAST.find(x=>x.id===b.dataset.an);const ids=new Set();a.v.forEach(v=>anc(v).forEach(x=>ids.add(x)));hl([...ids]);
+  $$("#orgchips .chip,#anachips .chip").forEach(c=>c.setAttribute("aria-pressed",c===b));
+  info.innerHTML=`<span class="trunkpill p-ao">ANASTOMOSIS</span><p class="nm">${a.n}</p><dl><dt>Une</dt><dd>${esc(a.d)}</dd><dt>Arterias</dt><dd class="row">${a.v.map(v=>`<button class="chip" data-sel="${v}">${esc(ND[v].s)}</button>`).join("")}</dd></dl>`});
+
+/* modo examen en el árbol */
+let mode="exp",target=null,qs={ok:0,n:0},lock=false;
+const pool=NODES.filter(n=>!trunks.has(n.id)).map(n=>n.id);
+function setMode(m){mode=m;$("#mExp").setAttribute("aria-pressed",m==="exp");$("#mQuiz").setAttribute("aria-pressed",m==="quiz");$("#qbar").hidden=m!=="quiz";svg.classList.toggle("blind",m==="quiz");clearHL();$$("#tree text").forEach(t=>t.classList.remove("rev","ok","ko"));
+  $$("#orgchips .chip,#anachips .chip").forEach(c=>{c.setAttribute("aria-pressed","false");c.disabled=m==="quiz"});
+  if(m==="quiz"){qs={ok:0,n:0};nextQ()}else{target=null;defaultInfo()}}
+function nextQ(){lock=false;$$("#tree text").forEach(t=>t.classList.remove("rev","ok","ko"));clearHL();let t;do{t=pool[Math.floor(Math.random()*pool.length)]}while(t===target);target=t;
+  $("#qask").innerHTML=`Toca: <b>${esc(ND[t].n)}</b>`;$("#qsc").textContent=`${qs.ok}/${qs.n}`;
+  info.innerHTML=`<p class="nm">Practicar</p><p class="path">Los nombres están ocultos, salvo los troncos. Ubica la arteria que se pide tocando su rama. Pista: piensa primero de qué tronco sale.</p>`}
+function answer(id){if(lock||!target)return;lock=true;qs.n++;const ok=id===target;if(ok)qs.ok++;
+  const tt=$(`#tree text[data-n="${target}"]`);if(tt)tt.classList.add("rev","ok");
+  if(!ok){const tw=$(`#tree text[data-n="${id}"]`);if(tw)tw.classList.add("rev","ko")}
+  hl(anc(target));$("#qsc").textContent=`${qs.ok}/${qs.n}`;
+  const n=ND[target];info.innerHTML=`<p class="nm" style="color:var(--${ok?"good":"bad"})">${ok?"¡Correcto!":"Era otra"}</p>${ok?"":`<p class="path">Tocaste: ${esc(ND[id].n)}</p>`}<dl><dt>${esc(n.n)}</dt><dd>Sale de: ${esc(ND[n.p].n)}</dd><dd>Irriga: ${esc(n.i)}</dd></dl><button class="btn pri" id="qnext" style="margin-top:6px">Siguiente</button>`;
+  $("#qnext").onclick=nextQ;}
+$("#mExp").onclick=()=>setMode("exp");$("#mQuiz").onclick=()=>setMode("quiz");$("#qskip").onclick=()=>{if(mode==="quiz")nextQ()};
+$("#clr").onclick=()=>{if(mode==="quiz")nextQ();else{clearHL();defaultInfo();$$("#orgchips .chip,#anachips .chip").forEach(c=>c.setAttribute("aria-pressed","false"))}};
+svg.addEventListener("click",e=>{const t=e.target.closest("[data-n]");if(!t){if(mode==="exp"){clearHL();defaultInfo()}return}const id=t.dataset.n;
+  if(mode==="quiz"){if(!trunks.has(id))answer(id)}else select(id)});
+defaultInfo();
+
+/* ---------- mapa de territorios ---------- */
+const map=$("#map");
+const GEO={
+ "m-hig":{f:"M30 70 C30 25 150 12 262 22 C305 26 318 42 306 56 C276 84 214 112 146 126 C84 138 30 118 30 70 Z",l:[110,76,"Hígado"]},
+ "m-ves":{f:"M180 118 C190 112 214 116 216 130 C218 144 200 150 188 144 C178 138 174 124 180 118 Z",l:[172,142,"Vesícula","end"]},
+ "m-est":{f:"M330 56 C346 26 404 24 420 64 C436 110 416 166 364 180 C322 190 272 188 246 174 L240 154 C266 152 302 142 318 120 C328 102 322 78 330 56 Z",l:[372,112,"Estómago"]},
+ "m-eso":{s:"M338 4 L333 58",w:14,l:[352,24,"Esófago","start"]},
+ "m-bazo":{f:"M478 62 C504 66 512 104 504 140 C498 164 470 166 462 146 C452 120 456 66 478 62 Z",l:[484,186,"Bazo"]},
+ "m-panc":{f:"M204 204 C206 186 232 182 252 194 C292 208 366 194 414 182 C440 176 452 190 440 200 C400 218 330 226 290 230 C282 248 268 262 244 262 C218 262 202 238 204 204 Z",l:[362,214,"Páncreas"]},
+ "m-d1":{s:"M242 165 L206 165 C192 165 186 172 186 186 L186 214",w:16},
+ "m-d2":{s:"M186 214 L186 254 C186 270 198 276 214 276 L282 276 C294 276 300 268 300 256 L300 226",w:16,l:[176,256,"Duodeno","end"]},
+ "m-yey":{s:"M300 352 C360 340 420 350 420 372 C420 396 340 386 300 398 C258 410 250 428 300 432 C350 436 430 422 440 446",w:17,l:[292,350,"Yeyuno","end"]},
+ "m-ile":{s:"M440 446 C452 472 362 472 320 468 C270 464 200 472 196 450 C192 428 250 420 222 406 C192 394 162 422 160 452 C158 474 150 482 128 484",w:15,l:[176,512,"Íleon"]},
+ "m-ciego":{f:"M76 468 C76 446 124 446 126 468 L126 506 C126 528 76 528 76 506 Z",s2:"M86 524 C82 546 70 558 60 566",l:[28,592,"Ciego y apéndice","start"]},
+ "m-asc":{s:"M101 456 L101 334 C101 320 110 314 124 314",w:26,l:[66,395,"Ascendente","middle",-90]},
+ "m-tr1":{s:"M124 314 L372 314",w:26,l:[248,318,"Transverso · 2/3 prox."]},
+ "m-tr2":{s:"M372 314 L466 314 C482 314 490 322 490 338",w:26,l:[424,318,"1/3 distal"]},
+ "m-desc":{s:"M490 338 L490 470",w:26,l:[526,404,"Descendente","middle",90]},
+ "m-sig":{s:"M490 470 C490 522 430 502 396 514 C362 526 330 522 318 542",w:22,l:[440,548,"Sigmoides"]},
+ "m-rec":{s:"M318 542 L314 598",w:24,l:[338,590,"Recto","start"]}
+};
+const order=["m-hig","m-ves","m-eso","m-est","m-bazo","m-panc","m-d1","m-d2","m-yey","m-ile","m-ciego","m-asc","m-tr1","m-tr2","m-desc","m-sig","m-rec"];
+const mel=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||map).appendChild(e);return e};
+mel("path",{d:"M300 228 L300 340",fill:"none",stroke:"var(--muted)","stroke-width":1.5,"stroke-dasharray":"4 4"});
+const SG=Object.fromEntries(SEGS.map(s=>[s.id,s]));
+const labels=mel("g",{});
+order.forEach(id=>{const g=GEO[id],s=SG[id],c=s.c;const grp=mel("g",{class:"sg","data-s":id,tabindex:0,role:"button","aria-label":s.n});
+  map.insertBefore(grp,labels);
+  if(g.f)mel("path",{d:g.f,class:"f-"+c,"stroke-width":2},grp);
+  if(g.s){mel("path",{d:g.s,fill:"none",class:"s-"+c,"stroke-width":g.w,"stroke-linecap":"round"},grp);mel("path",{d:g.s,fill:"none",stroke:`var(--${c==="mix"?"ili":c}-soft)`,"stroke-width":g.w-5,"stroke-linecap":"round"},grp)}
+  if(g.s2){mel("path",{d:g.s2,fill:"none",class:"s-"+c,"stroke-width":8,"stroke-linecap":"round"},grp)}
+  if(g.l){const [x,y,t,an,rot]=g.l;const tx=mel("text",{x,y,"text-anchor":an||"middle"},labels);if(rot)tx.setAttribute("transform",`rotate(${rot} ${x} ${y})`);tx.textContent=t}
+});
+[["Papila",186,214,176,212,"end"],["Griffiths",490,330,506,300,"start"],["Sudeck",318,542,304,560,"end"]].forEach(([t,cx,cy,x,y,an])=>{mel("circle",{cx,cy,r:5,fill:"var(--panel)",stroke:"var(--bad)","stroke-width":2},labels);const tx=mel("text",{x,y,"text-anchor":an,class:"wm"},labels);tx.textContent=t});
+const minfo=$("#minfo");
+function mDefault(){minfo.innerHTML=`<p class="nm">Toca un segmento</p><dl><dt>Colores</dt><dd>${pill("tc")} intestino anterior</dd><dd>${pill("ams")} intestino medio</dd><dd>${pill("ami")} intestino posterior</dd><dd><span class="trunkpill p-ili">Celíaco + AMS</span> doble irrigación (páncreas)</dd><dt>Puntos rojos</dt><dd>Papila mayor (límite anterior/medio), puntos críticos de Griffiths y Sudeck.</dd></dl>`}
+function mSel(id){const s=SG[id];map.classList.add("focus");$$("#map .sg").forEach(g=>g.classList.toggle("on",g.dataset.s===id));
+  minfo.innerHTML=`<div><span class="trunkpill p-${s.c==="mix"?"ili":s.c}">${TRN[s.c]}</span></div><p class="nm">${esc(s.n)}</p><dl><dt>Arterias</dt><dd>${esc(s.a)}</dd><dt>Drenaje venoso</dt><dd>${esc(s.v)}</dd><dt>Origen embrionario y límites</dt><dd>${esc(s.e)}</dd></dl><button class="goto" data-go="${s.nd}" style="margin-top:4px">Ver en el árbol arterial</button>`}
+map.addEventListener("click",e=>{const g=e.target.closest(".sg");if(g)mSel(g.dataset.s);else{map.classList.remove("focus");mDefault()}});
+map.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("sg")){e.preventDefault();mSel(e.target.dataset.s)}});
+mDefault();
+
+/* ---------- flashcards ---------- */
+const CARDS=[];
+T.forEach(t=>(t.f||[]).forEach(([q,a])=>CARDS.push({q,a,u:t.u,irr:!!t.irr,t:t.id,src:t.t})));
+DECK.forEach(d=>CARDS.push({q:d.q,a:d.o[d.c],ex:d.e,u:TOP[d.t].u,irr:!!TOP[d.t].irr,t:d.t,dk:1,src:"Tu mazo"}));
+const FDECKS=[["all","Todas"],["irr","Irrigación"],...UNITS.map(u=>[u.id,u.t])];
+let fsel=store.get("fdeck","all");if(!FDECKS.some(f=>f[0]===fsel))fsel="all";let _x,pile=[],fi=0,flipped=false;
+function buildPile(){const f=fsel;pile=shuffle(CARDS.filter(c=>f==="all"||(f==="dk"&&c.dk)||(f==="irr"&&c.irr)||c.u===f));fi=0;flipped=false;drawCard()}
+function drawCard(){const c=pile[fi],card=$("#fcard");
+  if(!c){card.className="card";card.innerHTML=`<div><p class="q">¡Terminaste este mazo!</p><p class="counter">Toca «Barajar» para empezar otra vez.</p></div>`;$("#fcount").textContent="0 restantes";return}
+  $("#fcount").textContent=`${fi+1} / ${pile.length}`;
+  card.className="card"+(flipped?" back":"");
+  card.innerHTML=flipped?`<span class="lbl">RESPUESTA</span><div><p class="q">${esc(c.a)}</p>${c.ex?`<p class="ex">${esc(c.ex)}</p>`:""}</div><span class="hint">${esc(c.src)}</span>`:`<span class="lbl">${c.dk?"MAZO DEL PARCIAL":"PREGUNTA"}</span><p class="q">${esc(c.q)}</p><span class="hint">Toca para ver la respuesta</span>`}
+$("#fchips").innerHTML=FDECKS.map(([k,l])=>`<button class="chip" aria-pressed="${k===fsel}" data-f="${k}">${esc(l)}</button>`).join("");
+$("#fchips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;fsel=b.dataset.f;store.set("fdeck",fsel);$$("#fchips .chip").forEach(c=>c.setAttribute("aria-pressed",c===b));buildPile()});
+const flip=()=>{if(!pile[fi])return;flipped=!flipped;drawCard()};
+$("#fcard").addEventListener("click",flip);
+$("#fKnow").onclick=()=>{if(!pile[fi])return;pile.splice(fi,1);if(fi>=pile.length)fi=0;flipped=false;drawCard()};
+$("#fAgain").onclick=()=>{if(!pile[fi])return;pile.push(pile.splice(fi,1)[0]);if(fi>=pile.length)fi=0;flipped=false;drawCard()};
+$("#fPrev").onclick=()=>{if(!pile.length)return;fi=(fi-1+pile.length)%pile.length;flipped=false;drawCard()};
+$("#fShuf").onclick=buildPile;
+document.addEventListener("keydown",e=>{if($("#v-fc").hidden||e.target.tagName==="INPUT")return;if(e.key===" "){e.preventDefault();flip()}else if(e.key==="ArrowRight"){if(pile.length){fi=(fi+1)%pile.length;flipped=false;drawCard()}}else if(e.key==="ArrowLeft")$("#fPrev").click()});
+buildPile();
+
+/* ---------- examen ---------- */
+const QALL=[];
+DECK.forEach(d=>QALL.push({q:d.q,o:d.o,c:d.c,e:d.e,t:d.t,dk:1,irr:!!TOP[d.t].irr}));
+T.forEach(t=>(t.q||[]).forEach(([q,o,c,e])=>QALL.push({q,o,c,e,t:t.id,irr:!!t.irr})));
+let ex=null;
+function setup(){const cnt=k=>QALL.filter(q=>k==="all"||(k==="dk"&&q.dk)||(k==="irr"&&q.irr)).length;
+  $("#qz").innerHTML=`<div class="qcard setup"><h3>Arma tu examen</h3><p class="sum" style="color:var(--muted)">Preguntas de práctica sobre todo el temario. «Irrigación» se concentra en arterias, arcadas y territorios.</p>
+<div><h4 style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);margin:0 0 6px">TEMARIO</h4><div class="chips wrapy" id="exPool"><button class="chip" aria-pressed="true" data-k="irr">Irrigación (${cnt("irr")})</button><button class="chip" aria-pressed="false" data-k="all">Todo (${cnt("all")})</button></div></div>
+<div><h4 style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);margin:0 0 6px">PREGUNTAS</h4><div class="chips wrapy" id="exN"><button class="chip" aria-pressed="false" data-n="10">10</button><button class="chip" aria-pressed="true" data-n="20">20</button><button class="chip" aria-pressed="false" data-n="999">Todas</button></div></div>
+<div><button class="btn pri" id="exGo">Empezar</button></div></div>`;
+  const tog=s=>$(s).addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;$$(s+" .chip").forEach(c=>c.setAttribute("aria-pressed",c===b))});tog("#exPool");tog("#exN");
+  $("#exGo").onclick=()=>{const k=$("#exPool [aria-pressed=true]").dataset.k,n=+$("#exN [aria-pressed=true]").dataset.n;
+    const src=shuffle(QALL.filter(q=>k==="all"||(k==="dk"&&q.dk)||(k==="irr"&&q.irr))).slice(0,n);
+    ex={qs:src.map(q=>{const idx=q.o.map((_,i)=>i);const keep=q.o===VF||q.o.length<=2;const ord=keep?idx:shuffle(idx);return{...q,ord}}),i:0,ok:0,miss:[]};drawQ()}}
+function drawQ(){const q=ex.qs[ex.i];if(!q){result();return}
+  $("#qz").innerHTML=`<div class="qcard"><div class="qmeta"><span>Pregunta ${ex.i+1} de ${ex.qs.length}</span><span>${q.dk?"MAZO DEL PARCIAL":esc(TOP[q.t].t.toUpperCase())}</span><span>${ex.ok} correctas</span></div><div class="bar" style="margin-bottom:14px"><span style="width:${ex.i/ex.qs.length*100}%"></span></div><p class="qtext">${esc(q.q)}</p><div class="opts">${q.ord.map((oi,k)=>`<button class="opt" data-oi="${oi}"><span class="l">${"ABCDE"[k]}</span><span>${esc(q.o[oi])}</span></button>`).join("")}</div><div id="qx"></div></div>`;
+  $$(".opt").forEach(b=>b.onclick=()=>{const oi=+b.dataset.oi,ok=oi===q.c;if(ok)ex.ok++;else ex.miss.push(q);
+    $$(".opt").forEach(x=>{x.disabled=true;const v=+x.dataset.oi;if(v===q.c)x.classList.add("ok");else if(v===oi)x.classList.add("ko")});
+    $("#qx").innerHTML=`<div class="expl"><b class="${ok?"ok":"ko"}">${ok?"Correcto.":"Incorrecto."}</b> ${esc(q.e)}</div><div class="row" style="margin-top:12px"><button class="btn pri" id="qn">${ex.i+1<ex.qs.length?"Siguiente":"Ver resultado"}</button><button class="btn" data-jump="${q.t}">Repasar el tema</button></div>`;
+    $("#qn").onclick=()=>{ex.i++;drawQ();$("#qz").scrollIntoView({block:"start"})};$("#qn").focus()})}
+function result(){const n=ex.qs.length,p=Math.round(ex.ok/n*100);
+  $("#qz").innerHTML=`<div class="qcard setup"><p class="qmeta"><span>RESULTADO</span></p><p class="score">${p}%</p><p class="sum">${ex.ok} de ${n} correctas.${p>=80?" Vas muy bien.":p>=60?" Repasa los temas de abajo.":" Vale la pena repasar con las flashcards."}</p>
+${ex.miss.length?`<h4 style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);margin:6px 0 0">PARA REPASAR</h4><ul class="miss">${ex.miss.map(q=>`<li>${esc(q.q)}<br><b>${esc(q.o[q.c])}</b> · <a href="#t-${q.t}" data-jump="${q.t}">${esc(TOP[q.t].t)}</a></li>`).join("")}</ul>`:""}
+<div class="row"><button class="btn pri" id="exAgain">Otro examen</button></div></div>`;$("#exAgain").onclick=setup}
+
+/* ---------- tablas ---------- */
+$("#tables").innerHTML=TABLES.map(tb=>`<div class="tbl"><h3>${esc(tb.t)}</h3><div class="scroll"><table><thead><tr>${tb.h.map(h=>`<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${tb.r.map(r=>`<tr>${r.map((c,i)=>{if(tb.t==="Irrigación por órgano"&&i===2)return `<td><span class="k" style="background:var(--${c==="mix"?"ili":c})"></span>${TRN[c]}</td>`;return `<td${tb.mono&&i===1?' class="num"':""}>${esc(c)}</td>`}).join("")}</tr>`).join("")}</tbody></table></div></div>`).join("");
+
+/* ---------- láminas ---------- */
+$("#ownrow").innerHTML=Object.values(OWN).map(([src,cap])=>`<figure class="own"><button data-lb="${src}" data-cap="${esc(cap)}"><img src="${src}" alt="${esc(cap)}" loading="lazy"></button><figcaption>${esc(cap)}</figcaption></figure>`).join("");
+$("#plates").innerHTML=Object.entries(GRAY).map(([n,[c,u]])=>`<a class="plate" href="${grayURL(n)}" target="_blank" rel="noopener"><span class="fig">GRAY · FIG. ${n}</span><span class="cap">${esc(c)}</span><span class="use">${esc(u)}</span><span class="go">Abrir lámina ↗</span></a>`).join("");
+})();
+
+</script>
+
+</body></html>

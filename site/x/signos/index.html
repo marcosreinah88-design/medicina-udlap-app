@@ -1,0 +1,531 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Signos vitales y triadas</title>
+<link rel="stylesheet" href="../../fonts/g5adef43797.css">
+<style>
+/* Layout: monitor de cabecera. Barra superior tipo monitor de signos vitales, índice lateral fijo, temas apilados a la derecha. */
+:root{
+  --bg:#eef2f4; --panel:#ffffff; --sunk:#e2e8ec; --ink:#121a20; --muted:#52616b; --line:#cbd5dc;
+  --accent:#0f7a5a; --accent-soft:#d9f0e6; --film:#06100d; --film-ink:#e6edf1;
+  --good:#1d7a4a; --good-soft:#dcf1e5; --bad:#b3261e; --bad-soft:#f8dedb;
+  --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0b1014; --panel:#121a20; --sunk:#0f161b; --ink:#dfe7ec; --muted:#93a3ae; --line:#24323b;
+  --accent:#4fe0a6; --accent-soft:#10291f; --film:#030807; --film-ink:#e6edf1;
+  --good:#5fd394; --good-soft:#12291d; --bad:#ff8a80; --bad-soft:#2e1513; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b1014; --panel:#121a20; --sunk:#0f161b; --ink:#dfe7ec; --muted:#93a3ae; --line:#24323b;
+  --accent:#4fe0a6; --accent-soft:#10291f; --film:#030807; --film-ink:#e6edf1;
+  --good:#5fd394; --good-soft:#12291d; --bad:#ff8a80; --bad-soft:#2e1513; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;padding-bottom:env(safe-area-inset-bottom,0px)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+/* Cabecera tipo monitor */
+.top{background:var(--film);color:var(--film-ink);padding-inline:16px;padding-block:calc(18px + env(safe-area-inset-top,0px)) 0}
+.top-in{max-width:1180px;margin:0 auto;display:grid;gap:14px}
+.brand{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px}
+.brand h1{font-family:var(--display);font-weight:700;font-size:clamp(30px,5vw,44px);line-height:1;margin:0;letter-spacing:.01em;text-transform:uppercase;text-wrap:balance}
+.brand h1 span{color:#4fe0a6}
+.overlay{font-family:var(--mono);font-size:11.5px;color:#9fb0bb;line-height:1.5;text-align:right}
+.overlay b{color:#4fe0a6;font-weight:500}
+.mon{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:stretch}
+@media (max-width:640px){.mon{grid-template-columns:minmax(0,1fr)}}
+.ecg{height:64px;border:1px solid #13261f;border-radius:4px;background:repeating-linear-gradient(90deg,transparent 0 19px,#0d1d17 19px 20px),repeating-linear-gradient(0deg,transparent 0 15px,#0d1d17 15px 16px);overflow:hidden}
+.ecg svg{display:block;width:100%;height:100%}
+.ecg path{fill:none;stroke:#4fe0a6;stroke-width:2;stroke-linejoin:round;stroke-dasharray:1400;stroke-dashoffset:1400;animation:trace 3.2s linear infinite}
+@keyframes trace{to{stroke-dashoffset:0}}
+.vit{display:grid;grid-template-columns:repeat(5,auto);gap:4px 14px;font-family:var(--mono)}
+@media (max-width:640px){.vit{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.vit div{display:grid;line-height:1.05}
+.vit small{font-size:10px;color:#7d8f99;letter-spacing:.05em}
+.vit b{font-size:clamp(17px,4vw,24px);font-weight:500;white-space:nowrap}
+.v-fc{color:#4fe0a6}.v-pa{color:#ff6b6b}.v-sp{color:#5cc8ff}.v-fr{color:#f3f3f3}.v-t{color:#f0b03c}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tab{background:none;border:0;border-bottom:3px solid transparent;color:#9fb0bb;padding:10px 14px;font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{color:#fff;border-color:#4fe0a6}
+.tab:hover{color:#fff}
+
+/* Contenedor */
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:24px 64px}
+.study{display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:860px){.study{grid-template-columns:minmax(0,1fr)}.side{display:none}}
+.side{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto;padding-right:4px}
+.side h3{font-family:var(--display);font-size:15px;letter-spacing:.06em;text-transform:uppercase;margin:16px 0 4px;color:var(--muted);font-weight:600}
+.side a{display:flex;gap:8px;align-items:center;padding:3px 6px;border-radius:4px;color:var(--ink);text-decoration:none;font-size:13.5px;line-height:1.35}
+.side a:hover{background:var(--sunk)}
+.dot{flex:0 0 8px;height:8px;border-radius:50%;border:1.5px solid var(--line)}
+.dot.on{background:var(--good);border-color:var(--good)}
+.prog{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:4px}
+.bar{height:6px;background:var(--sunk);border-radius:3px;overflow:hidden;margin-top:6px}
+.bar>span{display:block;height:100%;background:var(--good)}
+
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.search{flex:1 1 260px;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink);font:inherit;font-size:16px}
+.btn{border:1px solid var(--line);background:var(--panel);padding:8px 12px;border-radius:6px;cursor:pointer;font-size:14px}
+.btn:hover{border-color:var(--accent)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--bg);font-weight:600}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:5px 12px;font-size:13px;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+.unit{margin-bottom:34px}
+.unit-h{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:12px}
+.unit-h h2{font-family:var(--display);font-size:28px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;margin:0;line-height:1.05;text-wrap:balance}
+.unit-h .n{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.unit-h .c{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap}
+
+details.topic{background:var(--panel);border:1px solid var(--line);border-radius:6px;margin-bottom:8px}
+details.topic[open]{border-color:var(--muted)}
+details.topic>summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:center;padding:12px 14px}
+details.topic>summary::-webkit-details-marker{display:none}
+.chev{flex:0 0 auto;width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);transition:transform .15s}
+details[open] .chev{transform:rotate(45deg)}
+.tt{font-weight:600;font-size:16px;line-height:1.3;flex:1;min-width:0}
+.mod{font-family:var(--mono);font-size:10.5px;color:var(--muted);border:1px solid var(--line);padding:1px 6px;border-radius:3px;white-space:nowrap}
+.done-pill{font-family:var(--mono);font-size:10.5px;color:var(--good);background:var(--good-soft);padding:1px 6px;border-radius:3px}
+.body{padding:2px 18px 16px 36px;display:grid;gap:12px}
+@media (max-width:560px){.body{padding:2px 14px 14px 14px}.mod{display:none}}
+.sum{margin:0;max-width:72ch}
+.body h4{font-family:var(--display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:4px 0 0;font-weight:600}
+.keys{margin:0;padding-left:18px;display:grid;gap:6px;max-width:78ch}
+.keys li::marker{color:var(--accent)}
+.keys b{font-weight:600}
+.perla{background:var(--accent-soft);border-left:3px solid var(--accent);padding:10px 12px;border-radius:0 4px 4px 0;font-size:14px;max-width:78ch}
+.perla strong{font-family:var(--display);letter-spacing:.06em;text-transform:uppercase;font-size:13px;color:var(--accent);margin-right:6px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.src{font-size:12.5px;color:var(--muted)}
+.src a{color:var(--muted)}
+.refs{margin:0;padding-left:18px;display:grid;gap:4px;font-size:13px;color:var(--muted);max-width:78ch}
+.refs a{color:var(--accent)}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+mark{background:var(--accent-soft);color:inherit;border-radius:2px}
+
+/* Flashcards */
+.fc-wrap{max-width:720px;margin:0 auto;display:grid;gap:14px}
+.card{min-height:250px;border-radius:8px;border:1px solid var(--line);background:var(--panel);display:grid;place-items:center;padding:28px 24px;text-align:center;cursor:pointer;position:relative}
+.card.back{background:var(--film);color:var(--film-ink);border-color:var(--film)}
+.card .lbl{position:absolute;top:10px;left:12px;right:12px;text-align:left;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.card.back .lbl{color:#9fb0bb}
+.card .q{font-size:clamp(18px,2.6vw,22px);font-weight:500;line-height:1.4;max-width:46ch}
+.card .hint{position:absolute;bottom:10px;font-size:12px;color:var(--muted)}
+.card.back .hint{color:#9fb0bb}
+.fc-ctrl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.counter{text-align:center;font-family:var(--mono);font-size:13px;color:var(--muted)}
+
+/* Examen */
+.qz{max-width:760px;margin:0 auto;display:grid;gap:14px}
+.qcard{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px}
+.qmeta{display:flex;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:12px;color:var(--muted);margin-bottom:10px;flex-wrap:wrap}
+.qtext{font-size:18px;font-weight:500;margin:0 0 14px;line-height:1.4}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--bg);padding:11px 14px;border-radius:6px;cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+.opt:hover:not([disabled]){border-color:var(--accent)}
+.opt .l{font-family:var(--mono);font-size:13px;color:var(--muted);padding-top:1px}
+.opt.ok{border-color:var(--good);background:var(--good-soft)}
+.opt.ko{border-color:var(--bad);background:var(--bad-soft)}
+.opt[disabled]{cursor:default}
+.expl{margin-top:14px;padding:12px 14px;border-radius:6px;background:var(--sunk);font-size:14px}
+.expl b.ok{color:var(--good)} .expl b.ko{color:var(--bad)}
+.score{font-family:var(--display);font-size:64px;font-weight:700;line-height:1;margin:0}
+.miss{margin:0;padding-left:18px;display:grid;gap:8px}
+
+/* Tablas */
+.tables{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:18px}
+.tbl{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 16px;min-width:0}
+.tbl h3{font-family:var(--display);font-size:20px;text-transform:uppercase;letter-spacing:.03em;margin:0 0 8px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;color:var(--muted);letter-spacing:.04em}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.note{font-size:12.5px;color:var(--muted);margin:8px 0 0}
+.foot{font-size:12.5px;color:var(--muted);margin-top:30px;border-top:1px solid var(--line);padding-top:12px}
+</style></head><body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <h1>Signos vitales <span>·</span> y triadas</h1>
+      <div class="overlay">PX: Marcos · MED 7º · ENARM<br>TEMAS: <b id="ov-n">0</b> · <b>3</b> bloques<br>FUENTE: PubMed</div>
+    </div>
+    <div class="mon">
+      <div class="ecg" aria-hidden="true"><svg viewBox="0 0 600 64" preserveAspectRatio="none"><path d="M0 40 H40 l6 -4 l6 4 H70 l4 6 l6 -38 l6 46 l4 -14 H112 q12 -12 24 0 H190 l6 -4 l6 4 H220 l4 6 l6 -38 l6 46 l4 -14 H262 q12 -12 24 0 H340 l6 -4 l6 4 H370 l4 6 l6 -38 l6 46 l4 -14 H412 q12 -12 24 0 H490 l6 -4 l6 4 H520 l4 6 l6 -38 l6 46 l4 -14 H562 q12 -12 24 0 H600"/></svg></div>
+      <div class="vit" aria-label="Valores normales de referencia en el adulto">
+        <div><small>FC lpm</small><b class="v-fc">60–100</b></div>
+        <div><small>PA mmHg</small><b class="v-pa">&lt;120/80</b></div>
+        <div><small>SpO₂ %</small><b class="v-sp">≥95</b></div>
+        <div><small>FR rpm</small><b class="v-fr">12–20</b></div>
+        <div><small>T °C</small><b class="v-t">36–37.5</b></div>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-view="study">Resumen</button>
+      <button class="tab" role="tab" aria-selected="false" data-view="fc">Flashcards</button>
+      <button class="tab" role="tab" aria-selected="false" data-view="quiz">Examen</button>
+      <button class="tab" role="tab" aria-selected="false" data-view="tab">Tablas rápidas</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="v-study">
+    <div class="study">
+      <aside class="side" id="side"></aside>
+      <div style="min-width:0">
+        <div class="tools">
+          <input id="q" class="search" type="search" placeholder="Buscar: Korotkoff, Beck, Kussmaul, CO…" aria-label="Buscar en el resumen">
+          <button class="btn" id="openAll">Abrir todo</button>
+          <button class="btn" id="closeAll">Cerrar todo</button>
+        </div>
+        <div class="chips" id="uchips"></div>
+        <div id="units"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-fc" hidden>
+    <div class="fc-wrap">
+      <div class="chips" id="fchips"></div>
+      <div class="counter" id="fcount"></div>
+      <div class="card" id="fcard" tabindex="0" role="button" aria-label="Voltear tarjeta"></div>
+      <div class="fc-ctrl">
+        <button class="btn" id="fAgain">Repasar otra vez</button>
+        <button class="btn pri" id="fKnow">La sé</button>
+        <button class="btn" id="fShuf">Barajar</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-quiz" hidden>
+    <div class="qz" id="qz"></div>
+  </section>
+
+  <section id="v-tab" hidden>
+    <div class="tables" id="tables"></div>
+  </section>
+
+  <p class="foot">Investigado en PubMed (octubre 2026); cada tema enlaza sus artículos. Lo marcado como «complemento» no salió de esas fuentes: los cortes mexicanos de HTA (NOM-030 / GPC, confírmalos con la versión vigente) y la lista de otras triadas, que es conocimiento estándar de libro de texto.</p>
+</main>
+
+<script>
+const PM=(id,t)=>`<a href="https://pubmed.ncbi.nlm.nih.gov/${id}/" target="_blank" rel="noopener">${t}</a> <span class="src">PMID ${id}</span>`;
+const UNITS=[
+ {id:"u1",n:"01",t:"Cómo tomarlos y por qué importan"},
+ {id:"u2",n:"02",t:"Escalas que combinan signos"},
+ {id:"u3",n:"03",t:"Triadas diagnósticas"}
+];
+/* t: título · m: etiqueta · s: resumen · k: puntos clave · p: perla · r: fuentes · f: flashcards [pregunta, respuesta] · q: [pregunta, opciones, índice correcto, explicación] */
+const T=[
+/* ---------- U1 ---------- */
+{id:"pa",u:"u1",t:"Presión arterial: técnica correcta",m:"PA",
+s:"La PA es el signo vital con más errores de técnica, y casi todos la suben falsamente. La declaración científica de la AHA (2019) estandariza la medición en consultorio.",
+k:["<b>Preparar</b>: sin cafeína, tabaco ni ejercicio 30 min antes; vejiga vacía; <b>5 min de reposo</b> sentado.",
+"<b>Postura</b>: espalda apoyada, pies en el piso, <b>piernas sin cruzar</b>, sin hablar.",
+"<b>Brazo descubierto y apoyado a la altura del corazón</b> (mitad del esternón). Brazo colgando o sobre las piernas sube la lectura.",
+"<b>Manguito</b>: la cámara cubre 75–100% de la circunferencia del brazo; borde inferior 2–3 cm sobre la fosa antecubital. <b>Manguito chico = PA falsamente alta.</b>",
+"<b>Auscultatorio</b>: estimar la PAS palpando el radial, inflar 20–30 mmHg por encima, desinflar a <b>2–3 mmHg/s</b>. <b>Korotkoff I = sistólica; Korotkoff V (desaparición) = diastólica.</b> Cuidado con la brecha auscultatoria.",
+"<b>Primera consulta: ambos brazos</b>; se usa el de mayor valor. Diferencia constante &gt;10 mmHg sugiere enfermedad vascular (estenosis subclavia, coartación, disección).",
+"<b>Diagnóstico con ≥2 lecturas en ≥2 ocasiones</b>, idealmente confirmado con MAPA o automonitoreo (descarta HTA de bata blanca y enmascarada)."],
+p:"El ensayo CORRECT BP mostró que las fallas habituales de técnica (manguito inadecuado, brazo sin apoyo, sin reposo) elevan las cifras de forma significativa y llevan a sobrediagnóstico.",
+r:[PM(30827125,"Muntner P, et al. Measurement of Blood Pressure in Humans: AHA Scientific Statement. Hypertension 2019"),PM(37745022,"CORRECT BP: técnica rutinaria vs recomendada por la AHA, ensayo aleatorizado")],
+f:[["¿Qué ruido de Korotkoff marca la sistólica y cuál la diastólica?","Fase I (aparición) = sistólica; fase V (desaparición) = diastólica."],["Un manguito demasiado pequeño hace que la PA…","Salga falsamente alta."],["¿Cuánto reposo antes de medir la PA?","5 minutos sentado, espalda apoyada, pies en el piso."],["¿A qué velocidad se desinfla el manguito?","2–3 mmHg por segundo."],["¿Qué haces en la primera consulta con los dos brazos?","Medir ambos y usar el de mayor valor."]],
+q:[["Un paciente con brazo grueso se mide con manguito estándar pequeño. La lectura será…",["Falsamente baja","Falsamente alta","Igual","Imposible de medir"],1,"El manguito chico requiere más presión para ocluir la arteria: sobreestima la PA."],
+["¿Qué fase de Korotkoff corresponde a la PA diastólica en el adulto?",["I","II","IV","V"],3,"La fase V (desaparición de los ruidos) es la diastólica."],
+["¿Cuál de estas condiciones NO es correcta al medir la PA?",["Brazo apoyado a nivel del corazón","Piernas cruzadas para mayor comodidad","Espalda apoyada","Vejiga vacía"],1,"Cruzar las piernas eleva la PA; deben estar sin cruzar y con pies en el piso."]]},
+
+{id:"pa-clin",u:"u1",t:"Presión arterial: clasificación e importancia",m:"PA",
+s:"La HTA es el principal factor de riesgo modificable de EVC, cardiopatía isquémica, insuficiencia cardiaca y ERC. La guía ACC/AHA 2017 bajó el umbral a 130/80 y la guía 2025 mantuvo las categorías.",
+k:["<b>ACC/AHA</b>: normal &lt;120 y &lt;80 · elevada 120–129 y &lt;80 · estadio 1 130–139 o 80–89 · estadio 2 ≥140 o ≥90 · crisis &gt;180 y/o &gt;120.",
+"<b>México (complemento, NOM-030/GPC)</b>: HAS desde <b>≥140/90</b>; óptima &lt;120/80, normal 120–129/80–84, fronteriza 130–139/85–89.",
+"<b>Presión de pulso</b> (PAS − PAD): amplia en insuficiencia aórtica, hipertiroidismo, rigidez arterial y Cushing (HIC); estrecha en taponamiento, estenosis aórtica y choque hipovolémico.",
+"<b>PAM</b> = PAD + ⅓(PAS − PAD). Meta ≥65 mmHg en choque séptico.",
+"<b>Pulso paradójico</b>: caída de PAS &gt;10 mmHg en inspiración (taponamiento, asma grave, EPOC)."],
+p:"En el ENARM la clasificación que cuenta es la mexicana (GPC/NOM), aunque te pueden preguntar la de la AHA. Revisa cuál pide el caso.",
+r:[PM(40811516,"2025 AHA/ACC Guideline for High Blood Pressure in Adults"),PM(29574983,"The 2017 high blood pressure clinical practice guideline: the old and the new")],
+f:[["Según ACC/AHA, ¿desde qué cifra es HTA estadio 1?","PAS 130–139 o PAD 80–89."],["¿Cómo se calcula la PAM?","PAD + ⅓ (PAS − PAD)."],["¿Qué es el pulso paradójico?","Caída de la PAS &gt;10 mmHg durante la inspiración."],["Presión de pulso estrecha: piensa en…","Taponamiento, estenosis aórtica o choque hipovolémico."]],
+q:[["PA 134/78 mmHg en varias tomas correctas. Según ACC/AHA es…",["Normal","Elevada","HTA estadio 1","HTA estadio 2"],2,"Basta con que la PAS esté entre 130 y 139 para estadio 1."],
+["PA 120/80. ¿Cuál es la PAM?",["~87 mmHg","~93 mmHg","~100 mmHg","~80 mmHg"],1,"80 + (40/3) ≈ 93 mmHg."],
+["Presión de pulso amplia con pulso saltón sugiere…",["Estenosis aórtica","Insuficiencia aórtica","Taponamiento","Choque hipovolémico"],1,"La insuficiencia aórtica da PP amplia y pulso de Corrigan."]]},
+
+{id:"orto",u:"u1",t:"Hipotensión ortostática y POTS",m:"PA",
+s:"Se mide la PA y la FC acostado tras 5 min y luego de pie, dentro de los primeros 3 minutos.",
+k:["<b>Hipotensión ortostática</b>: caída de <b>≥20 mmHg de PAS o ≥10 mmHg de PAD</b> en los primeros 3 min de pie.",
+"Si la FC sube de forma compensadora: pensar en <b>hipovolemia</b> o fármacos.",
+"Si la PA cae y la FC <b>casi no sube</b>: causa <b>neurogénica</b> (disautonomía por DM, Parkinson, atrofia multisistémica).",
+"<b>POTS</b>: aumento de FC <b>≥30 lpm</b> (≥40 en 12–19 años) al ponerse de pie, sin hipotensión ortostática."],
+r:[PM(28807522,"Orthostatic Hypotension: A Practical Approach to Investigation and Management")],
+f:[["Criterio de hipotensión ortostática","Caída ≥20 mmHg PAS o ≥10 mmHg PAD en 3 min de pie."],["Criterio de POTS en adulto","Aumento de FC ≥30 lpm de pie, sin hipotensión."]],
+q:[["Adulto mayor diabético: PA 130/80 acostado y 104/72 de pie, FC 72 → 75. Lo más probable es…",["Hipovolemia","Hipotensión ortostática neurogénica","POTS","Medición normal"],1,"Cae 26 mmHg la PAS sin taquicardia compensadora: neurogénica (neuropatía autonómica)."]]},
+
+{id:"fc",u:"u1",t:"Frecuencia cardiaca y pulso",m:"FC",
+s:"La FC alta es de los signos más tempranos de hipovolemia, sepsis, dolor, fiebre, TEP e hipertiroidismo. Además de la frecuencia, el pulso da ritmo, amplitud y simetría.",
+k:["Palpar el <b>radial con 2–3 dedos</b> (índice y medio), nunca con el pulgar (tiene pulso propio).",
+"<b>Ritmo regular</b>: 30 s × 2 es aceptable. <b>Ritmo irregular: 60 s completos</b> y auscultar el pulso apical al mismo tiempo.",
+"<b>Déficit de pulso</b> = FC apical − FC radial. Típico de <b>fibrilación auricular</b>.",
+"Comparar ambos lados y radial vs femoral (retraso radio-femoral en coartación).",
+"Normal adulto <b>60–100 lpm</b>. Bradicardia: atletas, β-bloqueadores, bloqueos AV, hipotiroidismo, hipotermia y <b>HIC (Cushing)</b>.",
+"FC de reposo alta predice mortalidad: cada <b>+10 lpm</b> se asoció a ~9% más mortalidad total y ~8% más cardiovascular en un metaanálisis poblacional."],
+p:"Pulsos con nombre: parvus et tardus = estenosis aórtica · saltón/Corrigan = insuficiencia aórtica · bisferiens = doble lesión aórtica o MCH · alternante = disfunción grave del VI · paradójico = taponamiento.",
+r:[PM(26598376,"Zhang D, et al. Resting heart rate and all-cause and cardiovascular mortality: a meta-analysis")],
+f:[["¿Por qué no se toma el pulso con el pulgar?","Porque el pulgar tiene pulso propio y confunde la cuenta."],["¿Qué es el déficit de pulso y en qué se ve?","FC apical − FC radial; típico de fibrilación auricular."],["Pulso parvus et tardus","Estenosis aórtica."],["Pulso alternante","Disfunción grave del ventrículo izquierdo."],["¿Cuánto tiempo cuentas un pulso irregular?","60 segundos completos, con auscultación apical."]],
+q:[["Paciente con FA: FC apical 132, radial 108. El déficit de pulso es…",["0","24","108","240"],1,"132 − 108 = 24 lpm."],
+["Pulso débil y de ascenso lento sugiere…",["Insuficiencia aórtica","Estenosis aórtica","Hipertiroidismo","Fiebre"],1,"Parvus et tardus = estenosis aórtica."],
+["Retraso radio-femoral en un adolescente hipertenso sugiere…",["Feocromocitoma","Coartación de aorta","Hiperaldosteronismo","Estenosis renal"],1,"La coartación retrasa y disminuye el pulso femoral."]]},
+
+{id:"fr",u:"u1",t:"Frecuencia respiratoria",m:"FR",
+s:"Es el signo vital más olvidado y el que mejor anticipa el deterioro: la taquipnea aparece horas antes del paro cardiaco y del ingreso no planeado a UCI.",
+k:["<b>Contar 60 s completos</b>; contar 15 s y multiplicar tiene mucho error.",
+"<b>Que el paciente no sepa que lo cuentas</b> (cambia su patrón): hazlo mientras «sigues tomando el pulso».",
+"Una inspiración + una espiración = 1. Valora profundidad, ritmo, músculos accesorios, tiraje y aleteo nasal.",
+"Normal adulto <b>12–20 rpm</b>. FR &gt;24–27 se asocia a paro cardiaco y deterioro.",
+"<b>FR ≥22</b> es criterio de <b>qSOFA</b>; también está en NEWS, CURB-65 y SIRS (&gt;20).",
+"Taquipnea con pulmones limpios: busca <b>acidosis metabólica</b> (CAD, sepsis, salicilatos)."],
+p:"Patrones: Kussmaul (profunda y rápida) = cetoacidosis/acidosis metabólica · Cheyne-Stokes (crece-decrece con apneas) = IC, lesión neurológica · Biot (irregular con apneas) = lesión de bulbo/protuberancia · bradipnea = opioides, HIC, hipotermia.",
+r:[PM(18513176,"Cretikos MA, et al. Respiratory rate: the neglected vital sign. Med J Aust 2008"),PM(29262235,"Abnormal Respirations (patrones respiratorios)")],
+f:[["¿Por qué no debe saber el paciente que le cuentas la FR?","Porque cambia voluntariamente su patrón respiratorio."],["Respiración de Kussmaul","Profunda y rápida; cetoacidosis o acidosis metabólica."],["Respiración de Cheyne-Stokes","Ciclos crecientes-decrecientes con apneas; IC o lesión neurológica."],["FR de qSOFA","≥22 rpm."]],
+q:[["Joven con DM1, glucosa 480, respiración profunda y rápida. El patrón es…",["Cheyne-Stokes","Biot","Kussmaul","Apnéustica"],2,"Kussmaul compensa la acidosis metabólica de la CAD."],
+["¿Cuál es el signo vital que mejor predice paro cardiaco intrahospitalario?",["Temperatura","FR elevada","SpO₂","PA diastólica"],1,"La taquipnea precede al paro y al ingreso a UCI (Cretikos 2008)."],
+["Respiración irregular con pausas de apnea, sin patrón, en lesión pontina:",["Kussmaul","Biot (atáxica)","Cheyne-Stokes","Normal"],1,"Biot = atáxica, lesión de tallo; mal pronóstico."]]},
+
+{id:"temp",u:"u1",t:"Temperatura",m:"T",
+s:"La temperatura central (arteria pulmonar, esófago, vejiga, recto) es más exacta que la periférica. Los termómetros periféricos no tienen exactitud clínicamente aceptable cuando la decisión depende del dato.",
+k:["<b>Oral</b>: esperar 15–30 min tras comer, beber o fumar; bajo la lengua, boca cerrada.",
+"<b>Axilar</b>: axila seca, brazo pegado; lee ~0.5 °C menos que la oral. <b>Rectal</b>: ~0.5 °C más que la oral.",
+"Rangos normales reportados: oral 33.2–38.2 · rectal 34.4–37.8 · timpánica 35.4–37.8 · axilar 35.5–37.0 °C.",
+"Usa <b>siempre el mismo sitio</b> para comparar en el tiempo y anota cuál.",
+"<b>Fiebre</b>: ≥38.3 °C en una toma o ≥38.0 °C sostenida. <b>Hipotermia</b>: &lt;35 °C.",
+"<b>Adultos mayores</b>: temperatura basal más baja y fiebre atenuada; un 37.5 °C puede ser fiebre real."],
+p:"Adulto mayor séptico puede estar afebril o hipotérmico. En neutropenia o sepsis, confirma con termómetro central.",
+r:[PM(12000664,"Sund-Levander M, et al. Normal oral, rectal, tympanic and axillary body temperature: systematic review"),PM(19886869,"Systematic review of body temperature variations in older people"),PM(26571241,"Niven DJ, et al. Accuracy of peripheral thermometers: systematic review and meta-analysis")],
+f:[["Axilar vs oral vs rectal","Axilar ~0.5 °C menos que oral; rectal ~0.5 °C más que oral."],["Definición de fiebre (adulto hospitalizado)","≥38.3 °C en una toma o ≥38.0 °C sostenida."],["¿Cuánto esperar para temperatura oral tras beber?","15–30 minutos."]],
+q:[["¿Qué termómetro es más fiable para decidir conducta en un paciente séptico?",["Infrarrojo de frente","Axilar","Central (rectal, vesical, esofágico)","Timpánico"],2,"Los periféricos carecen de exactitud clínica aceptable (Niven 2015)."],
+["Anciano con neumonía, T 37.4 °C. Lo correcto es…",["Descartar infección por estar afebril","Considerar que la fiebre puede estar atenuada","Repetir solo con termómetro de frente","Esperar a 38.5 °C"],1,"Los adultos mayores tienen temperatura basal más baja y respuesta febril atenuada."]]},
+
+{id:"spo2",u:"u1",t:"Oximetría de pulso (SpO₂)",m:"SpO₂",
+s:"Mide la saturación periférica con luz roja e infrarroja. Normal ≥95% al aire ambiente. No mide ventilación: un paciente con O₂ puede saturar bien mientras retiene CO₂.",
+k:["Dedo tibio, limpio, <b>sin esmalte ni uñas artificiales</b>, mano quieta.",
+"<b>Espera una onda pletismográfica estable</b> (~30 s) antes de anotar; registra si está al aire ambiente o con O₂ y cuántos L/min.",
+"Metas: <b>94–98%</b> en la mayoría; <b>88–92%</b> en EPOC con retención de CO₂.",
+"<b>Monóxido de carbono</b>: SpO₂ <b>falsamente normal</b> (confunde carboxihemoglobina con oxihemoglobina). Pide co-oximetría.",
+"<b>Metahemoglobinemia</b>: SpO₂ se queda en ~85% y no mejora con O₂.",
+"<b>Piel oscura</b>: el oxímetro <b>sobrestima</b> la saturación y deja pasar <b>hipoxemia oculta</b> (SaO₂ &lt;88% con SpO₂ normal), con impacto en mortalidad y en decisiones de tratamiento.",
+"Mala perfusión, frío, vasopresores y movimiento dan lecturas poco fiables."],
+p:"Rescatado de incendio con cefalea y SpO₂ 99% → intoxicación por CO hasta demostrar lo contrario.",
+r:[PM(36128001,"Pulse Oximetry and Race in Critically Ill Adults"),PM(34730820,"Discrepancies between pulse oximetry and arterial saturation by race, organ dysfunction and mortality")],
+f:[["SpO₂ en intoxicación por CO","Falsamente normal; se necesita co-oximetría."],["SpO₂ típica en metahemoglobinemia","~85%, sin mejorar con oxígeno."],["Meta de SpO₂ en EPOC retenedor","88–92%."],["¿Qué es hipoxemia oculta?","SaO₂ &lt;88% con SpO₂ aparentemente normal; más frecuente en piel oscura."]],
+q:[["Paciente rescatado de un incendio, cefalea, SpO₂ 99%. El siguiente paso es…",["Alta","Gasometría con co-oximetría","Repetir oximetría","Rx de tórax solamente"],1,"La SpO₂ no distingue carboxihemoglobina; hay que medirla."],
+["SpO₂ fija en 85% que no sube con O₂ tras usar benzocaína:",["Intoxicación por CO","Metahemoglobinemia","TEP","Esmalte de uñas"],1,"Clásico de metahemoglobinemia inducida por fármacos."]]},
+
+/* ---------- U2 ---------- */
+{id:"choque",u:"u2",t:"Índice de choque",m:"FC/PAS",
+s:"IC = FC / PAS. Detecta choque oculto cuando la PA todavía parece normal.",
+k:["Normal <b>0.5–0.7</b>.","<b>≥0.9</b> se asocia a mayor mortalidad en trauma; ≥1.0 sugiere choque con pérdida importante de volumen.","Ejemplo: FC 110 / PAS 100 = 1.1 aunque la PAS sea «normal»."],
+r:[PM(20009697,"Cannon CM, et al. Utility of the shock index in predicting mortality in traumatically injured patients")],
+f:[["Fórmula del índice de choque","FC / PAS."],["Índice de choque normal","0.5–0.7."]],
+q:[["Trauma: FC 120, PA 110/70. Índice de choque:",["0.6","0.9","1.1","1.5"],2,"120 / 110 ≈ 1.1: probable choque aunque la PA parezca aceptable."]]},
+
+{id:"news",u:"u2",t:"NEWS / NEWS2",m:"ESCALA",
+s:"Escala de alerta temprana que suma puntos por FR, SpO₂, uso de O₂, temperatura, PAS, FC y estado de consciencia (AVPU). Discrimina bien el riesgo de paro cardiaco, ingreso no planeado a UCI y muerte en 24 h.",
+k:["Parámetros: <b>FR, SpO₂, O₂ suplementario, temperatura, PAS, FC y consciencia</b>.",
+"<b>≥5</b> (o 3 en un solo parámetro) = valoración clínica urgente.",
+"<b>≥7</b> = respuesta de emergencia (equipo de respuesta rápida / UCI)."],
+r:[PM(23295778,"Smith GB, et al. The ability of NEWS to discriminate patients at risk of early cardiac arrest, unanticipated ICU admission, and death")],
+f:[["¿Qué parámetros incluye NEWS?","FR, SpO₂, O₂ suplementario, temperatura, PAS, FC y consciencia (AVPU)."],["NEWS ≥7 significa…","Respuesta de emergencia."]],
+q:[["¿Cuál de estos NO forma parte de NEWS?",["FR","PAS","Glucosa capilar","Estado de consciencia"],2,"NEWS no incluye glucosa."]]},
+
+{id:"pedia",u:"u2",t:"Signos vitales en pediatría",m:"PED",
+s:"Los valores cambian mucho con la edad. La revisión sistemática de Fleming (Lancet 2011) mostró que los rangos clásicos de los libros no coinciden bien con los datos reales; lo ideal es usar tablas por percentiles.",
+k:["Recién nacido: FC 100–160 · FR 30–60.","Lactante: FC 100–160 · FR 30–50.","Preescolar: FC 80–140 · FR 20–30.","Escolar: FC 70–120 · FR 18–25.","Adolescente: FC 60–100 · FR 12–20.","En niños, la <b>hipotensión es un signo tardío</b> de choque; la taquicardia aparece primero."],
+p:"Valores orientativos de enseñanza; en un caso clínico fíjate en la tendencia y en la clínica.",
+r:[PM(21411136,"Fleming S, et al. Normal ranges of heart rate and respiratory rate in children from birth to 18 years. Lancet 2011")],
+f:[["En el niño en choque, ¿qué aparece primero, taquicardia o hipotensión?","Taquicardia; la hipotensión es tardía."],["FR normal de un recién nacido","30–60 rpm."]],
+q:[["Lactante con FC 180, llenado capilar 4 s y PA normal. Interpretación:",["Normal para la edad","Choque compensado","Choque descompensado","Fiebre sin importancia"],1,"Taquicardia y mala perfusión con PA conservada = choque compensado."]]},
+
+/* ---------- U3 ---------- */
+{id:"beck",u:"u3",t:"Triada de Beck",m:"TAPONAMIENTO",
+s:"Hipotensión + ingurgitación yugular + ruidos cardiacos apagados. Indica taponamiento cardiaco.",
+k:["La triada completa es <b>poco frecuente</b>; no esperes verla entera para sospecharlo.","Busca <b>pulso paradójico</b> (&gt;10 mmHg), taquicardia y signo de Kussmaul.","Confirma con <b>ecocardiograma</b> (colapso diastólico de cavidades derechas).","Tratamiento: <b>pericardiocentesis</b> urgente."],
+p:"Hipotensión + taquicardia + yugulares ingurgitadas = choque obstructivo: taponamiento, neumotórax a tensión o TEP masivo.",
+r:[PM(19371531,"Pericardial effusion impending tamponade: a look beyond Beck's triad"),PM(37474539,"Cardiac tamponade")],
+f:[["Triada de Beck","Hipotensión, ingurgitación yugular y ruidos cardiacos apagados (taponamiento)."]],
+q:[["Herida en tórax, PA 80/60, yugulares ingurgitadas, ruidos apagados. Tratamiento inmediato:",["Toracostomía","Pericardiocentesis","Cargas de cristaloide solamente","Angio-TC"],1,"Triada de Beck = taponamiento: pericardiocentesis."]]},
+
+{id:"cushing",u:"u3",t:"Triada de Cushing",m:"HIC",
+s:"Hipertensión (con presión de pulso amplia) + bradicardia + respiración irregular. Indica hipertensión intracraneal grave.",
+k:["Es un reflejo para mantener la presión de perfusión cerebral (PPC = PAM − PIC).","Es un signo <b>tardío</b>: herniación inminente.","En TCE: hipertensión + bradicardia NO es «paciente estable»."],
+r:[PM(31747208,"Cushing Reflex"),PM(17143247,"History of the Cushing reflex")],
+f:[["Triada de Cushing","Hipertensión con PP amplia, bradicardia y respiración irregular (HIC)."]],
+q:[["TCE con PA 190/80, FC 48 y respiración irregular. Esto indica…",["Choque neurogénico","Hipertensión intracraneal con herniación inminente","Dolor","Hipovolemia"],1,"Triada de Cushing."]]},
+
+{id:"charcot",u:"u3",t:"Triada de Charcot y pentada de Reynolds",m:"COLANGITIS",
+s:"Charcot: fiebre/escalofríos + ictericia + dolor en hipocondrio derecho = colangitis aguda. Reynolds: Charcot + choque + alteración del estado mental = colangitis grave (supurativa).",
+k:["Charcot es muy específica pero <b>poco sensible</b>; por eso las Guías de Tokio diagnostican con inflamación sistémica + colestasis + imagen.","Reynolds requiere <b>drenaje biliar urgente</b> (CPRE).","Causa más común: coledocolitiasis."],
+r:[PM(23307001,"TG13 guidelines for diagnosis and severity grading of acute cholangitis")],
+f:[["Triada de Charcot","Fiebre, ictericia y dolor en hipocondrio derecho (colangitis)."],["Pentada de Reynolds","Charcot + choque + alteración del estado mental."]],
+q:[["Fiebre, ictericia, dolor en HCD, hipotensión y confusión. Conducta:",["Colecistectomía electiva","Drenaje biliar urgente (CPRE)","Solo antibióticos orales","US de control en 1 semana"],1,"Pentada de Reynolds: colangitis grave."]]},
+
+{id:"virchow",u:"u3",t:"Triada de Virchow",m:"TROMBOSIS",
+s:"Estasis venosa + lesión endotelial + hipercoagulabilidad. Explica la formación de trombos.",
+k:["<b>Estasis</b>: inmovilidad, viajes largos, IC, FA.","<b>Lesión endotelial</b>: cirugía, trauma, catéteres.","<b>Hipercoagulabilidad</b>: cáncer, embarazo, anticonceptivos, trombofilias, síndrome antifosfolípido."],
+r:[PM(15692260,"Virchow's triad revisited: abnormal flow"),PM(15692259,"Virchow's triad revisited: blood constituents")],
+f:[["Triada de Virchow","Estasis, lesión endotelial e hipercoagulabilidad."]],
+q:[["El uso de anticonceptivos orales contribuye a la triada de Virchow mediante…",["Estasis","Lesión endotelial","Hipercoagulabilidad","Ninguno"],2,"Los estrógenos aumentan factores procoagulantes."]]},
+
+{id:"whipple",u:"u3",t:"Triada de Whipple",m:"HIPOGLUCEMIA",
+s:"Síntomas de hipoglucemia + glucosa baja documentada (&lt;55 mg/dL) + alivio al corregirla. Confirma hipoglucemia verdadera; en el no diabético piensa en insulinoma.",
+k:["Confirmada la triada: medir <b>insulina, péptido C y proinsulina</b> durante el episodio (ayuno de 72 h).","Insulina y péptido C altos = insulinoma o sulfonilureas; insulina alta con péptido C bajo = insulina exógena."],
+r:[PM(40648766,"Non-Diabetic Hypoglycemia: Evaluation and Management in Adults")],
+f:[["Triada de Whipple","Síntomas de hipoglucemia, glucosa baja documentada y alivio al corregirla."],["Insulina alta con péptido C bajo","Insulina exógena (facticia)."]],
+q:[["No diabético con triada de Whipple, insulina y péptido C altos, sin sulfonilureas en sangre:",["Insulina exógena","Insulinoma","Insuficiencia suprarrenal","Ayuno prolongado normal"],1,"Hiperinsulinismo endógeno sin fármacos = insulinoma."]]},
+
+{id:"hakim",u:"u3",t:"Triada de Hakim",m:"HPN",
+s:"Alteración de la marcha (magnética) + deterioro cognitivo + incontinencia urinaria = hidrocefalia normotensa.",
+k:["Regla mnemotécnica: «<b>wet, wobbly, wacky</b>».","La <b>marcha</b> es lo primero en aparecer y lo que mejor responde a la derivación ventriculoperitoneal.","Es una de las demencias potencialmente reversibles."],
+r:[PM(31497081,"Current Updates on Idiopathic Normal Pressure Hydrocephalus")],
+f:[["Triada de Hakim","Marcha magnética, deterioro cognitivo e incontinencia urinaria (hidrocefalia normotensa)."]],
+q:[["¿Qué síntoma de la HPN responde mejor a la derivación?",["Incontinencia","Demencia","Alteración de la marcha","Cefalea"],2,"La marcha es la que más mejora."]]},
+
+{id:"mackler",u:"u3",t:"Triada de Mackler",m:"BOERHAAVE",
+s:"Vómito + dolor torácico + enfisema subcutáneo = síndrome de Boerhaave (ruptura esofágica transmural espontánea).",
+k:["Ruptura típica en la cara <b>posterolateral izquierda del esófago distal</b>.","Diferencial: Mallory-Weiss (desgarro solo de mucosa, hematemesis).","Es una urgencia quirúrgica con alta mortalidad si se retrasa."],
+r:[PM(19145081,"Spontaneous rupture of the oesophagus: Boerhaave's syndrome in 2008")],
+f:[["Triada de Mackler","Vómito, dolor torácico y enfisema subcutáneo (Boerhaave)."]],
+q:[["Alcohólico tras vómitos intensos: dolor torácico intenso y crepitación en cuello. Diagnóstico:",["Mallory-Weiss","Síndrome de Boerhaave","IAM","Pericarditis"],1,"Triada de Mackler."]]},
+
+{id:"otras",u:"u3",t:"Otras triadas para repasar (complemento)",m:"REPASO",
+s:"Triadas clásicas de libro de texto; no se buscaron una por una en PubMed.",
+k:["<b>Letal del trauma</b>: hipotermia + acidosis + coagulopatía.","<b>Wernicke</b>: confusión + oftalmoplejía + ataxia (déficit de tiamina).","<b>Horner</b>: ptosis + miosis + anhidrosis.","<b>Estenosis aórtica</b>: angina + síncope + disnea.","<b>AAA roto</b>: dolor abdominal/lumbar + hipotensión + masa pulsátil.","<b>Bergman</b> (embolia grasa): hipoxemia + petequias + alteración neurológica.","<b>Saint</b>: hernia hiatal + colelitiasis + diverticulosis.","<b>Samter</b>: asma + pólipos nasales + intolerancia a AAS/AINE.","<b>Reiter</b>: artritis + uretritis + conjuntivitis.","<b>Kartagener</b>: situs inversus + sinusitis + bronquiectasias.","<b>Hutchinson</b>: dientes de Hutchinson + queratitis intersticial + sordera neurosensorial.","<b>Leriche</b>: claudicación glútea + disfunción eréctil + pulsos femorales ausentes.","<b>Meltzer</b>: púrpura + artralgias + debilidad (crioglobulinemia).","<b>Atleta femenina</b>: baja disponibilidad energética + alteración menstrual + baja densidad ósea."],
+f:[["Triada letal del trauma","Hipotermia, acidosis y coagulopatía."],["Triada de Wernicke","Confusión, oftalmoplejía y ataxia."],["Triada de Horner","Ptosis, miosis y anhidrosis."],["Triada de la estenosis aórtica","Angina, síncope y disnea."],["Triada de Samter","Asma, pólipos nasales e intolerancia a AAS."],["Triada de Kartagener","Situs inversus, sinusitis y bronquiectasias."],["Triada de Leriche","Claudicación glútea, disfunción eréctil y pulsos femorales ausentes."],["Triada de Bergman","Hipoxemia, petequias y alteración neurológica (embolia grasa)."]],
+q:[["Alcohólico con confusión, nistagmo/oftalmoplejía y ataxia. Antes de dar glucosa se debe administrar…",["Naloxona","Tiamina","Flumazenil","Ácido fólico"],1,"Encefalopatía de Wernicke: tiamina primero."],
+["Fractura de fémur, a las 48 h: hipoxemia, petequias en tórax y confusión.",["TEP por trombo","Embolia grasa","Neumonía","Delirium simple"],1,"Triada de Bergman."],
+["Asma, pólipos nasales y broncoespasmo tras aspirina:",["Kartagener","Samter","Churg-Strauss","Löffler"],1,"Enfermedad respiratoria exacerbada por AAS (Samter)."]]}
+];
+
+/* ---------- Estado y utilidades ---------- */
+const $=s=>document.querySelector(s);
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let mastered=new Set(LS.get("sv-mastered",[]));
+const uOf=id=>UNITS.find(u=>u.id===id);
+const strip=h=>h.replace(/<[^>]+>/g,"").replace(/&gt;/g,">").replace(/&lt;/g,"<");
+const norm=s=>strip(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+$("#ov-n").textContent=T.length;
+
+/* ---------- Vistas ---------- */
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>show(b.dataset.view)));
+function show(v){document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.view===v));
+ ["study","fc","quiz","tab"].forEach(x=>$("#v-"+x).hidden=x!==v);LS.set("sv-view",v);
+ if(v==="fc"&&!deck.length)buildDeck();if(v==="quiz"&&!qs)quizStart()}
+
+/* ---------- Resumen ---------- */
+let unitFilter="all";
+function renderSide(){const side=$("#side");const total=T.length,done=T.filter(t=>mastered.has(t.id)).length;
+ let h=`<div class="prog">Dominados: ${done}/${total}</div><div class="bar"><span style="width:${done/total*100}%"></span></div>`;
+ UNITS.forEach(u=>{h+=`<h3>${u.n} · ${u.t}</h3>`;T.filter(t=>t.u===u.id).forEach(t=>{h+=`<a href="#${t.id}" data-go="${t.id}"><span class="dot ${mastered.has(t.id)?"on":""}"></span>${t.t}</a>`})});
+ side.innerHTML=h;side.querySelectorAll("[data-go]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();openTopic(a.dataset.go)}))}
+function openTopic(id){show("study");unitFilter="all";$("#q").value="";renderChips();renderUnits();const d=document.getElementById(id);if(d){d.open=true;d.scrollIntoView({behavior:"smooth",block:"start"})}}
+function renderChips(){const c=$("#uchips");c.innerHTML=[{id:"all",t:"Todas"}].concat(UNITS).map(u=>`<button class="chip" aria-pressed="${unitFilter===u.id}" data-u="${u.id}">${u.n?u.n+" ":""}${u.t}</button>`).join("");
+ c.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{unitFilter=b.dataset.u;renderChips();renderUnits()}))}
+function hl(html,q){if(!q)return html;const re=new RegExp("("+q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","gi");return html.replace(/(<[^>]+>)|([^<]+)/g,(m,tag,txt)=>tag?tag:txt.replace(re,"<mark>$1</mark>"))}
+function renderUnits(){const q=$("#q").value.trim();const nq=norm(q);const box=$("#units");let h="",hits=0;
+ UNITS.filter(u=>unitFilter==="all"||u.id===unitFilter).forEach(u=>{
+  const ts=T.filter(t=>t.u===u.id).filter(t=>!nq||norm([t.t,t.s,...t.k,t.p||""].join(" ")).includes(nq));
+  if(!ts.length)return;hits+=ts.length;const dn=T.filter(t=>t.u===u.id&&mastered.has(t.id)).length,tot=T.filter(t=>t.u===u.id).length;
+  h+=`<section class="unit"><div class="unit-h"><span class="n">${u.n}</span><h2>${u.t}</h2><span class="c">${dn}/${tot} dominados</span></div>`;
+  ts.forEach(t=>{const on=mastered.has(t.id);
+   h+=`<details class="topic" id="${t.id}"${nq?" open":""}><summary><span class="chev"></span><span class="tt">${hl(t.t,q)}</span>${on?'<span class="done-pill">DOMINADO</span>':""}<span class="mod">${t.m}</span></summary>
+   <div class="body"><p class="sum">${hl(t.s,q)}</p><h4>Puntos clave</h4><ul class="keys">${t.k.map(k=>`<li>${hl(k,q)}</li>`).join("")}</ul>
+   ${t.p?`<div class="perla"><strong>Perla</strong>${hl(t.p,q)}</div>`:""}
+   ${t.r?`<h4>Fuentes en PubMed</h4><ul class="refs">${t.r.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}
+   <div class="row"><button class="btn ${on?"":"pri"}" data-m="${t.id}">${on?"Quitar de dominados":"Lo domino"}</button>
+   <button class="btn" data-fc="${t.id}">Flashcards (${t.f.length})</button>
+   <button class="btn" data-qz="${t.id}">Preguntas (${t.q.length})</button></div></div></details>`});
+  h+=`</section>`});
+ box.innerHTML=hits?h:`<div class="empty">No encontré «${q.replace(/</g,"&lt;")}». Prueba con otra palabra.</div>`;
+ box.querySelectorAll("[data-m]").forEach(b=>b.addEventListener("click",()=>{const id=b.dataset.m;mastered.has(id)?mastered.delete(id):mastered.add(id);LS.set("sv-mastered",[...mastered]);renderUnits();renderSide();const d=document.getElementById(id);if(d)d.open=true}));
+ box.querySelectorAll("[data-fc]").forEach(b=>b.addEventListener("click",()=>{fcFilter="t:"+b.dataset.fc;buildDeck();show("fc")}));
+ box.querySelectorAll("[data-qz]").forEach(b=>b.addEventListener("click",()=>{quizStart("t:"+b.dataset.qz);show("quiz")}))}
+$("#q").addEventListener("input",renderUnits);
+$("#openAll").addEventListener("click",()=>document.querySelectorAll("details.topic").forEach(d=>d.open=true));
+$("#closeAll").addEventListener("click",()=>document.querySelectorAll("details.topic").forEach(d=>d.open=false));
+
+/* ---------- Flashcards ---------- */
+let fcFilter="all",deck=[],flipped=false,learned=0;
+function fcSource(f){return T.filter(t=>f==="all"||t.u===f||f==="t:"+t.id).flatMap(t=>t.f.map(c=>({q:c[0],a:c[1],t:t.t,u:t.u})))}
+function renderFChips(){const c=$("#fchips");const extra=fcFilter.startsWith("t:")?[{id:fcFilter,t:"Tema: "+T.find(t=>"t:"+t.id===fcFilter).t}]:[];
+ c.innerHTML=[{id:"all",t:"Todas"}].concat(UNITS,extra).map(u=>`<button class="chip" aria-pressed="${fcFilter===u.id}" data-u="${u.id}">${u.n?u.n+" ":""}${u.t}</button>`).join("");
+ c.querySelectorAll(".chip").forEach(b=>b.addEventListener("click",()=>{fcFilter=b.dataset.u;buildDeck()}))}
+function buildDeck(){deck=shuffle(fcSource(fcFilter));learned=0;flipped=false;renderFChips();renderCard()}
+function renderCard(){const c=$("#fcard");const total=deck.length+learned;
+ $("#fcount").textContent=deck.length?`Tarjeta ${learned+1} de ${total} · quedan ${deck.length}`:"";
+ if(!deck.length){c.className="card";c.innerHTML=`<div><div class="q">Terminaste el mazo: ${total} tarjetas.</div><p class="src" style="margin-top:10px">Pulsa «Barajar» para repasarlo de nuevo.</p></div>`;return}
+ const cd=deck[0];c.className="card"+(flipped?" back":"");
+ c.innerHTML=`<span class="lbl">${uOf(cd.u).n} · ${cd.t}</span><div class="q">${flipped?cd.a:cd.q}</div><span class="hint">${flipped?"Respuesta":"Toca para ver la respuesta"}</span>`}
+$("#fcard").addEventListener("click",()=>{if(!deck.length)return;flipped=!flipped;renderCard()});
+$("#fcard").addEventListener("keydown",e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();$("#fcard").click()}});
+$("#fKnow").addEventListener("click",()=>{if(!deck.length)return;deck.shift();learned++;flipped=false;renderCard()});
+$("#fAgain").addEventListener("click",()=>{if(!deck.length)return;const c=deck.shift();deck.splice(Math.min(deck.length,3),0,c);flipped=false;renderCard()});
+$("#fShuf").addEventListener("click",buildDeck);
+
+/* ---------- Examen ---------- */
+let qs=null,qi=0,qScore=0,qMiss=[],qFilter="all",answered=false;
+function quizStart(f){if(f)qFilter=f;const pool=T.filter(t=>qFilter==="all"||t.u===qFilter||qFilter==="t:"+t.id).flatMap(t=>t.q.map(x=>({q:x[0],o:x[1],a:x[2],e:x[3],tid:t.id,t:t.t})));
+ qs=shuffle(pool).slice(0,qFilter==="all"?20:pool.length).map(x=>{const idx=shuffle(x.o.map((_,i)=>i));return {...x,o:idx.map(i=>x.o[i]),a:idx.indexOf(x.a)}});
+ qi=0;qScore=0;qMiss=[];answered=false;renderQuiz()}
+function quizChips(){const extra=qFilter.startsWith("t:")?[{id:qFilter,t:"Tema: "+T.find(t=>"t:"+t.id===qFilter).t}]:[];
+ return `<div class="chips">${[{id:"all",t:"Todas (20 al azar)"}].concat(UNITS,extra).map(u=>`<button class="chip" aria-pressed="${qFilter===u.id}" data-qu="${u.id}">${u.n?u.n+" ":""}${u.t}</button>`).join("")}</div>`}
+function renderQuiz(){const z=$("#qz");
+ if(qi>=qs.length){const pct=Math.round(qScore/qs.length*100);const best=LS.get("sv-best",{});const key=qFilter;if(!best[key]||pct>best[key]){best[key]=pct;LS.set("sv-best",best)}
+  z.innerHTML=quizChips()+`<div class="qcard"><div class="qmeta"><span>RESULTADO</span><span>Mejor marca en esta selección: ${best[key]}%</span></div><p class="score">${qScore}/${qs.length}</p><p>${pct>=80?"Muy bien, este tema ya lo tienes para el ENARM.":pct>=60?"Vas bien; repasa los temas de las preguntas falladas.":"Conviene repasar el resumen de estos temas antes de volver a intentarlo."}</p>
+  ${qMiss.length?`<h4 style="font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)">Para repasar</h4><ul class="miss">${qMiss.map(m=>`<li>${m.q}<br><span class="src">Respuesta: <b>${m.ans}</b> · <a href="#${m.tid}" data-go="${m.tid}">${m.t}</a></span></li>`).join("")}</ul>`:""}
+  <div class="row" style="margin-top:14px"><button class="btn pri" id="qAgain">Otro intento</button></div></div>`;
+  $("#qAgain").addEventListener("click",()=>quizStart());bindQ();return}
+ const x=qs[qi];
+ z.innerHTML=quizChips()+`<div class="qcard"><div class="qmeta"><span>PREGUNTA ${qi+1}/${qs.length}</span><span>Aciertos: ${qScore}</span></div><p class="qtext">${x.q}</p>
+ <div class="opts">${x.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${"ABCD"[i]}</span><span>${o}</span></button>`).join("")}</div><div id="qx"></div></div>`;
+ z.querySelectorAll(".opt").forEach(b=>b.addEventListener("click",()=>answer(+b.dataset.i)));bindQ();answered=false}
+function bindQ(){$("#qz").querySelectorAll("[data-qu]").forEach(b=>b.addEventListener("click",()=>quizStart(b.dataset.qu)));
+ $("#qz").querySelectorAll("[data-go]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();openTopic(a.dataset.go)}))}
+function answer(i){if(answered)return;answered=true;const x=qs[qi];const ok=i===x.a;if(ok)qScore++;else qMiss.push({q:x.q,ans:x.o[x.a],tid:x.tid,t:x.t});
+ document.querySelectorAll(".opt").forEach((b,j)=>{b.disabled=true;if(j===x.a)b.classList.add("ok");else if(j===i)b.classList.add("ko")});
+ $("#qx").innerHTML=`<div class="expl"><b class="${ok?"ok":"ko"}">${ok?"Correcto.":"Incorrecto."}</b> ${x.e}<div class="src" style="margin-top:6px">Tema: <a href="#${x.tid}" data-go="${x.tid}">${x.t}</a></div></div><div class="row" style="margin-top:12px"><button class="btn pri" id="qNext">${qi+1<qs.length?"Siguiente":"Ver resultado"}</button></div>`;
+ $("#qNext").addEventListener("click",()=>{qi++;renderQuiz()});$("#qNext").focus();bindQ()}
+
+/* ---------- Tablas rápidas ---------- */
+const TABLES=[
+["Valores normales del adulto",`<table><thead><tr><th>Signo</th><th>Normal</th><th>Alerta</th></tr></thead><tbody>
+<tr><td>PA</td><td class="num">&lt;120/80</td><td>PAS &lt;90 o ≥180/120</td></tr><tr><td>FC</td><td class="num">60–100</td><td>&lt;50 o &gt;120</td></tr><tr><td>FR</td><td class="num">12–20</td><td>≥22 (qSOFA), &gt;24</td></tr><tr><td>Temperatura</td><td class="num">36–37.5 °C</td><td>≥38.3 o &lt;35</td></tr><tr><td>SpO₂</td><td class="num">≥95%</td><td>&lt;92% (EPOC 88–92)</td></tr><tr><td>Índice de choque</td><td class="num">0.5–0.7</td><td>≥0.9</td></tr></tbody></table>`],
+["Clasificación de PA",`<table><thead><tr><th>ACC/AHA</th><th>mmHg</th></tr></thead><tbody>
+<tr><td>Normal</td><td class="num">&lt;120 y &lt;80</td></tr><tr><td>Elevada</td><td class="num">120–129 y &lt;80</td></tr><tr><td>Estadio 1</td><td class="num">130–139 o 80–89</td></tr><tr><td>Estadio 2</td><td class="num">≥140 o ≥90</td></tr><tr><td>Crisis</td><td class="num">&gt;180 y/o &gt;120</td></tr></tbody></table><p class="note">México (NOM-030/GPC, complemento): HAS desde ≥140/90. Confirma con la GPC vigente.</p>`],
+["Pulsos con nombre",`<table><thead><tr><th>Pulso</th><th>Piensa en</th></tr></thead><tbody>
+<tr><td>Parvus et tardus</td><td>Estenosis aórtica</td></tr><tr><td>Saltón / Corrigan</td><td>Insuficiencia aórtica</td></tr><tr><td>Bisferiens</td><td>Doble lesión aórtica, MCH</td></tr><tr><td>Alternante</td><td>Disfunción grave del VI</td></tr><tr><td>Paradójico</td><td>Taponamiento, asma grave</td></tr><tr><td>Déficit de pulso</td><td>Fibrilación auricular</td></tr></tbody></table>`],
+["Patrones respiratorios",`<table><thead><tr><th>Patrón</th><th>Piensa en</th></tr></thead><tbody>
+<tr><td>Kussmaul</td><td>Cetoacidosis, acidosis metabólica</td></tr><tr><td>Cheyne-Stokes</td><td>IC, lesión neurológica</td></tr><tr><td>Biot (atáxica)</td><td>Lesión de bulbo/protuberancia</td></tr><tr><td>Bradipnea</td><td>Opioides, HIC, hipotermia</td></tr></tbody></table>`],
+["Temperatura por sitio",`<table><thead><tr><th>Sitio</th><th>Rango (°C)</th><th>Vs oral</th></tr></thead><tbody>
+<tr><td>Oral</td><td class="num">33.2–38.2</td><td>—</td></tr><tr><td>Rectal</td><td class="num">34.4–37.8</td><td>~+0.5</td></tr><tr><td>Timpánica</td><td class="num">35.4–37.8</td><td>variable</td></tr><tr><td>Axilar</td><td class="num">35.5–37.0</td><td>~−0.5</td></tr></tbody></table><p class="note">Rangos de la revisión sistemática de Sund-Levander (PMID 12000664).</p>`],
+["Trampas de la oximetría",`<table><thead><tr><th>Situación</th><th>SpO₂</th></tr></thead><tbody>
+<tr><td>Monóxido de carbono</td><td>Falsamente normal</td></tr><tr><td>Metahemoglobinemia</td><td>~85% fija</td></tr><tr><td>Piel oscura</td><td>Sobrestima (hipoxemia oculta)</td></tr><tr><td>Mala perfusión / frío</td><td>Poco fiable</td></tr><tr><td>Hipoventilación con O₂</td><td>Normal aunque retenga CO₂</td></tr></tbody></table>`],
+["Pediatría (orientativo)",`<table><thead><tr><th>Edad</th><th>FC</th><th>FR</th></tr></thead><tbody>
+<tr><td>Recién nacido</td><td class="num">100–160</td><td class="num">30–60</td></tr><tr><td>Lactante</td><td class="num">100–160</td><td class="num">30–50</td></tr><tr><td>Preescolar</td><td class="num">80–140</td><td class="num">20–30</td></tr><tr><td>Escolar</td><td class="num">70–120</td><td class="num">18–25</td></tr><tr><td>Adolescente</td><td class="num">60–100</td><td class="num">12–20</td></tr></tbody></table>`],
+["Triadas con fuente",`<div class="scroll"><table><thead><tr><th>Triada</th><th>Componentes</th><th>Enfermedad</th></tr></thead><tbody>
+<tr><td>Beck</td><td>Hipotensión, IY, ruidos apagados</td><td>Taponamiento</td></tr><tr><td>Cushing</td><td>HTA, bradicardia, resp. irregular</td><td>HIC</td></tr><tr><td>Charcot</td><td>Fiebre, ictericia, dolor HCD</td><td>Colangitis</td></tr><tr><td>Reynolds</td><td>Charcot + choque + confusión</td><td>Colangitis grave</td></tr><tr><td>Virchow</td><td>Estasis, lesión endotelial, hipercoagulabilidad</td><td>Trombosis</td></tr><tr><td>Whipple</td><td>Síntomas, glucosa &lt;55, alivio</td><td>Hipoglucemia / insulinoma</td></tr><tr><td>Hakim</td><td>Marcha, demencia, incontinencia</td><td>Hidrocefalia normotensa</td></tr><tr><td>Mackler</td><td>Vómito, dolor torácico, enfisema SC</td><td>Boerhaave</td></tr></tbody></table></div>`]
+];
+$("#tables").innerHTML=TABLES.map(([h,b])=>`<div class="tbl"><h3>${h}</h3>${b}</div>`).join("");
+
+/* ---------- Arranque ---------- */
+renderSide();renderChips();renderUnits();
+const hash=(location.hash||"").slice(1);
+const v=LS.get("sv-view","study");
+if(hash&&T.some(t=>t.id===hash))openTopic(hash);else show(["study","fc","quiz","tab"].includes(v)?v:"study");
+</script>
+</body></html>
+
+</body></html>

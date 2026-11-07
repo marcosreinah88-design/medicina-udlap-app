@@ -1,0 +1,817 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Repaso Simu IV</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/g5df7a33423.css">
+<style>
+/* Layout: hoja de papel de ECG; encabezado con trazo de monitor, pestañas pegajosas, contenido en una columna de ~70ch */
+:root{
+  --bg:#fbf8f8; --paper:#ffffff; --grid:#f1dcdc; --gridb:#e6b4bb; --fg:#221c1e; --muted:#6c6164; --line:#e4d6d8;
+  --acls:#c4142f; --acls-soft:#fbe6e9; --atls:#b35a00; --atls-soft:#fcecdc;
+  --ok:#1f7a4d; --ok-soft:#e1f3e9; --bad:#b3261e; --bad-soft:#fbe4e2;
+  --display:"Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#171314; --paper:#201b1c; --grid:#2c2223; --gridb:#4a3236; --fg:#f2eaeb; --muted:#ab9da0; --line:#3a2f31;
+  --acls:#ff6b7d; --acls-soft:#3b1d22; --atls:#f2a14a; --atls-soft:#3a2714;
+  --ok:#5fd39a; --ok-soft:#173226; --bad:#ff8a80; --bad-soft:#3d1c1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#171314; --paper:#201b1c; --grid:#2c2223; --gridb:#4a3236; --fg:#f2eaeb; --muted:#ab9da0; --line:#3a2f31;
+  --acls:#ff6b7d; --acls-soft:#3b1d22; --atls:#f2a14a; --atls-soft:#3a2714;
+  --ok:#5fd39a; --ok-soft:#173226; --bad:#ff8a80; --bad-soft:#3d1c1a; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{background:var(--paper);border-bottom:1px solid var(--line)}
+header .wrap{padding-block:28px 18px;display:grid;gap:6px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,6vw,52px);line-height:1;margin:0;text-wrap:balance}
+h1 span{color:var(--acls)}
+.lede{margin:0;color:var(--muted);max-width:62ch}
+.trace{width:100%;height:46px;display:block;margin-top:6px}
+.trace path{fill:none;stroke:var(--acls);stroke-width:2;stroke-linejoin:round;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.4s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.trace path{animation:none;stroke-dashoffset:0}}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:4px;overflow-x:auto;padding-block:0}
+nav a{font-family:var(--display);font-weight:600;font-size:18px;text-decoration:none;color:var(--muted);padding:12px 14px;border-bottom:3px solid transparent;white-space:nowrap}
+nav a[aria-current="page"]{color:var(--fg);border-color:var(--acls)}
+nav a:focus-visible,button:focus-visible{outline:2px solid var(--acls);outline-offset:2px}
+main .wrap{padding-block:24px 64px;display:grid;gap:20px}
+h2{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.1;margin:0;text-wrap:balance}
+h3{font-family:var(--display);font-weight:600;font-size:22px;margin:0 0 6px}
+p{margin:0}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:18px 20px;display:grid;gap:10px;min-width:0;align-content:start}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:3px;vertical-align:middle}
+.tag.acls{background:var(--acls-soft);color:var(--acls)}
+.tag.atls{background:var(--atls-soft);color:var(--atls)}
+.dose{font-family:var(--mono);font-size:.92em;font-weight:500;white-space:nowrap}
+ol.steps,ul.list{margin:0;padding-left:1.3em;display:grid;gap:4px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--display);font-weight:600;font-size:15px;color:var(--muted)}
+.callout{border-left:3px solid var(--acls);padding:4px 0 4px 12px;color:var(--fg)}
+.callout.atls{border-color:var(--atls)}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px}
+.note{font-size:13px;color:var(--muted)}
+/* controles */
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+button{font:inherit;cursor:pointer}
+.chip{border:1px solid var(--line);background:var(--paper);color:var(--fg);border-radius:999px;padding:5px 14px;font-size:14px}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--paper);border-color:var(--fg)}
+.btn{border:1px solid var(--fg);background:var(--fg);color:var(--paper);border-radius:4px;padding:9px 16px;font-weight:700;font-size:15px}
+.btn.ghost{background:transparent;color:var(--fg)}
+.btn.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.btn.bad{background:var(--bad);border-color:var(--bad);color:#fff}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+/* tarjetas */
+.card{perspective:1200px;min-height:230px;cursor:pointer;border:0;background:none;padding:0;width:100%;text-align:left;color:inherit}
+.card-in{position:relative;width:100%;min-height:230px;transition:transform .45s;transform-style:preserve-3d}
+.card.flip .card-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:22px 24px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.face.back{transform:rotateY(180deg);background:var(--paper)}
+.face .q{font-family:var(--display);font-weight:600;font-size:clamp(22px,4vw,28px);line-height:1.2;text-wrap:balance}
+.face .a{font-size:18px}
+.face .hint{position:absolute;bottom:10px;right:14px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+@media (prefers-reduced-motion:reduce){.card-in{transition:none}}
+.meter{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+.stat{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+/* quiz */
+.opts{display:grid;gap:8px}
+.opt{border:1px solid var(--line);background:var(--paper);color:var(--fg);text-align:left;padding:11px 14px;border-radius:5px;font-size:16px}
+.opt:hover:not(:disabled){border-color:var(--fg)}
+.opt.right{background:var(--ok-soft);border-color:var(--ok)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.fb{padding:10px 14px;border-radius:5px;font-size:15px}
+.fb.right{background:var(--ok-soft)}
+.fb.wrong{background:var(--bad-soft)}
+.big{font-family:var(--display);font-weight:700;font-size:56px;line-height:1}
+/* casos */
+.monitor{font-family:var(--mono);font-size:14px;background:var(--fg);color:var(--paper);border-radius:6px;padding:12px 14px;display:flex;flex-wrap:wrap;gap:6px 18px}
+.monitor b{color:var(--paper)}
+.log{display:grid;gap:6px;font-size:15px}
+.strip{display:block;width:100%;min-width:480px;height:auto;border:1px solid var(--line);border-radius:4px;background:var(--paper)}
+.mon{display:grid;grid-template-columns:minmax(0,1fr) 150px;background:#07120e;border-radius:8px;overflow:hidden;border:1px solid #1d3a2d}
+.mon-screen{position:relative;min-width:0}
+.mon canvas{display:block;width:100%;height:220px}
+.mon-lead{position:absolute;top:8px;left:10px;font-family:var(--mono);font-size:11px;color:#5ef59a;opacity:.8}
+.mon-side{border-left:1px solid #1d3a2d;padding:12px 14px;display:grid;gap:14px;align-content:start;color:#5ef59a}
+.mon-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.75}
+.mon-hr{font-family:var(--mono);font-weight:700;font-size:52px;line-height:1;font-variant-numeric:tabular-nums}
+.mon-name{font-family:var(--display);font-weight:600;font-size:18px;line-height:1.15;color:#e8fff1}
+.mon-heart{display:inline-block;color:#ff5c6c;opacity:.25}
+.mon-heart.on{animation:hb .35s ease-out}
+@keyframes hb{0%{opacity:1;transform:scale(1.4)}100%{opacity:.25;transform:scale(1)}}
+@media (max-width:560px){.mon{grid-template-columns:1fr}.mon-side{border-left:0;border-top:1px solid #1d3a2d;grid-template-columns:auto 1fr;align-items:end}.mon canvas{height:180px}}
+@media (prefers-reduced-motion:reduce){.mon-heart.on{animation:none;opacity:1}}
+select{font:inherit;font-size:15px;padding:7px 10px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--fg);max-width:100%}
+.log div{padding-left:12px;border-left:2px solid var(--line)}
+</style>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Laboratorio de Simulación IV · Medicina</div>
+    <h1>Repaso <span>Simu IV</span></h1>
+    <p class="lede">Ritmos de ECG, ACLS y ATLS en un solo lugar: tus protocolos de clase, práctica para reconocer trazos, tarjetas, un quiz con retroalimentación y casos de simulación paso a paso.</p>
+    <svg class="trace" viewBox="0 0 800 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 H90 l8 -4 l8 4 H130 l5 4 l9 -30 l9 38 l6 -12 H200 l14 -6 l14 6 H300 l8 -4 l8 4 H340 l5 4 l9 -30 l9 38 l6 -12 H410 l14 -6 l14 6 H500 l8 -4 l8 4 H540 l5 4 l9 -30 l9 38 l6 -12 H610 l14 -6 l14 6 H700 l8 -4 l8 4 H740 l5 4 l9 -30 l9 38 l6 -12 H800"/></svg>
+  </div>
+</header>
+<nav aria-label="Secciones"><div class="wrap">
+  <a href="#resumen" data-tab="resumen">Resumen</a>
+  <a href="#ritmos" data-tab="ritmos">Ritmos ECG</a>
+  <a href="#tarjetas" data-tab="tarjetas">Tarjetas</a>
+  <a href="#quiz" data-tab="quiz">Quiz</a>
+  <a href="#casos" data-tab="casos">Casos</a>
+</div></nav>
+
+<main>
+<!-- ===================== RESUMEN ===================== -->
+<section id="v-resumen" class="wrap">
+  <div class="sec-head"><h2>Lo que tienes que saber</h2><span class="note">Basado en tus notas de clase, tu carpeta de Lab. de Simulación IV (ACLS + ATLS) y las tarjetas de ACLS del grupo.</span></div>
+
+  <div class="panel">
+    <h3><span class="tag acls">CLASE</span> Protocolos para verbalizar en la simulación</h3>
+    <p class="note">Tomados de tus notas. Elige un protocolo para ver los pasos en orden.</p>
+    <div class="chips" role="group" aria-label="Elegir protocolo" id="pr-pick"></div>
+    <ol class="steps" id="pr-steps"></ol>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3>Signos de inestabilidad</h3>
+      <ul class="list"><li>Déficit neurológico / alteración del estado mental</li><li>Hipotensión</li><li>Shock</li><li>Insuficiencia cardíaca</li><li>Disnea / dolor torácico (angina)</li></ul>
+      <p class="callout">Inestable → terapia eléctrica. Los fármacos no son primera opción en taquicardias inestables.</p>
+    </div>
+    <div class="panel">
+      <h3>Técnica 20-20</h3>
+      <p>Después de cada fármaco en paro (adrenalina, adenosina): pasa un bolo de <span class="dose">20 mL</span> de solución y eleva la extremidad <span class="dose">20 s</span>.</p>
+      <p class="callout">Asistolia: primero di "línea isoeléctrica", revisa cables, derivaciones y ganancia, y solo entonces confirma "asistolia verdadera".</p>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3><span class="tag acls">ACLS</span> RCP de alta calidad</h3>
+      <ul class="list">
+        <li>Frecuencia <span class="dose">100–120/min</span>, profundidad <span class="dose">5–6 cm</span>, mitad inferior del esternón.</li>
+        <li>Permite la reexpansión completa del tórax.</li>
+        <li>Sin vía aérea avanzada <span class="dose">30:2</span>. Con vía aérea avanzada: compresiones continuas y <span class="dose">1 ventilación c/6 s</span>.</li>
+        <li>Pausas <span class="dose">&lt;10 s</span>; fracción de compresiones <span class="dose">≥60 %</span> (ideal 80 %).</li>
+        <li>Cambia al compresor cada <span class="dose">2 min</span> y revisa el ritmo.</li>
+        <li>ETCO₂ <span class="dose">&lt;10 mmHg</span> = mejora la RCP. Subida brusca (≥35–40) = probable ROSC.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3><span class="tag acls">ACLS</span> Fármacos en paro</h3>
+      <ul class="list">
+        <li><b>Epinefrina</b> <span class="dose">1 mg IV/IO c/3–5 min</span>. No desfibrilable: lo antes posible. Desfibrilable: después del 2.º choque.</li>
+        <li><b>Amiodarona</b> <span class="dose">300 mg</span> bolo, luego <span class="dose">150 mg</span> (tras el 3.er choque).</li>
+        <li><b>Lidocaína</b> (alternativa) <span class="dose">1–1.5 mg/kg</span>, luego <span class="dose">0.5–0.75 mg/kg</span>.</li>
+        <li><b>Sulfato de magnesio</b> <span class="dose">1–2 g IV</span> en torsades de pointes.</li>
+        <li>Desfibrilación: bifásico <span class="dose">120–200 J</span>, monofásico <span class="dose">360 J</span>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3><span class="tag acls">ACLS</span> Algoritmo de paro: dos ramas</h3>
+    <div class="scroll"><table>
+      <thead><tr><th>Ritmo</th><th>¿Choque?</th><th>Secuencia</th></tr></thead>
+      <tbody>
+        <tr><td>FV / TV sin pulso</td><td><b>Sí</b></td><td>Choque → RCP 2 min → choque → RCP + epinefrina → choque → RCP + amiodarona 300 → … amiodarona 150</td></tr>
+        <tr><td>Asistolia / AESP</td><td>No</td><td>RCP 2 min + epinefrina lo antes posible c/3–5 min → revisa ritmo → busca y trata Hs y Ts</td></tr>
+      </tbody>
+    </table></div>
+    <p class="callout">Después de cada descarga, reanuda compresiones de inmediato. No revises pulso hasta el siguiente análisis de ritmo.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3>Causas reversibles: 5 H</h3>
+      <ul class="list"><li>Hipovolemia</li><li>Hipoxia</li><li>Hidrogeniones (acidosis)</li><li>Hipo/hiperkalemia</li><li>Hipotermia</li></ul>
+    </div>
+    <div class="panel">
+      <h3>Causas reversibles: 5 T</h3>
+      <ul class="list"><li>Neumotórax a tensión → descompresión con aguja</li><li>Taponamiento → pericardiocentesis</li><li>Tóxicos</li><li>Trombosis pulmonar → trombólisis</li><li>Trombosis coronaria → cateterismo</li></ul>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3><span class="tag acls">ACLS</span> Bradicardia (&lt;50 sintomática)</h3>
+      <ol class="steps">
+        <li>Evalúa síntomas: hipotensión, alteración mental, shock, dolor torácico, insuficiencia cardíaca.</li>
+        <li><b>Atropina</b> <span class="dose">1 mg c/3–5 min</span>, máx <span class="dose">3 mg</span>.</li>
+        <li>Si falla: <b>marcapasos transcutáneo</b>, o <b>dopamina</b> <span class="dose">5–20 mcg/kg/min</span> o <b>epinefrina</b> <span class="dose">2–10 mcg/min</span>.</li>
+        <li>Consulta experto / marcapasos transvenoso.</li>
+      </ol>
+    </div>
+    <div class="panel">
+      <h3><span class="tag acls">ACLS</span> Taquicardia con pulso (&gt;150)</h3>
+      <ol class="steps">
+        <li><b>¿Inestable?</b> → cardioversión sincronizada.</li>
+        <li>QRS estrecho regular: maniobras vagales → <b>adenosina</b> <span class="dose">6 mg</span> → <span class="dose">12 mg</span> (bolo rápido + flush).</li>
+        <li>QRS ancho estable: <b>amiodarona</b> <span class="dose">150 mg en 10 min</span> (o procainamida).</li>
+        <li>Torsades: magnesio <span class="dose">1–2 g</span>.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Energía de cardioversión sincronizada</h3>
+    <div class="scroll"><table>
+      <thead><tr><th>Ritmo</th><th>Energía inicial</th></tr></thead>
+      <tbody>
+        <tr><td>QRS estrecho regular (TSV, flutter)</td><td class="dose">50–100 J</td></tr>
+        <tr><td>QRS estrecho irregular (FA)</td><td class="dose">120–200 J bifásico</td></tr>
+        <tr><td>QRS ancho regular (TV monomórfica)</td><td class="dose">100 J</td></tr>
+        <tr><td>QRS ancho irregular (TV polimórfica)</td><td>Dosis de desfibrilación (no sincronizada)</td></tr>
+      </tbody>
+    </table></div>
+    <p class="callout">Como lo vieron en clase: pide consentimiento, seda, pon gel, retira el O₂, modo sincrónico a <span class="dose">100 J</span>; si persiste <span class="dose">200 J</span> y luego <span class="dose">300 J</span>.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3><span class="tag acls">ACLS</span> Cuidados post-ROSC</h3>
+      <ul class="list">
+        <li>SpO₂ <span class="dose">92–98 %</span> (algunas tarjetas dicen 94–99 %; evita hiperoxia).</li>
+        <li>PaCO₂ <span class="dose">35–45 mmHg</span>.</li>
+        <li>PAS <span class="dose">≥90</span>, PAM <span class="dose">≥65 mmHg</span>; bolo de cristaloide <span class="dose">1–2 L</span> si hace falta.</li>
+        <li>ECG de 12 derivaciones; si hay elevación del ST → cateterismo urgente.</li>
+        <li>Control de temperatura (clásico <span class="dose">32–36 °C</span>) y evitar fiebre.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3><span class="tag acls">ACLS</span> EVC agudo</h3>
+      <ul class="list">
+        <li>Tamizaje rápido (FAST / BE-FAST) y hora exacta de "última vez visto normal".</li>
+        <li>TAC de cráneo <b>sin contraste</b>: puerta-TAC <span class="dose">≤20 min</span>.</li>
+        <li>Alteplasa en ventana de <span class="dose">4.5 h</span>: <span class="dose">0.9 mg/kg</span> (máx 90 mg), 10 % en bolo, resto en 60 min.</li>
+        <li>Puerta-aguja <span class="dose">≤60 min</span>. Glucosa capilar antes de trombolizar.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3><span class="tag atls">ATLS</span> Revisión primaria: xABCDE</h3>
+    <ol class="steps">
+      <li><b>x — Hemorragia exanguinante</b>: presión directa, torniquete en extremidades.</li>
+      <li><b>A — Vía aérea</b> con restricción de columna cervical. Si habla con voz normal, la vía aérea está permeable. GCS ≤8 → vía aérea definitiva.</li>
+      <li><b>B — Respiración</b>: inspección, auscultación, percusión. Descarta neumotórax a tensión, abierto, hemotórax masivo, tórax inestable.</li>
+      <li><b>C — Circulación</b>: control de sangrado, 2 vías periféricas gruesas, <span class="dose">1 L</span> de cristaloide tibio (niños <span class="dose">20 mL/kg</span>), sangre temprana <span class="dose">1:1:1</span>.</li>
+      <li><b>D — Déficit neurológico</b>: GCS, pupilas, signos de lateralización, glucosa.</li>
+      <li><b>E — Exposición</b>: desviste por completo y previene la hipotermia.</li>
+    </ol>
+    <p class="callout atls">Adjuntos a la revisión primaria: monitor y ECG, oximetría, capnografía, gasometría, sonda urinaria y gástrica, Rx de tórax y pelvis AP, eFAST.</p>
+  </div>
+
+  <div class="panel">
+    <h3><span class="tag atls">ATLS</span> Clasificación del choque hemorrágico</h3>
+    <div class="scroll"><table>
+      <thead><tr><th></th><th>Clase I</th><th>Clase II</th><th>Clase III</th><th>Clase IV</th></tr></thead>
+      <tbody>
+        <tr><td>Pérdida</td><td>&lt;15 %<br>&lt;750 mL</td><td>15–30 %<br>750–1500</td><td>31–40 %<br>1500–2000</td><td>&gt;40 %<br>&gt;2000</td></tr>
+        <tr><td>FC</td><td>&lt;100</td><td>100–120</td><td>120–140</td><td>&gt;140</td></tr>
+        <tr><td>PA sistólica</td><td>Normal</td><td>Normal</td><td>Baja</td><td>Muy baja</td></tr>
+        <tr><td>Presión de pulso</td><td>Normal</td><td>Baja</td><td>Baja</td><td>Baja</td></tr>
+        <tr><td>FR</td><td>14–20</td><td>20–30</td><td>30–40</td><td>&gt;35</td></tr>
+        <tr><td>Diuresis mL/h</td><td>&gt;30</td><td>20–30</td><td>5–15</td><td>Mínima</td></tr>
+        <tr><td>Estado mental</td><td>Ansioso leve</td><td>Ansioso</td><td>Confuso</td><td>Letárgico</td></tr>
+        <tr><td>Manejo</td><td>Vigilar</td><td>Cristaloide ± sangre</td><td>Sangre</td><td>Transfusión masiva</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Ácido tranexámico: <span class="dose">1 g en 10 min</span> dentro de las primeras 3 h, luego <span class="dose">1 g en 8 h</span>. Meta de diuresis: <span class="dose">0.5 mL/kg/h</span> adulto, <span class="dose">1 mL/kg/h</span> niño.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3><span class="tag atls">ATLS</span> Tórax que mata</h3>
+      <ul class="list">
+        <li><b>Neumotórax a tensión</b>: diagnóstico clínico; aguja en 4.º–5.º EIC anterior a línea axilar media (adulto) y luego sonda pleural.</li>
+        <li><b>Neumotórax abierto</b>: apósito fijado en 3 lados, luego sonda.</li>
+        <li><b>Hemotórax masivo</b>: <span class="dose">&gt;1500 mL</span> al colocar sonda o <span class="dose">&gt;200 mL/h</span> por 2–4 h → toracotomía.</li>
+        <li><b>Taponamiento</b>: triada de Beck (hipotensión, ingurgitación yugular, ruidos velados).</li>
+        <li><b>Tórax inestable</b>: ≥2 costillas fracturadas en ≥2 sitios; el problema es la contusión pulmonar.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h3><span class="tag atls">ATLS</span> Escala de Glasgow</h3>
+      <div class="scroll"><table>
+        <thead><tr><th>Ocular (4)</th><th>Verbal (5)</th><th>Motora (6)</th></tr></thead>
+        <tbody>
+          <tr><td>4 Espontánea</td><td>5 Orientado</td><td>6 Obedece</td></tr>
+          <tr><td>3 Al sonido</td><td>4 Confuso</td><td>5 Localiza</td></tr>
+          <tr><td>2 A la presión</td><td>3 Palabras</td><td>4 Retira</td></tr>
+          <tr><td>1 Ninguna</td><td>2 Sonidos</td><td>3 Flexión anormal</td></tr>
+          <tr><td></td><td>1 Ninguna</td><td>2 Extensión</td></tr>
+          <tr><td></td><td></td><td>1 Ninguna</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">TCE leve 13–15 · moderado 9–12 · grave 3–8.</p>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <h3><span class="tag atls">ATLS</span> Revisión secundaria</h3>
+      <p>Empieza solo cuando la primaria está completa y el paciente responde a la reanimación. Exploración de cabeza a pies e historia <b>AMPLIA</b>:</p>
+      <ul class="list"><li><b>A</b>lergias</li><li><b>M</b>edicamentos</li><li><b>P</b>atológicos / embarazo</li><li><b>Li</b>bación y últimos alimentos</li><li><b>A</b>mbiente y eventos del trauma</li></ul>
+    </div>
+    <div class="panel">
+      <h3><span class="tag atls">ATLS</span> Perlas rápidas</h3>
+      <ul class="list">
+        <li>No sondar la uretra si hay sangre en el meato, equimosis perineal o próstata alta.</li>
+        <li>Sonda orogástrica (no nasal) si sospechas fractura de base de cráneo.</li>
+        <li>Hipotensión permisiva hasta controlar el sangrado (no en TCE).</li>
+        <li>Quemaduras: regla de los 9; ATLS usa <span class="dose">2 mL × kg × %SCQ</span> en adultos, la mitad en las primeras 8 h.</li>
+        <li>Embarazada: desplaza el útero a la izquierda.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RITMOS ===================== -->
+<section id="v-ritmos" class="wrap" hidden>
+  <div class="sec-head"><h2>Ritmos ECG</h2><span class="stat" id="ry-stat"></span></div>
+  <div class="panel">
+    <div class="row" style="justify-content:space-between">
+      <h3 style="margin:0">Monitor de ritmos</h3>
+      <div class="chips" role="group" aria-label="Modo del monitor">
+        <button class="chip" data-mm="explorar" aria-pressed="true">Explorar</button>
+        <button class="chip" data-mm="practicar" aria-pressed="false">Practicar</button>
+      </div>
+    </div>
+    <div class="mon">
+      <div class="mon-screen"><canvas id="mon-cv" aria-label="Trazo de ECG en movimiento" role="img"></canvas>
+        <div class="mon-lead">II · <span id="mon-spd">25</span> mm/s · x<span id="mon-gn">1</span></div></div>
+      <div class="mon-side">
+        <div><div class="mon-lbl">FC <span class="mon-heart" id="mon-heart">♥</span></div><div class="mon-hr" id="mon-hr">--</div><div class="mon-lbl">lpm</div></div>
+        <div><div class="mon-lbl">Ritmo</div><div class="mon-name" id="mon-name">--</div></div>
+      </div>
+    </div>
+    <div class="row" id="mon-selrow">
+      <label for="mon-sel" class="note">Ritmo</label>
+      <select id="mon-sel"></select>
+      <button class="btn ghost" id="mon-rand">Al azar</button>
+    </div>
+    <div class="row">
+      <button class="chip" id="mon-pause" aria-pressed="false">Pausa</button>
+      <button class="chip" id="mon-speed" aria-pressed="false">50 mm/s</button>
+      <button class="chip" id="mon-gain" aria-pressed="false">Ganancia x2</button>
+      <button class="chip" id="mon-sound" aria-pressed="false">Sonido</button>
+      <button class="chip" id="mon-calipers" aria-pressed="false">Cuadrícula</button>
+      <button class="btn ghost" id="mon-rand2" hidden>Otro trazo</button>
+    </div>
+    <p class="note" id="mon-crit"></p>
+    <div id="mon-quiz" hidden>
+      <div class="opts" id="ry-opts"></div>
+      <div id="ry-fb"></div>
+    </div>
+    <p class="note">Trazos generados para practicar; no son registros reales. Explorar muestra el nombre y los criterios; Practicar los oculta y te pide identificarlo.</p>
+  </div>
+  <div class="panel">
+    <h3>Antes de nombrar el ritmo</h3>
+    <ul class="list">
+      <li>Calibración <span class="dose">1 cm = 1 mV</span>, velocidad <span class="dose">25 mm/s</span>; aVR debe ser negativo.</li>
+      <li>Frecuencia: 300 ÷ cuadros grandes entre R y R (o cuenta QRS en 6 s × 10).</li>
+      <li>¿Regular? ¿Hay P antes de cada QRS? PR normal <span class="dose">0.12–0.20 s</span>.</li>
+      <li>QRS estrecho <span class="dose">&lt;0.12 s</span> = origen arriba del haz de His (supraventricular). QRS ancho = ventricular o supraventricular con aberrancia.</li>
+    </ul>
+    <div class="scroll"><table>
+      <thead><tr><th>Derivaciones</th><th>Qué cara ven</th></tr></thead>
+      <tbody>
+        <tr><td>V1–V2</td><td>Septum</td></tr>
+        <tr><td>V3–V4</td><td>Pared anterior del VI</td></tr>
+        <tr><td>V5–V6, DI, aVL</td><td>Cara lateral (DI y aVL lateral alta)</td></tr>
+        <tr><td>DII, DIII, aVF</td><td>Cara inferior</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="panel">
+    <h3>Galería de ritmos</h3>
+    <div class="chips" role="group" aria-label="Filtrar ritmos" id="ry-groups"></div>
+    <div id="ry-gallery" style="display:grid;gap:18px"></div>
+  </div>
+</section>
+
+<!-- ===================== TARJETAS ===================== -->
+<section id="v-tarjetas" class="wrap" hidden>
+  <div class="sec-head"><h2>Tarjetas</h2><span class="stat" id="fc-stat"></span></div>
+  <div class="row">
+    <div class="chips" role="group" aria-label="Filtrar tarjetas">
+      <button class="chip" data-fc="all" aria-pressed="true">Todas</button>
+      <button class="chip" data-fc="ACLS" aria-pressed="false">ACLS</button>
+      <button class="chip" data-fc="ATLS" aria-pressed="false">ATLS</button>
+      <button class="chip" data-fc="due" aria-pressed="false">Por repasar</button>
+    </div>
+  </div>
+  <div class="meter" aria-hidden="true"><i id="fc-meter"></i></div>
+  <button class="card" id="fc-card" aria-label="Tarjeta, toca para voltear">
+    <div class="card-in">
+      <div class="face front"><span id="fc-tag"></span><div class="q" id="fc-q"></div><span class="hint">toca o barra espaciadora para voltear</span></div>
+      <div class="face back"><span class="eyebrow">Respuesta</span><div class="a" id="fc-a"></div></div>
+    </div>
+  </button>
+  <div class="row">
+    <button class="btn bad" id="fc-again">Repasar otra vez</button>
+    <button class="btn ok" id="fc-know">Ya me la sé</button>
+    <button class="btn ghost" id="fc-shuffle">Barajar</button>
+    <button class="btn ghost" id="fc-reset">Reiniciar progreso</button>
+  </div>
+  <p class="note">Tu progreso se guarda en este navegador. Atajos: espacio voltea, ← repasar, → me la sé.</p>
+</section>
+
+<!-- ===================== QUIZ ===================== -->
+<section id="v-quiz" class="wrap" hidden>
+  <div class="sec-head"><h2>Quiz</h2><span class="stat" id="qz-stat"></span></div>
+  <div class="chips" role="group" aria-label="Elegir tema del quiz">
+    <button class="chip" data-qz="all" aria-pressed="true">Mixto</button>
+    <button class="chip" data-qz="ACLS" aria-pressed="false">ACLS</button>
+    <button class="chip" data-qz="ATLS" aria-pressed="false">ATLS</button>
+  </div>
+  <div class="panel" id="qz-box"></div>
+</section>
+
+<!-- ===================== CASOS ===================== -->
+<section id="v-casos" class="wrap" hidden>
+  <div class="sec-head"><h2>Casos de simulación</h2><span class="note">Decide como líder del equipo. Cada paso te dice si acertaste y por qué.</span></div>
+  <div class="chips" role="group" aria-label="Elegir caso" id="cs-pick"></div>
+  <div class="panel" id="cs-box"></div>
+</section>
+</main>
+
+<script>
+const S = {get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+/* ---------- navegación ---------- */
+const tabs=["resumen","ritmos","tarjetas","quiz","casos"];
+function show(){const t=tabs.includes(location.hash.slice(1))?location.hash.slice(1):"resumen";
+  tabs.forEach(x=>{document.getElementById("v-"+x).hidden=x!==t});
+  document.querySelectorAll("nav a").forEach(a=>a.setAttribute("aria-current",a.dataset.tab===t?"page":"false"));}
+addEventListener("hashchange",()=>{show();scrollTo(0,0)});show();
+
+/* ---------- protocolos de clase ---------- */
+const PROTOS={
+"Ritmo desfibrilable":["¿Responde? Estimula y pregunta.","Pide a alguien que llame al equipo de emergencias.","Pulso 5–10 s y contextualiza en voz alta.","Asigna RCP: \"X inicia compresiones, 30; Y da 2 ventilaciones con O₂ durante 5 ciclos; al terminar intercambian\".","Que conecten el monitor-desfibrilador en modo parches (pads) y te avisen cuando haya trazo.","Asigna a alguien para llevar el registro.","Pide acceso vascular (IV/IO).","Trazo FV o TVSP: \"Continúen RCP, coloquen gel, cargar a 360, detengan RCP, fuera yo, fuera tú, fuera todos… descarga\".","Reanudar RCP de inmediato y relevar puestos.","¿Ya está el acceso? Prepara la adrenalina para después de la 2.ª descarga.","Verifica la calidad de la RCP; ¿hace falta vía aérea avanzada?","Ritmo persistente: descarga → adrenalina 1 mg (técnica 20-20) → RCP; considera vía aérea avanzada.","En la siguiente descarga: amiodarona 300 mg.","Busca y trata Hs y Ts."],
+"Ritmo no desfibrilable":["¿Responde?","Pide que llamen al equipo de emergencias.","Pulso 5–10 s.","Asigna RCP 30:2 durante 5 ciclos y que intercambien.","Asigna a alguien para el registro.","Que conecten el monitor-desfibrilador (pads) y avisen del trazo.","Pide acceso vascular.","Trazo asistolia o AESP (si es línea isoeléctrica, revisa cables y confirma \"asistolia verdadera\").","Ciclo de RCP y manejo de la vía aérea.","Adrenalina 1 mg lo antes posible y cada 3–5 min.","Revisa el ritmo: si se vuelve desfibrilable, pasa al otro protocolo; si no, repite y busca causas reversibles (Hs y Ts)."],
+"ROSC":["Ventila y oxigena (sin hiperoxia).","Reevalúa ABCD.","Signos vitales completos.","ECG de 12 derivaciones y Rx (tele) de tórax.","Avisa a terapia intensiva."],
+"Pre-paro taquicardia":["¿Responde? (en la taqui con pulso sí responde).","Pide equipo, toma pulso y avisa si hay inestabilidad.","Vía aérea, O₂, monitor para identificar el ritmo, acceso IV, laboratorios, ECG de 12 y Rx de tórax.","Verbaliza el ritmo, el gasto y si está estable o inestable.","Inestable → cardioversión: pide consentimiento, seda, pon gel, retira el O₂; 100 J sincronizado, si persiste 200 y luego 300 J.","Al revertir: revisa signos, ABC, trazo y laboratorios.","Estable QRS estrecho → adenosina 6 mg en bolo, luego 12 mg; avisa al paciente (sentirá una pausa molesta); técnica 20-20 y toma signos vitales.","Estable QRS ancho → procainamida, amiodarona (150 mg en 10 min) o sotalol.","En clase también se mencionó verapamilo 5 mg IV lento (5 min) para QRS estrecho."],
+"Pre-paro bradicardia":["¿Responde?","Pide equipo, toma pulso y avisa que hay pulso lento.","Vía aérea, monitor, signos vitales (con destrostix), acceso IV, laboratorios, ECG de 12 y Rx de tórax. Verbaliza el trazo (p. ej. BAV de 3.er grado).","Corrige glucosa si hace falta; gasometría.","Fármacos: atropina 1 mg (máx 3 mg), dopamina 5–20 mcg/kg/min o adrenalina 2–10 mcg/min. Revisa la PA tras cada administración.","Inestable o sin respuesta → marcapasos transcutáneo: modo \"PACER\", seda y analgesia si está despierto, inicia en 10 mA y sube de 5 en 5 hasta captura (espiga seguida de QRS). Los parches del marcapasos no llevan gel.","Revisa signos vitales al final."]
+};
+const prPick=document.getElementById("pr-pick");
+prPick.innerHTML=Object.keys(PROTOS).map((k,i)=>`<button class="chip" data-pr="${k}" aria-pressed="${i===0}">${k}</button>`).join("");
+function prShow(k){document.getElementById("pr-steps").innerHTML=PROTOS[k].map(s=>`<li>${s}</li>`).join("");prPick.querySelectorAll("[data-pr]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.pr===k))}
+prPick.querySelectorAll("[data-pr]").forEach(b=>b.onclick=()=>prShow(b.dataset.pr));prShow("Ritmo desfibrilable");
+
+/* ---------- generador de tiras ECG ---------- */
+const G=(t,m,s,a)=>a*Math.exp(-((t-m)*(t-m))/(2*s*s));
+const bN=(t,q)=>G(t,q-.03,.008,-.12)+G(t,q,.011,1.1)+G(t,q+.028,.01,-.28)+G(t,q+.26,.045,.28);
+const bW=(t,q)=>G(t,q,.035,1)+G(t,q+.09,.035,-.55)+G(t,q+.32,.06,-.35);
+let SEQ_END=6.2;const seq=(a,d,e=SEQ_END)=>{const r=[];for(let x=a;x<e;x+=d)r.push(x);return r};
+function rng(seed){return()=>{seed=(seed*16807)%2147483647;return seed/2147483647}}
+function sinus(rr,pr=.16){const n=seq(.35,rr);return{n,p:n.map(q=>q-pr)}}
+const RHY=[
+{g:"Sinusales",en:"Sinus rhythm",es:"Ritmo sinusal",c:"60–100 lpm, regular, P positiva antes de cada QRS, PR 0.12–0.20 s, QRS estrecho.",f:()=>sinus(.8)},
+{g:"Sinusales",en:"Sinus bradycardia",es:"Bradicardia sinusal",c:"Igual que el sinusal pero <60 lpm.",f:()=>sinus(1.35)},
+{g:"Sinusales",en:"Sinus tachycardia",es:"Taquicardia sinusal",c:"Igual que el sinusal pero >100 lpm (P visibles).",f:()=>sinus(.5,.14)},
+{g:"Sinusales",en:"Sinus arrhythmia",es:"Arritmia sinusal",c:"P normales, pero el intervalo RR varía con la respiración.",loop:7.35,f:()=>{const rr=[.65,.8,.98,1.05,.9,.72,.65,.8];let q=.3;const n=[];rr.forEach(d=>{n.push(q);q+=d});return{n,p:n.map(x=>x-.16)}}},
+{g:"Sinusales",en:"Sinus arrest",es:"Paro sinusal",c:"Ritmo sinusal con una pausa sin P ni QRS que no es múltiplo del RR.",loop:6.2,f:()=>{const n=[.35,1.15,1.95,4.15,4.95,5.75];return{n,p:n.map(x=>x-.16)}}},
+{g:"Supraventriculares",en:"SVT",es:"Taquicardia supraventricular",c:"150–250 lpm, regular, QRS estrecho, P no visibles.",f:()=>({n:seq(.2,.33)})},
+{g:"Supraventriculares",en:"Atrial fibrillation",es:"Fibrilación auricular",c:"Irregularmente irregular, sin ondas P, línea de base fibrilatoria.",f:()=>{const r=rng(7);const n=[];let q=.25;while(q<SEQ_END){n.push(q);q+=.42+r()*.55}return{n,base:t=>.035*(Math.sin(43*t)+Math.sin(31*t+1)+Math.sin(59*t+2))}}},
+{g:"Supraventriculares",en:"Atrial flutter",es:"Aleteo (flutter) auricular",c:"Ondas F en dientes de sierra, auricular 250–350 lpm; conducción fija (aquí 4:1).",f:()=>({n:seq(.4,.8),base:t=>.12-.24*(((t+.02)/.2)%1)})},
+{g:"Bloqueos AV",en:"NSR with 1 AVB",es:"Bloqueo AV de primer grado",c:"PR fijo >0.20 s, todas las P conducen (1:1).",f:()=>sinus(.86,.32)},
+{g:"Bloqueos AV",en:"2 AVB type I",es:"BAV 2.º grado Mobitz I (Wenckebach)",c:"El PR se alarga progresivamente hasta que una P no conduce.",f:()=>{const p=seq(.15,.78),n=[],prs=[.16,.25,.33,null];p.forEach((x,i)=>{const pr=prs[i%4];if(pr)n.push(x+pr)});return{p,n}}},
+{g:"Bloqueos AV",en:"2 AVB type II",es:"BAV 2.º grado Mobitz II",c:"PR constante y, de pronto, una P sin QRS.",f:()=>{const p=seq(.15,.72),n=[];p.forEach((x,i)=>{if(i%3!==2)n.push(x+.18)});return{p,n}}},
+{g:"Bloqueos AV",en:"2 AVB 2:1",es:"BAV 2.º grado 2:1",c:"Una P conducida por cada dos ondas P.",f:()=>{const p=seq(.15,.6),n=[];p.forEach((x,i)=>{if(i%2===0)n.push(x+.18)});return{p,n}}},
+{g:"Bloqueos AV",en:"3 AV block",es:"BAV de 3.er grado (completo)",c:"Disociación AV: las P marchan a su ritmo y los QRS (lentos, a menudo anchos) al suyo.",f:()=>({p:seq(.1,.68),w:seq(.5,1.7)})},
+{g:"Extrasístoles",en:"NSR with PAC",es:"Sinusal con extrasístole auricular",c:"Latido precoz con P de morfología distinta y QRS estrecho.",loop:6.3,f:()=>{const n=[.35,1.15,1.95,2.5,3.45,4.25,5.05,5.85];return{n,p:n.map((x,i)=>x-(i===3?.13:.16)),pa:[3]}}},
+{g:"Extrasístoles",en:"NSR with PVC",es:"Sinusal con extrasístole ventricular",c:"QRS ancho y prematuro sin P previa, seguido de pausa compensadora.",loop:6.4,f:()=>{const n=[.35,1.15,1.95,3.55,4.35,5.15,5.95];return{n,p:n.map(x=>x-.16),w:[2.5]}}},
+{g:"Unión",en:"Junctional rhythm",es:"Ritmo de la unión",c:"40–60 lpm, QRS estrecho, P ausente o invertida.",f:()=>{const n=seq(.4,1.2);return{n,pi:n.map(x=>x-.08)}}},
+{g:"Unión",en:"Junctional tachy",es:"Taquicardia de la unión",c:">100 lpm, regular, QRS estrecho, P invertida o ausente.",f:()=>{const n=seq(.3,.52);return{n,pi:n.map(x=>x-.08)}}},
+{g:"Ventriculares",en:"Idioventricular",es:"Ritmo idioventricular",c:"20–40 lpm, QRS ancho, sin P.",f:()=>({w:seq(.5,1.75)})},
+{g:"Ventriculares",en:"Accelerated IVR",es:"Idioventricular acelerado",c:"40–100 lpm, QRS ancho y regular, sin P.",f:()=>({w:seq(.4,.85)})},
+{g:"Ventriculares",en:"VTach",es:"Taquicardia ventricular",c:">100 lpm, QRS ancho y regular. Sin pulso = desfibrilar.",f:()=>({w:seq(.2,.36)})},
+{g:"Ventriculares",en:"VFib",es:"Fibrilación ventricular",c:"Actividad caótica sin QRS identificables. Desfibrilar.",f:()=>({base:t=>(.3+.15*Math.sin(1.7*t))*(Math.sin(31*t)+.6*Math.sin(47*t+1.3)+.4*Math.sin(23*t+.4))})},
+{g:"Ventriculares",en:"Asystole",es:"Asistolia",c:"Línea isoeléctrica. Revisa cables y derivaciones antes de decir \"asistolia verdadera\". No se desfibrila.",f:()=>({base:t=>.02*Math.sin(2.1*t)})},
+{g:"Marcapasos",en:"Paced ventricular",es:"Ritmo ventricular por marcapasos",c:"Espiga seguida de QRS ancho (captura).",f:()=>({w:seq(.4,.85),sp:seq(.4,.85).map(x=>x-.06)})}
+];
+function stripPath(r){const s=r.f(),pts=[];
+  for(let x=0;x<=600;x++){const t=x/100;let v=s.base?s.base(t):0;
+    (s.p||[]).forEach((p,i)=>{v+=G(t,p,.022,(s.pa||[]).includes(i)?-.1:.15)});
+    (s.pi||[]).forEach(p=>{v+=G(t,p,.02,-.12)});
+    (s.n||[]).forEach(q=>{if(Math.abs(t-q)<.6)v+=bN(t,q)});
+    (s.w||[]).forEach(q=>{if(Math.abs(t-q)<.7)v+=bW(t,q)});
+    (s.sp||[]).forEach(q=>{v+=G(t,q,.0025,1.4)});
+    pts.push(x+","+(78-v*40).toFixed(1))}
+  return "M"+pts.join(" L")}
+function drawStrip(svg,r){svg.innerHTML=`<rect width="600" height="140" fill="url(#ecg-grid)"/><path d="${stripPath(r)}" style="fill:none;stroke:var(--fg);stroke-width:1.6;stroke-linejoin:round"/>`}
+document.body.insertAdjacentHTML("beforeend",`<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<pattern id="ecg-sm" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M4 0H0V4" style="fill:none;stroke:var(--grid);stroke-width:.6"/></pattern>
+<pattern id="ecg-grid" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="url(#ecg-sm)"/><path d="M20 0H0V20" style="fill:none;stroke:var(--gridb);stroke-width:1"/></pattern></defs></svg>`);
+/* galería */
+const groups=["Todos",...new Set(RHY.map(r=>r.g))];const ryG=document.getElementById("ry-groups");
+ryG.innerHTML=groups.map((g,i)=>`<button class="chip" data-ryg="${g}" aria-pressed="${i===0}">${g}</button>`).join("");
+function gallery(g){const box=document.getElementById("ry-gallery");box.innerHTML="";
+  RHY.filter(r=>g==="Todos"||r.g===g).forEach(r=>{const d=document.createElement("div");d.style.cssText="display:grid;gap:6px;min-width:0";
+    d.innerHTML=`<div class="row" style="justify-content:space-between"><div><b>${r.es}</b> <span class="stat">${r.en}</span></div><button class="chip" data-mon="${RHY.indexOf(r)}">Ver en monitor</button></div><div class="scroll"><svg class="strip" viewBox="0 0 600 140" role="img" aria-label="${r.es}"></svg></div><p class="note">${r.c}</p>`;
+    box.appendChild(d);drawStrip(d.querySelector("svg"),r)});
+  ryG.querySelectorAll("[data-ryg]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.ryg===g))}
+ryG.querySelectorAll("[data-ryg]").forEach(b=>b.onclick=()=>gallery(b.dataset.ryg));gallery("Todos");
+/* ---------- monitor en tiempo real ---------- */
+const MON={i:0,spec:null,L:60,t:0,x:0,ly:null,paused:false,speed:25,gain:1,sound:false,grid:false,mode:"explorar",qrs:[],ac:null,lastBeat:-1,hidden:false};
+const cv=document.getElementById("mon-cv"),cx=cv.getContext("2d");
+const MC={bg:"#07120e",grid:"#12281f",trace:"#5ef59a",erase:"#07120e"};
+function monLoad(i){MON.i=i;SEQ_END=60;const s=RHY[i].f();SEQ_END=6.2;MON.spec=s;MON.L=RHY[i].loop||60;
+  MON.qrs=[...(s.n||[]),...(s.w||[])].sort((a,b)=>a-b);MON.t=0;MON.ly=null;monClear();
+  document.getElementById("mon-sel").value=i;monLabel()}
+function monLabel(){const r=RHY[MON.i],hide=MON.mode==="practicar"&&!MON.revealed;
+  document.getElementById("mon-name").textContent=hide?"¿?":r.es;
+  document.getElementById("mon-crit").innerHTML=hide?"Observa la frecuencia, la regularidad, las P, el PR y el ancho del QRS.":`<b>${r.es}</b> (${r.en}): ${r.c}`;
+  document.getElementById("mon-selrow").hidden=MON.mode==="practicar"}
+function wrapD(t,e,L){let d=t-e;if(d>L/2)d-=L;if(d<-L/2)d+=L;return d}
+function monV(t){const s=MON.spec,L=MON.L,tt=((t%L)+L)%L;let v=s.base?s.base(tt):0;
+  (s.p||[]).forEach((p,i)=>{const d=wrapD(tt,p,L);if(Math.abs(d)<.15)v+=G(d,0,.022,(s.pa||[]).includes(i)?-.1:.15)});
+  (s.pi||[]).forEach(p=>{const d=wrapD(tt,p,L);if(Math.abs(d)<.15)v+=G(d,0,.02,-.12)});
+  (s.n||[]).forEach(q=>{const d=wrapD(tt,q,L);if(Math.abs(d)<.6)v+=bN(d,0)});
+  (s.w||[]).forEach(q=>{const d=wrapD(tt,q,L);if(Math.abs(d)<.7)v+=bW(d,0)});
+  (s.sp||[]).forEach(q=>{const d=wrapD(tt,q,L);if(Math.abs(d)<.02)v+=G(d,0,.0025,1.4)});
+  return v}
+function monHR(t){const L=MON.L,tt=((t%L)+L)%L,q=MON.qrs;if(q.length<2)return null;
+  let k=q.findIndex(x=>x>tt);if(k<0)k=q.length;const prev=[];for(let j=1;j<=5;j++){const a=q[(k-j+q.length*2)%q.length],b=q[(k-j-1+q.length*2)%q.length];let rr=a-b;if(rr<=0)rr+=L;prev.push(rr)}
+  return Math.round(60/(prev.reduce((s,x)=>s+x,0)/prev.length))}
+let W=0,H=0,dpr=1;
+function monSize(){dpr=Math.min(2,window.devicePixelRatio||1);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);monClear()}
+function monClear(){cx.fillStyle=MC.bg;cx.fillRect(0,0,W,H);if(MON.grid)monGrid(0,W);MON.x=0;MON.ly=null}
+function monGrid(x0,x1){const pxs=W/(W<500?4:6)*(MON.speed/25),big=pxs*.2;cx.strokeStyle=MC.grid;cx.lineWidth=1;cx.beginPath();
+  for(let x=Math.ceil(x0/big)*big;x<x1;x+=big){cx.moveTo(x+.5,0);cx.lineTo(x+.5,H)}
+  if(x0===0||true){const mv=H/5*MON.gain/2;for(let y=H*.58%mv;y<H;y+=mv){cx.moveTo(x0,y+.5);cx.lineTo(x1,y+.5)}}cx.stroke()}
+function beep(hi){if(!MON.ac)return;const o=MON.ac.createOscillator(),g=MON.ac.createGain();o.frequency.value=hi?960:880;g.gain.setValueAtTime(.08,MON.ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,MON.ac.currentTime+.09);o.connect(g).connect(MON.ac.destination);o.start();o.stop(MON.ac.currentTime+.1)}
+let lastTS=null;
+function monFrame(ts){if(lastTS==null)lastTS=ts;let dt=Math.min(.1,(ts-lastTS)/1000);lastTS=ts;
+  if(!MON.paused&&W>0&&!document.getElementById("v-ritmos").hidden){
+    const pxs=W/(W<500?4:6)*(MON.speed/25),t0=MON.t,t1=t0+dt,L=MON.L;
+    let x0=MON.x,x1=x0+dt*pxs;
+    // borrar delante del cursor
+    const er=Math.min(W,x1+16);cx.fillStyle=MC.erase;cx.fillRect(Math.floor(x0)+1,0,Math.ceil(er-x0),H);if(MON.grid)monGrid(Math.floor(x0)+1,er);
+    if(x1+16>W){cx.fillStyle=MC.erase;cx.fillRect(0,0,x1+16-W,H);if(MON.grid)monGrid(0,x1+16-W)}
+    cx.strokeStyle=MC.trace;cx.lineWidth=2;cx.lineJoin="round";cx.lineCap="round";cx.beginPath();
+    const mid=H*.58,sc=H/5*MON.gain;let started=false;
+    for(let x=x0;x<=x1;x+=.5){const t=t0+(x-x0)/pxs,xx=x%W;const y=mid-monV(t)*sc;
+      if(MON.ly==null||xx<MON.lx){cx.moveTo(xx,y)}else if(!started){cx.moveTo(MON.lx,MON.ly);cx.lineTo(xx,y)}else cx.lineTo(xx,y);
+      started=true;MON.lx=xx;MON.ly=y}
+    cx.stroke();MON.x=x1%W;MON.t=t1;
+    // latido: sonido y corazón
+    const a=((t0%L)+L)%L,b=((t1%L)+L)%L;MON.qrs.forEach(q=>{const hit=a<=b?(q>a&&q<=b):(q>a||q<=b);if(hit){if(MON.sound)beep();const h=document.getElementById("mon-heart");h.classList.remove("on");void h.offsetWidth;h.classList.add("on")}});
+    if(Math.floor(t1*2)!==Math.floor(t0*2)){const hr=monHR(t1);document.getElementById("mon-hr").textContent=hr==null?"---":(hr>300?"---":hr)}}
+  requestAnimationFrame(monFrame)}
+const sel=document.getElementById("mon-sel");
+sel.innerHTML=[...new Set(RHY.map(r=>r.g))].map(g=>`<optgroup label="${g}">${RHY.map((r,i)=>r.g===g?`<option value="${i}">${r.es}</option>`:"").join("")}</optgroup>`).join("");
+sel.onchange=()=>monLoad(+sel.value);
+const tog=(id,fn)=>{const b=document.getElementById(id);b.onclick=()=>{const on=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",on);fn(on)}};
+tog("mon-pause",on=>{MON.paused=on});
+tog("mon-speed",on=>{MON.speed=on?50:25;document.getElementById("mon-spd").textContent=MON.speed;monClear()});
+tog("mon-gain",on=>{MON.gain=on?2:1;document.getElementById("mon-gn").textContent=MON.gain;monClear()});
+tog("mon-sound",on=>{MON.sound=on;if(on&&!MON.ac){try{MON.ac=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(MON.ac&&MON.ac.state==="suspended")MON.ac.resume()});
+tog("mon-calipers",on=>{MON.grid=on;monClear()});
+document.getElementById("mon-rand2").onclick=()=>ryNext();
+document.getElementById("mon-rand").onclick=()=>{if(MON.mode==="practicar")ryNext();else{let i;do{i=Math.floor(Math.random()*RHY.length)}while(i===MON.i);monLoad(i)}};
+document.querySelectorAll("[data-mm]").forEach(b=>b.onclick=()=>{MON.mode=b.dataset.mm;document.querySelectorAll("[data-mm]").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  document.getElementById("mon-quiz").hidden=MON.mode!=="practicar";document.getElementById("mon-rand2").hidden=MON.mode!=="practicar";
+  if(MON.mode==="practicar")ryNext();else{MON.revealed=true;monLabel()}});
+/* práctica */
+let ryOk=0,ryN=0;
+function ryNext(){let i;do{i=Math.floor(Math.random()*RHY.length)}while(i===MON.i&&RHY.length>1);MON.revealed=false;monLoad(i);const r=RHY[i];
+  const same=RHY.map((x,j)=>j).filter(j=>j!==i&&RHY[j].g===r.g),other=RHY.map((x,j)=>j).filter(j=>j!==i&&RHY[j].g!==r.g);
+  const sh=a=>a.sort(()=>Math.random()-.5);const opts=sh([i,...sh(same).slice(0,1),...sh(other).slice(0,3-Math.min(1,same.length))]);
+  const box=document.getElementById("ry-opts");document.getElementById("ry-fb").innerHTML="";
+  box.innerHTML=opts.map(j=>`<button class="opt" data-j="${j}">${RHY[j].es}</button>`).join("");
+  box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{const ok=+b.dataset.j===i;ryN++;if(ok)ryOk++;MON.revealed=true;monLabel();
+    box.querySelectorAll(".opt").forEach(x=>{x.disabled=true;if(+x.dataset.j===i)x.classList.add("right")});if(!ok)b.classList.add("wrong");
+    document.getElementById("ry-stat").textContent=`${ryOk}/${ryN} correctas`;
+    document.getElementById("ry-fb").innerHTML=`<div class="fb ${ok?"right":"wrong"}"><b>${ok?"Correcto:":"Es"} ${r.es}.</b> ${r.c}</div><div class="row" style="margin-top:10px"><button class="btn" id="ry-next">Otro trazo</button></div>`;
+    document.getElementById("ry-next").onclick=ryNext;document.getElementById("ry-next").focus()})}
+/* galería: abrir en monitor */
+document.getElementById("ry-gallery").addEventListener("click",e=>{const b=e.target.closest("[data-mon]");if(!b)return;
+  if(MON.mode==="practicar")document.querySelector('[data-mm="explorar"]').click();monLoad(+b.dataset.mon);MON.revealed=true;monLabel();
+  document.querySelector(".mon").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"})});
+new ResizeObserver(monSize).observe(cv);MON.revealed=true;monLoad(0);requestAnimationFrame(monFrame);
+
+
+/* ---------- tarjetas ---------- */
+const CARDS=[
+["ACLS","Técnica 20-20","Tras el fármaco: bolo de 20 mL de solución y elevar la extremidad 20 segundos."],
+["ACLS","Ves una línea isoeléctrica en el monitor. ¿Qué dices y haces?","\"Línea isoeléctrica\": revisa cables, derivaciones y ganancia; luego confirma \"asistolia verdadera\"."],
+["ACLS","Frase de seguridad antes de descargar","\"Cargar a 360… detengan RCP, fuera yo, fuera tú, fuera todos… descarga\"."],
+["ACLS","Cardioversión sincronizada en clase","Consentimiento, sedación, gel, retirar O₂; 100 J sincronizado → 200 → 300 J."],
+["ACLS","Marcapasos transcutáneo: configuración","Modo PACER, sedación/analgesia, iniciar en 10 mA y subir de 5 en 5 hasta captura (espiga seguida de QRS)."],
+["ACLS","Fármacos para taquicardia de QRS ancho estable","Procainamida, amiodarona o sotalol."],
+["ACLS","Pasos al lograr ROSC","Ventilar, ABCD, signos vitales, ECG de 12 y Rx de tórax, avisar a terapia intensiva."],
+["ACLS","BAV 2.º grado Mobitz I (Wenckebach)","El PR se alarga progresivamente hasta que cae un QRS."],
+["ACLS","BAV 2.º grado Mobitz II","PR constante con QRS bloqueados de forma súbita."],
+["ACLS","BAV de 3.er grado","Disociación AV completa: P y QRS independientes."],
+["ACLS","Frecuencia del ritmo de la unión","40–60 lpm (acelerado 60–100, taquicardia >100)."],
+["ACLS","Frecuencia del ritmo idioventricular","20–40 lpm (acelerado 40–100)."],
+["ACLS","Marcapasos errante","≥3 morfologías distintas de onda P, <100 lpm."],
+["ACLS","Calibración estándar del ECG","1 cm = 1 mV, 25 mm/s; aVR debe ser negativo."],
+["ACLS","Algoritmo inicial de Simu al llegar con un paciente","Llegada (escena segura) → preguntar si se encuentra bien → activar cadena de emergencia → pulso → llegada del equipo y explicar panorama."],
+["ACLS","Frecuencia de compresiones","100–120 por minuto."],
+["ACLS","Profundidad de compresiones en adulto","5–6 cm, con reexpansión completa del tórax."],
+["ACLS","Relación compresión:ventilación sin vía aérea avanzada","30:2."],
+["ACLS","Ventilación con vía aérea avanzada","Compresiones continuas y 1 ventilación cada 6 segundos (10/min)."],
+["ACLS","Pausa máxima en compresiones","Menos de 10 segundos, solo para análisis o descarga."],
+["ACLS","Fracción de compresiones objetivo","Al menos 60 % (ideal 80 %)."],
+["ACLS","¿Cada cuánto se revisa el ritmo?","Cada 2 minutos, al cambiar compresor."],
+["ACLS","Ritmos desfibrilables","Fibrilación ventricular y taquicardia ventricular sin pulso."],
+["ACLS","Ritmos NO desfibrilables","Asistolia y actividad eléctrica sin pulso (AESP)."],
+["ACLS","Energía de desfibrilación bifásica","120–200 J (según el fabricante); si no se sabe, la máxima."],
+["ACLS","Energía de desfibrilación monofásica","360 J."],
+["ACLS","Qué hacer justo después de desfibrilar","Reanudar RCP inmediatamente por 2 minutos, sin revisar pulso."],
+["ACLS","Dosis de epinefrina en paro","1 mg IV/IO cada 3–5 minutos."],
+["ACLS","¿Cuándo va la epinefrina en ritmo desfibrilable?","Después del 2.º choque."],
+["ACLS","¿Cuándo va la epinefrina en asistolia/AESP?","Lo antes posible."],
+["ACLS","Amiodarona en FV/TV sin pulso refractaria","300 mg en bolo; segunda dosis 150 mg."],
+["ACLS","Alternativa a la amiodarona en paro","Lidocaína 1–1.5 mg/kg, luego 0.5–0.75 mg/kg."],
+["ACLS","Tratamiento de torsades de pointes","Sulfato de magnesio 1–2 g IV."],
+["ACLS","Las 5 H","Hipovolemia, hipoxia, hidrogeniones (acidosis), hipo/hiperkalemia, hipotermia."],
+["ACLS","Las 5 T","Neumotórax a tensión, taponamiento, tóxicos, trombosis pulmonar, trombosis coronaria."],
+["ACLS","ETCO₂ menor de 10 mmHg durante RCP","Las compresiones no generan flujo suficiente: mejora la calidad."],
+["ACLS","Aumento súbito de ETCO₂ durante RCP","Sugiere retorno de la circulación espontánea (ROSC)."],
+["ACLS","Mejor forma de confirmar el tubo endotraqueal","Capnografía de onda continua."],
+["ACLS","Primer fármaco en bradicardia sintomática","Atropina 1 mg IV cada 3–5 min, máximo 3 mg."],
+["ACLS","Si la atropina no funciona en bradicardia","Marcapasos transcutáneo, o dopamina 5–20 mcg/kg/min o epinefrina 2–10 mcg/min."],
+["ACLS","Primer paso ante una taquicardia con pulso","Evaluar si está estable o inestable."],
+["ACLS","Signos de inestabilidad","Hipotensión, alteración del estado mental, signos de choque, dolor torácico isquémico, insuficiencia cardíaca aguda."],
+["ACLS","Taquicardia inestable con pulso","Cardioversión sincronizada inmediata."],
+["ACLS","TSV estable: secuencia","Maniobras vagales → adenosina 6 mg en bolo rápido → 12 mg."],
+["ACLS","Taquicardia de QRS ancho estable","Amiodarona 150 mg IV en 10 minutos (o procainamida)."],
+["ACLS","¿Por qué la cardioversión es sincronizada?","Para no descargar sobre la onda T y provocar FV."],
+["ACLS","QRS estrecho vs ancho","Estrecho &lt;120 ms (supraventricular); ancho ≥120 ms (probable ventricular)."],
+["ACLS","Metas de SpO₂ y PA post-ROSC","SpO₂ 92–98 %; PAS ≥90 o PAM ≥65 mmHg."],
+["ACLS","Estudio inmediato post-ROSC","ECG de 12 derivaciones; si hay IAMCEST, cateterismo urgente."],
+["ACLS","Primer estudio en sospecha de EVC","TAC de cráneo sin contraste (puerta-TAC ≤20 min)."],
+["ACLS","Ventana y dosis de alteplasa en EVC","Hasta 4.5 h; 0.9 mg/kg (máx 90 mg), 10 % en bolo y el resto en 60 min."],
+["ACLS","Meta puerta-aguja en EVC","≤60 minutos."],
+["ACLS","Hiperkalemia grave en paro","Calcio IV, más insulina con glucosa y bicarbonato según el caso."],
+["ACLS","Error más común en simulación ACLS","Interrumpir las compresiones."],
+["ATLS","Orden de la revisión primaria","xABCDE: hemorragia exanguinante, vía aérea con columna, respiración, circulación, déficit neurológico, exposición."],
+["ATLS","Cuándo se necesita vía aérea definitiva","GCS ≤8, apnea, incapacidad de proteger la vía aérea, riesgo de obstrucción (quemadura inhalatoria, hematoma), hipoxia refractaria."],
+["ATLS","Cómo se protege la columna cervical","Restricción de movimiento: collarín y alineación manual al manejar la vía aérea."],
+["ATLS","Diagnóstico de neumotórax a tensión","Clínico: dificultad respiratoria, hipotensión, murmullo ausente, timpanismo, desviación traqueal, ingurgitación yugular."],
+["ATLS","Sitio de descompresión con aguja en adulto","4.º–5.º espacio intercostal, anterior a la línea axilar media."],
+["ATLS","Manejo del neumotórax abierto","Apósito estéril fijado en 3 lados, después sonda pleural."],
+["ATLS","Criterio de hemotórax masivo","&gt;1500 mL al colocar la sonda, o &gt;200 mL/h durante 2–4 h."],
+["ATLS","Triada de Beck","Hipotensión, ingurgitación yugular y ruidos cardíacos velados: taponamiento."],
+["ATLS","Definición de tórax inestable","2 o más costillas adyacentes fracturadas en 2 o más sitios."],
+["ATLS","Reanimación inicial en choque hemorrágico","1 L de cristaloide tibio (niños 20 mL/kg) y sangre temprana; transfusión masiva 1:1:1."],
+["ATLS","Choque clase III","Pérdida 31–40 %, FC 120–140, PA baja, confusión, diuresis 5–15 mL/h. Requiere sangre."],
+["ATLS","Choque clase IV","Pérdida &gt;40 %, FC &gt;140, PA muy baja, letargia, diuresis mínima. Transfusión masiva."],
+["ATLS","Ácido tranexámico en trauma","1 g en 10 min dentro de las primeras 3 h, luego 1 g en 8 h."],
+["ATLS","Meta de diuresis en reanimación","0.5 mL/kg/h en adulto; 1 mL/kg/h en niño."],
+["ATLS","Contraindicaciones de sonda urinaria","Sangre en el meato, equimosis perineal, próstata alta o no palpable."],
+["ATLS","Sonda gástrica si hay fractura de base de cráneo","Usar vía orogástrica, nunca nasogástrica."],
+["ATLS","Signos de fractura de base de cráneo","Ojos de mapache, signo de Battle, otorraquia/rinorraquia, hemotímpano."],
+["ATLS","Glasgow: puntuación máxima de cada parte","Ocular 4, verbal 5, motora 6 (total 3–15)."],
+["ATLS","Clasificación del TCE por Glasgow","Leve 13–15, moderado 9–12, grave 3–8."],
+["ATLS","Ventanas del FAST","Pericárdica, hepatorrenal (Morison), esplenorrenal y pélvica. eFAST suma ambos tórax."],
+["ATLS","Historia AMPLIA","Alergias, Medicamentos, Patológicos/embarazo, Libación y última comida, Ambiente y eventos."],
+["ATLS","¿Cuándo se inicia la revisión secundaria?","Al terminar la primaria y con el paciente respondiendo a la reanimación."],
+["ATLS","Fórmula de líquidos en quemaduras (ATLS)","2 mL × kg × %SCQ en adultos (3 en niños, 4 en eléctricas); la mitad en las primeras 8 h."],
+["ATLS","Trauma en embarazada: maniobra clave","Desplazar el útero a la izquierda para liberar la vena cava."],
+["ATLS","Hipotensión permisiva","Tolerar PA baja (PAS ~80–90) hasta controlar el sangrado; no aplica en TCE."]
+];
+let fcState=S.get("simu4-fc",{});
+let fcFilter="all",fcDeck=[],fcIdx=0;
+function buildDeck(){fcDeck=CARDS.map((c,i)=>i).filter(i=>{const c=CARDS[i];
+  if(fcFilter==="due")return fcState[i]!=="k";if(fcFilter==="all")return true;return c[0]===fcFilter});fcIdx=0;renderCard()}
+function renderCard(){const card=document.getElementById("fc-card");card.classList.remove("flip");
+  const known=Object.values(fcState).filter(v=>v==="k").length;
+  document.getElementById("fc-stat").textContent=`${known}/${CARDS.length} dominadas`;
+  document.getElementById("fc-meter").style.width=(known/CARDS.length*100)+"%";
+  if(!fcDeck.length){document.getElementById("fc-tag").innerHTML="";document.getElementById("fc-q").textContent="¡No quedan tarjetas en este filtro!";document.getElementById("fc-a").textContent="Cambia de filtro o reinicia el progreso.";return}
+  const c=CARDS[fcDeck[fcIdx%fcDeck.length]];
+  document.getElementById("fc-tag").innerHTML=`<span class="tag ${c[0].toLowerCase()}">${c[0]}</span> <span class="stat">${(fcIdx%fcDeck.length)+1} de ${fcDeck.length}</span>`;
+  document.getElementById("fc-q").innerHTML=c[1];
+  setTimeout(()=>{document.getElementById("fc-a").innerHTML=c[2]},card.classList.contains("flip")?0:10);}
+function mark(v){if(!fcDeck.length)return;const i=fcDeck[fcIdx%fcDeck.length];fcState[i]=v;S.set("simu4-fc",fcState);
+  if(fcFilter==="due"&&v==="k"){fcDeck.splice(fcIdx%fcDeck.length,1)}else fcIdx++;renderCard()}
+document.getElementById("fc-card").onclick=e=>e.currentTarget.classList.toggle("flip");
+document.getElementById("fc-know").onclick=()=>mark("k");
+document.getElementById("fc-again").onclick=()=>mark("r");
+document.getElementById("fc-shuffle").onclick=()=>{for(let i=fcDeck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[fcDeck[i],fcDeck[j]]=[fcDeck[j],fcDeck[i]]}fcIdx=0;renderCard()};
+document.getElementById("fc-reset").onclick=()=>{fcState={};S.set("simu4-fc",fcState);buildDeck()};
+document.querySelectorAll("[data-fc]").forEach(b=>b.onclick=()=>{fcFilter=b.dataset.fc;document.querySelectorAll("[data-fc]").forEach(x=>x.setAttribute("aria-pressed",x===b));buildDeck()});
+addEventListener("keydown",e=>{if(document.getElementById("v-tarjetas").hidden)return;
+  if(e.key===" "&&e.target.tagName!=="BUTTON"){e.preventDefault();document.getElementById("fc-card").classList.toggle("flip")}
+  if(e.key==="ArrowRight")mark("k");if(e.key==="ArrowLeft")mark("r")});
+buildDeck();
+
+/* ---------- quiz ---------- */
+const QUIZ=[
+["ACLS","En clase, ¿cuándo va la primera dosis de adrenalina en un ritmo desfibrilable?",["Antes de la primera descarga","Después de la segunda descarga","Después de la quinta descarga","Nunca"],1,"Primera adrenalina después de la segunda descarga y luego cada 3–5 min; amiodarona 300 mg en la siguiente descarga."],
+["ACLS","PR que se alarga en cada latido hasta que una P no conduce:",["BAV 1.er grado","Mobitz I (Wenckebach)","Mobitz II","BAV 3.er grado"],1,"Alargamiento progresivo del PR con caída de un QRS = Wenckebach."],
+["ACLS","Ritmo irregularmente irregular sin ondas P:",["Flutter auricular","Fibrilación auricular","TSV","Marcapasos errante"],1,"FA: RR irregular y ausencia de P, con línea de base fibrilatoria."],
+["ACLS","QRS ancho, sin P, a 30 lpm:",["Ritmo de la unión","Idioventricular","TV","Bradicardia sinusal"],1,"El ritmo idioventricular va a 20–40 lpm con QRS ancho y sin P."],
+["ACLS","Al poner el marcapasos transcutáneo, ¿cómo sabes que hay captura?",["Sube el ETCO₂","Cada espiga va seguida de un QRS (y hay pulso)","Desaparecen las P","El paciente se despierta"],1,"Captura eléctrica = espiga seguida de QRS; confírmala con pulso (captura mecánica)."],
+["ACLS","Llegas con un adulto inconsciente que no respira y no tiene pulso. Tras activar la emergencia, ¿qué sigue?",["Dar 2 ventilaciones de rescate","Iniciar compresiones torácicas","Canalizar una vía IV","Administrar epinefrina"],1,"Ante paro confirmado se inicia RCP con compresiones de inmediato. Todo lo demás espera a que haya compresiones de calidad."],
+["ACLS","El monitor muestra FV. ¿Cuál es la primera intervención?",["Amiodarona 300 mg","Epinefrina 1 mg","Desfibrilación","Cardioversión sincronizada"],2,"La FV es desfibrilable: el choque es la prioridad. Los fármacos vienen después del 2.º y 3.er choque."],
+["ACLS","Después de una descarga, ¿qué haces?",["Revisar pulso 10 segundos","Reanudar compresiones de inmediato","Analizar el ritmo otra vez","Ventilar 2 veces"],1,"Se reanuda RCP 2 minutos justo después del choque, sin revisar pulso."],
+["ACLS","Paciente en asistolia. ¿Cuándo administras la primera dosis de epinefrina?",["Después del 2.º choque","Lo antes posible","Después de 10 minutos de RCP","No se usa en asistolia"],1,"En ritmos no desfibrilables la epinefrina se da lo antes posible. La asistolia nunca se desfibrila."],
+["ACLS","FV persistente tras 3 descargas y epinefrina. ¿Qué fármaco y dosis?",["Amiodarona 150 mg","Adenosina 6 mg","Amiodarona 300 mg","Atropina 1 mg"],2,"Primera dosis de amiodarona en paro: 300 mg en bolo. La de 150 mg es la segunda."],
+["ACLS","Con un tubo endotraqueal colocado, ¿cómo ventilas durante la RCP?",["30:2 con pausas","1 ventilación cada 6 s con compresiones continuas","1 ventilación cada 3 s","15:2"],1,"Con vía aérea avanzada no se pausa: compresiones continuas y 10 ventilaciones por minuto."],
+["ACLS","Durante la RCP el ETCO₂ marca 8 mmHg. ¿Qué significa?",["Hay ROSC","Hiperventilación","Las compresiones son de mala calidad","Tubo en esófago con certeza"],2,"Un ETCO₂ menor de 10 mmHg indica bajo flujo: hay que mejorar profundidad, frecuencia o cambiar compresor."],
+["ACLS","Durante la RCP el ETCO₂ sube de 15 a 42 mmHg de golpe. ¿Qué sospechas?",["Mala técnica","ROSC","Neumotórax","Error del capnógrafo"],1,"Un salto brusco del ETCO₂ es un signo temprano de retorno de la circulación espontánea."],
+["ACLS","Bradicardia de 38 lpm con hipotensión y confusión. Primer fármaco:",["Adenosina 6 mg","Atropina 1 mg","Amiodarona 150 mg","Epinefrina 1 mg en bolo"],1,"Bradicardia sintomática: atropina 1 mg cada 3–5 min, máximo 3 mg."],
+["ACLS","La atropina no mejoró la bradicardia sintomática. ¿Siguiente paso?",["Más atropina hasta 6 mg","Marcapasos transcutáneo o infusión de dopamina/epinefrina","Desfibrilar","Adenosina"],1,"Si falla la atropina: marcapasos transcutáneo, dopamina 5–20 mcg/kg/min o epinefrina 2–10 mcg/min."],
+["ACLS","Taquicardia de QRS estrecho regular a 190 lpm, estable. Tras maniobras vagales sin éxito:",["Adenosina 6 mg en bolo rápido","Cardioversión 200 J","Amiodarona 300 mg","Atropina"],0,"TSV estable: vagales → adenosina 6 mg en bolo rápido con flush → 12 mg si persiste."],
+["ACLS","Taquicardia a 170 lpm con PA 70/40 y diaforesis. ¿Manejo?",["Adenosina","Maniobras vagales","Cardioversión sincronizada","Observar"],2,"Taquicardia inestable con pulso se trata con cardioversión sincronizada inmediata."],
+["ACLS","Taquicardia de QRS ancho regular y estable. Fármaco de elección:",["Adenosina 12 mg","Amiodarona 150 mg en 10 min","Atropina","Diltiazem"],1,"Para TV monomórfica estable: amiodarona 150 mg IV en 10 minutos."],
+["ACLS","Ritmo polimórfico con QT largo (torsades). Tratamiento:",["Sulfato de magnesio 1–2 g IV","Adenosina","Atropina","Lidocaína 3 mg/kg"],0,"Las torsades de pointes se tratan con magnesio; si no hay pulso, además se desfibrila."],
+["ACLS","Post-ROSC: ¿cuál es la meta de presión arterial?",["PAS ≥70","PAM ≥65 o PAS ≥90","PAM ≥100","PAS ≥140"],1,"Evita la hipotensión: PAS ≥90 mmHg o PAM ≥65 mmHg."],
+["ACLS","Sospecha de EVC agudo hace 2 horas. Primer estudio de imagen:",["Resonancia con gadolinio","TAC simple de cráneo","Angio-TAC de tórax","Doppler carotídeo"],1,"TAC sin contraste para descartar hemorragia antes de trombolizar, en ≤20 minutos desde la llegada."],
+["ACLS","¿Cuál de estos NO es una de las 5 H?",["Hipoxia","Hipotermia","Hipoglucemia","Hipovolemia"],2,"Las 5 H son hipovolemia, hipoxia, hidrogeniones, hipo/hiperkalemia e hipotermia."],
+["ATLS","¿Qué se evalúa primero en la revisión primaria según la versión actual?",["Vía aérea","Hemorragia externa exanguinante","Glasgow","Pulso radial"],1,"xABCDE: la hemorragia exanguinante externa se controla antes que la vía aérea."],
+["ATLS","Paciente que habla con voz clara. ¿Qué te dice de la vía aérea?",["Requiere intubación","Está permeable por ahora","Tiene obstrucción parcial","Nada"],1,"Si responde con voz normal, la vía aérea está permeable en ese momento. Reevalúa con frecuencia."],
+["ATLS","Trauma con GCS de 7. ¿Qué haces con la vía aérea?",["Cánula nasal","Vía aérea definitiva","Mascarilla con reservorio","Nada si satura bien"],1,"GCS ≤8 indica que no protege su vía aérea: intubación (vía aérea definitiva)."],
+["ATLS","Dificultad respiratoria, hipotensión, murmullo ausente derecho, timpanismo y tráquea desviada a la izquierda. ¿Siguiente paso?",["Rx de tórax","Descompresión con aguja","TAC de tórax","Intubar y esperar"],1,"Es un neumotórax a tensión: el diagnóstico es clínico y no se espera la radiografía."],
+["ATLS","Al colocar una sonda pleural salen 1700 mL de sangre. ¿Qué indica?",["Hemotórax simple","Hemotórax masivo, valorar toracotomía","Quilotórax","Es normal"],1,"Más de 1500 mL inmediatos define hemotórax masivo y es indicación de toracotomía."],
+["ATLS","Hipotensión, ingurgitación yugular y ruidos cardíacos velados tras herida en tórax:",["Neumotórax abierto","Taponamiento cardíaco","Contusión pulmonar","Choque neurogénico"],1,"Triada de Beck: taponamiento cardíaco. El FAST pericárdico ayuda a confirmarlo."],
+["ATLS","FC 130, PA 85/60, confuso, diuresis de 10 mL/h. ¿Clase de choque?",["I","II","III","IV"],2,"Taquicardia 120–140, hipotensión, confusión y oliguria = clase III (31–40 % de pérdida)."],
+["ATLS","Herida torácica que burbujea con la respiración. Manejo inicial:",["Cerrarla con apósito oclusivo en 4 lados","Apósito fijado en 3 lados","Dejar abierta","Sutura inmediata"],1,"Neumotórax abierto: apósito en 3 lados (efecto válvula) y después sonda pleural."],
+["ATLS","Sangre en el meato uretral tras fractura de pelvis. ¿Qué evitas?",["Rx de pelvis","Sonda Foley","Faja pélvica","eFAST"],1,"Sangre en el meato sugiere lesión uretral: no se coloca sonda urinaria hasta descartarla (uretrograma)."],
+["ATLS","Ojos de mapache y rinorraquia. ¿Qué sonda gástrica usas?",["Nasogástrica","Orogástrica","Ninguna nunca","Sengstaken"],1,"Con sospecha de fractura de base de cráneo se usa vía orogástrica para no entrar al cráneo."],
+["ATLS","Abre los ojos al dolor, emite palabras inapropiadas y localiza el dolor. ¿GCS?",["8","9","10","11"],2,"Ocular 2 + verbal 3 + motora 5 = 10 (TCE moderado)."],
+["ATLS","Ácido tranexámico en trauma: ¿cuál es la ventana?",["Dentro de las primeras 3 h","Hasta 12 h","Solo después de transfundir","Hasta 24 h"],0,"Se administra 1 g en 10 min dentro de las primeras 3 horas; después pierde beneficio."],
+["ATLS","¿Cuándo comienzas la revisión secundaria?",["En cuanto llega el paciente","Con la primaria completa y el paciente respondiendo a la reanimación","Después de la TAC","Antes del ABC"],1,"La secundaria (cabeza a pies + AMPLIA) se hace cuando la primaria terminó y las funciones vitales se normalizan."]
+];
+let qzFilter="all",qzList=[],qzI=0,qzScore=0,qzAns=false;
+function qzStart(){qzList=QUIZ.map((q,i)=>i).filter(i=>qzFilter==="all"||QUIZ[i][0]===qzFilter);
+  for(let i=qzList.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[qzList[i],qzList[j]]=[qzList[j],qzList[i]]}
+  qzI=0;qzScore=0;qzRender()}
+function qzRender(){const box=document.getElementById("qz-box");qzAns=false;
+  const best=S.get("simu4-best",{});document.getElementById("qz-stat").textContent=best[qzFilter]!=null?`Mejor puntaje: ${best[qzFilter]}%`:"";
+  if(qzI>=qzList.length){const pct=Math.round(qzScore/qzList.length*100);
+    if(best[qzFilter]==null||pct>best[qzFilter]){best[qzFilter]=pct;S.set("simu4-best",best)}
+    box.innerHTML=`<span class="eyebrow">Resultado</span><div class="big">${qzScore}/${qzList.length}</div><p>${pct>=80?"Muy bien, estás listo para la simulación.":pct>=60?"Vas bien. Repasa las explicaciones de las que fallaste.":"Vuelve al resumen y a las tarjetas antes de intentarlo otra vez."}</p><div class="row"><button class="btn" id="qz-again">Hacer otro intento</button></div>`;
+    document.getElementById("qz-again").onclick=qzStart;return}
+  const q=QUIZ[qzList[qzI]];
+  box.innerHTML=`<div class="row" style="justify-content:space-between"><span class="tag ${q[0].toLowerCase()}">${q[0]}</span><span class="stat">Pregunta ${qzI+1} de ${qzList.length} · ${qzScore} correctas</span></div>
+  <h3 style="font-size:21px">${q[1]}</h3><div class="opts">${q[2].map((o,i)=>`<button class="opt" data-i="${i}">${String.fromCharCode(65+i)}. ${o}</button>`).join("")}</div><div id="qz-fb"></div>`;
+  box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{if(qzAns)return;qzAns=true;const i=+b.dataset.i,ok=i===q[3];if(ok)qzScore++;
+    box.querySelectorAll(".opt").forEach(x=>{x.disabled=true;if(+x.dataset.i===q[3])x.classList.add("right")});if(!ok)b.classList.add("wrong");
+    document.getElementById("qz-fb").innerHTML=`<div class="fb ${ok?"right":"wrong"}"><b>${ok?"Correcto.":"Incorrecto."}</b> ${q[4]}</div><div class="row" style="margin-top:10px"><button class="btn" id="qz-next">${qzI+1<qzList.length?"Siguiente":"Ver resultado"}</button></div>`;
+    document.getElementById("qz-next").onclick=()=>{qzI++;qzRender()};document.getElementById("qz-next").focus()})}
+document.querySelectorAll("[data-qz]").forEach(b=>b.onclick=()=>{qzFilter=b.dataset.qz;document.querySelectorAll("[data-qz]").forEach(x=>x.setAttribute("aria-pressed",x===b));qzStart()});
+qzStart();
+
+/* ---------- casos ---------- */
+const CASES=[
+{name:"Paro en FV",tag:"ACLS",intro:"Hombre de 58 años se desploma en la sala de espera. No responde.",steps:[
+ {mon:{FC:"—",PA:"—","SpO₂":"—",Ritmo:"sin monitor"},q:"Llegas primero. ¿Qué haces?",o:["Buscar vía IV","Verificar respuesta, activar emergencia y revisar pulso y respiración (≤10 s)","Dar 2 ventilaciones","Esperar al equipo"],a:1,e:"Algoritmo de Simu: llegada, ¿se encuentra bien?, activar cadena, pulso. Sin pulso → RCP."},
+ {mon:{FC:"—",PA:"—","ETCO₂":"12",Ritmo:"FV gruesa"},q:"Llega el desfibrilador y muestra FV. ¿Siguiente paso?",o:["Epinefrina 1 mg","Cargar y desfibrilar (fuera yo, fuera tú, fuera todos) y reanudar RCP","Cardioversión sincronizada","Revisar pulso"],a:1,e:"FV es desfibrilable: choque y RCP inmediata 2 min."},
+ {mon:{FC:"—",PA:"—","ETCO₂":"14",Ritmo:"FV persiste"},q:"Tras 2 min sigue en FV. Das el 2.º choque. ¿Qué agregas en este ciclo?",o:["Epinefrina 1 mg IV/IO","Amiodarona 300 mg","Atropina 1 mg","Adenosina 6 mg"],a:0,e:"En ritmo desfibrilable, la epinefrina entra después del 2.º choque y se repite cada 3–5 min."},
+ {mon:{FC:"—",PA:"—","ETCO₂":"13",Ritmo:"FV persiste"},q:"3.er choque, sigue en FV. ¿Fármaco ahora?",o:["Epinefrina 3 mg","Amiodarona 300 mg en bolo","Magnesio 2 g","Bicarbonato"],a:1,e:"Tras el 3.er choque: amiodarona 300 mg. Siguiente dosis 150 mg."},
+ {mon:{FC:"98",PA:"84/50","ETCO₂":"38",Ritmo:"sinusal"},q:"El ETCO₂ sube de golpe y hay pulso. ¿Prioridades?",o:["Suspender todo y trasladar","Optimizar ventilación (SpO₂ 92–98 %), PAM ≥65, ECG de 12 derivaciones","Seguir compresiones 2 min","Dar otra dosis de amiodarona"],a:1,e:"ROSC: oxigenación sin hiperoxia, corrige hipotensión (bolo de 1–2 L), ECG y valorar cateterismo."}]},
+{name:"Bradicardia",tag:"ACLS",intro:"Mujer de 72 años con mareo y debilidad. Está consciente pero pálida.",steps:[
+ {mon:{FC:"36",PA:"78/44","SpO₂":"93 %",Ritmo:"BAV 3.er grado"},q:"Tiene pulso. ¿Es una bradicardia que hay que tratar?",o:["No, observar","Sí: está hipotensa y sintomática","Solo si pierde el pulso","Solo con troponina positiva"],a:1,e:"Se trata cuando hay síntomas o inestabilidad: hipotensión, alteración mental, choque."},
+ {mon:{FC:"36",PA:"76/42","SpO₂":"94 %",Ritmo:"BAV 3.er grado"},q:"Primer fármaco:",o:["Adenosina 6 mg","Atropina 1 mg IV","Amiodarona 150 mg","Epinefrina 1 mg en bolo"],a:1,e:"Atropina 1 mg cada 3–5 min, máximo 3 mg. En BAV de alto grado suele fallar, pero no debe retrasar lo siguiente."},
+ {mon:{FC:"38",PA:"74/40","SpO₂":"94 %",Ritmo:"BAV 3.er grado"},q:"Sin respuesta tras 3 mg. ¿Qué sigue?",o:["Más atropina","Marcapasos transcutáneo (o dopamina / epinefrina en infusión)","Cardioversión","Desfibrilar"],a:1,e:"Marcapasos transcutáneo o dopamina 5–20 mcg/kg/min / epinefrina 2–10 mcg/min, y consulta a cardiología."}]},
+{name:"Trauma por moto",tag:"ATLS",intro:"Motociclista de 25 años, choque a alta velocidad. Llega con collarín. Sangrado activo del muslo derecho.",steps:[
+ {mon:{FC:"128",PA:"92/60","SpO₂":"90 %",FR:"28"},q:"¿Qué atiendes primero?",o:["Vía aérea","Torniquete / presión directa en el muslo","Glasgow","Rx de pelvis"],a:1,e:"xABCDE: la hemorragia externa exanguinante va antes que la vía aérea."},
+ {mon:{FC:"132",PA:"86/58","SpO₂":"86 %",FR:"32"},q:"Vía aérea permeable. Murmullo ausente a la derecha, timpanismo, tráquea desviada a la izquierda e ingurgitación yugular. ¿Qué haces?",o:["Rx de tórax portátil","Descompresión con aguja 4.º–5.º EIC anterior a línea axilar media y luego sonda","Intubar","TAC"],a:1,e:"Neumotórax a tensión: diagnóstico clínico, se descomprime de inmediato."},
+ {mon:{FC:"130",PA:"84/56","SpO₂":"95 %",FR:"24"},q:"Mejora la respiración, pero sigue con FC 130, PA 84/56 y está confuso. ¿Qué clase de choque y qué das?",o:["Clase I, observar","Clase II, solo cristaloide","Clase III: 1 L cristaloide tibio, sangre temprana y ácido tranexámico","Clase IV, vasopresores"],a:2,e:"Taquicardia 120–140, hipotensión y confusión = clase III. Sangre temprana, TXA 1 g en 10 min y control del sangrado."},
+ {mon:{FC:"112",PA:"100/66","SpO₂":"96 %",FR:"20"},q:"Hay sangre en el meato uretral. ¿Qué evitas?",o:["eFAST","Sonda Foley","Faja pélvica","Rx de pelvis"],a:1,e:"Sangre en el meato sugiere lesión uretral: no sondar hasta descartarla."},
+ {mon:{FC:"104",PA:"108/70","SpO₂":"97 %",FR:"18"},q:"Abre los ojos al hablarle, está confuso y obedece órdenes. ¿GCS?",o:["12","13","14","15"],a:1,e:"Ocular 3 + verbal 4 + motora 6 = 13: TCE leve. Termina con exposición y previene hipotermia."}]}
+];
+let csI=0,csStep=0,csLog=[];
+const pick=document.getElementById("cs-pick");
+pick.innerHTML=CASES.map((c,i)=>`<button class="chip" data-cs="${i}" aria-pressed="${i===0}">${c.name}</button>`).join("");
+pick.querySelectorAll("[data-cs]").forEach(b=>b.onclick=()=>{csI=+b.dataset.cs;pick.querySelectorAll("[data-cs]").forEach(x=>x.setAttribute("aria-pressed",x===b));csStep=0;csLog=[];csRender()});
+function csRender(){const c=CASES[csI],box=document.getElementById("cs-box");
+  const log=csLog.length?`<div class="log">${csLog.map(l=>`<div>${l}</div>`).join("")}</div>`:"";
+  if(csStep>=c.steps.length){const ok=csLog.filter(l=>l.startsWith("✓")).length;
+    box.innerHTML=`<span class="tag ${c.tag.toLowerCase()}">${c.tag}</span><h3>Caso terminado: ${ok}/${c.steps.length} decisiones correctas</h3>${log}<div class="row"><button class="btn" id="cs-re">Repetir caso</button></div>`;
+    document.getElementById("cs-re").onclick=()=>{csStep=0;csLog=[];csRender()};return}
+  const s=c.steps[csStep];
+  box.innerHTML=`<div class="row" style="justify-content:space-between"><span class="tag ${c.tag.toLowerCase()}">${c.tag}</span><span class="stat">Paso ${csStep+1} de ${c.steps.length}</span></div>
+  ${csStep===0?`<p>${c.intro}</p>`:""}
+  <div class="monitor">${Object.entries(s.mon).map(([k,v])=>`<span>${k} <b>${v}</b></span>`).join("")}</div>
+  <h3 style="font-size:21px">${s.q}</h3><div class="opts">${s.o.map((o,i)=>`<button class="opt" data-i="${i}">${o}</button>`).join("")}</div><div id="cs-fb"></div>${log}`;
+  box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{const i=+b.dataset.i,ok=i===s.a;
+    box.querySelectorAll(".opt").forEach(x=>{x.disabled=true;if(+x.dataset.i===s.a)x.classList.add("right")});if(!ok)b.classList.add("wrong");
+    csLog.push(`${ok?"✓":"✗"} Paso ${csStep+1}: ${s.o[s.a]}`);
+    document.getElementById("cs-fb").innerHTML=`<div class="fb ${ok?"right":"wrong"}"><b>${ok?"Bien.":"No es lo indicado."}</b> ${s.e}</div><div class="row" style="margin-top:10px"><button class="btn" id="cs-next">${csStep+1<c.steps.length?"Continuar":"Terminar caso"}</button></div>`;
+    document.getElementById("cs-next").onclick=()=>{csStep++;csRender()};document.getElementById("cs-next").focus()})}
+csRender();
+</script>
+
+</body></html>

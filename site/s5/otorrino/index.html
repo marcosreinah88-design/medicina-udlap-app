@@ -1,0 +1,1128 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Otorrino de bolsillo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/g6d50fe91c1.css">
+<style>
+/* Layout: barra superior fija · portada tipo atlas con 3 regiones anatómicas · vista de tema con índice lateral y pestañas.
+   Cada región tiene su color (cavidad oral = mucosa, laringe = verde quirúrgico, nariz = índigo) que tiñe todo el tema. */
+:root{
+  --bg:#f3f5f6; --surface:#ffffff; --sunk:#e8edef; --line:#d6dee2; --line-2:#c3ced3;
+  --fg:#14232a; --muted:#566870; --faint:#8396a0;
+  --oral:#b8335a; --oral-soft:#fbe7ee;
+  --lar:#16747a; --lar-soft:#dcf0ef;
+  --nar:#4652b0; --nar-soft:#e4e7fa;
+  --ok:#24784a; --ok-soft:#dcf1e4; --bad:#b3261e; --bad-soft:#fbe3e1; --warn:#9a6200; --warn-soft:#fbefd6;
+  --shadow:0 1px 2px rgba(20,35,42,.06), 0 6px 20px rgba(20,35,42,.06);
+  --f-display:"Literata", Georgia, "Times New Roman", serif;
+  --f-body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --rc:var(--oral); --rc-soft:var(--oral-soft);
+  /* colores de ilustración: representan tejido, se mantienen en ambos temas */
+  --tis:#f1b6b0; --tis-2:#e7908a; --tis-hot:#d9564f; --cav:#5e1b26; --lip:#c96a6a; --pus:#f3d06a; --mem:#ece8dc;
+  --cord:#fbf6ee; --ary:#e9a5a0; --air:#2a1418; --xr:#0c1013; --xr-soft:#5d6870; --xr-air:#05070a; --bone:#d9dee2;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e171b; --surface:#152229; --sunk:#1b2b32; --line:#263a43; --line-2:#33505b;
+  --fg:#e4edf0; --muted:#9fb2ba; --faint:#6f8792;
+  --oral:#f27fa2; --oral-soft:#3a1d29;
+  --lar:#5fc9c9; --lar-soft:#123437;
+  --nar:#9aa6f5; --nar-soft:#1f2550;
+  --ok:#80d6a1; --ok-soft:#16362a; --bad:#ff9b93; --bad-soft:#3d1c1a; --warn:#f0c46b; --warn-soft:#3a2d12;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e171b; --surface:#152229; --sunk:#1b2b32; --line:#263a43; --line-2:#33505b;
+  --fg:#e4edf0; --muted:#9fb2ba; --faint:#6f8792;
+  --oral:#f27fa2; --oral-soft:#3a1d29;
+  --lar:#5fc9c9; --lar-soft:#123437;
+  --nar:#9aa6f5; --nar-soft:#1f2550;
+  --ok:#80d6a1; --ok-soft:#16362a; --bad:#ff9b93; --bad-soft:#3d1c1a; --warn:#f0c46b; --warn-soft:#3a2d12;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  color-scheme:dark}
+[data-r="oral"]{--rc:var(--oral);--rc-soft:var(--oral-soft)}
+[data-r="lar"]{--rc:var(--lar);--rc-soft:var(--lar-soft)}
+[data-r="nar"]{--rc:var(--nar);--rc-soft:var(--nar-soft)}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:30;background:var(--surface)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--rc);outline-offset:2px}
+.mono{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.07em;text-transform:uppercase}
+.gutter{padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.inner{max-width:1200px;margin:0 auto}
+
+/* barra superior */
+.topbar{position:sticky;top:env(safe-area-inset-top, 0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.topbar .inner{display:flex;align-items:center;gap:14px;min-height:60px;flex-wrap:wrap;padding-block:8px}
+.logo{display:flex;align-items:center;gap:10px;background:none;border:0;cursor:pointer;padding:0}
+.logo svg{flex:none}
+.logo b{font-family:var(--f-display);font-size:1.15rem;font-weight:700;letter-spacing:-.01em}
+.spacer{flex:1}
+.search{position:relative;flex:1 1 220px;max-width:340px}
+.search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--faint)}
+.search input{width:100%;font:inherit;font-size:.95rem;padding:9px 12px 9px 36px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--fg)}
+.search input:focus{outline:none;border-color:var(--rc);background:var(--surface)}
+.btn{border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:999px;cursor:pointer;font-size:.9rem;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn:hover{border-color:var(--line-2);background:var(--sunk)}
+.btn.back{border-color:var(--rc);color:var(--rc);font-weight:700}
+.btn.back:hover{background:var(--rc-soft)}
+.home-link{display:inline-flex;align-items:center;gap:6px;margin-top:22px}
+.btn.solid{background:var(--fg);color:var(--bg);border-color:var(--fg);font-weight:700}
+.btn.solid:hover{opacity:.9;background:var(--fg)}
+
+/* portada */
+.hero{padding-block:44px 28px}
+.hero .inner{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:end}
+.hero h1{font-family:var(--f-display);font-weight:700;font-size:clamp(2.2rem,5.5vw,3.6rem);line-height:1.02;letter-spacing:-.02em;margin:10px 0 14px;text-wrap:balance}
+.hero h1 em{font-style:italic;font-weight:500;color:var(--oral)}
+.hero p{color:var(--muted);max-width:56ch;margin:0;font-size:1.05rem}
+.kicker{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.stat{background:var(--surface);padding:14px 16px}
+.stat b{display:block;font-family:var(--f-display);font-size:1.8rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{color:var(--muted);font-size:.85rem}
+.stat.prog{grid-column:1/-1;display:flex;align-items:center;gap:14px}
+.ring{--p:0;width:54px;height:54px;border-radius:50%;background:conic-gradient(var(--ok) calc(var(--p)*1%), var(--sunk) 0);display:grid;place-items:center;flex:none}
+.ring::after{content:"";width:40px;height:40px;border-radius:50%;background:var(--surface)}
+.stat.prog b{font-size:1.25rem}
+
+.regions{padding-block:8px 48px}
+.regions .inner{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.region{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow)}
+.region-head{background:var(--rc-soft);padding:18px 20px 16px;display:flex;gap:14px;align-items:center}
+.region-head svg{flex:none;color:var(--rc)}
+.region-head h2{font-family:var(--f-display);font-size:1.3rem;margin:0;line-height:1.15;text-wrap:balance}
+.region-head .mono{color:var(--rc)}
+.region ol{list-style:none;margin:0;padding:6px 8px 10px;display:flex;flex-direction:column}
+.trow{width:100%;display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;background:none;border:0;border-radius:10px;padding:10px 12px;cursor:pointer}
+.trow:hover{background:var(--sunk)}
+.trow .chk{width:22px;height:22px;border-radius:50%;border:2px solid var(--line-2);display:grid;place-items:center;font-size:.75rem;color:transparent}
+.trow.is-done .chk{background:var(--ok);border-color:var(--ok);color:var(--surface)}
+.trow .tt{font-weight:700;line-height:1.3}
+.trow .meta{display:block;font-size:.8rem;color:var(--muted);font-weight:400;margin-top:2px}
+.trow .wk{font-family:var(--f-mono);font-size:.68rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 8px;white-space:nowrap}
+.trow.is-empty .tt{color:var(--faint);font-weight:400}
+
+/* vista de tema */
+.topic-layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:32px;align-items:start;padding-block:24px 56px}
+.toc{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 80px);display:flex;flex-direction:column;gap:16px;max-height:calc(100vh - 100px);overflow:auto;padding-bottom:12px}
+.toc h3{margin:0 0 4px;display:flex;align-items:center;gap:7px}
+.toc h3 i{width:8px;height:8px;border-radius:50%;background:var(--rc);display:inline-block}
+.toc ul{list-style:none;margin:0;padding:0}
+.toc button{width:100%;text-align:left;background:none;border:0;padding:6px 10px;border-radius:8px;cursor:pointer;font-size:.92rem;color:var(--muted);display:flex;gap:6px;justify-content:space-between}
+.toc button:hover{background:var(--sunk);color:var(--fg)}
+.toc button[aria-current="true"]{background:var(--rc-soft);color:var(--fg);font-weight:700}
+.toc .ok{color:var(--ok)}
+.toc-mobile{display:none}
+
+.thead{background:var(--rc-soft);border-radius:18px;padding:22px 24px;display:flex;flex-direction:column;gap:12px;margin-bottom:22px;position:relative;overflow:hidden}
+.thead::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;border:28px solid var(--rc);opacity:.08}
+.crumbs{display:flex;gap:8px;align-items:center;color:var(--rc);flex-wrap:wrap}
+.crumbs button{background:none;border:0;padding:0;cursor:pointer;color:inherit;text-decoration:underline;text-underline-offset:3px}
+.thead h1{font-family:var(--f-display);font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.1;margin:0;text-wrap:balance;letter-spacing:-.01em;max-width:24ch}
+.thead p{margin:0;color:var(--muted);max-width:66ch}
+.thead-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;position:relative;z-index:1}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.04em;padding:4px 10px;border-radius:999px;background:var(--surface);color:var(--muted);border:1px solid var(--line)}
+.done-btn{border:1px solid var(--rc);background:var(--surface);color:var(--fg);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:.9rem;display:inline-flex;gap:8px;align-items:center}
+.done-btn[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:var(--surface);font-weight:700}
+
+.seg{display:inline-flex;background:var(--sunk);border-radius:999px;padding:4px;gap:2px;margin-bottom:22px;max-width:100%;overflow-x:auto}
+.seg button{border:0;background:none;padding:8px 16px;border-radius:999px;cursor:pointer;color:var(--muted);white-space:nowrap;font-size:.93rem}
+.seg button[aria-selected="true"]{background:var(--surface);color:var(--fg);font-weight:700;box-shadow:var(--shadow)}
+.seg .n{font-family:var(--f-mono);font-size:.68rem;margin-left:5px;opacity:.7}
+
+.masonry{columns:2 340px;column-gap:18px}
+.sec{break-inside:avoid;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:18px;display:inline-block;width:100%}
+.sec h3{font-family:var(--f-display);font-size:1.12rem;margin:0 0 10px;line-height:1.25;display:flex;gap:10px;align-items:baseline;text-wrap:balance}
+.sec h3 .no{font-family:var(--f-mono);font-size:.7rem;color:var(--rc);font-weight:500}
+.sec ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+.sec li{position:relative;padding-left:16px;max-width:68ch}
+.sec li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--rc);opacity:.7}
+.widebox{margin-bottom:18px}
+.widebox .sec{display:block}
+.tbl{overflow-x:auto;margin:0 -4px}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--rc);font-weight:500;background:var(--rc-soft)}
+thead th:first-child{border-top-left-radius:8px}
+thead th:last-child{border-top-right-radius:8px}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700;font-variant-numeric:tabular-nums}
+.note{margin:10px 0 0;font-size:.9rem;color:var(--muted)}
+mark{background:var(--warn-soft);color:var(--fg);padding:0 2px;border-radius:3px}
+
+.pgroups{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;align-items:start}
+.pgroup h3{display:flex;gap:8px;align-items:center;margin:0 0 10px;font-size:.95rem}
+.pgroup h3 .dot{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-size:.8rem;font-weight:700}
+.pg-examen .dot{background:var(--rc-soft);color:var(--rc)}
+.pg-alerta .dot{background:var(--bad-soft);color:var(--bad)}
+.pg-clinica .dot{background:var(--ok-soft);color:var(--ok)}
+.pearl{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;line-height:1.45}
+.pg-alerta .pearl{border-color:var(--bad);border-style:dashed}
+
+/* tarjetas */
+.fc{display:flex;flex-direction:column;align-items:center;gap:16px}
+.fc-top{width:min(100%,640px);display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--muted);font-size:.88rem;flex-wrap:wrap}
+.pbar{width:min(100%,640px);height:6px;border-radius:3px;background:var(--sunk);overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--rc);transition:width .25s}
+.card{width:min(100%,640px);perspective:1400px;cursor:pointer;border:0;background:none;padding:0;text-align:left}
+.card-inner{position:relative;min-height:260px;transition:transform .5s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.card.flip .card-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column;justify-content:space-between;gap:12px;padding:24px 28px;box-shadow:var(--shadow)}
+.face.back{transform:rotateY(180deg);background:var(--rc-soft);border-color:var(--rc)}
+.face .q{font-family:var(--f-display);font-size:clamp(1.15rem,2.6vw,1.4rem);line-height:1.35;text-wrap:balance}
+.face .a{font-size:1.1rem;line-height:1.5}
+.face .lab{color:var(--rc)}
+.face .hint{color:var(--faint);font-size:.85rem}
+.fc-ctrl{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn.know{border-color:var(--ok);color:var(--ok)}
+.btn.again{border-color:var(--warn);color:var(--warn)}
+.kbd{font-family:var(--f-mono);font-size:.68rem;color:var(--faint)}
+
+/* quiz */
+.quiz{display:flex;flex-direction:column;gap:14px;max-width:780px}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.qhead .score{font-family:var(--f-display);font-size:1.1rem}
+.qitem{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.qitem .qq{font-weight:700;margin:0 0 12px;display:flex;gap:10px}
+.qitem .qq span{font-family:var(--f-mono);font-size:.75rem;color:var(--rc);padding-top:3px}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--bg);padding:9px 12px;border-radius:10px;cursor:pointer}
+.opt .L{width:26px;height:26px;border-radius:7px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;font-family:var(--f-mono);font-size:.75rem}
+.opt:hover:not(:disabled){border-color:var(--rc)}
+.opt:disabled{cursor:default}
+.opt.right{background:var(--ok-soft);border-color:var(--ok);font-weight:700}
+.opt.right .L{background:var(--ok);color:var(--surface);border-color:var(--ok)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt.wrong .L{background:var(--bad);color:var(--surface);border-color:var(--bad)}
+.why{margin:12px 0 0;font-size:.92rem;color:var(--muted);padding-left:12px;border-left:2px solid var(--line-2)}
+.final{background:var(--rc-soft);border-radius:14px;padding:18px 20px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.final b{font-family:var(--f-display);font-size:1.4rem}
+
+.figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.figs.one{grid-template-columns:1fr}
+.fig{display:flex;flex-direction:column;gap:6px;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);cursor:zoom-in;text-align:left}
+.fig img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:#fff}
+.figs.one .fig img{aspect-ratio:auto;max-height:420px}
+.fig span{font-size:.8rem;color:var(--muted);padding:0 10px 8px;line-height:1.3}
+.fig:hover{border-color:var(--rc)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:14px}
+.gallery .fig span{font-size:.88rem;color:var(--fg);padding:2px 12px 12px}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(8,14,17,.88);display:flex;align-items:center;justify-content:center;padding:max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));cursor:zoom-out}
+.lb[hidden],[hidden]{display:none!important}
+.lb figure{margin:0;max-width:min(1000px,100%);display:flex;flex-direction:column;gap:10px;align-items:center}
+.lb img{max-width:100%;max-height:80vh;border-radius:10px;background:#fff;cursor:default}
+.lb figcaption{color:#e8eef0;font-size:.95rem;text-align:center}
+.lb-x{position:absolute;top:calc(env(safe-area-inset-top, 0px) + 14px);right:calc(env(safe-area-inset-right, 0px) + 14px);width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.15);color:#fff;font-size:1.1rem;cursor:pointer}
+.diag{display:block;width:100%;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:12px 12px 8px;margin-top:14px;cursor:zoom-in;text-align:left}
+.diag:hover{border-color:var(--rc)}
+.diag>span{display:block;font-size:.82rem;color:var(--muted);margin-top:6px;line-height:1.3}
+.dg{display:block;width:100%;height:auto;font-family:var(--f-body)}
+.dg text{fill:var(--fg);font-size:13px}
+.dg text.b{font-weight:700;font-size:14px}
+.dg text.m{fill:var(--muted);font-size:12px}
+.dg text.s{font-size:13px}
+.dg text.num{font-family:var(--f-mono);font-size:15px;fill:var(--rc);font-weight:500}
+.dg text.xr-t{fill:#cfd6db;font-size:11px}
+.dg-cap{font:12px/1.3 var(--f-body);color:var(--muted);text-align:center}
+.f-lip{fill:var(--lip)} .f-cav{fill:var(--cav)} .f-tis{fill:var(--tis)} .f-ton{fill:var(--tis-2)} .f-ton.red,.f-ton.hot{fill:var(--tis-hot)}
+.f-pus{fill:var(--pus)} .f-pet{fill:#8a0f1c} .f-mem{fill:var(--mem);opacity:.92}
+.f-arrow,.a-air{stroke:var(--rc);stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.x-mark{stroke:var(--bad);stroke-width:4;stroke-linecap:round}
+.f-pillar{stroke:var(--tis);stroke-width:5} .f-mid{stroke:var(--mem);stroke-width:1.5;stroke-dasharray:4 4}
+.f-bg{fill:var(--sunk)} .f-wall{fill:var(--tis-2)}
+.lx-ring{fill:var(--tis);stroke:var(--tis-2);stroke-width:3} .lx-air{fill:var(--air)} .lx-ary{fill:var(--ary)}
+.vc{stroke:var(--cord);stroke-width:9;stroke-linecap:round} .vc.fat{stroke-width:17}
+.les-w{fill:#fffdf6;stroke:#7a6a45;stroke-width:2} .les-r{fill:#9c2230} .les-g{fill:#d97a6c;stroke:#a84a3e} .les-c{fill:#f4e9c8;stroke:#c9b98a}
+.xr{fill:var(--xr)} .xr-soft{fill:var(--xr-soft)} .xr-air{fill:var(--xr-air)} .xr-epi{stroke:#c3ccd2;stroke-width:4;fill:none;stroke-linecap:round}
+.xr-thumb{fill:#c3ccd2} .xr-lbl{stroke:#cfd6db;stroke-width:1.5} .xr-coin{fill:var(--bone)} .xr-halo{fill:var(--xr-soft)} .xr-coin2{fill:var(--bone)}
+.epi{fill:none;stroke:var(--tis-hot);stroke-width:12;stroke-linecap:round} .ae{stroke:var(--tis-2);stroke-width:5;stroke-linecap:round}
+.a-in{stroke:var(--rc);stroke-width:3;marker-end:none;stroke-linecap:round}
+.cm-wall{fill:var(--tis-2)} .cm-lumen{fill:var(--air)}
+.zone{stroke:var(--line-2);stroke-width:1.5} .z1{fill:var(--oral-soft)} .z2{fill:var(--lar-soft)} .z3{fill:var(--nar-soft)}
+.rings{stroke:var(--line-2);stroke-width:2} .lead{stroke:var(--muted);stroke-width:1.5;fill:none}
+.orb{fill:var(--sunk);stroke:var(--fg);stroke-width:2} .globe{fill:var(--surface);stroke:var(--fg);stroke-width:2}
+.septum{stroke:var(--rc);stroke-width:3;stroke-dasharray:5 4} .eth{fill:var(--surface);stroke:var(--fg);stroke-width:1.5} .eth.inf2{fill:var(--pus);opacity:.6}
+.inf{fill:var(--tis-hot);opacity:.55} .inf.soft{opacity:.35} .pus{fill:var(--pus);stroke:#b8902a;stroke-width:1.5} .clot{fill:#5b1220}
+.sin{fill:var(--surface);stroke:var(--fg);stroke-width:2} .nas{fill:var(--sunk);stroke:var(--fg);stroke-width:1.5} .sept{stroke:var(--fg);stroke-width:2}
+.opac{fill:var(--xr-soft);opacity:.75} .calc{stroke:var(--surface);stroke-width:4;fill:none;stroke-linecap:round} .polyp{fill:var(--mem);stroke:#b7ad93}
+.brk{stroke:var(--bad);stroke-width:3;stroke-linecap:round} .necro{fill:#14090b}
+.step{stroke:var(--line-2);stroke-width:1.5} .s0{fill:var(--ok-soft)} .s1{fill:var(--lar-soft)} .s2{fill:var(--nar-soft)} .s3{fill:var(--warn-soft)} .s4{fill:var(--bad-soft)}
+.c1{fill:var(--ok-soft)} .c2{fill:var(--lar-soft)} .c3{fill:var(--warn-soft)} .c4{fill:var(--bad-soft)} .foramen{fill:var(--rc)}
+.gal-h{font-family:var(--f-display);font-size:1.1rem;margin:4px 0 12px}
+.gallery.wide{grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));margin-bottom:22px}
+.gallery .diag{margin-top:0}
+#lb-svg{background:var(--surface);border-radius:12px;padding:16px;width:min(1000px,94vw);max-height:80vh;overflow:auto;cursor:default}
+.empty-note{background:var(--surface);border:1px dashed var(--line-2);border-radius:14px;padding:22px;color:var(--muted);max-width:640px}
+.results{display:flex;flex-direction:column;gap:8px;max-width:840px;padding-block:24px 56px}
+.results h1{font-family:var(--f-display);font-size:1.6rem;margin:0 0 8px}
+.hit{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;cursor:pointer;text-align:left;display:grid;grid-template-columns:10px minmax(0,1fr);gap:12px}
+.hit:hover{border-color:var(--rc)}
+.hit i{width:10px;height:10px;border-radius:50%;background:var(--rc);margin-top:6px}
+.hit small{display:block;color:var(--muted);font-family:var(--f-mono);font-size:.68rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;padding-block:16px 28px}
+
+@media (max-width:960px){
+  .hero .inner{grid-template-columns:1fr}
+  .regions .inner{grid-template-columns:1fr}
+  .topic-layout{grid-template-columns:1fr;gap:0}
+  .toc{display:none}
+  .toc-mobile{display:block;margin-bottom:14px}
+  .toc-mobile select{width:100%;font:inherit;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+}
+@media (max-width:560px){
+  .topbar .logo b{font-size:1rem}
+  .search{order:3;flex-basis:100%;max-width:none}
+  .long{display:none}
+  .logo b{display:none}
+  .topbar .inner{gap:10px}
+  .seg button{padding:8px 11px}
+  .thead{padding:18px}
+  .face{padding:20px}
+}
+@media (prefers-reduced-motion:reduce){.card-inner,.pbar i{transition:none}}
+</style>
+
+<header class="topbar gutter">
+  <div class="inner">
+    <button class="logo" id="home" aria-label="Ir a la portada">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="16" cy="16" r="7" fill="none" stroke="var(--oral)" stroke-width="2.2"/><circle cx="16" cy="16" r="2.2" fill="var(--oral)"/></svg>
+      <b>Otorrino de bolsillo</b>
+    </button>
+    <button class="btn back" id="back" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Menú principal</button>
+    <span class="spacer"></span>
+    <label class="search" for="q">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="q" type="search" placeholder="Buscar: epistaxis, Chandler, CROUP…" aria-label="Buscar en los apuntes">
+    </label>
+    <button class="btn solid" id="mix">Repaso<span class="long">&nbsp;mezclado</span></button>
+  </div>
+</header>
+
+<div id="view"></div>
+<div class="lb" id="lb" hidden role="dialog" aria-label="Imagen ampliada"><button class="lb-x" aria-label="Cerrar">✕</button><figure><img id="lb-img" alt=""><div id="lb-svg"></div><figcaption id="lb-cap"></figcaption></figure></div>
+
+<footer class="gutter"><div class="inner">Basado únicamente en tus apuntes de clase en Notion. "Sx Disfónico" y "Repaso" están vacíos allá. Las dosis y esquemas son los que anotaste; contrástalos con la GPC vigente.</div></footer>
+<script>
+const T = [
+/* ───────────── CAVIDAD ORAL Y FARINGE ───────────── */
+{id:"anato", region:"Cavidad oral y faringe", week:"Sem 1", title:"Anatomía de cavidad oral, glándulas y faringe",
+ lede:"Cavidad oral (lenguaje y masticación), glándulas salivales, faringe y anillo de Waldeyer.",
+ sections:[
+  {h:"Cavidad oral: límites", li:["Anterior: fisura oral (labios: orbicular de los labios).","Posterior: istmo de las fauces, unión paladar duro–blando.","Incluye pilares amigdalinos anteriores, trígonos retromolares, mucosa oral y piso de boca.","Frenillo lingual corto en niños: problemas de fonación, se corta un poco."]},
+  {h:"Dientes y buccinador", li:["Infección de muela superior no tratada: buscar absceso de cuello o mediastínico (altamente mortal).","Caninos y muelas superiores comunican con el seno maxilar: fístulas oroantrales. TC si hay infección y pus; algunas cierran solas, otras son quirúrgicas.","Bichectomía: se puede perforar el buccinador (sangrado, hematoma) y lesionar el conducto de Stenon (2º molar superior → parótida)."]},
+  {h:"Paladar", li:["Duro: cáncer, comunicación con nariz, torus palatino.","Úlcera que no sana en más de 1 mes: referir a ORL para TC y biopsia (posible linfoma).","Blando: tensor del velo del paladar; en paladar hendido está débil y da problemas de oído.","Palatogloso = pilar anterior; palatofaríngeo = pilar posterior. Entre ambos, las amígdalas."]},
+  {h:"Lengua", li:["Las papilas circunvaladas dividen la lengua oral de la orofaringe.","Tumor central puede invadir el lado contralateral y metastatizar (niveles I–III); si está en circunvaladas va a ganglios yugulodigástricos (cadenas posteriores).","Músculos: todos inervados por el hipogloso, excepto el palatogloso (vago/plexo faríngeo).","Extrínsecos: geniogloso, hiogloso, estilogloso. Vena lingual drena a yugular interna."]},
+  {h:"Suprahioideos importantes", li:["Milohioideo, digástrico y genihioideo."]},
+  {h:"Glándulas salivales", li:["Parótida: la más grande y serosa. 80% superficial, 20% profunda.","Separación superficial/profunda: nervio facial (quirúrgico) y vena retromandibular (radiológico).","Dolor parotídeo puede referirse como otalgia ambigua: pensar en ATM.","Submandibular: 2ª en tamaño, mixta (serosa y mucosa), puede dar litos o infección. Drena por conducto de Wharton.","Ordeño bimanual del Wharton para sacar pus o lito.","Sublingual: drena en la carúncula sublingual.","Resonancia para estadificar tumores de glándulas salivales."]},
+  {h:"Ganglios cervicales", li:["Reactivos: dolorosos, blandos, móviles, bien delimitados → USG.","Malignos: parecidos pero pétreos.","Ganglio en cadena posterior al ECM: maligno hasta demostrar lo contrario."]},
+  {h:"Faringe", li:["De la base del cráneo a C5–C6, dividida en 3: naso, oro e hipofaringe. Conecta con oído, nariz y laringe.","Nasofaringe: velo del paladar, coanas, tensor y elevador del velo.","Orofaringe: del paladar a borde superior de epiglotis; sensibilidad y gusto por glosofaríngeo.","Hipofaringe: senos piriformes, región postcricoidea y pared posterior.","Trompa de Eustaquio: 1/3 ósea, 2/3 cartilaginosa (el conducto auditivo es al revés). Tumores nasales o paladar alterado dan otalgia irradiada."]},
+  {h:"Musculatura y deglución", li:["Constrictores superior, medio e inferior: plexo faríngeo (IX y X).","Constrictor inferior débil: divertículos.","Cierre de nasofaringe: tensor y elevador del velo + constrictor superior.","Elevación: suprahioideos, elevadores de faringe y constrictores.","Disfagia con paso de alimento a vía aérea: pensar en laringe e hipofaringe."]},
+  {h:"Anillo de Waldeyer (MALT)", li:["Tubáricas (Gerlach), faríngea (adenoides), palatinas (las más importantes), lingual y laterales.","Palatinas tienen cápsula; adenoides no.","Adenoides involucionan después de los 12 años. En niños: Rx lateral de rinofaringe; si obstruye más del 50% se operan.","Arteria amigdalina (rama de la facial, cuadrante posteroinferior): la más importante en cirugía.","Amígdala lingual: cuidar venas de retorno (relación con el glosofaríngeo)."]},
+  {h:"Escala de amígdalas palatinas", table:[["Grado","Descripción"],["0","Amigdalectomía previa / no visibles"],["1","Intravélicas"],["2","Menos del 50% entre pilar y línea media"],["3","Más del 50% entre pilar y línea media"],["4","Contactantes (kissing tonsils)"]], note:"Grado 3–4 con ronquido en un niño: referir."}
+ ],
+ pearls:[
+  ["examen","Los senos piriformes son el sitio más frecuente de cuerpos extraños y de cáncer de hipofaringe."],
+  ["examen","Valléculas (entre epiglotis y base de lengua): otro depósito frecuente de cuerpos extraños."],
+  ["alerta","Angina de Ludwig: cuello de sapo, fiebre, lengua elevada. Referir a ORL para traqueostomía y drenaje."],
+  ["alerta","Ganglio posterior al ECM = maligno hasta demostrar lo contrario."],
+  ["clinica","Úlcera de paladar que no sana en 1 mes: TC y biopsia por posible linfoma."],
+  ["clinica","Región postcricoidea y pared posterior: zonas de diseminación metastásica si hay cáncer."],
+  ["clinica","En niños, la amigdalectomía por obstrucción busca resolver la apnea obstructiva del sueño."]
+ ],
+ cards:[
+  ["¿Qué estructura separa quirúrgicamente la parótida superficial de la profunda?","El nervio facial. Radiológicamente, la vena retromandibular."],
+  ["¿Proporción ósea/cartilaginosa de la trompa de Eustaquio?","1/3 ósea y 2/3 cartilaginosa."],
+  ["¿Qué amígdalas tienen cápsula?","Las palatinas. Las adenoides no."],
+  ["¿Arteria más importante en la amigdalectomía?","Arteria amigdalina, rama de la facial (cuadrante posteroinferior)."],
+  ["¿Qué conducto drena la submandibular y cuál la parótida?","Submandibular: Wharton. Parótida: Stenon (frente al 2º molar superior)."],
+  ["¿Grado 2 de amígdalas palatinas?","Ocupan menos del 50% de la distancia entre pilar y línea media."],
+  ["¿Inervación de los constrictores faríngeos?","Plexo faríngeo, pares IX y X."],
+  ["¿Cuándo se operan las adenoides según la Rx lateral?","Cuando obstruyen más del 50%."]
+ ],
+ quiz:[
+  ["Sitio más frecuente de cuerpos extraños y cáncer en hipofaringe:",["Región postcricoidea","Senos piriformes","Pared posterior","Valléculas"],1,"Los senos piriformes, lo marcaste como pregunta de examen."],
+  ["Paciente con úlcera en paladar duro de 6 semanas sin mejoría. Conducta:",["Antiséptico local y control en 1 mes","Referir a ORL para TC y biopsia","Antibiótico oral 10 días","Antiviral tópico"],1,"Úlcera de más de 1 mes: TC y biopsia por posible linfoma."],
+  ["El músculo lingual NO inervado por el hipogloso es:",["Geniogloso","Hiogloso","Palatogloso","Estilogloso"],2,"El palatogloso recibe inervación del vago (plexo faríngeo)."],
+  ["Cuello de sapo, fiebre y lengua elevada sugieren:",["Parotiditis","Angina de Ludwig","Sialolitiasis sublingual","Mononucleosis"],1,"Referir a ORL para traqueostomía y drenaje del absceso."]
+ ]},
+
+{id:"faringitis", region:"Cavidad oral y faringe", week:"Sem 2", title:"Infecciones de faringe",
+ lede:"Faringitis viral vs. estreptocócica, mononucleosis, epiglotitis, absceso periamigdalino, otras etiologías e hipertrofia amigdalina.",
+ sections:[
+  {h:"Viral vs. bacteriana", table:[["","Viral (40–60%)","Estreptocócica (GAS)"],["Inicio","Gradual","Súbito, con cefalea"],["Síntomas","Tos, rinorrea, conjuntivitis, aftas, diarrea","Sin tos ni rinorrea; otalgia orienta a bacteriana"],["Fiebre","Ausente o baja","Alta"],["Exploración","Faringe hiperémica","Exudado amigdalar, petequias en paladar, adenopatía cervical dolorosa"],["Tratamiento","Sintomático, sin antibióticos","Antibiótico (previene fiebre reumática)"]]},
+  {h:"Virus y su pista", li:["Rinovirus y coronavirus: rinorrea y tos.","Adenovirus: conjuntivitis (fiebre faringoconjuntival).","Herpes: vesículas en pilar anterior; herpangina en pilar posterior y úvula.","Bacterias: S. pyogenes, S. pneumoniae; H. influenzae y Moraxella pueden sobreinfectar un cuadro viral."]},
+  {h:"Estreptococo grupo A", li:["10% de las faringitis en adultos, 30% en niños. Causa principal de amigdalectomía en niños.","Proteína M y cápsula evitan fagocitosis; estreptolisinas O y S, DNasa, hialuronidasa; exotoxinas A, B y C.","Diagnóstico: clínico, Centor modificado, prueba rápida de antígeno, ASO; cultivo faríngeo es el estándar.","Contagioso hasta una semana. Recordar el biofilm (resistencia)."]},
+  {h:"Tratamiento de GAS (clase)", li:["Sintomático: reposo, lidocaína o benzocaína en spray, hidratación, humidificación.","Amoxicilina/clavulanato 875/125 mg VO c/12 h.","Clindamicina 300 mg VO c/8 h x 10 días.","Alergia o resistencia: claritromicina 500 mg VO o azitromicina 500 mg VO."]},
+  {h:"Complicaciones de GAS", li:["Supurativas: absceso periamigdalino (la más común), parafaríngeo, retrofaríngeo, Lemierre (trombosis de yugular interna), mediastinitis, sepsis.","Pilar abombado: TC con contraste y química sanguínea.","No supurativas: fiebre reumática y glomerulonefritis (si no se trata en 10 días), PANDAS."]},
+  {h:"Mononucleosis infecciosa", li:["EBV 90%, CMV 10%. Contagio por saliva; infecta linfocitos B (CD21).","Exudado más uniforme, como una cáscara. Petequias palatinas, adenopatías en triángulo posterior, hepatoesplenomegalia (30%).","BH: 80–90% mononucleares, 10% linfocitos atípicos.","Anticuerpos heterófilos (Monospot): S 85%, E ~100%; 40% falsos negativos en las primeras 2–3 semanas. IgM reciente, IgG tardía.","Tratamiento de soporte; evitar deportes de contacto (ruptura esplénica). Amoxicilina da rash.","Resuelve en 2–3 semanas. Complicaciones: obstrucción de vía aérea, meningitis, anemia hemolítica, ruptura esplénica."]},
+  {h:"Epiglotitis", li:["Hib, S. pneumoniae, S. pyogenes. Edema supraglótico rápido.","Fiebre alta, odinofagia intensa, babeo, voz apagada, estridor, posición en trípode.","No explorar agresivamente; Rx lateral de cuello con signo del pulgar.","Primero asegurar vía aérea; antibiótico IV (cefalosporina de 3ª) y esteroide."]},
+  {h:"Absceso periamigdalino", li:["Odinofagia unilateral severa, trismus, voz de papa caliente, desviación de úvula, abombamiento palatino.","TC con contraste si hay duda. Drenaje + antibiótico IV + vigilancia de vía aérea."]},
+  {h:"Otras etiologías", li:["Difteria: pseudomembrana gris, cuello de toro; antitoxina IV + penicilina o macrólido.","Arcanobacterium haemolyticum: rash que respeta palmas y plantas; macrólidos.","Sífilis: úlceras no dolorosas (primaria); secundaria con fiebre, rash, masa cervical.","Gonorrea: factor de riesgo felación; ceftriaxona + doxiciclina.","Mycoplasma: 15–19 años, con neumonía.","Francisella tularensis: garrapatas, gente de campo; macrólidos o fluoroquinolonas (resistente a betalactámicos).","Herpangina (Coxsackie A16): niños, verano–otoño, úlceras de 1–2 mm en paladar blando, úvula y pared posterior. Úlceras más grandes: pensar en sífilis o gonorrea."]},
+  {h:"Hipertrofia amigdalina y adenoidea", li:["Criterios de infección recurrente con pus: 7 episodios en 1 año, 5 por año en 2 años, o 3 por año en 3 años.","Absolutas: SAOS, absceso periamigdalino más de 2 veces, amígdalas de superficie irregular, difteria. Relativa: enfermarse seguido.","Adenoides: operar si obstruyen 60–70% y hay síntomas, u otitis media serosa recurrente.","Sin síntomas ni apnea: montelukast y observación (puede bajar hasta 50%).","Estudios: Rx lateral (barata y rápida) o nasofibrolaringoscopía si el niño coopera.","Contraindicaciones: insuficiencia velopalatina (voz hipernasal), enfermedad hematológica."]}
+ ],
+ pearls:[
+  ["examen","ENARM: exantema en lija y lengua de fresa = escarlatina."],
+  ["examen","Otalgia en faringitis: pensar en bacteriana. Diarrea: pensar en viral."],
+  ["examen","Triada de GAS: amígdalas purulentas, adenopatías cervicales y fiebre alta."],
+  ["alerta","Niño con babeo, ahogamiento y posición en trípode: epiglotitis, puede ser fulminante."],
+  ["clinica","Solución Filadelfia para llagas: 30 ml de hidróxido de aluminio/magnesio + 30 ml de Dramamine + 5 ml de lidocaína."],
+  ["clinica","Mononucleosis + amoxicilina = rash. Evitar betalactámicos de amplio espectro."],
+  ["clinica","Fiebre reumática y glomerulonefritis son complicaciones de S. pyogenes."]
+ ],
+ cards:[
+  ["¿Qué porcentaje de faringitis agudas son virales?","40–60%."],
+  ["¿Qué virus se asocia a fiebre faringoconjuntival?","Adenovirus."],
+  ["¿Antibiótico de elección en faringitis por Arcanobacterium?","Macrólidos (eritromicina, azitromicina)."],
+  ["¿Sensibilidad del Monospot y su problema temprano?","~85%; hasta 40% negativo en las primeras 2–3 semanas."],
+  ["¿Qué es el síndrome de Lemierre?","Complicación supurativa con trombosis de la vena yugular interna."],
+  ["¿Agente de la herpangina?","Coxsackie A16 (echovirus); niños, verano y otoño."],
+  ["Úlceras faríngeas mayores de 2 mm, ¿qué sospechas?","Sífilis o gonorrea."],
+  ["¿Tularemia: a qué antibiótico es resistente?","A betalactámicos. Se trata con macrólidos o fluoroquinolonas."],
+  ["Criterios de recurrencia para amigdalectomía","7 episodios en 1 año, 5 por año en 2 años, o 3 por año en 3 años (con pus)."]
+ ],
+ quiz:[
+  ["Adolescente con faringoamigdalitis exudativa, adenopatía cervical posterior y esplenomegalia. Le dieron amoxicilina y presenta rash. Diagnóstico más probable:",["Escarlatina","Mononucleosis infecciosa","Difteria","Herpangina"],1,"Rash por amoxicilina es típico de mononucleosis por EBV."],
+  ["Hallazgo que orienta a faringitis viral:",["Petequias en paladar","Fiebre alta súbita","Diarrea y rinorrea","Exudado purulento"],2,"Rinorrea, tos y diarrea orientan a viral."],
+  ["Indicación ABSOLUTA de amigdalectomía:",["Ronquido aislado","Absceso periamigdalino en más de 2 ocasiones","Un episodio de faringitis al año","Halitosis"],1,"También SAOS, superficie irregular y difteria."],
+  ["Paciente con niño asintomático, hipertrofia amigdalina sin apnea:",["Amigdalectomía","Montelukast y observación","Amoxicilina 10 días","Esteroide sistémico"],1,"Puede reducir la hipertrofia hasta 50%."],
+  ["Complicación supurativa más común de la faringitis estreptocócica:",["Glomerulonefritis","Absceso periamigdalino","Fiebre reumática","PANDAS"],1,"Las otras son no supurativas."]
+ ]},
+
+{id:"saos", region:"Cavidad oral y faringe", week:"Sem 2", title:"SAOS",
+ lede:"Síndrome de apnea obstructiva del sueño. Prevalencia 1.5–4%, principal indicación de amigdalectomía en niños.",
+ sections:[
+  {h:"Etiología", li:["Anatómica: obstrucción (adenoides y amígdalas), colapso de vía aérea, falta de respuesta de dilatadores.","Neurogénica: sensibilidad de quimiorreceptores, menor estímulo central, receptores ventilatorios defectuosos.","El constrictor superior de la faringe es el principal causante al relajarse; la velofaringe también colapsa seguido."]},
+  {h:"Factores de riesgo", li:["Sur asiático, antecedentes familiares, edad, obesidad, anatomía, Marfan, hombres y mujeres posmenopáusicas.","Obstrucción nasal es coadyuvante.","El esfuerzo respiratorio es el estímulo más importante para despertar, más que la hipoxia o la hipercapnia."]},
+  {h:"Clínica", li:["Principales: somnolencia diurna, ronquido, apneas presenciadas.","Otros: movimientos involuntarios, insomnio, actividad motora nocturna, enuresis en niños.","Niños: más bien hiperactivos; tras la cirugía hasta cambia su personalidad.","Adultos: cefalea característica. Cuello de más de 50 cm.","Retrognatia o micrognatia aumentan el riesgo en niños."]},
+  {h:"Diagnóstico", li:["Escala de somnolencia: se duerme viendo TV, en el coche, sentado en lugar público.","Mallampati y Friedman.","Polisomnografía: estándar de oro (oximetría, EEG, movimientos). Medir índice de apnea-hipopnea y desaturación; menos de 80% es alarma."]},
+  {h:"Tratamiento", li:["Niños: cirugía definitiva (adenoamigdalectomía).","Adultos: CPAP; la cirugía solo ayuda.","Si no usa el CPAP al menos 50%: recalibrar; muchas veces es la nariz (septum desviado, cornetes grandes).","Si no funciona el CPAP: BiPAP. Apnea central: CPAP.","Niño con SAOS 40–50% en PSG: CPAP 1–2 semanas antes y después de la cirugía. Descartar problemas cardiopulmonares con cardio y neumo."]},
+  {h:"Complicaciones", li:["Mortalidad: accidentes de auto, muerte súbita nocturna, insuficiencia cardiaca.","3 veces más riesgo de HTA y de hipertensión pulmonar.","EVC, resistencia a insulina, arritmias, cardiopatía isquémica.","75–100% tienen ERGE o reflujo faringolaríngeo (aumento de presión intratorácica)."]}
+ ],
+ pearls:[
+  ["examen","Polisomnografía = estándar de oro para SAOS."],
+  ["examen","Niños: tratamiento quirúrgico definitivo. Adultos: CPAP."],
+  ["alerta","Niño con SAOS y problemas cardiopulmonares: CPAP obligatorio; operarlo sin el algoritmo puede dar arritmias, espasmos y complicaciones graves."],
+  ["clinica","Mala adherencia al CPAP: revisar la nariz antes de cambiar de tratamiento."]
+ ],
+ cards:[
+  ["¿Principal músculo implicado en el colapso del SAOS?","Constrictor superior de la faringe."],
+  ["¿Estímulo más importante para despertar en SAOS?","El esfuerzo respiratorio (más que hipoxia o hipercapnia)."],
+  ["¿Cómo se presenta el SAOS en niños?","Hiperactividad más que somnolencia; enuresis, ronquido."],
+  ["¿Desaturación de alarma en la polisomnografía?","Por debajo de 80%."],
+  ["¿Qué porcentaje de pacientes con SAOS tiene ERGE o RFL?","75–100%."],
+  ["¿Alternativa si el CPAP no funciona?","BiPAP."]
+ ],
+ quiz:[
+  ["Tratamiento de primera línea en adulto con SAOS:",["Uvulopalatofaringoplastia","CPAP","Amigdalectomía","Montelukast"],1,"En adultos la cirugía solo es coadyuvante."],
+  ["Niño con SAOS moderado-severo en PSG antes de adenoamigdalectomía:",["Operar de inmediato","CPAP 1–2 semanas antes y después de la cirugía","Solo observación","Esteroide nasal y alta"],1,"Además, valorar cardio y neumo."],
+  ["Paciente usa su CPAP menos del 50% de las noches. Primer paso:",["Cambiar a cirugía","Recalibrar y revisar la nariz","Suspender CPAP","Dar benzodiacepina"],1,"Desviación septal y cornetes grandes son causa frecuente."]
+ ]},
+
+/* ───────────── LARINGE ───────────── */
+{id:"laringe", region:"Laringe", week:"Sem 3", title:"Laringe y patología benigna",
+ lede:"Anatomía funcional de examen, reflujo faringolaríngeo y lesiones benignas de cuerdas vocales.",
+ sections:[
+  {h:"Anatomía de examen", li:["Casi todos los músculos laríngeos los inerva el vago (laríngeo recurrente).","Cricotiroideo: laríngeo superior; tensa las cuerdas (tono de voz).","Cricoaritenoideo posterior: el único que ABRE las cuerdas.","Cierran: cricoaritenoideo lateral, interaritenoideo y tiroaritenoideo (vocal).","Aritenoides dan movilidad. Laríngeo recurrente con trayecto distinto izquierdo y derecho.","Cricotiroidotomía percutánea de emergencia."]},
+  {h:"Reflujo faringolaríngeo", li:["Inflamación de mucosa laríngea por ácido y/o álcali. NO es lo mismo que ERGE.","Disfonía peor en la mañana (92%), aclaramiento (50%), tos (44%), globus (33%), disfagia (27%), pirosis en menos de 50%.","Laringoespasmo: patognomónico.","Reflux Finding Score de Belafsky.","Tratamiento: no ayunos prolongados, elevar cabecera, IBP (pantoprazol 40 mg u omeprazol 20 mg c/12 h). Quirúrgico: funduplicatura.","La laringe tarda en promedio 3 meses en desinflamarse; sin mejoría a 3 meses, referir a gastro."]},
+  {h:"Edema de Reinke", li:["Espacio de Reinke: capa superficial de la lámina propia, tejido laxo que acumula líquido.","Factores: RFL, tabaquismo, abuso de voz, aclaramiento y tos crónica, hipotiroidismo.","Voz grave, hasta hipermasculina. No se asocia a cáncer."]},
+  {h:"Nódulos vocales", li:["Abuso de voz y mala técnica; más en mujeres y niños.","Bilaterales, en la unión del 1/3 anterior con el 1/3 medio (zona de mayor contacto).","Amanecen bien y se van poniendo roncos durante el día. Cantantes: inicio fonatorio retardado en notas altas suaves.","Dx: nasofibrolaringoscopía o laringoscopía de 70°.","Pequeños: terapia de voz. De 2–3 mm o si ya no puede hablar: microlaringoscopía."]},
+  {h:"Pólipos cordales", li:["Ruptura capilar en el espacio de Reinke; marrón o negro si es hemorrágico.","Aspirina, anticoagulantes, intubación, abuso de voz.","Base ancha o pedunculados.","Microlaringoscopía con láser: KTP para lesiones vasculares, láser azul para todo."]},
+  {h:"Otras lesiones", li:["Quistes: cambios súbitos de voz, base más ancha, peor resultado posquirúrgico.","Sulcus vocalis: pérdida de la capa superficial; surco en la cuerda. Terapia de voz; la cirugía puede empeorar.","Ectasias vasculares: mujeres, profesores, posradioterapia; disfonía episódica. Si hay hemoptisis, operar.","Granulomas: porción medial del aritenoides, hombres, posintubación; resección fría + reposo de voz 3–4 días.","Laringocele y quiste sacular: marsupialización o escisión completa si es externo.","Presbilaringe: voz en fuga; gap de 1–2 mm es normal, mayor es patológico."]}
+ ],
+ pearls:[
+  ["examen","El cricoaritenoideo posterior es el único abductor (abre las cuerdas)."],
+  ["examen","Laringoespasmo es patognomónico de reflujo faringolaríngeo."],
+  ["examen","Nódulos: bilaterales en unión de 1/3 anterior y 1/3 medio."],
+  ["clinica","Ronquera de más de 2 semanas a 1 mes: descartar nódulos primero."],
+  ["clinica","Ronquera: antirreflujo + spray nasal + esteroide de depósito (Diprospan)."],
+  ["clinica","Edema de Reinke no aumenta el riesgo de cáncer laríngeo."]
+ ],
+ cards:[
+  ["¿Único músculo que abre las cuerdas vocales?","Cricoaritenoideo posterior."],
+  ["¿Qué nervio inerva el cricotiroideo?","Laríngeo superior."],
+  ["¿Síntoma más frecuente del RFL?","Disfonía peor en las mañanas (92%)."],
+  ["¿Cuánto tarda en desinflamarse la laringe con tratamiento antirreflujo?","Unos 3 meses en promedio (hasta 6 para todos los síntomas)."],
+  ["¿Patrón de disfonía en nódulos vocales?","Bien al despertar, empeora a lo largo del día."],
+  ["¿Láser para lesiones vasculares de cuerda?","KTP."],
+  ["¿Dónde aparecen los granulomas laríngeos?","Porción medial del aritenoides; típicamente posintubación."]
+ ],
+ quiz:[
+  ["Músculo responsable de la abducción de las cuerdas vocales:",["Cricoaritenoideo lateral","Cricotiroideo","Cricoaritenoideo posterior","Interaritenoideo"],2,"Los demás aductores cierran; el cricotiroideo tensa."],
+  ["Profesora con disfonía que empeora al final del día y lesiones bilaterales en la unión del tercio anterior y medio:",["Pólipo","Nódulos vocales","Edema de Reinke","Papilomatosis"],1,"Lesión por abuso de voz en la zona de mayor contacto."],
+  ["Respecto al reflujo faringolaríngeo, es correcto:",["Es lo mismo que ERGE","La pirosis está en más del 90%","El laringoespasmo es patognomónico","Se resuelve en 1 semana"],2,"La pirosis aparece en menos del 50%."],
+  ["Lesión laríngea que NO se asocia a cáncer y da voz hipermasculina:",["Leucoplaquia","Edema de Reinke","Papiloma","Eritroplaquia"],1,"Se asocia a tabaco y RFL, pero no a malignidad."]
+ ]},
+
+{id:"croup", region:"Laringe", week:"Sem 3", title:"CROUP y diferenciales",
+ lede:"Estridor en niños: CROUP viral, epiglotitis, traqueítis bacteriana y laringitis estridulosa.",
+ sections:[
+  {h:"Comparativo", wide:true, table:[["","CROUP viral","Epiglotitis","Traqueítis bacteriana","Laringitis estridulosa"],["Agente","Parainfluenza 1, influenza A/B, rinovirus, adenovirus, VSR","Hib, S. pneumoniae, S. pyogenes","S. aureus, Moraxella","Alergia o ERGE"],["Inicio","Insidioso, con IVAS previa","Rápido, fulminante","Tras CROUP viral","Inmediato, sin antecedentes"],["Clave","Tos perruna, estridor inspiratorio","Babeo, trípode, voz apagada","Estridor mixto, disnea, fiebre","Tos perruna nocturna, sin fiebre"],["Imagen","Signo del lápiz (de la aguja)","Signo del pulgar","—","—"],["Duración","4 días a 1 semana","—","Días a semanas","1–2 noches"],["Manejo","Soporte, ambiente tranquilo; epinefrina racémica si es grave","Intubación, O₂, ceftriaxona/cefotaxima + clindamicina","Hospitalizar, O₂, intubación; dicloxacilina o clinda IV (vanco si MRSA)","Humidificar, O₂, esteroide; epinefrina solo si es grave"]]},
+  {h:"CROUP: datos", li:["3 meses a 5 años; más en hombres e invierno.","Causa del 80% de los estridores en niños.","CROUP score de 7–10: intubación y ventilación.","Epinefrina racémica: 0.5 ml de ampolleta al 2.25% + 4 ml. Es lo mejor; los esteroides se usan en cuadros leves."]},
+  {h:"Epiglotitis", li:["Más severa en adultos que en niños.","Infección de epiglotis, supraglotis e hipofaringe.","Abscesos de cuello: ceftriaxona + clindamicina de primera instancia."]}
+ ],
+ pearls:[
+  ["examen","Tos perruna + estridor = CROUP. Signo del lápiz en Rx."],
+  ["examen","Signo del pulgar en Rx lateral de cuello = epiglotitis."],
+  ["alerta","Estridor inspiratorio es urgencia."],
+  ["alerta","Niño con babeo, ahogamiento y trípode: epiglotitis, asegurar vía aérea."],
+  ["clinica","Traqueítis dura días a semanas; el CROUP no pasa de 1 semana."]
+ ],
+ cards:[
+  ["¿Agente más común del CROUP?","Parainfluenza tipo 1."],
+  ["¿Signo radiológico del CROUP?","Signo del lápiz (estrechamiento subglótico)."],
+  ["¿Antibiótico en epiglotitis?","Cefalosporina de 3ª (ceftriaxona o cefotaxima) + clindamicina."],
+  ["¿Agente de la traqueítis bacteriana?","S. aureus (y Moraxella)."],
+  ["¿Laringitis estridulosa tiene fiebre?","No. Inicio súbito nocturno, dura 1–2 noches."],
+  ["¿Puntaje de CROUP que requiere intubación?","7 a 10."]
+ ],
+ quiz:[
+  ["Niño de 2 años con IVAS previa, tos perruna y estridor inspiratorio. Rx con signo del lápiz:",["Epiglotitis","CROUP viral","Traqueítis bacteriana","Cuerpo extraño"],1,"Laringotraqueobronquitis viral."],
+  ["Niño febril, con babeo, voz apagada y en posición de trípode. Primer paso:",["Explorar faringe con abatelenguas","Asegurar vía aérea","Rx de tórax","Nebulizar salbutamol"],1,"Epiglotitis: no explorar agresivamente."],
+  ["Antecedente de CROUP que empeora con fiebre alta, estridor mixto y leucocitosis:",["Laringitis estridulosa","Traqueítis bacteriana","Laringomalacia","Papilomatosis"],1,"S. aureus; hospitalizar y antibiótico IV."]
+ ]},
+
+{id:"pediatrico", region:"Laringe", week:"Sem 1", title:"Laringomalacia y estridor congénito",
+ lede:"Abordaje del estridor en niños y anomalías laríngeas congénitas.",
+ sections:[
+  {h:"Estridor", li:["Ruido áspero vibratorio por obstrucción de vía aérea.","Inspiratorio: supraglotis/laringe. Espiratorio: tráquea y bronquios. Bifásico: avanzado (glotis/subglotis).","Ley de Poiseuille: si el radio baja a la mitad, la resistencia aumenta 16 veces."]},
+  {h:"Historia y exploración", li:["Historia prenatal, UCI, intubación prolongada, aspiración, ronquera, reflujo, comorbilidad neurológica.","Cambios posturales, cianosis, apneas.","Sialorrea: epiglotitis o cuerpo extraño.","Endoscopía (laringotraqueobroncoscopía): estándar para evaluar estridor, asegurando vía aérea primero."]},
+  {h:"Laringomalacia", li:["Causa más común de estridor congénito (65–70%) y anomalía laríngea congénita más frecuente.","Flacidez supraglótica: epiglotis en omega, aritenoides redundantes que colapsan, pliegues aritenoepiglóticos cortos.","Estridor inspiratorio intermitente desde la 1ª–2ª semana de vida.","Mejora sentado y en prono; empeora en supino.","ERGE asociado en 30–80%.","Manejo: vigilancia (se resuelve hacia el año), tratar el reflujo. Supraglotoplastia solo si es grave o persiste tras el año."]},
+  {h:"Estenosis subglótica", li:["Obstrucción 2–3 mm debajo de las cuerdas; membranosa o cartilaginosa (más difícil).","RN a término con diámetro menor de 4 mm; pretérmino menor de 3 mm.","Falla de recanalización a las 10 SDG; preguntar por intubación prolongada. Asociada a ERGE, esofagitis eosinofílica y CHARGE.","Dx: Rx lateral de cuello y tórax; definitivo por endoscopía y TC."]},
+  {h:"Escala de Cotton–Myer", table:[["Grado","Obstrucción"],["I","0–50%"],["II","51–70%"],["III","71–99% (muy sintomático)"],["IV","100%"]]},
+  {h:"Parálisis de cuerdas vocales", li:["10% de anomalías; 2ª más común.","Estiramiento del laríngeo en el parto, SNC (Arnold-Chiari, mielomeningocele), infecciones, iatrogenia.","Bilateral: estridor inspiratorio agudo, llanto anormal; puede requerir traqueostomía, lateralización o aritenoidectomía.","Unilateral: voz débil y aspiración; laringoplastia por inyección.","Suele resolver a los 18 meses. RM con contraste para descartar compresión."]},
+  {h:"Otras", li:["CROUP viral: 80% de los estridores infecciosos.","Papilomatosis recurrente: cuerdas vocales; buena respuesta a KTP.","Hemangioma subglótico: 1.5% de anomalías; crece hasta el año y luego involuciona. Buscar hemangiomas cutáneos y PHACES."]},
+  {h:"Mnemotecnias", li:["CHARGE: Coloboma, Heart, Atresia de coanas, Retraso del crecimiento, Genitourinario, Ear (oído y pérdida auditiva).","PHACES: fosa Posterior, Hemangioma, Arterial, Cardiaco, Eye (ojo), Sternum (esternón)."]}
+ ],
+ pearls:[
+  ["examen","Laringomalacia = causa #1 de estridor congénito (65–70%)."],
+  ["examen","Parálisis de cuerdas vocales = 2ª anomalía laríngea congénita."],
+  ["examen","Poiseuille: reducir el radio a la mitad multiplica la resistencia por 16."],
+  ["clinica","Laringomalacia mejora en prono y sentado; empeora en supino."]
+ ],
+ cards:[
+  ["¿Forma de la epiglotis en laringomalacia?","En omega."],
+  ["¿Estridor espiratorio sugiere obstrucción en…?","Tráquea y bronquios."],
+  ["Grado III de Cotton–Myer","Obstrucción de 71–99%."],
+  ["¿Diámetro subglótico que define estenosis en RN a término?","Menor de 4 mm."],
+  ["¿A qué edad suele resolver la parálisis cordal congénita?","18 meses."],
+  ["¿Qué significa CHARGE?","Coloboma, Heart, Atresia de coanas, Retraso, Genitourinario, Ear."]
+ ],
+ quiz:[
+  ["Lactante de 2 semanas con estridor inspiratorio que empeora acostado boca arriba y mejora en prono:",["Estenosis subglótica","Laringomalacia","Parálisis bilateral","Hemangioma"],1,"Causa más común de estridor congénito."],
+  ["Manejo inicial de laringomalacia leve:",["Supraglotoplastia inmediata","Vigilancia y tratamiento de reflujo","Traqueostomía","Esteroide sistémico"],1,"La mayoría resuelve hacia el año."],
+  ["Estenosis subglótica con 80% de obstrucción corresponde a Cotton–Myer:",["I","II","III","IV"],2,"Grado III: 71–99%."]
+ ]},
+
+{id:"papilomatosis", region:"Laringe", week:"Sem 4", title:"Papilomatosis, laringitis y cáncer de laringe",
+ lede:"Papilomatosis respiratoria, laringitis fúngica y tuberculosa, y cáncer de laringe.",
+ sections:[
+  {h:"Papilomatosis respiratoria", li:["Crecimiento benigno más común de laringe en niños; 2ª causa de disfonía infantil.","VPH 6 y 11 (90%). Malignización rara, más con 16 y 18 en adultos.","2/3 antes de los 15 años; suelen mejorar en la pubertad. Muy agresiva si la madre tenía papiloma en el parto.","Juvenil: menores de 12 años, múltiples sitios (aritenoides, cuerdas, bandas). Adultos: úvula, pilares, laringe; factor de riesgo sexo oral.","Lesiones verrugosas exofíticas en la unión del epitelio escamoso y ciliado.","Primer síntoma: disfonía progresiva."]},
+  {h:"Tratamiento de papilomatosis", li:["Escisión endoscópica (fría, microdebridador o láser; ideal el láser).","Evitar traqueostomía: siembra en vía aérea inferior.","Adyuvante controversial: cidofovir o interferón. Dar IBP en lesiones benignas.","Obstrucción glótica del 50% o dificultad respiratoria: operar."]},
+  {h:"Laringitis fúngica y tuberculosa", li:["Fúngica: inmunosupresión, radiación, antibióticos. Candida, Aspergillus, Blastomyces, Histoplasma, Coccidioides.","Odinofagia, disfonía, tos, disnea. Endoscopía y biopsia (descartar cáncer). Antimicóticos y asegurar vía aérea.","Tuberculosa: región interaritenoidea o superficie de epiglotis; secundaria a TB pulmonar."]},
+  {h:"Cáncer de laringe: sospecha", li:["Hombre de más de 70 años, disfónico, con alcohol y tabaco: laringoscopía y TC.","En México el glótico es el más común.","Glótico: disfonía, disnea, estridor. Supra y subglótico dan síntomas más escandalosos; subglótico da disfonía y dificultad respiratoria y metastatiza rápido.","Faringodinia, odinofagia o disfagia: pedir laringoscopía.","Leucoplaquia y eritroplaquia: premalignas, biopsiar (eritroplaquia más sugestiva).","Polvo de madera: carcinógeno, más asociado a cáncer de nariz.","Ante cualquier tumoración, buscar en pulmón."]},
+  {h:"Estudio", li:["TC o RM de cabeza y cuello con contraste.","Laboratorios generales y estado nutricional.","Biopsia (incisional o excisional): estándar de oro.","Displasia leve → moderada → severa → carcinoma in situ → epidermoide (bien, moderada o pobremente diferenciado).","Metástasis: subglótico a pulmón; mediastino es el sitio ganglionar a distancia más común."]},
+  {h:"Tratamiento", li:["Tis–T2 glótico: cirugía o radioterapia. Láser preferible; control local 80–94%.","Glótico con RT: control T1 80–90%, T2 64–87%.","T3–T4: quimio y radioterapia; cirugía solo para debulking. T4 mejor solo con quimio.","Supraglótico: laringectomía supraglótica con disección ganglionar + QT/RT. Contraindicada si hay invasión de glotis o cartílagos. Avanzado: laringectomía con QT y RT concomitante.","Cuello supraglótico: N0–N1 disección selectiva bilateral II–IV; N2–N3 disección bilateral.","Recurrencia: TC y PET a las 10–12 semanas. Pronóstico malo desde N2 y T3."]}
+ ],
+ pearls:[
+  ["examen","Papilomatosis: VPH 6 y 11; evitar traqueostomía."],
+  ["examen","En México el cáncer glótico es el más común."],
+  ["alerta","NUNCA dar esteroides en infecciones por hongos."],
+  ["clinica","Disfonía de más de 1 mes en paciente de 40–50 años: laringoscopía."],
+  ["clinica","Cáncer = TC y biopsia, igual ante cualquier aumento de volumen."]
+ ],
+ cards:[
+  ["¿Tipos de VPH en papilomatosis laríngea?","6 y 11 (90%). Malignizan más 16 y 18."],
+  ["¿Por qué evitar traqueostomía en papilomatosis?","Puede sembrar papilomas en la vía aérea inferior."],
+  ["¿Indicación de cirugía en papilomatosis?","Dificultad respiratoria u obstrucción glótica del 50%."],
+  ["¿Sitio de metástasis del cáncer subglótico?","Pulmón."],
+  ["¿Estándar de oro diagnóstico en cáncer de laringe?","Biopsia."],
+  ["¿Cuándo se hace PET/TC para buscar recurrencia?","A las 10–12 semanas del tratamiento."],
+  ["¿Qué lesión premalignas se biopsian?","Leucoplaquia y eritroplaquia."]
+ ],
+ quiz:[
+  ["Hombre de 72 años, fumador y bebedor, con disfonía de 2 meses. Siguiente paso:",["IBP y control en 3 meses","Laringoscopía y TC","Terapia de voz","Antibiótico"],1,"Sospecha de cáncer de laringe."],
+  ["Tratamiento de un carcinoma glótico T1:",["Laringectomía total","Radioterapia o cirugía con láser","Quimioterapia sola","Observación"],1,"Excelente control local en T1 con RT o láser."],
+  ["Paciente inmunosuprimido con laringitis fúngica. Es incorrecto:",["Antimicóticos","Biopsia","Esteroides para el edema","Asegurar vía aérea"],2,"Nunca esteroides en hongos."],
+  ["Subtipo más común de cáncer de laringe en México:",["Supraglótico","Glótico","Subglótico","Transglótico"],1,"Tal como lo anotaste en clase."]
+ ]},
+
+{id:"disfonico", region:"Laringe", week:"Sem 4", title:"Sx Disfónico", empty:true},
+
+/* ───────────── NARIZ Y SENOS ───────────── */
+{id:"cuerpos", region:"Nariz y senos paranasales", week:"Sem 3", title:"Cuerpos extraños nasales y rinosinusitis",
+ lede:"Cuerpos extraños nasosinusales (con la pila de botón como urgencia) y bases de rinosinusitis.",
+ sections:[
+  {h:"Cuerpos extraños de alto riesgo", li:["Pila de botón: doble halo en la Rx. Verdadera urgencia.","Álcali: necrosis por licuefacción. Daño tisular a la media hora, necrosis en 2 horas; necrosis en 59% si no se trata.","Deformidad en silla de montar si perfora el septum.","Lesión orbitaria, celulitis, pérdida de visión."]},
+  {h:"Cuerpos orgánicos", li:["Semillas, alimentos, material vegetal.","Rinorrea unilateral purulenta y fétida; puede sobreinfectarse."]},
+  {h:"Diagnóstico y manejo", li:["Rinoscopia anterior: la más eficaz, fácil y de primera línea.","TC no indicada; generalmente se ve el objeto.","Extracción con pinza de cocodrilo, gancho en ángulo recto o cureta.","Si fallas 2 veces (mejor solo 1) o no lo ves: referir a ORL (cirugía endoscópica si hace falta)."]},
+  {h:"Rinosinusitis", li:["Generalmente de origen viral; inflamación de mucosa nasal y senos.","Predisponen: infección viral, rinitis, tabaco, inmunodeficiencia.","Bacterias: S. pneumoniae, Moraxella, H. influenzae.","Congestión, rinorrea purulenta, dolor/presión facial, cefalea, hiposmia, dolor dental, halitosis.","Respuesta Th2 (IL-4, IL-5, IL-13) activa mastocitos y eosinófilos; por eso se confunde con alergia.","Fibrosis quística: principal causa de pólipos en niños.","Calcificaciones dentro del seno (parece hueso): aspergilosis."]}
+ ],
+ pearls:[
+  ["alerta","Pila de botón en nariz = urgencia. Daño a los 30 minutos, necrosis en 2 horas."],
+  ["examen","Rinorrea unilateral fétida en niño = cuerpo extraño."],
+  ["examen","Pila de botón en Rx: signo del doble halo."],
+  ["clinica","Pólipos nasales en un niño: pensar en fibrosis quística."]
+ ],
+ cards:[
+  ["¿Estudio de primera línea para cuerpo extraño nasal?","Rinoscopia anterior."],
+  ["¿Mecanismo de daño de la pila de botón?","Necrosis por licuefacción (álcali)."],
+  ["¿Cuándo referir a ORL un cuerpo extraño nasal?","Si no se ve o fallas la extracción (máximo 2 intentos, idealmente 1)."],
+  ["¿Bacterias típicas de rinosinusitis bacteriana?","S. pneumoniae, H. influenzae, Moraxella."]
+ ],
+ quiz:[
+  ["Niño de 4 años con rinorrea unilateral fétida de 1 semana:",["Rinosinusitis viral","Cuerpo extraño nasal","Rinitis alérgica","Adenoiditis"],1,"Confirmar con rinoscopia anterior."],
+  ["Ante sospecha de pila de botón en fosa nasal:",["Pedir TC y esperar resultado","Extracción urgente","Lavado nasal y control","Antibiótico y observar"],1,"No se pide tomografía; la necrosis empieza en horas."]
+ ]},
+
+{id:"fungica", region:"Nariz y senos paranasales", week:"Sem 4", title:"Rinosinusitis fúngica, sistémicas y complicaciones",
+ lede:"Formas fúngicas, enfermedades sistémicas nasosinusales, rinitis infecciosas y complicaciones orbitarias e intracraneales.",
+ sections:[
+  {h:"Formas fúngicas", wide:true, table:[["","Bola de hongos","Fúngica alérgica","Invasiva aguda"],["Huésped","Inmunocompetente","Atópico","Inmunosuprimido, diabético"],["Agente","Aspergillus","Aspergillus, Alternaria, Bipolaris, Fusarium, Curvularia","Rhizopus (mucormicosis), Aspergillus"],["Sitio","Maxilar → etmoides → esfenoides → frontal","Etmoides","—"],["Clave","No invasiva; calcificaciones en TC; proptosis o hipoestesia (nervio infraorbitario, V2)","Pólipos, mucina verde-amarilla con cristales de Charcot-Leyden, eosinofilia","Mucosa negra en nariz, paladar u ojo"],["Dx","TC; biopsia y cultivo","TC (densidad de tejido blando, remodelación)","TC/RM, biopsia y cultivo urgentes"],["Tx","Resección; antifúngico si recidiva","Desbridamiento, esteroide tópico y oral, inmunoterapia","Hospitalizar, desbridamiento urgente, anfotericina B liposomal IV, corregir inmunosupresión"]]},
+  {h:"Histopatología", li:["Bola de hongos: hifas septadas a 45° (en Y), agar Sabouraud, sin invasión.","Alérgica: hifas sin invasión, mucina alérgica con Charcot-Leyden.","Tinción de plata y tinta china útiles.","El cultivo tarda 7–10 días: predomina la clínica.","Aspergillus: voriconazol. Anfotericina B liposomal de elección; caspofungina alternativa."]},
+  {h:"Enfermedades sistémicas", li:["EREA (tríada de Samter): asma, pólipos nasales, intolerancia a aspirina.","Churg-Strauss: fase prodrómica (rinitis alérgica y asma), infiltrativa eosinofílica (Löffler), sistémica. Parece rinitis alérgica.","Síndrome sinobronquial: rinosinusitis crónica + asma + bronquiectasias + bronquitis crónica + neumonía recurrente.","Fibrosis quística: autosómica recesiva, F508del en CFTR (cromosoma 7). Moco espeso; Pseudomonas, Burkholderia cepacia, S. aureus. Dx: test de cloro, genética, tamiz neonatal.","Granulomatosis con poliangeítis: granulomas necrosantes, vasculitis, glomerulonefritis, nariz en silla de montar. C-ANCA. Lavados, prednisona, ciclofosfamida."]},
+  {h:"Rinitis infecciosas y otras", li:["Rinitis atrófica: secundaria a cirugía de cornetes o trauma; Klebsiella. Síndrome de nariz vacía: obstrucción paradójica, mal olor, epistaxis.","Rinoescleroma: endémico de LATAM, Klebsiella rhinoscleromatis. Fases catarral, granulomatosa, fibrótica. Células de Mikulicz y cuerpos de Russell. Tetraciclina y ciprofloxacino. Siempre laringoscopía.","Rinosporidiosis: lesión color cereza indolora; endémica de África (agua contaminada). Antifúngico y resección.","Influenza A y B: oseltamivir c/12 h x 5 días, útil en las primeras 48 h (mejor 24 h). Prueba rápida: E más de 90%, S 50–70%."]},
+  {h:"Complicaciones orbitarias (de menos a más grave)", wide:true, table:[["Cuadro","Datos","Manejo"],["Celulitis preseptal","Anterior al septum orbitario; fiebre, dolor","Antibiótico"],["Celulitis orbitaria","Posterior al septum; edema, eritema, proptosis, quemosis. SIN restricción de movimientos ni cambio visual","Antibiótico parenteral; quirófano si no mejora en 24 h"],["Absceso subperióstico","Lo anterior + restricción de movimientos oculares","Abordaje combinado con oftalmología"],["Absceso orbitario","Lo anterior + cambio de visión","Antibiótico parenteral + cirugía"],["Trombosis del seno cavernoso","Fiebre en picos, papiledema, cambios visuales; S. aureus","Parenteral + cirugía"]]},
+  {h:"Complicaciones intracraneales y óseas", li:["Tumor de Pott (Pott's puffy tumor): osteomielitis frontal por venas diploicas; antibiótico parenteral, trepanación, desbridamiento.","Meningitis: Hib, neumococo, estreptococo; Kernig y Brudzinski. Punción lumbar, hospitalizar, carbapenémico.","Absceso epidural: imagen biconvexa (lente); riesgo con sinusitis frontal. Antibiótico y drenaje.","Empiema subdural: deterioro neurológico (convulsiones, hemiplejía, coma); media luna. Antibiótico y craneotomía.","Absceso cerebral: fiebre, cefalea, rigidez de nuca; TC/RM con contraste, imagen con reborde (posible pregunta de examen)."]},
+  {h:"Perlas de casos y biológicos", li:["Rinosinusitis crónica: TC simple con ventana ósea en 3 planos; revisar cavidad oral (antecedente de extracción dental).","Niveles hidroaéreos: sugieren infección bacteriana.","Con pólipos: macrólido o doxiciclina. Sin pólipos (neutrofílica): macrólido 3 semanas.","Dupilumab (IL-4 e IL-13): el más eficaz para pólipos y olfato. Omalizumab (IgE). Mepolizumab (IL-5)."]}
+ ],
+ pearls:[
+  ["alerta","Mucosa negra en nariz o paladar en un diabético: mucormicosis, ORL de inmediato."],
+  ["examen","Cristales de Charcot-Leyden = rinosinusitis fúngica alérgica."],
+  ["examen","Celulitis orbitaria SIN restricción de movimientos; el absceso subperióstico SÍ la tiene."],
+  ["examen","Hipoestesia facial en bola de hongos: compresión del nervio infraorbitario (V2)."],
+  ["clinica","Rinoescleroma: siempre hacer laringoscopía por posible afectación laríngea."],
+  ["clinica","EREA: asma + pólipos + intolerancia a aspirina."]
+ ],
+ cards:[
+  ["¿Sitio más común de la rinosinusitis fúngica alérgica?","Etmoides."],
+  ["¿Antifúngico de elección en invasiva aguda?","Anfotericina B liposomal."],
+  ["¿Morfología de Aspergillus en histología?","Hifas septadas en ángulo de 45° (en Y)."],
+  ["¿Qué diferencia la celulitis orbitaria del absceso subperióstico?","El absceso agrega restricción de los movimientos oculares."],
+  ["¿Hallazgos histológicos del rinoescleroma?","Células de Mikulicz y cuerpos de Russell."],
+  ["¿Gen y cromosoma de la fibrosis quística?","CFTR, cromosoma 7 (F508del)."],
+  ["¿Qué bloquea dupilumab?","IL-4 e IL-13."],
+  ["¿Qué es el tumor de Pott?","Osteomielitis del hueso frontal por diseminación a través de venas diploicas."],
+  ["¿Cuándo es útil el oseltamivir?","En las primeras 48 h (mejor 24 h); c/12 h por 5 días."]
+ ],
+ quiz:[
+  ["Diabético descontrolado con mucosa nasal negra y dolor facial:",["Bola de hongos","Rinosinusitis fúngica invasiva aguda","Rinitis atrófica","Rinosporidiosis"],1,"Hospitalizar, desbridamiento urgente y anfotericina B."],
+  ["Proptosis, quemosis y edema palpebral sin restricción de movimientos ni cambios visuales:",["Celulitis preseptal","Celulitis orbitaria","Absceso subperióstico","Absceso orbitario"],1,"Antibiótico parenteral; cirugía si no mejora en 24 h."],
+  ["Mucina con cristales de Charcot-Leyden y eosinofilia:",["Bola de hongos","Fúngica alérgica","Invasiva aguda","Granulomatosis con poliangeítis"],1,"Asociada a atopia y pólipos."],
+  ["Nariz en silla de montar, glomerulonefritis y C-ANCA positivos:",["Rinoescleroma","Granulomatosis con poliangeítis","Churg-Strauss","Sífilis"],1,"Granulomas necrosantes + vasculitis."],
+  ["Biológico más eficaz para reducir pólipos y mejorar olfato según tus apuntes:",["Omalizumab","Mepolizumab","Dupilumab","Rituximab"],2,"Bloquea IL-4 e IL-13."]
+ ]},
+
+{id:"trauma", region:"Nariz y senos paranasales", week:"Sem 5", title:"Trauma nasal y epistaxis",
+ lede:"Fracturas nasales (clasificación, reducción, manejo) y epistaxis anterior y posterior.",
+ sections:[
+  {h:"Fractura nasal: epidemiología", li:["Fractura más común de los huesos faciales; hombres de 15–30 años.","Ocurre bajo la línea intercantal, donde el hueso es más delgado.","Golpe lateral: más común. Frontal: más destructivo, puede dar fractura naso-etmoidal.","Niños: fracturas en tallo verde; riesgo de hematoma.","Área keystone: si se fractura, se hunde la nariz."]},
+  {h:"Fuerza y patrón", li:["Lateral moderada: fractura de un lado, septum íntegro.","Frontal moderada: septum fracturado, hundimiento de huesos nasales.","Lateral fuerte: septum fracturado, lado contralateral desplazado.","Frontal fuerte: conminuta (nariz estrellada, como bolsa de canicas); puede requerir injertos.","Tipos: uni/bilateral, libro abierto, impactada, tallo verde, conminuta."]},
+  {h:"Clínica y diagnóstico", li:["Dolor 54%, desviación 58%, hundimiento 56%, crepitación 2%, epistaxis, edema, equimosis.","Sin epistaxis es poco probable que haya fractura.","Siempre descartar hematoma septal y rinolicuorrea (goteo hialino). Telecanto: naso-etmoidal.","Imagen: TC de nariz; perfilograma y Waters (vienen en la GPC)."]},
+  {h:"Grados y tratamiento", table:[["Grado","Fractura","Manejo"],["1","Sin desplazamiento","Solo férula"],["2","Desplazada","Reducción cerrada"],["3","Desviación de 50% con compromiso septal mayor (conminuta)","Reducción abierta"]]},
+  {h:"Tiempos de reducción", li:["Reducción cerrada en las primeras 3 horas o a los 3–10 días, antes de consolidar.","Entre 6 horas y 2–3 días no se recomienda por el edema; dar esteroide para desinflamar.","Fractura abierta: antibiótico IV en las primeras 3 horas (reduce infección 59%). Cubrir S. aureus, estreptococo y gramnegativos; checar tétanos.","Bloqueo: infratroclear, supratroclear, etmoidal anterior (rama externa) e infraorbitario."]},
+  {h:"Posreducción", li:["Taponamiento (soporte interno) y férula nasal.","Retirar taponamiento a los 4–5 días; antihistamínico, AINE, cefalosporina de 1ª generación.","Compresas frías 24–48 h; humedecer el tapón antes de retirarlo.","Descongestionante local (oximetazolina) máximo 5 días.","Diprospan: esteroide de depósito, dura hasta 21 días.","Complicaciones: deformidad, obstrucción, hematoma o perforación septal, fractura de lámina cribiforme."]},
+  {h:"Epistaxis: anatomía", li:["Anterior: plexo de Kiesselbach (palatina mayor, labial superior, esfenopalatina, etmoidal anterior).","Posterior: plexo de Woodruff (esfenopalatina, faríngea ascendente, septal posterior).","Afecta hasta 60% de la población. Picos: menores de 10 años y mayores de 40. Más en invierno y primavera.","Causa más frecuente: trauma digital. También tópicos y cocaína. Refractaria: HTA, aspirina, alcohol.","Tumores: angiofibroma, feocromocitoma."]},
+  {h:"Epistaxis: manejo escalonado", li:["1. Lubricación (nasogel o aceite de bebé 1–2 gotas, 2–3 semanas; la guía dice 6).","2. Presión directa + vasoconstrictor (oximetazolina).","3. Cauterio con nitrato de plata (12–15 s) o eléctrico; nunca ambos lados a la vez.","4. Taponamiento anterior 1–5 días; Gelfoam o selladores de fibrina (Surgicel, Quixil).","5. Quirúrgico: ligadura endoscópica de esfenopalatina 93%, carótida externa 93%, maxilar interna 91%, embolización 88%, cauterio endoscópico 83%.","Pedir TP, TTP, fibrinógeno, plaquetas. Von Willebrand no diagnosticado en niños."]}
+ ],
+ pearls:[
+  ["examen","Fractura nasal = la fractura facial más común."],
+  ["examen","Waters y perfilograma son los estudios de la GPC."],
+  ["alerta","Anciano hipertenso anticoagulado con epistaxis: hospitalizar."],
+  ["alerta","Agresión: dar parte al Ministerio Público."],
+  ["clinica","Nunca aplicar nitrato de plata en ambos lados del septum al mismo tiempo."],
+  ["clinica","Siempre descartar hematoma septal."]
+ ],
+ cards:[
+  ["¿Plexo de la epistaxis anterior?","Kiesselbach."],
+  ["¿Plexo de la epistaxis posterior?","Woodruff."],
+  ["¿Ventana ideal para reducción cerrada?","Primeras 3 horas, o a los 3–10 días."],
+  ["¿Cuándo se retira el taponamiento nasal?","A los 4–5 días."],
+  ["¿Procedimiento quirúrgico más efectivo en epistaxis?","Ligadura endoscópica de la arteria esfenopalatina (93%)."],
+  ["¿Grado 2 de fractura nasal se trata con…?","Reducción cerrada."],
+  ["¿Máximo de días con descongestionante tópico?","5 días."]
+ ],
+ quiz:[
+  ["Paciente que llega 12 horas tras fractura nasal desplazada con mucho edema:",["Reducción cerrada inmediata","Esteroide y reducción a los 3–10 días","Reducción abierta urgente","Alta sin tratamiento"],1,"Entre 6 h y 2–3 días el edema impide una buena reducción."],
+  ["Primer paso en una epistaxis anterior leve:",["Ligadura esfenopalatina","Presión directa con vasoconstrictor","Taponamiento posterior","Embolización"],1,"Luego cauterio si no cede."],
+  ["Fractura nasal abierta. Momento del antibiótico IV:",["A las 24 h","En las primeras 3 horas","Solo si hay fiebre","No está indicado"],1,"Reduce infección en 59% de los casos."],
+  ["Causa más frecuente de epistaxis:",["HTA","Trauma digital","Tumores","Coagulopatía"],1,"Seguida de tópicos y cocaína."]
+ ]},
+
+{id:"anomalias", region:"Nariz y senos paranasales", week:"Sem 6", title:"Desviación septal y tumores nasales",
+ lede:"Desviación septal y su manejo, y tumores nasosinusales: papiloma invertido, angiofibroma, hemangioma, osteoma y schwannoma.",
+ sections:[
+  {h:"Desviación septal", li:["Cartílago septal, lámina perpendicular del etmoides, huesos nasales, vómer.","Causas: trauma, parto distócico, deportes.","Obstrucción bilateral de predominio unilateral, costras, epistaxis, cefalea, rinosinusitis recurrente, SAOS.","Más anterior = más síntomas. Más alta = menos obstrucción pero menos olfato.","En C (anterior y posterior), en S (trauma), espolón (cresta basal, premaxila).","Exploración: rinoscopia anterior y endoscopía. No Rx; TC apoya y protege médico-legalmente."]},
+  {h:"Septumplastia", li:["Septumplastia, cornetes, válvulas o rinoseptumplastia funcional.","Evitar cambios bruscos de presión, estornudar con boca abierta, no fumar.","Control a 5–10 días y al mes; rinoseptumplastia a 3, 6 y 12 meses.","Incapacidad: 14 días no complicada, 21 complicada."]},
+  {h:"Papiloma nasal invertido", li:["Benigno de epitelio columnar pseudoestratificado; 5% de tumores nasales, más en hombres.","Maligniza a epidermoide en 5–15% (10% en promedio).","Exofítico: VPH 6 y 11, EBV; del septum. Oncocítico: el que más maligniza (mutación KRAS), del seno maxilar o pared lateral.","Obstrucción unilateral con rinorrea, aspecto de racimo de uvas, hiposmia.","TC: hiperostosis en sitio de inserción. RM: patrón cerebriforme.","TC contrastada ANTES de biopsiar. Biopsia = dx definitivo; mandar muestras grandes.","Resección endoscópica y fresado de la inserción: menos de 3% de recidiva. Tipo I antrostomía, II maxilectomía medial, III Denker."]},
+  {h:"Angiofibroma nasofaríngeo juvenil", li:["Adolescentes hombres; tumor vascular más frecuente de nariz.","Obstrucción nasal y epistaxis; puede invadir cráneo.","TC: masa que capta en foramen esfenopalatino; signo de Holman-Miller (pared posterior del maxilar desplazada).","RM y angio-RM. NO biopsiar.","Cirugía endoscópica (estándar de oro) con embolización 1–2 días antes. Recurrencia 35%."]},
+  {h:"Clasificación de Chandler", table:[["Estadio","Extensión"],["I","Confinado a nasofaringe"],["II","Cavidad nasal y/o esfenoides"],["III","Antro maxilar, etmoides, fosa pterigomaxilar, infratemporal"],["IV","Intracraneal (generalmente no se opera)"]]},
+  {h:"Otros tumores", li:["Hemangioma capilar: mujeres, plexo de Kiesselbach, masa roja o morada; puede perforar el septum. T1 hipo, T2 hiper, realza con gadolinio.","Osteoma: tumor benigno más común de senos; 80% frontal. Incidental, crecimiento lento; se quita si obstruye el drenaje frontal.","Diferenciales: fibroma osificante (halo en cáscara de huevo) y displasia fibrosa (vidrio despulido, McCune-Albright).","Schwannoma: células de Schwann (V1, V2, vidiano); Antoni A y B. Resección quirúrgica total. Caso clínico seguro en examen."]}
+ ],
+ pearls:[
+  ["examen","Schwannoma: caso clínico seguro en el examen (Antoni A y B)."],
+  ["examen","Angiofibroma juvenil: adolescente hombre con epistaxis; NO se biopsia."],
+  ["examen","Papiloma invertido oncocítico es el que más maligniza (KRAS)."],
+  ["alerta","Antes de biopsiar un tumor nasal, TC contrastada para evitar sangrado."],
+  ["clinica","Osteoma: 80% en seno frontal; la mayoría no se operan."]
+ ],
+ cards:[
+  ["¿Tumor vascular más frecuente de nariz?","Angiofibroma nasofaríngeo juvenil."],
+  ["¿Signo de Holman-Miller?","Desplazamiento anterior de la pared posterior del seno maxilar por el angiofibroma."],
+  ["¿Por qué no se biopsia el angiofibroma?","Por riesgo de sangrado; se diagnostica con TC, RM y angio-RM."],
+  ["¿Imagen del papiloma invertido en RM?","Patrón cerebriforme."],
+  ["¿Localización más común del osteoma?","Seno frontal (80%)."],
+  ["Chandler estadio III","Antro maxilar, etmoides, fosa pterigomaxilar o infratemporal."],
+  ["¿Imagen de la displasia fibrosa?","Vidrio despulido."]
+ ],
+ quiz:[
+  ["Adolescente varón con obstrucción nasal unilateral y epistaxis recurrente:",["Papiloma invertido","Angiofibroma nasofaríngeo juvenil","Osteoma","Pólipo antrocoanal"],1,"Tumor vascular; no biopsiar."],
+  ["Conducta antes de biopsiar una masa nasal unilateral:",["Biopsia en consultorio","TC contrastada","Antibiótico 10 días","Rx de Waters"],1,"Evita sangrado inesperado."],
+  ["Tratamiento preoperatorio clave en angiofibroma:",["Quimioterapia","Embolización 1–2 días antes","Radioterapia","Esteroide"],1,"Reduce mucho el sangrado."],
+  ["Subtipo de papiloma con mayor riesgo de malignización:",["Exofítico","Invertido clásico","Oncocítico","Todos igual"],2,"Asociado a mutación KRAS."]
+ ]},
+
+{id:"repaso", region:"Nariz y senos paranasales", week:"Sem 5", title:"Repaso", empty:true}
+];
+
+const REGIONS = [
+  {name:"Cavidad oral y faringe", r:"oral", blurb:"Anatomía, infecciones y apnea del sueño",
+   icon:'<svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 24c5-7 11-9 18-5 7-4 13-2 18 5-5 9-12 12-18 12S11 33 6 24z"/><path d="M6 24c6 2 12 3 18 3s12-1 18-3"/><path d="M24 27v9"/></svg>'},
+  {name:"Laringe", r:"lar", blurb:"Patología benigna, estridor infantil y cáncer",
+   icon:'<svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M17 6c0 5 2 8 7 8s7-3 7-8"/><rect x="13" y="16" width="22" height="9" rx="4"/><rect x="15" y="27" width="18" height="5" rx="2.5"/><rect x="16" y="34" width="16" height="4" rx="2"/><rect x="16" y="40" width="16" height="4" rx="2"/></svg>'},
+  {name:"Nariz y senos paranasales", r:"nar", blurb:"Cuerpos extraños, rinosinusitis, trauma y tumores",
+   icon:'<svg width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 6c-1 10-7 20-11 26-2 3 0 6 4 6h6"/><path d="M21 38c2 2 5 2 7 0"/><path d="M28 38h4c3 0 4-3 2-5"/><ellipse cx="33" cy="17" rx="5" ry="4"/></svg>'}
+];
+const IMGS = {
+ anato:{
+  "Cavidad oral: límites":[["44a0fba7","Cavidad oral"],["99740b7f","Labios: orbicular de los labios"],["a3b788f8","Frenillo lingual inferior"]],
+  "Dientes y buccinador":[["d08056e7","Dientes"],["5e76f4b9","Músculo buccinador"]],
+  "Paladar":[["e58050f6","Paladar duro"],["6d925562","Paladar blando"],["662b1c62","Palatogloso (pilar anterior)"],["2c605a6b","Palatofaríngeo (pilar posterior)"]],
+  "Lengua":[["fd04a7e7","Lengua"],["d7e8cce5","Papilas circunvaladas"]],
+  "Suprahioideos importantes":[["982ad840","Milohioideo"],["eb546d04","Digástrico"],["246a49e8","Genihioideo"]],
+  "Glándulas salivales":[["305f98c8","Parótida"],["0ca9ebda","Parótida y nervio facial"],["ae742680","Glándula submandibular"],["84966a9e","Conducto de Wharton"],["066bd977","Glándula sublingual"],["64347fc5","Carúncula sublingual"],["039343e5","Glándulas, vasos y nervios de la región"]],
+  "Faringe":[["dbd3eb61","Faringe, vista posterior"],["a3591b2e","Músculos longitudinales de la faringe"],["7598f989","Trompa de Eustaquio"],["1aec4cfa","Orofaringe"]],
+  "Anillo de Waldeyer (MALT)":[["4e103793","Amígdalas palatinas"],["00602f75","Amígdala lingual"],["a4c3b343","Amígdala faríngea (adenoides)"]]
+ },
+ faringitis:{"Viral vs. bacteriana":[["d763eeb6","Criterios de Centor modificados (McIsaac)"]]},
+ saos:{"Diagnóstico":[["028bcac8","Clasificación de Mallampati y Friedman"]]},
+ papilomatosis:{"Cáncer de laringe: sospecha":[["2fbb4e6a","Supraglotis, glotis y subglotis"]],"Estudio":[["c02dba8d","Sistema de estadificación TNM"]]},
+ fungica:{"Histopatología":[["c693e598","Criterios de Bent y Kuhn para rinosinusitis fúngica alérgica"]]},
+ trauma:{"Tiempos de reducción":[["0ba8a0ab","Antibiótico en fractura expuesta"]],"Epistaxis: anatomía":[["9ba1bb58","Irrigación nasal y plexo de Kiesselbach"]]}
+};
+const imgsOf = id=>Object.values(IMGS[id]||{}).flat();
+let curTopic=null;
+/* ───── Diagramas explicativos (SVG propios) ───── */
+const svg=(w,h,body,label)=>`<svg class="dg" viewBox="0 0 ${w} ${h}" role="img" aria-label="${label}">${body}</svg>`;
+const tx=(x,y,s,cls="",anchor="middle")=>`<text x="${x}" y="${y}" text-anchor="${anchor}" class="${cls}">${s}</text>`;
+
+/* 1. Faringe: viral, estreptococo, mononucleosis, absceso */
+function mouth(cx, v){
+  const L=cx-52, R=cx+52;
+  let tonL=`<ellipse cx="${L}" cy="118" rx="20" ry="30" class="f-ton"/>`, tonR=`<ellipse cx="${R}" cy="118" rx="20" ry="30" class="f-ton"/>`;
+  let uv=`<ellipse cx="${cx}" cy="74" rx="9" ry="20" class="f-tis"/>`, extra="";
+  if(v==="viral"){ tonL=tonL.replace('f-ton','f-ton red'); tonR=tonR.replace('f-ton','f-ton red'); }
+  if(v==="strep"){
+    tonL=tonL.replace('f-ton','f-ton hot'); tonR=tonR.replace('f-ton','f-ton hot');
+    [[L-6,108],[L+5,118],[L-4,130],[L+7,102],[R+6,108],[R-5,120],[R+4,131],[R-7,100]].forEach(([x,y])=>extra+=`<circle cx="${x}" cy="${y}" r="4.2" class="f-pus"/>`);
+    [[cx-30,48],[cx-18,40],[cx+20,42],[cx+32,50],[cx-8,46],[cx+8,38]].forEach(([x,y])=>extra+=`<circle cx="${x}" cy="${y}" r="2" class="f-pet"/>`);
+  }
+  if(v==="mono"){
+    tonL=`<ellipse cx="${L}" cy="118" rx="24" ry="34" class="f-ton hot"/><ellipse cx="${L}" cy="118" rx="20" ry="30" class="f-mem"/>`;
+    tonR=`<ellipse cx="${R}" cy="118" rx="24" ry="34" class="f-ton hot"/><ellipse cx="${R}" cy="118" rx="20" ry="30" class="f-mem"/>`;
+    [[cx-30,48],[cx+30,48],[cx,40]].forEach(([x,y])=>extra+=`<circle cx="${x}" cy="${y}" r="2" class="f-pet"/>`);
+  }
+  if(v==="absceso"){
+    tonL=`<ellipse cx="${L+10}" cy="108" rx="34" ry="40" class="f-ton hot"/><ellipse cx="${L+2}" cy="78" rx="26" ry="16" class="f-ton hot"/>`;
+    uv=`<ellipse cx="${cx+14}" cy="76" rx="9" ry="20" class="f-tis" transform="rotate(-22 ${cx+14} 76)"/>`;
+    extra=`<path d="M${cx+30} 70 l14 -6" class="f-arrow"/>`;
+  }
+  return `<ellipse cx="${cx}" cy="110" rx="92" ry="84" class="f-lip"/>
+   <ellipse cx="${cx}" cy="110" rx="82" ry="74" class="f-cav"/>
+   <path d="M${cx-82} 96 Q${cx} 20 ${cx+82} 96 L${cx+82} 60 Q${cx} -10 ${cx-82} 60Z" class="f-tis"/>
+   ${tonL}${tonR}${uv}
+   <ellipse cx="${cx}" cy="186" rx="76" ry="44" class="f-tis"/>${extra}`;
+}
+const D_FARINGE = svg(860,280, [["viral","Viral","Hiperemia sin exudado","tos, rinorrea, diarrea"],["strep","Estreptocócica","Exudado en placas","petequias en paladar"],["mono","Mononucleosis","Exudado en «cáscara»","uniforme, grisáceo"],["absceso","Absceso periamigdalino","Abombamiento unilateral","úvula desviada al lado sano"]]
+  .map(([v,t,a,b],i)=>{const cx=110+i*213; return `<g clip-path="url(#fc${i})"><clipPath id="fc${i}"><rect x="${cx-100}" y="20" width="200" height="200"/></clipPath>${mouth(cx,v)}</g>${tx(cx,238,t,"b")}${tx(cx,256,a,"m")}${tx(cx,272,b,"m")}`;}).join(""),"Comparación de faringitis");
+
+/* 2. Grados de amígdalas */
+const D_AMIG = svg(860,200, [0,1,2,3,4].map(g=>{
+  const cx=86+g*172, w=[0,6,18,30,44][g];
+  const ton = g? `<path d="M${cx-48} 40 Q${cx-48+w*1.6} 95 ${cx-48} 150Z" class="f-ton hot"/><path d="M${cx+48} 40 Q${cx+48-w*1.6} 95 ${cx+48} 150Z" class="f-ton hot"/>`:"";
+  return `<rect x="${cx-62}" y="24" width="124" height="136" rx="16" class="f-cav"/>${ton}
+   <line x1="${cx-48}" y1="30" x2="${cx-48}" y2="156" class="f-pillar"/><line x1="${cx+48}" y1="30" x2="${cx+48}" y2="156" class="f-pillar"/>
+   <line x1="${cx}" y1="30" x2="${cx}" y2="156" class="f-mid"/>
+   <ellipse cx="${cx}" cy="40" rx="7" ry="15" class="f-tis"/>
+   ${tx(cx,182,`Grado ${g}`,"b")}${tx(cx,197,["Sin amígdalas","Intravélicas","<50%","≥50%","Contactantes"][g],"m")}`;}).join(""),"Grados de hipertrofia amigdalina");
+
+/* 3. SAOS */
+function airway(x, closed){
+  const f = closed? `<path d="M${x+20} 30 C${x+70} 60 ${x+92} 95 ${x+88} 120 C${x+70} 128 ${x+40} 120 ${x+20} 110Z" class="f-tis"/><path d="M${x+20} 150 C${x+60} 150 ${x+92} 175 ${x+90} 205 L${x+20} 230Z" class="f-tis"/>`
+                  : `<path d="M${x+20} 30 C${x+46} 52 ${x+56} 86 ${x+50} 118 C${x+40} 122 ${x+28} 118 ${x+20} 112Z" class="f-tis"/><path d="M${x+20} 150 C${x+46} 156 ${x+60} 180 ${x+56} 210 L${x+20} 230Z" class="f-tis"/>`;
+  const arrow = closed? `<path d="M${x+102} 240 L${x+102} 214" class="a-air"/><path d="M${x+90} 118 l22 22 M${x+112} 118 l-22 22" class="x-mark"/>` : `<path d="M${x+82} 240 L${x+82} 30" class="a-air"/><path d="M${x+76} 40 l6 -10 6 10" class="a-air"/>`;
+  return `<rect x="${x}" y="20" width="160" height="220" rx="10" class="f-bg"/><rect x="${x+120}" y="20" width="40" height="220" class="f-wall"/>${f}${arrow}`;
+}
+const D_SAOS = svg(660,300, `${airway(20,false)}${airway(480,true)}
+ ${tx(100,266,"Despierto","b")}${tx(100,284,"Vía aérea abierta, flujo libre","m")}
+ ${tx(560,266,"Dormido con SAOS","b")}${tx(560,284,"Velo y base de lengua colapsan","m")}
+ ${tx(210,74,"Paladar blando","s","start")}${tx(210,92,"(velofaringe)","m","start")}${tx(210,190,"Base de lengua","s","start")}
+ ${tx(210,140,"Pared posterior:","s","start")}${tx(210,156,"constrictor superior","m","start")}`,"Colapso de la vía aérea en SAOS");
+
+/* 4. Cuerdas vocales vistas desde arriba */
+function cords(cx, mode){
+  const open = mode==="abd", gap = open?40:5;
+  const A=[cx,46], Lp=[cx-gap,186], Rp=[cx+gap,186];
+  const at=(P,t)=>[A[0]+(P[0]-A[0])*t, A[1]+(P[1]-A[1])*t];
+  let cordStyle = mode==="reinke"?"vc fat":"vc";
+  let les="";
+  if(mode==="nod"){ const l=at(Lp,.4), r=at(Rp,.4); les=`<circle cx="${l[0]+5}" cy="${l[1]}" r="6" class="les-w"/><circle cx="${r[0]-5}" cy="${r[1]}" r="6" class="les-w"/>`; }
+  if(mode==="pol"){ const l=at(Lp,.45); les=`<ellipse cx="${l[0]+10}" cy="${l[1]}" rx="11" ry="13" class="les-r"/>`; }
+  if(mode==="gran"){ les=`<ellipse cx="${Lp[0]+12}" cy="${Lp[1]-14}" rx="10" ry="12" class="les-g"/>`; }
+  if(mode==="quiste"){ const l=at(Lp,.45); les=`<ellipse cx="${l[0]+7}" cy="${l[1]}" rx="9" ry="12" class="les-c"/>`; }
+  return `<ellipse cx="${cx}" cy="116" rx="66" ry="92" class="lx-ring"/>
+   <path d="M${A[0]} ${A[1]} L${Lp[0]} ${Lp[1]} L${Rp[0]} ${Rp[1]}Z" class="lx-air"/>
+   <line x1="${A[0]}" y1="${A[1]}" x2="${Lp[0]}" y2="${Lp[1]}" class="${cordStyle}"/><line x1="${A[0]}" y1="${A[1]}" x2="${Rp[0]}" y2="${Rp[1]}" class="${cordStyle}"/>
+   <circle cx="${Lp[0]-8}" cy="${Lp[1]+12}" r="11" class="lx-ary"/><circle cx="${Rp[0]+8}" cy="${Rp[1]+12}" r="11" class="lx-ary"/>${les}`;
+}
+const D_CUERDAS = svg(900,300, [["abd","Abducción","Cricoaritenoideo posterior"],["add","Aducción","Fonación"],["nod","Nódulos","Bilaterales, unión ⅓ ant–⅓ medio"],["pol","Pólipo","Unilateral, puede ser hemorrágico"],["reinke","Edema de Reinke","Ambas cuerdas edematosas"],["gran","Granuloma","Apófisis vocal, posintubación"]]
+  .map(([m,t,s],i)=>{const cx=75+i*150; return cords(cx,m)+tx(cx,236,t,"b")+`<foreignObject x="${cx-70}" y="244" width="140" height="50"><div xmlns="http://www.w3.org/1999/xhtml" class="dg-cap">${s}</div></foreignObject>`;}).join("")
+  + tx(75,24,"Anterior ↑","m") ,"Lesiones de cuerdas vocales vistas por laringoscopía");
+
+/* 5. Radiografía: epiglotitis y CROUP */
+const D_RX = svg(720,300, `
+ <rect x="20" y="20" width="200" height="230" rx="12" class="xr"/>
+ <path d="M70 40 C60 120 70 190 90 240 L150 240 C140 190 140 120 150 40Z" class="xr-soft"/>
+ <path d="M100 40 C96 110 100 190 110 240 L122 240 C120 190 118 110 120 40Z" class="xr-air"/>
+ <path d="M108 120 C112 104 120 98 126 92" class="xr-epi"/>
+ ${tx(120,272,"Lateral normal","b")}${tx(120,290,"Epiglotis delgada","m")}
+ <rect x="260" y="20" width="200" height="230" rx="12" class="xr"/>
+ <path d="M310 40 C300 120 310 190 330 240 L390 240 C380 190 380 120 390 40Z" class="xr-soft"/>
+ <path d="M340 40 C336 110 340 190 350 240 L362 240 C360 190 358 110 360 40Z" class="xr-air"/>
+ <ellipse cx="362" cy="104" rx="14" ry="22" class="xr-thumb" transform="rotate(30 362 104)"/>
+ ${tx(360,272,"Epiglotitis","b")}${tx(360,290,"Signo del pulgar (lateral)","m")}
+ <rect x="500" y="20" width="200" height="230" rx="12" class="xr"/>
+ <path d="M540 40 L540 240 L660 240 L660 40Z" class="xr-soft"/>
+ <path d="M584 40 L584 120 L598 170 L600 240 L620 240 L622 170 L636 120 L636 40Z" class="xr-air"/>
+ <path d="M640 165 l18 -6" class="xr-lbl"/>${tx(662,158,"subglotis","xr-t","start")}
+ ${tx(600,272,"CROUP","b")}${tx(600,290,"Signo del lápiz / campanario (AP)","m")}`,"Radiografía en epiglotitis y CROUP");
+
+/* 6. Laringomalacia */
+const D_LMAL = svg(560,280, `
+ <ellipse cx="140" cy="130" rx="100" ry="100" class="lx-ring"/>
+ <path d="M60 90 Q140 10 220 90" class="epi"/>
+ <path d="M140 92 L106 196 L174 196Z" class="lx-air"/>
+ <circle cx="104" cy="206" r="14" class="lx-ary"/><circle cx="176" cy="206" r="14" class="lx-ary"/>
+ <path d="M70 100 L100 196 M210 100 L180 196" class="ae"/>
+ ${tx(140,256,"Normal","b")}${tx(140,272,"Epiglotis en U, vestíbulo amplio","m")}
+ <ellipse cx="420" cy="130" rx="100" ry="100" class="lx-ring"/>
+ <path d="M396 108 C370 104 372 60 400 54 Q420 46 440 54 C468 60 470 104 444 108" class="epi"/>
+ <path d="M420 110 L404 180 L436 180Z" class="lx-air"/>
+ <ellipse cx="396" cy="178" rx="22" ry="17" class="lx-ary"/><ellipse cx="444" cy="178" rx="22" ry="17" class="lx-ary"/>
+ <path d="M398 110 L404 168 M442 110 L436 168" class="ae"/>
+ <path d="M360 190 l24 -12 M480 190 l-24 -12" class="a-in"/>
+ ${tx(420,256,"Laringomalacia","b")}${tx(420,272,"Epiglotis en omega, aritenoides colapsan al inspirar","m")}`,"Laringomalacia comparada con laringe normal");
+
+/* 7. Cotton–Myer */
+const D_COTTON = svg(760,210, [["I","0–50%",.35],["II","51–70%",.6],["III","71–99%",.88],["IV","100%",1]].map(([g,p,o],i)=>{
+  const cx=100+i*186, R=62, r=R*Math.sqrt(1-o);
+  return `<circle cx="${cx}" cy="86" r="${R}" class="cm-wall"/>${r>0?`<circle cx="${cx}" cy="86" r="${r.toFixed(1)}" class="cm-lumen"/>`:""}${tx(cx,176,`Grado ${g}`,"b")}${tx(cx,194,`${p} de obstrucción`,"m")}`;}).join(""),"Escala de Cotton-Myer");
+
+/* 8. Estridor según el nivel */
+const D_ESTRIDOR = svg(560,300, `
+ <path d="M150 20 C120 40 120 70 130 90 L130 280 L190 280 L190 90 C200 70 200 40 170 20Z" class="f-bg"/>
+ <rect x="128" y="30" width="64" height="70" rx="18" class="zone z1"/>
+ <rect x="128" y="104" width="64" height="44" rx="6" class="zone z2"/>
+ <rect x="128" y="152" width="64" height="128" rx="6" class="zone z3"/>
+ ${[175,195,215,235,255].map(y=>`<line x1="132" y1="${y}" x2="188" y2="${y}" class="rings"/>`).join("")}
+ <path d="M200 64 H250" class="lead"/>${tx(258,60,"Supraglotis","b","start")}${tx(258,78,"Estridor inspiratorio","s","start")}${tx(258,94,"Laringomalacia, epiglotitis","m","start")}
+ <path d="M200 126 H250" class="lead"/>${tx(258,122,"Glotis y subglotis","b","start")}${tx(258,140,"Estridor bifásico","s","start")}${tx(258,156,"Parálisis bilateral, estenosis, CROUP","m","start")}
+ <path d="M200 214 H250" class="lead"/>${tx(258,210,"Tráquea y bronquios","b","start")}${tx(258,228,"Estridor espiratorio","s","start")}${tx(258,244,"Traqueomalacia, cuerpo extraño bajo","m","start")}
+ ${tx(110,64,"Inspi","m","end")}${tx(110,130,"Bifásico","m","end")}${tx(110,214,"Espi","m","end")}`,"Tipo de estridor según el nivel de obstrucción");
+
+/* 9. Pila de botón vs moneda */
+const D_PILA = svg(560,250, `
+ <rect x="20" y="20" width="240" height="180" rx="12" class="xr"/><circle cx="140" cy="110" r="56" class="xr-coin"/>
+ ${tx(140,222,"Moneda","b")}${tx(140,240,"Densidad uniforme","m")}
+ <rect x="300" y="20" width="240" height="180" rx="12" class="xr"/><circle cx="420" cy="110" r="56" class="xr-coin"/><circle cx="420" cy="110" r="44" class="xr-halo"/><circle cx="420" cy="110" r="40" class="xr-coin2"/>
+ ${tx(420,222,"Pila de botón","b")}${tx(420,240,"Doble halo: urgencia, necrosis en 2 h","m")}`,"Pila de botón frente a moneda en radiografía");
+
+/* 10. Complicaciones orbitarias (Chandler) */
+function orbit(x, k){
+  const sx=x+70;
+  let c="";
+  if(k===0) c=`<ellipse cx="${x+56}" cy="110" rx="18" ry="46" class="inf"/>`;
+  if(k===1) c=`<path d="M${sx+4} 60 L${x+160} 104 L${x+160} 116 L${sx+4} 160Z" class="inf soft"/>`;
+  if(k===2) c=`<path d="M${x+82} 154 Q${x+120} 168 ${x+150} 146 L${x+150} 158 Q${x+120} 180 ${x+82} 166Z" class="pus"/>`;
+  if(k===3) c=`<ellipse cx="${x+130}" cy="112" rx="22" ry="14" class="pus"/>`;
+  if(k===4) c=`<ellipse cx="${x+176}" cy="110" rx="10" ry="18" class="clot"/>`;
+  return `<path d="M${sx} 50 L${x+170} 104 L${x+170} 116 L${sx} 170" class="orb"/>
+   <rect x="${x+76}" y="160" width="84" height="36" rx="4" class="eth"/>${k>=2?`<rect x="${x+76}" y="160" width="84" height="36" rx="4" class="eth inf2"/>`:""}
+   <circle cx="${x+82}" cy="110" r="30" class="globe"/><line x1="${sx}" y1="50" x2="${sx}" y2="170" class="septum"/>${c}`;
+}
+const D_ORBITA = svg(1000,300, [["Celulitis preseptal","Delante del septum"],["Celulitis orbitaria","Detrás del septum, sin restricción"],["Absceso subperióstico","+ restricción de movimientos"],["Absceso orbitario","+ cambio de visión"],["Trombosis seno cavernoso","Fiebre en picos, papiledema"]]
+  .map(([t,s],i)=>{const x=i*200; return orbit(x,i)+tx(x+100,232,t,"b")+tx(x+100,250,s,"m")+tx(x+100,30,`${i+1}`,"num");}).join("")
+  + tx(118,212,"seno etmoidal","m"),"Complicaciones orbitarias de la rinosinusitis, de menos a más grave");
+
+/* 11. Formas fúngicas (corte coronal) */
+function sinus(x, k){
+  const maxL=`<rect x="${x+20}" y="110" width="58" height="80" rx="10" class="sin"/>`, maxR=`<rect x="${x+122}" y="110" width="58" height="80" rx="10" class="sin"/>`;
+  let fill="";
+  if(k===0) fill=`<rect x="${x+20}" y="110" width="58" height="80" rx="10" class="opac"/><path d="M${x+36} 150 l8 -6 6 8 8 -5 4 9" class="calc"/>`;
+  if(k===1) fill=`<rect x="${x+82}" y="50" width="36" height="70" rx="6" class="opac"/><circle cx="${x+92}" cy="140" r="9" class="polyp"/><circle cx="${x+108}" cy="152" r="9" class="polyp"/><circle cx="${x+96}" cy="166" r="8" class="polyp"/>`;
+  if(k===2) fill=`<rect x="${x+20}" y="110" width="58" height="80" rx="10" class="opac"/><path d="M${x+26} 106 l8 8 M${x+44} 102 l4 10" class="brk"/><ellipse cx="${x+46}" cy="98" rx="20" ry="10" class="necro"/><ellipse cx="${x+50}" cy="198" rx="20" ry="7" class="necro"/>`;
+  return `<circle cx="${x+50}" cy="62" r="26" class="globe"/><circle cx="${x+150}" cy="62" r="26" class="globe"/>
+   <rect x="${x+82}" y="50" width="36" height="70" rx="6" class="sin"/>${maxL}${maxR}
+   <rect x="${x+84}" y="124" width="32" height="70" rx="6" class="nas"/><line x1="${x+100}" y1="124" x2="${x+100}" y2="194" class="sept"/>${fill}`;
+}
+const D_FUNGICA = svg(660,300, [["Bola de hongos","Maxilar ocupado con calcificaciones","No invasiva, inmunocompetente"],["Fúngica alérgica","Etmoides expandido, pólipos","Atopia, mucina eosinofílica"],["Invasiva aguda","Destrucción ósea, necrosis negra","Diabético o inmunosuprimido"]]
+  .map(([t,a,b],i)=>{const x=10+i*220; return sinus(x,i)+tx(x+100,234,t,"b")+tx(x+100,252,a,"m")+tx(x+100,270,b,"m");}).join(""),"Formas de rinosinusitis fúngica en corte coronal");
+
+/* 12. Escalera de manejo de epistaxis */
+const D_EPIS = svg(560,330, [["Lubricación","Nasogel o aceite de bebé (prevención)"],["Presión directa + vasoconstrictor","Oximetazolina, 10–15 min"],["Cauterio","Nitrato de plata 12–15 s, un solo lado"],["Taponamiento anterior","1–5 días, Gelfoam o sellador de fibrina"],["Cirugía o embolización","Ligadura esfenopalatina (93%)"]]
+  .map(([t,s],i)=>{const y=14+i*62, x=20+i*30; return `<rect x="${x}" y="${y}" width="${400}" height="48" rx="10" class="step s${i}"/><text x="${x+18}" y="${y+21}" class="b">${i+1}. ${t}</text><text x="${x+18}" y="${y+38}" class="m">${s}</text>${i<4?`<path d="M${x+40} ${y+48} v14" class="lead"/>`:""}`;}).join(""),"Escalera de manejo de la epistaxis");
+
+/* 13. Angiofibroma: estadios de Chandler */
+const D_CHANDLER = svg(780,290, `
+ <path d="M60 250 Q60 60 280 40 Q500 60 500 250Z" class="zone c4"/>
+ <path d="M110 250 Q110 100 280 84 Q450 100 450 250Z" class="zone c3"/>
+ <path d="M160 250 Q160 140 280 128 Q400 140 400 250Z" class="zone c2"/>
+ <path d="M210 250 Q210 180 280 172 Q350 180 350 250Z" class="zone c1"/>
+ <circle cx="280" cy="242" r="7" class="foramen"/>
+ ${tx(280,222,"I","num")}${tx(280,160,"II","num")}${tx(280,116,"III","num")}${tx(280,72,"IV","num")}
+ ${tx(280,276,"Origen: foramen esfenopalatino","m")}
+ <path d="M352 222 H520 M402 160 H520 M452 116 H520 M482 72 H520" class="lead"/>
+ ${tx(528,226,"I · Nasofaringe","s","start")}${tx(528,164,"II · Cavidad nasal, esfenoides","s","start")}${tx(528,112,"III · Maxilar, etmoides,","s","start")}${tx(528,128,"fosa pterigomaxilar","s","start")}${tx(528,76,"IV · Intracraneal","s","start")}`,"Estadios de Chandler del angiofibroma");
+
+const DIAG = {
+  faringitis:{"Viral vs. bacteriana":[[D_FARINGE,"Cómo se ven: viral, estreptococo, mononucleosis y absceso periamigdalino"]],"Hipertrofia amigdalina y adenoidea":[[D_AMIG,"Grados de hipertrofia amigdalina (0 a 4)"]]},
+  anato:{"Escala de amígdalas palatinas":[[D_AMIG,"Grados de hipertrofia amigdalina (0 a 4)"]]},
+  saos:{"Etiología":[[D_SAOS,"Colapso de velofaringe y base de lengua durante el sueño"]]},
+  laringe:{"Anatomía de examen":[[D_CUERDAS,"Cuerdas vocales por laringoscopía: movimiento normal y lesiones benignas"]]},
+  croup:{"Comparativo":[[D_RX,"Radiografía: signo del pulgar (epiglotitis) y signo del lápiz (CROUP)"]]},
+  pediatrico:{"Estridor":[[D_ESTRIDOR,"El tipo de estridor orienta al nivel de la obstrucción"]],"Laringomalacia":[[D_LMAL,"Laringomalacia: epiglotis en omega y colapso supraglótico"]],"Escala de Cotton–Myer":[[D_COTTON,"Luz subglótica restante en cada grado de Cotton-Myer"]]},
+  cuerpos:{"Cuerpos extraños de alto riesgo":[[D_PILA,"Pila de botón: doble halo en la radiografía"]]},
+  fungica:{"Formas fúngicas":[[D_FUNGICA,"Corte coronal: bola de hongos, fúngica alérgica e invasiva aguda"]],"Complicaciones orbitarias (de menos a más grave)":[[D_ORBITA,"Complicaciones orbitarias en corte axial (Chandler)"]]},
+  trauma:{"Epistaxis: manejo escalonado":[[D_EPIS,"Escalera de manejo de la epistaxis"]]},
+  anomalias:{"Clasificación de Chandler":[[D_CHANDLER,"Extensión del angiofibroma por estadio de Chandler"]]}
+};
+const diagOf = id=>Object.values(DIAG[id]||{}).flat();
+
+const RCODE = Object.fromEntries(REGIONS.map(x=>[x.name,x.r]));
+const KINFO = {examen:["Para el examen","!"], alerta:["Alertas","⚠"], clinica:["Perlas clínicas","+"]};
+const $ = s=>document.querySelector(s);
+const esc = s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm = s=>String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const REAL = T.filter(t=>!t.empty);
+
+let done={}; try{done=JSON.parse(localStorage.getItem("oto-done")||"{}");}catch(e){}
+let view={name:"home"}; try{const v=JSON.parse(localStorage.getItem("oto-view")||"null"); if(v&&(v.name==="home"||(v.name==="topic"&&T.find(t=>t.id===v.id)))) view=v;}catch(e){}
+const save=()=>{try{localStorage.setItem("oto-done",JSON.stringify(done));localStorage.setItem("oto-view",JSON.stringify(view.name==="topic"||view.name==="home"?view:{name:"home"}));}catch(e){}};
+const setR = r=>document.documentElement.setAttribute("data-r", r||"oral");
+
+function go(v){ view=v; save(); render(); window.scrollTo({top:0}); }
+
+/* ───── portada ───── */
+function renderHome(){
+  setR("oral");
+  const n=REAL.filter(t=>done[t.id]).length, pct=Math.round(n/REAL.length*100);
+  const cards=REAL.reduce((a,t)=>a+t.cards.length,0), qs=REAL.reduce((a,t)=>a+t.quiz.length,0);
+  $("#view").innerHTML = `
+  <section class="hero gutter"><div class="inner">
+    <div>
+      <div class="mono kicker">Otorrinolaringología · Dr. Fernando Valdez Arellano · CN-201</div>
+      <h1>Tus apuntes de otorrino, <em>listos para repasar</em></h1>
+      <p>Semanas 1 a 6 en el orden del curso: cavidad oral, faringe, laringe, nariz y senos. Cada tema trae resumen, perlas de examen, tarjetas y quiz.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>${REAL.length}</b><span>temas con apuntes</span></div>
+      <div class="stat"><b>${cards}</b><span>tarjetas de memoria</span></div>
+      <div class="stat"><b>${qs}</b><span>preguntas de quiz</span></div>
+      <div class="stat"><b>${REAL.reduce((a,t)=>a+t.pearls.length,0)}</b><span>perlas de examen</span></div>
+      <div class="stat prog"><div class="ring" style="--p:${pct}"></div><div><b>${n} de ${REAL.length} repasados</b><span>${n?"Sigue así.":"Marca cada tema cuando lo termines."}</span></div></div>
+    </div>
+  </div></section>
+  <section class="regions gutter"><div class="inner">${REGIONS.map(R=>{
+    const list=T.filter(t=>t.region===R.name);
+    return `<article class="region" data-r="${R.r}">
+      <div class="region-head">${R.icon}<div><div class="mono">${list.filter(t=>!t.empty).length} temas · ${list.filter(t=>done[t.id]).length} repasados</div><h2>${R.name}</h2></div></div>
+      <ol>${list.map(t=>`<li><button class="trow${done[t.id]?" is-done":""}${t.empty?" is-empty":""}" data-id="${t.id}"><span class="chk">✓</span><span><span class="tt">${esc(t.title)}</span><span class="meta">${t.empty?"Sin apuntes en Notion":`${t.cards.length} tarjetas · ${t.quiz.length} preguntas${(imgsOf(t.id).length+diagOf(t.id).length)?` · ${imgsOf(t.id).length+diagOf(t.id).length} imágenes`:""}`}</span></span><span class="wk">${t.week}</span></button></li>`).join("")}</ol>
+    </article>`;}).join("")}</div></section>`;
+  document.querySelectorAll(".trow").forEach(b=>b.onclick=()=>go({name:"topic",id:b.dataset.id,tab:"resumen"}));
+}
+
+/* ───── piezas de tema ───── */
+function tocHTML(cur){
+  return REGIONS.map(R=>`<div data-r="${R.r}"><h3 class="mono"><i></i>${R.name}</h3><ul>${T.filter(t=>t.region===R.name).map(t=>`<li><button data-id="${t.id}" aria-current="${t.id===cur}"><span>${esc(t.title)}</span>${done[t.id]?'<span class="ok">✓</span>':""}</button></li>`).join("")}</ul></div>`).join("");
+}
+function selectHTML(cur){
+  return `<label class="mono" for="tsel" style="display:block;margin-bottom:6px;color:var(--muted)">Cambiar de tema</label><select id="tsel">${REGIONS.map(R=>`<optgroup label="${R.name}">${T.filter(t=>t.region===R.name).map(t=>`<option value="${t.id}"${t.id===cur?" selected":""}>${done[t.id]?"✓ ":""}${esc(t.title)}</option>`).join("")}</optgroup>`).join("")}</select>`;
+}
+function secHTML(s,i){
+  let b="";
+  if(s.li) b+=`<ul>${s.li.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+  if(s.table){const [h,...rows]=s.table; b+=`<div class="tbl"><table><thead><tr>${h.map(x=>`<th>${esc(x)}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(x=>`<td>${esc(x)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;}
+  if(s.note) b+=`<p class="note">${esc(s.note)}</p>`;
+  const dgs=(DIAG[curTopic]||{})[s.h];
+  if(dgs) b+=dgs.map(([g,c])=>`<button class="diag" data-cap="${esc(c)}">${g}<span>${esc(c)}</span></button>`).join("");
+  const ims=(IMGS[curTopic]||{})[s.h];
+  if(ims) b+=`<div class="figs${ims.length===1?" one":""}">${ims.map(([f,c])=>`<button class="fig" data-src="img/${f}.webp" data-cap="${esc(c)}"><img src="img/${f}.webp" alt="${esc(c)}" loading="lazy"><span>${esc(c)}</span></button>`).join("")}</div>`;
+  return `<section class="sec"><h3><span class="no">${String(i+1).padStart(2,"0")}</span>${esc(s.h)}</h3>${b}</section>`;
+}
+const isWide = s=>s.wide||(s.table&&s.table[0].length>3);
+
+/* tarjetas */
+let deck=[], ci=0, known=new Set();
+function fcHTML(){ return `<div class="fc">
+  <div class="fc-top"><span id="ccount"></span><span id="cknown"></span></div>
+  <div class="pbar"><i id="cbar"></i></div>
+  <button class="card" id="card" aria-label="Voltear tarjeta"><div class="card-inner">
+    <div class="face front"><span class="mono lab" id="clab"></span><div class="q" id="cq"></div><span class="hint">Toca o presiona espacio para ver la respuesta</span></div>
+    <div class="face back"><span class="mono lab">Respuesta</span><div class="a" id="ca"></div><span class="hint">¿La sabías?</span></div>
+  </div></button>
+  <div class="fc-ctrl"><button class="btn" id="prev">← Anterior</button><button class="btn again" id="again">Repasar de nuevo</button><button class="btn know" id="know">La sé ✓</button><button class="btn" id="shuf">Barajar</button></div>
+  <span class="kbd">Teclado: ← → para moverte · espacio para voltear</span></div>`; }
+function showCard(){
+  if(!deck.length) return; const c=deck[ci];
+  $("#card").classList.remove("flip");
+  $("#cq").textContent=c[0]; $("#ca").textContent=c[1]; $("#clab").textContent=c[2]||"Pregunta";
+  $("#ccount").textContent=`Tarjeta ${ci+1} de ${deck.length}`;
+  $("#cknown").textContent=`${known.size} marcadas como sabidas`;
+  $("#cbar").style.width=((ci+1)/deck.length*100)+"%";
+}
+function bindCards(list){
+  deck=list.slice(); ci=0; known=new Set();
+  const next=()=>{ci=(ci+1)%deck.length;showCard();};
+  $("#card").onclick=()=>$("#card").classList.toggle("flip");
+  $("#prev").onclick=()=>{ci=(ci-1+deck.length)%deck.length;showCard();};
+  $("#know").onclick=()=>{known.add(deck[ci][0]);next();};
+  $("#again").onclick=()=>{known.delete(deck[ci][0]);deck.push(deck[ci]);next();};
+  $("#shuf").onclick=()=>{deck=shuffle(deck);ci=0;showCard();};
+  showCard();
+}
+
+/* quiz */
+function quizHTML(list){
+  return `<div class="quiz"><div class="qhead"><span class="score" id="score">${list.length} preguntas</span><button class="btn" id="reset">Reiniciar</button></div>
+  <div class="pbar" style="width:100%"><i id="qbar" style="width:0"></i></div>
+  ${list.map((q,i)=>`<div class="qitem" data-i="${i}"><p class="qq"><span>${String(i+1).padStart(2,"0")}</span>${esc(q[0])}</p><div class="opts">${q[1].map((o,j)=>`<button class="opt" data-j="${j}"><span class="L">${"ABCD"[j]}</span><span>${esc(o)}</span></button>`).join("")}</div><p class="why" hidden>${esc(q[3])}</p></div>`).join("")}
+  <div id="final"></div></div>`;
+}
+function bindQuiz(list, again){
+  let ok=0, ans=0;
+  document.querySelectorAll(".qitem").forEach(el=>{
+    const q=list[+el.dataset.i];
+    el.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+      el.querySelectorAll(".opt").forEach(x=>{x.disabled=true; if(+x.dataset.j===q[2]) x.classList.add("right");});
+      if(+b.dataset.j!==q[2]) b.classList.add("wrong"); else ok++;
+      ans++; el.querySelector(".why").hidden=false;
+      $("#score").textContent=`${ok} correctas de ${ans}`;
+      $("#qbar").style.width=(ans/list.length*100)+"%";
+      if(ans===list.length){ const p=Math.round(ok/list.length*100);
+        $("#final").innerHTML=`<div class="final"><div><span class="mono">Resultado</span><br><b>${ok} de ${list.length} · ${p}%</b></div><span>${p>=80?"Dominas este tema.":p>=60?"Vas bien, repasa las que fallaste.":"Vuelve al resumen y a las tarjetas."}</span></div>`; }
+    });
+  });
+  $("#reset").onclick=again;
+}
+
+/* ───── vista de tema ───── */
+function renderTopic(){
+  const t=T.find(x=>x.id===view.id), r=RCODE[t.region]; setR(r);
+  const tab=view.tab||"resumen"; curTopic=t.id;
+  let body="";
+  if(t.empty){ body=`<div class="empty-note">Esta página está vacía en tu Notion. Cuando agregues tus apuntes, se puede sumar aquí.</div>`; }
+  else if(tab==="resumen"){
+    const wide=t.sections.map((s,i)=>[s,i]).filter(([s])=>isWide(s)), rest=t.sections.map((s,i)=>[s,i]).filter(([s])=>!isWide(s));
+    body=`${wide.map(([s,i])=>`<div class="widebox">${secHTML(s,i)}</div>`).join("")}<div class="masonry">${rest.map(([s,i])=>secHTML(s,i)).join("")}</div>`;
+  } else if(tab==="perlas"){
+    body=`<div class="pgroups">${["examen","alerta","clinica"].map(k=>{const ps=t.pearls.filter(p=>p[0]===k); return ps.length?`<div class="pgroup pg-${k}"><h3><span class="dot">${KINFO[k][1]}</span>${KINFO[k][0]}</h3>${ps.map(p=>`<div class="pearl">${esc(p[1])}</div>`).join("")}</div>`:"";}).join("")}</div>`;
+  } else if(tab==="imagenes"){
+    body=`${diagOf(t.id).length?`<h3 class="gal-h">Diagramas explicativos</h3><div class="gallery wide">${diagOf(t.id).map(([g,c])=>`<button class="diag" data-cap="${esc(c)}">${g}<span>${esc(c)}</span></button>`).join("")}</div>`:""}${imgsOf(t.id).length?`<h3 class="gal-h">De tus apuntes</h3>`:""}<div class="gallery">${imgsOf(t.id).map(([f,c])=>`<button class="fig" data-src="img/${f}.webp" data-cap="${esc(c)}"><img src="img/${f}.webp" alt="${esc(c)}" loading="lazy"><span>${esc(c)}</span></button>`).join("")}</div>`;
+  } else if(tab==="tarjetas") body=fcHTML();
+  else body=quizHTML(t.quiz);
+
+  const tabs=t.empty?"":`<div class="seg" role="tablist">${[["resumen","Resumen",t.sections.length],["perlas","Perlas",t.pearls.length],["tarjetas","Tarjetas",t.cards.length],["quiz","Quiz",t.quiz.length]].concat((imgsOf(t.id).length+diagOf(t.id).length)?[["imagenes","Imágenes",imgsOf(t.id).length+diagOf(t.id).length]]:[]).map(([k,l,n])=>`<button role="tab" data-tab="${k}" aria-selected="${tab===k}">${l}<span class="n">${n}</span></button>`).join("")}</div>`;
+  $("#view").innerHTML=`<div class="gutter"><div class="inner topic-layout">
+    <nav class="toc" aria-label="Temas">${tocHTML(t.id)}</nav>
+    <main style="min-width:0">
+      <div class="toc-mobile">${selectHTML(t.id)}</div>
+      <div class="thead">
+        <div class="crumbs mono"><button id="crumb-home">Inicio</button><span>/</span><span>${t.region}</span></div>
+        <h1>${esc(t.title)}</h1>
+        ${t.lede?`<p>${esc(t.lede)}</p>`:""}
+        <div class="thead-row"><div class="chips"><span class="chip">${t.week}</span>${t.empty?"":`<span class="chip">${t.sections.length} secciones</span><span class="chip">${t.cards.length} tarjetas</span><span class="chip">${t.quiz.length} preguntas</span>${(imgsOf(t.id).length+diagOf(t.id).length)?`<span class="chip">${imgsOf(t.id).length+diagOf(t.id).length} imágenes</span>`:""}`}</div>
+        ${t.empty?"":`<button class="done-btn" id="done" aria-pressed="${!!done[t.id]}">${done[t.id]?"✓ Repasado":"Marcar como repasado"}</button>`}</div>
+      </div>
+      ${tabs}${body}
+      <button class="btn back home-link" id="back2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Volver al menú principal</button>
+    </main></div></div>`;
+  $("#crumb-home").onclick=()=>go({name:"home"});
+  $("#back2").onclick=()=>go({name:"home"});
+  document.querySelectorAll(".toc button").forEach(b=>b.onclick=()=>go({name:"topic",id:b.dataset.id,tab:"resumen"}));
+  $("#tsel").onchange=e=>go({name:"topic",id:e.target.value,tab:"resumen"});
+  document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{view.tab=b.dataset.tab;save();renderTopic();});
+  if($("#done")) $("#done").onclick=()=>{done[t.id]=!done[t.id];save();renderTopic();};
+  if(!t.empty && tab==="tarjetas") bindCards(t.cards);
+  if(!t.empty && tab==="quiz") bindQuiz(t.quiz, renderTopic);
+}
+
+/* ───── repaso mezclado ───── */
+function renderMix(){
+  setR("lar");
+  const tab=view.tab||"tarjetas";
+  const cards=shuffle(REAL.flatMap(t=>t.cards.map(c=>[c[0],c[1],t.title])));
+  const quiz=shuffle(REAL.flatMap(t=>t.quiz)).slice(0,15);
+  $("#view").innerHTML=`<div class="gutter"><div class="inner" style="padding-block:24px 56px;max-width:900px">
+    <div class="thead"><div class="crumbs mono"><button id="crumb-home">Inicio</button><span>/</span><span>Todos los temas</span></div>
+    <h1>Repaso mezclado</h1><p>${cards.length} tarjetas de todos los temas en orden aleatorio, o un quiz de 15 preguntas al azar.</p></div>
+    <div class="seg" role="tablist"><button data-tab="tarjetas" aria-selected="${tab==="tarjetas"}">Tarjetas<span class="n">${cards.length}</span></button><button data-tab="quiz" aria-selected="${tab==="quiz"}">Quiz<span class="n">15</span></button></div>
+    ${tab==="quiz"?quizHTML(quiz):fcHTML()}</div></div>`;
+  $("#crumb-home").onclick=()=>go({name:"home"});
+  document.querySelectorAll(".seg button").forEach(b=>b.onclick=()=>{view.tab=b.dataset.tab;renderMix();});
+  if(tab==="quiz") bindQuiz(quiz, renderMix); else bindCards(cards);
+}
+
+/* ───── búsqueda ───── */
+function renderSearch(q){
+  setR("nar");
+  const n=norm(q), hits=[];
+  REAL.forEach(t=>{
+    t.sections.forEach(s=>{[...(s.li||[]),...(s.table?s.table.slice(1).map(r=>r.join(" · ")):[])].forEach(l=>{if(norm(l).includes(n)||norm(s.h).includes(n)) hits.push({t,where:s.h,text:l,tab:"resumen"});});});
+    t.pearls.forEach(p=>{if(norm(p[1]).includes(n)) hits.push({t,where:"Perla",text:p[1],tab:"perlas"});});
+    t.cards.forEach(c=>{if(norm(c[0]+" "+c[1]).includes(n)) hits.push({t,where:"Tarjeta",text:c[0]+" "+c[1],tab:"tarjetas"});});
+  });
+  const hl=s=>{const i=norm(s).indexOf(n); return i<0?esc(s):esc(s.slice(0,i))+"<mark>"+esc(s.slice(i,i+q.length))+"</mark>"+esc(s.slice(i+q.length));};
+  $("#view").innerHTML=`<div class="gutter"><div class="inner"><div class="results">
+    <span class="mono" style="color:var(--muted)">Búsqueda</span><h1>${hits.length} resultado${hits.length===1?"":"s"} para “${esc(q)}”</h1>
+    ${hits.slice(0,80).map((h,i)=>`<button class="hit" data-i="${i}" data-r="${RCODE[h.t.region]}"><i></i><span><small>${esc(h.t.title)} · ${esc(h.where)}</small>${hl(h.text)}</span></button>`).join("")||'<div class="empty-note">Sin coincidencias. Prueba con otra palabra, por ejemplo "amígdala" o "KTP".</div>'}
+  </div></div></div>`;
+  document.querySelectorAll(".hit").forEach(b=>b.onclick=()=>{const h=hits[+b.dataset.i];$("#q").value="";go({name:"topic",id:h.t.id,tab:h.tab});});
+}
+
+function render(){
+  $("#back").hidden = view.name==="home" && !$("#q").value.trim();
+  if(view.name==="topic") renderTopic();
+  else if(view.name==="mix") renderMix();
+  else renderHome();
+}
+
+document.addEventListener("click",e=>{const g=e.target.closest(".diag"); if(g){ $("#lb-img").hidden=true; $("#lb-svg").hidden=false; $("#lb-svg").innerHTML=g.querySelector("svg").outerHTML; $("#lb-cap").textContent=g.dataset.cap; $("#lb").hidden=false; return; }
+  const f=e.target.closest(".fig"); if(!f) return; $("#lb-img").hidden=false; $("#lb-svg").hidden=true; $("#lb-img").src=f.dataset.src; $("#lb-img").alt=f.dataset.cap; $("#lb-cap").textContent=f.dataset.cap; $("#lb").hidden=false;});
+$("#lb").onclick=e=>{ if(e.target.id!=="lb-img" && !e.target.closest("#lb-svg")) $("#lb").hidden=true; };
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") $("#lb").hidden=true; });
+$("#back").onclick=()=>{$("#q").value="";go({name:"home"});};
+$("#home").onclick=()=>{$("#q").value="";go({name:"home"});};
+$("#mix").onclick=()=>{$("#q").value="";go({name:"mix",tab:"tarjetas"});};
+$("#q").addEventListener("input",e=>{const v=e.target.value.trim(); if(v.length>=2){ $("#back").hidden=false; renderSearch(v);} else render();});
+document.addEventListener("keydown",e=>{ if(!$("#card")||/INPUT|SELECT/.test(e.target.tagName)) return;
+  if(e.key==="ArrowRight"){$("#know")&&($("#card").classList.remove("flip"), ci=(ci+1)%deck.length, showCard());}
+  if(e.key==="ArrowLeft"){ci=(ci-1+deck.length)%deck.length;showCard();}
+  if(e.key===" "){e.preventDefault();$("#card").classList.toggle("flip");} });
+
+render();
+</script>
+
+</body></html>

@@ -1,0 +1,438 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Triage en urgencias</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/ged4242ef0f.css">
+<style>
+/* Layout: sticky header with tab bar, single reading column (max 760px), triage-colour band as the page's signature */
+:root{
+  --bg:#F1F4F3; --surface:#FFFFFF; --surface-2:#E6ECEA; --ink:#12303A; --muted:#4F616A; --line:#D5DDDB;
+  --accent:#0B6B74; --accent-ink:#FFFFFF; --ok:#1F7A49; --bad:#B3261E;
+  --t-rojo:#C62828; --t-naranja:#E86A1C; --t-amarillo:#F2C230; --t-verde:#237A4B; --t-azul:#2F6FB5; --t-negro:#11171A;
+  --on-rojo:#FFF8F2; --on-naranja:#1B1B1B; --on-amarillo:#1B1B1B; --on-verde:#F6F4EF; --on-azul:#F6F4EF; --on-negro:#F1F4F3;
+  --f-display:'Rubik', 'Trebuchet MS', Arial, sans-serif;
+  --f-body:'Nunito Sans', 'Segoe UI', Arial, sans-serif;
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1B20; --surface:#15282F; --surface-2:#1C343C; --ink:#E7EEF0; --muted:#9DB0B6; --line:#2A444C;
+  --accent:#5CC3BA; --accent-ink:#0D1B20; --ok:#6FD39A; --bad:#FF8A80; --t-negro:#000000; --on-negro:#E7EEF0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1B20; --surface:#15282F; --surface-2:#1C343C; --ink:#E7EEF0; --muted:#9DB0B6; --line:#2A444C;
+  --accent:#5CC3BA; --accent-ink:#0D1B20; --ok:#6FD39A; --bad:#FF8A80; --t-negro:#000000; --on-negro:#E7EEF0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.band{display:grid;grid-template-columns:repeat(5,1fr);height:6px}
+.band i:nth-child(1){background:var(--t-rojo)}.band i:nth-child(2){background:var(--t-naranja)}.band i:nth-child(3){background:var(--t-amarillo)}.band i:nth-child(4){background:var(--t-verde)}.band i:nth-child(5){background:var(--t-azul)}
+.top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-block:12px 4px}
+h1{font-family:var(--f-display);font-size:1.45rem;margin:0;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:.85rem}
+nav{display:flex;gap:4px;overflow-x:auto;padding-block:8px 10px;scrollbar-width:none}
+nav button{flex:none;font:700 .9rem var(--f-body);color:var(--muted);background:transparent;border:1px solid transparent;border-radius:999px;padding:7px 14px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+main{padding-block:20px 64px}
+section.view{display:flex;flex-direction:column;gap:14px}
+h2{font-family:var(--f-display);font-size:1.25rem;margin:8px 0 0;text-wrap:balance}
+h3{font-family:var(--f-display);font-size:1.05rem;margin:0}
+p{margin:0}
+.muted{color:var(--muted)}
+.search{width:100%;font:inherit;padding:11px 14px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.progress{display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--muted)}
+.bar{flex:1;height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.bar span{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+details.topic{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+details.topic summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:600;font-size:1.02rem}
+details.topic summary::-webkit-details-marker{display:none}
+details.topic summary::after{content:"+";margin-left:auto;font-size:1.3rem;color:var(--muted)}
+details.topic[open] summary::after{content:"–"}
+.done-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--line);flex:none}
+details.topic.done .done-dot{background:var(--ok);border-color:var(--ok)}
+.body{padding:0 16px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.body ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.pearl{background:var(--surface-2);border-radius:10px;padding:10px 12px;font-size:.93rem}
+.pearl b{color:var(--accent)}
+.master{align-self:flex-start;font:700 .85rem var(--f-body);border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+details.topic.done .master{background:var(--ok);border-color:var(--ok);color:var(--surface)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--surface-2);font-weight:800}
+tr:last-child td{border-bottom:none}
+.chip{display:inline-block;font-weight:800;font-size:.8rem;padding:2px 10px;border-radius:999px;white-space:nowrap}
+.c-rojo{background:var(--t-rojo);color:var(--on-rojo)}.c-naranja{background:var(--t-naranja);color:var(--on-naranja)}.c-amarillo{background:var(--t-amarillo);color:var(--on-amarillo)}.c-verde{background:var(--t-verde);color:var(--on-verde)}.c-azul{background:var(--t-azul);color:var(--on-azul)}.c-negro{background:var(--t-negro);color:var(--on-negro);box-shadow:inset 0 0 0 1px var(--line)}
+.flow{display:flex;flex-direction:column;gap:8px}
+.step{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;background:var(--surface-2);border-radius:10px;padding:10px}
+.step b.n{font-family:var(--f-display);font-size:1.3rem;color:var(--accent);line-height:1.1}
+/* game */
+.game{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mode{font:inherit;text-align:left;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:var(--radius);padding:12px;cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.mode[aria-pressed="true"]{border-color:var(--accent)}
+.mode strong{font-family:var(--f-display)}
+.mode span{font-size:.82rem;color:var(--muted)}
+.hud{display:flex;gap:8px;flex-wrap:wrap;font-size:.85rem;font-variant-numeric:tabular-nums}
+.hud div{background:var(--surface-2);border-radius:999px;padding:4px 12px}
+.hud b{font-family:var(--f-display)}
+.timer{height:6px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.timer span{display:block;height:100%;background:var(--accent);width:100%}
+.patient{border-radius:var(--radius);border:1px dashed var(--line);padding:14px;display:flex;flex-direction:column;gap:8px;background:var(--bg)}
+.patient .who{font-family:var(--f-display);font-weight:600;font-size:1.05rem}
+.vitals{display:flex;flex-wrap:wrap;gap:6px}
+.vitals span{font-size:.8rem;font-weight:700;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:2px 8px;font-variant-numeric:tabular-nums}
+.answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:8px}
+.answers button{font:800 .95rem var(--f-body);border:none;border-radius:12px;padding:14px 8px;cursor:pointer;transition:transform .1s}
+.answers button:active{transform:scale(.97)}
+.answers button:disabled{opacity:.45;cursor:default}
+.answers button.picked{outline:3px solid var(--ink);outline-offset:2px;opacity:1}
+.feedback{border-radius:var(--radius);padding:12px 14px;display:flex;flex-direction:column;gap:6px;border-left:6px solid var(--ok);background:var(--surface-2)}
+.feedback.wrong{border-left-color:var(--bad)}
+.feedback .verdict{font-family:var(--f-display);font-weight:700}
+.primary{font:800 1rem var(--f-body);background:var(--accent);color:var(--accent-ink);border:none;border-radius:12px;padding:13px 18px;cursor:pointer}
+.ghost{font:700 .9rem var(--f-body);background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:11px 16px;cursor:pointer}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.toggle{display:flex;gap:8px;align-items:center;font-size:.9rem}
+.big{font-family:var(--f-display);font-size:2.6rem;line-height:1;font-variant-numeric:tabular-nums}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stats div{background:var(--surface-2);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:2px}
+.stats b{font-family:var(--f-display);font-size:1.4rem;font-variant-numeric:tabular-nums}
+.stats span{font-size:.78rem;color:var(--muted)}
+.review{display:flex;flex-direction:column;gap:6px;font-size:.9rem}
+.review div{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+/* cases & flashcards */
+.case{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.case .tag{font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.reveal{display:flex;flex-direction:column;gap:6px;background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;min-height:220px;padding:22px;display:flex;flex-direction:column;justify-content:center;gap:12px;text-align:center;cursor:pointer}
+.card .q{font-family:var(--f-display);font-size:1.2rem;font-weight:600;text-wrap:balance}
+.card .a{font-size:1rem}
+.card small{color:var(--muted)}
+.foot{font-size:.85rem;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+.foot a{color:var(--accent)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header>
+  <div class="band" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="wrap">
+    <div class="top"><h1>Triage</h1><span class="sub">Urgencias · 1er semestre</span></div>
+    <nav role="tablist" aria-label="Secciones">
+      <button role="tab" id="tab-aprende" data-view="aprende" aria-selected="true">Aprende</button>
+      <button role="tab" id="tab-juego" data-view="juego" aria-selected="false">Minijuego</button>
+      <button role="tab" id="tab-casos" data-view="casos" aria-selected="false">Casos</button>
+      <button role="tab" id="tab-flashcards" data-view="flashcards" aria-selected="false">Flashcards</button>
+      <button role="tab" id="tab-tablas" data-view="tablas" aria-selected="false">Tablas rápidas</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- APRENDE -->
+<section class="view" id="view-aprende">
+  <input class="search" id="q" type="search" placeholder="Buscar: dolor, START, IMSS, llenado capilar…" aria-label="Buscar en los temas">
+  <div class="progress"><span id="prog-txt">0 de 0 temas dominados</span><div class="bar"><span id="prog-bar"></span></div></div>
+  <div id="topics" class="flow"></div>
+  <p id="noresults" class="muted" hidden>No hay temas con esa palabra. Prueba con “dolor”, “colores” o “START”.</p>
+</section>
+
+<!-- JUEGO -->
+<section class="view" id="view-juego" hidden>
+  <div class="game" id="game"></div>
+</section>
+
+<!-- CASOS -->
+<section class="view" id="view-casos" hidden>
+  <p class="muted">Los casos de la clase. Decide el color y luego toca “Ver respuesta”.</p>
+  <div id="cases" class="flow"></div>
+</section>
+
+<!-- FLASHCARDS -->
+<section class="view" id="view-flashcards" hidden>
+  <div class="row" style="justify-content:space-between"><span class="muted" id="fc-count"></span><button class="ghost" id="fc-shuffle">Revolver</button></div>
+  <div class="card" id="fc-card" role="button" tabindex="0" aria-live="polite"></div>
+  <div class="row" style="justify-content:space-between">
+    <button class="ghost" id="fc-prev">Anterior</button>
+    <button class="primary" id="fc-next">Siguiente</button>
+  </div>
+</section>
+
+<!-- TABLAS -->
+<section class="view" id="view-tablas" hidden>
+  <h2>Manchester e IMSS</h2>
+  <div class="tbl"><table>
+    <tr><th>Color</th><th>Prioridad</th><th>Manchester</th><th>IMSS</th></tr>
+    <tr><td><span class="chip c-rojo">Rojo</span></td><td>Inmediato</td><td>0 min</td><td>Inmediato</td></tr>
+    <tr><td><span class="chip c-naranja">Naranja</span></td><td>Muy urgente</td><td>10 min</td><td>10 min</td></tr>
+    <tr><td><span class="chip c-amarillo">Amarillo</span></td><td>Urgente</td><td>60 min</td><td>30 min</td></tr>
+    <tr><td><span class="chip c-verde">Verde</span></td><td>Estándar</td><td>120 min</td><td>120 min · puede ir a UMF</td></tr>
+    <tr><td><span class="chip c-azul">Azul</span></td><td>No urgente</td><td>240 min</td><td>180 min · puede ir a UMF</td></tr>
+  </table></div>
+  <h2>Discriminadores generales (Manchester)</h2>
+  <div class="tbl"><table>
+    <tr><th>Pregunta</th><th><span class="chip c-rojo">Rojo</span></th><th><span class="chip c-naranja">Naranja</span></th><th><span class="chip c-amarillo">Amarillo</span></th><th><span class="chip c-verde">Verde</span></th></tr>
+    <tr><td><b>Riesgo vital</b></td><td>Vía aérea comprometida, respiración inadecuada, choque</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td><b>Hemorragia</b></td><td>Exanguinante</td><td>Mayor no controlable</td><td>Menor no controlable</td><td>—</td></tr>
+    <tr><td><b>Dolor</b></td><td>—</td><td>Intenso 8–10</td><td>Moderado 5–7</td><td>Leve reciente 1–4</td></tr>
+    <tr><td><b>Conciencia</b></td><td>Convulsión activa</td><td>Alteración de la conciencia</td><td>Pérdida de conciencia previa</td><td>—</td></tr>
+    <tr><td><b>Temperatura</b></td><td>—</td><td>≥ 41 °C</td><td>38.5–40.9 °C</td><td>37.5–38.4 °C</td></tr>
+  </table></div>
+  <h2>START (RPM)</h2>
+  <div class="tbl"><table>
+    <tr><th>Paso</th><th>Pregunta</th><th>Resultado</th></tr>
+    <tr><td>1</td><td>¿Camina?</td><td>Sí → <span class="chip c-verde">Verde</span></td></tr>
+    <tr><td>2 · R</td><td>¿Respira? Si no, abre la vía aérea</td><td>Sigue sin respirar → <span class="chip c-negro">Negro</span><br>Empieza a respirar → <span class="chip c-rojo">Rojo</span><br>FR &gt; 30 → <span class="chip c-rojo">Rojo</span></td></tr>
+    <tr><td>3 · P</td><td>Llenado capilar &gt; 2 s o sin pulso radial</td><td><span class="chip c-rojo">Rojo</span></td></tr>
+    <tr><td>4 · M</td><td>¿Obedece órdenes simples?</td><td>No → <span class="chip c-rojo">Rojo</span><br>Sí → <span class="chip c-amarillo">Amarillo</span></td></tr>
+  </table></div>
+  <h2>Signos vitales del adulto en reposo</h2>
+  <div class="tbl"><table>
+    <tr><th>Signo</th><th>Rango normal</th></tr>
+    <tr><td>Frecuencia cardiaca</td><td>60–100 lpm</td></tr>
+    <tr><td>Frecuencia respiratoria</td><td>12–20 rpm</td></tr>
+    <tr><td>Presión arterial</td><td>&lt; 120/80 mmHg</td></tr>
+    <tr><td>Saturación de O₂</td><td>94–100 %</td></tr>
+    <tr><td>Temperatura</td><td>36.5–37.5 °C</td></tr>
+    <tr><td>Glucosa capilar en ayuno</td><td>70–100 mg/dL</td></tr>
+    <tr><td>Llenado capilar</td><td>&lt; 2 s</td></tr>
+  </table></div>
+  <h2>AVDN y triage obstétrico</h2>
+  <div class="tbl"><table>
+    <tr><th>Escala</th><th>Contenido</th></tr>
+    <tr><td>AVDN</td><td><b>A</b>lerta · responde a la <b>V</b>oz · solo al <b>D</b>olor · <b>N</b>o responde</td></tr>
+    <tr><td>Triage obstétrico (SSA)</td><td><span class="chip c-rojo">Rojo</span> activa Código Mater · <span class="chip c-amarillo">Amarillo</span> · <span class="chip c-verde">Verde</span></td></tr>
+  </table></div>
+</section>
+
+<footer class="foot" id="fuentes">
+  <h2 style="color:var(--ink)">Fuentes</h2>
+  <p>Secretaría de Salud. NOM-027-SSA3-2013, criterios de funcionamiento y atención en los servicios de urgencias. DOF, 4 sep 2013.</p>
+  <p>IMSS. GPC Triage hospitalario de primer contacto en los servicios de urgencias adultos para el segundo y tercer nivel (IMSS-339-09).</p>
+  <p>Secretaría de Salud. Lineamiento técnico: Triage obstétrico, Código Mater y Equipo de Respuesta Inmediata Obstétrica. 2016.</p>
+  <p>Manchester Triage Group. Emergency Triage. 3.ª ed. Wiley-Blackwell/BMJ Books; 2014.</p>
+  <p>Benson M, Koenig KL, Schultz CH. Disaster triage: START, then SAVE. Prehosp Disaster Med. 1996;11(2):117-124.</p>
+  <p>Iserson KV, Moskop JC. Triage in medicine, part I. Ann Emerg Med. 2007;49(3):275-281.</p>
+  <p>Presentación de la clase: <a href="../triage-clase/index.html">Triage: qué es y cómo se realiza</a></p>
+</footer>
+</main>
+
+<script>
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const C={rojo:"Rojo",naranja:"Naranja",amarillo:"Amarillo",verde:"Verde",azul:"Azul",negro:"Negro"};
+const chip=c=>`<span class="chip c-${c}">${C[c]}</span>`;
+const esc=s=>s.replace(/[&<>]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[m]));
+
+/* ---------- Temas ---------- */
+const TOPICS=[
+{id:"que",t:"¿Qué es el triage?",h:`
+<p>Es el proceso para <b>seleccionar y priorizar</b> a los pacientes según la gravedad de su estado y los recursos disponibles. Viene del francés <i>trier</i>: separar, clasificar.</p>
+<p>Responde una sola pregunta: <b>¿cuánto tiempo puede esperar este paciente sin que su salud empeore?</b></p>
+<div class="pearl"><b>Perla:</b> el triage clasifica, no diagnostica. Un dolor torácico se trata como muy urgente aunque al final sea gastritis.</div>
+<p>En México, la NOM-027-SSA3-2013 regula los servicios de urgencias; la valoración de triage define el orden de atención.</p>`},
+{id:"hist",t:"Historia breve",h:`
+<ul><li><b>1792</b>: Dominique-Jean Larrey, cirujano de Napoleón, atiende a los heridos por gravedad y no por rango.</li>
+<li><b>1983</b>: nace START en Newport Beach, California, para incidentes con múltiples víctimas.</li>
+<li><b>1997</b>: el Manchester Triage Group publica su sistema de 5 colores.</li>
+<li><b>Hoy</b>: IMSS y Secretaría de Salud usan triage de 5 colores y triage obstétrico.</li></ul>`},
+{id:"princ",t:"Principios del buen triage",h:`
+<ul><li><b>Clasifica, no diagnostica.</b> El diagnóstico se hace en la consulta.</li>
+<li><b>Es breve.</b> Motivo de consulta, primera impresión y signos vitales en pocos minutos.</li>
+<li><b>Es dinámico.</b> El paciente que espera se reevalúa (retriage) y puede cambiar de color.</li>
+<li><b>Ante la duda, sube.</b> Clasificar de más es más seguro que de menos.</li></ul>`},
+{id:"colores",t:"Los 5 colores de Manchester",h:`
+<div class="tbl"><table><tr><th>Color</th><th>Prioridad</th><th>Tiempo</th><th>Ejemplo</th></tr>
+<tr><td>${chip("rojo")}</td><td>Inmediato</td><td>0 min</td><td>Paro, choque, vía aérea en riesgo</td></tr>
+<tr><td>${chip("naranja")}</td><td>Muy urgente</td><td>10 min</td><td>Dolor torácico cardiaco, dolor intenso</td></tr>
+<tr><td>${chip("amarillo")}</td><td>Urgente</td><td>60 min</td><td>Dolor moderado, vómito persistente</td></tr>
+<tr><td>${chip("verde")}</td><td>Estándar</td><td>120 min</td><td>Esguince leve, fiebre sin alarma</td></tr>
+<tr><td>${chip("azul")}</td><td>No urgente</td><td>240 min</td><td>Resfriado, resurtir receta</td></tr></table></div>
+<div class="pearl"><b>Truco:</b> es un semáforo extendido. Rojo, naranja, amarillo, verde y azul, de más a menos urgente.</div>`},
+{id:"imss",t:"Triage IMSS y triage obstétrico",h:`
+<p>El IMSS usa los mismos 5 colores con tiempos adaptados: rojo inmediato, naranja 10 min, <b>amarillo 30 min</b>, verde 120 min y <b>azul 180 min</b>. Verde y azul pueden enviarse a su Unidad de Medicina Familiar.</p>
+<p>Para embarazadas, la Secretaría de Salud tiene el <b>Triage obstétrico</b> con tres colores (rojo, amarillo y verde). El rojo activa el <b>Código Mater</b> y al Equipo de Respuesta Inmediata Obstétrica.</p>
+<div class="pearl"><b>Ojo:</b> cada hospital puede tener ajustes locales. Pregunta por el lineamiento de la unidad donde rotes.</div>`},
+{id:"pasos",t:"Cómo se realiza: Manchester en 4 pasos",h:`
+<div class="flow">
+<div class="step"><b class="n">1</b><p><b>Motivo de consulta.</b> Elige uno de los 52 diagramas de flujo: dolor torácico, disnea, cefalea…</p></div>
+<div class="step"><b class="n">2</b><p><b>Discriminadores.</b> Pregunta en orden, del rojo hacia el azul.</p></div>
+<div class="step"><b class="n">3</b><p><b>Primer “sí”.</b> El primer discriminador positivo asigna el color. Si ninguno aplica, azul.</p></div>
+<div class="step"><b class="n">4</b><p><b>Registra y reevalúa.</b> Anota color y hora, informa al paciente y repite si cambia.</p></div>
+</div>`},
+{id:"discr",t:"Discriminadores generales",h:`
+<p>Aparecen en casi todos los diagramas de Manchester:</p>
+<ul><li><b>Riesgo vital</b> (vía aérea comprometida, respiración inadecuada, choque) → ${chip("rojo")}</li>
+<li><b>Hemorragia</b>: exanguinante ${chip("rojo")} · mayor no controlable ${chip("naranja")} · menor no controlable ${chip("amarillo")}</li>
+<li><b>Dolor</b>: intenso 8–10 ${chip("naranja")} · moderado 5–7 ${chip("amarillo")} · leve reciente 1–4 ${chip("verde")}</li>
+<li><b>Conciencia</b>: convulsión activa ${chip("rojo")} · alteración ${chip("naranja")} · pérdida previa ${chip("amarillo")}</li>
+<li><b>Temperatura</b>: ≥ 41 °C ${chip("naranja")} · 38.5–40.9 °C ${chip("amarillo")} · 37.5–38.4 °C ${chip("verde")}</li></ul>
+<div class="pearl"><b>Perla:</b> el mismo esguince puede ser verde, amarillo o naranja según el dolor que refiere el paciente. Siempre pregunta la escala del 0 al 10.</div>`},
+{id:"medir",t:"Qué se mide: primera impresión y signos vitales",h:`
+<p><b>Primera impresión</b> desde la puerta: ¿respira?, ¿qué color tiene su piel?, ¿está alerta?, ¿sangra?</p>
+<p><b>Signos vitales</b>: FC 60–100 lpm, FR 12–20 rpm, PA &lt; 120/80, SatO₂ 94–100 %, temperatura 36.5–37.5 °C, glucosa capilar si hay alteración de la conciencia o diabetes, y dolor de 0 a 10.</p>
+<p><b>AVDN</b>: Alerta, responde a la Voz, solo al Dolor, No responde.</p>
+<div class="pearl"><b>Llenado capilar:</b> presiona la uña 5 segundos y cuenta cuánto tarda en volver el color. Normal: menos de 2 segundos.</div>`},
+{id:"start",t:"START: triage en desastres",h:`
+<p>Se usa en <b>incidentes con múltiples víctimas</b> (sismos, choques de autobús, explosiones). Toma menos de 60 segundos por persona. Solo se permiten dos maniobras: abrir la vía aérea y controlar una hemorragia con presión directa.</p>
+<div class="flow">
+<div class="step"><b class="n">1</b><p><b>¿Camina?</b> Sí → ${chip("verde")}</p></div>
+<div class="step"><b class="n">R</b><p><b>¿Respira?</b> Si no, abre la vía aérea: sigue sin respirar → ${chip("negro")}; empieza a respirar → ${chip("rojo")}. FR &gt; 30 → ${chip("rojo")}</p></div>
+<div class="step"><b class="n">P</b><p><b>Perfusión.</b> Llenado capilar &gt; 2 s o sin pulso radial → ${chip("rojo")}</p></div>
+<div class="step"><b class="n">M</b><p><b>Estado mental.</b> No obedece órdenes simples → ${chip("rojo")}. Obedece → ${chip("amarillo")}</p></div>
+</div>
+<div class="pearl"><b>Mnemotecnia:</b> RPM, “30-2-puede hacerlo”: FR 30, llenado capilar 2 s, ¿puede obedecer? En niños se usa JumpSTART.</div>`},
+{id:"errores",t:"Errores frecuentes",h:`
+<ul><li><b>Subtriage</b>: clasificar por debajo de lo necesario. Es el error más peligroso.</li>
+<li><b>Sobretriage</b>: clasificar por encima. Es más seguro, pero satura la sala de reanimación.</li>
+<li>Guiarse por el diagnóstico, por la apariencia tranquila o por la insistencia del familiar.</li>
+<li>No preguntar el dolor y no reevaluar a quien lleva tiempo esperando.</li></ul>`}
+];
+let done=new Set(store.get("triage-done",[]));
+const topicsEl=document.getElementById("topics");
+topicsEl.innerHTML=TOPICS.map(t=>`<details class="topic${done.has(t.id)?" done":""}" data-id="${t.id}"><summary><span class="done-dot" aria-hidden="true"></span>${t.t}</summary><div class="body">${t.h}<button class="master" data-id="${t.id}">${done.has(t.id)?"Lo domino ✓":"Marcar “Lo domino”"}</button></div></details>`).join("");
+function updProg(){const n=done.size,T=TOPICS.length;document.getElementById("prog-txt").textContent=`${n} de ${T} temas dominados`;document.getElementById("prog-bar").style.width=(n/T*100)+"%"}
+updProg();
+topicsEl.addEventListener("click",e=>{const b=e.target.closest(".master");if(!b)return;const id=b.dataset.id,d=b.closest("details");if(done.has(id)){done.delete(id);d.classList.remove("done");b.textContent="Marcar “Lo domino”"}else{done.add(id);d.classList.add("done");b.textContent="Lo domino ✓"}store.set("triage-done",[...done]);updProg()});
+document.getElementById("q").addEventListener("input",e=>{const q=e.target.value.trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");let any=false;topicsEl.querySelectorAll("details").forEach(d=>{const txt=d.textContent.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");const m=!q||txt.includes(q);d.hidden=!m;if(m)any=true;d.open=!!q&&m});document.getElementById("noresults").hidden=any});
+
+/* ---------- Tabs ---------- */
+const VIEWS=["aprende","juego","casos","flashcards","tablas"];
+function show(v){if(!VIEWS.includes(v))v="aprende";VIEWS.forEach(x=>{document.getElementById("view-"+x).hidden=x!==v;document.getElementById("tab-"+x).setAttribute("aria-selected",x===v)});document.getElementById("fuentes").hidden=!(v==="aprende"||v==="tablas");store.set("triage-tab",v)}
+document.querySelector("nav").addEventListener("click",e=>{const b=e.target.closest("button[data-view]");if(b){show(b.dataset.view);window.scrollTo({top:0})}});
+show((location.hash||"").slice(1)||store.get("triage-tab","aprende"));
+
+/* ---------- Minijuego ---------- */
+const URG=[
+{w:"Mujer de 70 años",s:"Le falta el aire de golpe. No puede terminar una frase y tiene los labios morados.",v:["FR 34","SatO₂ 84 %","FC 118"],a:"rojo",e:"Respiración inadecuada: es un discriminador de riesgo vital."},
+{w:"Hombre de 45 años",s:"Empieza a convulsionar en la sala de espera.",v:["Convulsión activa"],a:"rojo",e:"Convulsión activa es rojo en Manchester."},
+{w:"Hombre de 68 años",s:"Lo encuentran caído en el baño. No responde y respira roncando.",v:["AVDN: N","FR 10"],a:"rojo",e:"Vía aérea comprometida (ronquido en un paciente que no responde): riesgo vital."},
+{w:"Hombre de 60 años",s:"Le dieron un antibiótico hace 15 minutos. Se le hinchan los labios y la lengua, tiene la voz ronca y un silbido al inspirar.",v:["FR 28","SatO₂ 91 %"],a:"rojo",e:"Estridor con edema de lengua: la vía aérea está en riesgo."},
+{w:"Mujer de 60 años",s:"Dolor abdominal muy intenso desde hace 2 horas, vomitando.",v:["Dolor 9/10","FC 104","PA 130/80"],a:"naranja",e:"Dolor intenso (8 a 10) es naranja."},
+{w:"Hombre de 72 años",s:"Su hija dice que desde hoy está confundido y no la reconoce. Es diabético.",v:["Glucosa 48 mg/dL","AVDN: V"],a:"naranja",e:"Alteración de la conciencia con hipoglucemia: naranja."},
+{w:"Hombre de 50 años",s:"Dolor de cabeza súbito, “el peor de mi vida”, desde hace una hora.",v:["Dolor 9/10","PA 150/95","Alerta"],a:"naranja",e:"Cefalea de inicio súbito e intenso: muy urgente."},
+{w:"Mujer de 55 años",s:"Herida en la pierna que empapa las gasas una tras otra aunque se presiona.",v:["FC 102","PA 118/76"],a:"naranja",e:"Hemorragia mayor que no se controla: naranja. Aún no hay choque."},
+{w:"Niño de 2 años",s:"Fiebre muy alta desde la mañana. Llora pero se consuela en brazos.",v:["T 41.2 °C","FC 150"],a:"naranja",e:"Muy caliente (41 °C o más) es naranja."},
+{w:"Mujer de 45 años",s:"Se cayó sobre la mano hace 3 horas. La muñeca está inflamada y casi no la puede mover.",v:["Dolor 8/10","Signos normales"],a:"naranja",e:"Dolor intenso define el color, aunque la lesión parezca menor."},
+{w:"Hombre de 58 años",s:"Presión en el pecho desde hace 30 minutos, irradiada a la mandíbula. Sudoroso.",v:["FC 92","PA 145/90","SatO₂ 96 %"],a:"naranja",e:"Dolor torácico de tipo cardiaco: ECG en 10 minutos."},
+{w:"Mujer de 40 años",s:"Fiebre, ardor al orinar y dolor en la espalda baja desde ayer.",v:["T 39 °C","Dolor 5/10","FC 98"],a:"amarillo",e:"Caliente (38.5 a 40.9 °C) y dolor moderado: amarillo."},
+{w:"Mujer de 35 años",s:"Vómito desde hace 8 horas. Tolera pocos sorbos de agua.",v:["FC 104","PA 112/70","Dolor 3/10"],a:"amarillo",e:"Vómito persistente: urgente, puede deshidratarse."},
+{w:"Hombre de 33 años",s:"Se golpeó la cabeza hace 2 horas y se desmayó unos segundos. Ahora está alerta.",v:["AVDN: A","Dolor 3/10","Signos normales"],a:"amarillo",e:"Antecedente de pérdida de conciencia: amarillo."},
+{w:"Mujer de 22 años",s:"Torcedura de tobillo jugando voleibol hace una hora. Camina cojeando.",v:["Dolor 6/10","Sin deformidad"],a:"amarillo",e:"Dolor moderado (5 a 7): amarillo."},
+{w:"Joven de 19 años",s:"Se quemó el antebrazo con aceite hace 40 minutos. Ampolla de 3 × 3 cm.",v:["Dolor 4/10","Signos normales"],a:"verde",e:"Dolor leve reciente: verde."},
+{w:"Niño de 8 años",s:"Se cortó el dedo con una lata. El sangrado ya se detuvo con una gasa.",v:["Dolor 3/10","Signos normales"],a:"verde",e:"Lesión menor reciente con dolor leve y sangrado controlado."},
+{w:"Mujer de 23 años",s:"Picadura de insecto en el brazo hace una hora: roncha y comezón. Respira bien.",v:["Signos normales","Sin edema de cara"],a:"verde",e:"Reacción local reciente y leve, sin datos de anafilaxia."},
+{w:"Niña de 5 años",s:"Fiebre desde anoche. En la sala juega y come.",v:["T 38.0 °C","FC 105","SatO₂ 98 %"],a:"verde",e:"Febril (37.5 a 38.4 °C) sin datos de alarma."},
+{w:"Mujer de 30 años",s:"Viene a recoger resultados de laboratorio de rutina.",v:["Asintomática","Signos normales"],a:"azul",e:"Ningún discriminador positivo: no urgente."},
+{w:"Hombre de 25 años",s:"Tos seca desde hace 2 semanas. Sin fiebre ni falta de aire.",v:["Signos normales","SatO₂ 98 %"],a:"azul",e:"Problema no reciente, sin datos de alarma."},
+{w:"Hombre de 28 años",s:"Dolor de espalda que tiene desde hace meses, igual que siempre. Quiere más analgésico.",v:["Dolor 3/10","Signos normales"],a:"azul",e:"Dolor leve que no es reciente: azul."},
+{w:"Mujer de 27 años, 34 semanas de embarazo",s:"Dolor de cabeza intenso y ve lucecitas.",v:["PA 166/112","FC 90","Alerta"],a:"rojo",e:"Triage obstétrico: hipertensión severa con síntomas neurológicos. Rojo y Código Mater."}
+];
+const DIS=[
+{w:"Víctima 1",s:"Se levanta y camina hacia ti cuando llamas. Herida en la frente que sangra.",v:["Camina"],a:"verde",e:"Si camina, es verde, aunque sangre."},
+{w:"Víctima 2",s:"No respira. Abres la vía aérea y empieza a respirar.",v:["Respira tras abrir vía aérea"],a:"rojo",e:"Respira solo después de abrir la vía aérea: rojo."},
+{w:"Víctima 3",s:"No respira. Abres la vía aérea y sigue sin respirar.",v:["Apnea"],a:"negro",e:"Sin respiración tras abrir la vía aérea: negro."},
+{w:"Víctima 4",s:"No camina. Respira muy rápido.",v:["FR 34"],a:"rojo",e:"FR mayor de 30: rojo."},
+{w:"Víctima 5",s:"No camina. Respira bien, pero la uña tarda en recuperar el color.",v:["FR 18","Llenado capilar 3 s"],a:"rojo",e:"Perfusión alterada (más de 2 s): rojo."},
+{w:"Víctima 6",s:"Atrapado de las piernas. No le encuentras pulso en la muñeca.",v:["FR 22","Sin pulso radial"],a:"rojo",e:"Sin pulso radial: rojo."},
+{w:"Víctima 7",s:"No camina. Respira y tiene buen llenado capilar, pero no te aprieta la mano cuando se lo pides.",v:["FR 24","LLC 1 s","No obedece"],a:"rojo",e:"No obedece órdenes simples: rojo."},
+{w:"Víctima 8",s:"Quemaduras en ambas piernas, no puede caminar. Te contesta y te aprieta la mano.",v:["FR 16","LLC 1.5 s","Obedece"],a:"amarillo",e:"RPM normales pero no camina: amarillo."},
+{w:"Víctima 9",s:"Fractura expuesta de antebrazo. Camina sosteniéndose el brazo.",v:["Camina"],a:"verde",e:"Camina: verde en el primer barrido. Se reevalúa después."},
+{w:"Víctima 10",s:"Herida en el muslo que sangra mucho. Comprimes la herida. No camina.",v:["FR 26","LLC 3 s"],a:"rojo",e:"Hemorragia con mala perfusión: rojo. Mantén la compresión."},
+{w:"Víctima 11",s:"Atrapada bajo escombro. Habla contigo y obedece.",v:["FR 20","LLC 1 s","Obedece"],a:"amarillo",e:"No puede caminar, RPM normales: amarillo."}
+];
+const ORDER={urg:["rojo","naranja","amarillo","verde","azul"],dis:["rojo","amarillo","verde","negro"]};
+const g={mode:"urg",timed:false,deck:[],i:0,score:0,streak:0,best:store.get("triage-best",{urg:0,dis:0}),log:[],t:null,left:0,answered:false};
+const gameEl=document.getElementById("game");
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function intro(){clearInterval(g.t);gameEl.innerHTML=`
+<h2 style="margin:0">Sala de espera</h2>
+<p class="muted">Llegan pacientes uno por uno. Asigna el color correcto. Si clasificas por debajo (subtriage) pierdes una vida.</p>
+<div class="modes">
+<button class="mode" data-mode="urg" aria-pressed="${g.mode==="urg"}"><strong>Urgencias</strong><span>Manchester / IMSS · 5 colores · 12 pacientes</span></button>
+<button class="mode" data-mode="dis" aria-pressed="${g.mode==="dis"}"><strong>Desastre</strong><span>START · 4 colores · 10 víctimas</span></button>
+</div>
+<label class="toggle"><input type="checkbox" id="timed" ${g.timed?"checked":""}> Turno con reloj (20 s por paciente, +puntos por rapidez)</label>
+<div class="row"><button class="primary" id="go">Empezar turno</button><span class="muted">Mejor puntaje: <b id="best">${g.best[g.mode]}</b></span></div>`;
+gameEl.querySelectorAll(".mode").forEach(b=>b.onclick=()=>{g.mode=b.dataset.mode;intro()});
+document.getElementById("timed").onchange=e=>g.timed=e.target.checked;
+document.getElementById("go").onclick=start}
+function start(){const pool=g.mode==="urg"?URG:DIS;g.deck=shuffle(pool).slice(0,g.mode==="urg"?12:10);g.i=0;g.score=0;g.streak=0;g.lives=3;g.log=[];next()}
+function next(){if(g.i>=g.deck.length||g.lives<=0)return end();g.answered=false;const p=g.deck[g.i];
+gameEl.innerHTML=`
+<div class="hud"><div>Paciente <b>${g.i+1}</b>/${g.deck.length}</div><div>Puntos <b>${g.score}</b></div><div>Racha <b>${g.streak}</b></div><div>Vidas <b>${"♥".repeat(g.lives)}${"♡".repeat(3-g.lives)}</b></div></div>
+${g.timed?'<div class="timer"><span id="tbar"></span></div>':""}
+<div class="patient"><p class="who">${p.w}</p><p>${p.s}</p><div class="vitals">${p.v.map(x=>`<span>${x}</span>`).join("")}</div></div>
+<div class="answers">${ORDER[g.mode].map(c=>`<button class="c-${c}" data-c="${c}">${C[c]}</button>`).join("")}</div>
+<div id="fb"></div>`;
+gameEl.querySelectorAll(".answers button").forEach(b=>b.onclick=()=>answer(b.dataset.c));
+if(g.timed){g.left=20;const bar=document.getElementById("tbar");clearInterval(g.t);g.t=setInterval(()=>{g.left-=.1;bar.style.width=Math.max(0,g.left/20*100)+"%";if(g.left<=0){clearInterval(g.t);answer(null)}},100)}}
+function answer(c){if(g.answered)return;g.answered=true;clearInterval(g.t);const p=g.deck[g.i],ord=ORDER[g.mode];
+const ok=c===p.a;let kind="ok";
+if(!ok){if(c===null)kind="time";else{const ci=ord.indexOf(c),ai=ord.indexOf(p.a);kind=(c==="negro"||ci>ai)?"sub":"sobre"}}
+if(ok){g.streak++;g.score+=100+(g.timed?Math.round(g.left*5):0)+(g.streak>=3?25:0)}else{g.streak=0;if(kind==="sub"||kind==="time")g.lives--}
+g.log.push({p,c,kind});
+gameEl.querySelectorAll(".answers button").forEach(b=>{b.disabled=true;if(b.dataset.c===c)b.classList.add("picked")});
+const msg={ok:"Correcto",sub:"Subtriage: lo clasificaste por debajo",sobre:"Sobretriage: lo clasificaste por encima",time:"Se acabó el tiempo"}[kind];
+document.getElementById("fb").innerHTML=`<div class="feedback${ok?"":" wrong"}" role="status"><p class="verdict">${msg}</p><p>Respuesta: ${chip(p.a)}</p><p>${p.e}</p>${kind==="sub"?'<p class="muted">El subtriage es el error más peligroso. Pierdes una vida.</p>':kind==="sobre"?'<p class="muted">Es más seguro que el subtriage, así que no pierdes vida, pero no suma puntos.</p>':""}</div>
+<div class="row" style="margin-top:10px"><button class="primary" id="nx">${g.i+1>=g.deck.length||g.lives<=0?"Ver resultados":"Siguiente paciente"}</button></div>`;
+const nx=document.getElementById("nx");nx.focus({preventScroll:true});nx.onclick=()=>{g.i++;next()}}
+function end(){clearInterval(g.t);const right=g.log.filter(x=>x.kind==="ok").length,sub=g.log.filter(x=>x.kind==="sub"||x.kind==="time").length,sobre=g.log.filter(x=>x.kind==="sobre").length;
+const newBest=g.score>g.best[g.mode];if(newBest){g.best[g.mode]=g.score;store.set("triage-best",g.best)}
+const msg=g.lives<=0?"Turno terminado: demasiados pacientes graves esperaron de más.":right===g.log.length?"Turno perfecto. Ningún paciente en riesgo.":"Turno completo. Revisa los errores abajo.";
+gameEl.innerHTML=`
+<h2 style="margin:0">Resultados</h2>
+<p class="big">${g.score}<span class="muted" style="font-size:1rem"> puntos${newBest?" · ¡nuevo récord!":""}</span></p>
+<p>${msg}</p>
+<div class="stats"><div><b>${right}/${g.log.length}</b><span>correctos</span></div><div><b>${sub}</b><span>subtriage o tiempo</span></div><div><b>${sobre}</b><span>sobretriage</span></div></div>
+${g.log.some(x=>x.kind!=="ok")?`<h3>Para repasar</h3><div class="review">${g.log.filter(x=>x.kind!=="ok").map(x=>`<div><b>${x.p.w}:</b> ${x.c?chip(x.c):"sin respuesta"} → ${chip(x.p.a)} <span class="muted">${x.p.e}</span></div>`).join("")}</div>`:""}
+<div class="row"><button class="primary" id="again">Jugar otra vez</button><button class="ghost" id="menu">Cambiar modo</button></div>`;
+document.getElementById("again").onclick=start;document.getElementById("menu").onclick=intro}
+intro();
+
+/* ---------- Casos ---------- */
+const CASES=[
+{tag:"Caso 1 · Adultos",t:"Dolor en el pecho",s:"Don Ernesto, 58 años, llega caminando. Dolor opresivo en el pecho desde hace 20 minutos que se corre al brazo izquierdo. Sudoroso y angustiado.",v:"FC 98 · FR 20 · PA 150/90 · SatO₂ 96 % · Alerta",a:"naranja",p:"Muy urgente (≤ 10 min)",e:"El dolor torácico de tipo cardiaco es naranja aunque los signos vitales se vean casi normales. Necesita ECG en los primeros 10 minutos."},
+{tag:"Caso 2 · Adultos",t:"Herida en el abdomen",s:"Hombre de 30 años con herida por arma blanca en el abdomen. Pálido, frío y sudoroso; contesta lento.",v:"FC 132 · PA 78/45 · Llenado capilar 4 s · Responde a la voz",a:"rojo",p:"Inmediato",e:"Datos de choque: taquicardia, hipotensión, piel fría y llenado capilar lento. Pasa directo a reanimación."},
+{tag:"Caso 3 · Adultos",t:"Tobillo torcido",s:"Mujer de 22 años que se torció el tobillo jugando futbol hace una hora. Camina cojeando, inflamado, sin deformidad.",v:"Dolor 6/10 · Signos vitales normales",a:"amarillo",p:"Urgente (≤ 60 min Manchester · ≤ 30 min IMSS)",e:"El dolor moderado (5 a 7) define el color. Con 3/10 sería verde; con 9/10, naranja."},
+{tag:"Caso 4 · Pediatría",t:"Niña con fiebre",s:"Valeria, 4 años, fiebre y tos desde ayer. En la sala juega, platica y come galletas.",v:"T 38.2 °C · FC 110 · FR 24 · SatO₂ 98 % · Alerta",a:"verde",p:"Estándar (≤ 120 min)",e:"Febril sin datos de alarma. Se reevalúa si cambia algo mientras espera."},
+{tag:"Caso 5 · Adultos",t:"Resfriado de cuatro días",s:"Hombre de 35 años con escurrimiento nasal y estornudos desde hace 4 días, sin fiebre. Viene por una incapacidad.",v:"Signos vitales normales · Dolor 0/10",a:"azul",p:"No urgente (≤ 240 min Manchester · ≤ 180 min IMSS)",e:"Ningún discriminador positivo y el problema no es reciente. Puede referirse a su UMF."},
+{tag:"Caso 6 · Obstetricia",t:"Embarazada con dolor de cabeza",s:"Mujer de 27 años con 34 semanas de embarazo. Dolor de cabeza muy intenso desde hace 2 horas y ve lucecitas.",v:"PA 165/112 · FC 92 · Alerta",a:"rojo",p:"Código Mater",e:"Presión de 160/110 o más con síntomas neurológicos sugiere preeclampsia con datos de severidad. Rojo en el triage obstétrico."},
+{tag:"Caso 7 · START",t:"Choque de autobús",s:"A: camina con herida en la frente. B: no camina, FR 36. C: no respira tras abrir la vía aérea. D: fractura de fémur, FR 22, llenado capilar 1 s, obedece.",v:"Clasifica a las cuatro víctimas",a:null,p:"",e:`A ${chip("verde")} · B ${chip("rojo")} · C ${chip("negro")} · D ${chip("amarillo")}. D no camina, pero respiración, perfusión y estado mental son normales.`}
+];
+document.getElementById("cases").innerHTML=CASES.map((c,i)=>`<article class="case"><p class="tag">${c.tag}</p><h3>${c.t}</h3><p>${c.s}</p><p class="muted"><b>${c.v}</b></p><button class="ghost" data-i="${i}" aria-expanded="false" style="align-self:flex-start">Ver respuesta</button><div class="reveal" id="rv-${i}" hidden>${c.a?`<p>${chip(c.a)} <b>${c.p}</b></p>`:""}<p>${c.e}</p></div></article>`).join("");
+document.getElementById("cases").addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(!b)return;const r=document.getElementById("rv-"+b.dataset.i);r.hidden=!r.hidden;b.setAttribute("aria-expanded",!r.hidden);b.textContent=r.hidden?"Ver respuesta":"Ocultar respuesta"});
+
+/* ---------- Flashcards ---------- */
+let FC=[
+["¿De qué palabra viene “triage”?","Del francés <i>trier</i>: separar, clasificar."],
+["¿Qué pregunta responde el triage?","¿Cuánto tiempo puede esperar el paciente sin que su salud empeore?"],
+["¿El triage hace diagnóstico?","No. Solo decide el orden de atención; el diagnóstico viene en la consulta."],
+["Tiempo máximo del color naranja en Manchester","10 minutos."],
+["Tiempo máximo del amarillo: Manchester vs IMSS","60 min en Manchester; 30 min en el IMSS."],
+["Tiempo máximo del azul: Manchester vs IMSS","240 min en Manchester; 180 min en el IMSS."],
+["¿Cuántos diagramas de flujo tiene Manchester?","52 diagramas de presentación."],
+["En Manchester, ¿qué define el color?","El primer discriminador positivo, buscando de rojo hacia azul."],
+["Dolor 8/10 en Manchester","Naranja (dolor intenso)."],
+["Temperatura de 39 °C en un adulto","Amarillo (caliente: 38.5 a 40.9 °C)."],
+["¿Qué significa AVDN?","Alerta, responde a la Voz, solo al Dolor, No responde."],
+["¿Qué es el subtriage?","Clasificar por debajo de lo necesario. Es el error más peligroso."],
+["¿Qué es el retriage?","Reevaluar al paciente que espera; puede subir o bajar de color."],
+["START: ¿qué significa RPM?","Respiración, Perfusión y estado Mental."],
+["START: víctima que camina","Verde."],
+["START: FR de 32","Rojo (más de 30)."],
+["START: llenado capilar de 3 s","Rojo (más de 2 s)."],
+["START: no respira tras abrir la vía aérea","Negro."],
+["¿Qué activa el rojo del triage obstétrico?","El Código Mater y al Equipo de Respuesta Inmediata Obstétrica."],
+["¿Quién clasificó heridos por gravedad en 1792?","Dominique-Jean Larrey, cirujano de Napoleón."]
+];
+let fi=0,flip=false;const card=document.getElementById("fc-card");
+function drawFC(){const [q,a]=FC[fi];card.innerHTML=flip?`<p class="q">${q}</p><p class="a">${a}</p><small>Toca para ver la pregunta</small>`:`<p class="q">${q}</p><small>Toca para ver la respuesta</small>`;document.getElementById("fc-count").textContent=`Tarjeta ${fi+1} de ${FC.length}`}
+card.onclick=()=>{flip=!flip;drawFC()};card.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();card.onclick()}};
+document.getElementById("fc-next").onclick=()=>{fi=(fi+1)%FC.length;flip=false;drawFC()};
+document.getElementById("fc-prev").onclick=()=>{fi=(fi-1+FC.length)%FC.length;flip=false;drawFC()};
+document.getElementById("fc-shuffle").onclick=()=>{FC=shuffle(FC);fi=0;flip=false;drawFC()};
+drawFC();
+</script>
+
+</body></html>

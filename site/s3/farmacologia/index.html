@@ -1,0 +1,906 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Farmacología Básica</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/g457e47a285.css">
+<style>
+/* Layout: a study bench. Fixed unit index on the left (chips on phones), one unit open at a time
+   with three modes (Resumen / Tarjetas / Quiz). Each unit header reads like a pharmacy label. */
+:root{
+  --paper:#F3F6F5; --surface:#FFFFFF; --surface-2:#E9EFED; --ink:#122A2C; --muted:#526A6B; --line:#D3DEDB;
+  --amber:#B1530C; --amber-soft:#FBEADB; --teal:#1C6B66; --teal-soft:#DCEEEB;
+  --good:#1D7A43; --good-soft:#DDF2E4; --bad:#B42318; --bad-soft:#FBE3E0;
+  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --r:10px; --shadow:0 1px 2px rgba(18,42,44,.06), 0 6px 18px rgba(18,42,44,.06);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#0D1516; --surface:#142021; --surface-2:#1B2A2C; --ink:#E1EBE9; --muted:#93A8A7; --line:#27393B;
+  --amber:#EE9A55; --amber-soft:#3A2414; --teal:#62BDB3; --teal-soft:#16302E;
+  --good:#5CC58A; --good-soft:#15301F; --bad:#F2877C; --bad-soft:#3A1915;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.25); color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#0D1516; --surface:#142021; --surface-2:#1B2A2C; --ink:#E1EBE9; --muted:#93A8A7; --line:#27393B;
+  --amber:#EE9A55; --amber-soft:#3A2414; --teal:#62BDB3; --teal-soft:#16302E;
+  --good:#5CC58A; --good-soft:#15301F; --bad:#F2877C; --bad-soft:#3A1915;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.25); color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.15;text-wrap:balance;margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:6px}
+a{color:var(--teal)}
+.wrap{max-width:1240px;margin:0 auto;padding-block:20px 60px}
+
+/* top bar */
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding-block:6px 18px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.brand{display:flex;align-items:baseline;gap:12px;flex:1 1 280px;min-width:0}
+.brand .rx{font-family:var(--f-display);font-weight:800;font-size:30px;color:var(--amber);letter-spacing:-.02em}
+.brand h1{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.015em}
+.brand small{display:block;color:var(--muted);font-size:13px;font-family:var(--f-body)}
+.progress{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.bar{width:140px;height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--teal);border-radius:99px;transition:width .3s}
+.search{position:relative;flex:1 1 240px;max-width:360px}
+.search input{width:100%;padding:10px 12px 10px 36px;border-radius:99px;border:1px solid var(--line);background:var(--surface);font:inherit;color:var(--ink)}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--muted)}
+
+/* layout */
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;align-items:start}
+nav.index{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);max-height:calc(100vh - 24px);overflow:auto;padding-right:4px}
+.index .grp{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px 10px}
+.index button{display:flex;width:100%;align-items:center;gap:10px;text-align:left;padding:8px 10px;border:0;background:none;border-radius:8px;cursor:pointer;font-size:14.5px}
+.index button:hover{background:var(--surface-2)}
+.index button[aria-current="true"]{background:var(--surface);box-shadow:var(--shadow);font-weight:700}
+.index .num{font-family:var(--f-mono);font-size:12px;color:var(--muted);min-width:30px}
+.index .tick{margin-left:auto;width:16px;height:16px;border-radius:50%;border:1.5px solid var(--line);flex:none}
+.index .tick.on{background:var(--good);border-color:var(--good)}
+.index .tick.on::after{content:"";display:block;width:5px;height:8px;border:solid var(--surface);border-width:0 2px 2px 0;transform:translate(4.5px,2px) rotate(45deg)}
+.index .special{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}
+
+/* unit label */
+.label{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:18px}
+.label-top{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;padding:10px 18px;background:var(--teal);color:var(--surface);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+:root[data-theme="dark"] .label-top{color:#0D1516}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .label-top{color:#0D1516} }
+.label-top .sp{flex:1}
+.label-body{padding:18px 18px 16px;display:grid;gap:10px}
+.label-body h2{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.02em}
+.label-body p.lead{margin:0;color:var(--muted);max-width:68ch}
+.label-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:10px 18px;border-top:1px dashed var(--line);font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.tabs{display:inline-flex;background:var(--surface-2);border-radius:99px;padding:3px;gap:2px}
+.tabs button{border:0;background:none;padding:7px 14px;border-radius:99px;cursor:pointer;font-family:var(--f-body);font-size:14px}
+.tabs button[aria-selected="true"]{background:var(--surface);box-shadow:var(--shadow);font-weight:700}
+.btn{font-family:var(--f-body);border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:99px;cursor:pointer;font-size:14px;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{border-color:var(--teal)}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:var(--surface)}
+.btn.on{background:var(--good-soft);border-color:var(--good);color:var(--good);font-weight:700}
+
+/* content */
+.key{background:var(--amber-soft);border-radius:var(--r);padding:14px 18px;margin-bottom:18px}
+.key h3{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.key ul{margin:0;padding-left:20px;display:grid;gap:4px}
+details.sec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px}
+details.sec>summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;gap:12px;align-items:center;font-family:var(--f-display);font-weight:700;font-size:18px}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary::after{content:"";margin-left:auto;width:9px;height:9px;border:solid var(--muted);border-width:0 2px 2px 0;transform:rotate(45deg);transition:transform .2s;flex:none}
+details.sec[open]>summary::after{transform:rotate(-135deg)}
+.sec-body{padding:0 18px 18px;max-width:none}
+.sec-body p,.sec-body li{max-width:75ch}
+.sec-body ul,.sec-body ol{padding-left:22px;margin:8px 0;display:grid;gap:4px}
+.sec-body h4{font-size:15px;margin:16px 0 4px;color:var(--teal)}
+.mark{background:var(--amber-soft);padding:0 4px;border-radius:4px}
+.def{border-left:3px solid var(--teal);background:var(--teal-soft);padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0}
+.note{font-size:13.5px;color:var(--muted);border:1px dashed var(--line);border-radius:8px;padding:8px 12px;margin:10px 0}
+.note b{color:var(--ink)}
+.mono{font-family:var(--f-mono);font-size:.92em}
+.formula{font-family:var(--f-mono);background:var(--surface-2);padding:10px 14px;border-radius:8px;display:inline-block;margin:6px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:10px 0}
+.tile{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--paper);min-width:0}
+.tile h5{margin:0 0 4px;font-family:var(--f-display);font-size:15.5px}
+.tile p{margin:0;font-size:14.5px}
+.tw{overflow-x:auto;margin:10px 0;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+th,td{padding:8px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:var(--surface-2);font-family:var(--f-display);font-weight:700;font-size:13.5px}
+tr:last-child td{border-bottom:0}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12px;font-weight:700;background:var(--teal-soft);color:var(--teal)}
+.pill.a{background:var(--amber-soft);color:var(--amber)}
+.pill.r{background:var(--bad-soft);color:var(--bad)}
+.pill.g{background:var(--good-soft);color:var(--good)}
+.dose{font-family:var(--f-mono);font-size:13px;background:var(--surface-2);padding:1px 6px;border-radius:5px;white-space:nowrap}
+
+/* tools */
+.tool{border:2px solid var(--teal);border-radius:12px;padding:14px 16px;margin:14px 0;background:var(--surface)}
+.tool h4{margin:0 0 8px;color:var(--teal);font-size:16px}
+.row{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:end}
+.field{display:grid;gap:4px;font-size:13px;color:var(--muted)}
+.field input,.field select{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:140px}
+.out{font-family:var(--f-mono);font-size:15px;background:var(--teal-soft);border-radius:8px;padding:10px 12px;margin-top:10px}
+.meter{height:12px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin-top:8px;display:flex}
+.meter i{display:block;height:100%}
+.ex{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;background:var(--paper)}
+.ex p{margin:0 0 8px}
+.sol{margin-top:8px;font-family:var(--f-mono);font-size:13.5px;white-space:pre-wrap;background:var(--surface);border-radius:8px;padding:10px 12px;border:1px solid var(--line)}
+.nq{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:var(--surface);padding:5px 10px;cursor:pointer;font-size:13px;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--teal);color:var(--surface);font-weight:700}
+
+/* flashcards */
+.fc-wrap{display:grid;gap:14px;justify-items:center}
+.fc{width:min(620px,100%);min-height:240px;perspective:1200px;cursor:pointer;border:0;background:none;padding:0}
+.fc-in{position:relative;width:100%;min-height:240px;transition:transform .5s;transform-style:preserve-3d}
+.fc.flip .fc-in{transform:rotateY(180deg)}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);display:grid;place-items:center;padding:28px;text-align:center;font-size:19px;overflow:auto}
+.fc-face.back{transform:rotateY(180deg);background:var(--teal-soft);font-size:16.5px;text-align:left;place-items:center start}
+.fc-face .tag{position:absolute;top:12px;left:16px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.fc-nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
+.fc-count{font-family:var(--f-mono);font-size:13px;color:var(--muted);min-width:70px;text-align:center}
+
+/* quiz */
+.quiz{display:grid;gap:14px}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.q .qh{display:flex;gap:10px;align-items:baseline;margin-bottom:10px}
+.q .qn{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.q .qt{font-weight:700;font-size:16.5px}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--paper);border-radius:9px;padding:9px 12px;cursor:pointer;font-size:15px}
+.opt:hover:not([disabled]){border-color:var(--teal)}
+.opt.ok{background:var(--good-soft);border-color:var(--good);color:var(--ink)}
+.opt.no{background:var(--bad-soft);border-color:var(--bad)}
+.opt[disabled]{cursor:default}
+.expl{margin-top:10px;font-size:14.5px;color:var(--muted)}
+.expl b{color:var(--ink)}
+.score{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.score strong{font-family:var(--f-display);font-size:22px}
+.src{font-size:12px;color:var(--muted);font-family:var(--f-mono)}
+
+/* search results */
+.results{display:grid;gap:8px}
+.res{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 14px;cursor:pointer}
+.res b{font-family:var(--f-display)}
+.res span{display:block;font-size:13.5px;color:var(--muted)}
+mark{background:var(--amber-soft);color:var(--ink);border-radius:3px;padding:0 2px}
+
+/* home */
+.home-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.ucard{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:14px;cursor:pointer;display:grid;gap:6px;align-content:start}
+.ucard:hover{border-color:var(--teal)}
+.ucard .n{font-family:var(--f-mono);font-size:12px;color:var(--muted);display:flex;justify-content:space-between}
+.ucard h3{font-size:18px}
+.ucard p{margin:0;font-size:13.5px;color:var(--muted)}
+.hero-note{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;margin-bottom:18px}
+.hero-note p{margin:6px 0 0;color:var(--muted);max-width:70ch}
+
+@media (max-width:860px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  nav.index{position:static;max-height:none;display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-inline:-4px}
+  .index .grp{display:none}
+  .index button{width:auto;flex:none;white-space:nowrap;background:var(--surface);border:1px solid var(--line)}
+  .index .tick{margin-left:4px}
+  .index .num{min-width:0}
+  .index .special{margin:0;border:0;padding:0;display:flex;gap:6px}
+  .hero-note{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="rx" aria-hidden="true">℞</span><div><h1>Farmacología Básica</h1><small>Resumen interactivo de las 13 presentaciones del curso</small></div></div>
+    <div class="progress" title="Unidades marcadas como estudiadas"><div class="bar"><i id="pbar" style="width:0"></i></div><span id="ptext">0 de 13 estudiadas</span></div>
+    <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Buscar: pKa, Naranjo, atropina…" aria-label="Buscar en el resumen"></label>
+  </header>
+  <div class="layout">
+    <nav class="index" id="index" aria-label="Unidades"></nav>
+    <main id="main" aria-live="polite"></main>
+  </div>
+</div>
+
+<script>
+/* ---------- helpers ---------- */
+const T=(h,rows)=>`<div class="tw"><table><thead><tr>${h.map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+const UL=a=>`<ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+const D=(t)=>`<div class="def">${t}</div>`;
+const N=(t)=>`<div class="note">${t}</div>`;
+const tiles=a=>`<div class="grid2">${a.map(([h,p])=>`<div class="tile"><h5>${h}</h5><p>${p}</p></div>`).join("")}</div>`;
+const dose=t=>`<span class="dose">${t}</span>`;
+
+/* ---------- content ---------- */
+const UNITS=[
+{ id:"generalidades", n:"1", title:"Generalidades de la farmacología", group:"Bases", slides:50,
+  lead:"Qué estudia la farmacología, cómo se clasifican los fármacos, formas farmacéuticas e historia de la disciplina.",
+  key:["Farmacología: del griego <i>pharmakos</i> (droga) y <i>logos</i> (estudio). Es una ciencia experimental.",
+       "Farmacodinamia = lo que el fármaco le hace al organismo; Farmacocinética = procesos LADME.",
+       "Acciones farmacológicas: estimulación, depresión, irritación, reemplazo y antiinfecciosas.",
+       "Paracelso, patriarca de la farmacología: «solo la dosis convierte a una cosa en veneno»."],
+  sections:[
+   ["Definición y conceptos",`
+    <p><b>Etimología:</b> <i>pharmakos</i> = droga, <i>logos</i> = estudio.</p>
+    ${D("<b>Farmacología:</b> ciencia experimental que estudia los cambios experimentados por los seres vivos a causa de sustancias químicamente activas (con excepción de los alimentos) usadas con propósito terapéutico.")}
+    ${tiles([["Drogas","Fármacos de abuso."],["Venenos o tóxicos","Sustancias dañinas sin efecto terapéutico ni diagnóstico; también medicamentos en dosis altas."],["Farmacodinamia","Acciones y efectos sobre los distintos sistemas y su mecanismo de acción."],["Farmacocinética","Estudia los procesos LADME: liberación, absorción, distribución, metabolismo y eliminación."]])}
+    ${N("<b>Fármaco vs. medicamento:</b> la diapositiva deja la pregunta abierta para la clase. Complemento de libro: el <i>fármaco</i> es el principio activo; el <i>medicamento</i> es el fármaco ya formulado (con excipientes) en una forma farmacéutica lista para administrarse.")}`],
+   ["Formas farmacéuticas",`
+    ${D("<b>Forma farmacéutica:</b> presentación en la que se encuentra elaborado un fármaco para facilitar su suministro al organismo por las diferentes vías de administración.")}
+    ${T(["Sólidas","Semisólidas","Líquidas","Gaseosas"],[["Cápsulas (duras o blandas), comprimidos, tabletas, polvos, granulados, liofilizados, óvulos, supositorios, píldoras","Pastas dérmicas, cremas, ungüentos, geles, pomadas, jaleas, emplastos","Soluciones, jarabes, gotas, emulsiones, suspensiones, inyecciones, colirios","Gases medicinales, espumas, nebulizadores, inhaladores de polvo, aerosoles"]])}
+    <h4>Sistemas de liberación modificada</h4>
+    ${UL(["<b>Parche cutáneo:</b> el fármaco difunde a través de una membrana que controla la velocidad de absorción por la piel.","<b>Comprimido de liberación modulada:</b> núcleo recubierto por una membrana semipermeable; el agua entra y la solución del fármaco sale por pequeños orificios."])}`],
+   ["Clasificación de la farmacología y de los fármacos",`
+    <p><b>Farmacología:</b> preclínica o experimental (animales, laboratorio) y clínica (humanos).</p>
+    <h4>Clasificación de fármacos</h4>
+    ${UL(["<b>Acciones moleculares:</b> según el sitio de acción (p. ej. IECA y ARA II en el sistema renina-angiotensina; antibióticos según actúen sobre pared, ADN, ribosomas, etc.).","<b>Acciones farmacoterapéuticas:</b> antibióticos, diuréticos, laxantes, analgésicos.","<b>Acciones farmacológicas</b> (ver tabla).","<b>Otras:</b> origen, efecto sobre la enfermedad, venta o distribución."])}
+    ${T(["Acción farmacológica","Qué hace","Ejemplo de clase"],[["Estimulación","Aumenta funciones","Algunos hipoglucemiantes"],["Depresión","Disminuye funciones","Omeprazol"],["Irritación","Estimulación violenta: reacción inflamatoria y caída del tejido","Queratolíticos"],["Reemplazo","Sustituye un compuesto que falta en el organismo","Insulina"],["Antiinfecciosa","Elimina o atenúa microorganismos o parásitos","Antibióticos"]])}
+    ${tiles([["Por origen","Naturales, sintéticos, semisintéticos."],["Por efecto sobre la enfermedad","Curativos, paliativos, preventivos."],["Por venta o distribución","Restrictivos a farmacias (sin receta / con receta) y otros establecimientos."]])}`],
+   ["Medicina alternativa y «farmacia de la naturaleza»",`
+    <p>Se mencionan: acupuntura, homeopatía, ayurveda (doshas Vata, Pitta, Kapha), drenaje linfático y fitoterapia.</p>
+    <p>La sección «farmacia de la naturaleza» presenta alimentos que se parecen al órgano que supuestamente benefician: jitomate (licopeno) y corazón, nuez y cerebro, frijol y riñón, apio/ruibarbo/col china y hueso, aguacate/berenjena/pera y útero, higos y fertilidad masculina, camote y páncreas, cítricos y glándula mamaria, cebolla y células.</p>
+    ${N("Estas diapositivas son ejemplos populares para discutir en clase; no son evidencia farmacológica.")}`],
+   ["Historia de la farmacología",`
+    ${T(["Etapa","Hitos"],[
+      ["<b>Empírica</b>","<b>Código de Hammurabi</b> (castigo a la mala praxis). <b>Papiro de Ebers</b>: enfermedades curables e incurables, ~700 remedios con su preparación e indicación (los egipcios ya usaban pan mohoso; Fleming describe la penicilina en 1928)."],
+      ["<b>Científica y técnica</b>","<b>Hipócrates</b>: «Más vale prevenir que curar»; teoría de los humores (sangre, flema, bilis amarilla, bilis negra). <b>Árabes</b>: separan la farmacología de la medicina y otras ciencias. <b>Galeno</b>: libros con flores secas, medicamentos naturistas."],
+      ["<b>Edad media</b>","<b>Paracelso</b>, patriarca de la farmacología: «Todas las cosas son venenosas porque no existe nada sin esta cualidad; solo la dosis es lo que convierte a una cosa en veneno.» Intercambio de remedios con América."],
+      ["<b>Ciencia (1840…)</b>","Farmacología experimental: aspirina (Bayer), antibióticos (Fleming), modelos animales."],
+      ["<b>Tecnología genética</b>","Fármacos biotecnológicos (tabla siguiente)."]])}
+    ${T(["Grupo","Ejemplos"],[["Insulinas","Aspart, lispro, glargina"],["Factores de coagulación","Factor VII, factor IX"],["Fibrinolíticos","Alteplasa, reteplasa"],["Hormonas y factores de crecimiento","Somatotropina, becaplermina, tasonermina (TNF-1α)"],["Citocinas","Interferón alfa-2b, IFN beta-1a, beta-1b, gamma-1b"],["Anticuerpos","Infliximab, etanercept"]])}`],
+   ["Primeros fármacos (línea de tiempo)",`
+    ${T(["Año","Fármaco"],[["1849","Nitroglicerina"],["1899","Ácido acetilsalicílico"],["1903","Fenobarbital"],["1936","Insulina; quimioterapéuticos contra infecciones bacterianas"],["1940–46","Antihistamínicos H1"],["1944","Estreptomicina (tuberculostático)"],["1945","Cloroquina (antimalárico)"],["1954","Nistatina (antimicótico)"],["1956","Carbutamida (antidiabético oral)"],["1958","Imipramina (antidepresivo)"],["1960","Penicilinas semisintéticas; clordiazepóxido (benzodiacepinas)"],["1963","Clofibrato (hipolipemiante)"],["1964","Cefalotina (cefalosporina parenteral)"],["1971","Miconazol (antimicótico)"],["1976","Nifedipino (antagonista del calcio)"],["1980","Captopril (IECA)"],["1981","Aciclovir (antiherpético)"],["1982","Insulina humana recombinante"],["1984","Enalapril (IECA)"],["1987","Lovastatina; zidovudina (inhibidor de transcriptasa reversa del VIH)"],["1989","Omeprazol (inhibidor de la bomba de protones)"],["1992","Didanosina (antirretroviral)"],["1994","Losartán (antagonista de angiotensina II)"],["1996","Saquinavir (inhibidor de proteasa del VIH-1)"]])}
+    <h4>Efectos secundarios que dieron origen a nuevos fármacos</h4>
+    ${T(["Fármaco original","Efecto secundario","Fármaco desarrollado"],[["Sulfonamidas antibacterianas","Baja la glucosa sanguínea","Antidiabéticos orales"],["Sulfonamidas antibacterianas","Diuresis","Hidroclorotiazida (diurético)"],["Amrinona (inotrópico +)","Erecciones","Sildenafil, vardenafil"]])}
+    <p><b>Historias de medicamentos para exponer:</b> insulina, vacuna de la viruela (Jenner, 1789: las lecheras que contraían la viruela de las vacas no enfermaban de viruela; fue la primera vacuna), captopril y curares.</p>
+    <p><b>Actividad de vías de administración</b> (IM, inhalatoria, rectal, SC, IV, ótica, intraósea, tópica, sublingual, oftálmica): procedimiento correcto, ventajas, desventajas y medicamentos que se usan con más frecuencia.</p>`]
+  ],
+  cards:[["¿De dónde viene la palabra farmacología?","Del griego <i>pharmakos</i> (droga) + <i>logos</i> (estudio)."],["Define veneno o tóxico","Sustancia dañina sin efecto terapéutico ni diagnóstico; también un medicamento en dosis altas."],["¿Qué estudia la farmacocinética?","Los procesos LADME: liberación, absorción, distribución, metabolismo y eliminación."],["Acción farmacológica de reemplazo: ejemplo","Insulina: sustituye un compuesto que falta en el organismo."],["Acción farmacológica de depresión: ejemplo","Omeprazol (disminuye funciones)."],["¿Qué aportó el Papiro de Ebers?","Clasificó enfermedades en curables e incurables y reunió ~700 remedios con su preparación e indicación."],["¿Quién es el patriarca de la farmacología?","Paracelso: «solo la dosis convierte a una cosa en veneno»."],["Sulfonamidas → ¿qué fármacos surgieron de sus efectos secundarios?","Antidiabéticos orales (hipoglucemia) e hidroclorotiazida (diuresis)."],["¿De qué efecto secundario de la amrinona surgió el sildenafil?","Erecciones."],["Clasificación por efecto sobre la enfermedad","Curativos, paliativos y preventivos."]],
+  quiz:[
+   {q:"La irritación como acción farmacológica se ejemplifica con:",o:["Insulina","Queratolíticos","Omeprazol","Antibióticos"],a:1,e:"Irritación = estimulación violenta que produce inflamación y caída del tejido (queratolíticos)."},
+   {q:"¿Cuál NO es una forma farmacéutica semisólida?",o:["Pomada","Gel","Jarabe","Emplasto"],a:2,e:"El jarabe es líquido."},
+   {q:"«Más vale prevenir que curar» se atribuye a:",o:["Paracelso","Hipócrates","Galeno","Fleming"],a:1,e:"Hipócrates, etapa científica y técnica."},
+   {q:"¿Qué pueblo separó la farmacología de la medicina?",o:["Egipcios","Griegos","Árabes","Babilonios"],a:2,e:"Los árabes la separaron de la medicina y otras ciencias."},
+   {q:"El omeprazol se introdujo en:",o:["1976","1984","1989","1996"],a:2,e:"1989, inhibidor de la bomba de protones."},
+   {q:"Infliximab y etanercept pertenecen al grupo de:",o:["Citocinas","Anticuerpos","Fibrinolíticos","Factores de coagulación"],a:1,e:"Tecnología genética: anticuerpos."}]
+},
+{ id:"farmacocinetica", n:"2", title:"Farmacocinética", group:"Bases", slides:47,
+  lead:"Factores que determinan la concentración del fármaco en cada punto del organismo: absorción, distribución, metabolismo y excreción.",
+  key:["Biodisponibilidad: fracción del fármaco que llega a la circulación sistémica sin modificaciones químicas.","pKa: pH en el que el 50 % del fármaco está ionizado; cuanto más bajo, más ácido. Solo la forma no ionizada cruza membranas por difusión.","El efecto de primer paso hepático reduce lo que llega a circulación sistémica; por eso se buscan otras vías o profármacos.","Fase I (oxidación, reducción, hidrólisis; CYP450) y fase II (conjugación).","PM < 300 se excreta por riñón; PM > 500 por bilis."],
+  sections:[
+   ["Concepto y vías de administración",`
+    ${D("<b>Farmacocinética:</b> estudia los factores que determinan la concentración de los fármacos en distintos puntos del organismo (ADME).")}
+    ${T(["Grupo","Vías"],[["Enteral / mucosas","Oral, sublingual"],["Tópica","Dérmica; instilaciones e irrigaciones (ótica, nasal, ocular, rectal, vaginal); inhalatoria"],["Parenteral","Intradérmica, subcutánea, intramuscular, intravenosa"]])}`],
+   ["Absorción y transporte a través de membranas",`
+    ${D("<b>Absorción:</b> transferencia del fármaco desde el sitio en que se administra hasta el torrente sanguíneo.")}
+    <p>El fármaco puede (1) actuar en el sitio de aplicación (<b>efecto local</b>) o (2) alcanzar la sangre (<b>efecto sistémico</b>).</p>
+    ${tiles([["Difusión pasiva","A favor de gradiente, por un poro acuoso (hidrosolubles) o disuelto en los lípidos de la membrana (liposolubles)."],["Difusión facilitada","Usa un transportador, sin gasto de energía."],["Transporte activo","Transportador con gasto de ATP, puede ir contra gradiente."],["Endocitosis","Para fármacos de gran tamaño (p. ej. vitamina B12)."]])}
+    <h4>Factores del medicamento</h4>
+    ${UL(["Tamaño molecular y lipofilia/hidrofilia","pKa (grado de ionización)","Galénica (forma farmacéutica)"])}
+    <h4>Factores fisiológicos</h4>
+    ${UL(["Superficie de absorción","pH","Motilidad gastrointestinal (tiempo de paso)","Componentes de la alimentación","Otros fármacos","Enfermedades","Flora bacteriana"])}
+    <p><b>¿Con o sin alimentos?</b> Las tabletas de D-penicilamina alcanzan concentraciones mucho más altas con el estómago vacío que después de comer.</p>`],
+   ["pKa y ecuación de Henderson-Hasselbalch",`
+    ${D("<b>Henderson-Hasselbalch:</b> determina la cantidad de fármaco que se encuentra a cada lado de la membrana.")}
+    <div class="formula">Ácidos: pH = pKa + log [A⁻]/[HA]</div><br><div class="formula">Bases: pH = pKa + log [B]/[BH⁺]</div>
+    ${UL(["<b>Grado de ionización:</b> fuerza que tienen las moléculas de disociarse.","<b>pKa = −log Ka</b>: potencia de interacción entre un compuesto y un protón.","pKa = pH en el cual el 50 % del fármaco está ionizado. <b>Entre más bajo el pKa, más ácido.</b>","Ácido débil: HA ⇌ H⁺ + A⁻. Base débil: BH⁺ ⇌ B + H⁺. Solo HA y B (no ionizadas) atraviesan la membrana lipídica."])}
+    <p><b>Ejemplo de clase, naproxeno (pKa 5.0):</b> en jugo gástrico (pH 2) por cada 1 de HA hay 0.001 de A⁻ (total 1.001); en plasma (pH 7.4) por cada 1 de HA hay 251 de A⁻ (total 252). Los fármacos ácidos se concentran en la circulación.</p>
+    <div class="tool" id="hh"></div>
+    <p class="src">pKa de la tabla de clase: amoxicilina 2.4 · ampicilina 2.5 · aspirina 3.5 · ácido salicílico 3.0 · warfarina 5.0 · tolbutamida 5.3 · fenitoína 8.3 · teofilina 8.8 | bases: pilocarpina 6.9 · morfina 7.9 · lidocaína 7.9 · codeína 8.2 · metadona 8.4 · imipramina 9.5 · atropina 9.7 · anfetamina 9.8 · metoprolol 9.8</p>`],
+   ["Primer paso, profármacos y biodisponibilidad",`
+    <p><b>Efecto del primer paso:</b> lo absorbido por vía oral pasa por la circulación portal al hígado antes de llegar a la circulación sistémica; disminuye la cantidad que llega. Consecuencia: búsqueda de vías alternas de administración (sublingual, IV) y de <b>profármacos</b> (inactivos hasta metabolizarse; p. ej. <b>pivampicilina → ampicilina</b>).</p>
+    ${D("<b>Biodisponibilidad:</b> fracción de fármaco administrado que logra acceder a la circulación sistémica sin modificaciones químicas.")}
+    <p>En vía <b>SC/IM</b> la biodisponibilidad está limitada por la degradación del fármaco en el tejido.</p>`],
+   ["Distribución y barreras",`
+    ${D("<b>Distribución:</b> proceso por el cual un compuesto deja el torrente sanguíneo y entra a las células o al tejido intersticial. Una vez en el organismo puede distribuirse en cualquier compartimento.")}
+    ${T(["Factor","Qué recordar"],[["1. Flujo sanguíneo","Mayor hacia cerebro, hígado y riñón que hacia músculo esquelético; el tejido adiposo recibe aún menos. Velocidad variable por la distribución desigual del gasto cardiaco."],["2. Estructura del fármaco","Capacidad de cruzar membranas: pH, pKa, carácter hidrofílico o hidrofóbico."],["3. Permeabilidad capilar","Barreras (abajo)."],["4. Unión a proteínas plasmáticas","Albúmina, globulinas, hemoglobina. El fármaco unido no difunde y su salida del compartimento vascular se retrasa."]])}
+    ${T(["Barrera","Permeabilidad"],[["Intestino delgado","Membrana lipídica con poros: pasan partículas lipófilas, muy poco las hidrófilas."],["Placenta","Membrana lipídica con muchos poros pequeños: poco traspasable por moléculas grandes; las de 250 a 500 de peso molecular sí atraviesan."],["Hematoencefálica","Solo moléculas lipófilas, no ionizadas. Transportadores especiales para glucosa y aminoácidos."],["Sangre-leche","Membrana lipídica con poros: pasan lipófilas e hidrófilas; las lipófilas se acumulan."]])}
+    ${N("La diapositiva de placenta dice «250 a 500 kDa»; en los libros este límite se expresa en daltons (Da), no en kilodaltons.")}
+    <p><b>Contraindicados en lactancia:</b> ciclosporina, ergotamina, metotrexato, drogas de abuso.</p>`],
+   ["Metabolismo (biotransformación) y CYP450",`
+    ${D("<b>Biotransformación:</b> transformaciones metabólicas que sufre el fármaco a lo largo de su paso por el organismo.")}
+    <p><b>Factores que la afectan:</b> edad; sexo (las mujeres son más sensibles al etanol); raza (acetiladores rápidos y lentos de isoniazida; acetiladores rápidos: esquimales ~50 %, británicos 13 %, finlandeses 13 %); condición fisiológica.</p>
+    ${T(["Fase I (no sintética)","Fase II (sintética, conjugación)"],[["Cambios en la estructura: oxidación, reducción, hidrólisis. Puede <b>activar o inactivar</b>. Oxidasas y oxigenasas; la oxigenasa más importante es el <b>citocromo P450</b> (monooxigenasas).","Conjugación con ácido glucurónico, glutatión (citosol, microsomas), sulfato, acetilación, glicina (mitocondrias; p. ej. ácido salicílico). Los conjugados se excretan por hígado, intestino y riñón."]])}
+    <h4>Citocromo P450: superfamilia de hemoproteínas</h4>
+    ${T(["Isoenzima","Sustratos","Inhibidores","Inductores"],[["CYP1A2","Teofilina, cafeína, verapamilo, clozapina, imipramina, propranolol, haloperidol, mexiletina","Fluoroquinolonas, cimetidina, fluvoxamina, verapamilo","Omeprazol, humo de tabaco"],["CYP2C8","Tolbutamida, verapamilo","Verapamilo","Rifampicina"],["CYP2C9","Warfarina, fenitoína, tolbutamida, diclofenaco, piroxicam, ibuprofeno, tamoxifeno, torasemida, carbamazepina, ciclofosfamida","Verapamilo, fluconazol, isoniazida","Rifampicina"],["CYP2C19","Mefenitoína, omeprazol, lansoprazol, diazepam, proguanil","Cimetidina","Rifampicina, prednisona"],["CYP2E1","Etanol, enflurano, halotano","Disulfiram","Isoniazida, etanol"],["CYP3A4","Ciclosporina, claritromicina, eritromicina, verapamilo, midazolam, diltiazem, nifedipino, felodipino, lidocaína, astemizol","Ketoconazol, fluconazol, itraconazol, eritromicina, claritromicina, amiodarona, cimetidina","Rifampicina, fenitoína, carbamazepina, barbitúricos"]])}`],
+   ["Excreción",`
+    ${UL(["<b>PM &lt; 300 → riñón</b>; <b>PM &gt; 500 → bilis</b> (vesícula).","El riñón es el principal órgano de eliminación; la eliminación se correlaciona con su capacidad funcional.","Otras vías: respiratoria, sudor, leche materna.","<b>Eliminación hepática</b> depende de la perfusión sanguínea y de la masa celular hepática funcional.","Hacia la bilis van fármacos polares (por naturaleza o por biotransformación) y de PM elevado (&gt; 500–600, p. ej. conjugados)."])}`]
+  ],
+  cards:[["Define absorción","Transferencia del fármaco desde su sitio de administración hasta el torrente sanguíneo."],["Define biodisponibilidad","Fracción del fármaco administrado que llega a la circulación sistémica sin modificaciones químicas."],["¿Qué es el pKa?","El pH en el que el 50 % del fármaco está ionizado (−log Ka). Más bajo = más ácido."],["Ecuación de H-H para ácidos","pH = pKa + log [A⁻]/[HA]"],["¿Dónde se concentra un ácido débil como el naproxeno (pKa 5)?","En el plasma (pH 7.4), donde se ioniza y queda atrapado: 252 vs 1.001 en jugo gástrico."],["Ejemplo de profármaco visto en clase","Pivampicilina → ampicilina."],["¿Qué barrera solo deja pasar moléculas lipófilas no ionizadas?","La barrera hematoencefálica (con transportadores para glucosa y aminoácidos)."],["4 fármacos contraindicados en lactancia","Ciclosporina, ergotamina, metotrexato y drogas de abuso."],["Reacciones de fase I","Oxidación, reducción, hidrólisis (activan o inactivan)."],["Inductor clásico de casi todos los CYP en la tabla","Rifampicina."],["Inhibidores de CYP3A4","Ketoconazol, fluconazol, itraconazol, eritromicina, claritromicina, amiodarona, cimetidina."],["Regla de peso molecular para la excreción","PM < 300 → riñón; PM > 500 → bilis."]],
+  quiz:[
+   {q:"Un fármaco con pKa más bajo es:",o:["Más básico","Más ácido","Más liposoluble siempre","Menos ionizable"],a:1,e:"Entre más bajo el pKa, más ácido."},
+   {q:"¿Qué proceso NO usa transportador?",o:["Difusión facilitada","Transporte activo","Difusión pasiva","Ninguno"],a:2,e:"La difusión pasiva va a favor de gradiente, por poros o a través de lípidos."},
+   {q:"El humo del tabaco es inductor de:",o:["CYP2E1","CYP1A2","CYP3A4","CYP2C9"],a:1,e:"CYP1A2: inductores omeprazol y humo de tabaco."},
+   {q:"El disulfiram inhibe la isoenzima:",o:["CYP2E1","CYP2C19","CYP3A4","CYP1A2"],a:0,e:"CYP2E1 (sustratos: etanol, enflurano, halotano)."},
+   {q:"Un fármaco de PM 650 se excreta principalmente por:",o:["Riñón","Bilis","Pulmón","Sudor"],a:1,e:"PM > 500 → bilis."},
+   {q:"¿Hacia qué tejido es menor el flujo sanguíneo?",o:["Cerebro","Riñón","Músculo esquelético","Tejido adiposo"],a:3,e:"El adiposo recibe aún menos flujo que el músculo."},
+   {q:"La conjugación con glicina ocurre en:",o:["Citosol","Mitocondrias","Microsomas","Núcleo"],a:1,e:"Glicina en mitocondrias (ác. salicílico); glutatión en citosol y microsomas."}]
+},
+{ id:"farmacodinamia", n:"3", title:"Farmacodinamia", group:"Bases", slides:28,
+  lead:"Qué hacen los fármacos sobre el organismo: dianas, receptores, curvas dosis-respuesta, eficacia, potencia y tipos de antagonismo.",
+  key:["Secuencia: interacción fármaco-receptor → transducción de señal → efecto farmacológico.","KD: concentración de fármaco libre a la que el 50 % de los receptores están ocupados; mide la afinidad.","Eficacia = efecto máximo (lo más importante en terapia). Potencia = EC50 (menos importante).","Agonista estimula; antagonista bloquea; agonista parcial no alcanza el efecto máximo aunque ocupe todos los receptores."],
+  sections:[
+   ["Concepto y dianas terapéuticas",`
+    ${D("<b>Farmacodinamia:</b> estudia qué hacen los fármacos sobre el organismo; acciones y efectos sobre los distintos sistemas y su mecanismo de acción.")}
+    <p>Estudiar las acciones de fármacos como AAS, captopril, penicilina, furosemida o codeína <b>permite elegir el fármaco</b>.</p>
+    <p><b>Pasos:</b> 1. Interacción fármaco-receptor → 2. Transducción de señal → 3. Efecto farmacológico.</p>
+    <p><b>Dianas terapéuticas:</b> enzimas, receptores, metabolitos, ADN, proteínas estructurales. Los receptores pueden estar en membrana externa, citoplasma o núcleo.</p>`],
+   ["Tipos de receptores",`
+    ${tiles([["1. Asociados a canal iónico","Señalización rápida."],["2. Con actividad enzimática","Normalmente con sitio extracelular para la unión."],["3. Asociados a proteína G","Regulan indirectamente la actividad de una enzima o canal en la membrana."]])}
+    ${T(["Grupo","Ejemplos","Canal","Efecto","Indicación"],[["Antagonistas del Ca²⁺","Verapamilo, nifedipino, diltiazem","Canales de Ca²⁺","Inhibición","Corazón, circulación"],["Antidiabéticos orales","Tolbutamida, carbutamida, glibenclamida","Canales de K⁺ ATP-dependientes","Inhibición","Diabetes mellitus"],["Benzodiacepinas","Diazepam, flunitrazepam","Canales de Cl⁻ activados por GABA","Estimulación","Miedos, ansiedad, problemas de sueño"],["Anestésicos locales y antiarrítmicos","Lidocaína, procainamida, quinidina","Canales de Na⁺","Bloqueo","Anestesia local, problemas de ritmo cardiaco"],["Relajantes musculares","Tubocurarina, pancuronio","Canales activados por ACh","Bloqueo","Relajación muscular"],["Diuréticos","Amilorida, triamtereno","Canales epiteliales de Na⁺","Bloqueo","Edema"]])}`],
+   ["Especificidad y tipos de unión",`
+    ${D("<b>Especificidad:</b> selectividad con la que un fármaco se une a un receptor determinado y no a otro. Es recíproca. Ningún fármaco tiene una acción totalmente específica: puede actuar sobre varias dianas (de ahí efectos adversos, pero también nuevos usos).")}
+    ${T(["Uniones reversibles","Uniones irreversibles"],[["Interacciones iónicas (cargas opuestas), puentes de hidrógeno, interacciones hidrofóbicas, fuerzas de Van der Waals (dipolo-dipolo)","Enlaces covalentes: citostáticos (teratógenos, cancerígenos, inmunógenos)"]])}`],
+   ["Afinidad, curvas dosis-respuesta, eficacia y potencia",`
+    <div class="formula">KD = [P]·[R] / [complejo P-R]</div>
+    ${UL(["<b>KD (constante de disociación):</b> concentración de fármaco libre a la cual la mitad de los receptores están ocupados. Es la medida de la afinidad (a menor KD, mayor afinidad).","Ecuación del efecto: <span class='mono'>E = Emax · C / (EC50 + C)</span>; ED50 = dosis efectiva 50.","La curva concentración-respuesta es una <b>hipérbola</b>; con log de la concentración se vuelve <b>sigmoide</b>."])}
+    ${T(["","Eficacia","Potencia"],[["Qué mide","Fuerza del efecto; efecto máximo","Cantidad necesaria para el efecto; se mide con la EC50"],["Importancia terapéutica","Importante","Menos importante"]])}
+    <p><b>Seguridad (pendiente de la curva):</b> indica cuánto hay que variar la dosis para modificar la respuesta. Una pendiente pronunciada significa que un pequeño incremento de dosis produce un gran cambio en la respuesta.</p>`],
+   ["Agonistas, antagonistas y sinergismo",`
+    ${tiles([["Agonista","Produce un efecto estimulando al receptor."],["Antagonista","Bloquea al receptor; reduce o elimina el efecto de los agonistas."],["Agonista parcial","El receptor tiene dos conformaciones (R y R'). Aunque ocupe todos los receptores, el efecto es menor al máximo."]])}
+    <h4>Tipos de antagonismo</h4>
+    ${UL(["<b>Competitivo</b>","<b>No competitivo:</b> funcional/fisiológico, químico, alostérico, farmacocinético"])}
+    <h4>Sinergismo</h4>
+    <p>Efecto de dos agonistas en conjunto que desencadenan el mismo efecto macroscópico: <b>aditivo</b> o <b>potenciación</b> (el efecto combinado supera la suma).</p>`]
+  ],
+  cards:[["Tres pasos de la acción farmacodinámica","Interacción fármaco-receptor → transducción → efecto."],["Cinco dianas terapéuticas","Enzimas, receptores, metabolitos, ADN, proteínas estructurales."],["Tipo de receptor con señalización más rápida","Asociado a canal iónico."],["Las benzodiacepinas actúan en…","Canales de Cl⁻ activados por GABA (estimulación)."],["Define KD","Concentración de fármaco libre a la que el 50 % de los receptores están ocupados; mide afinidad."],["Eficacia vs potencia","Eficacia = efecto máximo (importante). Potencia = EC50 (menos importante)."],["Agonista parcial","Aun ocupando todos los receptores, su efecto es menor al máximo."],["Ejemplo de unión irreversible","Enlace covalente de los citostáticos."],["Tipos de antagonismo no competitivo","Funcional/fisiológico, químico, alostérico y farmacocinético."]],
+  quiz:[
+   {q:"La lidocaína actúa bloqueando canales de:",o:["Ca²⁺","K⁺","Na⁺","Cl⁻"],a:2,e:"Anestésicos locales y antiarrítmicos bloquean canales de Na⁺."},
+   {q:"Un fármaco con menor EC50 que otro es:",o:["Más eficaz","Más potente","Más seguro","Más específico"],a:1,e:"La potencia se mide con la EC50."},
+   {q:"Graficar la respuesta contra el log de la concentración da una curva:",o:["Hiperbólica","Lineal","Sigmoide","Exponencial"],a:2,e:"Hipérbola con concentración; sigmoide con log."},
+   {q:"Las sulfonilureas (tolbutamida, glibenclamida) actúan sobre:",o:["Canales de K⁺ ATP-dependientes","Canales de Na⁺ epiteliales","Receptores acoplados a proteína G","Canales de Cl⁻"],a:0,e:"Inhiben canales de K⁺ dependientes de ATP."},
+   {q:"Dos agonistas cuyo efecto combinado supera la suma muestran:",o:["Antagonismo químico","Potenciación","Efecto aditivo","Agonismo parcial"],a:1,e:"Sinergismo por potenciación."}]
+},
+{ id:"posologia", n:"3.1", title:"Posología", group:"Bases", slides:9, slidesLabel:"9 diapositivas (pptx)",
+  lead:"Concentraciones, porcentajes y reglas de tres para calcular dosis. Incluye calculadora y los ejercicios de clase resueltos.",
+  key:["Concentración: cantidad de soluto (fármaco) disuelta en una cantidad de disolvente.","% p/v = g de soluto en 100 ml. Un suero glucosado al 5 % tiene 5 g por cada 100 ml.","Regla de tres: X = D × V / T (dosis deseada × vehículo ÷ dosis del contenedor)."],
+  sections:[
+   ["Concentración y porcentajes",`
+    ${D("<b>Concentración:</b> cantidad de soluto (fármaco) disuelta en una determinada cantidad de disolvente.")}
+    ${T(["Expresión","Significado","Ejemplo"],[["Masa/volumen","mg o g por ml","2 mg/ml"],["% peso en peso (p/p)","g de soluto / 100 g de disolución","Pomada al 1 %"],["% peso en volumen (p/v)","g de soluto / 100 ml de disolución","Suero glucosado 5 % = 5 g/100 ml"],["% volumen en volumen (v/v)","ml de soluto / 100 ml de disolución","Alcohol al 70 %"]])}`],
+   ["Regla de tres para dosificar",`
+    <p>Se plantean 3 variables conocidas y una incógnita, con una proporcionalidad conocida entre dos de los datos:</p>
+    <p><b>T</b> = dosis del contenedor (dosis obtenida), <b>V</b> = vehículo (forma farmacéutica o cantidad), <b>D</b> = dosis deseada.</p>
+    <div class="formula">X (cantidad a administrar) = D × V / T</div>
+    <div class="tool" id="calc"></div>`],
+   ["Ejercicios de clase resueltos",`<div id="exs"></div>`]
+  ],
+  cards:[["Fórmula de regla de tres para dosis","X = D × V / T (deseada × vehículo ÷ dosis del contenedor)."],["¿Qué significa 5 % p/v?","5 g de soluto en 100 ml de disolución."],["% v/v","ml de soluto por cada 100 ml de disolución."],["Cefaclor 125 mg/5 ml, se piden 60 mg","2.4 ml."],["Albúmina al 20 %: ¿cuántos g hay en un frasco de 50 ml?","10 g (20 g por cada 100 ml)."]],
+  quiz:[
+   {q:"Amoxicilina 250 mg/5 ml; dosis indicada 375 mg. ¿Cuántos ml?",o:["5 ml","6.5 ml","7.5 ml","10 ml"],a:2,e:"375 × 5 / 250 = 7.5 ml."},
+   {q:"¿Cuántos gramos de glucosa hay en 500 ml de suero glucosado al 10 %?",o:["5 g","10 g","50 g","100 g"],a:2,e:"10 g/100 ml × 500 ml = 50 g."},
+   {q:"Niño de 20 kg, paracetamol 15 mg/kg cada 6 h. Dosis diaria:",o:["300 mg","900 mg","1200 mg","1500 mg"],a:2,e:"20 × 15 = 300 mg por toma × 4 tomas = 1200 mg/día."},
+   {q:"En la fórmula X = D × V / T, ¿qué es T?",o:["Tiempo de infusión","Dosis contenida en el envase","Dosis deseada","Volumen total"],a:1,e:"T = dosis del contenedor o dosis obtenida."}]
+},
+{ id:"rams", n:"4", title:"Reacciones adversas a medicamentos (RAM)", group:"Seguridad", slides:25,
+  lead:"Definición de RAM, efecto secundario vs colateral, reacciones idiosincrásicas y alérgicas, susceptibilidad y teratogenicidad.",
+  key:["RAM (OMS): reacción nociva no intencionada a dosis normalmente usadas en humanos.","Efecto secundario: por la acción primaria del fármaco. Efecto colateral: parte de la acción farmacológica, en otro órgano o sistema.","Categorías FDA en embarazo: A (sin riesgo), B, C, D, X (contraindicado).","Warfarina: máxima sensibilidad entre las semanas 6 y 12; talidomida (1957) es el ejemplo histórico."],
+  sections:[
+   ["Definición",`
+    ${D("<b>RAM:</b> «Respuesta nociva y no intencionada a un medicamento».<br><b>OMS:</b> «Cualquier reacción nociva no intencionada que aparece a <span class='mark'>dosis normalmente usadas</span> en el ser humano para profilaxis, diagnóstico, tratamiento o para modificar funciones fisiológicas».")}
+    ${UL(["La mayoría son evitables.","No hay medicamentos exentos de riesgos.","Siempre se hace una evaluación riesgo-beneficio.","Mecanismos: farmacocinéticos (lo que el cuerpo hace al fármaco) o farmacodinámicos (lo que el fármaco hace al cuerpo)."])}`],
+   ["Tipos de reacción",`
+    ${T(["Tipo","Definición"],[["Efecto secundario","Se produce por la <b>acción primaria</b> del fármaco. Representa un daño temporal o permanente durante y/o después del efecto curativo. Negativo."],["Efecto colateral","Forma parte de la <b>acción farmacológica</b> del medicamento y suele manifestarse en <b>otro órgano o sistema</b> (ejemplo de clase: aspirina)."],["Reacción idiosincrásica","Factores genéticos: respuesta anormal de ciertos individuos."],["Reacción alérgica","El fármaco o sus metabolitos adquieren carácter antigénico."]])}
+    <h4>Susceptibilidad</h4>
+    <p>Edad, género, embarazo, factores farmacogenéticos, comorbilidad (hígado, riñón) y comedicación.</p>
+    <h4>Dosis</h4>
+    ${T(["Dosis","Tipo de reacción"],[["Supraterapéutica","Tóxica"],["Terapéutica","Reacción adversa: efecto secundario (no acción farmacológica) o colateral (acción farmacológica)"],["Subterapéutica","Hipersensibilidad"]])}
+    <p><b>Tiempo:</b> reacciones tiempo-dependientes y tiempo-independientes.</p>`],
+   ["Teratogenicidad",`
+    ${D("<b>Teratogenicidad:</b> alteración morfológica, bioquímica o funcional inducida en el embarazo, detectada en la gestación.<br><b>Teratógeno:</b> agente que interfiere en el desarrollo normal del feto.")}
+    <p>El periodo embrionario (semanas 3 a 8) concentra la mayor susceptibilidad a malformaciones mayores; en el periodo fetal predominan defectos fisiológicos y menores. Caso histórico: <b>talidomida (1957)</b>.</p>
+    ${T(["Categoría FDA","Significado"],[["<span class='pill g'>A</span>","Sin riesgo aparente: estudios en los tres trimestres sin riesgo para embrión o feto. Pueden emplearse."],["<span class='pill g'>B</span>","Sin estudios en humanos; estudios en animales sin riesgo fetal, no extrapolables. Probablemente seguro."],["<span class='pill a'>C</span>","No descarta riesgo: no producen malformaciones orgánicas pero pueden causar alteraciones funcionales; en animales indican riesgo. Usar solo si el beneficio justifica el riesgo."],["<span class='pill r'>D</span>","Pruebas de riesgo: mayor incidencia de malformaciones. Sopesar riesgo/beneficio; evitar si hay alternativas."],["<span class='pill r'>X</span>","Contraindicados: riesgo elevado de malformaciones; no administrar ni siquiera en edad fértil."]])}`],
+   ["Fármacos teratógenos",`
+    ${T(["Agente","Efectos"],[["Aminopterina (antineoplásico)","Antagonista del ácido fólico; inhibe la mitosis de células de división rápida. Muerte intrauterina; 20–30 % sobrevive con malformaciones."],["Alcohol","Síndrome alcohólico fetal: retraso mental, alteraciones craneofaciales, retraso del crecimiento."],["Cocaína","Teratógeno de abuso."],["Anfetaminas (dextroanfetamina)","Malformaciones de brazos, piernas, genitourinarias, cardiacas y del aparato digestivo."],["Anticonvulsivantes (trimetadiona, ácido valproico, difenilhidantoína)","Alteran la transferencia de grupos metilo y la síntesis de ARN: cejas en V, orejas bajas, labio leporino, anomalías cardiacas, genitourinarias y de extremidades, retraso mental."],["Warfarina","Máxima sensibilidad entre las semanas 6 y 12: hemorragias en embrión o feto, anomalías del SNC, hipoplasia del cartílago nasal."],["Andrógenos y gestágenos","Virilización del feto femenino."],["Talidomida","Malformaciones de extremidades, oídos y órganos internos."],["Retinoides (isotretinoína)","Malformaciones del SNC, craneofaciales, cardiacas."],["Dietilestilbestrol","Adenosis y carcinoma vaginal en hijas."],["Tetraciclinas","Coloración y anomalías de los dientes."],["Litio","Malformaciones cardiacas."]])}`]
+  ],
+  cards:[["Definición de RAM según la OMS","Reacción nociva no intencionada a dosis normalmente usadas en humanos para profilaxis, diagnóstico, tratamiento o modificar funciones fisiológicas."],["Efecto secundario","Se produce por la acción primaria del fármaco; daño temporal o permanente."],["Efecto colateral","Parte de la acción farmacológica, aparece en otro órgano o sistema."],["Reacción idiosincrásica","Respuesta anormal de ciertos individuos por factores genéticos."],["Categoría FDA X","Contraindicado en el embarazo y en edad fértil."],["Ventana de máxima sensibilidad a warfarina","Semanas 6 a 12: hemorragias, anomalías del SNC, hipoplasia nasal."],["Aminopterina","Antagonista del folato: muerte intrauterina; 20–30 % sobrevive con malformaciones."],["Factores de susceptibilidad a RAM","Edad, género, embarazo, farmacogenética, comorbilidad, comedicación."]],
+  quiz:[
+   {q:"Una reacción adversa por dosis subterapéuticas sugiere:",o:["Toxicidad","Hipersensibilidad","Efecto colateral","Tolerancia"],a:1,e:"Subterapéutica → hipersensibilidad."},
+   {q:"Fármaco sin estudios en humanos y estudios en animales sin riesgo fetal:",o:["Categoría A","Categoría B","Categoría C","Categoría D"],a:1,e:"Categoría B: probablemente seguro."},
+   {q:"Cejas en V, orejas bajas y labio leporino se asocian a:",o:["Warfarina","Anticonvulsivantes","Tetraciclinas","Litio"],a:1,e:"Trimetadiona, ácido valproico, difenilhidantoína."},
+   {q:"La hipoplasia del cartílago nasal es típica de:",o:["Warfarina","Alcohol","Talidomida","Andrógenos"],a:0,e:"Warfarina, sobre todo semanas 6–12."},
+   {q:"El efecto colateral se caracteriza por:",o:["Ser siempre alérgico","Aparecer en otro órgano o sistema como parte de la acción farmacológica","Darse solo con sobredosis","Depender de factores genéticos"],a:1,e:"Forma parte de la acción farmacológica y se manifiesta en otro órgano."}]
+},
+{ id:"farmacovigilancia", n:"5", title:"Farmacovigilancia", group:"Seguridad", slides:40,
+  lead:"Detección, evaluación y prevención de riesgos de los medicamentos ya comercializados: clasificación de RAM, NOM-220 y algoritmo de Naranjo.",
+  key:["Farmacovigilancia: detección, evaluación y prevención de riesgos de los medicamentos una vez comercializados (fase IV).","Para detectar 1 caso de una RAM con incidencia 1/n con 95 % de probabilidad se necesitan unos 3n pacientes.","Clasificación de Rawlings y Thompson: A aumentada (80 %), B bizarra, C crónica, D retrasada, E fin de uso, F falla.","Severidad: leve, moderada, grave, letal. NOM-220-SSA1-2002 regula la farmacovigilancia en México."],
+  sections:[
+   ["Fases de los ensayos clínicos",`
+    ${T(["Fase","Descripción","Finalidad"],[["1","Administración a voluntarios sanos","Identificar acciones farmacológicas y RAM dosis-dependientes; perfil farmacocinético y farmacodinámico preliminar"],["2","Poblaciones seleccionadas de pacientes","Datos de eficacia y seguridad para una indicación; establecer dosis para la siguiente fase"],["3","Control exhaustivo antes de la aprobación","Seguimiento detallado de todos los efectos adversos, en especial gravedad y duración"],["4","Estudios postcomercialización","Identificar nuevas señales de seguridad; probar hipótesis"]])}`],
+   ["Definición y por qué hace falta",`
+    ${D("<b>Farmacovigilancia:</b> disciplina que se ocupa de la detección, evaluación y prevención de los riesgos asociados a los medicamentos una vez comercializados. Vigilancia continua del uso de medicamentos en humanos para detectar RAM, identificar factores de riesgo y prevenir sus riesgos.")}
+    ${T(["Incidencia de la RAM","Pacientes que hay que exponer"],[["1/100","300"],["1/500","1 500"],["1/1 000","3 000"],["1/5 000","15 000"],["1/10 000","30 000"],["1/50 000","150 000"]])}
+    <p class="src">Número de pacientes para hallar un caso con 95 % de probabilidad (siempre 3 × el denominador).</p>`],
+   ["Clasificación por mecanismo (Rawlings y Thompson)",`
+    ${T(["Tipo","Inglés","Características","Ejemplos"],[["<b>A</b>","Augmented","Aumentada, dosis-dependiente. Amplifica la acción farmacológica; predecible, frecuente (80 % de las RAM), poco grave, baja mortalidad; se identifica en ensayos clínicos","Hemorragia por anticoagulantes; irritación gástrica por AINE"],["<b>B</b>","Bizarre","Bizarra, dosis-independiente. Depende del paciente; poco frecuente, imprevisible, suele ser grave. Hipersensibilidad o idiosincrasia","Erupciones, vasculitis, anafilaxia"],["<b>C</b>","Chronic","Crónica, dosis y tiempo-dependiente. Tratamientos prolongados aumentan el riesgo de una enfermedad; difícil de relacionar","Resistencia a quimioterapia (topoisomerasa II)"],["<b>D</b>","Delayed","Retrasada, tiempo-dependiente; difícil de diagnosticar","Teratogénesis y carcinogénesis: metotrexato (tubo neural), IECA en embarazo"],["<b>E</b>","End of use","Fin de uso, por suspensión o abstinencia; incidencia baja","Opiáceos, antidepresivos, anticonvulsivantes"],["<b>F</b>","Failure","Falla inesperada de la farmacoterapia; dosis-dependiente, incidencia alta","Resistencia bacteriana a antibióticos"]])}`],
+   ["Clasificación por severidad",`
+    ${T(["Severidad","Criterios"],[["<span class='pill g'>Leve</span>","Signos y síntomas tolerados; normalmente sin tratamiento; no prolonga hospitalización ni afecta la actividad cotidiana. Puede o no requerir suspender el fármaco."],["<span class='pill a'>Moderada</span>","Sintomatología marcada, órganos vitales moderadamente afectados; interfiere con actividades sin amenazar la vida. Requiere tratamiento; puede requerir suspensión, hospitalización o urgencias."],["<span class='pill r'>Grave</span>","Pone en peligro la vida o disminuye sus expectativas; requiere o prolonga hospitalización; invalidez o incapacidad; malformaciones en el recién nacido."],["<span class='pill r'>Letal</span>","Contribuye directa o indirectamente a la muerte. Se reporta inmediatamente, aun sin relación causal establecida."]])}`],
+   ["NOM-220-SSA1-2002 y causalidad",`
+    <p><b>NOM-220-SSA1-2002, instalación y operación de la farmacovigilancia:</b> de observancia obligatoria en México para instituciones y profesionales de la salud, titulares del registro sanitario, comercializadores de medicamentos y remedios herbolarios, y unidades de investigación clínica.</p>
+    ${T(["Causalidad","Criterio"],[["Cierta","No se explica por la evolución natural, otra patología u otros fármacos; respuesta clínicamente evidente a la suspensión o reexposición."],["Probable","Difícilmente atribuible a otras causas; secuencia temporal razonable; respuesta razonable al suspender."],["Posible","También podría atribuirse a la enfermedad, otras patologías u otros fármacos; falta información sobre la suspensión."],["Dudosa","Relación improbable (no imposible); se explica mejor por otras causas."],["Condicional / inclasificable","Requiere más datos o están en análisis."],["No evaluable / inclasificable","Información insuficiente o contradictoria."]])}
+    <p>Los reportes se envían en el formato de COFEPRIS (www.cofepris.gob.mx).</p>`],
+   ["Algoritmo de Naranjo (calculadora)",`<div class="tool" id="naranjo"></div>
+    ${N("Puntos de corte tal como vienen en la diapositiva: definitiva &gt; 9, probable 5–8, posible 1–4, dudosa &lt; 0. En la versión original de Naranjo son ≥ 9 y ≤ 0, así que un 9 cuenta como definitiva y un 0 como dudosa.")}`]
+  ],
+  cards:[["Define farmacovigilancia","Detección, evaluación y prevención de los riesgos de los medicamentos una vez comercializados."],["RAM tipo A","Aumentada, dosis-dependiente, predecible; 80 % de las RAM (p. ej. hemorragia por anticoagulantes)."],["RAM tipo B","Bizarra, dosis-independiente, imprevisible, grave (hipersensibilidad o idiosincrasia)."],["RAM tipo E","Fin de uso: aparece al suspender (opiáceos, antidepresivos, anticonvulsivantes)."],["RAM tipo F","Falla inesperada de la terapia (resistencia bacteriana)."],["¿Cuántos pacientes para detectar una RAM 1/10 000?","30 000 (3 × el denominador)."],["Norma mexicana de farmacovigilancia","NOM-220-SSA1-2002."],["RAM letal: ¿cuándo se reporta?","Inmediatamente, aunque no se haya establecido la relación causal."],["Naranjo: puntuación de RAM probable","5 a 8 puntos."]],
+  quiz:[
+   {q:"La teratogénesis por metotrexato se clasifica como RAM tipo:",o:["A","B","D","F"],a:2,e:"Tipo D (delayed): retrasada, tiempo-dependiente."},
+   {q:"El 80 % de las RAM son de tipo:",o:["A","B","C","E"],a:0,e:"Tipo A, aumentadas."},
+   {q:"La resistencia bacteriana a antibióticos es una RAM tipo:",o:["C","D","E","F"],a:3,e:"Tipo F, falla de la farmacoterapia."},
+   {q:"RAM que impide la actividad habitual y prolonga la hospitalización:",o:["Leve","Moderada","Grave","Letal"],a:2,e:"Grave: pone en peligro la vida, requiere o prolonga hospitalización."},
+   {q:"En Naranjo, «¿Existen causas alternativas?» respondido «No» suma:",o:["−1","0","+1","+2"],a:3,e:"Pregunta 5: Sí = −1, No = +2."},
+   {q:"Para detectar una RAM de incidencia 1/500 se necesitan:",o:["500","1 000","1 500","5 000"],a:2,e:"1 500 pacientes."}]
+},
+{ id:"interacciones", n:"6", title:"Interacciones farmacológicas", group:"Seguridad", slides:25,
+  lead:"Cómo un fármaco, alimento o alcohol modifica la acción de otro: interacciones farmacocinéticas, farmacodinámicas, con alimentos y con etanol.",
+  key:["Interacción: modificación de la acción de un fármaco en magnitud o duración por la administración previa o concomitante de otra sustancia.","Más riesgo con fármacos de alta unión a proteínas (> 95 %) y estrecho margen terapéutico.","Alcalinizar la orina aumenta la eliminación de ácidos (salicilatos, barbitúricos); acidificarla, la de bases (anfetaminas, morfina).","Efecto antabús: metronidazol, cefalosporinas, ketoconazol, disulfiram con alcohol."],
+  sections:[
+   ["Definición y tipos",`
+    ${D("<b>Interacción farmacológica:</b> modificación de la acción de un fármaco en magnitud o en duración debido a la administración previa o concomitante de otra sustancia.")}
+    <p>La <b>politerapia</b> (sobre todo en adultos mayores) multiplica las interacciones. Pueden ser <b>positivas</b> (buscadas) o <b>negativas</b>, y por mecanismo <b>farmacocinéticas</b> o <b>farmacodinámicas</b> (en el receptor: agonista, antagonista).</p>
+    ${T(["Enfermedad","Combinación","Efecto (positivo)"],[["Hipertensión arterial","Tiazida + β-bloqueante","Potencia el efecto antihipertensivo"],["Infecciones urinarias","Sulfametoxazol + trimetoprima","Mayor espectro"],["Asma bronquial","Salbutamol + beclometasona","Potencia la acción farmacológica"]])}`],
+   ["Interacciones farmacocinéticas",`
+    ${T(["Proceso","Mecanismo"],[["Absorción","pH e ionización; formación de quelatos; motilidad intestinal (alteraciones del peristaltismo). Los antiácidos dificultan la absorción de fármacos ácidos (p. ej. aspirina)."],["Distribución","Formación de complejos inactivos; desplazamiento de proteínas plasmáticas. Peligro con alta unión (&gt; 95 %) y estrecho margen terapéutico."],["Metabolismo","Autoinducción, heteroinducción, inhibición enzimática (CYP)."],["Excreción","Alteración de la circulación enterohepática, de la reabsorción o secreción tubular, y del pH urinario."]])}
+    ${tiles([["Orina alcalina favorece eliminación de","Salicilatos, penicilinas, tiazidas, antidepresivos, metotrexato, barbitúricos."],["Orina ácida aumenta eliminación de","Anfetaminas, metformina, morfina."]])}
+    <h4>Alimentos y metabolismo</h4>
+    ${T(["Alimento","Efecto","Fármacos afectados"],[["Aguacate, brócoli, coliflor","Inducción enzimática","Acenocumarol, warfarina"],["Toronja / jugo de toronja","Inhibición enzimática","Alprazolam, amlodipino, astemizol, carbamazepina, ciclosporina, cisaprida, nifedipino, midazolam, saquinavir, tacrolimus, terfenadina"],["Soya","Inhibición enzimática","AINE, cafeína, clozapina, fenitoína, haloperidol, olanzapina, warfarina, zafirlukast"]])}`],
+   ["Horarios respecto a los alimentos",`
+    ${T(["Indicación","Significa"],[["En ayunas","1 h antes de comer o 2 h después de terminar de comer"],["Antes de comer","20–30 min antes"],["Durante las comidas","Durante o inmediatamente después de ingerir alimento"],["Después de las comidas","30–45 min después"]])}`],
+   ["Interacciones medicamento-alimento",`
+    ${T(["Alimento","Medicamento","Interacción"],[["Espinacas, coles de Bruselas, brócoli","Warfarina (antitrombótico)","Contienen vitamina K: disminuye la eficacia (antagonismo) <span class='pill r'>negativa</span>"],["Alimentos en general, ricos en grasa","Captopril, furosemida, hidroclorotiazida","Alteran la biodisponibilidad <span class='pill r'>negativa</span>"],["Leche","Penicilinas, dicloxacilina, ampicilina-sulbactam, amoxicilina-clavulanato, cefadroxilo, cotrimoxazol","Disminuye su biodisponibilidad <span class='pill r'>negativa</span>"],["Alimentos en general","Aspirina, AINE, metformina","Se recomienda tomarlos con alimentos <span class='pill g'>positiva</span>"]])}
+    ${T(["Medicamento","Efecto sobre el alimento/nutriente"],[["Anticonceptivos","Inhiben el metabolismo del café"],["Bisacodilo","Inhibe la absorción del calcio"],["Colestiramina","Inhibe la absorción de vitaminas A, D, E, K y complejo B"],["Furosemida, hidroclorotiazida","Pérdida de Na, K, Cl, Mg (calambres)"],["Fenitoína","Inhibe la absorción del complejo B"]])}`],
+   ["Interacciones con alcohol (etanol)",`
+    <p>El etanol se metaboliza en el hígado: alcohol deshidrogenasa → acetaldehído → aldehído deshidrogenasa → ácido acético. El <b>disulfiram</b> bloquea la aldehído deshidrogenasa; se acumula acetaldehído.</p>
+    ${D("<b>Efecto antabús (disulfiram):</b> síntomas al ingerir alcohol tras ciertos fármacos que interfieren con su metabolismo y acumulan acetaldehído: rubicundez facial, cefalea, vértigo, náuseas, diaforesis, taquicardia, hipotensión, síncope. Fármacos: disulfiram, metronidazol, cloranfenicol, isoniazida, ketoconazol, nitrofurantoína, sulfonamidas, tolbutamida, cefalosporinas (cefamandol, cefoperazona, cefotetán).")}
+    ${T(["Alcohol +","Consecuencia"],[["Ácido acetilsalicílico","Mayor riesgo de lesión de la mucosa gástrica"],["Paracetamol","Riesgo de hepatotoxicidad"],["Analgésicos opioides","Depresión respiratoria y del SNC"],["Antihistamínicos","Sedación; altera la función motora"],["Barbitúricos","Potencia la depresión del SNC y respiratoria"],["Benzodiacepinas","Sedación, depresión respiratoria"],["Biguanidas","Posible hipoglucemia"],["Cimetidina, ranitidina","Riesgo de intoxicación etílica / mayor embriaguez"],["Fenitoína, fenobarbital","Aumentan sus niveles séricos: riesgo de toxicidad"],["Ketoconazol","Efecto antabús y hepatotoxicidad"],["Metronidazol, cefalosporinas","Efecto antabús"],["Doxiciclina, penicilina G, rifampicina, warfarina","Disminuye su actividad"],["Anticonceptivos","Sedación"]])}
+    <p>Para buscar interacciones se usan softwares de biblioteca, gratuitos o de paga.</p>`]
+  ],
+  cards:[["Define interacción farmacológica","Modificación en magnitud o duración de la acción de un fármaco por otra sustancia previa o concomitante."],["Dos características de fármacos con interacciones peligrosas por desplazamiento proteico","Unión > 95 % y estrecho margen terapéutico."],["La orina alcalina favorece la eliminación de…","Salicilatos, penicilinas, tiazidas, antidepresivos, metotrexato, barbitúricos."],["La orina ácida aumenta la eliminación de…","Anfetaminas, metformina, morfina."],["«En ayunas» significa","1 h antes o 2 h después de comer."],["Jugo de toronja","Inhibe enzimas (CYP): ciclosporina, nifedipino, midazolam, etc."],["Espinacas + warfarina","Vitamina K: disminuye la eficacia de la warfarina."],["¿Qué es el efecto antabús?","Acumulación de acetaldehído al beber alcohol con disulfiram, metronidazol, cefalosporinas, ketoconazol…"],["Ejemplo de interacción positiva en asma","Salbutamol + beclometasona."]],
+  quiz:[
+   {q:"La leche disminuye la biodisponibilidad de:",o:["Metformina","Amoxicilina-clavulanato","Aspirina","Captopril"],a:1,e:"Leche ↓ biodisponibilidad de penicilinas y cefadroxilo, cotrimoxazol."},
+   {q:"«Antes de comer» significa:",o:["1 h antes","20–30 min antes","Inmediatamente antes","2 h antes"],a:1,e:"20–30 min antes."},
+   {q:"¿Qué fármaco NO produce efecto antabús?",o:["Metronidazol","Ketoconazol","Paracetamol","Cefoperazona"],a:2,e:"El paracetamol + alcohol da hepatotoxicidad, no efecto antabús."},
+   {q:"Los antiácidos dificultan la absorción de:",o:["Fármacos básicos","Fármacos ácidos","Vitaminas","Proteínas"],a:1,e:"Antiácidos ↓ absorción de fármacos ácidos (aspirina)."},
+   {q:"El aguacate y el brócoli interactúan con la warfarina por:",o:["Inhibición enzimática","Inducción enzimática","Quelación","Desplazamiento proteico"],a:1,e:"Inducción enzimática (y aporte de vitamina K)."},
+   {q:"La colestiramina inhibe la absorción de:",o:["Calcio","Hierro","Vitaminas A, D, E, K y complejo B","Sodio"],a:2,e:"Vitaminas liposolubles y complejo B."}]
+},
+{ id:"antiinflamatorios", n:"7", title:"Antiinflamatorios y analgésicos", group:"Fármacos", slides:94,
+  lead:"Farmacología del dolor e inflamación: mediadores, AINE (COX-1 y COX-2), paracetamol, glucocorticoides y analgésicos opioides.",
+  key:["AINE inhiben la ciclooxigenasa; corticoides inhiben la fosfolipasa A2 (bloquean prostaglandinas y leucotrienos).","COX-1 es constitutiva (mucosa gástrica, plaquetas, riñón); COX-2 es inducible en la inflamación.","Coxibs: contraindicados en enfermedad cardiovascular por riesgo de IAM e ictus.","AAS en niños con infección viral: síndrome de Reye.","Receptor μ: analgesia, depresión respiratoria, estreñimiento, euforia, sedación, dependencia. Antídoto: naloxona."],
+  sections:[
+   ["Inflamación y mediadores",`
+    <p><b>Agentes inflamatorios:</b> biológicos; los que producen necrosis: físicos (radiaciones, frío, calor), químicos (venenos, toxinas), traumatismos y cuerpos extraños; alteraciones inmunitarias (hipersensibilidad).</p>
+    <p><b>Mediadores:</b> químicos, celulares y plasmáticos.</p>
+    ${T(["Mediador químico","Ejemplo"],[["Aminas","Histamina"],["Lípidos","Prostaglandinas, leucotrienos"],["Péptidos pequeños","Bradicinina (BK)"],["Péptidos grandes","Linfocinas: IL-1"]])}
+    <h4>Cascada del ácido araquidónico</h4>
+    <p>Fosfolípidos de membrana → (<b>fosfolipasa A2</b>, inhibida por <b>corticoides</b>) → ácido araquidónico →</p>
+    ${UL(["<b>Ciclooxigenasa</b> (COX-1 fisiológica, COX-2; inhibida por <b>AINE</b>) → PGG2/PGH2 → PGE2 (fiebre, dolor, función renal, protección gástrica), PGD2 (quimiotáctico), PGF2α (cérvix), PGI2/prostaciclina (antiagregante), tromboxano A2 (vasoconstricción, agregación plaquetaria).","<b>Lipooxigenasa</b> → leucotrieno B4 (quimiotáctico); C4, D4, E4 (broncoconstricción, aumentan permeabilidad vascular); lipoxinas A4, B4 (inhiben la inflamación)."])}
+    <h4>Acciones de las prostaglandinas (mediadores locales)</h4>
+    ${UL(["PGE2 estimulada por infección o hipersensibilidad: fiebre y dolor.","PGE2 y PGF2α: síntesis de moco protector en estómago e intestino.","PGI2: inhibe la secreción ácida gástrica.","TXA2 promueve la agregación plaquetaria; PGI2 la inhibe."])}`],
+   ["AINE: COX-1 vs COX-2",`
+    ${T(["","COX-1","COX-2"],[["Expresión","Constitutiva: mayoría de tejidos, mucosa gástrica, plaquetas, riñón","Inducible durante la inflamación (también constitutiva en SNC y riñón)"],["Funciones","Protección gástrica, agregación plaquetaria, función renal, homeostasis vascular","Genera PGI2 en endotelio (cardioprotectora, vasodilatadora, antiagregante); dolor e inflamación"],["Al inhibirla","Mayor toxicidad gastrointestinal, menor agregación plaquetaria, afecta función renal","Analgesia principalmente; riesgos cardiovasculares"],["Gen","Cromosoma 9","Cromosoma 1"]])}
+    <p>El AAS bloquea la COX plaquetaria durante 5–7 días: las plaquetas no tienen núcleo y no pueden producir más COX.</p>
+    ${D("<b>Recuerda:</b> los coxibs (celecoxib, etoricoxib; valdecoxib y rofecoxib retirados) están contraindicados en pacientes con enfermedad cardiovascular, por riesgo de infarto agudo de miocardio (IAM) e ictus.")}
+    ${T(["Grupo químico","Fármacos","Ventaja / desventaja"],[["Salicilatos","Aspirina, salicilatos, diflunisal","Bajo costo, larga historia de seguridad / trastornos GI altos frecuentes"],["Pirazolonas","Fenilbutazona, metamizol","Potentes / toxicidad"],["Ácidos indolacéticos","Indometacina, sulindaco, tolmetina","Muy potentes; usar solo si otros fallan; trastornos del SNC frecuentes"],["Ácidos propiónicos","Ibuprofeno, naproxeno, ketoprofeno, fenoprofeno","Menor toxicidad y mejor aceptación"],["Oxicams","Piroxicam, meloxicam","Vida media larga: 1–2 dosis diarias"],["Fenamatos","Ácido mefenámico, meclofenamato","—"],["Inhibidores COX-2","Celecoxib, etoricoxib","Menos daño GI / riesgo cardiovascular"]])}`],
+   ["Paracetamol, ketorolaco y AINE en situaciones especiales",`
+    ${tiles([["Paracetamol (acetaminofén)","Analgésico y antipirético fuerte, antiinflamatorio débil (no ácido, paraaminofenol). Dosis tóxica: metabolito NAPQI por CYP2E1/1A2/3A4 → hepatotoxicidad; antídoto N-acetilcisteína. Nivel 1 de dolor crónico: permite terapia a largo plazo."],["Metamizol (pirazolona)","«La mejor alternativa» analgésica; riesgo de agranulocitosis y anemia aplásica."],["Ketorolaco","Uso continuo limitado a 3–5 días; algunos expertos no lo recomiendan más de 2 días seguidos ni más de 150 mg totales (c/ampolleta = 30 mg)."],["Ibuprofeno en embarazo","Contraindicado desde la semana 24 (puede cerrar prematuramente el conducto arterioso y reducir líquido amniótico); antes de la semana 24, uso repetido puede afectar los óvulos de un feto femenino."]])}
+    ${D("<b>Síndrome de Reye:</b> AAS en infecciones virales (niños) → hígado graso con encefalopatía, hepatitis fulminante, edema cerebral. Síntomas: diarrea, taquicardia, vómitos, fatiga, confusión, convulsiones, pérdida del conocimiento.")}
+    <p><b>AINE y riñón:</b> en estados que elevan los vasoconstrictores (enfermedad renal o cardiovascular, cirrosis, nefrosis, insuficiencia cardiaca, diuréticos) las PG antagonizan la vasoconstricción intrarrenal. Al inhibir las PG, los AINE dejan la vasoconstricción sin oposición: menos eliminación de Na⁺ y cambio del tono vascular.</p>
+    <p><b>Interacciones de salicilatos:</b> antiácidos ↓ absorción de aspirina; con heparina o anticoagulantes orales → hemorragia; con probenecid (uricosúrico) y sulfinpirazona ↓ excreción de urato (contraindicado en gota); desplazan bilirrubina, fenitoína, naproxeno, tiopental, tiroxina → mayor concentración, vida media y toxicidad.</p>
+    <p><b>¿Cuál AINE dar?</b> Para dolor osteoarticular conviene iniciar con paracetamol. Diclofenaco: artritis, episodios graves, migraña. Paracetamol: cefalea, fiebre. Ibuprofeno: dolor muscular.</p>`],
+   ["Fichas de AINE",`
+    ${T(["Fármaco","Datos clave de clase"],[["Diclofenaco","Inhibe la síntesis de PG por inactivación reversible de la COX. Artritis reumatoide, osteoartritis, espondilitis, gota aguda, cólico renal. Adultos VO 50–100 mg inicial, mantenimiento 50 mg c/8–12 h, máx. 200 mg/día; rectal 100 mg/día; IM (cólico nefrítico) 75 mg. Niños 1–12 años: 2–3 mg/kg/día c/12 h. RAM: dispepsia, pirosis, hepatotoxicidad, cefalea, vértigo; hipersensibilidad (asma, pólipos nasales). Sobredosis: lavado gástrico, carbón activado."],["Celecoxib","Inhibidor COX-2. Artritis, espondilitis, dolor agudo, dismenorrea. VO 50–400 mg; osteoartritis 200 mg/día; artritis reumatoide 100–200 mg c/12 h. Toxicidad: letargo, náusea, dolor epigástrico; carbón activado 4 h tras ingerir."],["Paracetamol","VO/IV, T-A 4–6–8 h. Tóxico: NAPQI hepático; N-acetilcisteína. Contraindicado en hepatopatía."],["Ketorolaco","Potente analgésico; máximo 3–5 días."],["Tarea de exposición","AAS, celecoxib, diclofenaco, ibuprofeno, ketorolaco, meloxicam, naproxeno, paracetamol, piroxicam: presentaciones, indicaciones, dosis, efectos adversos, contraindicaciones, interacciones, categoría en embarazo, mecanismo."]])}`],
+   ["Glucocorticoides",`
+    <p><b>Eje hipotálamo-hipófisis-suprarrenal:</b> CRH → ACTH → corteza suprarrenal. Zona glomerular → mineralocorticoides (aldosterona: Na⁺/K⁺); fascicular → glucocorticoides (cortisol: metabolismo); reticular → andrógenos (DHEA). Médula → adrenalina y noradrenalina.</p>
+    ${T(["Efecto","Detalle"],[["Metabólico","Favorecen gluconeogénesis, catabolismo de proteínas y lipólisis; antiinsulínicos (hiperglucemia)."],["Células sanguíneas","↓ eosinófilos, monocitos, linfocitos; ↑ hemoglobina, plaquetas, eritrocitos."],["Resistencia al estrés","Elevan glucosa (energía) y moderadamente la presión arterial."],["Antiinflamatorio e inmunosupresor","Inhiben la fosfolipasa A2 (bloquean PG y leucotrienos); ↓ linfocitos y macrófagos periféricos; inhiben activación, migración y proliferación de células T, citocinas y anticuerpos."]])}
+    ${T(["Acción","Duración","Fármacos (potencia)"],[["Corta","8–12 h","Hidrocortisona, cortisona (baja potencia)"],["Intermedia","12–36 h","Prednisona, prednisolona, metilprednisolona, triamcinolona, deflazacort (intermedia)"],["Prolongada","&gt; 36 h","Dexametasona, betametasona, parametasona (alta potencia)"]])}
+    ${T(["Glucocorticoide","Potencia gluco","Potencia mineralo","Dosis equivalente (mg)"],[["Cortisol / hidrocortisona","0.8","0.8","25"],["Cortisona","1","1","20"],["Prednisona / prednisolona","4","0.25","5"],["Metilprednisolona","5","&lt; 0.01","4"],["Triamcinolona","5","0","4"],["Betametasona","30–40","&lt; 0.01","0.75"],["Dexametasona","25","&lt; 0.01","0.6"]])}
+    <h4>Farmacocinética</h4>
+    ${UL(["Oral: la mayoría se absorbe bien (~30 min); elección en tratamientos crónicos.","IV: elección en emergencias (asma, choque séptico).","IM: absorción lenta, efecto de semanas (triamcinolona).","Local: intraarticular, tópica (lipofílicos; atrofia dérmica, estrías), inhalada (fluticasona, beclometasona; asma/EPOC).","Metabolismo hepático 99 %, excreción renal 1 %."])}
+    <h4>Usos</h4>
+    <p><b>Reemplazo</b> (Addison, hiperplasia suprarrenal congénita, extirpación glandular) y <b>paliativo</b> (inflamación crónica, fenómenos inmunes): agudos (descompensación de asma/EPOC, anafilaxia, choque, SDRA, edema cerebral) y crónicos (enfermedades reumáticas, respiratorias, alérgicas, trasplante, neoplasias). Dexametasona/betametasona: maduración pulmonar fetal. También lupus, artritis, psoriasis, colitis ulcerosa, Crohn, leucemias, linfoma, mieloma, anemia hemolítica, hepatitis.</p>
+    <h4>Efectos adversos</h4>
+    ${UL(["<b>Supresión brusca:</b> agravamiento de la enfermedad, insuficiencia suprarrenal aguda, síndrome de supresión (mialgia, artralgia, fiebre, malestar).","<b>Dosis crónicas:</b> 2 semanas de dosis suprafisiológicas alteran el eje HHS.","Hiperglucemia y glucosuria, supresión del crecimiento, úlcera péptica, efectos oculares (cataratas, glaucoma), edema e hipopotasemia, redistribución de grasa (síndrome de Cushing), infecciones, estrías, acné, osteoporosis, HTA."])}
+    <p><b>Interacciones:</b> con AINE potencian efectos GI; inhiben a IECA y ARA II; con diuréticos mayor pérdida de K⁺.</p>
+    <p><b>Prednisona (ficha):</b> 5, 20, 50 mg VO. Asma, Addison, enfermedades inmunoalérgicas e inflamatorias, síndrome nefrótico. Adultos 40–60 mg/día en 1–2 tomas por 3–10 días. Rifampicina, fenitoína y fenobarbital aumentan su metabolismo; antiácidos ↓ absorción; con digitálicos ↑ arritmias. Puede reactivar tuberculosis; evitar contacto con varicela o sarampión.</p>
+    <p class="src">Tarea: betametasona, cortisona, dexametasona, mometasona, metilprednisolona.</p>`],
+   ["Analgésicos opioides",`
+    <p><b>Papaver somniferum</b> (euforia, analgesia, sueño, antidiarreico): morfina (analgésico, antidiarreico, espasmógeno), codeína (analgésico, antitusígeno), noscapina (antitusígeno).</p>
+    <p>Receptores de membrana en SNC, terminaciones nerviosas periféricas y células digestivas: μ, κ, δ (y σ). Acoplados a proteína Gi: ↓ AMPc, cierran canales de Ca²⁺ presinápticos (menos glutamato) y abren canales de K⁺ postsinápticos (hiperpolarización) entre la 1.ª y 2.ª neurona nociceptiva.</p>
+    ${T(["Receptor","Efectos"],[["μ (mu)","Analgesia supraespinal y espinal, depresión respiratoria, estreñimiento, euforia, sedación, dependencia"],["δ (delta)","Analgesia, proconvulsionante; modulación de hormonas"],["κ (kappa)","Analgesia espinal, sedación, disforia, alucinaciones (psicotomiméticos)"]])}
+    ${T(["Clase","Fármacos"],[["Agonistas puros","Morfina, codeína, oxicodona, hidromorfona, metadona, fentanilo, meperidina, tramadol, loperamida"],["Agonista-antagonista","Nalbufina, pentazocina, butorfanol"],["Agonista parcial","Buprenorfina"],["Antagonistas puros","Naloxona, naltrexona"]])}
+    ${T(["Fármaco","Clave"],[["Morfina","Analgesia, depresión respiratoria, supresión de la tos, miosis. Absorción oral lenta, gran primer paso; IM, SC, IV. Atraviesa todos los tejidos (incluido feto). Eliminación renal."],["Metadona","Oral, IV, SC, rectal. Menos euforia, duración prolongada. Síndrome de abstinencia en adictos a heroína o morfina (reducción paulatina)."],["Fentanilo","80–100 veces más potente que morfina. Anestesia; acción rápida, efecto breve (15–30 min). IV, epidural (posoperatorio, parto), oral transmucoso (cáncer), parches transdérmicos."],["Oxicodona","Agonista puro μ, κ, δ: analgésico, ansiolítico, sedante. Oral, SC, IV. Dolor intenso por cáncer."],["Tramadol","Receptor μ. Dolor moderado a moderadamente intenso; menor depresión respiratoria. En ancianos bajar dosis (eliminación renal)."],["Heroína","Morfina acetilada; muy liposoluble, cruza la BHE: euforia intensa. Se transforma en morfina; dura 50 % más. Ningún uso médico autorizado."]])}
+    <h4>Antagonistas</h4>
+    ${UL(["<b>Naloxona:</b> revierte coma y depresión respiratoria por sobredosis; desplaza al opioide (10 veces más afín); actúa en 30 s por vía IV. Sobredosis masiva: "+dose("0.8 mg IV c/2–3 min")+" o infusión de 2 mg en 500 ml. Menos severa: "+dose("0.2 mg IV + 0.1 mg c/2 min")+".","<b>Naltrexona:</b> dura más (48 h); programas de mantenimiento en dependientes a opioides. Hepatotóxica."])}
+    <p><b>Toxíndrome opioide (tríada):</b> depresión respiratoria, depresión del sensorio, miosis puntiforme (también bradicardia, hipotermia, ruidos intestinales disminuidos).</p>
+    <h4>Escalera analgésica</h4>
+    ${T(["Escalón","Tratamiento"],[["I","Analgésicos no opioides (paracetamol, AINE, metamizol) ± coanalgésicos"],["II","Opioides débiles (codeína, tramadol) ± coanalgésicos ± escalón I"],["III","Opioides potentes (morfina, oxicodona, fentanilo, metadona, buprenorfina, hidromorfona)"],["IV","Métodos invasivos ± coanalgésicos"]])}
+    <p><b>Techo analgésico:</b> los opioides fuertes no tienen efecto techo; los débiles sí (al igual que ibuprofeno y AAS/paracetamol).</p>
+    <p><b>Farmacocinética:</b> A: SC, IM, oral (primer paso), mucosa oral, insuflación nasal. D: tejidos perfundidos; músculo esquelético como reservorio. M: hepático. E: renal.</p>
+    <p><b>Interacciones:</b> con IMAO ↑ síndrome serotoninérgico; inductores CYP3A4 (rifampicina) ↓ efecto; inhibidores (ritonavir, ketoconazol, fluconazol) y BZD, alcohol, antihistamínicos ↑ efecto. Agonista + agonista-antagonista se antagonizan.</p>
+    ${T(["Término","Definición"],[["Tolerancia","Necesidad de dosis mayores para mantener el efecto"],["Dependencia psíquica","Necesidad de consumir el opioide para obtener sus efectos o evitar los negativos de la privación"],["Dependencia física","Estado adaptativo fármaco-receptor con abstinencia al suspender"],["Adicción","Trastorno neurobiológico crónico: uso aberrante con comportamiento social inadaptado"],["Síndrome de abstinencia","Estado transitorio con alteraciones de conciencia, cognición, percepción, afecto y respuestas fisiológicas"]])}
+    <p class="src">Tarea: buprenorfina, fentanilo, tramadol, morfina.</p>`]
+  ],
+  cards:[["¿Qué enzima inhiben los corticoides?","Fosfolipasa A2 (bloquean PG y leucotrienos)."],["¿Qué enzima inhiben los AINE?","Ciclooxigenasa (COX-1 y/o COX-2)."],["Efectos de inhibir COX-1","Toxicidad GI, menor agregación plaquetaria, afectación renal."],["¿Por qué el efecto antiagregante del AAS dura 5–7 días?","Las plaquetas no tienen núcleo y no sintetizan más COX."],["Contraindicación de coxibs","Enfermedad cardiovascular (riesgo de IAM e ictus)."],["Síndrome de Reye","AAS + infección viral en niños: hígado graso con encefalopatía."],["Metabolito tóxico del paracetamol y antídoto","NAPQI; N-acetilcisteína."],["Ketorolaco: duración máxima","3–5 días (algunos: no más de 2 días ni 150 mg totales)."],["Corticoides de acción prolongada","Dexametasona y betametasona (> 36 h, alta potencia)."],["Efectos del receptor μ","Analgesia, depresión respiratoria, estreñimiento, euforia, sedación, dependencia."],["Potencia del fentanilo","80–100 veces la de la morfina."],["Naloxona en sobredosis masiva","0.8 mg IV, repetir c/2–3 min."],["Tríada del toxíndrome opioide","Depresión respiratoria, depresión del sensorio, miosis puntiforme."],["Opioide para síndrome de abstinencia","Metadona (con reducción paulatina)."]],
+  quiz:[
+   {q:"El celecoxib inhibe selectivamente:",o:["Fosfolipasa A2","COX-1","COX-2","Lipooxigenasa"],a:2,e:"Celecoxib es inhibidor de COX-2."},
+   {q:"Un niño con varicela recibe aspirina. ¿Qué riesgo existe?",o:["Síndrome de Cushing","Síndrome de Reye","Agranulocitosis","Síndrome serotoninérgico"],a:1,e:"Reye: AAS + infección viral."},
+   {q:"El receptor opioide asociado a disforia y alucinaciones es:",o:["μ","δ","κ","σ solamente"],a:2,e:"Kappa: analgesia espinal, sedación, disforia, alucinaciones."},
+   {q:"¿Cuál corticoide tiene la mayor potencia glucocorticoide en la tabla?",o:["Hidrocortisona","Prednisona","Betametasona","Triamcinolona"],a:2,e:"Betametasona 30–40 (dexametasona 25)."},
+   {q:"El agonista parcial opioide es:",o:["Nalbufina","Buprenorfina","Naltrexona","Tramadol"],a:1,e:"Buprenorfina."},
+   {q:"El escalón II de la escalera analgésica corresponde a:",o:["Paracetamol y AINE","Codeína y tramadol","Morfina y fentanilo","Bloqueos nerviosos"],a:1,e:"Opioides débiles."},
+   {q:"El ibuprofeno está contraindicado en el embarazo a partir de la semana:",o:["12","20","24","36"],a:2,e:"A partir de la semana 24."},
+   {q:"Corticoides + diuréticos producen:",o:["Hiperpotasemia","Mayor pérdida de K⁺","Hipoglucemia","Bradicardia"],a:1,e:"Mayor pérdida de potasio."}]
+},
+{ id:"aislamiento", n:"7b", title:"Aislamiento y síntesis de nuevos principios activos", group:"Desarrollo de fármacos", slides:11,
+  lead:"De la planta o la molécula al medicamento: hallazgo tradicional y molecular, modelaje, síntesis química y patentes.",
+  key:["Hallazgo tradicional (plantas medicinales) o molecular (dianas, ADN, proteínas).","Fases: modelaje molecular → síntesis → preclínicos → clínicos.","QSAR: relación cuantitativa estructura-actividad.","De cada 10 000 sustancias solo 1 se comercializa."],
+  sections:[
+   ["Plantas como fuente de principios activos",`
+    ${T(["Uso","Planta"],[["Analgésicos","Clavo de especia"],["Sedantes","Raíz de valeriana"],["Estimulantes del SNC","Nuez vómica, café"],["Analgésicos locales","Hojas de coca"],["Cardiotónicos","Digitalis purpurea y lanata"],["Vasoprotectores","Castaño de Indias, vinca, rusco"],["Cicatrizantes","Flores de árnica"],["Antipalúdicos","Corteza de quina"]])}`],
+   ["Hallazgo y fases",`
+    ${tiles([["Hallazgo tradicional","A partir del uso popular de plantas y productos naturales."],["Hallazgo molecular","A partir de dianas: ADN, proteínas, receptores."]])}
+    <ol><li><b>Modelaje molecular:</b> estudia la geometría y propiedades moleculares (química computacional). <b>QSAR</b> (Quantitative Structure Activity Relationship): estructura y propiedades hidro-lipofílicas de la molécula.</li><li><b>Síntesis química:</b> unión de fragmentos o a partir de compuestos de plantas; se evalúan costos y rendimientos.</li><li><b>Preclínicos</b></li><li><b>Clínicos</b></li></ol>`],
+   ["Patentes",`
+    <p>Preguntas de clase: ¿cuánto duran? ¿qué se puede y no patentar?</p>
+    ${UL(["Se patenta la sustancia y todos sus análogos químicos.","También la formulación y el mecanismo de producción.","De cada 10 000 sustancias, solo 1 llega a comercializarse."])}
+    ${N("Complemento (no viene en la diapositiva): en México y en la mayoría de los países una patente dura 20 años desde su solicitud.")}`]
+  ],
+  cards:[["Antipalúdico de origen vegetal visto en clase","Corteza de quina."],["Cardiotónicos de origen vegetal","Digitalis purpurea y lanata."],["¿Qué es QSAR?","Relación cuantitativa estructura-actividad: estructura y propiedades hidro-lipofílicas."],["Cuatro fases del desarrollo de un principio activo","Modelaje molecular, síntesis, preclínicos, clínicos."],["¿Cuántas sustancias de cada 10 000 llegan al mercado?","Una."],["¿Qué se puede patentar?","La sustancia y sus análogos, la formulación y el mecanismo de producción."]],
+  quiz:[
+   {q:"La valeriana se usa como:",o:["Analgésico local","Sedante","Cicatrizante","Cardiotónico"],a:1,e:"Raíz de valeriana: sedante."},
+   {q:"El modelaje molecular pertenece a:",o:["Química computacional","Farmacovigilancia","Toxicología crónica","Fase IV"],a:0,e:"Estudia geometría y propiedades moleculares con química computacional."},
+   {q:"Las hojas de coca se citan como fuente de:",o:["Estimulantes del SNC","Analgésicos locales","Vasoprotectores","Antipalúdicos"],a:1,e:"Analgésicos (anestésicos) locales."}]
+},
+{ id:"colinergicos", n:"8", title:"Colinérgicos y anticolinérgicos", group:"Fármacos", slides:57,
+  lead:"Neurotransmisión autónoma, receptores muscarínicos y nicotínicos, agonistas directos e indirectos, antimuscarínicos y bloqueantes.",
+  key:["Parasimpático: «descanso, alimentación, estudio». Simpático: «lucha o huida».","M1 SNC/gástrico; M2 corazón (↓ función cardiaca); M3 músculo liso y glándulas (contracción y secreción; dilata vasos vía NO).","Agonistas indirectos = anticolinesterasas: fisostigmina, neostigmina, piridostigmina; organofosforados irreversibles.","Intoxicación colinérgica: DUMBELS → antídoto atropina. Exceso anticolinérgico → fisostigmina."],
+  sections:[
+   ["Neurotransmisión y sistema nervioso autónomo",`
+    ${T(["Grupo","Neurotransmisores"],[["Ésteres","Acetilcolina"],["Aminas","Dopamina, noradrenalina, adrenalina, serotonina"],["Aminoácidos","GABA"],["Péptidos","Péptidos opiáceos"]])}
+    ${T(["","Simpático","Parasimpático"],[["Fisiología","«Lucha o huida», estrés","«Descanso, alimentación, estudio»"],["Fármacos (+)","Simpaticomiméticos, adrenérgicos","Parasimpaticomiméticos, colinérgicos (agonistas muscarínicos)"],["Fármacos (−)","Simpaticolíticos, antagonistas adrenérgicos, β-bloqueantes","Parasimpaticolíticos, antagonistas colinérgicos"],["Ojo","Dilata la pupila","Contrae la pupila"],["Corazón","Acelera","Reduce el latido"],["Bronquios","Relaja","Contrae"],["Digestivo","Inhibe","Estimula; estimula vesícula biliar"],["Vejiga","Relaja","Contrae"]])}
+    <p><b>Síntesis de ACh:</b> colina + acetil-CoA (colina acetiltransferasa, ChAT) → ACh, almacenada en vesículas; liberación dependiente de Ca²⁺. La <b>acetilcolinesterasa</b> la degrada a acetato + colina (la colina se recapta). Los agonistas <b>directos</b> actúan en el receptor; los <b>indirectos</b> inhiben la acetilcolinesterasa.</p>`],
+   ["Receptores colinérgicos",`
+    ${T(["Receptor","Ubicación","Función"],[["M1","Tejido gástrico, SNC","Secreción gástrica, memoria"],["M2","Corazón, músculo liso, SNC","Disminuye la función cardiaca (↓ frecuencia, ↓ inotropismo)"],["M3","Músculo liso, glándulas","Contracción y secreción; en vasos, vasodilatación (vía NO)"],["M4 / M5","SNC","Aprendizaje, memoria"],["Nn","Ganglios autónomos, médula suprarrenal","Transmisión ganglionar"],["Nm","Placa neuromuscular (músculo estriado)","Contracción muscular"]])}
+    <p><b>Efectos parasimpáticos (M):</b> miosis, ↑ lágrimas y salivación, ↓ frecuencia e inotropismo, vasodilatación, broncoconstricción, ↑ secreción y motilidad GI, producción y vaciamiento biliar, vaciamiento vesical y relajación de esfínteres.</p>
+    <p><b>Indicaciones de parasimpaticomiméticos:</b> íleo posoperatorio, atonía gástrica, esofagitis por reflujo, retención urinaria no obstructiva, xerostomía, miosis, glaucoma, intoxicación por antimuscarínicos, Alzheimer.</p>`],
+   ["Agonistas de acción directa",`
+    ${T(["Grupo","Fármacos"],[["Ésteres de colina","Acetilcolina, carbacol, betanecol, metacolina"],["Alcaloides naturales","Pilocarpina, muscarina"]])}
+    ${T(["Fármaco","Uso y dosis de clase"],[["Acetilcolina","Metabolismo rápido: carece de relevancia terapéutica."],["Betanecol","Muscarínico intenso (M3); solo actúa en muscarínicos. Estimula el detrusor, relaja el esfínter vesical, ↑ motilidad gástrica e intestinal. Retención urinaria no obstructiva (posoperatoria, posparto, vejiga neurógena), íleo paralítico, gastroparesia, megacolon no obstructivo. Adultos "+dose("10–50 mg VO 3–4 veces/día antes de comidas")+", máx. 50 mg/dosis."],["Carbacol","Muscarínico y nicotínico, más potente, más efectos adversos. Miosis para cirugía intraocular: "+dose("0.05–0.5 ml")+" (tópico)."],["Pilocarpina","Glaucoma de ángulo estrecho o crónico (contrae músculo ciliar M3 → ↓ presión intraocular), síndrome de Sjögren, prueba del sudor. "+dose("1–2 gotas al 2 % o 4 % c/4–12 h")+". Emergencia de ángulo estrecho: "+dose("1 gota 2 % c/5–10 min, 3–6 dosis")+", luego c/1–3 h hasta controlar la presión."],["Metacolina","Pruebas de hiperreactividad bronquial: excesiva contracción del músculo bronquial, marcador diagnóstico de asma."]])}
+    <p><b>Glaucoma:</b> el crónico hoy se trata con otros fármacos (β-bloqueantes); en el de ángulo agudo se inicia pilocarpina + otros.</p>
+    <p><b>Contraindicaciones de los agonistas colinérgicos:</b> broncoespasmo (evitar en EPOC y asma) y aumento de secreción ácida (evitar en úlcera péptica).</p>`],
+   ["Agonistas indirectos (anticolinesterasas)",`
+    ${T(["Duración","Fármacos"],[["Corta (alcoholes simples, ~12 min)","Edrofonio (reversible)"],["Intermedia (carbamatos, ~6 h)","Piridostigmina, neostigmina, fisostigmina (reversibles)"],["Prolongada (ésteres de fósforo, ~30 días)","Organofosforados (irreversibles)"],["Anti-Alzheimer","Rivastigmina, donepezilo, galantamina"]])}
+    ${UL(["<b>Fisostigmina y neostigmina:</b> sustratos reversibles; efectos muscarínicos y nicotínicos. Trastornos posoperatorios e intoxicación por anticolinérgicos. Fisostigmina en intoxicación: "+dose("0.5–2 mg IV lento")+" con monitorización (frecuencia cardiaca). La fisostigmina (terciaria) cruza la BHE; las cuaternarias no.","<b>Neostigmina:</b> miastenia, falta de tono vesical "+dose("15–375 mg/día")+"; íleo posoperatorio "+dose("0.04–0.07 mg/kg")+"; revierte el bloqueo neuromuscular de la anestesia.","<b>Miastenia grave:</b> enfermedad autoinmune que destruye receptores nicotínicos; se trata con piridostigmina + inmunosupresores."])}
+    ${D("<b>Síndrome colinérgico (intoxicación por organofosforados, raticidas): DUMBELS</b><br>D diaforesis y diarrea · U incontinencia urinaria · M miosis · B broncorrea, broncoespasmo, bradicardia · E emesis · L lagrimeo · S salivación. Nicotínicos: síndrome adrenérgico y parálisis. Antídoto: <b>atropina</b>.")}`],
+   ["Antagonistas colinérgicos: antimuscarínicos",`
+    <p>Clasificación: <b>antimuscarínicos</b> (atropina, ipratropio, escopolamina), <b>bloqueantes ganglionares</b> (mecamilamina, trimetafán) y <b>bloqueantes neuromusculares</b> (atracurio, mivacurio, pancuronio, rocuronio, tubocurarina, vecuronio; succinilcolina).</p>
+    ${T(["Fármaco","Uso y datos de clase"],[["Atropina","Alcaloide de la belladona, antagonista competitivo. Ojo: midriasis (mejor tropicamida). Digestivo: antiespasmódico, intestino irritable. Secreciones: bloquea glándulas salivales, sudoríparas y lagrimales. Cardio: revierte bradicardia sinusal, arritmias e intoxicación colinérgica. Intoxicación por organofosforados "+dose("0.5–5 mg IV")+"; preanestesia 0.3–0.6 mg; bradicardia 0.5–1 mg; RCP/bradicardia 0.5 mg, no rebasar 10 mg. Categoría C."],["Tropicamida","Exámenes de retina y refracción; gotas, efecto en 15–30 min, acción breve (ciclopentolato es de acción más duradera)."],["Butilhioscina (escopolamina)","Espasmos del tracto GI, biliar y genitourinario. VO "+dose("10–20 mg c/6–8 h")+"; parenteral "+dose("20–40 mg")+", máx. 100 mg/día. Categoría B."],["Escopolamina","Atraviesa la BHE y bloquea el centro del vómito: náuseas, vértigo y cinetosis; antiemético por citostáticos; facilita endoscopia. Borra memoria a corto plazo. Altamente tóxica; transdérmica sin superar 330 µg/día. Sobredosis: delirio, psicosis, parálisis, estupor, muerte."],["Ipratropio / tiotropio","Inhiben broncoconstricción y secreción de moco (EPOC). Ipratropio "+dose("1–2 disparos de 20 µg, 2–4 veces/día")+", máx. 16 disparos. No es primera elección en broncoespasmo: 1.º corticoides, 2.º β2 adrenérgicos, 3.º anticolinérgicos."],["Oxibutinina, tolterodina, darifenacina, trospio, propiverina","Relajan el detrusor y contraen el esfínter: vejiga hiperactiva, incontinencia de urgencia, enuresis. Oxibutinina "+dose("5 mg VO 3 veces/día")+", máx. 20 mg; &gt; 5 años: 3–5 mg 2 veces/día."],["Benztropina, trihexifenidilo","Temblor en Parkinson (restablecen el balance dopamina-ACh)."]])}
+    <h4>Dosis-respuesta de la atropina</h4>
+    ${T(["Dosis","Efecto"],[["0.5 mg","Deprime saliva, secreción bronquial y sudoración"],["1 mg","Taquicardia, sed, dilatación pupilar"],["2 mg","Dificultad de acomodación, palpitaciones"],["5 mg","Inhibe micción y motilidad intestinal; disartria, fatiga, cefalea"],["10 mg","Pulso filiforme, visión escasa, piel seca y ruborosa, ataxia, alucinaciones, delirio, coma"]])}
+    <p><b>Efectos adversos antimuscarínicos:</b> visión borrosa, confusión, retención urinaria, midriasis, estreñimiento, taquicardia, hipertermia, sequedad de boca, piel y ojos. Contraindicación: glaucoma de ángulo estrecho. Para la boca seca: tomar ½ h antes de comidas, raciones pequeñas, mucho líquido y fibra.</p>`],
+   ["Bloqueantes ganglionares y neuromusculares",`
+    <p><b>Bloqueantes ganglionares:</b> pocos usos. <b>Trimetafán:</b> reduce la activación simpática: hipotensión controlada en anestesia (rápida y temporal) y emergencia hipertensiva.</p>
+    <p><b>Succinilcolina</b> (bloqueante neuromuscular despolarizante; los curares derivan del «curare»): relaja músculo abdominal en inducción de anestesia general y cirugía, intubación endotraqueal, terapia electroconvulsiva. ${dose("IV 1 mg/kg")}, acción rápida (1 min).</p>
+    <p><b>Secuencia de relajación muscular</b> (de dosis bajas a altas): cara y ojos → dedos → cuello → tronco e intercostales → diafragma.</p>`]
+  ],
+  cards:[["Función de M2","Corazón: disminuye frecuencia e inotropismo."],["Función de M3","Contracción de músculo liso y secreción glandular; vasodilatación vía NO."],["Betanecol: indicación principal","Retención urinaria no obstructiva y atonía gastrointestinal (íleo, gastroparesia)."],["Pilocarpina: indicación","Glaucoma (ángulo estrecho/crónico), síndrome de Sjögren."],["Metacolina","Prueba de hiperreactividad bronquial (diagnóstico de asma)."],["Anticolinesterásico que cruza la BHE","Fisostigmina (terciaria)."],["Tratamiento de miastenia grave","Piridostigmina + inmunosupresores."],["DUMBELS","Diaforesis/diarrea, Urinaria, Miosis, Broncorrea/bradicardia, Emesis, Lagrimeo, Salivación."],["Antídoto de intoxicación por organofosforados","Atropina (0.5–5 mg IV)."],["Antídoto del exceso anticolinérgico","Fisostigmina."],["Escopolamina: usos","Cinetosis, náusea y vértigo, antiemético; facilita endoscopia."],["Orden en broncoespasmo","1.º corticoides, 2.º β2 agonistas, 3.º anticolinérgicos (ipratropio)."],["Succinilcolina: dosis","IV 1 mg/kg, acción en 1 min."],["Último músculo en relajarse con bloqueantes","Diafragma."]],
+  quiz:[
+   {q:"Un paciente posoperado con retención urinaria no obstructiva: ¿qué fármaco?",o:["Atropina","Betanecol","Oxibutinina","Trimetafán"],a:1,e:"Betanecol estimula el detrusor y relaja el esfínter."},
+   {q:"Agricultor con miosis, diarrea, broncorrea y bradicardia tras fumigar. Tratamiento:",o:["Fisostigmina","Neostigmina","Atropina","Pilocarpina"],a:2,e:"Síndrome colinérgico por organofosforados → atropina."},
+   {q:"¿Qué antimuscarínico se prefiere para un examen de retina?",o:["Atropina","Tropicamida","Escopolamina","Ipratropio"],a:1,e:"Tropicamida: efecto en 15–30 min y breve."},
+   {q:"La metacolina se usa para:",o:["Glaucoma","Diagnóstico de asma","Miastenia","Íleo"],a:1,e:"Prueba de hiperreactividad bronquial."},
+   {q:"Contraindicación clásica de los antimuscarínicos:",o:["Asma","Glaucoma de ángulo estrecho","Bradicardia","Úlcera péptica"],a:1,e:"Glaucoma de ángulo estrecho."},
+   {q:"Los organofosforados son anticolinesterasas de acción:",o:["Corta, reversible","Intermedia, reversible","Prolongada, irreversible","Directa"],a:2,e:"Ésteres de fósforo: ~30 días, irreversibles."},
+   {q:"Con 10 mg de atropina se espera:",o:["Solo boca seca","Taquicardia y sed","Delirio, alucinaciones, piel seca y ruborosa","Bradicardia"],a:2,e:"10 mg: pulso filiforme, ataxia, alucinaciones, delirio, coma."}]
+},
+{ id:"galenico", n:"8b", title:"Desarrollo galénico de medicamentos", group:"Desarrollo de fármacos", slides:12,
+  lead:"Cómo se fabrica la forma farmacéutica: tipos, buenas prácticas de fabricación, estabilidad, caducidad y fórmulas magistrales.",
+  key:["Buenas prácticas de fabricación: NOM-241-SSA1-2012.","Riesgos principales: contaminación y confusión de mezclas.","Estabilidad: mantener las características físicas, químicas, microbiológicas y biológicas durante almacenamiento y uso.","Caducidad máxima: 5 años; se prueba con estabilidad acelerada. México: zona climática II."],
+  sections:[
+   ["Formas y procesos",`
+    ${T(["Forma","Característica"],[["Tabletas","Producción rápida y barata; fáciles de almacenar y llevar"],["Cápsulas","Cubierta gelatinosa dura o suave; principio activo en polvo, líquido o semisólido"],["Ungüentos","Emulsiones"],["Inyectables","Esterilizados por luz UV, radiación, químicos o filtros"]])}
+    <p>Cada sección (tabletas, cápsulas, inyectables, líquidos orales, ungüentos) sigue un diagrama de flujo propio que termina en inspección y empaque.</p>`],
+   ["Buenas prácticas de fabricación",`
+    ${UL(["Fabricar de forma uniforme y controlada, conforme a las NOM de calidad: <b>NOM-241-SSA1-2012</b>.","Riesgos: contaminación y confusión de mezclas.","Exigencias: personal calificado, instalaciones y espacios adecuados, equipamiento apropiado, rótulos, envases y materiales apropiados, instrucciones y procedimientos, transporte y depósito apropiados."])}
+    <h4>¿Qué se le solicita a la industria?</h4>
+    ${UL(["Registros de fabricación, distribución y lote.","Sistemas que permitan retirar el producto en cualquier etapa (distribución o venta).","Estudiar todo reclamo y adoptar las medidas necesarias."])}`],
+   ["Estabilidad y caducidad",`
+    ${D("<b>Estabilidad:</b> propiedad para mantener durante el almacenamiento y uso las características físicas, químicas, fisicoquímicas, microbiológicas y biológicas dentro de los límites especificados.")}
+    <p><b>Zona II:</b> subtropical, humedad elevada 60 % ± 5, 25 °C ± 2.</p>
+    <p><b>Fecha de caducidad:</b> periodo en el que el producto permanece dentro de especificaciones; máximo 5 años. Se estima con pruebas de estabilidad acelerada (condiciones exageradas de almacenamiento).</p>`],
+   ["Medicamentos magistrales",`
+    <p>Preparados en farmacia a partir de una receta (p. ej. gotas óticas de carbonato de potasio, agua y glicerina; concentrados para inhalación).</p>
+    ${UL(["Tratamientos personalizados.","Número limitado de pacientes.","Dosis y formas que la industria no fabrica.","Controlar la automedicación.","Medicamentos poco estables."])}
+    <p>Se documentan en un formato con nombre del producto, preparador, lote, fecha, fórmula (materia prima, calidad, cantidad, lote, certificado), procedimiento y fecha de caducidad.</p>`]
+  ],
+  cards:[["NOM de buenas prácticas de fabricación","NOM-241-SSA1-2012."],["Dos riesgos principales en la fabricación","Contaminación y confusión de mezclas."],["Define estabilidad","Mantener características físicas, químicas, fisicoquímicas, microbiológicas y biológicas dentro de límites durante almacenamiento y uso."],["Caducidad máxima","5 años."],["Condiciones de la zona II","Subtropical: 60 % ± 5 de humedad, 25 °C ± 2."],["¿Cuándo usar un medicamento magistral?","Tratamiento personalizado, pocos pacientes, dosis no fabricadas, controlar automedicación, fármacos poco estables."]],
+  quiz:[
+   {q:"Los inyectables se esterilizan con:",o:["Solo calor seco","Luz UV, radiación, químicos o filtros","Liofilización","Granulación"],a:1,e:"Luz UV, radiación, químicos, filtros."},
+   {q:"La caducidad de un medicamento se estima con:",o:["Ensayos fase IV","Pruebas de estabilidad acelerada","Algoritmo de Naranjo","QSAR"],a:1,e:"Condiciones exageradas de almacenamiento."},
+   {q:"¿Cuál NO es razón para un medicamento magistral?",o:["Tratamiento personalizado","Fármaco poco estable","Producción masiva barata","Dosis no fabricada por la industria"],a:2,e:"La producción masiva es industrial."}]
+},
+{ id:"desarrollo", n:"9", title:"Desarrollo preclínico y clínico", group:"Desarrollo de fármacos", slides:28,
+  lead:"Estudios en animales (objetivos, 3 R, toxicidad) y fases clínicas en humanos con técnicas de ciego.",
+  key:["Preclínica: 2 a 6 años, in vitro y en animales.","Principio de las 3 R (Russell y Burch, 1959): reemplazo, reducción, refinamiento.","Toxicidad aguda: dosis única, DL50; subaguda ≤ 10 % del ciclo de vida; crónica > 50 %, 6–12 meses; carcinogénesis 2 años.","Fase I: 15–30 sanos; fase II: 200–500 pacientes; fase III: 2 000–5 000, multicéntrico; fase IV: farmacovigilancia."],
+  sections:[
+   ["Desarrollo preclínico",`
+    ${D("<b>Preclínica:</b> estudios in vitro y/o en animales de experimentación para obtener información farmacéutica, farmacocinética, farmacodinámica y toxicológica de sustancias con beneficio médico potencial. Duración: <b>2 a 6 años</b>.")}
+    <p><b>Necesidad de usar animales:</b> el código de Núremberg exige que cualquier experimento en humanos se base en resultados de investigación animal; la declaración de Helsinki pide pruebas de laboratorio y experimentación animal adecuadas.</p>
+    <h4>Objetivos</h4>
+    <ol><li>Proteger al humano de efectos tóxicos.</li><li>Determinar seguridad en animales y disminuir riesgos de toxicidad y letalidad en voluntarios.</li><li>Justificar la continuidad de la investigación.</li></ol>
+    <p>Se estudian la <b>farmacodinamia</b> (relación dosis-respuesta, selectividad, sitios y mecanismos de acción, eficacia) y la <b>farmacocinética</b> (biodisponibilidad, biotransformación, distribución, eliminación, dosificación, intervalos).</p>`],
+   ["Principio de las 3 R",`
+    ${T(["R","Qué significa","Ejemplos"],[["1. Reemplazo","Animales conscientes por animales inconscientes o materiales no sensibles","Sistemas in vitro, ayudas audiovisuales, animales muertos, material de mataderos, invertebrados, material humano, voluntarios, técnicas modernas"],["2. Reducción","Menos animales sin perder precisión","Colonias genéticamente homogéneas, buena selección del modelo, bioestadística, bancos de datos (publicar resultados negativos)"],["3. Refinamiento","Técnicas que reducen el dolor y las molestias","Bienestar animal, capacitación, anestésicos y analgésicos, técnicas no invasivas, eutanasia anticipada (punto final)"]])}
+    <p>La elección del animal depende del objetivo del estudio (p. ej. presión arterial en perro, gato o rata hipertensa; diuresis en perro; efectos GI en rata; coagulación en conejo; actividad celular en células cultivadas o tejido aislado).</p>`],
+   ["Estudios de toxicidad",`
+    ${T(["Toxicidad","Vías","Especies","Administración","Niveles de dosis"],[["Aguda","Dos","Tres, una no roedor","Dosis única (mínima y DL50); 1 a 3 meses de estudio","4 a 5"],["Subaguda","Una","Dos, una no roedor","Repetida 2–4 semanas (≤ 10 % del ciclo de vida)","4–5"],["Subcrónica","Una","Dos, una no roedor","Repetida (13 semanas)","3"],["Crónica","Una (la que se usará)","Dos, una no roedor","Repetida 6 meses a 2 años (&gt; 50 % de la vida)","3"],["Carcinogénesis","Una","Rata y ratón","Repetida 18 meses a 2 años","1"],["Teratogénesis","Una","Rata y conejo","Durante la gestación","1"],["Mutagénesis","In vivo e in vitro","Ratón y bacterias","Repetida","Crecientes"]])}
+    <p><b>Genotoxicidad/mutagénesis:</b> daño o alteraciones del material genético. <b>Fertilidad:</b> teratogénesis y ciclo reproductivo.</p>
+    ${T(["Invasividad","Procedimientos"],[["A","Invertebrados o células/tejidos aislados"],["B","Nulo o mínimo estrés"],["C","Estrés o dolor leve de corta duración"],["D","Estrés o malestar moderado a severo"],["E","Dolor severo o al límite de tolerancia en animales conscientes"]])}`],
+   ["Desarrollo clínico",`
+    ${D("<b>Desarrollo clínico:</b> investigación experimental en humanos. Población diana → población experimental (criterios de selección, consentimiento) → grupo de estudio vs grupo control (placebo o sin intervención) → comparación de respuestas → resultados.")}
+    <p><b>Técnicas de ciego:</b> simple, doble, triple.</p>
+    ${T(["Fase","Participantes","Objetivos"],[["I","15–30 <b>sanos</b>","Farmacocinética, RAM, dosis máxima tolerada, define DE50"],["II","200–500 pacientes, doble ciego (otra diapositiva: menos de 100)","Finaliza farmacocinética, <b>posible eficacia</b>, <b>dosis definitiva</b>, RAM, interacciones"],["III","2 000–5 000 pacientes, multicéntrico (otra diapositiva: de 100 a varios miles)","Establece <b>eficacia</b>; aprobación para comercialización; RAM, interacciones"],["IV","Poscomercialización","Farmacovigilancia; tamaño según la práctica de prescripción"]])}`]
+  ],
+  cards:[["Duración de la etapa preclínica","2 a 6 años."],["Las 3 R","Reemplazo, reducción, refinamiento (Russell y Burch, 1959)."],["Toxicidad aguda","Dosis única: dosis mínima y DL50."],["Toxicidad subaguda","Dosis diaria repetida durante ≤ 10 % del ciclo de vida (15 días a 4 semanas)."],["Toxicidad crónica","> 50 % de la vida; 6 a 12 meses en dos especies por la vía que se usará."],["Potencial carcinogénico: duración","2 años."],["Fase I","15–30 sanos: farmacocinética, RAM, dosis máxima tolerada."],["Fase en la que se elige la dosis definitiva","Fase II."],["Fase III","2 000–5 000 pacientes, multicéntrico; establece eficacia y lleva a aprobación."]],
+  quiz:[
+   {q:"La dosis máxima tolerada se define en la fase:",o:["I","II","III","IV"],a:0,e:"Fase I, en voluntarios sanos."},
+   {q:"Usar sistemas in vitro en lugar de animales corresponde a:",o:["Reducción","Refinamiento","Reemplazo","Randomización"],a:2,e:"Reemplazo."},
+   {q:"Los estudios de teratogénesis se hacen en:",o:["Perro y gato","Rata y conejo","Ratón y bacterias","Primates"],a:1,e:"Rata y conejo, durante la gestación."},
+   {q:"Un experimento que causa estrés leve de corta duración tiene invasividad:",o:["A","B","C","E"],a:2,e:"Categoría C."},
+   {q:"Los estudios multicéntricos que llevan a la aprobación son de fase:",o:["I","II","III","IV"],a:2,e:"Fase III."}]
+},
+{ id:"adrenergicos", n:"12", title:"Adrenérgicos y antiadrenérgicos", group:"Fármacos", slides:55,
+  lead:"Catecolaminas, receptores α y β, simpaticomiméticos (adrenalina, α1, α2, β) y bloqueantes α y β.",
+  key:["Síntesis: tirosina → DOPA → dopamina → noradrenalina → adrenalina. Degradación: MAO y COMT.","α1: vasoconstricción, midriasis, cierre del esfínter vesical. α2: inhibe liberación de NA. β1: corazón (+ inotropo y cronotropo). β2: relajación de músculo liso, broncodilatación.","Adrenalina: dosis baja efecto β, dosis alta efecto α; fármaco de elección en anafilaxia.","β-bloqueantes terminan en «-olol»; no suspender de golpe (arritmias)."],
+  sections:[
+   ["Catecolaminas: síntesis y metabolismo",`
+    <p><b>Síntesis:</b> L-tirosina → (tirosina hidroxilasa) L-DOPA → (DOPA descarboxilasa) dopamina → (dopamina β-hidroxilasa) noradrenalina → (feniletanolamina N-metiltransferasa) adrenalina.</p>
+    <p>Catecolaminas: noradrenalina, adrenalina, dopamina, isoprenalina (isoproterenol). La NA liberada se recapta (transportador NET) o se degrada por <b>MAO</b> (monoaminooxidasa) y <b>COMT</b> (catecol-O-metiltransferasa); los metabolitos se eliminan en orina.</p>
+    <p><b>Simpático, «lucha o huida»:</b> ↑ frecuencia cardiaca, ↑ presión arterial, flujo sanguíneo al músculo, digestión más lenta.</p>
+    <p><b>Afinidad:</b> en receptores α, adrenalina ≥ noradrenalina &gt;&gt; isoproterenol; en receptores β, isoproterenol &gt; adrenalina &gt; noradrenalina.</p>`],
+   ["Receptores adrenérgicos",`
+    ${T(["Receptor","Tejido","Acciones"],[["α1","Músculo liso vascular, dilatador de la pupila, pilomotor, trígono y esfínteres, próstata","Vasoconstricción, ↑ resistencia periférica y PA, midriasis, cierre del esfínter interno de la vejiga (retención urinaria), eyaculación, inhibe secreción nasal y bronquial"],["α2","Presináptico en SNC, plaquetas, terminales adrenérgicos, adipocitos","Inhibe la liberación de noradrenalina (retroalimentación negativa) y de insulina; agregante plaquetario"],["β1","Corazón, células yuxtaglomerulares","Inotropismo y cronotropismo positivos, ↑ lipólisis; libera renina (↑ retención de Na⁺ y agua → ↑ PA)"],["β2","Músculo liso bronquial, uterino, vascular; músculo esquelético; hígado; páncreas","Vasodilatación, broncodilatación, relajación uterina, glucogenólisis (↑ glucemia), liberación de glucagón/insulina, temblor muscular, captación de K⁺"],["β3","Adipocitos","Lipólisis"],["D1 / D2","Músculo liso vascular renal / terminal sináptica","Vasodilatación renal / modula liberación de neurotransmisores"]])}`],
+   ["Adrenalina y agonistas α",`
+    <h4>Adrenalina (epinefrina)</h4>
+    ${UL(["<b>Acción según dosis:</b> dosis alta → efecto α (vasoconstricción); dosis baja → efecto β (↑ FC; broncodilatación; contracción de músculo esquelético).","Músculo liso GI se relaja; útero se relaja. Relaja el músculo bronquial (β2).","Metabolismo: ↑ consumo de O2 (25 %), glucogenólisis y lipólisis: hiperglucemia. SNC: ansiedad, debilidad.","No atraviesa la BHE. IV: ↑ PA proporcional a la dosis.","<b>Usos:</b> ataques agudos de asma, reacciones alérgicas y <b>choque anafiláctico</b> (revierte la hipotensión), paro cardiorrespiratorio (RCP), bradicardia inestable, prolonga la anestesia local (vasoconstrictor), hemostasia en endoscopia o cirugía. Vías: SC, IM, inhalada, IV. Categoría C.","Efectos adversos: midriasis, agitación, arritmia, angina, taquicardia, hipertensión, hipertermia, sudoración, convulsiones."])}
+    <h4>Agonistas α1</h4>
+    <p><b>Fenilefrina, oximetazolina, nafazolina:</b> vasoconstricción local de los vasos de la mucosa (descongestionantes nasales); fenilefrina también en hipotensión y como midriático. Midodrina: hipotensión ortostática. Efectos adversos: HTA, ictus, IAM.</p>
+    <p><b>Pseudoefedrina (α y β):</b> alivio temporal de la congestión nasal en rinitis, catarro y gripe. Adultos y &gt; 12 años: cápsulas de liberación prolongada ${dose("120 mg c/12 h")}, máx. 240 mg/día. Aumenta FC y PA, broncodilata, cruza la BHE, midriasis.</p>
+    <h4>Agonistas α2 (antiadrenérgicos centrales)</h4>
+    <p><b>Clonidina, guanabenz, guanfacina:</b> inhiben la liberación de NA en el SNC: hipertensión, TDAH. Suspender bruscamente causa hipertensión de rebote; también hipotensión ortostática, sedación, fatiga, náusea. <b>Metildopa:</b> se convierte en el falso neurotransmisor metilnoradrenalina; segura en embarazo; efectos: somnolencia, toxicidad hepática, reacciones hemolíticas.</p>`],
+   ["Agonistas β",`
+    ${T(["Fármaco","Receptor","Uso y datos"],[["Isoproterenol","β1 y β2 (no selectivo)","Estimula el corazón (bradicardia, bloqueo AV); broncodilata (asma, hoy sustituido por β2 selectivos). RAM: taquicardia, palpitaciones, arritmias, angina, IAM."],["Salbutamol (albuterol), terbutalina","β2 selectivo, acción corta","Crisis de broncoespasmo, asma y EPOC; hiperpotasemia. Oral o inhalado: inicio 2–15 min, dura 3 h. RAM: temblor, ansiedad, taquicardia leve, hipopotasemia."],["Salmeterol, formoterol","β2 selectivo, acción prolongada","Duración 12 h; profilaxis y tratamiento de asma y EPOC."],["Ritodrina","β2 selectivo","Relajante uterino: amenaza de parto prematuro. IV, oral. Contraindicada en cardiopatías y diabetes gestacional; categoría X en las primeras 20 semanas. RAM: hiperglucemia, hipopotasemia, taquicardia, ↑ renina."],["Dobutamina","Agonista β1-β2, antagonista α1","Apoyo inotrópico en descompensación cardiaca por depresión de la contractilidad o tras cirugía cardiaca. En choque cardiogénico y séptico, la dopamina es de elección tras corregir la hipovolemia. Categoría C."]])}
+    <p><b>Uso en emergencias:</b> crisis anafiláctica (1. adrenalina, 2. corticoides, 3. antihistamínicos), paro cardiorrespiratorio (desfibrilación, adrenalina, amiodarona o lidocaína), bradicardia inestable (atropina, marcapasos, dopamina, adrenalina), broncoespasmo (salbutamol + corticoides; MgSO4).</p>`],
+   ["Bloqueantes α",`
+    ${T(["Grupo","Fármacos"],[["α-bloqueadores","Doxazosina, fenoxibenzamina, fentolamina, prazosina, terazosina, tamsulosina (terminan en «-osina»)"]])}
+    ${UL(["<b>Prazosina, terazosina, doxazosina:</b> antagonistas α1.","<b>Hipertensión:</b> la 1.ª dosis da hipotensión ortostática y síncope: tomarla con la cena, "+dose("1 mg 2 veces/día por 4 días")+"; mantenimiento 3–20 mg/día en 2 tomas.","<b>Hiperplasia prostática benigna:</b> ↓ tono del cuello vesical y la próstata, mejora el flujo urinario: "+dose("0.5 mg 2 veces/día por 3–7 días")+", mantenimiento 2 mg 2 veces/día (tamsulosina es α1A).","<b>Efectos adversos:</b> hipotensión ortostática, taquicardia refleja, vértigo, congestión nasal, cefalea, disfunción sexual (inhiben la eyaculación)."])}`],
+   ["Bloqueantes β («-olol»)",`
+    ${T(["Tipo","Fármacos","Usos"],[["No selectivos β1 y β2 (1.ª generación)","Propranolol, timolol, nadolol, pindolol, sotalol","Propranolol: HTA, glaucoma, migraña, hipertiroidismo, angina, IAM. Timolol y nadolol: glaucoma, HTA"],["Selectivos β1, cardioselectivos (2.ª generación)","Acebutolol, atenolol, metoprolol, esmolol, bisoprolol","HTA (pindolol y acebutolol: menos efectos metabólicos)"],["α y β (3.ª generación)","Labetalol, carvedilol","HTA; disminuyen la vasoconstricción periférica"]])}
+    ${UL(["<b>Cardiovascular:</b> ↓ fuerza, trabajo y consumo de O2 cardiaco; inotrópico y cronotrópico negativo. ↓ perfusión renal y liberación de renina (sistema renina-angiotensina-aldosterona) pero ↑ retención de Na⁺.","<b>Efectos adversos:</b> hipotensión, bradicardia, somnolencia, fatiga, broncoconstricción (bloqueo β2), disfunción sexual, alteraciones del metabolismo de la glucosa, <b>arritmias y taquicardia de rebote si se suspenden de golpe</b>.","Historia: James Black (1960, Inglaterra) buscaba tratar el infarto: pronetalol, propranolol.","Usos («5 anti»): antihipertensivos, antiarrítmicos (clase II), anti-insuficiencia cardiaca, antianginosos, anti-IAM."])}`],
+   ["Antídotos del sistema autónomo",`
+    ${T(["Exceso","Tratamiento"],[["Colinérgico","Atropina"],["Anticolinérgico","Fisostigmina"],["Adrenérgico","Benzodiacepinas"],["Antiadrenérgico","Glucagón, adrenérgicos"]])}
+    ${D("<b>Exceso adrenérgico (mnemotecnia MATHS):</b> Midriasis · Agitación, arritmia, angina · Taquicardia · Hipertensión, hipertermia · Sudoración, convulsiones.")}`]
+  ],
+  cards:[["Orden de síntesis de catecolaminas","Tirosina → DOPA → dopamina → noradrenalina → adrenalina."],["Enzimas que degradan catecolaminas","MAO y COMT."],["Efectos α1","Vasoconstricción, ↑ PA, midriasis, cierre del esfínter vesical, eyaculación."],["Efecto α2 presináptico","Inhibe la liberación de noradrenalina."],["Efectos β1","Corazón: inotropismo y cronotropismo positivos; liberación de renina."],["Efectos β2","Broncodilatación, vasodilatación, relajación uterina, glucogenólisis, temblor."],["Adrenalina según dosis","Baja → β (↑ FC, broncodilatación); alta → α (vasoconstricción)."],["Fármaco de elección en choque anafiláctico","Adrenalina."],["Salbutamol vs salmeterol","Salbutamol: corto (3 h, crisis). Salmeterol: prolongado (12 h, profilaxis)."],["Ritodrina","β2 selectivo, relajante uterino para amenaza de parto prematuro."],["Primera dosis de prazosina: riesgo","Hipotensión ortostática y síncope (tomar con la cena)."],["β-bloqueantes cardioselectivos","Acebutolol, atenolol, metoprolol, esmolol."],["¿Por qué no suspender un β-bloqueante de golpe?","Arritmias / taquicardia de rebote."],["MATHS","Midriasis, Agitación-arritmia-angina, Taquicardia, Hipertensión-hipertermia, Sudoración-convulsiones (exceso adrenérgico)."],["Antídoto del exceso antiadrenérgico","Glucagón (y adrenérgicos)."]],
+  quiz:[
+   {q:"La enzima que convierte noradrenalina en adrenalina es:",o:["Tirosina hidroxilasa","Dopamina β-hidroxilasa","Feniletanolamina N-metiltransferasa","COMT"],a:2,e:"PNMT."},
+   {q:"¿Qué receptor libera renina?",o:["α1","α2","β1","β2"],a:2,e:"β1 en células yuxtaglomerulares."},
+   {q:"Antihipertensivo seguro en el embarazo visto en clase:",o:["Prazosina","Metildopa","Propranolol","Clonidina"],a:1,e:"Metildopa, falso neurotransmisor."},
+   {q:"β-bloqueante con acción α y β:",o:["Atenolol","Timolol","Labetalol","Esmolol"],a:2,e:"Labetalol (y carvedilol)."},
+   {q:"Paciente asmático: ¿qué β-bloqueante es más riesgoso?",o:["Metoprolol","Propranolol","Atenolol","Esmolol"],a:1,e:"Propranolol es no selectivo: bloquea β2 y causa broncoconstricción."},
+   {q:"El exceso adrenérgico se trata con:",o:["Atropina","Glucagón","Benzodiacepinas","Fisostigmina"],a:2,e:"Benzodiacepinas."},
+   {q:"La dobutamina es:",o:["Antagonista β1","Agonista β1-β2 y antagonista α1","Agonista α2","Agonista β2 selectivo"],a:1,e:"Agonista β1-β2, antagonista α1; apoyo inotrópico."},
+   {q:"El salbutamol tiene un inicio de acción de:",o:["2–15 min","1 h","2 días","12 h"],a:0,e:"2–15 min, duración 3 h."}]
+}
+];
+
+/* ---------- state ---------- */
+const store={get(k,d){try{const v=localStorage.getItem("farma:"+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem("farma:"+k,JSON.stringify(v))}catch(e){}}};
+let studied=store.get("studied",{});
+let best=store.get("best",{});
+let current=null, mode="resumen";
+const groups=["Bases","Seguridad","Desarrollo de fármacos","Fármacos"];
+const $=s=>document.querySelector(s);
+const main=$("#main");
+
+function renderIndex(){
+  const nav=$("#index"); let h=`<div class="grp">Clases en orden</div><button data-go="inicio" ${current===null?'aria-current="true"':''}><span class="num">℞</span>Inicio</button>`;
+  let lastG=null;
+  UNITS.forEach(u=>{
+    h+=`<button data-go="${u.id}" ${current===u.id?'aria-current="true"':''}><span class="num">${u.n}</span>${short(u.title)}<span class="tick ${studied[u.id]?"on":""}" aria-label="${studied[u.id]?"estudiada":"pendiente"}"></span></button>`;
+  });
+  h+=`<div class="special"><button data-go="repaso" ${current==="repaso"?'aria-current="true"':''}><span class="num">✎</span>Repaso general</button></div>`;
+  nav.innerHTML=h;
+  const c=Object.values(studied).filter(Boolean).length;
+  $("#pbar").style.width=(c/UNITS.length*100)+"%"; $("#ptext").textContent=`${c} de ${UNITS.length} estudiadas`;
+}
+const short=t=>({"Generalidades de la farmacología":"Generalidades","Reacciones adversas a medicamentos (RAM)":"RAMs","Aislamiento y síntesis de nuevos principios activos":"Aislamiento y síntesis","Desarrollo galénico de medicamentos":"Desarrollo galénico","Colinérgicos y anticolinérgicos":"Colinérgicos","Adrenérgicos y antiadrenérgicos":"Adrenérgicos","Antiinflamatorios y analgésicos":"Antiinflamatorios y analgésicos"}[t]||t);
+
+function go(id,push=true){
+  if(id==="inicio"||!id){current=null;renderHome()}
+  else if(id==="repaso"){current="repaso";renderReview()}
+  else{const u=UNITS.find(x=>x.id===id); if(!u){current=null;renderHome()} else {current=id;mode="resumen";renderUnit(u)}}
+  renderIndex(); store.set("last",current);
+  if(push){try{history.replaceState(null,"",current?"#"+current:"#")}catch(e){}}
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function renderHome(){
+  const c=Object.values(studied).filter(Boolean).length;
+  main.innerHTML=`<div class="hero-note"><div><h2 style="font-size:clamp(24px,3.4vw,34px)">Tu repaso de farmacología, unidad por unidad</h2>
+   <p>Cada unidad tiene un <b>resumen</b> con lo clave de las diapositivas, <b>tarjetas</b> para memorizar y un <b>quiz</b> con retroalimentación. Las calculadoras de pKa, dosis y Naranjo están dentro de sus unidades. Marca cada unidad como estudiada para llevar tu avance (se guarda en este navegador).</p></div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" data-go="${UNITS.find(u=>!studied[u.id])?.id||"repaso"}">${c? "Continuar":"Empezar"}</button><button class="btn" data-go="repaso">Repaso general</button></div></div>
+   ${groups.map(g=>`<h3 style="font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px">${g}</h3>
+   <div class="home-grid">${UNITS.filter(u=>u.group===g).map(u=>`<button class="ucard" data-go="${u.id}"><span class="n"><span>Clase ${u.n}</span><span>${studied[u.id]?'<span class="pill g">estudiada</span>':(best[u.id]!=null?`quiz ${best[u.id]}%`:"")}</span></span><h3>${short(u.title)}</h3><p>${u.lead}</p></button>`).join("")}</div>`).join("")}`;
+}
+
+function renderUnit(u){
+  const bestTxt=best[u.id]!=null?`mejor quiz: ${best[u.id]}%`:"quiz sin intentar";
+  main.innerHTML=`<article class="label">
+    <div class="label-top"><span>Clase ${u.n}</span><span>${u.group}</span><span class="sp"></span><span>${u.slidesLabel||u.slides+" diapositivas"}</span></div>
+    <div class="label-body"><h2>${u.title}</h2><p class="lead">${u.lead}</p></div>
+    <div class="label-foot"><div class="tabs" role="tablist">${[["resumen","Resumen"],["tarjetas",`Tarjetas · ${u.cards.length}`],["quiz",`Quiz · ${u.quiz.length}`]].map(([k,l])=>`<button role="tab" data-mode="${k}" aria-selected="${mode===k}">${l}</button>`).join("")}</div>
+    <span>${bestTxt}</span>
+    <button class="btn ${studied[u.id]?"on":""}" id="studyBtn">${studied[u.id]?"✓ Estudiada":"Marcar como estudiada"}</button></div>
+  </article><section id="pane"></section>
+  <div style="display:flex;justify-content:space-between;gap:10px;margin-top:22px;flex-wrap:wrap">${navBtns(u)}</div>`;
+  $("#studyBtn").onclick=()=>{studied[u.id]=!studied[u.id];store.set("studied",studied);renderUnit(u);renderIndex()};
+  main.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{mode=b.dataset.mode;renderUnit(u)});
+  const pane=$("#pane");
+  if(mode==="resumen") renderSummary(u,pane); else if(mode==="tarjetas") renderCards(u.cards,pane,u.title); else renderQuiz(u.quiz,pane,u.id);
+}
+function navBtns(u){const i=UNITS.indexOf(u),p=UNITS[i-1],n=UNITS[i+1];
+  return `${p?`<button class="btn" data-go="${p.id}">← ${short(p.title)}</button>`:"<span></span>"}${n?`<button class="btn" data-go="${n.id}">${short(n.title)} →</button>`:`<button class="btn primary" data-go="repaso">Repaso general →</button>`}`}
+
+function renderSummary(u,pane){
+  pane.innerHTML=`<div class="key"><h3>Lo que no puede faltar</h3><ul>${u.key.map(k=>`<li>${k}</li>`).join("")}</ul></div>
+   <div style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:8px"><button class="btn" id="openAll">Abrir todo</button><button class="btn" id="closeAll">Cerrar todo</button></div>
+   ${u.sections.map(([h,b],i)=>`<details class="sec" ${i===0?"open":""} id="s-${u.id}-${i}"><summary>${h}</summary><div class="sec-body">${b}</div></details>`).join("")}`;
+  $("#openAll").onclick=()=>pane.querySelectorAll("details").forEach(d=>d.open=true);
+  $("#closeAll").onclick=()=>pane.querySelectorAll("details").forEach(d=>d.open=false);
+  if(pane.querySelector("#hh")) mountHH();
+  if(pane.querySelector("#calc")) mountCalc();
+  if(pane.querySelector("#exs")) mountExercises();
+  if(pane.querySelector("#naranjo")) mountNaranjo();
+}
+
+/* ---------- flashcards ---------- */
+function renderCards(cards,pane,title){
+  let order=cards.map((_,i)=>i), i=0;
+  const draw=()=>{const [q,a]=cards[order[i]];
+    pane.innerHTML=`<div class="fc-wrap"><button class="fc" id="fc" aria-label="Voltear tarjeta"><div class="fc-in"><div class="fc-face"><span class="tag">Pregunta</span><div>${q}</div></div><div class="fc-face back"><span class="tag">Respuesta</span><div>${a}</div></div></div></button>
+    <div class="fc-nav"><button class="btn" id="prev">← Anterior</button><span class="fc-count">${i+1} / ${cards.length}</span><button class="btn" id="next">Siguiente →</button><button class="btn" id="shuf">Barajar</button></div>
+    <p class="src">Toca la tarjeta o pulsa espacio para voltear; flechas para avanzar.</p></div>`;
+    const fc=$("#fc"); fc.onclick=()=>fc.classList.toggle("flip");
+    $("#prev").onclick=()=>{i=(i-1+cards.length)%cards.length;draw()};
+    $("#next").onclick=()=>{i=(i+1)%cards.length;draw()};
+    $("#shuf").onclick=()=>{order.sort(()=>Math.random()-.5);i=0;draw()};
+  };
+  draw();
+  pane._keys=e=>{if(!$("#fc"))return; if(e.key===" "&&document.activeElement.tagName!=="INPUT"){e.preventDefault();$("#fc").classList.toggle("flip")} if(e.key==="ArrowRight")$("#next")?.click(); if(e.key==="ArrowLeft")$("#prev")?.click()};
+}
+document.addEventListener("keydown",e=>{const p=$("#pane")||$("#rpane"); if(p&&p._keys)p._keys(e)});
+
+/* ---------- quiz ---------- */
+function renderQuiz(qs,pane,uid,srcLabels){
+  let answered=0, right=0;
+  pane.innerHTML=`<div class="quiz">${qs.map((q,qi)=>`<div class="q" data-qi="${qi}"><div class="qh"><span class="qn">${String(qi+1).padStart(2,"0")}</span><span class="qt">${q.q}</span></div>
+    ${srcLabels?`<div class="src" style="margin:-4px 0 8px">${srcLabels[qi]}</div>`:""}
+    <div class="opts">${q.o.map((o,oi)=>`<button class="opt" data-oi="${oi}">${o}</button>`).join("")}</div><div class="expl" hidden></div></div>`).join("")}
+    <div class="score" id="score"><span>Responde las ${qs.length} preguntas</span><strong id="scoreN">0 / ${qs.length}</strong><button class="btn" id="retry">Reiniciar</button></div></div>`;
+  pane.querySelectorAll(".q").forEach(qel=>{
+    const q=qs[+qel.dataset.qi];
+    qel.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+      const oi=+b.dataset.oi; qel.querySelectorAll(".opt").forEach(x=>{x.disabled=true; if(+x.dataset.oi===q.a)x.classList.add("ok")});
+      if(oi!==q.a)b.classList.add("no"); else right++;
+      answered++; const ex=qel.querySelector(".expl"); ex.hidden=false; ex.innerHTML=`<b>${oi===q.a?"Correcto.":"Incorrecto."}</b> ${q.e}`;
+      $("#scoreN").textContent=`${right} / ${qs.length}`;
+      if(answered===qs.length){const pct=Math.round(right/qs.length*100);
+        $("#score").firstElementChild.textContent=pct>=80?"¡Excelente! Dominas esta unidad.":pct>=60?"Bien. Repasa las que fallaste.":"Vuelve al resumen y a las tarjetas.";
+        if(uid){ if(best[uid]==null||pct>best[uid]){best[uid]=pct;store.set("best",best)} }}
+    });
+  });
+  $("#retry").onclick=()=>renderQuiz(qs,pane,uid,srcLabels);
+}
+
+/* ---------- review ---------- */
+function renderReview(){
+  main.innerHTML=`<article class="label"><div class="label-top"><span>Repaso</span><span>Todas las unidades</span></div>
+   <div class="label-body"><h2>Repaso general</h2><p class="lead">Preguntas al azar de todas las clases. Elige cuántas y si quieres quiz o tarjetas.</p></div>
+   <div class="label-foot"><div class="row"><label class="field">Preguntas<select id="rn"><option>10</option><option selected>20</option><option>40</option></select></label>
+   <label class="field">Unidades<select id="ru"><option value="all">Todas</option>${groups.map(g=>`<option value="${g}">${g}</option>`).join("")}</select></label></div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" id="rq">Nuevo quiz</button><button class="btn" id="rc">Tarjetas mezcladas</button></div></div></article><section id="rpane"></section>`;
+  const pool=()=>{const g=$("#ru").value;return UNITS.filter(u=>g==="all"||u.group===g)};
+  const quiz=()=>{const n=+$("#rn").value; let all=[];pool().forEach(u=>u.quiz.forEach(q=>all.push([q,u])));all.sort(()=>Math.random()-.5);all=all.slice(0,n);
+    renderQuiz(all.map(x=>x[0]),$("#rpane"),null,all.map(x=>`Clase ${x[1].n} · ${short(x[1].title)}`))};
+  $("#rq").onclick=quiz;
+  $("#rc").onclick=()=>{let all=[];pool().forEach(u=>u.cards.forEach(c=>all.push([c[0]+`<div class="src" style="margin-top:10px">Clase ${u.n} · ${short(u.title)}</div>`,c[1]])));all.sort(()=>Math.random()-.5);renderCards(all,$("#rpane"))};
+  quiz();
+}
+
+/* ---------- tools ---------- */
+function mountHH(){
+  const el=$("#hh");
+  const presets=[["Naproxeno (ácido)",5.0,"a"],["Aspirina (ácido)",3.5,"a"],["Warfarina (ácido)",5.0,"a"],["Fenitoína (ácido)",8.3,"a"],["Morfina (base)",7.9,"b"],["Atropina (base)",9.7,"b"],["Lidocaína (base)",7.9,"b"],["Anfetamina (base)",9.8,"b"]];
+  el.innerHTML=`<h4>Calculadora de ionización (Henderson-Hasselbalch)</h4>
+   <div class="row"><label class="field">Fármaco de la tabla<select id="hhp">${presets.map((p,i)=>`<option value="${i}">${p[0]} · pKa ${p[1]}</option>`).join("")}<option value="x">Otro…</option></select></label>
+   <label class="field">Tipo<select id="hht"><option value="a">Ácido débil</option><option value="b">Base débil</option></select></label>
+   <label class="field">pKa<input id="hhk" type="number" step="0.1" value="5"></label>
+   <label class="field">pH del medio<select id="hhs"><option value="2">Jugo gástrico · 2</option><option value="6.5">Intestino · 6.5</option><option value="7.4" selected>Plasma · 7.4</option><option value="5.5">Orina ácida · 5.5</option><option value="8">Orina alcalina · 8</option></select></label></div>
+   <div class="out" id="hho"></div><div class="meter" aria-hidden="true"><i id="hhm1" style="background:var(--teal)"></i><i id="hhm2" style="background:var(--amber)"></i></div>
+   <div class="src" style="margin-top:6px"><span style="color:var(--teal)">■</span> no ionizada (cruza membranas) &nbsp; <span style="color:var(--amber)">■</span> ionizada (queda atrapada)</div>`;
+  const calc=()=>{const t=$("#hht").value,k=+$("#hhk").value,ph=+$("#hhs").value; if(isNaN(k))return;
+    const r=t==="a"?Math.pow(10,ph-k):Math.pow(10,k-ph); const ion=r/(1+r)*100, non=100-ion;
+    const fmt=v=>v>=1000?Math.round(v).toLocaleString("es-MX"):v>=10?v.toFixed(0):v>=0.01?v.toFixed(3):v.toExponential(1);
+    $("#hho").innerHTML=`${t==="a"?"[A⁻]/[HA]":"[BH⁺]/[B]"} = 10^${t==="a"?`(${ph} − ${k})`:`(${k} − ${ph})`} = <b>${fmt(r)}</b> &nbsp;→&nbsp; ${ion.toFixed(ion>99.9||ion<0.1?3:1)} % ionizado, ${non.toFixed(non>99.9||non<0.1?3:1)} % no ionizado`;
+    $("#hhm1").style.width=non+"%"; $("#hhm2").style.width=ion+"%";};
+  $("#hhp").onchange=e=>{const v=e.target.value; if(v!=="x"){const p=presets[+v];$("#hhk").value=p[1];$("#hht").value=p[2]} calc()};
+  ["#hht","#hhk","#hhs"].forEach(s=>$(s).addEventListener("input",calc)); calc();
+}
+function mountCalc(){
+  $("#calc").innerHTML=`<h4>Calculadora de regla de tres</h4>
+   <div class="row"><label class="field">D · dosis deseada (mg)<input id="cD" type="number" value="60"></label>
+   <label class="field">T · dosis del envase (mg)<input id="cT" type="number" value="125"></label>
+   <label class="field">V · en cuánto vehículo (ml)<input id="cV" type="number" value="5"></label></div>
+   <div class="out" id="cO"></div>
+   <h4 style="margin-top:14px">Dosis por peso</h4>
+   <div class="row"><label class="field">Peso (kg)<input id="wK" type="number" value="12"></label>
+   <label class="field">mg/kg por toma<input id="wM" type="number" value="15"></label>
+   <label class="field">Cada (horas)<select id="wH"><option>4</option><option>6</option><option selected>8</option><option>12</option><option>24</option></select></label></div>
+   <div class="out" id="wO"></div>`;
+  const f=n=>(+n.toFixed(2)).toLocaleString("es-MX");
+  const c=()=>{const D=+$("#cD").value,T=+$("#cT").value,V=+$("#cV").value; $("#cO").innerHTML=T>0?`X = ${D} × ${V} / ${T} = <b>${f(D*V/T)} ml</b>`:"Escribe la dosis del envase."};
+  const w=()=>{const k=+$("#wK").value,m=+$("#wM").value,h=+$("#wH").value,dose=k*m,n=24/h; $("#wO").innerHTML=`${k} kg × ${m} mg/kg = <b>${f(dose)} mg por toma</b> · ${n} tomas al día = <b>${f(dose*n)} mg/día</b>`};
+  ["#cD","#cT","#cV"].forEach(s=>$(s).addEventListener("input",c)); ["#wK","#wM","#wH"].forEach(s=>$(s).addEventListener("input",w)); c(); w();
+}
+function mountExercises(){
+  const ex=[
+   ["Ejercicio 1","Botella de cefaclor etiquetada 125 mg/5 ml. Si deben administrarse 60 mg, ¿cuántos ml se necesitan?","125 mg → 5 ml\n 60 mg → X ml\nX = (60 × 5) / 125 = 2.4 ml"],
+   ["Ejercicio 2","Se administran 1 000 ml/día de suero glucosado al 5 %. ¿Cuántos mg de glucosa recibe al día?","5 % p/v = 5 g en 100 ml\n1 000 ml × 5 g / 100 ml = 50 g\n50 g = 50 000 mg de glucosa al día",
+    "La diapositiva escribe «en 100 ml hay 5 mg»; por definición de % p/v son 5 g."],
+   ["Ejercicio 3","Albúmina: 6 g por cada litro de líquido ascítico. Se obtienen 5 litros. Frascos de albúmina humana al 20 % de 50 ml. ¿Cuántos ml (y frascos) se administran?","Dosis: 6 g × 5 L = 30 g\nAlbúmina 20 % = 20 g en 100 ml\n30 g × 100 ml / 20 g = 150 ml\nCada frasco de 50 ml trae 10 g → 3 frascos"],
+   ["Ejercicio 4","Niño de 12 kg con paracetamol 15 mg/kg VO cada 8 horas. ¿Cuántos mg recibe al día?","12 kg × 15 mg/kg = 180 mg por toma\nCada 8 h = 3 tomas al día\n180 × 3 = 540 mg/día"],
+   ["Ejercicio 5","Se requieren 240 mg del fármaco D IV; presentación 150 mg/5 ml. ¿Cuántos ml? Si se pasa a 1 ml cada 30 s, ¿en cuánto tiempo pasa la dosis?","240 × 5 / 150 = 8 ml\n8 ml × 30 s = 240 s = 4 minutos"]];
+  $("#exs").innerHTML=ex.map(([t,p,s,n],i)=>`<div class="ex"><p><b>${t}.</b> ${p}</p><button class="btn" data-sol="${i}">Ver solución</button><div class="sol" id="sol${i}" hidden>${s}</div>${n?`<div class="note" id="soln${i}" hidden><b>Ojo:</b> ${n}</div>`:""}</div>`).join("");
+  $("#exs").querySelectorAll("[data-sol]").forEach(b=>b.onclick=()=>{const i=b.dataset.sol,s=$("#sol"+i),n=$("#soln"+i);s.hidden=!s.hidden;if(n)n.hidden=s.hidden;b.textContent=s.hidden?"Ver solución":"Ocultar solución"});
+}
+function mountNaranjo(){
+  const Q=[["¿Existen estudios previos de esta reacción?",1,0],["¿Apareció la reacción después de administrar el medicamento?",2,-1],["¿Mejora al suspender el medicamento o al dar un antagonista específico?",1,0],["¿Reaparece al readministrar el medicamento?",2,-1],["¿Existen causas alternativas (no medicamentos) que podrían haberla causado?",-1,2],["¿Reaparece al administrar un placebo?",-1,1],["¿Se detectó el fármaco en sangre u otros fluidos en concentraciones tóxicas?",1,0],["¿Es más grave al aumentar la dosis y menos al disminuirla?",1,0],["¿Tuvo una reacción similar al mismo fármaco o a uno parecido antes?",1,0],["¿Se confirmó con alguna evidencia objetiva?",1,0]];
+  const ans=Q.map(()=>null);
+  const el=$("#naranjo");
+  const draw=()=>{const tot=ans.reduce((s,a,i)=>s+(a==="s"?Q[i][1]:a==="n"?Q[i][2]:0),0);
+    const cat=tot>=9?["Definitiva","r"]:tot>=5?["Probable","a"]:tot>=1?["Posible","a"]:["Dudosa","g"];
+    el.innerHTML=`<h4>Algoritmo de Naranjo modificado</h4>${Q.map((q,i)=>`<div class="nq"><span>${i+1}. ${q[0]} <span class="src">(Sí ${q[1]>0?"+":""}${q[1]} · No ${q[2]>0?"+":""}${q[2]})</span></span>
+     <span class="seg">${[["s","Sí"],["n","No"],["x","No sé"]].map(([k,l])=>`<button data-i="${i}" data-k="${k}" aria-pressed="${ans[i]===k}">${l}</button>`).join("")}</span></div>`).join("")}
+     <div class="out">Puntuación: <b>${tot}</b> → <span class="pill ${cat[1]}">${cat[0]}</span> <span class="src">(${ans.filter(a=>a!==null).length}/10 respondidas)</span></div>
+     <button class="btn" id="nreset" style="margin-top:10px">Reiniciar</button>`;
+    el.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{ans[+b.dataset.i]=b.dataset.k;draw()});
+    $("#nreset").onclick=()=>{ans.fill(null);draw()};
+  };
+  draw();
+}
+
+/* ---------- search ---------- */
+const strip=h=>h.replace(/<[^>]+>/g," ").replace(/\s+/g," ");
+const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const INDEX=[];
+UNITS.forEach(u=>{u.sections.forEach(([h,b],i)=>INDEX.push({u,i,h,t:strip(b)}));u.cards.forEach(([q,a])=>INDEX.push({u,i:-1,h:"Tarjeta",t:strip(q+" — "+a)}))});
+let lastView=null;
+$("#q").addEventListener("input",e=>{
+  const v=e.target.value.trim(); if(!v){ if(lastView!==null){go(lastView,false);lastView=null} return }
+  if(lastView===null) lastView=current||"inicio";
+  const nv=norm(v); const hits=INDEX.filter(x=>norm(x.h+" "+x.t).includes(nv)).slice(0,40);
+  const snip=t=>{const n=norm(t),p=n.indexOf(nv); const s=Math.max(0,p-60); let out=(s>0?"…":"")+t.slice(s,p+nv.length+90)+"…"; const re=new RegExp("("+v.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig"); return out.replace(re,"<mark>$1</mark>")};
+  main.innerHTML=`<h2 style="font-size:22px;margin-bottom:12px">${hits.length} resultado${hits.length===1?"":"s"} para «${v}»</h2><div class="results">${hits.map(x=>`<button class="res" data-u="${x.u.id}" data-s="${x.i}"><b>Clase ${x.u.n} · ${short(x.u.title)}</b> — ${x.h}<span>${snip(x.t)}</span></button>`).join("")||'<p class="src">Prueba con otra palabra (por ejemplo «CYP», «miosis», «fase III»).</p>'}</div>`;
+  main.querySelectorAll(".res").forEach(b=>b.onclick=()=>{const u=b.dataset.u,s=+b.dataset.s;$("#q").value="";lastView=null;go(u);
+    if(s>=0){setTimeout(()=>{const d=document.getElementById(`s-${u}-${s}`);if(d){d.open=true;d.scrollIntoView({behavior:"smooth",block:"start"})}},60)} else {mode="tarjetas";renderUnit(UNITS.find(x=>x.id===u))}});
+});
+
+/* ---------- boot ---------- */
+document.addEventListener("click",e=>{const g=e.target.closest("[data-go]"); if(g){$("#q").value="";lastView=null;go(g.dataset.go)}});
+const h=(location.hash||"").slice(1);
+go(h||store.get("last",null)||"inicio",false);
+</script>
+
+</body></html>

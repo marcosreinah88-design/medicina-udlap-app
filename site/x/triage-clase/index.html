@@ -1,0 +1,581 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Triage: qué es y cómo se realiza</title><link rel="stylesheet" href="../../fonts/gb8e0e2145d.css">
+<style>
+html,body{margin:0;height:100%;background:#0b0d0f;color:#eee;font-family:system-ui,sans-serif;overflow:hidden}
+#stage{position:absolute;inset:0 0 56px;display:grid;place-items:center}
+#scaler{width:1920px;height:1080px;transform-origin:center;position:relative;flex:none}
+section{position:absolute;inset:0;width:1920px;height:1080px;box-sizing:border-box;overflow:hidden}
+section:not(.on){display:none!important}
+section aside{display:none}
+section ul{margin:0;padding-left:1.2em} section h1,section h2,section h3,section p{margin:0}
+section table{border-collapse:collapse;width:100%} section th,section td{text-align:left;padding:14px 18px;border-bottom:2px solid #E2DED6;vertical-align:top} section th{background:#1A1F23;color:#F2F0EC;font-weight:600}
+[data-build-in]{transition:opacity .35s} [data-build-in].pend{opacity:0;pointer-events:none}
+#bar{position:absolute;left:0;right:0;bottom:0;height:56px;display:flex;align-items:center;gap:10px;padding:0 14px;background:#13171A;border-top:3px solid #0B6B74;box-sizing:border-box}
+#bar button{border:1px solid #3a4248;background:#1d2327;color:#f2f0ec;border-radius:999px;padding:7px 14px;font:600 14px system-ui,sans-serif;cursor:pointer}
+#bar button:disabled{opacity:.35;cursor:default}
+#n{font:500 14px ui-monospace,monospace;color:#c9d1d4;min-width:70px;text-align:center}
+#t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px;color:#8e9a9f}
+#notes{position:absolute;left:0;right:0;bottom:56px;max-height:40%;overflow:auto;background:rgba(19,23,26,.97);border-top:1px solid #3a4248;padding:16px 20px;font-size:15px;line-height:1.55;color:#dfe5e7;box-sizing:border-box}
+#notes b{color:#0B6B74;font:600 12px ui-monospace,monospace;letter-spacing:.1em;display:block;margin-bottom:6px}
+@media (max-width:560px){#t{display:none} #bar button{padding:7px 11px}}
+</style></head><body>
+<div id="stage"><div id="scaler"><section id="cover" data-transition="fade" style="background:#12303A;color:#F6F4EF;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
+<div style="position:absolute;left:0;top:0;width:24px;height:1080px;background:linear-gradient(180deg, #C62828 0%, #C62828 20%, #E86A1C 20%, #E86A1C 40%, #F2C230 40%, #F2C230 60%, #237A4B 60%, #237A4B 80%, #2F6FB5 80%, #2F6FB5 100%)"></div>
+<p style="font-size:28px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#7FD1C7">Introducción a la clínica · 1er semestre</p>
+<div style="display:flex;flex-direction:column;gap:32px">
+<h1 style="font-family:'Rubik', Arial, sans-serif;font-size:160px;font-weight:700;line-height:1.0;color:#F6F4EF">Triage</h1>
+<p style="font-size:48px;line-height:1.3;color:#BFD8D5;width:1300px">Qué es, por qué existe y cómo se clasifica a un paciente en urgencias</p>
+</div>
+<div style="display:flex;gap:16px">
+<p style="font-size:26px;font-weight:700;background:#C62828;color:#FFF8F2;padding:8px 22px;border-radius:999px">Rojo</p>
+<p style="font-size:26px;font-weight:700;background:#E86A1C;color:#1B1B1B;padding:8px 22px;border-radius:999px">Naranja</p>
+<p style="font-size:26px;font-weight:700;background:#F2C230;color:#1B1B1B;padding:8px 22px;border-radius:999px">Amarillo</p>
+<p style="font-size:26px;font-weight:700;background:#237A4B;color:#F6F4EF;padding:8px 22px;border-radius:999px">Verde</p>
+<p style="font-size:26px;font-weight:700;background:#2F6FB5;color:#F6F4EF;padding:8px 22px;border-radius:999px">Azul</p>
+</div>
+<aside>Bienvenida. Hoy vamos a aprender a decidir quién se atiende primero en urgencias. No necesitan saber diagnosticar todavía: el triage se basa en signos y síntomas que ya pueden reconocer. Pregunta rompehielos: ¿alguna vez esperaron horas en urgencias mientras otros pasaban antes? Al final de la clase sabrán por qué.</aside>
+</section>
+<section id="objetivos" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Objetivos de la clase</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Al terminar podrás…</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF9;padding:48px;border:1px solid #E2DED5;border-radius:24px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:96px;font-weight:700;line-height:1;color:#0B6B74">1</p>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:600;color:#12303A">Definir el triage</h3>
+<p style="font-size:30px;line-height:1.4;color:#4A5568">Explicar qué es, para qué sirve y por qué no es un diagnóstico.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF9;padding:48px;border:1px solid #E2DED5;border-radius:24px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:96px;font-weight:700;line-height:1;color:#0B6B74">2</p>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:600;color:#12303A">Clasificar en 5 colores</h3>
+<p style="font-size:30px;line-height:1.4;color:#4A5568">Usar la lógica de Manchester y del IMSS para asignar una prioridad.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF9;padding:48px;border:1px solid #E2DED5;border-radius:24px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:96px;font-weight:700;line-height:1;color:#0B6B74">3</p>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:600;color:#12303A">Aplicar START</h3>
+<p style="font-size:30px;line-height:1.4;color:#4A5568">Clasificar víctimas en un accidente con muchos lesionados en menos de un minuto cada una.</p>
+</div>
+</div>
+<aside>Tres objetivos concretos. Recalcar que el triage es una de las primeras habilidades clínicas que pueden practicar desde primer semestre, porque se apoya en signos vitales y en observar al paciente, no en saber la enfermedad exacta.</aside>
+</section>
+<section id="que-es" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Definición</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">¿Qué es el triage?</h2>
+</div>
+<div style="display:flex;gap:48px;align-items:stretch">
+<div style="flex:3;display:flex;flex-direction:column;justify-content:center;gap:28px;background:#12303A;padding:56px;border-radius:24px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:48px;font-weight:500;line-height:1.3;color:#F6F4EF">Proceso para <span style="color:#7FD1C7">seleccionar y priorizar</span> a los pacientes según la gravedad de su estado y los recursos disponibles.</p>
+<p style="font-size:28px;line-height:1.4;color:#BFD8D5">Responde una sola pregunta: ¿cuánto tiempo puede esperar este paciente sin que su salud empeore?</p>
+</div>
+<div style="flex:2;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:10px;background:#FFFDF9;padding:36px;border:1px solid #E2DED5;border-radius:24px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">Origen de la palabra</h3>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Del francés <i>trier</i>: separar, clasificar, escoger.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#FFFDF9;padding:36px;border:1px solid #E2DED5;border-radius:24px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">En México</h3>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">La NOM-027-SSA3-2013 regula los servicios de urgencias; el triage define el orden de atención.</p>
+</div>
+</div>
+</div>
+<aside>Leer la definición en voz alta. Enfatizar las dos variables: gravedad del paciente y recursos disponibles. Por eso el mismo paciente puede clasificarse distinto en un hospital saturado o en un desastre. La pregunta clave del triage no es "¿qué tiene?" sino "¿cuánto puede esperar?". Mencionar que en México la NOM-027-SSA3-2013 establece los criterios de funcionamiento de los servicios de urgencias.</aside>
+</section>
+<section id="historia" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:64px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Un poco de historia</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Del campo de batalla a urgencias</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:0">
+<div style="height:8px;background:#0B6B74;border-radius:4px"></div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:32px 0 0 0;border-left:4px solid #0B6B74;padding-left:24px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:700;color:#12303A">1792</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Dominique-Jean Larrey, cirujano de Napoleón, atiende a los heridos por gravedad, no por rango militar.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:32px 0 0 0;border-left:4px solid #0B6B74;padding-left:24px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:700;color:#12303A">1983</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Nace START en California para clasificar rápido a muchas víctimas.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:32px 0 0 0;border-left:4px solid #0B6B74;padding-left:24px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:700;color:#12303A">1997</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Se publica el Sistema de Triage de Manchester (Reino Unido): 5 colores.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:32px 0 0 0;border-left:4px solid #0B6B74;padding-left:24px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:700;color:#12303A">Hoy</p>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">IMSS y Secretaría de Salud usan triage de 5 colores en urgencias y triage obstétrico.</p>
+</div>
+</div>
+</div>
+<aside>Larrey introdujo además las "ambulancias volantes" para sacar a los heridos del campo. La idea revolucionaria fue atender primero al más grave, sin importar su rango. START se desarrolló en 1983 en Newport Beach, California (Hoag Hospital y bomberos locales). El Manchester Triage Group publicó su sistema en 1997; es el modelo en el que se basan muchos hospitales de México. Fuente histórica: Iserson y Moskop, Ann Emerg Med 2007.</aside>
+</section>
+<section id="principios" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Principios</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Cuatro reglas del buen triage</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFDF9;padding:40px;border:1px solid #E2DED5;border-left:10px solid #0B6B74;border-radius:20px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:38px;font-weight:600;color:#12303A">Clasifica, no diagnostica</h3>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Decide el orden de atención. El diagnóstico viene después, en la consulta.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFDF9;padding:40px;border:1px solid #E2DED5;border-left:10px solid #0B6B74;border-radius:20px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:38px;font-weight:600;color:#12303A">Es breve</h3>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Toma pocos minutos: motivo de consulta, aspecto general y signos vitales.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFDF9;padding:40px;border:1px solid #E2DED5;border-left:10px solid #0B6B74;border-radius:20px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:38px;font-weight:600;color:#12303A">Es dinámico</h3>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">El paciente cambia mientras espera: se reevalúa y puede subir o bajar de color.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FFFDF9;padding:40px;border:1px solid #E2DED5;border-left:10px solid #0B6B74;border-radius:20px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:38px;font-weight:600;color:#12303A">Ante la duda, sube</h3>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Es más seguro clasificar de más que dejar esperando a alguien grave.</p>
+</div>
+</div>
+<aside>Primer principio: el triage no busca el diagnóstico. Un dolor torácico se clasifica como muy urgente aunque al final resulte ser una gastritis. Segundo: es una valoración corta, de pocos minutos. Tercero: se llama retriage a la reevaluación del paciente que espera; si empeora, sube de prioridad. Cuarto: ante la duda se asigna la prioridad más alta; el subtriage (clasificar por debajo) es el error más peligroso.</aside>
+</section>
+<section id="niveles" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Sistema de Triage de Manchester</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Cinco niveles, cinco colores</h2>
+</div>
+<table style="font-family:'Nunito Sans', Arial, sans-serif;font-size:30px;color:#1D2B33;border-radius:16px">
+<tr style="background:#12303A"><th style="width:10%;color:#F6F4EF;padding:14px 24px">Nivel</th><th style="width:16%;color:#F6F4EF">Color</th><th style="width:20%;color:#F6F4EF">Prioridad</th><th style="width:16%;color:#F6F4EF">Tiempo máx.</th><th style="width:38%;color:#F6F4EF">Ejemplos</th></tr>
+<tr style="background:#C62828"><td style="color:#FFF8F2">1</td><td style="color:#FFF8F2">Rojo</td><td style="color:#FFF8F2">Inmediato</td><td style="color:#FFF8F2">0 min</td><td style="color:#FFF8F2">Paro cardiaco, choque, vía aérea en riesgo</td></tr>
+<tr style="background:#E86A1C"><td style="color:#1B1B1B">2</td><td style="color:#1B1B1B">Naranja</td><td style="color:#1B1B1B">Muy urgente</td><td style="color:#1B1B1B">10 min</td><td style="color:#1B1B1B">Dolor torácico de tipo cardiaco, dolor intenso</td></tr>
+<tr style="background:#F2C230"><td style="color:#1B1B1B">3</td><td style="color:#1B1B1B">Amarillo</td><td style="color:#1B1B1B">Urgente</td><td style="color:#1B1B1B">60 min</td><td style="color:#1B1B1B">Dolor moderado, vómito persistente</td></tr>
+<tr style="background:#237A4B"><td style="color:#F6F4EF">4</td><td style="color:#F6F4EF">Verde</td><td style="color:#F6F4EF">Estándar</td><td style="color:#F6F4EF">120 min</td><td style="color:#F6F4EF">Esguince leve, fiebre sin datos de alarma</td></tr>
+<tr style="background:#2F6FB5"><td style="color:#F6F4EF">5</td><td style="color:#F6F4EF">Azul</td><td style="color:#F6F4EF">No urgente</td><td style="color:#F6F4EF">240 min</td><td style="color:#F6F4EF">Resfriado común, resurtir receta</td></tr>
+</table>
+<aside>Esta es la escala de Manchester, publicada por el Manchester Triage Group. Cada color tiene un tiempo máximo hasta que el paciente es visto por el médico. Insistir en que el color se asigna por la urgencia, no por la enfermedad: un mismo diagnóstico puede caer en colores distintos. Pedirles que memoricen el orden de los colores, como un semáforo extendido: rojo, naranja, amarillo, verde, azul.</aside>
+</section>
+<section id="imss" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">El triage en México</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">IMSS: misma lógica, tiempos adaptados</h2>
+</div>
+<div style="display:flex;gap:48px;align-items:start">
+<table style="width:1000px;font-family:'Nunito Sans', Arial, sans-serif;font-size:30px;color:#1D2B33">
+<tr style="background:#12303A"><th style="width:34%;color:#F6F4EF;padding:14px 24px">Color</th><th style="width:33%;color:#F6F4EF">Manchester</th><th style="width:33%;color:#F6F4EF">IMSS</th></tr>
+<tr style="background:#C62828"><td style="color:#FFF8F2">Rojo</td><td style="color:#FFF8F2">Inmediato</td><td style="color:#FFF8F2">Inmediato</td></tr>
+<tr style="background:#E86A1C"><td style="color:#1B1B1B">Naranja</td><td style="color:#1B1B1B">10 min</td><td style="color:#1B1B1B">10 min</td></tr>
+<tr style="background:#F2C230"><td style="color:#1B1B1B">Amarillo</td><td style="color:#1B1B1B">60 min</td><td style="color:#1B1B1B">30 min</td></tr>
+<tr style="background:#237A4B"><td style="color:#F6F4EF">Verde</td><td style="color:#F6F4EF">120 min</td><td style="color:#F6F4EF">120 min</td></tr>
+<tr style="background:#2F6FB5"><td style="color:#F6F4EF">Azul</td><td style="color:#F6F4EF">240 min</td><td style="color:#F6F4EF">180 min</td></tr>
+</table>
+<div style="flex:2;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:10px;background:#FFFDF9;padding:32px;border:1px solid #E2DED5;border-radius:20px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:32px;font-weight:600;color:#12303A">Verde y azul</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">Pueden enviarse a su Unidad de Medicina Familiar.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;background:#FFFDF9;padding:32px;border:1px solid #E2DED5;border-radius:20px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:32px;font-weight:600;color:#12303A">Triage obstétrico (SSA)</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">Rojo, amarillo y verde. El rojo activa el Código Mater.</p>
+</div>
+</div>
+</div>
+<aside>El IMSS usa la misma estructura de cinco colores que Manchester, con tiempos más cortos para amarillo (30 min) y azul (180 min), según la información pública del Instituto. Los pacientes verdes y azules no son urgencias reales y pueden ser referidos a su UMF. Para embarazadas, la Secretaría de Salud tiene el Lineamiento de Triage Obstétrico, Código Mater y Equipo de Respuesta Inmediata Obstétrica, con tres colores. Aclarar que cada hospital puede tener su propio lineamiento: hay que conocer el de la unidad donde roten.</aside>
+</section>
+<section id="manchester-pasos" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:64px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Cómo se realiza</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Manchester en cuatro pasos</h2>
+</div>
+<div style="display:flex;gap:16px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF9;padding:36px;border:1px solid #E2DED5;border-top:10px solid #0B6B74;border-radius:20px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#0B6B74">1</p>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">Motivo de consulta</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">Elige uno de los 52 diagramas de flujo: dolor torácico, disnea, cefalea…</p>
+</div>
+<x-shape kind="arrow-right" style="width:48px;height:28px;background:#0B6B74;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF9;padding:36px;border:1px solid #E2DED5;border-top:10px solid #0B6B74;border-radius:20px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#0B6B74">2</p>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">Discriminadores</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">Pregunta en orden, de rojo hacia azul: ¿hay riesgo vital? ¿dolor intenso? ¿fiebre?</p>
+</div>
+<x-shape kind="arrow-right" style="width:48px;height:28px;background:#0B6B74;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF9;padding:36px;border:1px solid #E2DED5;border-top:10px solid #0B6B74;border-radius:20px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#0B6B74">3</p>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">Primer “sí”</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">El primer discriminador positivo asigna el color. Si ninguno aplica: azul.</p>
+</div>
+<x-shape kind="arrow-right" style="width:48px;height:28px;background:#0B6B74;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF9;padding:36px;border:1px solid #E2DED5;border-top:10px solid #0B6B74;border-radius:20px">
+<p style="font-family:'Rubik', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#0B6B74">4</p>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">Registra y reevalúa</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">Anota color y hora, informa al paciente y repite si cambia o se pasa del tiempo.</p>
+</div>
+</div>
+<aside>El Sistema de Manchester no pide adivinar: es un algoritmo. Paso 1: el motivo principal de consulta lleva a uno de sus 52 diagramas de flujo (hay diagramas para adultos y niños). Paso 2: cada diagrama tiene preguntas llamadas discriminadores, ordenadas de la prioridad más alta a la más baja. Paso 3: en cuanto una respuesta es "sí", se detiene y ese es el color. Paso 4: se documenta la hora y se reevalúa. Ejemplo para la clase: un paciente con disnea; primero preguntamos si tiene la vía aérea comprometida, después si la saturación es muy baja, y así sucesivamente.</aside>
+</section>
+<section id="discriminadores" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Discriminadores generales</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Preguntas comunes a todos los diagramas</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:0">
+<div style="display:flex">
+<p style="width:18%;font-size:26px;font-weight:800;padding:14px 20px;background:#12303A;color:#F6F4EF;border-radius:16px 0 0 0">Pregunta</p>
+<p style="width:24%;font-size:26px;font-weight:800;padding:14px 20px;background:#C62828;color:#FFF8F2">Rojo</p>
+<p style="width:22%;font-size:26px;font-weight:800;padding:14px 20px;background:#E86A1C;color:#1B1B1B">Naranja</p>
+<p style="width:20%;font-size:26px;font-weight:800;padding:14px 20px;background:#F2C230;color:#1B1B1B">Amarillo</p>
+<p style="width:16%;font-size:26px;font-weight:800;padding:14px 20px;background:#237A4B;color:#F6F4EF;border-radius:0 16px 0 0">Verde</p>
+</div>
+<table style="font-family:'Nunito Sans', Arial, sans-serif;font-size:26px;color:#1D2B33;background:#FFFDF9">
+<tr><td style="width:18%;padding:16px 20px"><b>Riesgo vital</b></td><td style="width:24%">Vía aérea comprometida, no respira bien, choque</td><td style="width:22%">—</td><td style="width:20%">—</td><td style="width:16%">—</td></tr>
+<tr><td><b>Hemorragia</b></td><td>Exanguinante</td><td>Mayor que no se controla</td><td>Menor que no se controla</td><td>—</td></tr>
+<tr><td><b>Dolor</b></td><td>—</td><td>Intenso (8–10)</td><td>Moderado (5–7)</td><td>Leve reciente (1–4)</td></tr>
+<tr><td><b>Conciencia</b></td><td>Convulsión activa</td><td>Alteración de la conciencia</td><td>Pérdida de conciencia previa</td><td>—</td></tr>
+<tr><td><b>Temperatura</b></td><td>—</td><td>≥ 41 °C</td><td>38.5–40.9 °C</td><td>37.5–38.4 °C</td></tr>
+</table>
+</div>
+<aside>Estos son los discriminadores generales del Sistema de Manchester; aparecen en casi todos los diagramas de flujo. Explicar cada fila con un ejemplo: hemorragia exanguinante es la que vacía al paciente en minutos; dolor se mide con la escala del 0 al 10 que el paciente refiere; conciencia se valora con la escala AVDN. Si ninguna fila aplica y el problema no es reciente, el color es azul. La guion largo significa que esa pregunta no tiene nivel en ese color.</aside>
+</section>
+<section id="que-medir" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Qué evalúas</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Mira, pregunta y mide</h2>
+</div>
+<div style="display:flex;gap:40px;align-items:stretch">
+<div style="width:560px;display:flex;flex-direction:column;gap:20px;background:#12303A;padding:44px;border-radius:24px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:38px;font-weight:600;color:#F6F4EF">Primera impresión</h3>
+<p style="font-size:28px;line-height:1.4;color:#BFD8D5">En segundos, desde la puerta: ¿respira?, ¿qué color tiene su piel?, ¿está alerta?, ¿sangra?</p>
+<p style="font-size:28px;line-height:1.4;color:#BFD8D5">Después pregunta el <b style="color:#F6F4EF">motivo de consulta</b> y desde cuándo.</p>
+</div>
+<div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:20px">
+<div style="display:flex;flex-direction:column;gap:4px;background:#FFFDF9;padding:24px 28px;border:1px solid #E2DED5;border-radius:16px"><p style="font-size:26px;font-weight:800;color:#12303A">Frecuencia cardiaca</p><p style="font-size:26px;color:#4A5568">60–100 lpm</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#FFFDF9;padding:24px 28px;border:1px solid #E2DED5;border-radius:16px"><p style="font-size:26px;font-weight:800;color:#12303A">Frecuencia respiratoria</p><p style="font-size:26px;color:#4A5568">12–20 rpm</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#FFFDF9;padding:24px 28px;border:1px solid #E2DED5;border-radius:16px"><p style="font-size:26px;font-weight:800;color:#12303A">Presión arterial</p><p style="font-size:26px;color:#4A5568">Menos de 120/80 mmHg</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#FFFDF9;padding:24px 28px;border:1px solid #E2DED5;border-radius:16px"><p style="font-size:26px;font-weight:800;color:#12303A">Saturación de O₂</p><p style="font-size:26px;color:#4A5568">94–100 %</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#FFFDF9;padding:24px 28px;border:1px solid #E2DED5;border-radius:16px"><p style="font-size:26px;font-weight:800;color:#12303A">Temperatura</p><p style="font-size:26px;color:#4A5568">36.5–37.5 °C</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#FFFDF9;padding:24px 28px;border:1px solid #E2DED5;border-radius:16px"><p style="font-size:26px;font-weight:800;color:#12303A">Dolor (EVA)</p><p style="font-size:26px;color:#4A5568">0 a 10</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#FFFDF9;padding:24px 28px;border:1px solid #E2DED5;border-radius:16px"><p style="font-size:26px;font-weight:800;color:#12303A">Glucosa capilar</p><p style="font-size:26px;color:#4A5568">70–100 mg/dL en ayuno</p></div>
+<div style="display:flex;flex-direction:column;gap:4px;background:#FFFDF9;padding:24px 28px;border:1px solid #E2DED5;border-radius:16px"><p style="font-size:26px;font-weight:800;color:#12303A">Conciencia (AVDN)</p><p style="font-size:26px;color:#4A5568">Alerta, Verbal, Dolor, No responde</p></div>
+</div>
+</div>
+<aside>La primera impresión se hace antes de tocar al paciente: respiración, color de la piel (pálido, cianótico) y estado de alerta. Luego se toman signos vitales. Los rangos mostrados son de adulto en reposo; en niños cambian según la edad. La glucosa capilar se mide si hay alteración de la conciencia o el paciente es diabético. AVDN: Alerta, responde a la Voz, responde solo al Dolor, No responde. Recordarles la clase de signos vitales.</aside>
+</section>
+<section id="clasifica" data-transition="fade" style="background:#0B6B74;color:#F6F4EF;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:40px">
+<p style="font-size:28px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:#CDEDE8">La idea que te llevas</p>
+<h1 style="font-family:'Rubik', Arial, sans-serif;font-size:120px;font-weight:700;line-height:1.05;color:#F6F4EF">El triage pregunta<br>“¿cuánto puede esperar?”,<br>no “¿qué tiene?”.</h1>
+<aside>Pausa antes de los casos. Esta frase resume la clase. En los casos que siguen, eviten pensar en el diagnóstico; piensen en qué tan rápido puede empeorar el paciente si nadie lo atiende.</aside>
+</section>
+<section id="casos-intro" data-transition="fade" style="background:#12303A;color:#F6F4EF;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:48px">
+<p style="font-size:28px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:#7FD1C7">Parte 3 · Práctica</p>
+<h1 style="font-family:'Rubik', Arial, sans-serif;font-size:120px;font-weight:700;line-height:1.05;color:#F6F4EF">Casos clínicos</h1>
+<div style="display:flex;flex-direction:column;gap:20px;width:1300px">
+<p style="font-size:36px;line-height:1.4;color:#BFD8D5">Lee el caso, decide el color con tu equipo y levanta la tarjeta.</p>
+<p style="font-size:36px;line-height:1.4;color:#BFD8D5">Un clic revela la respuesta.</p>
+</div>
+<aside>Dinámica sugerida: formar equipos de 3 a 4 y darles tarjetas de colores (o que usen el celular). Leer cada caso, dar 30 a 60 segundos y pedir que todos muestren su color al mismo tiempo. Después hacer clic para revelar la respuesta. En modo Presentar, la respuesta aparece con el siguiente clic; en el PDF ya aparece impresa.</aside>
+</section>
+<section id="caso-1" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Caso 1 · Urgencias adultos</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Dolor en el pecho</h2>
+</div>
+<div style="display:flex;gap:32px;align-items:start">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF9;padding:36px;border:1px solid #E2DED5;border-radius:20px">
+<p style="font-size:30px;line-height:1.4;color:#1D2B33">Don Ernesto, 58 años, llega caminando. Tiene dolor opresivo en el pecho desde hace 20 minutos que se corre al brazo izquierdo. Está sudoroso y angustiado.</p>
+<p style="font-size:26px;font-weight:700;line-height:1.4;color:#0B6B74">FC 98 · FR 20 · PA 150/90 · SatO₂ 96 % · Alerta</p>
+</div>
+<div style="width:400px;display:flex;flex-direction:column;gap:10px;align-items:start">
+<p style="font-size:28px;font-weight:800;color:#12303A">¿Qué color le das?</p>
+<p style="font-size:24px;font-weight:800;background:#C62828;color:#FFF8F2;padding:6px 20px;border-radius:999px">Rojo</p>
+<p style="font-size:24px;font-weight:800;background:#E86A1C;color:#1B1B1B;padding:6px 20px;border-radius:999px">Naranja</p>
+<p style="font-size:24px;font-weight:800;background:#F2C230;color:#1B1B1B;padding:6px 20px;border-radius:999px">Amarillo</p>
+<p style="font-size:24px;font-weight:800;background:#237A4B;color:#F6F4EF;padding:6px 20px;border-radius:999px">Verde</p>
+<p style="font-size:24px;font-weight:800;background:#2F6FB5;color:#F6F4EF;padding:6px 20px;border-radius:999px">Azul</p>
+</div>
+</div>
+<div data-build-in="fade" style="position:absolute;left:128px;top:646px;width:1664px;height:254px;background:#12303A;border-left:16px solid #E86A1C;border-radius:20px;padding:28px 40px;display:flex;flex-direction:column;gap:10px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:44px;font-weight:600;color:#F6F4EF">Respuesta: <span style="color:#FFB37A">NARANJA</span> · Muy urgente (≤ 10 min)</h3>
+<p style="font-size:28px;line-height:1.4;color:#BFD8D5">El dolor torácico de tipo cardiaco es un discriminador naranja aunque sus signos vitales se vean casi normales. Necesita un electrocardiograma en los primeros 10 minutos.</p>
+</div>
+<aside>Lee el caso y da 30 a 60 segundos para decidir. Haz clic para revelar la respuesta. No se dejen engañar por los signos vitales casi normales. El discriminador es el tipo de dolor: opresivo, irradiado al brazo, con sudoración. En Manchester el diagrama es 'dolor torácico' y 'dolor precordial o cardiaco' cae en naranja. Pregunta para la clase: ¿qué pasaría si se le clasifica verde y espera dos horas?</aside>
+</section>
+<section id="caso-2" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Caso 2 · Urgencias adultos</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Herida en el abdomen</h2>
+</div>
+<div style="display:flex;gap:32px;align-items:start">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF9;padding:36px;border:1px solid #E2DED5;border-radius:20px">
+<p style="font-size:30px;line-height:1.4;color:#1D2B33">Hombre de 30 años traído por paramédicos tras una herida por arma blanca en el abdomen. Está pálido, frío y sudoroso; contesta lento las preguntas.</p>
+<p style="font-size:26px;font-weight:700;line-height:1.4;color:#0B6B74">FC 132 · PA 78/45 · Llenado capilar 4 s · Responde a la voz</p>
+</div>
+<div style="width:400px;display:flex;flex-direction:column;gap:10px;align-items:start">
+<p style="font-size:28px;font-weight:800;color:#12303A">¿Qué color le das?</p>
+<p style="font-size:24px;font-weight:800;background:#C62828;color:#FFF8F2;padding:6px 20px;border-radius:999px">Rojo</p>
+<p style="font-size:24px;font-weight:800;background:#E86A1C;color:#1B1B1B;padding:6px 20px;border-radius:999px">Naranja</p>
+<p style="font-size:24px;font-weight:800;background:#F2C230;color:#1B1B1B;padding:6px 20px;border-radius:999px">Amarillo</p>
+<p style="font-size:24px;font-weight:800;background:#237A4B;color:#F6F4EF;padding:6px 20px;border-radius:999px">Verde</p>
+<p style="font-size:24px;font-weight:800;background:#2F6FB5;color:#F6F4EF;padding:6px 20px;border-radius:999px">Azul</p>
+</div>
+</div>
+<div data-build-in="fade" style="position:absolute;left:128px;top:646px;width:1664px;height:254px;background:#12303A;border-left:16px solid #C62828;border-radius:20px;padding:28px 40px;display:flex;flex-direction:column;gap:10px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:44px;font-weight:600;color:#F6F4EF">Respuesta: <span style="color:#FF9A8F">ROJO</span> · Inmediato (0 min)</h3>
+<p style="font-size:28px;line-height:1.4;color:#BFD8D5">Tiene datos de choque: taquicardia, hipotensión, piel fría y llenado capilar lento. Hay riesgo vital, así que pasa directo a la sala de reanimación.</p>
+</div>
+<aside>Lee el caso y da 30 a 60 segundos para decidir. Haz clic para revelar la respuesta. Choque es un discriminador rojo de riesgo vital. Explicar el llenado capilar: se presiona la uña cinco segundos y se cuenta cuánto tarda en recuperar el color; normal es menos de 2 segundos. Este paciente no espera ni un minuto.</aside>
+</section>
+<section id="caso-3" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Caso 3 · Urgencias adultos</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Tobillo torcido</h2>
+</div>
+<div style="display:flex;gap:32px;align-items:start">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF9;padding:36px;border:1px solid #E2DED5;border-radius:20px">
+<p style="font-size:30px;line-height:1.4;color:#1D2B33">Mujer de 22 años que se torció el tobillo jugando futbol hace una hora. Camina cojeando, el tobillo está inflamado pero sin deformidad.</p>
+<p style="font-size:26px;font-weight:700;line-height:1.4;color:#0B6B74">Dolor 6/10 · Signos vitales normales · Sin heridas</p>
+</div>
+<div style="width:400px;display:flex;flex-direction:column;gap:10px;align-items:start">
+<p style="font-size:28px;font-weight:800;color:#12303A">¿Qué color le das?</p>
+<p style="font-size:24px;font-weight:800;background:#C62828;color:#FFF8F2;padding:6px 20px;border-radius:999px">Rojo</p>
+<p style="font-size:24px;font-weight:800;background:#E86A1C;color:#1B1B1B;padding:6px 20px;border-radius:999px">Naranja</p>
+<p style="font-size:24px;font-weight:800;background:#F2C230;color:#1B1B1B;padding:6px 20px;border-radius:999px">Amarillo</p>
+<p style="font-size:24px;font-weight:800;background:#237A4B;color:#F6F4EF;padding:6px 20px;border-radius:999px">Verde</p>
+<p style="font-size:24px;font-weight:800;background:#2F6FB5;color:#F6F4EF;padding:6px 20px;border-radius:999px">Azul</p>
+</div>
+</div>
+<div data-build-in="fade" style="position:absolute;left:128px;top:646px;width:1664px;height:254px;background:#12303A;border-left:16px solid #F2C230;border-radius:20px;padding:28px 40px;display:flex;flex-direction:column;gap:10px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:44px;font-weight:600;color:#F6F4EF">Respuesta: <span style="color:#F2C230">AMARILLO</span> · Urgente (≤ 60 min Manchester · ≤ 30 min IMSS)</h3>
+<p style="font-size:28px;line-height:1.4;color:#BFD8D5">Lo que define el color es el dolor moderado (5 a 7). Con el mismo tobillo y un dolor de 3/10 sería verde; con 9/10 sería naranja.</p>
+</div>
+<aside>Lee el caso y da 30 a 60 segundos para decidir. Haz clic para revelar la respuesta. Este caso muestra que el dolor es un discriminador por sí mismo. Siempre hay que preguntar la escala del 0 al 10 y anotarla. El mismo esguince puede tener tres colores distintos según el dolor que el paciente refiere.</aside>
+</section>
+<section id="caso-4" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Caso 4 · Urgencias pediátricas</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Niña con fiebre</h2>
+</div>
+<div style="display:flex;gap:32px;align-items:start">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF9;padding:36px;border:1px solid #E2DED5;border-radius:20px">
+<p style="font-size:30px;line-height:1.4;color:#1D2B33">Valeria, 4 años, tiene fiebre y tos desde ayer. En la sala de espera juega, platica con su mamá y come galletas. No se ve cansada al respirar.</p>
+<p style="font-size:26px;font-weight:700;line-height:1.4;color:#0B6B74">T 38.2 °C · FC 110 · FR 24 · SatO₂ 98 % · Alerta</p>
+</div>
+<div style="width:400px;display:flex;flex-direction:column;gap:10px;align-items:start">
+<p style="font-size:28px;font-weight:800;color:#12303A">¿Qué color le das?</p>
+<p style="font-size:24px;font-weight:800;background:#C62828;color:#FFF8F2;padding:6px 20px;border-radius:999px">Rojo</p>
+<p style="font-size:24px;font-weight:800;background:#E86A1C;color:#1B1B1B;padding:6px 20px;border-radius:999px">Naranja</p>
+<p style="font-size:24px;font-weight:800;background:#F2C230;color:#1B1B1B;padding:6px 20px;border-radius:999px">Amarillo</p>
+<p style="font-size:24px;font-weight:800;background:#237A4B;color:#F6F4EF;padding:6px 20px;border-radius:999px">Verde</p>
+<p style="font-size:24px;font-weight:800;background:#2F6FB5;color:#F6F4EF;padding:6px 20px;border-radius:999px">Azul</p>
+</div>
+</div>
+<div data-build-in="fade" style="position:absolute;left:128px;top:646px;width:1664px;height:254px;background:#12303A;border-left:16px solid #237A4B;border-radius:20px;padding:28px 40px;display:flex;flex-direction:column;gap:10px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:44px;font-weight:600;color:#F6F4EF">Respuesta: <span style="color:#86D9A2">VERDE</span> · Estándar (≤ 120 min)</h3>
+<p style="font-size:28px;line-height:1.4;color:#BFD8D5">Está febril (37.5 a 38.4 °C) pero sin datos de alarma: alerta, hidratada y respira sin esfuerzo. Se reevalúa si cambia algo mientras espera.</p>
+</div>
+<aside>Lee el caso y da 30 a 60 segundos para decidir. Haz clic para revelar la respuesta. En niños, los signos vitales normales cambian con la edad; a los 4 años una FC de 110 y FR de 24 son aceptables con fiebre. La pista clave es que juega y come: un niño que se ve bien suele estar bien. Si la niña se pusiera somnolienta o con dificultad para respirar, sube de color.</aside>
+</section>
+<section id="caso-5" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Caso 5 · Urgencias adultos</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Resfriado de cuatro días</h2>
+</div>
+<div style="display:flex;gap:32px;align-items:start">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF9;padding:36px;border:1px solid #E2DED5;border-radius:20px">
+<p style="font-size:30px;line-height:1.4;color:#1D2B33">Hombre de 35 años con escurrimiento nasal y estornudos desde hace cuatro días, sin fiebre. Viene principalmente a pedir una incapacidad para el trabajo.</p>
+<p style="font-size:26px;font-weight:700;line-height:1.4;color:#0B6B74">Signos vitales normales · Dolor 0/10 · Alerta</p>
+</div>
+<div style="width:400px;display:flex;flex-direction:column;gap:10px;align-items:start">
+<p style="font-size:28px;font-weight:800;color:#12303A">¿Qué color le das?</p>
+<p style="font-size:24px;font-weight:800;background:#C62828;color:#FFF8F2;padding:6px 20px;border-radius:999px">Rojo</p>
+<p style="font-size:24px;font-weight:800;background:#E86A1C;color:#1B1B1B;padding:6px 20px;border-radius:999px">Naranja</p>
+<p style="font-size:24px;font-weight:800;background:#F2C230;color:#1B1B1B;padding:6px 20px;border-radius:999px">Amarillo</p>
+<p style="font-size:24px;font-weight:800;background:#237A4B;color:#F6F4EF;padding:6px 20px;border-radius:999px">Verde</p>
+<p style="font-size:24px;font-weight:800;background:#2F6FB5;color:#F6F4EF;padding:6px 20px;border-radius:999px">Azul</p>
+</div>
+</div>
+<div data-build-in="fade" style="position:absolute;left:128px;top:646px;width:1664px;height:254px;background:#12303A;border-left:16px solid #2F6FB5;border-radius:20px;padding:28px 40px;display:flex;flex-direction:column;gap:10px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:44px;font-weight:600;color:#F6F4EF">Respuesta: <span style="color:#9CC2F2">AZUL</span> · No urgente (≤ 240 min Manchester · ≤ 180 min IMSS)</h3>
+<p style="font-size:28px;line-height:1.4;color:#BFD8D5">Ningún discriminador es positivo y el problema no es reciente. En el IMSS puede referirse a su Unidad de Medicina Familiar.</p>
+</div>
+<aside>Lee el caso y da 30 a 60 segundos para decidir. Haz clic para revelar la respuesta. Azul no significa que no se atienda, sino que puede esperar sin riesgo o ser atendido en primer nivel. Comentar cómo los pacientes azules y verdes saturan las urgencias y por qué el triage protege a los graves.</aside>
+</section>
+<section id="caso-6" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Caso 6 · Triage obstétrico</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Embarazada con dolor de cabeza</h2>
+</div>
+<div style="display:flex;gap:32px;align-items:start">
+<div style="flex:1;display:flex;flex-direction:column;gap:20px;background:#FFFDF9;padding:36px;border:1px solid #E2DED5;border-radius:20px">
+<p style="font-size:30px;line-height:1.4;color:#1D2B33">Mujer de 27 años con 34 semanas de embarazo. Tiene dolor de cabeza muy intenso desde hace dos horas y dice que ve lucecitas.</p>
+<p style="font-size:26px;font-weight:700;line-height:1.4;color:#0B6B74">PA 165/112 · FC 92 · Alerta · Movimientos fetales presentes</p>
+</div>
+<div style="width:400px;display:flex;flex-direction:column;gap:10px;align-items:start">
+<p style="font-size:28px;font-weight:800;color:#12303A">¿Qué color le das?</p>
+<p style="font-size:24px;font-weight:800;background:#C62828;color:#FFF8F2;padding:6px 20px;border-radius:999px">Rojo</p>
+<p style="font-size:24px;font-weight:800;background:#E86A1C;color:#1B1B1B;padding:6px 20px;border-radius:999px">Naranja</p>
+<p style="font-size:24px;font-weight:800;background:#F2C230;color:#1B1B1B;padding:6px 20px;border-radius:999px">Amarillo</p>
+<p style="font-size:24px;font-weight:800;background:#237A4B;color:#F6F4EF;padding:6px 20px;border-radius:999px">Verde</p>
+<p style="font-size:24px;font-weight:800;background:#2F6FB5;color:#F6F4EF;padding:6px 20px;border-radius:999px">Azul</p>
+</div>
+</div>
+<div data-build-in="fade" style="position:absolute;left:128px;top:646px;width:1664px;height:254px;background:#12303A;border-left:16px solid #C62828;border-radius:20px;padding:28px 40px;display:flex;flex-direction:column;gap:10px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:44px;font-weight:600;color:#F6F4EF">Respuesta: <span style="color:#FF9A8F">ROJO</span> · Código Mater</h3>
+<p style="font-size:28px;line-height:1.4;color:#BFD8D5">Presión de 160/110 o más con síntomas neurológicos sugiere preeclampsia con datos de severidad. En el triage obstétrico de la SSA es rojo y se activa el Código Mater.</p>
+</div>
+<aside>Lee el caso y da 30 a 60 segundos para decidir. Haz clic para revelar la respuesta. En el Lineamiento de Triage Obstétrico de la Secretaría de Salud, la hipertensión severa con cefalea, fosfenos o acúfenos es rojo. Código Mater moviliza al equipo de respuesta inmediata obstétrica. Aunque los alumnos no conozcan aún la preeclampsia, pueden reconocer la combinación: embarazada, presión muy alta y síntomas neurológicos.</aside>
+</section>
+<section id="start-intro" data-transition="fade" style="background:#12303A;color:#F6F4EF;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#7FD1C7">Parte 4 · Desastres</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#F6F4EF">START: muchas víctimas, pocos rescatistas</h2>
+</div>
+<p style="font-size:34px;line-height:1.4;color:#BFD8D5;width:1500px">Se usa en incidentes con múltiples víctimas: sismos, choques de autobús, explosiones. Toma <b style="color:#F6F4EF">menos de 60 segundos</b> por persona y solo usa cuatro colores.</p>
+<div style="display:flex;gap:24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#C62828;padding:32px;border-radius:20px"><h3 style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:700;color:#FFF8F2">Rojo</h3><p style="font-size:26px;line-height:1.4;color:#FFF8F2">Inmediato: vive si se atiende ya</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#F2C230;padding:32px;border-radius:20px"><h3 style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:700;color:#1B1B1B">Amarillo</h3><p style="font-size:26px;line-height:1.4;color:#1B1B1B">Diferido: grave pero puede esperar</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#237A4B;padding:32px;border-radius:20px"><h3 style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:700;color:#F6F4EF">Verde</h3><p style="font-size:26px;line-height:1.4;color:#F6F4EF">Menor: camina por su cuenta</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;background:#0A0F12;padding:32px;border:2px solid #4B5D66;border-radius:20px"><h3 style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:700;color:#F6F4EF">Negro</h3><p style="font-size:26px;line-height:1.4;color:#D5DEE2">Fallecido o sin posibilidad de sobrevivir</p></div>
+</div>
+<aside>START significa Simple Triage And Rapid Treatment (triage simple y tratamiento rápido). Se diseñó en 1983 en California. A diferencia de Manchester, no busca el orden de atención en una sala de espera, sino hacer el mayor bien para el mayor número de personas cuando los recursos no alcanzan. Solo se permiten dos maniobras durante la clasificación: abrir la vía aérea y controlar una hemorragia con presión directa. En niños se usa la variante JumpSTART.</aside>
+</section>
+<section id="start-algoritmo" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Algoritmo START</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Cuatro preguntas en orden: RPM</h2>
+</div>
+<div style="display:flex;gap:12px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFDF9;padding:28px;border:1px solid #E2DED5;border-top:10px solid #0B6B74;border-radius:20px">
+<p style="font-size:24px;font-weight:800;color:#0B6B74">PASO 1</p>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">¿Camina?</h3>
+<div style="flex:1"></div>
+<p style="font-size:24px;font-weight:800;background:#237A4B;color:#F6F4EF;padding:8px 16px;border-radius:12px">Sí → VERDE</p>
+<p style="font-size:24px;color:#4A5568">No → paso 2</p>
+</div>
+<x-shape kind="arrow-right" style="width:40px;height:24px;background:#0B6B74;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFDF9;padding:28px;border:1px solid #E2DED5;border-top:10px solid #0B6B74;border-radius:20px">
+<p style="font-size:24px;font-weight:800;color:#0B6B74">PASO 2 · R</p>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">¿Respira?</h3>
+<p style="font-size:24px;line-height:1.35;color:#4A5568">Si no: abre la vía aérea. ¿Sigue sin respirar? <b>NEGRO</b></p>
+<div style="flex:1"></div>
+<p style="font-size:24px;font-weight:800;background:#C62828;color:#FFF8F2;padding:8px 16px;border-radius:12px">FR &gt; 30 → ROJO</p>
+<p style="font-size:24px;color:#4A5568">FR ≤ 30 → paso 3</p>
+</div>
+<x-shape kind="arrow-right" style="width:40px;height:24px;background:#0B6B74;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFDF9;padding:28px;border:1px solid #E2DED5;border-top:10px solid #0B6B74;border-radius:20px">
+<p style="font-size:24px;font-weight:800;color:#0B6B74">PASO 3 · P</p>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">Perfusión</h3>
+<p style="font-size:24px;line-height:1.35;color:#4A5568">Llenado capilar o pulso radial</p>
+<div style="flex:1"></div>
+<p style="font-size:24px;font-weight:800;background:#C62828;color:#FFF8F2;padding:8px 16px;border-radius:12px">&gt; 2 s o sin pulso → ROJO</p>
+<p style="font-size:24px;color:#4A5568">Normal → paso 4</p>
+</div>
+<x-shape kind="arrow-right" style="width:40px;height:24px;background:#0B6B74;align-self:center"></x-shape>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFDF9;padding:28px;border:1px solid #E2DED5;border-top:10px solid #0B6B74;border-radius:20px">
+<p style="font-size:24px;font-weight:800;color:#0B6B74">PASO 4 · M</p>
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">Estado mental</h3>
+<p style="font-size:24px;line-height:1.35;color:#4A5568">“Apriétame la mano”</p>
+<div style="flex:1"></div>
+<p style="font-size:24px;font-weight:800;background:#C62828;color:#FFF8F2;padding:8px 16px;border-radius:12px">No obedece → ROJO</p>
+<p style="font-size:24px;font-weight:800;background:#F2C230;color:#1B1B1B;padding:8px 16px;border-radius:12px">Obedece → AMARILLO</p>
+</div>
+</div>
+<aside>Regla mnemotécnica RPM: Respiración, Perfusión, Mental. Primero se pide en voz alta que todos los que puedan caminar se muevan a un punto seguro: esos son verdes. Con el resto: si no respira se abre la vía aérea; si aun así no respira, es negro; si empieza a respirar, es rojo. Si respira más de 30 por minuto, rojo. Si el llenado capilar tarda más de 2 segundos o no hay pulso radial, rojo (y se controla cualquier hemorragia). Si no obedece órdenes simples, rojo. Si pasa todo, amarillo.</aside>
+</section>
+<section id="caso-start" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Caso 7 · START</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Choque de autobús: clasifica a cuatro víctimas</h2>
+</div>
+<div style="display:flex;gap:32px;align-items:start">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF9;padding:28px;border:1px solid #E2DED5;border-radius:20px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">Víctima A</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">Herida en la frente. Se levanta y camina hacia ti cuando llamas.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF9;padding:28px;border:1px solid #E2DED5;border-radius:20px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">Víctima B</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">No camina. Respira 36 veces por minuto.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF9;padding:28px;border:1px solid #E2DED5;border-radius:20px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">Víctima C</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">No respira. Abres la vía aérea y sigue sin respirar.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF9;padding:28px;border:1px solid #E2DED5;border-radius:20px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:34px;font-weight:600;color:#12303A">Víctima D</h3>
+<p style="font-size:26px;line-height:1.4;color:#4A5568">Fractura de fémur, no camina. FR 22, llenado capilar 1 s, te aprieta la mano.</p>
+</div>
+</div>
+<div data-build-in="fade" style="position:absolute;left:128px;top:680px;width:392px;height:200px;background:#237A4B;border-radius:20px;padding:24px 28px;display:flex;flex-direction:column;gap:8px"><h3 style="font-family:'Rubik', Arial, sans-serif;font-size:36px;font-weight:700;color:#F6F4EF">A: VERDE</h3><p style="font-size:24px;line-height:1.35;color:#F6F4EF">Camina: lesión menor.</p></div>
+<div data-build-in="fade" style="position:absolute;left:552px;top:680px;width:392px;height:200px;background:#C62828;border-radius:20px;padding:24px 28px;display:flex;flex-direction:column;gap:8px"><h3 style="font-family:'Rubik', Arial, sans-serif;font-size:36px;font-weight:700;color:#FFF8F2">B: ROJO</h3><p style="font-size:24px;line-height:1.35;color:#FFF8F2">FR mayor de 30.</p></div>
+<div data-build-in="fade" style="position:absolute;left:976px;top:680px;width:392px;height:200px;background:#0A0F12;border-radius:20px;padding:24px 28px;display:flex;flex-direction:column;gap:8px"><h3 style="font-family:'Rubik', Arial, sans-serif;font-size:36px;font-weight:700;color:#F6F4EF">C: NEGRO</h3><p style="font-size:24px;line-height:1.35;color:#D5DEE2">No respira tras abrir la vía aérea.</p></div>
+<div data-build-in="fade" style="position:absolute;left:1400px;top:680px;width:392px;height:200px;background:#F2C230;border-radius:20px;padding:24px 28px;display:flex;flex-direction:column;gap:8px"><h3 style="font-family:'Rubik', Arial, sans-serif;font-size:36px;font-weight:700;color:#1B1B1B">D: AMARILLO</h3><p style="font-size:24px;line-height:1.35;color:#1B1B1B">RPM normales, pero no camina.</p></div>
+<aside>Cada clic revela una víctima, en orden de la A a la D. A camina: verde, aunque sangre de la frente (las heridas de cuero cabelludo sangran mucho pero suelen ser menores). B respira más de 30: rojo. C no respira después de abrir la vía aérea: negro; en un desastre no se inicia RCP porque consumiría a un rescatista que puede salvar a varios. D no camina, pero respiración, perfusión y estado mental son normales: amarillo. Discutir lo difícil que es emocionalmente asignar negro.</aside>
+</section>
+<section id="errores" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Errores frecuentes</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Equivocarse hacia arriba o hacia abajo</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF9;padding:44px;border:1px solid #E2DED5;border-top:12px solid #C62828;border-radius:20px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:600;color:#12303A">Subtriage</h3>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Clasificar a un paciente <b>por debajo</b> de lo que necesita. Es el error más peligroso: un grave espera de más.</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#FFFDF9;padding:44px;border:1px solid #E2DED5;border-top:12px solid #2F6FB5;border-radius:20px">
+<h3 style="font-family:'Rubik', Arial, sans-serif;font-size:40px;font-weight:600;color:#12303A">Sobretriage</h3>
+<p style="font-size:28px;line-height:1.4;color:#4A5568">Clasificar <b>por encima</b>. Es más seguro, pero si se repite mucho satura el área de reanimación.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#12303A;padding:36px 44px;border-radius:20px">
+<p style="font-size:30px;line-height:1.4;color:#F6F4EF"><b>También evita:</b> guiarte por el diagnóstico, ignorar el dolor que refiere el paciente, no reevaluar a quien lleva tiempo esperando.</p>
+</div>
+<aside>Subtriage: el paciente con infarto clasificado como verde. Sobretriage: el esguince clasificado como rojo. Ambos tienen costo, pero el subtriage puede costar una vida. Otros errores comunes: dejarse llevar por la apariencia ("se ve tranquilo") o por la insistencia del familiar, no preguntar la escala de dolor y olvidar la reevaluación.</aside>
+</section>
+<section id="resumen" data-transition="fade" style="background:#12303A;color:#F6F4EF;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#7FD1C7">Resumen</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#F6F4EF">Cinco ideas para el examen</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:22px">
+<p style="font-size:34px;line-height:1.4;color:#BFD8D5"><b style="color:#7FD1C7">1.</b> El triage ordena la atención por urgencia; no diagnostica.</p>
+<p style="font-size:34px;line-height:1.4;color:#BFD8D5"><b style="color:#7FD1C7">2.</b> Manchester: rojo 0, naranja 10, amarillo 60, verde 120, azul 240 minutos.</p>
+<p style="font-size:34px;line-height:1.4;color:#BFD8D5"><b style="color:#7FD1C7">3.</b> El primer discriminador positivo, de rojo hacia azul, define el color.</p>
+<p style="font-size:34px;line-height:1.4;color:#BFD8D5"><b style="color:#7FD1C7">4.</b> En desastres se usa START: camina, RPM, y cuatro colores con negro.</p>
+<p style="font-size:34px;line-height:1.4;color:#BFD8D5"><b style="color:#7FD1C7">5.</b> Siempre se reevalúa; ante la duda, se sube de prioridad.</p>
+</div>
+<aside>Repasar las cinco ideas en voz alta y pedir a un alumno que las repita. Sugerir que practiquen con la página interactiva de triage y su minijuego de clasificación.</aside>
+</section>
+<section id="fuentes" data-transition="fade" style="background:#F6F4EF;color:#1D2B33;font-family:'Nunito Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:26px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#0B6B74">Bibliografía</p>
+<h2 style="font-family:'Rubik', Arial, sans-serif;font-size:64px;font-weight:600;line-height:1.15;color:#12303A">Fuentes</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:18px">
+<p style="font-size:24px;line-height:1.4;color:#4A5568">Secretaría de Salud. NOM-027-SSA3-2013, Regulación de los servicios de salud. Que establece los criterios de funcionamiento y atención en los servicios de urgencias de los establecimientos para la atención médica. DOF, 4 de septiembre de 2013.</p>
+<p style="font-size:24px;line-height:1.4;color:#4A5568">Instituto Mexicano del Seguro Social. Guía de Práctica Clínica: Triage hospitalario de primer contacto en los servicios de urgencias adultos para el segundo y tercer nivel (IMSS-339-09). México: IMSS.</p>
+<p style="font-size:24px;line-height:1.4;color:#4A5568">Secretaría de Salud. Lineamiento técnico: Triage obstétrico, Código Mater y Equipo de Respuesta Inmediata Obstétrica. México: SSA; 2016.</p>
+<p style="font-size:24px;line-height:1.4;color:#4A5568">Manchester Triage Group; Mackway-Jones K, Marsden J, Windle J, eds. Emergency Triage. 3rd ed. Chichester: Wiley-Blackwell/BMJ Books; 2014.</p>
+<p style="font-size:24px;line-height:1.4;color:#4A5568">Benson M, Koenig KL, Schultz CH. Disaster triage: START, then SAVE. Prehosp Disaster Med. 1996;11(2):117-124.</p>
+<p style="font-size:24px;line-height:1.4;color:#4A5568">Iserson KV, Moskop JC. Triage in medicine, part I: concept, history, and types. Ann Emerg Med. 2007;49(3):275-281.</p>
+</div>
+<aside>Fuentes principales de la clase. Los tiempos del IMSS se tomaron de la información pública del Instituto sobre su sistema de triage; cada unidad puede tener ajustes locales. Recomendar a los alumnos leer la GPC del IMSS y el capítulo de historia de Iserson y Moskop.</aside>
+</section>
+</div></div>
+<div id="notes" hidden><b>NOTAS DEL EXPOSITOR</b><div id="nt"></div></div>
+<div id="bar"><button id="p" aria-label="Anterior">‹</button><span id="n"></span><button id="x" aria-label="Siguiente">›</button><span id="t">Triage: qué es y cómo se realiza</span><button id="nb" aria-pressed="false">Notas</button></div>
+<script>
+const S=[...document.querySelectorAll('#scaler>section')];let i=0;const K='triage-clase-slide';
+try{i=Math.min(S.length-1,Math.max(0,+localStorage.getItem(K)||0))}catch(e){}
+const sc=document.getElementById('scaler'),st=document.getElementById('stage');
+function fit(){const k=Math.min(st.clientWidth/1920,st.clientHeight/1080);sc.style.transform='scale('+k+')';sc.style.margin=((st.clientHeight-1080)/2)+'px '+((st.clientWidth-1920)/2)+'px'}
+const builds=s=>[...s.querySelectorAll('[data-build-in]')];
+function show(n,revealAll){i=Math.max(0,Math.min(S.length-1,n));S.forEach((s,j)=>s.classList.toggle('on',j===i));
+ builds(S[i]).forEach(b=>b.classList.toggle('pend',!revealAll));upd()}
+function upd(){document.getElementById('n').textContent=(i+1)+' / '+S.length;
+ document.getElementById('p').disabled=i===0&&!builds(S[0]).some(b=>!b.classList.contains('pend'));
+ document.getElementById('x').disabled=i===S.length-1&&!builds(S[i]).some(b=>b.classList.contains('pend'));
+ const a=S[i].querySelector('aside');document.getElementById('nt').textContent=a?a.textContent:'Sin notas.';try{localStorage.setItem(K,i)}catch(e){}}
+function next(){const p=builds(S[i]).find(b=>b.classList.contains('pend'));if(p){p.classList.remove('pend');upd()}else if(i<S.length-1)show(i+1,false)}
+function prev(){const r=builds(S[i]).filter(b=>!b.classList.contains('pend'));if(r.length){r[r.length-1].classList.add('pend');upd()}else if(i>0)show(i-1,true)}
+document.getElementById('p').onclick=prev;document.getElementById('x').onclick=next;
+document.getElementById('nb').onclick=e=>{const n=document.getElementById('notes');n.hidden=!n.hidden;e.currentTarget.setAttribute('aria-pressed',String(!n.hidden))};
+addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();next()}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev()}});
+let x0=null;st.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});st.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)(dx<0?next:prev)();x0=null});
+st.addEventListener('click',e=>{if(e.target.closest('a'))return;const r=st.getBoundingClientRect();(e.clientX-r.left>r.width/3?next:prev)()});
+addEventListener('resize',fit);fit();show(i,false);
+</script></body></html>

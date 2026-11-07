@@ -1,0 +1,1210 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Repaso de Inmunología</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/g9902f21362.css">
+<style>
+/* Layout: lámina teñida con H&E — barra de modos fija arriba, índice de temas a la izquierda, contenido en columna de lectura */
+:root{
+  --bg:#f5f4f9; --surface:#ffffff; --ink:#1e1a2e; --muted:#5d5873; --line:#dedbe9;
+  --hema:#4a3a91; --hema-soft:#ebe7fa; --eosin:#c2416e; --eosin-soft:#fbe8ef;
+  --ok:#1f7a4d; --ok-soft:#e2f4ea; --bad:#b4372f; --bad-soft:#fbe6e4;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#14121b; --surface:#1d1a27; --ink:#ece9f5; --muted:#a7a2bb; --line:#332f43;
+  --hema:#a99cf2; --hema-soft:#2a2545; --eosin:#f08bae; --eosin-soft:#3a2130;
+  --ok:#6fd3a0; --ok-soft:#183427; --bad:#f39b93; --bad-soft:#3d1f1d; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#14121b; --surface:#1d1a27; --ink:#ece9f5; --muted:#a7a2bb; --line:#332f43;
+  --hema:#a99cf2; --hema-soft:#2a2545; --eosin:#f08bae; --eosin-soft:#3a2130;
+  --ok:#6fd3a0; --ok-soft:#183427; --bad:#f39b93; --bad-soft:#3d1f1d; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.topbar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-block:12px}
+.brand{font-family:var(--f-display);font-weight:700;font-size:1.25rem;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;margin-right:auto}
+.brand .dot{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--eosin) 0 40%,var(--hema) 41%)}
+.modes{display:flex;gap:4px;background:var(--bg);padding:4px;border-radius:999px;border:1px solid var(--line)}
+.modes button{font:600 .95rem var(--f-body);border:0;background:transparent;color:var(--muted);padding:7px 16px;border-radius:999px;cursor:pointer}
+.modes button[aria-selected="true"]{background:var(--hema);color:var(--surface)}
+button:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--eosin);outline-offset:2px}
+
+.hero{padding-block:28px 8px}
+.hero h1{font-family:var(--f-display);font-size:clamp(1.9rem,4.5vw,2.8rem);line-height:1.08;margin:0 0 8px;letter-spacing:-.02em;text-wrap:balance}
+.hero p{margin:0;color:var(--muted);max-width:62ch}
+.eyebrow{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--eosin)}
+
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:36px;padding-block:20px 60px}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 80px);align-self:start;max-height:calc(100vh - 100px);overflow:auto}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+nav.toc a{display:flex;gap:10px;text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:8px;font-size:.95rem;line-height:1.3}
+nav.toc a:hover{background:var(--hema-soft);color:var(--ink)}
+nav.toc .n{font-family:var(--f-mono);font-size:.78rem;color:var(--hema);min-width:2.2em;padding-top:2px}
+
+section.topic{padding-block:8px 28px;border-bottom:1px solid var(--line);scroll-margin-top:90px}
+section.topic:last-child{border-bottom:0}
+section.topic h2{font-family:var(--f-display);font-size:1.7rem;line-height:1.15;margin:18px 0 6px;letter-spacing:-.015em;text-wrap:balance}
+section.topic h3{font-family:var(--f-display);font-size:1.15rem;margin:22px 0 6px;color:var(--hema)}
+.lead{color:var(--muted);margin:0 0 10px;max-width:68ch}
+.prose{max-width:72ch}
+.prose ul{padding-left:1.2em;margin:6px 0}
+.prose li{margin:3px 0}
+.prose p{margin:8px 0}
+b,strong{font-weight:700}
+.tag{font-family:var(--f-mono);font-size:.82em;background:var(--hema-soft);color:var(--hema);padding:1px 6px;border-radius:5px;white-space:nowrap}
+.key{background:var(--eosin-soft);border-left:4px solid var(--eosin);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0;max-width:72ch}
+.key .eyebrow{display:block;margin-bottom:4px}
+.key ul{margin:0;padding-left:1.1em}
+.ojo{font-size:.9rem;color:var(--muted);border:1px dashed var(--line);padding:8px 12px;border-radius:8px;margin:12px 0;max-width:72ch}
+.ojo b{color:var(--eosin)}
+.tbl{overflow-x:auto;margin:12px 0;max-width:100%}
+table{border-collapse:collapse;font-size:.95rem;min-width:420px;background:var(--surface);border-radius:10px;overflow:hidden}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}
+.flow span{background:var(--surface);border:1px solid var(--line);padding:4px 10px;border-radius:8px;font-size:.92rem}
+.flow i{color:var(--eosin);font-style:normal;font-weight:700}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:12px 0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:0}
+.panel h4{margin:0 0 4px;font-family:var(--f-display);font-size:1.02rem}
+.panel ul{margin:4px 0 0;padding-left:1.1em}
+
+/* Flashcards */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:8px 0 18px}
+select,.btn{font:600 .95rem var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 14px;cursor:pointer}
+.btn.primary{background:var(--hema);color:var(--surface);border-color:var(--hema)}
+.btn.good{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.btn.again{background:var(--bad-soft);color:var(--bad);border-color:transparent}
+.counter{font-family:var(--f-mono);font-size:.85rem;color:var(--muted);margin-left:auto}
+.card-stage{max-width:720px;margin:0 auto}
+.fcard{perspective:1400px;cursor:pointer;height:320px;max-width:100%}
+.fcard-inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.fcard.flipped .fcard-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:10px;border:1px solid var(--line);overflow:auto}
+.face.front{background:var(--surface)}
+.face.back{background:var(--hema-soft);transform:rotateY(180deg)}
+.face .q{font-family:var(--f-display);font-size:clamp(1.2rem,3.2vw,1.6rem);line-height:1.25;text-wrap:balance}
+.face .a{font-size:1.08rem;line-height:1.5}
+.face .hint{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:auto}
+.card-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.progress{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin:4px 0 14px}
+.progress div{height:100%;background:var(--eosin);width:0;transition:width .3s}
+
+/* Quiz */
+.qbox{max-width:760px;margin:0 auto}
+.qnum{font-family:var(--f-mono);font-size:.8rem;color:var(--muted)}
+.qtext{font-family:var(--f-display);font-size:1.35rem;line-height:1.3;margin:6px 0 16px;text-wrap:balance}
+.opts{display:grid;gap:10px}
+.opt{text-align:left;font:400 1.02rem var(--f-body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 16px;cursor:pointer;display:flex;gap:12px;align-items:flex-start}
+.opt .l{font-family:var(--f-mono);font-size:.85rem;color:var(--hema);padding-top:2px}
+.opt:hover:not([disabled]){border-color:var(--hema)}
+.opt.right{background:var(--ok-soft);border-color:var(--ok)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt[disabled]{cursor:default}
+.explain{margin-top:14px;padding:12px 16px;border-radius:10px;background:var(--hema-soft);font-size:.98rem}
+.score{text-align:center;padding:30px 10px}
+.score .big{font-family:var(--f-display);font-size:3.4rem;color:var(--hema);line-height:1}
+.missed{text-align:left;max-width:720px;margin:20px auto 0}
+.missed li{margin:8px 0}
+
+[data-view]{display:none}
+[data-view].on{display:block}
+@media (max-width:860px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  nav.toc{position:static;max-height:none}
+  nav.toc ol{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+}
+@media (max-width:520px){
+  body{font-size:16px}
+  .fcard{height:380px}
+  .face{padding:20px}
+  .modes button{padding:7px 12px}
+}
+@media (prefers-reduced-motion:reduce){.fcard-inner,.progress div{transition:none}}
+
+/* ---------- v2: portada, widgets, juego ---------- */
+:root{--hero-a:#3a2c7e;--hero-b:#b23d6b;--on-hero:#ffffff;--on-hero-soft:rgba(255,255,255,.78);--tile:rgba(255,255,255,.13)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--hero-a:#2a2160;--hero-b:#7a2b50;--on-hero:#f6f2ff;--on-hero-soft:rgba(246,242,255,.75);--tile:rgba(255,255,255,.09)}}
+:root[data-theme="dark"]{--hero-a:#2a2160;--hero-b:#7a2b50;--on-hero:#f6f2ff;--on-hero-soft:rgba(246,242,255,.75);--tile:rgba(255,255,255,.09)}
+.hero-big{position:relative;overflow:hidden;border-radius:24px;margin-top:22px;background:linear-gradient(125deg,var(--hero-a),var(--hero-b));color:var(--on-hero);padding:32px clamp(18px,4vw,40px)}
+.hero-big canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-big>*:not(canvas){position:relative}
+.hero-big .eyebrow{color:var(--on-hero-soft)}
+.hero-big h1{font-family:var(--f-display);font-size:clamp(2rem,5vw,3.2rem);line-height:1.04;margin:6px 0 10px;letter-spacing:-.025em;max-width:16ch;text-wrap:balance}
+.hero-big p{margin:0;max-width:56ch;color:var(--on-hero-soft)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:24px}
+.stat{background:var(--tile);border-radius:14px;padding:12px 14px;backdrop-filter:blur(4px)}
+.stat b{display:block;font-family:var(--f-display);font-size:1.7rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{font-size:.85rem;color:var(--on-hero-soft)}
+.stat .mini{height:4px;border-radius:4px;background:rgba(255,255,255,.2);margin-top:8px;overflow:hidden}
+.stat .mini i{display:block;height:100%;background:var(--on-hero);width:0;transition:width .6s}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.cta{font:700 .95rem var(--f-body);border:0;border-radius:999px;padding:10px 18px;cursor:pointer;background:var(--on-hero);color:var(--hero-a)}
+.cta.ghost{background:transparent;color:var(--on-hero);box-shadow:inset 0 0 0 1.5px var(--on-hero-soft)}
+@media (max-width:620px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.topic-head{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.topic-head h2{margin-right:auto}
+.done-btn{font:600 .88rem var(--f-body);border:1.5px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:6px 14px;cursor:pointer;transition:all .2s;margin-bottom:6px}
+.done-btn[aria-pressed="true"]{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+nav.toc a.done .n::after{content:" ✓";color:var(--ok)}
+nav.toc a.active{background:var(--hema-soft);color:var(--ink);font-weight:600}
+.toc-prog{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);padding:0 10px 10px}
+.toc-prog .progress{margin:6px 0 0}
+
+.widget{background:var(--surface);border:1.5px solid var(--hema-soft);border-radius:16px;padding:16px 18px;margin:18px 0;max-width:780px;box-shadow:0 6px 24px -14px var(--hema)}
+.widget>.eyebrow{display:flex;align-items:center;gap:8px;color:var(--hema)}
+.widget>.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--eosin);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{transform:scale(1.6);opacity:.4}}
+.widget h4{font-family:var(--f-display);font-size:1.12rem;margin:4px 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:600 .92rem var(--f-body);border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer;transition:all .15s}
+.chip:hover{border-color:var(--hema)}
+.chip[aria-pressed="true"]{background:var(--hema);color:var(--surface);border-color:var(--hema)}
+.reveal{margin-top:12px;padding:14px 16px;border-radius:12px;background:var(--hema-soft);animation:pop .3s ease}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.reveal dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0}
+.reveal dt{font-family:var(--f-mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:3px}
+.reveal dd{margin:0;min-width:0}
+.stepper .dots{display:flex;gap:6px;margin:6px 0 12px;flex-wrap:wrap}
+.stepper .dots button{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line);background:var(--bg);color:var(--muted);font:600 .8rem var(--f-mono);cursor:pointer}
+.stepper .dots button.past{background:var(--hema-soft);color:var(--hema);border-color:var(--hema-soft)}
+.stepper .dots button.now{background:var(--hema);color:var(--surface);border-color:var(--hema)}
+.stepper .stage{min-height:110px}
+.stepper .stage h5{font-family:var(--f-display);font-size:1.2rem;margin:0 0 4px}
+.stepper .nav{display:flex;gap:8px;margin-top:10px}
+.seg{display:inline-flex;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:4px;gap:4px}
+.seg button{font:700 .92rem var(--f-body);border:0;border-radius:999px;padding:7px 16px;background:transparent;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--eosin);color:var(--surface)}
+.case{font-size:1.05rem;padding:14px 16px;border-radius:12px;background:var(--bg);border:1px dashed var(--line);margin-bottom:12px}
+.fb{margin-top:10px;font-weight:600}
+.fb.ok{color:var(--ok)} .fb.no{color:var(--bad)}
+.chip.right{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.chip.wrong{background:var(--bad-soft);color:var(--bad);border-color:var(--bad)}
+
+/* juego relacionar */
+.mgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:860px;margin:0 auto}
+.mcol{display:grid;gap:10px;align-content:start;min-width:0}
+.mtile{text-align:left;font:500 .98rem var(--f-body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;min-height:56px;transition:transform .15s,border-color .15s,background .15s}
+.mtile:hover:not([disabled]){transform:translateY(-2px);border-color:var(--hema)}
+.mtile.term{font-family:var(--f-display);font-weight:700}
+.mtile.sel{border-color:var(--hema);background:var(--hema-soft)}
+.mtile.ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);opacity:.6;cursor:default}
+.mtile.bad{animation:shake .35s;border-color:var(--bad);background:var(--bad-soft)}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.mwin{text-align:center;padding:24px;max-width:600px;margin:20px auto 0;border-radius:16px;background:var(--hema-soft)}
+.mwin b{font-family:var(--f-display);font-size:1.6rem;color:var(--hema)}
+@media (max-width:520px){.mtile{font-size:.9rem;padding:10px}}
+
+.streak{font-family:var(--f-mono);font-size:.85rem;padding:4px 10px;border-radius:999px;background:var(--eosin-soft);color:var(--eosin)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:50;width:100%;height:100%}
+@media (prefers-reduced-motion:reduce){.widget>.eyebrow::before,.reveal,.mtile.bad{animation:none}}
+</style>
+
+<header class="top">
+  <div class="wrap topbar">
+    <div class="brand"><span class="dot" aria-hidden="true"></span>Repaso de Inmunología</div>
+    <div class="modes" role="tablist" aria-label="Modo de estudio">
+      <button role="tab" id="tab-resumen" aria-selected="true" data-go="resumen">Resúmenes</button>
+      <button role="tab" id="tab-flash" aria-selected="false" data-go="flash">Flashcards</button>
+      <button role="tab" id="tab-match" aria-selected="false" data-go="match">Relacionar</button>
+      <button role="tab" id="tab-quiz" aria-selected="false" data-go="quiz">Quiz</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ================= RESÚMENES ================= -->
+<div data-view="resumen" class="on">
+  <div class="hero-big">
+    <canvas id="cells" aria-hidden="true"></canvas>
+    <div class="eyebrow">Basado en tus notas · 11 bloques</div>
+    <h1>Del antígeno a la hipersensibilidad</h1>
+    <p>Lee cada tema, juega con los ejercicios interactivos y márcalo como estudiado. Luego ponte a prueba con flashcards, el juego de relacionar y el quiz.</p>
+    <div class="stats">
+      <div class="stat"><b id="st-topics">0/11</b><span>temas estudiados</span><div class="mini"><i id="st-topics-bar"></i></div></div>
+      <div class="stat"><b id="st-cards">0</b><span>flashcards que te sabes</span><div class="mini"><i id="st-cards-bar"></i></div></div>
+      <div class="stat"><b id="st-quiz">—</b><span>mejor calificación en quiz</span><div class="mini"><i id="st-quiz-bar"></i></div></div>
+      <div class="stat"><b id="st-match">—</b><span>parejas acertadas en relacionar</span><div class="mini"><i id="st-match-bar"></i></div></div>
+    </div>
+    <div class="cta-row">
+      <button class="cta" data-go="flash">Repasar flashcards</button>
+      <button class="cta ghost" data-go="match">Jugar a relacionar</button>
+      <button class="cta ghost" data-go="quiz">Hacer el quiz</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Temas">
+      <div class="toc-prog"><span id="toc-prog-t">0 de 11 estudiados</span><div class="progress"><div id="toc-prog-bar"></div></div></div>
+      <ol id="toc"></ol>
+    </nav>
+
+    <div id="topics">
+
+<!-- 1 -->
+<section class="topic" id="t1" data-n="1" data-title="Generalidades">
+  <div class="eyebrow">Tema 1</div>
+  <h2>Generalidades</h2>
+  <p class="lead">Antígeno, anticuerpo, epítopo, selección clonal y las tres capas del sistema inmune.</p>
+  <div class="prose">
+    <p><b>Antígeno (Ag):</b> molécula reconocida específicamente por receptores inmunes (anticuerpos o TCR). <b>Epítopo:</b> la parte específica del Ag que se reconoce; puede ser <b>lineal</b> (secuencia continua de aminoácidos) o <b>conformacional</b> (depende de la estructura 3D).</p>
+  </div>
+  <div class="tbl"><table>
+    <tr><th>Tipo de antígeno</th><th>Qué es</th><th>Clave</th></tr>
+    <tr><td>Endógeno</td><td>Se origina dentro del organismo</td><td>Proteínas virales en célula infectada</td></tr>
+    <tr><td>Exógeno</td><td>Viene del exterior</td><td>Bacterias, virus, hongos, toxinas, alérgenos</td></tr>
+    <tr><td>Autoantígeno</td><td>Propio, normalmente tolerado</td><td>Su reconocimiento anormal → autoinmunidad</td></tr>
+    <tr><td>Aloantígeno</td><td>De otro individuo de la misma especie</td><td>Trasplantes, grupos sanguíneos</td></tr>
+    <tr><td>Inmunógeno</td><td>Sí induce respuesta específica</td><td>Cada exposición → respuesta más rápida e intensa (memoria)</td></tr>
+    <tr><td>Tolerógeno</td><td>Induce tolerancia</td><td>Respuesta cada vez más débil o ausente</td></tr>
+    <tr><td>Hapteno</td><td>Molécula pequeña, no inmunógena sola</td><td>Necesita proteína transportadora (ej. penicilina)</td></tr>
+    <tr><td>Superantígeno</td><td>Activa masivamente LT sin procesamiento clásico</td><td>Respuesta exagerada en horas → riesgo de choque</td></tr>
+  </table></div>
+  <div class="grid2">
+    <div class="panel"><h4>Fracción Fab</h4><ul><li>Sitio de unión al antígeno</li><li>Reconoce el epítopo</li><li>Da la <b>especificidad</b></li></ul></div>
+    <div class="panel"><h4>Fracción Fc</h4><ul><li>Región <b>efectora</b></li><li>Activa el complemento</li><li>Se une a macrófagos, NK, mastocitos</li></ul></div>
+  </div>
+  <div class="prose">
+    <p><b>Selección clonal:</b> cada linfocito tiene un receptor único; solo el que reconoce el Ag se activa, prolifera y se diferencia en células <b>efectoras</b> y de <b>memoria</b>.</p>
+  </div>
+  <h3>Las tres capas</h3>
+  <div class="grid2">
+    <div class="panel"><h4>1 · Constitutivo</h4><ul><li>Barreras naturales, primera línea</li><li>Piel: pH ácido, sudor, ácidos grasos, microbiota</li><li>Mucosas: moco, cilios, enzimas, pH ácido, microbiota</li></ul></div>
+    <div class="panel"><h4>2 · Innato</h4><ul><li>Rápido (minutos-horas), desde el nacimiento</li><li>Neutrófilos, macrófagos, monocitos, mastocitos, eosinófilos, NK</li><li>PAMP ↔ PRR, citocinas (IL-1, IL-6, TNF-α, IFN), fagocitosis, ETosis, presentación de Ag</li></ul></div>
+    <div class="panel"><h4>3 · Adaptativo</h4><ul><li>Lento (días-semanas), específico, con memoria</li><li><b>LT</b> (celular): CD3+/TCR+; CD4 (Th1, Th2) y CD8 (perforinas, granzimas)</li><li><b>LB</b> (humoral): anticuerpos y memoria</li></ul></div>
+  </div>
+  <h3>Inmunoglobulinas (GAMDE)</h3>
+  <div class="tbl"><table>
+    <tr><th>Ig</th><th>Dato clave</th></tr>
+    <tr><td><span class="tag">IgG</span></td><td>Principal en sangre; <b>atraviesa placenta</b></td></tr>
+    <tr><td><span class="tag">IgA</span></td><td>Mucosas y secreciones (leche materna)</td></tr>
+    <tr><td><span class="tag">IgM</span></td><td><b>Primera</b> en la respuesta primaria</td></tr>
+    <tr><td><span class="tag">IgD</span></td><td>Función reguladora</td></tr>
+    <tr><td><span class="tag">IgE</span></td><td>Alergias y parásitos</td></tr>
+  </table></div>
+  <div class="widget" id="w-ig"></div>
+  <div class="key"><span class="eyebrow">Para el examen</span><ul>
+    <li>Complemento: quimiotaxis, opsonización y MAC (lisis).</li>
+    <li>Las <b>citocinas</b> causan la clínica (fiebre, inflamación, dolor); su exceso genera daño.</li>
+    <li>Innata rápida: reconocer → citocinas → inflamación → fagocitosis. Adaptativa primaria: presentar Ag → activación clonal → diferenciación → anticuerpos o citotoxicidad → memoria.</li>
+  </ul></div>
+</section>
+
+<!-- 2 -->
+<section class="topic" id="t2" data-n="2" data-title="Sistema inmune innato">
+  <div class="eyebrow">Tema 2</div>
+  <h2>Sistema inmune innato</h2>
+  <p class="lead">Reconoce <b>patrones moleculares</b>, no antígenos específicos. Dos tipos de señales: de microorganismos y de daño.</p>
+  <div class="grid2">
+    <div class="panel"><h4>MAMP</h4><ul><li>Patrones de microorganismos <b>en general</b> (incluye microbiota)</li><li>Puede no causar daño</li></ul></div>
+    <div class="panel"><h4>PAMP</h4><ul><li>Subtipo de MAMP, de <b>patógenos</b></li><li>Induce inflamación intensa</li></ul></div>
+    <div class="panel"><h4>DAMP / alarminas</h4><ul><li>Señales de daño (estrés, necrosis, isquemia), aunque no haya infección</li><li>HMGB1, ATP extracelular, ácido úrico, ADN mitocondrial, cristales de urato</li></ul></div>
+  </div>
+  <div class="tbl"><table>
+    <tr><th>Microorganismo</th><th>Patrón</th><th>Receptor</th><th>Citocinas / efecto</th></tr>
+    <tr><td>Gram −</td><td>LPS</td><td><span class="tag">TLR4</span></td><td>TNF-α, IL-1β, IL-6 → inflamación intensa, fiebre, sepsis</td></tr>
+    <tr><td>Gram +</td><td>Peptidoglucano, ác. lipoteicoico</td><td><span class="tag">TLR2</span></td><td>TNF-α, IL-1β, IL-6 → inflamación local o sistémica</td></tr>
+    <tr><td>Virus</td><td>ARNds, ARNss, ADN viral</td><td><span class="tag">TLR3</span> ARNds · <span class="tag">TLR7/8</span> ARNss · RIG-I</td><td>IFN-α, IFN-β → estado antiviral, activa NK</td></tr>
+    <tr><td>Hongos</td><td>β-glucanos, mananos, quitina</td><td>Dectina-1, TLR2, TLR4</td><td>IL-1β, IL-6, TNF-α, IL-23 → neutrófilos, <b>Th17</b></td></tr>
+    <tr><td>Parásitos</td><td>GPI anchors, proteasas</td><td><span class="tag">TLR2</span></td><td>IL-4, IL-5, IL-13 → eosinófilos, IgE</td></tr>
+    <tr><td>DAMPs</td><td>ATP, ácido úrico, HMGB1</td><td>TLR, NLRP3</td><td>IL-1β, IL-18 → inflamación estéril, dolor</td></tr>
+  </table></div>
+  <div class="widget" id="w-pat"></div>
+  <h3>Receptores PRR según localización</h3>
+  <div class="grid2">
+    <div class="panel"><h4>Séricos</h4><ul><li>Solubles; opsonizan</li><li>PCR, lectinas, surfactantes pulmonares</li></ul></div>
+    <div class="panel"><h4>Membrana (TLR)</h4><ul><li>TLR4 → LPS · TLR2 → peptidoglucano</li><li>TLR5 → flagelina · TLR9 → ADN CpG</li></ul></div>
+    <div class="panel"><h4>Citoplasmáticos</h4><ul><li>NOD1/NOD2, NLR</li><li><b>Inflamasoma NLRP3</b> → IL-1β e IL-18; blanco terapéutico</li></ul></div>
+    <div class="panel"><h4>Antivirales</h4><ul><li>RIG-I y MDA-5 → ARN viral</li></ul></div>
+  </div>
+  <p class="prose">Los PRR los expresan neutrófilos, macrófagos, células dendríticas, células epiteliales y algunas endoteliales.</p>
+  <h3>Las 3 "T" de la activación inflamatoria</h3>
+  <div class="flow"><span><b>Transducción</b>: señal del PRR al núcleo</span><i>→</i><span><b>Transcripción</b>: NF-κB y AP-1</span><i>→</i><span><b>Traducción</b>: ARNm → citocinas</span></div>
+  <p class="prose">Citocinas proinflamatorias principales: <b>TNF-α, IL-1β, IL-6, IL-8, IFN tipo I</b>.</p>
+  <h3>SIRS → muerte</h3>
+  <div class="flow"><span>SIRS</span><i>→</i><span>Sepsis (SIRS + foco)</span><i>→</i><span>Sepsis grave (hipotensión que responde a líquidos)</span><i>→</i><span>Choque séptico (no responde, requiere aminas)</span><i>→</i><span>Falla orgánica múltiple (≥2 órganos)</span></div>
+  <p class="prose">SIRS clínico: fiebre o hipotermia, taquicardia, taquipnea, hipotensión. Bioquímico: leucocitosis o leucopenia, ↓HCO₃⁻ (acidosis metabólica).</p>
+  <div class="ojo"><b>Ojo con tus notas:</b> la "IL-37 (catelicidina)" de las trampas es en realidad <b>LL-37</b>; HMGB1 significa <i>high mobility group box 1</i> (no es proteína de choque térmico); y las alarminas tipo citocina suelen citarse como <b>IL-25, IL-33 y TSLP</b>. Si tu profe lo dijo distinto, quédate con lo de clase.</div>
+</section>
+
+<!-- 2.1 -->
+<section class="topic" id="t2b" data-n="2.1" data-title="Fagocitosis, ETosis y complemento">
+  <div class="eyebrow">Tema 2.1</div>
+  <h2>Fagocitosis, ETosis y complemento</h2>
+  <h3>ETosis / NETosis</h3>
+  <div class="prose"><ul>
+    <li>Trampas extracelulares de ADN; en neutrófilos se llama <b>NETosis</b>. También eosinófilos, basófilos, mastocitos, LT.</li>
+    <li>Mecanismo: activación → <b>elastasa y mieloperoxidasa (MPO)</b> van al núcleo → la cromatina se desenrolla → ADN + histonas + enzimas antimicrobianas se libera como malla.</li>
+    <li>Más que matar, <b>inmovilizan</b> al microorganismo. En exceso causan daño tisular (ej. COVID-19).</li>
+  </ul></div>
+  <h3>Fagocitos</h3>
+  <div class="grid2">
+    <div class="panel"><h4>Pequeños</h4><ul><li>Neutrófilos, eosinófilos, basófilos</li><li>Neutrófilo: núcleo de 3-5 lóbulos → pasa rápido entre células endoteliales</li></ul></div>
+    <div class="panel"><h4>Grandes</h4><ul><li>Monocitos (sangre) → macrófagos (tejido)</li><li>Alveolares (pulmón), <b>Kupffer</b> (hígado), <b>microglía</b> (SNC), <b>osteoclastos</b> (hueso), esplénicos</li></ul></div>
+  </div>
+  <p class="prose"><b>Opsonización:</b> IgG o C3b recubren al microorganismo ("aderezo de ensalada") para facilitar la fagocitosis. Receptores <b>scavenger</b>: eliminan células apoptóticas y <b>frenan</b> la inflamación.</p>
+  <h3>Pasos de la fagocitosis</h3>
+  <div class="widget stepper" id="w-fago"></div>
+  <div class="flow"><span>1 Quimiotaxis</span><i>→</i><span>2 Adherencia</span><i>→</i><span>3 Activación de membrana</span><i>→</i><span>4 Endocitosis</span><i>→</i><span>5 Fagosoma</span><i>→</i><span>6 Fagolisosoma</span><i>→</i><span>7 Digestión</span><i>→</i><span>8 Excreción / presentación de Ag</span></div>
+  <div class="prose"><ul>
+    <li><b>Quimiotácticos:</b> formil-péptidos, C5a/C3a/C4a, quimiocinas, leucotrienos.</li>
+    <li><b>Activación de membrana:</b> proteína G → PLC → PIP2 → IP3 + DAG.</li>
+    <li><b>Fagolisosoma:</b> pH cada vez más ácido = más daño.</li>
+    <li><b>Estallido respiratorio:</b> NADPH-oxidasa → anión superóxido, H₂O₂, radical hidroxilo, oxígeno singlete.</li>
+    <li><b>MPO:</b> H₂O₂ → ácido hipocloroso (HOCl). <b>iNOS</b> → óxido nítrico.</li>
+  </ul></div>
+  <div class="key"><span class="eyebrow">Correlación clínica</span>
+    <b>Enfermedad granulomatosa crónica:</b> defecto en la NADPH-oxidasa → no hay estallido respiratorio → infecciones recurrentes.</div>
+  <h3>Complemento</h3>
+  <div class="prose"><p>Más de 20 proteínas. Funciones: <b>opsonización</b> (C3b), <b>lisis</b> (MAC = C5b-6-7-8-9) e <b>inflamación</b> (C3a, C5a). Vías: <b>clásica</b> (Ag-Ac), <b>lectina-manosa</b> y <b>alterna/properdina</b>.</p></div>
+  <div class="widget stepper" id="w-comp"></div>
+  <div class="flow"><span>Lectina reconoce manosa</span><i>→</i><span>C4 y C2 se escinden</span><i>→</i><span>C3 convertasa</span><i>→</i><span>C3 → C3a + <b>C3b</b></span><i>→</i><span>C5 convertasa</span><i>→</i><span>C5 → C5a + C5b</span><i>→</i><span>MAC → lisis</span></div>
+  <div class="prose"><p>C3a y C5a = anafilotoxinas / inflamación. C3b = "superopsonina". Déficit de C3b → menos fagocitosis → infecciones frecuentes.</p></div>
+  <div class="ojo"><b>Ojo:</b> en la vía de la lectina, la lectina usa proteasas <b>MASP</b> (no C1qrs, que es de la vía clásica). En la nomenclatura actual la C3 convertasa se escribe <b>C4b2a</b>; en tus notas aparece como C2b4b. Usa la que pida tu profe.</div>
+</section>
+
+<!-- 2.2 -->
+<section class="topic" id="t2c" data-n="2.2" data-title="MHC (HLA)">
+  <div class="eyebrow">Tema 2.2</div>
+  <h2>Complejo principal de histocompatibilidad</h2>
+  <p class="lead">El puente entre la inmunidad innata y la adaptativa. Sin MHC el linfocito T no reconoce antígenos. En humanos se llama <b>HLA</b>.</p>
+  <div class="prose"><p>Genes en el <b>cromosoma 6</b>; la β2-microglobulina (MHC I) en el <b>cromosoma 15</b>. El conjunto de genes heredados = <b>haplotipo</b>. Genotipo = gen; fenotipo = proteína en membrana.</p></div>
+  <div class="tbl"><table>
+    <tr><th></th><th>MHC I</th><th>MHC II</th></tr>
+    <tr><td>Dónde</td><td>Todas las células nucleadas (no eritrocitos)</td><td>Solo CPA: dendríticas, macrófagos, LB</td></tr>
+    <tr><td>Antígeno</td><td><b>Endógeno</b> (virus, tumor)</td><td><b>Exógeno</b> (bacterias, parásitos, toxinas)</td></tr>
+    <tr><td>Genes</td><td>HLA-A, -B, -C (no clásicos: E, F, <b>G</b>)</td><td>HLA-DP, -DQ, -DR</td></tr>
+    <tr><td>Estructura</td><td>Cadena α (α1-α3) + β2-microglobulina; péptido entre α1 y α2</td><td>Cadena α + cadena β; péptido entre α1 y β1</td></tr>
+    <tr><td>Procesamiento</td><td>Proteasoma → <b>TAP-1/TAP-2</b> → RER (calnexina, calreticulina, ERp57) → Golgi → membrana</td><td>Cadena invariante (Ii) → <b>CLIP</b> → fusión con fagolisosoma → <b>HLA-DM</b> retira CLIP</td></tr>
+    <tr><td>Lo reconoce</td><td><b>CD8+</b> (perforinas, granzimas, granulisinas)</td><td><b>CD4+</b> → Th1, Th2, Th17, Treg</td></tr>
+    <tr><td>Función final</td><td>Destruir la célula infectada</td><td>Coordinar la respuesta</td></tr>
+  </table></div>
+  <div class="widget" id="w-mhc"></div>
+  <div class="prose"><p><b>MHC III:</b> no presenta antígenos; codifica TNF-α, TNF-β y componentes del complemento.</p></div>
+  <div class="key"><span class="eyebrow">Para el examen</span><ul>
+    <li><b>HLA-G</b> = embarazo: evita que las NK destruyan al trofoblasto.</li>
+    <li>Sin TAP no hay presentación en MHC I. Sin HLA-DM no se libera CLIP.</li>
+    <li>Importancia clínica: trasplantes, autoinmunidad, susceptibilidad genética, inmunodeficiencias (déficit de TAP, síndrome del linfocito desnudo).</li>
+    <li>Regla del 8: MHC <b>I × CD8</b> = 8; MHC <b>II × CD4</b> = 8.</li>
+  </ul></div>
+</section>
+
+<!-- 3 -->
+<section class="topic" id="t3" data-n="3" data-title="Linfocitos T y B">
+  <div class="eyebrow">Tema 3</div>
+  <h2>Activación de linfocitos T y B</h2>
+  <div class="prose"><p>Todo LT necesita <b>CD3 + TCR</b>. La principal CPA es la <b>célula dendrítica</b>. El contacto LT-CPA se llama <b>sinapsis inmunológica</b>.</p></div>
+  <div class="grid2">
+    <div class="panel"><h4>Señal 1 · específica</h4><ul><li>TCR ↔ MHC + péptido</li></ul></div>
+    <div class="panel"><h4>Señal 2 · coestimulación</h4><ul><li><b>CD80 (B7-1) / CD86 (B7-2)</b> en la CPA ↔ <b>CD28</b> en el LT</li><li>Sin señal 2 → <b>anergia</b></li></ul></div>
+  </div>
+  <p class="prose">Ya activado: expansión clonal, citocinas y diferenciación a efector o <b>memoria (CD45RO+)</b>, que migra a médula ósea y ganglios.</p>
+  <div class="tbl"><table>
+    <tr><th>Perfil</th><th>Contra</th><th>Citocinas</th><th>Qué hace</th></tr>
+    <tr><td><b>Th1</b></td><td>Virus, bacterias intracelulares, tumores</td><td><b>IFN-γ</b>, IL-12, TNF-α</td><td>Activa macrófagos, CD8 y NK</td></tr>
+    <tr><td><b>Th2</b></td><td>Parásitos, alergias</td><td><b>IL-4</b>, IL-5, IL-13</td><td>Activa LB → anticuerpos</td></tr>
+    <tr><td><b>Th17</b></td><td>Hongos, inflamación</td><td>IL-17, IL-22, IL-23</td><td>Recluta neutrófilos</td></tr>
+    <tr><td><b>Treg (Th3)</b></td><td>Autoinmunidad</td><td><b>IL-10, TGF-β</b></td><td>Frena la respuesta. Marcadores: <b>CD25, FOXP3</b>, Helios</td></tr>
+    <tr><td><b>CD8</b></td><td>Virus, tumores (vía MHC I)</td><td>—</td><td>Perforinas, granzimas → caspasas → apoptosis</td></tr>
+  </table></div>
+  <div class="widget" id="w-th"></div>
+  <h3>Linfocito B y cambio de clase</h3>
+  <div class="prose"><ul>
+    <li>Señales: el <b>BCR</b> reconoce el Ag + ayuda del LT helper (<b>CD40 ↔ CD40L</b> + citocinas).</li>
+    <li>Primero produce <b>IgM</b>; con el switch pasa a IgG (1-4), IgA (1-2) o IgE. Un clon produce <b>una sola</b> clase final.</li>
+    <li>Resultado: expansión clonal → células plasmáticas + LB de memoria (médula ósea, ganglios).</li>
+  </ul></div>
+  <div class="key"><span class="eyebrow">Puntos clave de tus notas</span><ul>
+    <li>Sin CD28 no hay activación. Sin CD40L no hay cambio de clase.</li>
+    <li>IgM = respuesta primaria · FOXP3 = Treg · IFN-γ = Th1 · IL-4 = Th2 · CD25 = receptor de IL-2 (cadena α).</li>
+    <li>Treg = "el psiquiatra del sistema inmune": si fallan → autoinmunidad.</li>
+  </ul></div>
+</section>
+
+<!-- 4 -->
+<section class="topic" id="t4" data-n="4" data-title="Respuesta a microorganismos">
+  <div class="eyebrow">Tema 4</div>
+  <h2>Respuesta inmune contra microorganismos</h2>
+  <div class="grid2">
+    <div class="panel"><h4>Virus</h4><ul>
+      <li>Primera línea: <b>interferones</b> (inhiben replicación)</li>
+      <li>Tipo I (α, β): epitelio respiratorio, los más inmediatos</li>
+      <li>Tipo II (γ): potencia PMN y LT</li>
+      <li>Tipo III: también en epitelios</li>
+      <li>Luego: MHC I → LT citotóxico (perforinas, granzimas, granulisinas)</li></ul></div>
+    <div class="panel"><h4>Bacterias</h4><ul>
+      <li>En esencia: <b>fagocitosis</b></li>
+      <li>Th1 (IL-12, IFN-γ) + Th2 (Ig, citotoxicidad dependiente de anticuerpos) + complemento</li>
+      <li><b>M. tuberculosis</b>: respuesta Th1 → <b>granuloma</b></li></ul></div>
+    <div class="panel"><h4>Parásitos</h4><ul>
+      <li>Más que destruir, <b>controlar</b></li>
+      <li><b>Th2 + IgE + eosinófilo</b> (célula citotóxica aquí)</li></ul></div>
+    <div class="panel"><h4>Hongos</h4><ul>
+      <li>Principalmente <b>Th17</b>: IL-17, IL-22, IL-23</li>
+      <li>IFN-γ y fagocitosis por PMN</li></ul></div>
+  </div>
+  <div class="tbl"><table>
+    <tr><th>Célula</th><th>Marcadores</th></tr>
+    <tr><td>Natural killer (NK)</td><td><span class="tag">CD3−</span> <span class="tag">CD16+</span> <span class="tag">CD56+</span></td></tr>
+    <tr><td>NK-T</td><td><span class="tag">CD3+</span> <span class="tag">CD16+</span> <span class="tag">CD56+</span></td></tr>
+    <tr><td>LT citotóxico</td><td><span class="tag">CD3+</span> <span class="tag">CD8+</span></td></tr>
+  </table></div>
+  <div class="key"><span class="eyebrow">Tuberculosis</span><ul>
+    <li>Antes de dar <b>inhibidores de TNF-α</b>, pedir PPD: ~30% de la población tiene TB latente.</li>
+    <li>Sin IL-12, IFN o TNF-α no se forma granuloma → la TB se <b>disemina</b>.</li>
+  </ul></div>
+  <p class="prose">¿De qué depende infectarse? De la <b>virulencia</b> del microorganismo y sus <b>mecanismos de evasión</b>.</p>
+  <div class="ojo"><b>Ojo:</b> tus notas dicen "tipo III → delta"; el interferón tipo III es <b>lambda (λ)</b>.</div>
+
+  <h3>4.1 Sarampión</h3>
+  <div class="prose"><ul>
+    <li>Altamente contagioso; lo más contagioso es el final de la incubación/pródromo.</li>
+    <li>Durante la fiebre buscar <b>manchas de Koplik</b> (solo 1-2 días).</li>
+    <li>A los 3-4 días baja la fiebre y aparece <b>exantema</b> que no da comezón.</li>
+    <li>Sin tratamiento antiviral específico; dar <b>vitamina A</b> (evita ceguera / úlcera corneal).</li>
+    <li>"Amnesia inmune": destruye LB y LT de <b>memoria</b> de otras infecciones → hay que <b>revacunar</b>.</li>
+  </ul></div>
+</section>
+
+<!-- 5 -->
+<section class="topic" id="t5" data-n="5" data-title="Inmunodeficiencias primarias">
+  <div class="eyebrow">Tema 5</div>
+  <h2>Inmunodeficiencias primarias (errores innatos)</h2>
+  <div class="tbl"><table>
+    <tr><th>Si falla…</th><th>Esperas</th></tr>
+    <tr><td>Anticuerpos (LB)</td><td>Infecciones bacterianas recurrentes (extracelulares, encapsuladas)</td></tr>
+    <tr><td>Linfocitos T</td><td>Infecciones graves, oportunistas (virus, hongos)</td></tr>
+    <tr><td>Fagocitos</td><td>Infecciones cutáneas, abscesos</td></tr>
+    <tr><td>Complemento</td><td>Bacterias encapsuladas / Neisseria</td></tr>
+  </table></div>
+  <div class="prose">
+    <p><b>Tríada:</b> infecciones recurrentes/graves/oportunistas + autoinmunidad + neoplasias.</p>
+    <p>El RN está protegido por IgG materna (placenta) e IgA (leche) hasta ~<b>6 meses</b>; por eso las IDP suelen salir entre 6 meses y 2 años. Excepción: <b>inmunodeficiencia común variable</b> (adolescentes / adultos jóvenes).</p>
+    <p><b>Clasificación:</b> humorales (las más comunes), combinadas (las más graves), fagocitarias, de complemento, sindrómicas. <b>Diagnóstico básico:</b> historia clínica (lo más importante), BH, Ig séricas.</p>
+  </div>
+  <div class="tbl"><table>
+    <tr><th>Enfermedad</th><th>Defecto</th><th>Datos clave</th></tr>
+    <tr><td><b>Bruton</b> (agammaglobulinemia ligada al X)</td><td>Maduración de LB</td><td>Sin LB → ↓ todas las Ig, sin curva gamma. Tx: gammaglobulina IV</td></tr>
+    <tr><td><b>Hiper-IgM</b></td><td><b>CD40L</b> (LT)</td><td>Sin cambio de isotipo: ↑IgM, ↓IgG/IgA/IgE</td></tr>
+    <tr><td>Déficit de Ac específicos</td><td>Ej. IgG2</td><td>Mala respuesta a polisacáridos → encapsuladas, mala respuesta a vacunas</td></tr>
+    <tr><td><b>SCID</b></td><td>RAG1/RAG2 · cadena γ común</td><td>RAG: ↓T y ↓B. Cadena γ (IL-2, 4, 7, 9, 15): ↓T y ↓NK</td></tr>
+    <tr><td>Déficit de adhesión leucocitaria</td><td><b>CD18</b></td><td>Caída tardía del cordón, infecciones <b>sin pus</b>, leucocitosis/neutrofilia</td></tr>
+    <tr><td>Ataxia-telangiectasia</td><td>Reparación de ADN</td><td>Ataxia, telangiectasias, infecciones, ↑cáncer</td></tr>
+    <tr><td><b>Wiskott-Aldrich</b></td><td>Ligado al X</td><td>Eczema + trombocitopenia + infecciones; ↓IgM, ↑IgE</td></tr>
+    <tr><td><b>DiGeorge</b></td><td>3er y 4to arco faríngeo</td><td>Sin timo → sin LT; <b>hipocalcemia</b>, cardiopatía, facies</td></tr>
+  </table></div>
+  <div class="widget" id="w-idp"></div>
+  <div class="grid2">
+    <div class="panel"><h4>Vacunas contraindicadas (vivas atenuadas)</h4><ul><li>BCG, SRP/MMR, varicela, polio oral, rotavirus, fiebre amarilla</li></ul></div>
+    <div class="panel"><h4>Tratamiento</h4><ul><li>IgG IV 500 mg/kg cada 3-4 semanas (o SC semanal)</li><li>Trasplante de células hematopoyéticas (curativo)</li><li>Terapia génica (vector viral)</li></ul></div>
+  </div>
+  <p class="prose"><b>Datos de alarma:</b> infecciones recurrentes, antibióticos frecuentes, infecciones graves o inusuales, mala respuesta a vacunas, falla de medro.</p>
+</section>
+
+<!-- 6 -->
+<section class="topic" id="t6" data-n="6" data-title="EII en el adulto">
+  <div class="eyebrow">Tema 6</div>
+  <h2>Errores innatos de la inmunidad en el adulto</h2>
+  <p class="lead">Más de 485 genes. Predisponen a infecciones, autoinmunidad y neoplasias. Paradoja típica: <b>infección + autoinmunidad</b>.</p>
+  <div class="tbl"><table>
+    <tr><th>Patógeno</th><th>Defecto probable</th></tr>
+    <tr><td>Bacterias encapsuladas</td><td>Humoral (anticuerpos)</td></tr>
+    <tr><td>Virus / hongos / oportunistas</td><td>Celular (LT)</td></tr>
+    <tr><td><b>Neisseria</b></td><td><b>Complemento</b></td></tr>
+    <tr><td>Estafilococos / abscesos</td><td>Fagocitos</td></tr>
+  </table></div>
+  <div class="prose"><p><b>Patógenos que sugieren defecto celular o combinado:</b> <i>Pneumocystis jirovecii</i>, micobacterias no tuberculosas, CMV. Otros datos: neumonías recurrentes con antibiótico IV, sinusitis/otitis crónica, <b>bronquiectasias</b> sin causa, sepsis/meningitis recurrente, diarrea crónica, citopenias.</p></div>
+  <div class="tbl"><table>
+    <tr><th>Mecanismo</th><th>Genes</th><th>Resultado</th></tr>
+    <tr><td>Desarrollo linfoide</td><td>RAG, <b>AIRE</b>, timo</td><td>No elimina autorreactivos → autoinmunidad</td></tr>
+    <tr><td>↓ Treg</td><td><b>FOXP3, CTLA-4</b>, STAT3, LRBA</td><td>Autoinmunidad temprana y severa, enteropatía</td></tr>
+    <tr><td>↑ T efectoras</td><td>STAT1, PI3K, mTOR</td><td>Inflamación crónica</td></tr>
+    <tr><td>Células B</td><td>BAFF-R, TACI, ICOS, IDCV</td><td>Citopenias autoinmunes, LES, AR</td></tr>
+    <tr><td>Complemento</td><td>—</td><td>No limpia inmunocomplejos → tipo LES</td></tr>
+  </table></div>
+  <h3>Abordaje</h3>
+  <div class="flow"><span>1 Descartar causas <b>secundarias</b> (VIH, desnutrición, fármacos, neoplasia, pérdida de proteínas)</span><i>→</i><span>2 BH con frotis</span><i>→</i><span>3 QS, PFH, EGO, proteínas, VIH, cultivos</span><i>→</i><span>4 Imagen: sinusitis, bronquiectasias</span></div>
+  <div class="key"><span class="eyebrow">Resumen</span>Adulto con infecciones recurrentes + autoinmunidad + citopenias → piensa en EII. Siempre descarta primero lo secundario; BH + inmunoglobulinas son los estudios iniciales.</div>
+</section>
+
+<!-- 7 -->
+<section class="topic" id="t7" data-n="7" data-title="Autoinmunidad">
+  <div class="eyebrow">Tema 7</div>
+  <h2>Autoinmunidad</h2>
+  <p class="lead">De este tema solo venía la conclusión en lo que pegaste, así que aquí está lo esencial.</p>
+  <div class="prose"><ul>
+    <li>Autoinmunidad = <b>pérdida de tolerancia</b>.</li>
+    <li>Tolerancia <b>central</b> (timo) y <b>periférica</b> (Treg).</li>
+    <li>Fases: pérdida de tolerancia → <b>sensibilización</b> (ANA +) → enfermedad (daño clínico).</li>
+    <li>Clave fisiopatológica: <b>↓ Treg + ↑ efectoras</b>.</li>
+    <li>Ejemplos: LES, artritis reumatoide, poliarteritis nodosa.</li>
+    <li>No siempre son graves, pero pueden serlo si no se detectan a tiempo.</li>
+  </ul></div>
+</section>
+
+<!-- 8 -->
+<section class="topic" id="t8" data-n="8" data-title="Hipersensibilidad tipo I">
+  <div class="eyebrow">Tema 8</div>
+  <h2>Hipersensibilidad tipo I (inmediata)</h2>
+  <p class="lead">Mediada por <b>IgE</b>, en individuos previamente sensibilizados; aparece en 5-15 min.</p>
+  <div class="flow"><span>Dendrítica capta alérgeno</span><i>→</i><span>MHC II</span><i>→</i><span><b>Th2</b> (IL-4, IL-5, IL-13)</span><i>→</i><span>LB → plasmática</span><i>→</i><span>IgE se fija a mastocitos</span></div>
+  <div class="grid2">
+    <div class="panel"><h4>Fase inmediata (minutos)</h4><ul><li>Reexposición → degranulación del mastocito</li><li>Histamina, prostaglandinas, leucotrienos</li><li>Vasodilatación, ↑permeabilidad, broncoconstricción, prurito</li></ul></div>
+    <div class="panel"><h4>Fase tardía (4-48 h)</h4><ul><li>Eosinófilos y Th2</li><li>Inflamación persistente → cronicidad</li></ul></div>
+  </div>
+  <div class="prose">
+    <p><b>Cronología:</b> 5-15 min inicio · 30 min-1 h pico · 4-24 h fase tardía · hasta 48 h. <b>Atopia:</b> predisposición genética a producir IgE.</p>
+    <p><b>Alérgenos:</b> ácaros (<i>Dermatophagoides</i>), cucarachas (reactividad cruzada por tropomiosina), hongos, epitelios de animales, pólenes; alimentos (niños: leche, huevo; adultos: frutos secos, mariscos); fármacos (penicilinas, sulfas, AINEs, IECAs, medio de contraste).</p>
+    <p><b>Rinitis alérgica, tétrada:</b> prurito nasal, estornudos en salva, rinorrea hialina, obstrucción. Mucosa pálida, líneas de Dennie-Morgan, "saludo alérgico".</p>
+    <p><b>Diagnóstico:</b> pruebas cutáneas (<b>prick test</b>, primera elección), IgE específica sérica, diagnóstico molecular.</p>
+    <p><b>Tratamiento:</b> evitar alérgenos; antihistamínicos; antileucotrienos (montelukast); <b>corticoesteroides</b> (pilar); biológicos (omalizumab anti-IgE, anti-IL-5, anti-IL-4); inmunoterapia específica (modifica la historia natural); desensibilización.</p>
+  </div>
+  <div class="key"><span class="eyebrow">Anafilaxia</span>Laringoespasmo, angioedema, vómito e <b>hipotensión</b> (dato clave). Tratamiento de primera línea: <b>adrenalina IM</b>; luego oxígeno, líquidos IV, y antihistamínico + esteroide como adyuvantes.</div>
+</section>
+
+<!-- 9 -->
+<section class="topic" id="t9" data-n="9" data-title="Hipersensibilidad II, III y IV">
+  <div class="eyebrow">Tema 9</div>
+  <h2>Hipersensibilidad tipos II, III y IV</h2>
+  <div class="tbl"><table>
+    <tr><th>Tipo</th><th>Mediador</th><th>Tiempo</th><th>Mecanismo</th><th>Ejemplos</th></tr>
+    <tr><td><b>II</b> citotóxica</td><td>IgG / IgM contra Ag de <b>superficie celular</b></td><td>Horas</td><td>ADCC, complemento, fagocitosis, alteración funcional</td><td>Anemia hemolítica, PTI, reacción transfusional, EHRN, Goodpasture, <b>miastenia gravis</b> (bloquea), <b>Graves</b> (estimula)</td></tr>
+    <tr><td><b>III</b> inmunocomplejos</td><td>Complejos Ag-Ac <b>circulantes</b></td><td>Horas-días</td><td>Se depositan → complemento + neutrófilos</td><td>Fenómeno de Arthus, enfermedad del suero, <b>LES</b>, vasculitis, hepatitis B/C, endocarditis</td></tr>
+    <tr><td><b>IV</b> retardada</td><td><b>Linfocitos T</b> (sin anticuerpos)</td><td>24-72 h</td><td>Th1 (IFN-γ), Th17, CD8 → macrófagos</td><td>Dermatitis por contacto (níquel), <b>PPD</b>, granulomas de TB, rechazo de trasplante</td></tr>
+  </table></div>
+  <div class="prose"><ul>
+    <li>Tipo II: <b>no</b> hay IgE; el daño va dirigido a células propias. ADCC: NK, neutrófilos o macrófagos reconocen el <b>Fc</b>.</li>
+    <li>Tipo III: depósitos en <b>glomérulo</b>, vasos y articulaciones. Arthus = reacción local por exposición repetida (ej. vacuna antes de tiempo: tétanos cada 10 años, neumococo cada 5).</li>
+    <li>Tipo IV: puede ser inflamatoria (Th1 → macrófagos) o citotóxica (CD8).</li>
+  </ul></div>
+  <div class="widget" id="w-hs"></div>
+  <div class="key"><span class="eyebrow">Frases para recordar</span><ul>
+    <li>II: "Anticuerpo + célula = destrucción o alteración funcional". Citopenias = pista fuerte.</li>
+    <li>III: "Complejos inmunes circulan → se depositan → inflaman".</li>
+    <li>IV: "Linfocitos T → inflamación retardada". Granulomas = tipo IV.</li>
+    <li>Complemento es clave en II y III.</li>
+  </ul></div>
+</section>
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= FLASHCARDS ================= -->
+<div data-view="flash">
+  <div class="hero">
+    <div class="eyebrow">Flashcards</div>
+    <h1>Toca la tarjeta para voltearla</h1>
+    <p>Marca <b>"Me la sé"</b> o <b>"Repasar"</b>. Las que mandes a repasar vuelven al final del mazo. Atajos: espacio voltea, ← → navegan.</p>
+  </div>
+  <div class="toolbar">
+    <label for="fc-topic" class="eyebrow">Tema</label>
+    <select id="fc-topic"></select>
+    <button class="btn" id="fc-shuffle">Barajar</button>
+    <span class="counter" id="fc-count"></span>
+  </div>
+  <div class="card-stage">
+    <div class="progress"><div id="fc-bar"></div></div>
+    <div class="fcard" id="fc" tabindex="0" role="button" aria-label="Voltear tarjeta">
+      <div class="fcard-inner">
+        <div class="face front"><div class="eyebrow" id="fc-t1"></div><div class="q" id="fc-q"></div><div class="hint">Toca para ver la respuesta</div></div>
+        <div class="face back"><div class="eyebrow" id="fc-t2"></div><div class="a" id="fc-a"></div></div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="btn" id="fc-prev">← Anterior</button>
+      <button class="btn again" id="fc-again">Repasar</button>
+      <button class="btn good" id="fc-good">Me la sé</button>
+      <button class="btn" id="fc-next">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= RELACIONAR ================= -->
+<div data-view="match">
+  <div class="hero">
+    <div class="eyebrow">Juego</div>
+    <h1>Relaciona cada concepto con su definición</h1>
+    <p>Toca un concepto de la izquierda y luego su pareja a la derecha. Rondas de 6 parejas; intenta hacerlo con el menor número de errores.</p>
+  </div>
+  <div class="toolbar">
+    <label for="m-topic" class="eyebrow">Tema</label>
+    <select id="m-topic"></select>
+    <button class="btn primary" id="m-new">Nueva ronda</button>
+    <span class="counter" id="m-count"></span>
+  </div>
+  <div id="m-board"></div>
+</div>
+
+<!-- ================= QUIZ ================= -->
+<div data-view="quiz">
+  <div class="hero">
+    <div class="eyebrow">Quiz</div>
+    <h1>Opción múltiple con explicación</h1>
+    <p>Elige un tema o haz todo el examen. Al final ves tu calificación y las preguntas que fallaste.</p>
+  </div>
+  <div class="toolbar">
+    <label for="qz-topic" class="eyebrow">Tema</label>
+    <select id="qz-topic"></select>
+    <button class="btn primary" id="qz-start">Empezar de nuevo</button>
+    <span class="counter" id="qz-count"></span>
+  </div>
+  <div class="qbox" id="qz"></div>
+</div>
+
+</main>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<script>
+const TOPICS = {
+  "1":"Generalidades","2":"Inmunidad innata","2.1":"Fagocitosis y complemento","2.2":"MHC","3":"Linfocitos T y B",
+  "4":"Microorganismos y sarampión","5":"Inmunodeficiencias primarias","6":"EII en adulto","7":"Autoinmunidad",
+  "8":"Hipersensibilidad I","9":"Hipersensibilidad II-IV"
+};
+
+const CARDS = [
+ ["1","¿Qué es un hapteno?","Molécula pequeña que no genera respuesta por sí sola; necesita unirse a una proteína transportadora. Ejemplo: penicilina."],
+ ["1","¿Qué hace un superantígeno?","Activa masivamente linfocitos T sin procesamiento antigénico clásico → respuesta exagerada en horas, riesgo de choque."],
+ ["1","Inmunógeno vs tolerógeno","Inmunógeno: induce respuesta, cada exposición más rápida e intensa. Tolerógeno: induce tolerancia, respuesta cada vez más débil."],
+ ["1","¿Qué es un aloantígeno?","Antígeno de otro individuo de la misma especie, genéticamente distinto (trasplantes, grupos sanguíneos)."],
+ ["1","Fracción Fab vs Fc","Fab: une el antígeno, reconoce el epítopo, da especificidad. Fc: región efectora; activa complemento y se une a macrófagos, NK y mastocitos."],
+ ["1","Epítopo lineal vs conformacional","Lineal: secuencia continua de aminoácidos. Conformacional: depende de la estructura tridimensional."],
+ ["1","Selección clonal","Cada linfocito tiene un receptor único; solo el que reconoce el Ag se activa, prolifera y se diferencia en efector y memoria."],
+ ["1","Ig que atraviesa la placenta","IgG."],
+ ["1","Ig de mucosas y secreciones","IgA."],
+ ["1","Primera Ig en la respuesta primaria","IgM."],
+ ["1","Funciones del complemento","Quimiotaxis, opsonización y MAC (lisis celular)."],
+ ["2","MAMP vs PAMP","MAMP: patrones de microorganismos en general (incluye microbiota), pueden no dañar. PAMP: subtipo de patógenos, inducen inflamación intensa."],
+ ["2","¿Qué son los DAMPs?","Patrones de daño tisular (alarminas): señalan peligro sin infección. Ej.: HMGB1, ATP extracelular, ácido úrico, ADN mitocondrial, cristales de urato."],
+ ["2","TLR4 reconoce…","LPS de bacterias Gram negativas."],
+ ["2","TLR2 reconoce…","Peptidoglucano y lipoproteínas (Gram +); también hongos y parásitos."],
+ ["2","TLR5 y TLR9","TLR5: flagelina. TLR9: ADN CpG bacteriano."],
+ ["2","Receptores de ARN viral","TLR3 (ARNds), TLR7/8 (ARNss), RIG-I y MDA-5."],
+ ["2","Inflamasoma NLRP3","PRR citoplasmático; libera IL-1β e IL-18, inflamación intensa y dolor. Blanco terapéutico."],
+ ["2","PRR séricos (ejemplos)","Proteína C reactiva, lectinas, surfactantes pulmonares. Opsonizan."],
+ ["2","Las 3 T","Transducción (señal al núcleo) → Transcripción (NF-κB, AP-1) → Traducción (ARNm → citocinas)."],
+ ["2","Citocinas proinflamatorias principales","TNF-α, IL-1β, IL-6, IL-8, IFN tipo I."],
+ ["2","Sepsis grave vs choque séptico","Sepsis grave: hipotensión que responde a líquidos. Choque séptico: no responde, requiere aminas."],
+ ["2","Respuesta a hongos (innata)","Dectina-1, TLR2, TLR4 → IL-23 → polarización Th17."],
+ ["2.1","¿Qué es la NETosis?","Formación de trampas extracelulares de ADN por neutrófilos: ADN + histonas + enzimas. Inmovilizan al microorganismo."],
+ ["2.1","Enzimas que actúan sobre la cromatina en NETosis","Elastasa y mieloperoxidasa (MPO)."],
+ ["2.1","Macrófago del hígado / SNC / hueso","Kupffer / microglía / osteoclasto."],
+ ["2.1","¿Por qué el neutrófilo es multilobulado?","Facilita el paso rápido entre células endoteliales."],
+ ["2.1","¿Qué es la opsonización?","Recubrir al microorganismo (IgG o C3b) para facilitar la fagocitosis."],
+ ["2.1","Receptores scavenger","Reconocen lípidos expuestos, eliminan apoptóticas y restos necróticos e inhiben la inflamación."],
+ ["2.1","Quimiotácticos clásicos","Formil-péptidos, C5a/C3a/C4a, quimiocinas, leucotrienos."],
+ ["2.1","Estallido respiratorio","NADPH-oxidasa genera ERO: superóxido, H₂O₂, radical hidroxilo, oxígeno singlete."],
+ ["2.1","¿Qué produce la MPO?","Convierte H₂O₂ en ácido hipocloroso (HOCl)."],
+ ["2.1","Enfermedad granulomatosa crónica","Defecto de NADPH-oxidasa → sin estallido respiratorio → infecciones recurrentes."],
+ ["2.1","Vías del complemento","Clásica (Ag-Ac), lectina-manosa, alterna/properdina."],
+ ["2.1","C3a, C5a, C3b","C3a y C5a: anafilotoxinas, inflamación. C3b: opsonina principal."],
+ ["2.1","Componentes del MAC","C5b-6-7-8-9: forma poros → lisis osmótica."],
+ ["2.2","MHC I se expresa en…","Todas las células nucleadas (no eritrocitos)."],
+ ["2.2","MHC II se expresa en…","Solo CPA profesionales: células dendríticas, macrófagos, linfocitos B."],
+ ["2.2","Cromosomas del MHC","Cromosoma 6; la β2-microglobulina en el cromosoma 15."],
+ ["2.2","Genes clásicos MHC I y II","I: HLA-A, -B, -C. II: HLA-DP, -DQ, -DR."],
+ ["2.2","HLA-G","MHC I no clásico; en el embarazo evita que las NK destruyan al trofoblasto."],
+ ["2.2","TAP-1/TAP-2","Transportan péptidos del citosol al RER para cargarlos en MHC I."],
+ ["2.2","Chaperonas de MHC I","Calnexina, calreticulina, ERp57."],
+ ["2.2","Cadena invariante y CLIP","Bloquea el sitio de MHC II en el RER; al degradarse deja CLIP."],
+ ["2.2","HLA-DM","Retira CLIP de MHC II para que se una el péptido exógeno."],
+ ["2.2","MHC III","No presenta Ag; codifica TNF-α, TNF-β y complemento."],
+ ["3","Señal 2 de activación del LT","CD80/CD86 (B7) en la CPA ↔ CD28 en el LT. Sin ella → anergia."],
+ ["3","Marcador de LT de memoria","CD45RO+."],
+ ["3","Citocina característica de Th1","IFN-γ (también IL-12, TNF-α)."],
+ ["3","Citocinas de Th2","IL-4, IL-5, IL-13."],
+ ["3","Treg: citocinas y marcadores","IL-10, TGF-β. CD25+, FOXP3+, Helios+."],
+ ["3","Requisito para cambio de clase","Interacción CD40 (LB) ↔ CD40L (LT helper) + citocinas."],
+ ["3","¿Cuántas clases produce un clon de LB tras el switch?","Una sola clase final."],
+ ["3","Mecanismo de muerte del CD8","Perforinas (poros) + granzimas (activan caspasas) → apoptosis."],
+ ["4","Interferón tipo I","IFN-α y β; primera línea antiviral, sobre todo en epitelio respiratorio."],
+ ["4","Marcadores de NK","CD3−, CD16+, CD56+."],
+ ["4","Marcadores de NK-T","CD3+, CD16+, CD56+."],
+ ["4","Respuesta contra parásitos","Th2 + IgE + eosinófilo; busca controlar más que destruir."],
+ ["4","Respuesta contra hongos","Th17: IL-17, IL-22, IL-23."],
+ ["4","¿Qué pedir antes de anti-TNF-α?","PPD (descartar TB latente, ~30% de la población)."],
+ ["4","Sin IL-12, IFN o TNF-α en TB…","No se forma granuloma → la TB se disemina."],
+ ["4","Signo patognomónico temprano de sarampión","Manchas de Koplik (solo 1-2 días, durante la fiebre)."],
+ ["4","Tratamiento de apoyo en sarampión","Vitamina A (previene ceguera / úlcera corneal)."],
+ ["4","¿Por qué revacunar tras sarampión?","El virus destruye LB y LT de memoria (amnesia inmune)."],
+ ["5","Tríada de las IDP","Infecciones recurrentes/graves/oportunistas + autoinmunidad + neoplasias."],
+ ["5","¿Por qué las IDP aparecen después de 6 meses?","Se acaba la protección de IgG materna (placenta) e IgA (leche)."],
+ ["5","IDP que aparece en adolescentes/adultos","Inmunodeficiencia común variable."],
+ ["5","Bruton","Ligada al X; falla maduración de LB → ↓ todas las Ig. Tx: gammaglobulina IV."],
+ ["5","Hiper-IgM","Defecto de CD40L → sin cambio de isotipo: ↑IgM, ↓IgG/IgA/IgE."],
+ ["5","SCID por RAG1/RAG2","No se forman receptores T ni B → ↓T y ↓B."],
+ ["5","SCID por cadena γ común","Afecta receptores de IL-2, 4, 7, 9, 15 → ↓T y ↓NK."],
+ ["5","Déficit de adhesión leucocitaria","Defecto CD18: caída tardía del cordón, infecciones sin pus, leucocitosis."],
+ ["5","Wiskott-Aldrich","Eczema + trombocitopenia + infecciones; ↓IgM, ↑IgE. Ligado al X."],
+ ["5","DiGeorge","3er y 4to arco faríngeo: sin timo (↓LT), hipocalcemia, cardiopatía, facies."],
+ ["5","Vacunas contraindicadas en IDP graves","Vivas atenuadas: BCG, SRP, varicela, polio oral, rotavirus, fiebre amarilla."],
+ ["5","Dosis de IgG IV","500 mg/kg cada 3-4 semanas."],
+ ["6","Infecciones por Neisseria sugieren…","Deficiencia de complemento."],
+ ["6","Abscesos estafilocócicos sugieren…","Defecto de fagocitos."],
+ ["6","Patógenos que sugieren defecto celular/combinado","Pneumocystis jirovecii, micobacterias no tuberculosas, CMV."],
+ ["6","Primer paso ante sospecha de EII en adulto","Descartar inmunodeficiencia secundaria (VIH, desnutrición, fármacos, neoplasia, pérdida de proteínas)."],
+ ["6","Gen de tolerancia central en el timo","AIRE."],
+ ["6","Genes de Treg asociados a autoinmunidad","FOXP3, CTLA-4, STAT3, LRBA."],
+ ["7","Definición de autoinmunidad","Pérdida de tolerancia a lo propio."],
+ ["7","Tolerancia central vs periférica","Central: timo. Periférica: Treg."],
+ ["7","Fases de la autoinmunidad","Pérdida de tolerancia → sensibilización (ANA +) → enfermedad."],
+ ["8","Mediador de la hipersensibilidad I","IgE fijada a mastocitos."],
+ ["8","Mediadores de la fase inmediata","Histamina, prostaglandinas, leucotrienos."],
+ ["8","Células de la fase tardía (4-48 h)","Eosinófilos y Th2."],
+ ["8","Tétrada de rinitis alérgica","Prurito nasal, estornudos en salva, rinorrea hialina, obstrucción nasal."],
+ ["8","Prueba de primera elección en alergia","Prueba cutánea (skin prick test)."],
+ ["8","Pilar del tratamiento antiinflamatorio en alergia","Corticoesteroides."],
+ ["8","Omalizumab","Anticuerpo monoclonal anti-IgE."],
+ ["8","Primera línea en anafilaxia","Adrenalina intramuscular."],
+ ["8","Reactividad cruzada cucaracha-ácaro","Tropomiosina."],
+ ["9","Mediadores de hipersensibilidad II","IgG e IgM contra antígenos de superficie celular."],
+ ["9","Miastenia gravis y Graves: ¿qué tipo?","Tipo II con alteración funcional: miastenia bloquea el receptor de ACh; Graves estimula el receptor de TSH."],
+ ["9","Mecanismo de la hipersensibilidad III","Complejos Ag-Ac circulantes que se depositan (glomérulo, vasos, articulaciones) → complemento + neutrófilos."],
+ ["9","Fenómeno de Arthus","Tipo III localizada: reacción intensa tras exposición repetida (ej. vacuna aplicada antes de tiempo)."],
+ ["9","Ejemplos de tipo IV","Dermatitis por contacto (níquel), PPD, granulomas de TB, rechazo de trasplante."],
+ ["9","Tiempo de la hipersensibilidad IV","24-72 horas."]
+];
+
+const QUIZ = [
+ ["1","Un paciente desarrolla alergia a la penicilina. La penicilina se comporta como:",["Superantígeno","Hapteno","Tolerógeno","Aloantígeno"],1,"La penicilina es una molécula pequeña que necesita unirse a una proteína transportadora para ser inmunógena: un hapteno."],
+ ["1","¿Qué antígeno activa masivamente linfocitos T sin procesamiento clásico, con riesgo de choque?",["Hapteno","Inmunógeno","Superantígeno","Autoantígeno"],2,"El superantígeno se salta el procesamiento y activa muchos LT a la vez."],
+ ["1","La región del anticuerpo que activa el complemento y se une a macrófagos es:",["Fab","Epítopo","Fc","Bisagra"],2,"Fc es la región efectora; Fab da la especificidad."],
+ ["1","¿Cuál inmunoglobulina atraviesa la placenta?",["IgM","IgA","IgE","IgG"],3,"IgG es la principal en sangre y la única que cruza placenta."],
+ ["2","¿Qué receptor reconoce el LPS de bacterias Gram negativas?",["TLR2","TLR4","TLR5","TLR9"],1,"TLR4 = LPS. TLR2 peptidoglucano, TLR5 flagelina, TLR9 ADN CpG."],
+ ["2","El ácido úrico y el ATP extracelular liberados por necrosis son ejemplos de:",["PAMP","MAMP","DAMP","Haptenos"],2,"Son señales de daño (alarminas): DAMPs, que causan inflamación estéril."],
+ ["2","El inflamasoma NLRP3 libera principalmente:",["IL-4 e IL-5","IL-1β e IL-18","IFN-α e IFN-β","IL-10 y TGF-β"],1,"NLRP3 activa IL-1β e IL-18: inflamación intensa y dolor."],
+ ["2","¿Qué factores de transcripción se activan en la fase de transcripción de las 3 T?",["FOXP3 y STAT3","NF-κB y AP-1","AIRE y RAG","T-bet y GATA3"],1,"Tus notas: NF-κB y AP-1 activan genes de citocinas, quimiocinas y moléculas de adhesión."],
+ ["2","Paciente séptico con hipotensión que NO responde a líquidos y requiere aminas:",["SIRS","Sepsis","Sepsis grave","Choque séptico"],3,"Choque séptico = hipotensión refractaria a líquidos."],
+ ["2","La respuesta innata a hongos favorece la polarización hacia:",["Th1","Th2","Th17","Treg"],2,"β-glucanos → Dectina-1 → IL-23 → Th17."],
+ ["2","¿Cuál es un PRR sérico?",["TLR4","NOD2","Proteína C reactiva","RIG-I"],2,"PCR, lectinas y surfactantes son PRR solubles que opsonizan."],
+ ["2.1","Un niño tiene infecciones recurrentes y sus neutrófilos no generan especies reactivas de oxígeno. El defecto está en:",["CD18","NADPH-oxidasa","CD40L","RAG1"],1,"Enfermedad granulomatosa crónica: falla la NADPH-oxidasa, sin estallido respiratorio."],
+ ["2.1","La mieloperoxidasa convierte H₂O₂ en:",["Óxido nítrico","Ácido hipocloroso","Superóxido","Agua"],1,"MPO: H₂O₂ → HOCl, que oxida membranas."],
+ ["2.1","Las células de Kupffer son macrófagos de:",["Pulmón","SNC","Hígado","Hueso"],2,"Kupffer = hígado; microglía = SNC; osteoclastos = hueso."],
+ ["2.1","¿Qué fragmento del complemento es la principal opsonina?",["C3a","C5a","C3b","C5b"],2,"C3b opsoniza; C3a y C5a son anafilotoxinas; C5b inicia el MAC."],
+ ["2.1","El complejo de ataque a la membrana está formado por:",["C1q-C1r-C1s","C3b-C4b","C5b-6-7-8-9","C3a-C5a"],2,"MAC = C5b-9, forma poros y causa lisis osmótica."],
+ ["2.1","La función principal de las NETs es:",["Presentar antígeno","Inmovilizar al microorganismo","Producir IgE","Activar Treg"],1,"Las trampas no siempre matan, pero atrapan y limitan la diseminación."],
+ ["2.2","Un eritrocito NO expresa:",["MHC I","Glucoforina","Antígenos de grupo sanguíneo","Proteínas de membrana"],0,"MHC I está en todas las células nucleadas; el eritrocito no tiene núcleo."],
+ ["2.2","Los péptidos virales entran al RER para cargarse en MHC I gracias a:",["HLA-DM","Cadena invariante","TAP-1/TAP-2","CD40"],2,"Sin TAP no hay presentación por MHC I."],
+ ["2.2","¿Qué molécula retira CLIP del MHC II?",["TAP","HLA-DM","Calnexina","β2-microglobulina"],1,"HLA-DM cambia CLIP por el péptido exógeno."],
+ ["2.2","¿Qué molécula HLA protege al trofoblasto de las NK?",["HLA-A","HLA-DR","HLA-G","HLA-DQ"],2,"HLA-G, MHC I no clásico, importante en embarazo."],
+ ["2.2","El MHC II presenta antígenos a:",["CD8+","CD4+","NK","Eosinófilos"],1,"MHC II → CD4+; MHC I → CD8+."],
+ ["2.2","La β2-microglobulina se codifica en el cromosoma:",["6","11","15","21"],2,"Cromosoma 15; el resto del MHC está en el 6."],
+ ["3","Un LT recibe la señal 1 pero no la unión CD28-B7. El resultado es:",["Activación completa","Anergia","Cambio de clase","Apoptosis de la CPA"],1,"Sin coestimulación (señal 2) → anergia."],
+ ["3","La citocina más característica del perfil Th1 es:",["IL-4","IL-10","IFN-γ","IL-5"],2,"IFN-γ = Th1; IL-4 = Th2; IL-10 = Treg."],
+ ["3","FOXP3 es marcador de:",["Th1","Th2","Treg","LT de memoria"],2,"Treg: CD25+, FOXP3+, Helios+."],
+ ["3","Para que un linfocito B cambie de IgM a IgG necesita:",["CD28-B7","CD40-CD40L","TAP","HLA-G"],1,"Sin CD40/CD40L no hay cambio de clase (switch)."],
+ ["3","El marcador de linfocitos T de memoria es:",["CD45RO","CD56","CD16","CD18"],0,"CD45RO+ = memoria."],
+ ["4","¿Qué marcador NO tiene la célula NK?",["CD16","CD56","CD3","Ninguno de los anteriores"],2,"NK = CD3−, CD16+, CD56+."],
+ ["4","Antes de iniciar un inhibidor de TNF-α se debe pedir:",["IgE sérica","PPD","Prick test","Espirometría"],1,"Para descartar TB latente; sin TNF-α el granuloma no se sostiene."],
+ ["4","La célula citotóxica protagonista contra parásitos es:",["Neutrófilo","Eosinófilo","Linfocito B","Macrófago alveolar"],1,"Th2 + IgE + eosinófilo."],
+ ["4","En sarampión, ¿qué se da para prevenir ceguera?",["Aciclovir","Vitamina A","Corticoide","Inmunoglobulina IV"],1,"No hay antiviral específico; la vitamina A previene la úlcera corneal."],
+ ["4","Las manchas de Koplik se buscan:",["En la fase de exantema","Durante la fiebre, 1-2 días","Dos semanas después","Solo en adultos"],1,"Aparecen en el periodo febril y desaparecen pronto."],
+ ["4","¿Por qué se revacuna después de un sarampión?",["El virus muta","Destruye LB y LT de memoria","Produce IgE","Causa hipocalcemia"],1,"Amnesia inmune: se pierden memorias de otras infecciones."],
+ ["5","Niño de 8 meses con infecciones bacterianas recurrentes, sin linfocitos B y con todas las Ig bajas:",["Hiper-IgM","Bruton","DiGeorge","Wiskott-Aldrich"],1,"Agammaglobulinemia ligada al X: falla la maduración de LB."],
+ ["5","IgM elevada con IgG, IgA e IgE bajas sugiere defecto en:",["CD18","CD40L","RAG2","NADPH-oxidasa"],1,"Síndrome hiper-IgM: sin CD40L no hay cambio de isotipo."],
+ ["5","RN con caída tardía del cordón umbilical, infecciones sin pus y leucocitosis:",["Déficit de adhesión leucocitaria (CD18)","Bruton","Ataxia-telangiectasia","Déficit de C3"],0,"Sin CD18 los leucocitos no salen del vaso."],
+ ["5","Eczema + trombocitopenia + infecciones en un varón:",["DiGeorge","Wiskott-Aldrich","SCID","Hiper-IgM"],1,"Tríada clásica de Wiskott-Aldrich; ↓IgM, ↑IgE."],
+ ["5","RN con hipocalcemia, cardiopatía y ausencia de timo:",["DiGeorge","Bruton","Ataxia-telangiectasia","Déficit de complemento"],0,"Defecto del 3er y 4to arco faríngeo."],
+ ["5","¿Qué vacuna está contraindicada en una IDP grave?",["Hepatitis B","Toxoide tetánico","BCG","Influenza inactivada"],2,"BCG es viva atenuada."],
+ ["5","El SCID por defecto de cadena γ común produce:",["↓T y ↓B","↓T y ↓NK","↑IgM","↑IgE"],1,"La cadena γ es de los receptores de IL-2, 4, 7, 9, 15: ↓T y ↓NK."],
+ ["5","Dosis de inmunoglobulina IV de reemplazo:",["50 mg/kg cada semana","500 mg/kg cada 3-4 semanas","1 g/kg diario","5 g/kg al año"],1,"500 mg/kg cada 3-4 semanas, a menudo de por vida."],
+ ["6","Infecciones recurrentes por Neisseria sugieren deficiencia de:",["Anticuerpos","Linfocitos T","Complemento","Fagocitos"],2,"Neisseria = complemento."],
+ ["6","Adulto con neumonía por Pneumocystis jirovecii sin VIH. Defecto más probable:",["Humoral","Celular o combinado","Complemento","Fagocitos"],1,"Pneumocystis, micobacterias atípicas y CMV sugieren defecto celular."],
+ ["6","Primer paso ante sospecha de EII en adulto:",["Secuenciación genética","Descartar causas secundarias","Trasplante de médula","Biopsia de ganglio"],1,"VIH, desnutrición, fármacos, neoplasias, pérdida de proteínas."],
+ ["6","El gen AIRE participa en:",["Tolerancia central en el timo","Cambio de clase","Estallido respiratorio","Adhesión leucocitaria"],0,"AIRE elimina linfocitos autorreactivos en el timo."],
+ ["7","La fase de sensibilización de la autoinmunidad se caracteriza por:",["Daño clínico","ANA positivos","Anafilaxia","Pérdida de timo"],1,"Pérdida de tolerancia → sensibilización (ANA +) → enfermedad."],
+ ["7","La clave fisiopatológica de la autoinmunidad es:",["↑Treg y ↓efectoras","↓Treg y ↑efectoras","↑IgA","↓complemento solamente"],1,"Falta el freno (Treg) y sobran efectoras."],
+ ["8","En la fase de sensibilización de la hipersensibilidad I, el perfil activado es:",["Th1","Th2","Th17","CD8"],1,"Th2 produce IL-4, IL-5 e IL-13 → IgE."],
+ ["8","Tratamiento de primera línea en anafilaxia:",["Antihistamínico IV","Corticoide IV","Adrenalina IM","Montelukast"],2,"Adrenalina IM; antihistamínicos y esteroides son adyuvantes."],
+ ["8","Prueba diagnóstica de primera elección en alergia:",["IgE total","Prick test","Diagnóstico molecular","Biopsia"],1,"Pruebas cutáneas (skin prick test)."],
+ ["8","Omalizumab bloquea:",["IL-5","IgE","TNF-α","IL-17"],1,"Anti-IgE."],
+ ["8","¿Qué tratamiento modifica la historia natural de la alergia?",["Antihistamínicos","Inmunoterapia específica","Corticoides inhalados","Antileucotrienos"],1,"La inmunoterapia induce tolerancia con exposición controlada."],
+ ["9","La miastenia gravis es hipersensibilidad tipo:",["I","II","III","IV"],1,"Tipo II por alteración funcional: anticuerpos bloquean el receptor de ACh."],
+ ["9","Glomerulonefritis lúpica por depósito de complejos Ag-Ac:",["Tipo I","Tipo II","Tipo III","Tipo IV"],2,"Complejos inmunes circulantes que se depositan."],
+ ["9","Prueba de PPD positiva a las 48 h:",["Tipo I","Tipo II","Tipo III","Tipo IV"],3,"Retardada, mediada por LT."],
+ ["9","Reacción local intensa tras aplicar refuerzo de tétanos antes de tiempo:",["Anafilaxia","Fenómeno de Arthus","Enfermedad del suero","Dermatitis por contacto"],1,"Arthus = tipo III localizada."],
+ ["9","Anemia hemolítica autoinmune corresponde a:",["Tipo I","Tipo II","Tipo III","Tipo IV"],1,"Anticuerpos contra antígenos de superficie del eritrocito."],
+ ["9","La enfermedad de Graves se produce porque los anticuerpos:",["Destruyen tiroides","Bloquean receptor de TSH","Estimulan receptor de TSH","Forman complejos circulantes"],2,"Tipo II con estimulación del receptor."]
+];
+
+/* ---------- utilidades ---------- */
+const $ = s => document.querySelector(s);
+const store = {
+  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+const shuffle = a => {a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc = s => s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+/* ---------- modos ---------- */
+function show(view){
+  document.querySelectorAll("[data-view]").forEach(v=>v.classList.toggle("on",v.dataset.view===view));
+  document.querySelectorAll(".modes button").forEach(b=>b.setAttribute("aria-selected",b.dataset.go===view));
+  store.set("inmuno-view",view);
+  window.scrollTo({top:0});
+}
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.go)));
+
+/* ---------- índice + temas estudiados ---------- */
+let doneTopics=new Set(store.get("inmuno-done",[]));
+const sections=[...document.querySelectorAll("section.topic")];
+sections.forEach(s=>{
+  const li=document.createElement("li");
+  li.innerHTML=`<a href="#${s.id}" data-for="${s.id}"><span class="n">${s.dataset.n}</span><span>${s.dataset.title}</span></a>`;
+  $("#toc").appendChild(li);
+  const h2=s.querySelector("h2"), head=document.createElement("div");
+  head.className="topic-head"; h2.before(head); head.appendChild(h2);
+  const b=document.createElement("button");
+  b.className="done-btn"; b.id="done-"+s.id;
+  head.appendChild(b);
+  b.onclick=()=>{doneTopics.has(s.id)?doneTopics.delete(s.id):doneTopics.add(s.id);
+    if(doneTopics.has(s.id))burst(b);
+    store.set("inmuno-done",[...doneTopics]);paintDone();};
+});
+function paintDone(){
+  sections.forEach(s=>{
+    const on=doneTopics.has(s.id), b=$("#done-"+s.id);
+    b.setAttribute("aria-pressed",on); b.textContent=on?"✓ Estudiado":"Marcar como estudiado";
+    document.querySelector(`#toc a[data-for="${s.id}"]`).classList.toggle("done",on);
+  });
+  const n=doneTopics.size, t=sections.length;
+  $("#toc-prog-t").textContent=`${n} de ${t} estudiados`;
+  $("#toc-prog-bar").style.width=(n/t*100)+"%";
+  updateStats();
+}
+if("IntersectionObserver" in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){
+    document.querySelectorAll("#toc a").forEach(a=>a.classList.toggle("active",a.dataset.for===e.target.id));}}),{rootMargin:"-30% 0px -60% 0px"});
+  sections.forEach(s=>io.observe(s));
+}
+
+/* ---------- estadísticas de portada ---------- */
+function updateStats(){
+  const t=sections.length, n=doneTopics.size;
+  $("#st-topics").textContent=`${n}/${t}`; $("#st-topics-bar").style.width=(n/t*100)+"%";
+  const k=(typeof known!=="undefined")?known.size:store.get("inmuno-known",[]).length;
+  $("#st-cards").textContent=`${k}/${CARDS.length}`; $("#st-cards-bar").style.width=(k/CARDS.length*100)+"%";
+  const best=store.get("inmuno-best",null);
+  $("#st-quiz").textContent=best==null?"—":best+"%"; $("#st-quiz-bar").style.width=(best||0)+"%";
+  const mp=store.get("inmuno-pairs",0);
+  $("#st-match").textContent=mp?mp:"—"; $("#st-match-bar").style.width=Math.min(100,mp/CARDS.length*100)+"%";
+}
+
+/* ---------- widgets ---------- */
+function picker(el,title,items,render){
+  el.innerHTML=`<div class="eyebrow">Interactivo</div><h4>${title}</h4><div class="chips"></div><div class="out"></div>`;
+  const chips=el.querySelector(".chips"), out=el.querySelector(".out");
+  items.forEach((it,i)=>{const c=document.createElement("button");c.className="chip";c.textContent=it.k;c.setAttribute("aria-pressed","false");
+    c.onclick=()=>{chips.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed","false"));c.setAttribute("aria-pressed","true");
+      out.innerHTML=`<div class="reveal">${render(it)}</div>`;};chips.appendChild(c);});
+  chips.firstChild.click();
+}
+const dl=o=>`<dl>${Object.entries(o).map(([a,b])=>`<dt>${a}</dt><dd>${b}</dd>`).join("")}</dl>`;
+
+picker($("#w-ig"),"Toca una inmunoglobulina",[
+  {k:"IgG",d:{"Dónde":"Principal en sangre","Clave":"<b>Atraviesa placenta</b>; opsonina; protege al RN hasta ~6 meses","Vida media":"2-3 semanas"}},
+  {k:"IgA",d:{"Dónde":"Mucosas y secreciones, leche materna","Clave":"Protección de mucosas","Vida media":"~1 semana"}},
+  {k:"IgM",d:{"Dónde":"Sangre","Clave":"<b>Primera</b> en la respuesta primaria; la que queda alta en hiper-IgM"}},
+  {k:"IgD",d:{"Clave":"Función reguladora"}},
+  {k:"IgE",d:{"Dónde":"Fijada a mastocitos","Clave":"Alergias (hipersensibilidad I) y parásitos","Fármaco":"Omalizumab = anti-IgE"}}
+],it=>dl(it.d));
+
+picker($("#w-pat"),"Elige un agresor y mira cómo lo reconoce el sistema innato",[
+  {k:"Gram −",d:{"Patrón":"LPS","Receptor":"<span class='tag'>TLR4</span>","Citocinas":"TNF-α, IL-1β, IL-6","Efecto":"Inflamación intensa, fiebre, sepsis"}},
+  {k:"Gram +",d:{"Patrón":"Peptidoglucano, ácido lipoteicoico","Receptor":"<span class='tag'>TLR2</span>","Citocinas":"TNF-α, IL-1β, IL-6","Efecto":"Inflamación local o sistémica"}},
+  {k:"Virus",d:{"Patrón":"ARNds, ARNss, ADN viral","Receptor":"<span class='tag'>TLR3</span> ARNds · <span class='tag'>TLR7/8</span> ARNss · RIG-I, MDA-5","Citocinas":"IFN-α, IFN-β","Efecto":"Estado antiviral, activa NK"}},
+  {k:"Hongos",d:{"Patrón":"β-glucanos, mananos, quitina","Receptor":"Dectina-1, TLR2, TLR4","Citocinas":"IL-1β, IL-6, TNF-α, IL-23","Efecto":"Neutrófilos y polarización <b>Th17</b>"}},
+  {k:"Parásitos",d:{"Patrón":"GPI anchors, proteasas","Receptor":"<span class='tag'>TLR2</span>","Citocinas":"IL-4, IL-5, IL-13","Efecto":"Eosinófilos e IgE"}},
+  {k:"Daño (DAMPs)",d:{"Patrón":"ATP, ácido úrico, HMGB1, ADN mitocondrial","Receptor":"TLR, inflamasoma NLRP3","Citocinas":"IL-1β, IL-18","Efecto":"Inflamación estéril, dolor"}}
+],it=>dl(it.d));
+
+function stepper(el,title,steps){
+  let i=0;
+  el.innerHTML=`<div class="eyebrow">Interactivo · paso a paso</div><h4>${title}</h4><div class="dots"></div><div class="stage" aria-live="polite"></div>
+   <div class="nav"><button class="btn">← Atrás</button><button class="btn primary">Siguiente →</button></div>`;
+  const dots=el.querySelector(".dots"), stage=el.querySelector(".stage"), [prev,next]=el.querySelectorAll(".nav button");
+  steps.forEach((s,k)=>{const d=document.createElement("button");d.textContent=k+1;d.setAttribute("aria-label","Paso "+(k+1));d.onclick=()=>{i=k;draw()};dots.appendChild(d)});
+  function draw(){
+    [...dots.children].forEach((d,k)=>d.className=k<i?"past":k===i?"now":"");
+    stage.innerHTML=`<div class="reveal"><h5>${steps[i][0]}</h5>${steps[i][1]}</div>`;
+    prev.disabled=i===0; next.textContent=i===steps.length-1?"Volver a empezar ↺":"Siguiente →";
+  }
+  prev.onclick=()=>{if(i>0){i--;draw()}};
+  next.onclick=()=>{i=i===steps.length-1?0:i+1;draw()};
+  draw();
+}
+stepper($("#w-fago"),"Recorre la fagocitosis",[
+  ["Quimiotaxis","El fagocito viaja al sitio de infección atraído por formil-péptidos bacterianos, <b>C5a, C3a, C4a</b>, quimiocinas y leucotrienos."],
+  ["Adherencia","Reconoce y se une al microorganismo, sobre todo si está <b>opsonizado</b> (IgG o C3b)."],
+  ["Activación de membrana","Se forman seudópodos. Proteína G → <b>PLC</b> → PIP2 → IP3 + DAG."],
+  ["Endocitosis","El microorganismo queda completamente rodeado."],
+  ["Fagosoma","Vesícula intracelular que contiene al microorganismo."],
+  ["Fagolisosoma","Fagosoma + lisosomas. El pH baja: entre más ácido, más daño."],
+  ["Digestión","<b>Estallido respiratorio</b> (NADPH-oxidasa → superóxido, H₂O₂, radical hidroxilo, O₂ singlete), <b>MPO</b> (H₂O₂ → HOCl) e <b>iNOS</b> (óxido nítrico). Si falla la NADPH-oxidasa: enfermedad granulomatosa crónica."],
+  ["Destino final","Excreción de residuos y <b>presentación de antígeno</b> (sobre todo macrófagos)."]
+]);
+stepper($("#w-comp"),"Activa la cascada del complemento",[
+  ["Reconocimiento","La lectina se une a la <b>manosa</b> del microorganismo (o, en la vía clásica, C1 reconoce el complejo Ag-Ac)."],
+  ["C4 y C2","Se escinden C4 → C4a + C4b y C2 → dos fragmentos."],
+  ["C3 convertasa","El complejo de C4 y C2 forma la C3 convertasa (C4b2a en la nomenclatura actual)."],
+  ["C3","C3 → <b>C3a</b> (anafilotoxina) + <b>C3b</b> (superopsonina)."],
+  ["C5 convertasa","C3b se une a la C3 convertasa y forma la C5 convertasa."],
+  ["C5","C5 → <b>C5a</b> (inflamación, quimiotaxis) + <b>C5b</b>."],
+  ["MAC","C5b-6-7-8-9 forma poros en la membrana → <b>lisis osmótica</b>."]
+]);
+
+(function(){
+  const el=$("#w-mhc");
+  const D={
+    I:{"Se expresa en":"Todas las células nucleadas (no eritrocitos)","Antígeno":"<b>Endógeno</b>: virus, tumor, proteínas alteradas","Genes":"HLA-A, -B, -C (no clásicos E, F, G)","Estructura":"Cadena α (α1-α3) + β2-microglobulina; péptido entre α1 y α2","Ruta":"Proteasoma → <b>TAP-1/2</b> → RER (calnexina, calreticulina, ERp57) → Golgi → membrana","Lo reconoce":"<b>CD8+</b> → perforinas, granzimas, granulisinas"},
+    II:{"Se expresa en":"Solo CPA: dendríticas, macrófagos, linfocitos B","Antígeno":"<b>Exógeno</b>: bacterias, parásitos, toxinas","Genes":"HLA-DP, -DQ, -DR","Estructura":"Cadena α + cadena β; péptido entre α1 y β1","Ruta":"RER + cadena invariante → <b>CLIP</b> → fusión con fagolisosoma → <b>HLA-DM</b> quita CLIP → membrana","Lo reconoce":"<b>CD4+</b> → Th1, Th2, Th17, Treg"}
+  };
+  el.innerHTML=`<div class="eyebrow">Interactivo</div><h4>Cambia entre MHC I y MHC II</h4><div class="seg"><button aria-pressed="true">MHC I</button><button aria-pressed="false">MHC II</button></div><div class="out"></div>`;
+  const [a,b]=el.querySelectorAll(".seg button"), out=el.querySelector(".out");
+  const go=k=>{a.setAttribute("aria-pressed",k==="I");b.setAttribute("aria-pressed",k==="II");out.innerHTML=`<div class="reveal">${dl(D[k])}</div>`};
+  a.onclick=()=>go("I"); b.onclick=()=>go("II"); go("I");
+})();
+
+picker($("#w-th"),"¿Qué hace cada perfil de linfocito?",[
+  {k:"Th1",d:{"Contra":"Virus, bacterias intracelulares, tumores","Citocinas":"<b>IFN-γ</b>, IL-12, TNF-α","Acción":"Activa macrófagos, CD8 y NK; forma granulomas en TB"}},
+  {k:"Th2",d:{"Contra":"Parásitos, alergias","Citocinas":"<b>IL-4</b>, IL-5, IL-13","Acción":"Activa linfocitos B → anticuerpos e IgE"}},
+  {k:"Th17",d:{"Contra":"Hongos","Citocinas":"IL-17, IL-22, IL-23","Acción":"Inflamación, recluta neutrófilos"}},
+  {k:"Treg",d:{"Contra":"Autoinmunidad (freno)","Citocinas":"<b>IL-10, TGF-β</b>","Marcadores":"CD25, FOXP3, Helios","Si falla":"Autoinmunidad"}},
+  {k:"CD8",d:{"Activado por":"MHC I","Acción":"Perforinas + granzimas → caspasas → apoptosis"}},
+  {k:"Linfocito B",d:{"Señales":"BCR + ayuda T (<b>CD40-CD40L</b>)","Produce":"IgM primero; con el switch IgG, IgA o IgE (una sola clase por clon)"}}
+],it=>dl(it.d));
+
+function caseGame(el,title,options,cases){
+  let i=0,ok=0,order=shuffle(cases);
+  el.innerHTML=`<div class="eyebrow">Interactivo · casos</div><h4>${title}</h4><div class="body"></div>`;
+  const body=el.querySelector(".body");
+  function draw(){
+    if(i>=order.length){body.innerHTML=`<div class="reveal"><b>${ok} de ${order.length}</b> correctos. ${ok===order.length?"¡Perfecto!":"Vuelve a intentarlo para fijarlo."}</div><div class="nav" style="margin-top:10px"><button class="btn primary">Jugar otra vez</button></div>`;
+      if(ok===order.length)burst(el);
+      body.querySelector("button").onclick=()=>{i=0;ok=0;order=shuffle(cases);draw()};return;}
+    const c=order[i];
+    body.innerHTML=`<div class="qnum">Caso ${i+1} de ${order.length}</div><div class="case">${c[0]}</div><div class="chips"></div><div class="fb" aria-live="polite"></div>`;
+    const chips=body.querySelector(".chips"), fb=body.querySelector(".fb");
+    options.forEach(o=>{const b=document.createElement("button");b.className="chip";b.textContent=o;
+      b.onclick=()=>{chips.querySelectorAll(".chip").forEach(x=>{x.disabled=true;if(x.textContent===c[1])x.classList.add("right")});
+        const good=o===c[1];if(good)ok++;else b.classList.add("wrong");
+        fb.className="fb "+(good?"ok":"no");fb.innerHTML=(good?"¡Bien! ":"No. ")+c[2]+` <button class="btn" style="margin-left:8px">Siguiente →</button>`;
+        fb.querySelector("button").onclick=()=>{i++;draw()};};
+      chips.appendChild(b);});
+  }
+  draw();
+}
+caseGame($("#w-idp"),"Diagnostica la inmunodeficiencia",["Bruton","Hiper-IgM","SCID","Déficit de adhesión","Wiskott-Aldrich","DiGeorge","Granulomatosa crónica"],[
+  ["Varón de 9 meses con otitis y neumonías de repetición. No tiene linfocitos B y todas las Ig están bajas.","Bruton","Agammaglobulinemia ligada al X: falla la maduración de LB."],
+  ["Niño con IgM muy alta pero IgG, IgA e IgE bajas.","Hiper-IgM","Defecto de CD40L: no hay cambio de isotipo."],
+  ["Lactante con infecciones graves y oportunistas; linfocitos T, B y NK muy bajos.","SCID","Combinada grave (RAG o cadena γ común)."],
+  ["RN con caída del cordón a las 5 semanas, infecciones sin pus y leucocitosis marcada.","Déficit de adhesión","Defecto de CD18: los leucocitos no salen del vaso."],
+  ["Varón con eczema, petequias por trombocitopenia e infecciones. IgE alta.","Wiskott-Aldrich","Tríada eczema + trombocitopenia + infecciones; ligado al X."],
+  ["RN con crisis de hipocalcemia, cardiopatía congénita y timo ausente.","DiGeorge","Defecto del 3er y 4to arco faríngeo."],
+  ["Niño con abscesos e infecciones recurrentes; sus neutrófilos no hacen estallido respiratorio.","Granulomatosa crónica","Defecto de NADPH-oxidasa."]
+]);
+caseGame($("#w-hs"),"¿Qué tipo de hipersensibilidad es?",["Tipo I","Tipo II","Tipo III","Tipo IV"],[
+  ["Urticaria y sibilancias 10 minutos después de comer camarón.","Tipo I","IgE + mastocitos, reacción inmediata."],
+  ["Anemia hemolítica autoinmune con anticuerpos contra el eritrocito.","Tipo II","Anticuerpos contra antígenos de superficie celular."],
+  ["Miastenia gravis: anticuerpos bloquean el receptor de acetilcolina.","Tipo II","Tipo II por alteración funcional (bloqueo)."],
+  ["Enfermedad de Graves: anticuerpos estimulan el receptor de TSH.","Tipo II","Tipo II por alteración funcional (estimulación)."],
+  ["Glomerulonefritis en paciente con LES por depósito de complejos Ag-Ac.","Tipo III","Inmunocomplejos que se depositan."],
+  ["Fiebre, artralgias y exantema días después de recibir antiveneno.","Tipo III","Enfermedad del suero."],
+  ["Reacción local intensa tras un refuerzo de tétanos aplicado antes de los 10 años.","Tipo III","Fenómeno de Arthus."],
+  ["Induración a las 48 h en el sitio de la prueba de PPD.","Tipo IV","Retardada, mediada por linfocitos T."],
+  ["Dermatitis bajo el broche de níquel del pantalón.","Tipo IV","Dermatitis por contacto."],
+  ["Anafilaxia con hipotensión tras penicilina.","Tipo I","IgE; tratar con adrenalina IM."]
+]);
+
+/* ---------- selects ---------- */
+function fillSelect(sel, list){
+  const counts={};list.forEach(x=>counts[x[0]]=(counts[x[0]]||0)+1);
+  sel.innerHTML=`<option value="all">Todos (${list.length})</option>`+
+    Object.keys(TOPICS).filter(k=>counts[k]).map(k=>`<option value="${k}">${k} · ${TOPICS[k]} (${counts[k]})</option>`).join("");
+}
+fillSelect($("#fc-topic"),CARDS);
+fillSelect($("#qz-topic"),QUIZ);
+fillSelect($("#m-topic"),CARDS);
+
+/* ---------- flashcards ---------- */
+let deck=[],pos=0,known=new Set(store.get("inmuno-known",[]));
+function buildDeck(doShuffle){
+  const t=$("#fc-topic").value;
+  deck=CARDS.map((c,i)=>({c,i})).filter(x=>t==="all"||x.c[0]===t);
+  if(doShuffle)deck=shuffle(deck);
+  pos=0;renderCard();
+}
+function renderCard(){
+  const fc=$("#fc");fc.classList.remove("flipped");
+  if(!deck.length)return;
+  const {c,i}=deck[pos];
+  const label=`Tema ${c[0]} · ${TOPICS[c[0]]}${known.has(i)?" · ✓ sabida":""}`;
+  $("#fc-t1").textContent=label;$("#fc-t2").textContent=label;
+  $("#fc-q").textContent=c[1];$("#fc-a").textContent=c[2];
+  const k=deck.filter(x=>known.has(x.i)).length;
+  $("#fc-count").textContent=`${pos+1} / ${deck.length} · ${k} sabidas`;
+  $("#fc-bar").style.width=(k/deck.length*100)+"%";
+  updateStats();
+}
+function flip(){$("#fc").classList.toggle("flipped")}
+function step(d){pos=(pos+d+deck.length)%deck.length;renderCard()}
+$("#fc").addEventListener("click",flip);
+$("#fc").addEventListener("keydown",e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip()}});
+$("#fc-next").onclick=()=>step(1);
+$("#fc-prev").onclick=()=>step(-1);
+$("#fc-good").onclick=()=>{known.add(deck[pos].i);store.set("inmuno-known",[...known]);step(1)};
+$("#fc-again").onclick=()=>{const cur=deck.splice(pos,1)[0];known.delete(cur.i);store.set("inmuno-known",[...known]);deck.push(cur);if(pos>=deck.length)pos=0;renderCard()};
+$("#fc-shuffle").onclick=()=>buildDeck(true);
+$("#fc-topic").onchange=()=>buildDeck(false);
+document.addEventListener("keydown",e=>{
+  if(!document.querySelector('[data-view="flash"]').classList.contains("on"))return;
+  if(e.target.tagName==="SELECT")return;
+  if(e.key==="ArrowRight")step(1);
+  if(e.key==="ArrowLeft")step(-1);
+});
+buildDeck(false);
+
+/* ---------- relacionar ---------- */
+let mSel=null,mLeft=0,mErr=0;
+function newMatch(){
+  const t=$("#m-topic").value;
+  const pool=shuffle(CARDS.filter(c=>(t==="all"||c[0]===t)&&c[2].length<=110&&c[1].length<=70));
+  const round=pool.slice(0,6).map((c,k)=>({id:k,q:c[1],a:c[2]}));
+  mLeft=round.length;mErr=0;mSel=null;
+  const L=shuffle(round),R=shuffle(round);
+  $("#m-board").innerHTML=`<div class="mgrid"><div class="mcol">${L.map(x=>`<button class="mtile term" data-id="${x.id}" data-side="q">${esc(x.q)}</button>`).join("")}</div>
+    <div class="mcol">${R.map(x=>`<button class="mtile" data-id="${x.id}" data-side="a">${esc(x.a)}</button>`).join("")}</div></div><div id="m-win"></div>`;
+  $("#m-board").querySelectorAll(".mtile").forEach(b=>b.onclick=()=>pick(b));
+  mCount();
+}
+function mCount(){$("#m-count").textContent=`${mLeft} parejas por encontrar · ${mErr} errores`}
+function pick(b){
+  if(b.classList.contains("ok"))return;
+  if(!mSel||mSel.dataset.side===b.dataset.side){
+    if(mSel)mSel.classList.remove("sel");
+    mSel=b;b.classList.add("sel");return;
+  }
+  if(mSel.dataset.id===b.dataset.id){
+    [mSel,b].forEach(x=>{x.classList.remove("sel");x.classList.add("ok");x.disabled=true});
+    mLeft--;store.set("inmuno-pairs",store.get("inmuno-pairs",0)+1);updateStats();
+    if(!mLeft){$("#m-win").innerHTML=`<div class="mwin"><b>${mErr===0?"¡Ronda perfecta!":"¡Ronda completa!"}</b><p>${mErr} errores. ¿Otra?</p><button class="btn primary" id="m-again">Nueva ronda</button></div>`;
+      $("#m-again").onclick=newMatch; if(mErr===0)confetti();}
+  }else{
+    mErr++;const a=mSel;[a,b].forEach(x=>{x.classList.remove("sel");x.classList.add("bad")});
+    setTimeout(()=>[a,b].forEach(x=>x.classList.remove("bad")),400);
+  }
+  mSel=null;mCount();
+}
+$("#m-new").onclick=newMatch;
+$("#m-topic").onchange=newMatch;
+newMatch();
+
+/* ---------- quiz ---------- */
+let qs=[],qi=0,score=0,missed=[],streak=0,bestStreak=0;
+function startQuiz(){
+  const t=$("#qz-topic").value;
+  qs=shuffle(QUIZ.filter(q=>t==="all"||q[0]===t));
+  qi=0;score=0;missed=[];streak=0;bestStreak=0;renderQ();
+}
+function renderQ(){
+  const box=$("#qz");
+  if(qi>=qs.length){
+    const pct=Math.round(score/qs.length*100);
+    if($("#qz-topic").value==="all"){const b=store.get("inmuno-best",null);if(b==null||pct>b)store.set("inmuno-best",pct);updateStats();}
+    if(pct>=80)confetti();
+    $("#qz-count").textContent=`Mejor racha: ${bestStreak} seguidas`;
+    box.innerHTML=`<div class="score"><div class="eyebrow">Resultado</div><div class="big">${score} / ${qs.length}</div><p>${pct}% · ${pct>=80?"¡Muy bien! Listo para el examen.":pct>=60?"Vas bien; repasa las que fallaste.":"Vuelve a los resúmenes de los temas que fallaste."}</p>
+    <button class="btn primary" id="qz-again">Hacer otra vez</button></div>`+
+    (missed.length?`<div class="missed"><h3 class="eyebrow">Repasa estas</h3><ol>${missed.map(q=>`<li><b>${esc(q[1])}</b><br>Respuesta: ${esc(q[2][q[3]])}. <span style="color:var(--muted)">(Tema ${q[0]})</span></li>`).join("")}</ol></div>`:"");
+    $("#qz-again").onclick=startQuiz;
+    return;
+  }
+  const q=qs[qi];
+  $("#qz-count").innerHTML=`Pregunta ${qi+1} de ${qs.length} · ${score} correctas ${streak>=2?`<span class="streak">🔥 ${streak} seguidas</span>`:""}`;
+  const order=shuffle(q[2].map((t,i)=>({t,i})));
+  box.innerHTML=`<div class="qnum">Tema ${q[0]} · ${TOPICS[q[0]]}</div><div class="qtext">${esc(q[1])}</div>
+   <div class="opts">${order.map((o,k)=>`<button class="opt" data-i="${o.i}"><span class="l">${"ABCD"[k]}</span><span>${esc(o.t)}</span></button>`).join("")}</div>
+   <div id="qz-after"></div>`;
+  box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>answer(b,q));
+}
+function answer(btn,q){
+  const chosen=+btn.dataset.i, ok=chosen===q[3];
+  if(ok){score++;streak++;bestStreak=Math.max(bestStreak,streak);if(streak%5===0)burst(btn);}else{missed.push(q);streak=0;}
+  $("#qz").querySelectorAll(".opt").forEach(b=>{b.disabled=true;if(+b.dataset.i===q[3])b.classList.add("right")});
+  if(!ok)btn.classList.add("wrong");
+  $("#qz-after").innerHTML=`<div class="explain"><b>${ok?"Correcto.":"Incorrecto."}</b> ${esc(q[4])}</div>
+   <div class="card-actions"><button class="btn primary" id="qz-next">${qi+1<qs.length?"Siguiente pregunta →":"Ver resultado"}</button></div>`;
+  $("#qz-next").onclick=()=>{qi++;renderQ()};
+  $("#qz-next").focus();
+}
+$("#qz-start").onclick=startQuiz;
+$("#qz-topic").onchange=startQuiz;
+document.addEventListener("keydown",e=>{
+  if(!document.querySelector('[data-view="quiz"]').classList.contains("on")||e.target.tagName==="SELECT")return;
+  const n="1234".indexOf(e.key), opts=[...document.querySelectorAll("#qz .opt")];
+  if(n>=0&&opts[n]&&!opts[n].disabled)opts[n].click();
+  else if(e.key==="Enter"&&$("#qz-next")&&document.activeElement!==$("#qz-next"))$("#qz-next").click();
+});
+startQuiz();
+
+/* ---------- efectos ---------- */
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const cv=$("#confetti"),cx=cv.getContext("2d");let parts=[],raf=null;
+function sizeCv(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio}
+function spawn(x,y,n,spread){
+  const css=getComputedStyle(document.documentElement);
+  const cols=["--hema","--eosin","--ok"].map(v=>css.getPropertyValue(v).trim()).concat(["#f5b942"]);
+  for(let i=0;i<n;i++)parts.push({x,y,vx:(Math.random()-.5)*spread,vy:-Math.random()*spread*0.9-2,r:Math.random()*5+3,c:cols[i%cols.length],a:1,rot:Math.random()*6});
+  if(!raf)loop();
+}
+function loop(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.a-=.012;p.rot+=.2;
+    cx.save();cx.globalAlpha=Math.max(p.a,0);cx.fillStyle=p.c;cx.translate(p.x*devicePixelRatio,p.y*devicePixelRatio);cx.rotate(p.rot);
+    cx.fillRect(-p.r,-p.r/2,p.r*2*devicePixelRatio/1.5,p.r*devicePixelRatio/1.5);cx.restore();});
+  parts=parts.filter(p=>p.a>0&&p.y<innerHeight+40);
+  raf=parts.length?requestAnimationFrame(loop):(cx.clearRect(0,0,cv.width,cv.height),null);
+}
+function burst(el){if(reduce)return;sizeCv();const r=el.getBoundingClientRect();spawn(r.left+r.width/2,r.top+r.height/2,40,12)}
+function confetti(){if(reduce)return;sizeCv();for(let k=0;k<5;k++)spawn(innerWidth*(k+.5)/5,innerHeight*.35,45,16)}
+
+/* células flotando en la portada */
+(function(){
+  const c=$("#cells"),g=c.getContext("2d");let W,H,items=[];
+  function size(){const r=c.getBoundingClientRect();W=r.width;H=r.height;c.width=W*devicePixelRatio;c.height=H*devicePixelRatio;g.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
+  size();addEventListener("resize",size);
+  for(let i=0;i<22;i++)items.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*16+8,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,t:i%3,rot:Math.random()*6,vr:(Math.random()-.5)*.01});
+  function ab(it){ // anticuerpo en Y
+    g.save();g.translate(it.x,it.y);g.rotate(it.rot);g.lineWidth=3;g.lineCap="round";g.strokeStyle="rgba(255,255,255,.28)";
+    const s=it.r;g.beginPath();g.moveTo(0,s);g.lineTo(0,0);g.lineTo(-s*.7,-s*.8);g.moveTo(0,0);g.lineTo(s*.7,-s*.8);g.stroke();g.restore();
+  }
+  function cell(it){ // linfocito / neutrófilo
+    g.beginPath();g.arc(it.x,it.y,it.r,0,7);g.fillStyle="rgba(255,255,255,.08)";g.fill();g.strokeStyle="rgba(255,255,255,.22)";g.lineWidth=1.5;g.stroke();
+    g.beginPath();
+    if(it.t===0){g.arc(it.x,it.y,it.r*.62,0,7)}else{for(let k=0;k<3;k++){g.moveTo(it.x+it.r*.35*Math.cos(it.rot+k*2.1)+it.r*.25,it.y+it.r*.35*Math.sin(it.rot+k*2.1));g.arc(it.x+it.r*.35*Math.cos(it.rot+k*2.1),it.y+it.r*.35*Math.sin(it.rot+k*2.1),it.r*.25,0,7)}}
+    g.fillStyle="rgba(255,255,255,.18)";g.fill();
+  }
+  function frame(){
+    if(!W||!H){size();if(W&&H)items.forEach(it=>{it.x=Math.random()*W;it.y=Math.random()*H});}
+    g.clearRect(0,0,W,H);
+    items.forEach(it=>{it.x+=it.vx;it.y+=it.vy;it.rot+=it.vr;
+      if(it.x<-30)it.x=W+30;if(it.x>W+30)it.x=-30;if(it.y<-30)it.y=H+30;if(it.y>H+30)it.y=-30;
+      it.t===2?ab(it):cell(it);});
+    if(!reduce)requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+paintDone();
+show(store.get("inmuno-view","resumen"));
+</script>
+
+</body></html>

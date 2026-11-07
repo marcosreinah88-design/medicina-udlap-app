@@ -1,0 +1,832 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Repaso de Nutrición</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/g33fcd29915.css">
+<style>
+/* Layout: etiqueta nutrimental como motivo; barra de pestañas fija, una columna de lectura (~720px) */
+:root{
+  --bg:#f5f7f2; --surface:#ffffff; --ink:#151a14; --muted:#5b6658; --rule:#151a14; --line:#d9dfd4;
+  --accent:#2e6b3a; --accent-soft:#e1eedf; --mark:#ffe58a; --mark-ink:#4a3a00;
+  --good:#2e7d32; --bad:#b3261e; --good-soft:#e3f2e4; --bad-soft:#fbe5e3;
+  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101410; --surface:#181e18; --ink:#e8eee5; --muted:#9aa697; --rule:#e8eee5; --line:#2c352b;
+  --accent:#7cc48a; --accent-soft:#1f3322; --mark:#5a4a12; --mark-ink:#ffe9a8;
+  --good:#7cc48a; --bad:#f08b82; --good-soft:#1c3320; --bad-soft:#3a1e1c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101410; --surface:#181e18; --ink:#e8eee5; --muted:#9aa697; --rule:#e8eee5; --line:#2c352b;
+  --accent:#7cc48a; --accent-soft:#1f3322; --mark:#5a4a12; --mark-ink:#ffe9a8;
+  --good:#7cc48a; --bad:#f08b82; --good-soft:#1c3320; --bad-soft:#3a1e1c; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 64px}
+header.top{display:grid;gap:6px;padding-bottom:14px;border-bottom:10px solid var(--rule)}
+.eyebrow{font-family:var(--f-display);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:900;font-stretch:72%;font-size:clamp(40px,9vw,64px);line-height:.95;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);margin:0;max-width:60ch}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:4px;padding-block:10px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{font-family:var(--f-display);font-weight:800;font-stretch:85%;font-size:15px;letter-spacing:.02em;text-transform:uppercase;border:0;background:none;color:var(--muted);padding:8px 12px;border-radius:6px;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tab:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.filters{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding-block:14px}
+.filters .lbl{font-size:13px;color:var(--muted);margin-right:4px}
+.chip{font:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:5px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--ink);font-weight:700}
+.legend{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+mark,.ex{background:var(--mark);color:var(--mark-ink);padding:0 4px;border-radius:3px;font-weight:700}
+.ex{font-size:11px;font-family:var(--f-display);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+
+/* Resúmenes: tarjetas tipo etiqueta nutrimental */
+.toc{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;margin-bottom:18px}
+.toc a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+.toc a:hover{border-bottom-color:currentColor}
+.label{background:var(--surface);border:2px solid var(--rule);padding:14px 16px 16px;margin-bottom:22px;scroll-margin-top:70px}
+.label h2{font-family:var(--f-display);font-weight:900;font-stretch:75%;font-size:30px;line-height:1;margin:0 0 4px;text-wrap:balance}
+.label .meta{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted);border-bottom:8px solid var(--rule);padding-bottom:6px;margin-bottom:4px;flex-wrap:wrap}
+.label h3{font-family:var(--f-display);font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.04em;margin:12px 0 2px;padding-top:6px;border-top:4px solid var(--rule)}
+.label ul{list-style:none;margin:0;padding:0}
+.label li{padding:6px 0;border-bottom:1px solid var(--line)}
+.label li:last-child{border-bottom:0}
+.label b{font-weight:700}
+.note{font-size:13px;color:var(--muted);font-style:italic}
+.tablewrap{overflow-x:auto;margin:6px 0}
+table{border-collapse:collapse;font-size:14px;min-width:100%}
+th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-display);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.05em;border-bottom:2px solid var(--rule)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* Flashcards */
+.fc-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;color:var(--muted);margin-bottom:10px}
+.progress{height:6px;background:var(--line);border-radius:3px;overflow:hidden;flex:1 1 160px}
+.progress>i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.card{perspective:1200px;cursor:pointer;margin-bottom:14px}
+.card-inner{position:relative;min-height:260px;transition:transform .45s;transform-style:preserve-3d}
+.card.flipped .card-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--surface);border:2px solid var(--rule);padding:22px 20px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.face.back{transform:rotateY(180deg);border-color:var(--accent)}
+.face .k{font-family:var(--f-display);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.face .q{font-family:var(--f-display);font-weight:800;font-stretch:85%;font-size:clamp(20px,4.6vw,26px);line-height:1.2;text-wrap:balance}
+.face .a{font-size:17px;line-height:1.5}
+.face .hint{font-size:12px;color:var(--muted);margin-top:auto}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font-family:var(--f-display);font-weight:800;font-size:14px;letter-spacing:.03em;text-transform:uppercase;border:2px solid var(--rule);background:var(--surface);color:var(--ink);padding:10px 14px;border-radius:6px;cursor:pointer;flex:1 1 auto}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn.good{border-color:var(--good);color:var(--good)}
+.btn.bad{border-color:var(--bad);color:var(--bad)}
+.btn.small{flex:0 0 auto;padding:6px 10px;font-size:12px}
+
+/* Quiz */
+.qbox{background:var(--surface);border:2px solid var(--rule);padding:18px}
+.qnum{font-family:var(--f-display);font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.qtext{font-family:var(--f-display);font-weight:800;font-stretch:88%;font-size:clamp(19px,4.2vw,23px);line-height:1.25;margin:8px 0 14px;text-wrap:balance}
+.opts{display:grid;gap:8px}
+.opt{font:inherit;text-align:left;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);padding:11px 13px;border-radius:6px;cursor:pointer;display:flex;gap:10px;align-items:flex-start}
+.opt .l{font-family:var(--f-display);font-weight:800;color:var(--muted);min-width:1.2em}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt:disabled{cursor:default}
+.expl{margin-top:12px;padding:10px 12px;border-left:4px solid var(--accent);background:var(--accent-soft);font-size:15px}
+.score{font-family:var(--f-display);font-weight:900;font-stretch:72%;font-size:72px;line-height:1;font-variant-numeric:tabular-nums}
+.missed li{margin-bottom:10px}
+
+/* Calculadora */
+.calc{background:var(--surface);border:2px solid var(--rule);padding:16px;display:grid;gap:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+label.f{display:grid;gap:4px;font-size:13px;color:var(--muted);min-width:0}
+label.f input,label.f select{font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:6px;padding:8px 10px;width:100%}
+.out{border-top:8px solid var(--rule);padding-top:8px}
+.out .line{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.out .line.big{font-family:var(--f-display);font-weight:900;font-size:22px;border-bottom:4px solid var(--rule)}
+.out .line span:first-child{min-width:0}
+.formula{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;color:var(--muted);overflow-x:auto}
+section[hidden]{display:none}
+@media (prefers-reduced-motion: reduce){.card-inner,.progress>i{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Medicina · 4.º semestre · Nutrición y metabolismo</div>
+    <h1>Repaso de Nutrición</h1>
+    <p class="sub">Todo sale de tus apuntes de Notion. Lee el resumen, practica con tarjetas y ponte a prueba con el quiz. Lo que tu maestra marcó como <span class="ex">Pregunta de examen</span> aparece resaltado.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Secciones">
+    <button class="tab" role="tab" id="tab-res" aria-selected="true" data-view="res">Resúmenes</button>
+    <button class="tab" role="tab" id="tab-fc" aria-selected="false" data-view="fc">Tarjetas</button>
+    <button class="tab" role="tab" id="tab-qz" aria-selected="false" data-view="qz">Quiz</button>
+    <button class="tab" role="tab" id="tab-calc" aria-selected="false" data-view="calc">Calculadora</button>
+  </nav>
+
+  <div class="filters" id="filters">
+    <span class="lbl">Bloque:</span>
+    <button class="chip" data-b="all" aria-pressed="true">Todo</button>
+    <button class="chip" data-b="1" aria-pressed="false">Bloque 1</button>
+    <button class="chip" data-b="2" aria-pressed="false">Bloque 2</button>
+    <button class="chip" data-b="3" aria-pressed="false">Bloque 3</button>
+    <button class="chip" data-b="ex" aria-pressed="false">Solo preguntas de examen</button>
+  </div>
+
+  <section id="v-res"></section>
+  <section id="v-fc" hidden></section>
+  <section id="v-qz" hidden></section>
+  <section id="v-calc" hidden></section>
+</div>
+
+<script>
+const EX='<span class="ex">Pregunta de examen</span>';
+// b: bloque según los separadores de tu página de Notion. Bloque 1 = notas del primer parcial.
+const T=[
+{id:"historia",b:1,t:"Nutrición y metabolismo e historia de la alimentación",s:[
+ ["Conceptos",[
+  "<b>Alimentación</b>: proceso <b>consciente y voluntario</b> de ingerir alimento; implica la capacidad de elegir.",
+  "La alimentación depende de: aspecto socioeconómico, cultura, educación, tiempo, usos y costumbres, geografía, estado de salud y gustos.",
+  "<b>Nutrición</b>: proceso <b>involuntario y autónomo</b> de utilizar los nutrimentos para obtener energía y cumplir funciones vitales. Comprende 3 procesos: <b>digestión</b> (descomposición), <b>absorción</b> (paso a las células) y <b>metabolismo</b> (procesos bioquímicos para generar ATP)."]],
+ ["Historia",[
+  "<b>Paleolítico</b>: cazadores y recolectores con actividad física intensa; alimentos frescos y sin procesar. De aquí nace la dieta <b>Paleo</b>.",
+  "<b>Neolítico</b>: agricultura y domesticación; ↑ hidratos de carbono (trigo, arroz, maíz) y ↑ proteína (vacas, ovejas, cerdos). "+EX+" Ya había <b>fuego</b>, así que podían cocinar sus alimentos.",
+  EX+" La base de la alimentación prehispánica era el <b>maíz</b>, junto con chile, frijol y calabaza (dieta de la <b>milpa</b>), además de quelites, iguanas, ranas e insectos.",
+  "Dioses mexicas del maíz: "+EX+" <b>Centéotl</b> = dios del maíz mismo; Xilonen = jilote o maíz tierno; Chicomecóatl = contraparte femenina (fertilidad); Ilamatecuhtli = maíz maduro.",
+  "Los insectos aportan ~80% de proteína por 100 g. El <b>Códice Florentino</b> (Fray Bernardino de Sahagún) registra <b>96 especies</b> de insectos comestibles.",
+  "<b>Tianguis</b> (tianquiztli = mercado): Tlatelolco, Monte Albán, Juchitán. Se usaba el trueque; el cacao servía como moneda.",
+  "Preparaciones prehispánicas actuales: pozole, tamales, tlacoyos, enfrijoladas, esquites, guacamole, huitlacoche, barbacoa, mole; chocolate y pulque eran para la realeza.",
+  "<b>Colonia</b>, menú mestizo de 5 tiempos: desayuno 5:00 (chocolate o atole con pan), almuerzo 10:00, comida 14:00, merienda 18:00, cena 22:00.",
+  "<b>Enlatado</b>: Nicolas Appert, 1795 (tarro de vidrio sellado y hervido). Girard y Durand cambiaron el vidrio por hojalata. Abrelatas: William Lyman, 1870.",
+  EX+" <b>Pasteurización</b> (Louis Pasteur, 1862): calentar a temperatura y tiempo específicos para eliminar microorganismos patógenos <b>sin comprometer la calidad nutrimental</b>.",
+  "Leche: pasteurización lenta 62–64 °C por 30 min · pasteurización 71–89 °C por 15 s · ultrapasteurización 137 °C por 2 s.",
+  "<b>Revolución</b>: en el norte (Villa) burritos, discada y machaca; en el centro y sur (Zapata) cecina y ranas. Clase baja: frijol, maíz y chile; media: + caldo, sopa aguada, arroz; alta: hongos y huitlacoche.",
+  "<b>Milagro mexicano</b> (1950–1970): autosuficiencia alimentaria; IMSS en 1942 e ISSSTE en 1959.",
+  "<b>Actualidad</b>: alto consumo de ultraprocesados y bebidas azucaradas que desplazan la dieta tradicional; transición epidemiológica (de enfermedades infecciosas a crónico-degenerativas).",
+  "<b>Nixtamalización</b>: agregar cal al maíz, lo que lo fortifica con <b>calcio</b>."]]
+],fc:[
+ ["¿Diferencia entre alimentación y nutrición?","Alimentación = consciente y voluntaria (se elige). Nutrición = involuntaria y autónoma (digestión, absorción, metabolismo)."],
+ ["¿Cuáles son los 3 procesos de la nutrición?","Digestión, absorción y metabolismo."],
+ ["¿Qué permitió cocinar en el Neolítico?","El fuego.",1],
+ ["¿Cuál era la base de la alimentación prehispánica?","El maíz.",1],
+ ["¿Quién era Centéotl?","El dios mexica del maíz mismo.",1],
+ ["¿Cuántas especies de insectos registra el Códice Florentino?","96 especies (Fray Bernardino de Sahagún)."],
+ ["¿Quién inventó el enlatado y cuándo?","Nicolas Appert, 1795."],
+ ["¿Qué es la pasteurización?","Calentar a una temperatura y tiempo específicos para eliminar patógenos sin comprometer la calidad nutrimental (Louis Pasteur, 1862).",1],
+ ["Temperatura y tiempo de la ultrapasteurización","137 °C durante 2 segundos."],
+ ["¿Qué es la nixtamalización?","Agregar cal al maíz; lo fortifica con calcio."],
+ ["¿Qué alimentos forman la milpa?","Maíz, frijol, chile y calabaza."]
+],qz:[
+ ["¿Qué característica del Neolítico marcó tu maestra como pregunta de examen?",["Ya existía el fuego y podían cocinar","Inició la pasteurización","Se basaban solo en la caza","Apareció el trueque con cacao"],0,"En el Neolítico ya había fuego, por eso podían cocinar sus alimentos.",1],
+ ["¿Cuál era la base de la alimentación prehispánica?",["Frijol","Maíz","Cacao","Chile"],1,"El maíz era la base; de ahí la dieta de la milpa.",1],
+ ["Centéotl era el dios…",["del maíz tierno (jilote)","del maíz maduro","del maíz mismo","de la fertilidad"],2,"Xilonen = jilote; Ilamatecuhtli = maíz maduro; Chicomecóatl = contraparte femenina.",1],
+ ["La pasteurización elimina microorganismos patógenos…",["y también las vitaminas hidrosolubles","sin comprometer la calidad nutrimental","agregando conservadores","solo en alimentos enlatados"],1,"Es la definición que tu maestra marcó.",1],
+ ["Ultrapasteurización de la leche:",["62–64 °C por 30 min","71–89 °C por 15 s","137 °C por 2 s","100 °C por 1 min"],2,"Lenta 62–64 °C/30 min; normal 71–89 °C/15 s; ultra 137 °C/2 s."],
+ ["La nixtamalización fortifica el maíz con:",["Hierro","Calcio","Yodo","Zinc"],1,"Se agrega cal (hidróxido de calcio)."],
+ ["Inventor del abrelatas (1870):",["Nicolas Appert","Louis Pasteur","William Lyman","Peter Durand"],2,"Appert inventó el enlatado (1795); Durand y Girard la hojalata."]
+]},
+
+{id:"lactante",b:1,t:"Lactancia, calostro y alimentación complementaria",s:[
+ ["Lactogénesis y hormonas",[
+  "<b>Lactogénesis I</b>: último trimestre del embarazo; ↑ lactosa y proteínas.",
+  "<b>Lactogénesis II</b>: días 2–5 posparto, “baja la leche”; <b>calostro</b> con IgA, amarillento y rico en vitamina A.",
+  "<b>Lactogénesis III</b>: alrededor del día 10; la composición se estabiliza (leche madura).",
+  "<b>Prolactina</b> estimula la <b>producción</b> (por la succión). <b>Oxitocina</b> estimula el <b>descenso</b> (eyección).",
+  "Reflejo de descenso: succión → nervios → hipotálamo → oxitocina → células mioepiteliales → conductos → senos galactóforos."]],
+ ["Calostro vs. leche madura",[
+  "Calostro: primeros 3 días; el recién nacido toma 2–10 ml por toma.",
+  "El calostro tiene <b>más</b>: proteínas, IgA secretora, lactoferrina, caseína, sodio (mucho más), vitamina A (el doble), vitamina C.",
+  "El calostro tiene <b>menos</b>: calorías, grasa, lactosa, calcio, vitaminas B1 y B2.",
+  "Los lípidos aportan la mitad de la energía de la leche y se concentran al <b>final</b> de la toma.",
+  "Leche materna: único alimento necesario los primeros <b>6 meses</b>; nutre y protege. Las bolsas de Bichat ayudan a la succión."]],
+ ["La madre que lacta",[
+  "Producción: 600 ml/día el primer mes, 800 ml/día a los 5 meses, hasta 800–1200 ml/día. Responde rápido a la demanda.",
+  "Energía extra: <b>+330 kcal/día</b> los primeros 6 meses y <b>+400 kcal/día</b> después. Agua: 3 L/día.",
+  "3 posturas adecuadas: recostada sobre la espalda, de balón de fútbol (agarre) y de abrazo cruzado. La mano forma una <b>C o una V</b> sobre la mama.",
+  "Para reducir cólicos se sugiere evitar leche de vaca, huevo, cacahuates, nueces, trigo, soya y pescado las primeras semanas (posibles alergias)."]],
+ ["Alimentación complementaria (NOM-043)",[
+  "Introducción gradual de alimentos distintos a la leche materna. Energía de 6–12 meses: <b>98 kcal/kg</b>. 6–8 meses: papillas; 8–12 meses: picados finos.",
+  "Se prefiere iniciar con <b>chayote</b> (picado, hervido y licuado). Se ofrece 3 veces por comida hasta que lo acepte; las colaciones son leche materna o fórmula.",
+  "Orden: <b>0–6 m</b> lactancia a libre demanda → <b>6–7 m</b> carnes (2–3 veces/día, papilla) → <b>7–8 m</b> leguminosas (3 veces/día) → <b>8–12 m</b> derivados de leche (3–4 veces/día) → <b>&gt;12 m</b> huevo, pescado, cítricos, leche entera y dieta familiar (4–5 veces/día).",
+  "Jugos: no antes de los 6 meses, nunca antes de dormir (caries); después del año y en taza, no en biberón.",
+  "Evitar sal, especias y pimienta; esperar que desaparezca el reflejo de extrusión; vigilar temperatura y seguridad en la silla alta."]]
+],fc:[
+ ["¿Qué pasa en la lactogénesis II?","Días 2–5 posparto: “baja la leche”, se produce calostro con IgA y vitamina A."],
+ ["¿Qué hormona produce la leche y cuál la hace descender?","Prolactina = producción (succión). Oxitocina = descenso/eyección."],
+ ["¿Qué tiene MÁS el calostro que la leche madura?","Proteínas, IgA, lactoferrina, caseína, sodio, el doble de vitamina A y más vitamina C."],
+ ["¿Qué tiene MENOS el calostro?","Calorías, grasa, lactosa, calcio, vitaminas B1 y B2."],
+ ["¿Cuántas kcal extra necesita la madre que lacta?","+330 kcal/día los primeros 6 meses; +400 kcal/día después."],
+ ["Requerimiento energético del lactante de 6–12 meses","98 kcal/kg de peso actual."],
+ ["Orden NOM-043 a los 6–7 meses","Carnes (ternera, pollo, pavo, res, cerdo, hígado)."],
+ ["Orden NOM-043 a los 7–8 meses","Leguminosas (frijol, haba, garbanzo, lenteja, alubia)."],
+ ["¿Cuándo se introducen huevo, pescado, cítricos y leche entera?","Después de los 12 meses."],
+ ["¿Con qué alimento se prefiere iniciar la alimentación complementaria?","Chayote (picado, hervido y licuado)."],
+ ["3 posturas adecuadas para amamantar","Recostada sobre la espalda, balón de fútbol y abrazo cruzado."]
+],qz:[
+ ["La hormona responsable del DESCENSO de la leche es:",["Prolactina","Oxitocina","Estrógeno","Progesterona"],1,"Prolactina produce; oxitocina contrae las células mioepiteliales."],
+ ["Comparado con la leche madura, el calostro tiene:",["Más grasa y lactosa","Más proteína, IgA y sodio","Más calcio y B1","Más calorías"],1,"Tiene menos calorías, grasa, lactosa y calcio."],
+ ["Según la NOM-043, entre los 7 y 8 meses se introducen:",["Carnes","Leguminosas","Derivados de leche","Huevo y pescado"],1,"6–7 m carnes; 7–8 m leguminosas; 8–12 m lácteos; >12 m huevo y pescado."],
+ ["Energía adicional para la madre en los primeros 6 meses de lactancia:",["+150 kcal/día","+330 kcal/día","+450 kcal/día","+500 kcal/día"],1,"Después de los 6 meses son +400 kcal/día."],
+ ["Los jugos en el lactante:",["Se dan desde los 4 meses","Se dan en biberón antes de dormir","Se dan después del año, en taza","Sustituyen la leche"],2,"Antes de dormir se asocian a caries."],
+ ["La lactogénesis III ocurre aproximadamente:",["En el último trimestre","Días 2–5 posparto","Alrededor del día 10 posparto","Al año"],2,"Es cuando la composición se estabiliza."]
+]},
+
+{id:"etapas",b:1,t:"Requerimientos por etapa de la vida y cálculo energético",s:[
+ ["Niñez y adolescencia",[
+  "Toddlers 1–3 años; preescolares 3–5 años.",
+  "<b>1–3 años</b>: +230 g y +1 cm por mes. Ración = 1 cucharada por año de edad. No forzar; evitar uvas y nueces (atragantamiento).",
+  "<b>3–5 años</b>: +2 kg y +7 cm por año. Ya usan tenedor y cuchara. <b>Neofobia alimentaria</b> = miedo a platillos nuevos.",
+  "<b>Escolar 5–10 años</b>: +3 a 3.5 kg y +6 cm por año. 50% de niños de 6–8 años tiene caries; grasas y proteínas protegen el esmalte. Nunca dar menos que su GEB. La fórmula de Schofield (pediatría) no entra al examen.",
+  "Preadolescencia: 9–11 años niñas, 10–12 niños (escala de Tanner). Brote puberal con ↑ grasa en niñas.",
+  "Pubertad y adolescencia: proteína <b>0.85 g/kg/día</b>; HCO 45–65%; lípidos 25–35%.",
+  "Adulto sano: HCO 60%, proteína 15%, lípidos 25%. Kcal por gramo: HCO 4, proteína 4, lípidos 9."]],
+ ["Gasto energético en el adulto",[
+  "Adultez temprana 20–39; mediana edad 40–49; generación sándwich 50–59.",
+  "<b>GET = GEB (TMB) + ETA + actividad física</b>. ETA = efecto termogénico de los alimentos ≈ <b>10%</b>.",
+  "Actividad física = cualquier movimiento que sube el gasto en reposo; ejercicio = con tiempo, modo e intensidad; deporte = tiene reglas.",
+  "Factores de actividad: sedentario 1.1 · ligero 1.2 · moderado 1.3 · activo 1.4 · muy activo 1.5.",
+  "Recomendación: mínimo <b>150 min/semana</b> de actividad aeróbica moderada + fortalecimiento muscular 2 o más días.",
+  "<b>Balance energético</b>: relación entre lo que se consume y lo que se gasta. Positivo = se consume más de lo que se gasta (superávit); negativo = se gasta más de lo que se consume.",
+  "Dormir bien: la grelina baja y la leptina sube."]],
+ ["Distribución de macros en el adulto",[
+  "Proteína: 0.8–1.4 g/kg de peso actual (10–35%).",
+  "HCO: mínimo <b>130 g/día</b> para el cerebro (45–60%).",
+  "Lípidos: 20–35%."]]
+],tbl:{h:"Fórmulas y factores",html:`<div class="tablewrap"><table><tr><th>Fórmula</th><th>Uso</th><th>Hombre</th><th>Mujer</th></tr>
+<tr><td>Owen</td><td>Adulto</td><td class="n">879 + 10.2·P</td><td class="n">795 + 7.18·P</td></tr>
+<tr><td>Mifflin-St Jeor</td><td>Sobrepeso y obesidad</td><td class="n">10·P + 6.25·T − 5·E + 5</td><td class="n">10·P + 6.25·T − 5·E − 161</td></tr>
+<tr><td>Harris-Benedict</td><td>Adulto sano (sobreestima)</td><td class="n">66 + 13.7·P + 5·T − 6.8·E</td><td class="n">655 + 9.6·P + 1.8·T − 4.7·E</td></tr></table></div>
+<p class="note">P = peso (kg), T = estatura (cm), E = edad (años). Después se multiplica por el factor de actividad.</p>
+<div class="tablewrap"><table><tr><th>Fórmula de emergencia (kcal/kg, sin FA)</th><th>kcal/kg</th></tr>
+<tr><td>Bajo peso</td><td class="n">&gt;35</td></tr><tr><td>Peso normal</td><td class="n">25–30</td></tr><tr><td>Obesidad</td><td class="n">20–25</td></tr>
+<tr><td>Cáncer, mantener / repletar</td><td class="n">25–35 / 35–45</td></tr><tr><td>Postrauma</td><td class="n">25–35</td></tr>
+<tr><td>Renal sin sustitución · hemodiálisis</td><td class="n">30–35</td></tr><tr><td>Diálisis</td><td class="n">25–35</td></tr>
+<tr><td>Postrasplante agudo / tardío</td><td class="n">30–35 / 25–30</td></tr><tr><td>Geriátrico</td><td class="n">25–30</td></tr></table></div>
+<div class="tablewrap"><table><tr><th>Factor de lesión (× GET)</th><th>Factor</th></tr>
+<tr><td>Fractura de hueso largo</td><td class="n">1.15–1.2</td></tr><tr><td>Traumatismo múltiple</td><td class="n">1.3–1.55</td></tr>
+<tr><td>Traumatismo craneal grave</td><td class="n">1.3–1.5</td></tr><tr><td>Traumatismo múltiple + sepsis</td><td class="n">1.5–1.75</td></tr>
+<tr><td>Quemadura 10% · 20% · 30%</td><td class="n">1.25 · 1.5 · 1.7</td></tr><tr><td>Quemadura 40% · 50% · 75%</td><td class="n">1.85 · 2.0 · 2.0–2.1</td></tr>
+<tr><td>Niños quemados</td><td class="n">60 kcal/kg/día + 35 kcal × %SCQ/día</td></tr></table></div>`},
+fc:[
+ ["¿Cuánto crece un niño de 1–3 años?","230 g y 1 cm por mes."],
+ ["Regla de la ración en niños de 1–3 años","1 cucharada de alimento por año de edad (y que pida más)."],
+ ["¿Qué es la neofobia alimentaria?","Miedo a probar platillos nuevos (típico en preescolares)."],
+ ["Proteína en pubertad/adolescencia","0.85 g/kg/día."],
+ ["Distribución del adulto sano","60% HCO, 15% proteína, 25% lípidos."],
+ ["¿Cuánto representa el ETA?","Alrededor del 10% del gasto energético."],
+ ["Fórmula de Owen para hombres","TMB = 879 + (10.2 × peso)."],
+ ["Fórmula de Owen para mujeres","TMB = 795 + (7.18 × peso)."],
+ ["¿Para qué pacientes se usa Mifflin?","Sobrepeso y obesidad."],
+ ["Factor de actividad 'activo'","1.4 (sedentario 1.1, ligero 1.2, moderado 1.3, muy activo 1.5)."],
+ ["Fórmula de emergencia: obesidad","20–25 kcal/kg."],
+ ["Factor de lesión: quemadura del 50%","2.0"],
+ ["HCO mínimo diario para el cerebro (adulto)","130 g/día."],
+ ["Recomendación de actividad física (OMS)","150 min/semana aeróbico moderado + fuerza 2 o más días."]
+],qz:[
+ ["¿Qué fórmula se recomienda en pacientes con obesidad?",["Owen","Harris-Benedict","Mifflin-St Jeor","Schofield"],2,"Harris-Benedict tiende a sobreestimar; Schofield es pediátrica."],
+ ["Hombre de 75 kg, fórmula de Owen. ¿TMB?",["1,644 kcal","1,798 kcal","2,250 kcal","1,872 kcal"],0,"879 + 10.2 × 75 = 1,644 kcal (el ejemplo de tu clase)."],
+ ["Con fórmula de emergencia, un paciente de 75 kg con peso normal a 30 kcal/kg necesita:",["1,875 kcal","2,250 kcal","2,625 kcal","1,500 kcal"],1,"75 × 30 = 2,250 kcal. La fórmula de emergencia no usa factor de actividad."],
+ ["Factor de lesión en fractura de hueso largo:",["1.15–1.2","1.3–1.55","1.5–1.75","2.0"],0,"Traumatismo múltiple 1.3–1.55; con sepsis 1.5–1.75."],
+ ["Un niño de 3–5 años crece aproximadamente:",["230 g y 1 cm al mes","2 kg y 7 cm al año","3.5 kg y 6 cm al año","5 kg y 10 cm al año"],1,"230 g/1 cm al mes es de 1–3 años; 3–3.5 kg/6 cm al año es de 5–10 años."],
+ ["¿Cuántas kcal aporta 1 g de lípidos?",["4","7","9","3"],2,"HCO y proteína 4 kcal/g; lípidos 9 kcal/g."],
+ ["Balance energético positivo significa:",["Se gasta más de lo que se consume","Se consume más de lo que se gasta","Consumo y gasto son iguales","Pérdida de peso"],1,"Positivo = superávit. Ojo: en tus notas quedó escrito como “se gasta la misma energía que se consume”, pero el superávit es consumir más."]
+]},
+
+{id:"embarazo",b:1,t:"Alimentación en el embarazo",s:[
+ ["Periodos",[
+  "Periconcepcional: semana −4 a 4. Embrión: semanas 0–8. Feto: semanas 8–40. Perinatal: semana 20–24 de gestación hasta 7–28 días después del nacimiento. Término: semana 40."]],
+ ["Cambios fisiológicos",[
+  "Consumo: ↑ apetito, ↑ sed, cambios en gusto y olfato.",
+  "Gastrointestinales: tránsito más lento, acidez, estreñimiento, <b>náusea 70%</b> y <b>vómito 40%</b>.",
+  "Renales: ↑ filtración glomerular 50–60%, retención de sodio (edema), ↑ eliminación urinaria de micronutrimentos, ↑ riesgo de IVU.",
+  "↑ TMB en la segunda mitad del embarazo y ↑ temperatura. Después del parto solo se quedan la grasa y el útero."]],
+ ["Requerimientos",[
+  "Energía: <b>+150 kcal/día</b> en el 1.er trimestre; <b>+340 a 450 kcal/día</b> en el 2.º y 3.º.",
+  "Proteína mínimo <b>71 g/día</b> (10–35%). HCO mínimo <b>175 g/día</b> por el cerebro fetal (45–65%). Lípidos 20–35%.",
+  "Folato <b>600 µg/día</b>, de los cuales 400 µg son ácido fólico. EPA + DHA 300 mg/día. Fibra 28 g/día. 9 tazas de líquidos.",
+  "Sal al gusto; sin alcohol; café limitado (≤4 tazas según tus notas). Todos los nutrimentos vienen de la dieta, con la posible excepción del <b>hierro</b>.",
+  "Cuidado con suplementar <b>vitamina A</b>: es <b>teratogénica</b>."]]
+],fc:[
+ ["¿Hasta qué semana se habla de embrión?","Semanas 0–8; de la 8 a la 40 es feto."],
+ ["Kcal extra en el 1.er trimestre","+150 kcal/día."],
+ ["Kcal extra en el 2.º y 3.er trimestre","+340 a 450 kcal/día."],
+ ["Proteína mínima en el embarazo","71 g/día."],
+ ["HCO mínimo en el embarazo y por qué","175 g/día, para cubrir la demanda del cerebro fetal."],
+ ["Folato diario en el embarazo","600 µg, de los cuales 400 µg son ácido fólico."],
+ ["¿Qué vitamina NO se debe suplementar a la ligera en el embarazo?","Vitamina A: es teratogénica."],
+ ["Cambio renal principal del embarazo","↑ filtración glomerular 50–60% y retención de sodio (edema)."]
+],qz:[
+ ["Energía adicional en el segundo y tercer trimestre:",["+150 kcal/día","+340 a 450 kcal/día","+600 kcal/día","No se agrega"],1,"En el primer trimestre solo +150 kcal/día."],
+ ["HCO mínimo en el embarazo:",["130 g/día","175 g/día","71 g/día","210 g/día"],1,"130 g es el mínimo del adulto; 71 g es la proteína mínima."],
+ ["Vitamina cuya suplementación es teratogénica:",["Vitamina C","Vitamina D","Vitamina A","Ácido fólico"],2,"La vitamina A en exceso es teratogénica."],
+ ["Nutrimento que posiblemente no se cubre solo con la dieta en el embarazo:",["Calcio","Hierro","Sodio","Vitamina C"],1,"La dieta adecuada cubre todo con la posible excepción del hierro."],
+ ["Porcentaje de embarazadas con náusea:",["10%","40%","70%","100%"],2,"Náusea 70%, vómito 40%."]
+]},
+
+{id:"macros",b:1,t:"Adulto mayor, alimentos y macronutrimentos",s:[
+ ["Adulto mayor",[
+  "Factores de riesgo de desnutrición: hambre, pobreza, ingesta inadecuada, discapacidad, aislamiento, vivir solo, depresión, demencia, dependencia, mala dentición, problemas para masticar o deglutir, enfermedades crónicas, polifarmacia y edad avanzada.",
+  "No hay un requerimiento ni una distribución específica; a mayor edad, menor requerimiento de energía.",
+  "La filtración glomerular disminuye <b>10% cada 10 años</b> a partir de los 30."]],
+ ["Alimentos",[
+  "Alimento: producto natural o transformado que aporta energía y estructuras químicas para los procesos biológicos, y que además debe apetecer.",
+  "<b>Alimento sano</b>: sin sustancias tóxicas ni patógenos (inocuo). <b>Saludable</b>: sin sustancias que, consumidas con frecuencia, aumenten el riesgo de enfermedad crónica. <b>Para la salud</b>: contiene algo con acción preventiva (sin gluten, bajo en FODMAP, IG bajo).",
+  "Propiedades nutrimentales y funcionales (organolépticas: color, olor, textura, sabor; tecnológicas; saludables = inocuidad).",
+  "Macronutrimentos: se necesitan en grandes cantidades (HCO, proteínas, lípidos). Micronutrimentos: dosis generalmente &lt;1 g (vitaminas y minerales). 1 kcal = 1000 cal."]],
+ ["Hidratos de carbono",[
+  "Principal fuente de energía; mínimo 130 g/día; 4 kcal/g.",
+  "Monosacáridos: glucosa, fructosa, galactosa.",
+  "Disacáridos: <b>lactosa</b> = galactosa + glucosa · <b>sacarosa</b> = glucosa + fructosa · <b>maltosa</b> = glucosa + glucosa · <b>lactulosa</b> = galactosa + fructosa.",
+  "Complejos (polisacáridos): almidón y fibra; absorción lenta. La fibra resiste la digestión, se fermenta en el colon y regula colesterol y glucemia."]],
+ ["Proteínas",[
+  "Función principal: <b>estructural</b>; también enzimas, hormonas, anticuerpos, coagulación y transporte. 4 kcal/g (en tus notas aparece 3; en los cálculos usaste 4).",
+  "9 aminoácidos esenciales: fenilalanina, histidina, leucina, isoleucina, treonina, valina, lisina, metionina, triptófano. Mnemotecnia: “<i>Fer Hizo un Lío Tremendo y Valentina le Metió un Triptófano</i>”.",
+  "Alto valor biológico: tienen todos los esenciales (leche, clara de huevo, carnes rojas). Bajo valor biológico: vegetales, excepto la <b>soya (0.99)</b>.",
+  "Cereales son deficitarios en <b>lisina</b> y leguminosas en <b>metionina</b>: se combinan (más vitamina C para el hierro no hem)."]],
+ ["Lípidos",[
+  "Reserva de energía; 9 kcal/g; membranas, vitaminas liposolubles y hormonas.",
+  "Saturadas: sólidas a temperatura ambiente; origen animal, palma y coco. Insaturadas: monoinsaturadas (oliva, frutos secos) y poliinsaturadas (omega 3 y 6, esenciales).",
+  "Omega 3 (ALA, EPA, DHA): ↓ triglicéridos, ↓ ateroma, ↓ presión. Fuentes: salmón, atún, trucha, sardina; linaza, chía, nueces, canola.",
+  "Omega 6: ácido linoleico (aceites vegetales) y araquidónico (origen animal). En exceso puede elevar triglicéridos.",
+  "Colesterol: membranas, hormonas y vitamina D. La fibra disminuye su absorción y la lecitina la aumenta.",
+  "Resumen: HCO = energía · proteína = estructura · lípidos = reserva."]]
+],fc:[
+ ["¿Cuánto disminuye la filtración glomerular con la edad?","10% cada 10 años a partir de los 30."],
+ ["Diferencia entre alimento sano y saludable","Sano = inocuo (sin tóxicos ni patógenos). Saludable = sin sustancias que aumenten el riesgo de enfermedad crónica."],
+ ["Sacarosa =","Glucosa + fructosa."],
+ ["Lactosa =","Galactosa + glucosa."],
+ ["Maltosa =","Glucosa + glucosa."],
+ ["Lactulosa =","Galactosa + fructosa."],
+ ["Los 9 aminoácidos esenciales","Fenilalanina, histidina, leucina, isoleucina, treonina, valina, lisina, metionina, triptófano."],
+ ["¿En qué es deficitario el cereal? ¿Y la leguminosa?","Cereal: lisina. Leguminosa: metionina. Por eso se combinan."],
+ ["Proteína vegetal con valor biológico casi completo","Soya (0.99)."],
+ ["Tipos de omega 3","ALA, EPA y DHA."],
+ ["¿Qué disminuye y qué aumenta la absorción de colesterol?","La fibra la disminuye; la lecitina la aumenta."],
+ ["Función principal de cada macronutrimento","HCO = energía; proteína = estructura; lípidos = reserva."]
+],qz:[
+ ["La sacarosa está formada por:",["Glucosa + glucosa","Glucosa + fructosa","Galactosa + glucosa","Galactosa + fructosa"],1,"Maltosa = glu + glu; lactosa = gal + glu; lactulosa = gal + fru."],
+ ["Los cereales son deficitarios en:",["Metionina","Lisina","Triptófano","Valina"],1,"Las leguminosas son deficitarias en metionina."],
+ ["¿Cuál NO es un aminoácido esencial?",["Leucina","Lisina","Alanina","Treonina"],2,"La alanina no está entre los 9 esenciales."],
+ ["Grasa saturada de origen vegetal:",["Aceite de oliva","Aceite de coco","Aceite de canola","Aceite de linaza"],1,"Palma y coco son las fuentes vegetales de grasa saturada."],
+ ["Un alimento “para la salud” es aquel que:",["No tiene patógenos","Tiene una sustancia con acción preventiva frente a enfermedades crónicas","Solo aporta energía","Tiene buen sabor"],1,"Por ejemplo sin gluten, bajo en FODMAP o de IG bajo."],
+ ["La función principal de las proteínas es:",["Energética","Estructural","De reserva","Reguladora del agua"],1,"HCO energía, proteína estructura, lípidos reserva."]
+]},
+
+{id:"micro",b:1,t:"Micronutrimentos",s:[
+ ["Vitaminas (micronutrimentos orgánicos)",[
+  "<b>Hidrosolubles</b> (complejo B y C): no se almacenan, el exceso se elimina por orina; deben consumirse con mayor frecuencia.",
+  "<b>Vitamina C</b>: antioxidante, cicatrización, <b>absorción de hierro</b>, colágeno y vasos sanguíneos. Cítricos y verduras.",
+  "<b>Liposolubles</b>: A, D, E, K.",
+  "<b>Vitamina A</b> (ácido retinoico): visión nocturna, dientes, huesos y piel. Origen animal; en vegetales como betacaroteno (hojas verdes, amarillos y naranjas).",
+  "<b>Vitamina E</b> (tocoferol): antioxidante, sistema inmune, glóbulos rojos, protección cardiovascular.",
+  "<b>Vitamina D</b> (colecalciferol): absorción de calcio, sistema inmune; se sintetiza en la piel con el sol."]],
+ ["Minerales (micronutrimentos inorgánicos)",[
+  "No aportan energía; indispensables sobre todo en los primeros 1000 días de vida.",
+  "<b>Calcio</b>: huesos, dientes, músculos, sistema nervioso; lácteos, espinaca, maíz nixtamalizado.",
+  "<b>Hierro</b>: transporte de oxígeno. <b>Hem</b> = origen animal; <b>no hem</b> = origen vegetal.",
+  "<b>Zinc</b>: función cerebral, respuesta al estrés, maduración sexual. <b>Yodo</b>: hormonas tiroideas y desarrollo cerebral (sal yodada, atún, bacalao).",
+  "<b>Potasio</b>: hidratación, contracción muscular (plátano, jitomate, papa, kiwi). <b>Flúor</b>: huesos y esmalte. <b>Sodio</b>: hidratación, circulación, nervios.",
+  "<b>Cobre</b>: formación de células sanguíneas y sistema nervioso. <b>Magnesio</b>: huesos, corazón, síntesis de proteínas, transmisión nerviosa."]]
+],fc:[
+ ["¿Cuáles vitaminas son hidrosolubles?","Complejo B y vitamina C. No se almacenan."],
+ ["¿Cuáles vitaminas son liposolubles?","A, D, E y K."],
+ ["¿Qué vitamina favorece la absorción de hierro?","Vitamina C."],
+ ["Nombre químico de la vitamina E","Tocoferol."],
+ ["Nombre químico de la vitamina D","Colecalciferol."],
+ ["Hierro hem vs. no hem","Hem = origen animal; no hem = origen vegetal."],
+ ["Función del yodo","Hormonas tiroideas y desarrollo cerebral."],
+ ["Vitamina esencial para la visión nocturna","Vitamina A."]
+],qz:[
+ ["Vitamina que se sintetiza en la piel con el sol:",["A","D","E","K"],1,"Colecalciferol."],
+ ["El hierro hem proviene de:",["Vegetales de hoja verde","Leguminosas","Alimentos de origen animal","Cereales fortificados"],2,"El no hem es de origen vegetal."],
+ ["¿Cuál es hidrosoluble?",["Vitamina A","Vitamina K","Vitamina C","Vitamina E"],2,"Hidrosolubles: complejo B y C."],
+ ["Mineral relacionado con la maduración sexual y la respuesta al estrés:",["Zinc","Cobre","Sodio","Flúor"],0,"El zinc también participa en la función cerebral."]
+]},
+
+{id:"deficiencias",b:2,t:"Deficiencias, nutracéuticos, grupos de alimentos y SMAE",s:[
+ ["Signos de deficiencia",[
+  "<b>Hierro</b>: anemia, fatiga, mareo, cefalea, palpitaciones, palidez de conjuntiva, lengua y lecho ungueal.",
+  "<b>Yodo</b>: bocio y cretinismo (sordomudez y retraso mental).",
+  "<b>Vitamina A</b>: ceguera nocturna, xerosis conjuntival, <b>manchas de Bitot</b>, xerosis corneal, queratomalacia, xeroftalmia, hiperqueratosis folicular.",
+  "<b>Tiamina (B1)</b>: <b>beriberi</b> (edema de piernas y cara, palpitaciones, dolor de pecho, disnea, ingurgitación yugular). Formas seca e infantil.",
+  "<b>Niacina (B3)</b>: <b>pelagra</b>. <b>Vitamina D</b>: raquitismo en niños, osteomalacia en adultos. <b>Vitamina C</b>: escorbuto.",
+  "<b>Riboflavina (B2)</b>: arriboflavinosis: estomatitis angular, queilosis, glositis, lengua magenta.",
+  "<b>Zinc</b>: retraso del crecimiento, poco apetito, alteración del gusto. <b>Flúor</b> (exceso): fluorosis, dientes jaspeados.",
+  "<b>Kwashiorkor</b>: desnutrición proteica (niño pálido, apático, con anemia leve y edema). <b>Marasmo</b>: déficit de energía total, con emaciación sin edema <span class='note'>(definición estándar; en tus notas quedó pendiente, revísala en el ABC de la nutrición)</span>."]],
+ ["Nutracéuticos",[
+  "Alimento o parte de él que da beneficios médicos, incluida la prevención o tratamiento de enfermedades (DM, ECV, HTA). Origen natural, bioactivos y con estudios reproducibles.",
+  "Fitoesteroles → corazón · fibra soluble → intestino · flavonoides, antocianinas y resveratrol → envejecimiento y estrés oxidativo · carotenoides → vista · ácido fólico → cierre del tubo neural · omega 3 → cerebro y corazón · isoflavonas → síntomas de menopausia."]],
+ ["A partir de aquí entra al examen",[
+  EX+" Grupos <b>principales</b>: frutas y verduras (agua, fibra, vitaminas, minerales); cereales y tubérculos (HCO); alimentos de origen animal y leguminosas (proteína, hierro).",
+  EX+" Grupos <b>accesorios</b>: aceites y grasas (lípidos, sabor, saciedad) y azúcares (HCO simples, sabor).",
+  "Plato del Bien Comer y Jarra del Buen Beber (vaso de <b>250 ml</b>); MyPlate (EUA); Plato para comer saludable de Harvard (y su versión infantil).",
+  EX+" <b>SMAE</b> (Sistema Mexicano de Alimentos Equivalentes): agrupa alimentos con cantidades de nutrimentos similares, de modo que se pueden intercambiar. Nació para dar variedad a la dieta del paciente con <b>diabetes</b>; el primer sistema lo publicó la Asociación Americana de Dietistas en <b>1950</b>.",
+  EX+" Grupos del SMAE: frutas, verduras, cereales, leguminosas, alimentos de origen animal, leche, aceites y grasas, azúcares, libres y alcohol."]]
+],tbl:{h:"Subgrupos del SMAE",html:`<div class="tablewrap"><table><tr><th>Grupo</th><th>Subgrupos</th></tr>
+<tr><td>Cereales</td><td>A sin grasa · B con grasa</td></tr>
+<tr><td>Alimentos de origen animal</td><td>A muy bajo · B bajo · C moderado · D alto aporte de grasa</td></tr>
+<tr><td>Leche</td><td>A descremada · B semidescremada · C entera · D con azúcar</td></tr>
+<tr><td>Aceites y grasas</td><td>A sin proteína · B con proteína</td></tr>
+<tr><td>Azúcares</td><td>A sin grasa · B con grasa</td></tr></table></div>`},
+fc:[
+ ["Deficiencia de yodo","Bocio y cretinismo."],
+ ["Manchas de Bitot: ¿qué deficiencia?","Vitamina A."],
+ ["Beriberi: ¿qué deficiencia?","Tiamina (B1)."],
+ ["Pelagra: ¿qué deficiencia?","Niacina (B3)."],
+ ["Escorbuto: ¿qué deficiencia?","Vitamina C."],
+ ["Raquitismo y osteomalacia","Deficiencia de vitamina D (niños y adultos)."],
+ ["Estomatitis angular, queilosis, lengua magenta","Arriboflavinosis (deficiencia de riboflavina, B2)."],
+ ["Kwashiorkor vs. marasmo","Kwashiorkor = déficit de proteína (edema). Marasmo = déficit de energía total (emaciación)."],
+ ["Grupos principales de alimentos","Frutas y verduras; cereales y tubérculos; alimentos de origen animal y leguminosas.",1],
+ ["Grupos accesorios","Aceites y grasas; azúcares.",1],
+ ["¿Qué es el SMAE?","Herramienta que agrupa alimentos con nutrimentos similares para poder intercambiarlos (equivalentes).",1],
+ ["¿Para qué pacientes surgió el sistema de equivalentes y cuándo?","Pacientes con diabetes; Asociación Americana de Dietistas, 1950.",1],
+ ["Subgrupos de alimentos de origen animal en el SMAE","A muy bajo, B bajo, C moderado y D alto aporte de grasa.",1],
+ ["Capacidad del vaso de la Jarra del Buen Beber","250 ml."]
+],qz:[
+ ["El SMAE surgió para dar variedad a la dieta de pacientes con:",["Hipertensión","Diabetes mellitus","Enfermedad renal","Obesidad infantil"],1,"La Asociación Americana de Dietistas publicó el primero en 1950.",1],
+ ["¿Cuál es un grupo ACCESORIO?",["Leguminosas","Cereales y tubérculos","Azúcares","Frutas y verduras"],2,"Accesorios: aceites y grasas, y azúcares.",1],
+ ["En el SMAE, “AOA c” significa alimento de origen animal con:",["Muy bajo aporte de grasa","Bajo aporte de grasa","Moderado aporte de grasa","Alto aporte de grasa"],2,"A muy bajo, B bajo, C moderado, D alto.",1],
+ ["Leche B en el SMAE es:",["Descremada","Semidescremada","Entera","Con azúcar"],1,"A descremada, B semidescremada, C entera, D con azúcar.",1],
+ ["Manchas de Bitot y xeroftalmia indican deficiencia de:",["Vitamina D","Vitamina A","Riboflavina","Zinc"],1,"También ceguera nocturna y queratomalacia."],
+ ["Bocio y cretinismo se deben a deficiencia de:",["Hierro","Zinc","Yodo","Flúor"],2,"El cretinismo implica sordomudez y retraso mental."],
+ ["Nutracéutico relacionado con el cierre del tubo neural:",["Resveratrol","Isoflavonas","Ácido fólico","Fitoesteroles"],2,"Las isoflavonas se asocian a síntomas de menopausia."]
+]},
+
+{id:"tiempos",b:2,t:"Tiempos de comida y dieta correcta",s:[
+ ["Distribución ideal de calorías",[
+  "Desayuno <b>25%</b> · colación <b>10%</b> · comida <b>30%</b> · colación <b>10%</b> · cena <b>25%</b>.",
+  "Desayuno: comida principal; al menos 3 grupos de alimentos.",
+  "Colaciones (almuerzo y merienda): ligeras; fruta, semillas, verduras y algunos cereales.",
+  "Comida: el tiempo más completo; todos los grupos.",
+  "Cena: sencilla, 2–3 horas antes de dormir."]],
+ ["Características del menú",[
+  "Cumple la dieta correcta, es atractivo, coherente, respeta preferencias, intolerancias y alergias, y usa platillos reales y completos.",
+  "Las 6 características de la dieta correcta: <b>completa, inocua, variada, equilibrada, suficiente y adecuada</b>."]]
+],fc:[
+ ["Distribución ideal de calorías por tiempo","Desayuno 25%, colación 10%, comida 30%, colación 10%, cena 25%."],
+ ["¿Cuánto antes de dormir debe ser la cena?","2–3 horas."],
+ ["6 características de la dieta correcta","Completa, inocua, variada, equilibrada, suficiente y adecuada."],
+ ["¿Cuál es el tiempo de comida más completo?","La comida (incluye todos los grupos)."]
+],qz:[
+ ["¿Qué porcentaje del total debe aportar la comida?",["25%","30%","10%","40%"],1,"Desayuno 25, colación 10, comida 30, colación 10, cena 25."],
+ ["¿Cuál NO es característica de la dieta correcta?",["Inocua","Variada","Hipercalórica","Equilibrada"],2,"Completa, inocua, variada, equilibrada, suficiente y adecuada."],
+ ["El desayuno debe incluir al menos:",["1 grupo","2 grupos","3 grupos","Todos los grupos"],2,"Todos los grupos van en la comida."]
+]},
+
+{id:"compartimentos",b:2,t:"Compartimentos corporales e hidratación",s:[
+ ["Composición corporal",[
+  "Estado dinámico; cambia por estímulos internos (hormonas, enfermedad) y externos (alimentos, clima, actividad física, estrés).",
+  "<b>MCT = masa grasa + masa libre de grasa</b>. En nutrición se divide en tejido adiposo, músculo esquelético, hueso y otros tejidos/vísceras.",
+  "Los cambios se ven: <b>agua</b> al día, <b>grasa</b> a las 2 semanas, <b>músculo</b> al mes.",
+  "El aparato digestivo mide aproximadamente 9 m, de boca a ano."]],
+ ["Agua corporal",[
+  "El agua corporal total está solo en la masa libre de grasa. En adultos de 17–35 años: <b>mujeres 55%</b> y <b>hombres 60%</b> del peso.",
+  "Euhidratación = balance; deshidratación = pérdida; rehidratación = ganancia; hiperhidratación = exceso.",
+  "La <b>hormona antidiurética</b> regula el agua eliminada y la sed.",
+  "Requerimiento de líquidos: 0–30 años <b>40 ml/kg</b> · 31–55 <b>35 ml/kg</b> · 56–65 <b>30 ml/kg</b> · &gt;65 <b>25 ml/kg</b>. En renales: orina + 500 ml."]],
+ ["Seed cycling",[
+  "Los lignanos son fitoestrógenos: mejoran sensibilidad a la insulina, hirsutismo, testosterona y regularidad menstrual.",
+  "Zinc: cofactor de hormonas reproductivas y gonadotropinas. Vitamina E: prepara el endometrio. Selenio: antioxidante y función tiroidea.",
+  "Semillas crudas, bien masticadas; no se sustituyen por otras. Si hay sensibilidad a una, se duplica la compañera de esa fase."]]
+],fc:[
+ ["Masa corporal total =","Masa grasa + masa libre de grasa."],
+ ["¿Cuándo se ven los cambios de agua, grasa y músculo?","Agua al día, grasa a las 2 semanas, músculo al mes."],
+ ["% de agua corporal en mujer y hombre (17–35 años)","Mujer 55%, hombre 60%."],
+ ["Requerimiento de líquidos de 31 a 55 años","35 ml/kg."],
+ ["Requerimiento de líquidos en mayores de 65","25 ml/kg."],
+ ["Hormona que regula el agua eliminada y la sed","Hormona antidiurética (ADH)."]
+],qz:[
+ ["El agua corporal total se encuentra en:",["La masa grasa","La masa libre de grasa","Solo en la sangre","Por igual en ambas"],1,"Por eso la fórmula solo aplica longitudinalmente en adultos."],
+ ["Paciente de 45 años y 70 kg. ¿Requerimiento de líquidos?",["2,800 ml","2,450 ml","2,100 ml","1,750 ml"],1,"31–55 años = 35 ml/kg → 70 × 35 = 2,450 ml."],
+ ["Los cambios en la masa muscular se observan en:",["Un día","Dos semanas","Un mes","Seis meses"],2,"Agua al día, grasa a las 2 semanas."]
+]},
+
+{id:"pan",b:2,t:"PAN, interacción fármaco-nutrimento y evaluación dietética",s:[
+ ["Proceso de Atención Nutricional",[
+  "NUBE = nutrición basada en la evidencia.",
+  "PAN (definición de la AND): método sistemático de resolución de problemas, basado en el pensamiento crítico y la evidencia, para dar atención nutricional de calidad.",
+  "Inicia con el <b>tamizaje</b> (identifica pacientes en riesgo) y termina con los resultados.",
+  "4 pasos: <b>1. Valoración</b> nutricional → <b>2. Diagnóstico</b> nutricional (formato <b>PES</b>: Problema, Etiología, Signos y síntomas) → <b>3. Intervención</b> → <b>4. Monitoreo y seguimiento</b>.",
+  "Valoración: recoger, verificar e interpretar sistemáticamente la información como base para diagnóstico e intervención."]],
+ ["SOAP",[
+  "<b>S</b> (subjetivo): lo que dice el paciente o cuidador: motivo de consulta, antecedentes heredofamiliares y personales, medicamentos, antecedentes sociales, síntomas.",
+  "<b>O</b> (objetivo): ABCD del estado de nutrición. <b>A</b>ntropometría (edad, talla, peso, perímetro cefálico; indicadores IMC 25, índice cintura-cadera 0.90, circunferencia abdominal), <b>B</b>ioquímica (laboratorios), <b>C</b>línica (signos vitales, glucosa capilar, cirugías, transfusiones, alergias, intolerancias, medicamentos).",
+  "Estado de nutrición: condición resultante de la ingestión de alimentos y su utilización biológica; refleja si se cubrieron las necesidades."]],
+ ["Fármacos y evaluación dietética",[
+  "<b>Interacción fármaco-nutrimento</b>: cuando un fármaco se ve afectado por un alimento o nutrimento. Depende de la fisiología, la dieta, el estado de nutrición y el principio activo y la forma farmacéutica.",
+  "La <b>toronja</b> inhibe el metabolismo de fármacos. Farmacodinamia = efecto del fármaco sobre el cuerpo.",
+  "<b>Evaluación dietética</b>: detecta riesgos de la alimentación; requiere un entrevistador entrenado y metodología estandarizada; no omitir guarniciones.",
+  "<b>Recordatorio de 24 h</b>: preguntar todo lo que comió y bebió el día previo. Porcentaje de adecuación <b>&lt;90% = deficiente</b>."]]
+],fc:[
+ ["4 pasos del PAN","Valoración, diagnóstico, intervención y monitoreo/seguimiento."],
+ ["¿Con qué inicia el PAN?","Con el tamizaje."],
+ ["¿Qué significa PES?","Problema, Etiología, Signos y síntomas (formato del diagnóstico nutricional)."],
+ ["¿Qué va en la S de SOAP?","Lo subjetivo: lo que refiere el paciente o cuidador (motivo de consulta, antecedentes, medicamentos, síntomas)."],
+ ["ABCD de la evaluación del estado de nutrición","Antropometría, bioquímica, clínica y dietética."],
+ ["¿Qué es el recordatorio de 24 h?","Preguntar todo lo que el paciente comió y bebió el día previo."],
+ ["% de adecuación deficiente","Menos de 90%."],
+ ["Fruta que inhibe el metabolismo de fármacos","Toronja."]
+],qz:[
+ ["El diagnóstico nutricional se redacta en formato:",["SOAP","PES","ABCD","NUBE"],1,"Problema, Etiología, Signos y síntomas."],
+ ["El segundo paso del PAN es:",["Valoración","Diagnóstico","Intervención","Monitoreo"],1,"Valoración → diagnóstico → intervención → monitoreo."],
+ ["Los antecedentes heredofamiliares van en la sección:",["S","O","A","P"],0,"Es información que proporciona el paciente."],
+ ["Un porcentaje de adecuación del 80% en el R24 h se considera:",["Adecuado","Deficiente","Excesivo","No interpretable"],1,"Menos de 90% es deficiente."],
+ ["La interacción fármaco-nutrimento ocurre cuando:",["El fármaco se ve afectado por un alimento o nutrimento","El paciente no toma su medicamento","El fármaco actúa sobre el cuerpo","Se suplementan vitaminas"],0,"El efecto del fármaco sobre el cuerpo es la farmacodinamia."]
+]},
+
+{id:"enfermedades",b:2,t:"Enfermedades relacionadas con la alimentación",s:[
+ ["Enfermedad renal crónica",[
+  "Acumulación de urea y nitrógeno. Diagnóstico con tasa de filtración glomerular y creatinina; se clasifica con la tabla <b>KDIGO</b>.",
+  "Energía: prediálisis &lt;60 años 35 kcal/kg/día; &gt;60 años 30–35 kcal/kg/día. HCO 50–60%; lípidos ≤30%.",
+  "Proteína: estadios 1–3 12–15% del VET; estadio 4 &lt;10%; prediálisis 0.6 g/kg/día (o menos con cetoanálogos).",
+  "Líquidos: <b>orina + 500 ml</b>. Sodio ≤2.3 g/día; fósforo 1.7 g/día (E1–2); potasio &lt;4 g/día (E1–2); calcio &lt;2000 mg/día."]],
+ ["Hígado",[
+  "<b>Encefalopatía hepática</b>: por cortocircuito portosistémico; la desencadenan sangrado GI, electrolitos, insuficiencia renal, infecciones, diuréticos, sedantes. Suspender vía oral 24–48 h con glucosa IV; proteína desde 0.5 g/kg/día y subir a 1–1.5 g/kg/día con peso euvolémico.",
+  "<b>Cirrosis</b>: hipercalórica (50–75% sobre el GET si hay malabsorción); proteína 1–1.5 g/kg/día (vegetal y de leche se toleran mejor); incluir omega 3; controlar HCO si hay hiperglucemia."]],
+ ["Obesidad",[
+  "Enfermedad crónica basada en adiposidad, multifactorial y recurrente.",
+  "Hipocalórica: <b>−250 a −500 kcal</b> del R24 h. HCO 35–50%; lípidos 25–35%; proteína 25–35%; fibra 25–35 g; líquidos 30 ml/kg.",
+  EX+" <b>1 kg de grasa = 7000 kcal</b>.",
+  "Preferir bajo índice glucémico (velocidad con la que un alimento libera glucosa a la sangre) y baja densidad energética."]],
+ ["Hipertensión arterial",[
+  "PA ≥140/90 mmHg. Síntomas: cefalea, visión alterada, disnea, epistaxis, dolor torácico, mareo.",
+  "<b>Dieta DASH</b>: sodio <b>&lt;1500 mg/día</b>, omega 3 adecuado, evitar empaquetados; 50% de la dieta con cereales integrales, frutas, verduras y leguminosas. El patrón mediterráneo también ayuda."]],
+ ["Intestino",[
+  "<b>Síndrome de intestino irritable</b>: trastorno funcional (15% de la población occidental) con alteración del eje intestino-cerebro. Dieta <b>baja en FODMAP</b> (oligo-, di-, monosacáridos y polioles fermentables) 1 mes con reintroducción a tolerancia. Líquidos 30–35 ml/kg.",
+  "<b>Enfermedad celíaca</b>: reacción inmune al gluten con atrofia de vellosidades. Hipercalórica 30–45 kcal/kg/día; proteína 1–2 g/kg/día; fibra a tolerancia (cocer frutas y verduras); suplementar vitaminas y zinc, hierro, calcio y magnesio. Evitar trigo, avena, centeno y cebada; vigilar la lactosa."]],
+ ["Dislipidemia y diabetes",[
+  "<b>Dislipidemia</b>: 30 kcal/kg; proteína 15% (0.8–1.2 g/kg); HCO 55%; lípidos 30% (énfasis en mono, poliinsaturados y omega 3); saturadas y colesterol &lt;10%; fibra 25 g.",
+  "<b>Diabetes tipo 2</b>: HCO 45–65%; fibra 25–30 g/día; proteína 15–20% (0.8 g/kg si hay nefropatía); lípidos 25–35%.",
+  "<b>Equitatividad</b> = misma cantidad de HCO en cada comida (no más de 3 porciones por comida). <b>Consistencia</b> = mismos intervalos de tiempo entre comidas.",
+  "Orden al comer: primero fibra, luego proteínas y grasas, y al final HCO simples."]]
+],fc:[
+ ["Líquidos en enfermedad renal crónica","Orina + 500 ml."],
+ ["Proteína en prediálisis","0.6 g/kg/día (o menos con cetoanálogos)."],
+ ["Tabla para clasificar la ERC","KDIGO."],
+ ["Manejo inicial de la encefalopatía hepática","Suspender vía oral 24–48 h con glucosa IV; proteína 0.5 g/kg/día y subir a 1–1.5."],
+ ["Déficit calórico en obesidad","−250 a −500 kcal del recordatorio de 24 h."],
+ ["¿Cuántas kcal tiene 1 kg de grasa?","7000 kcal.",1],
+ ["Sodio en la dieta DASH","Menos de 1500 mg/día."],
+ ["¿Qué significa FODMAP?","Oligosacáridos, disacáridos, monosacáridos y polioles fermentables."],
+ ["Energía en enfermedad celíaca","30–45 kcal/kg/día (hipercalórica)."],
+ ["Equitatividad vs. consistencia en DM2","Equitatividad = misma cantidad de HCO por comida. Consistencia = mismos intervalos entre comidas."],
+ ["Orden de los alimentos en DM2","Fibra → proteínas y grasas → HCO simples."],
+ ["Grasas saturadas en dislipidemia","Menos del 10%."]
+],qz:[
+ ["¿Cuántas kcal equivalen a 1 kg de grasa corporal?",["3,500","7,000","9,000","1,000"],1,"Tu maestra la marcó como pregunta de examen.",1],
+ ["En ERC, el requerimiento de líquidos es:",["30 ml/kg","Orina + 500 ml","2 L fijos","Libre"],1,"Orina del día + 500 ml."],
+ ["La dieta DASH limita el sodio a:",["<1500 mg/día","<2300 mg/día","<4000 mg/día","No lo limita"],0,"2.3 g/día es el límite de sodio en ERC."],
+ ["En DM2, “consistencia” significa:",["Misma cantidad de HCO por comida","Mismos intervalos de tiempo entre comidas","Consistencia blanda de los alimentos","Mismo menú diario"],1,"Equitatividad = misma cantidad de HCO."],
+ ["Paciente con obesidad y R24 h de 2,600 kcal. Un plan adecuado sería de:",["1,200 kcal","2,100–2,350 kcal","2,900 kcal","1,600 kcal"],1,"Se restan 250 a 500 kcal: 2,100–2,350 kcal."],
+ ["Dieta indicada en síndrome de intestino irritable:",["DASH","Baja en FODMAP","Hiperproteica","Sin gluten"],1,"Restricción 1 mes y reintroducción a tolerancia."],
+ ["Proteína en cirrosis:",["0.6 g/kg/día","1–1.5 g/kg/día","2–2.5 g/kg/día","Se suspende"],1,"La proteína vegetal y de leche se toleran mejor."]
+]},
+
+{id:"hospital",b:2,t:"Dietas hospitalarias progresivas",s:[
+ ["Progresión por consistencia",[
+  "<b>Líquidos claros</b>: entre el ayuno y el inicio de la alimentación; solo <b>12–48 h</b>; <b>400–600 kcal</b>, casi todo HCO; 3–5 tomas. Indicada en pre y posoperatorio, colonoscopia, estudios que requieren poco material fecal, procesos GI agudos y diarrea aguda. Permitidos: té, agua, gelatina de agua, jugo de manzana o uva, nieve de limón, atole con agua, consomé desgrasado.",
+  "<b>Líquidos generales</b>: intermedia entre claros y blanda; todo líquido; <b>1500–1800 kcal</b>. Para problemas de masticación, trauma de mandíbula o inflamación GI. Deficiente en <b>B3, B9 y hierro</b>: suplementar si dura más de 2 semanas. Usar deslactosados si hay intolerancia.",
+  "<b>Semisólida</b>: papilla o puré; pacientes que no pueden masticar pero sí tragar (problemas esofágicos, niños pequeños, adultos mayores sin piezas dentales).",
+  "<b>Suave</b>: sólidos de consistencia suave; cirugía de cabeza y cuello, problemas dentales, de masticación o deglución, <b>várices esofágicas</b>; 6 comidas pequeñas; cubre todas las necesidades.",
+  "<b>Blanda</b>: poca grasa, especias y condimentos; para procesos inflamatorios GI (úlcera, gastritis, colitis). Preparaciones a la plancha, hervidas, estofadas, asadas o al horno; excluir chiles y pimienta.",
+  "<b>Astringente</b>: diarrea, diverticulitis, secuelas de resección GI. Solo <b>24 h</b> (más tiempo causa estreñimiento intenso). Baja en fibra insoluble y grasa, sin lactosa, sin irritantes y sin crucíferas; 6 tiempos; HCO 60 / proteína 15 / lípidos 25.",
+  "<b>Normal</b>: para pacientes sin restricción; cumple la dieta correcta."]]
+],fc:[
+ ["Duración y aporte de la dieta de líquidos claros","12–48 h; 400–600 kcal."],
+ ["Alimentos permitidos en líquidos claros","Té, agua, gelatina de agua, jugo de manzana o uva, nieve de limón, atole con agua, consomé desgrasado."],
+ ["Aporte de la dieta de líquidos generales","1500–1800 kcal."],
+ ["¿En qué es deficiente la dieta de líquidos generales?","Vitamina B3, B9 (folato) y hierro; suplementar si pasa de 2 semanas."],
+ ["¿Para quién es la dieta semisólida?","Pacientes que no pueden masticar pero sí tragar."],
+ ["Dieta indicada en várices esofágicas","Dieta suave."],
+ ["Dieta para gastritis, úlcera o colitis","Dieta blanda."],
+ ["¿Cuánto dura la dieta astringente y por qué?","24 h; si se prolonga causa estreñimiento intenso."]
+],qz:[
+ ["Dieta indicada antes de una colonoscopia:",["Líquidos claros","Blanda","Astringente","Suave"],0,"Aporta líquidos y electrolitos con muy poco residuo."],
+ ["La dieta de líquidos generales es deficiente en:",["Vitamina C y calcio","B3, B9 y hierro","Proteína y sodio","Vitamina A y zinc"],1,"Se suplementa si dura más de 2 semanas."],
+ ["Paciente con diarrea. ¿Qué dieta y por cuánto tiempo?",["Blanda por 1 semana","Astringente por 24 h","Líquidos generales por 2 semanas","Suave por 48 h"],1,"Más de 24 h causa estreñimiento intenso."],
+ ["¿Qué se excluye en la dieta astringente?",["Arroz","Crucíferas y lactosa","Manzana cocida","Pollo hervido"],1,"También fibra insoluble, grasa e irritantes."],
+ ["Aporte calórico de la dieta de líquidos claros:",["400–600 kcal","1,000–1,200 kcal","1,500–1,800 kcal","2,000 kcal"],0,"Por eso solo se usa 12–48 h."]
+]},
+
+{id:"enteral",b:2,t:"Nutrición enteral",s:[
+ ["Indicaciones",[
+  "Pacientes que no alcanzan su requerimiento por vía oral o tienen imposibilitada la vía natural.",
+  "Puede durar meses, excepto la <b>sonda nasogástrica: máximo 15 días</b>.",
+  "Es nutrimentalmente completa: vía oral (fórmulas poliméricas estándar), artesanal, o por sonda al estómago, duodeno o yeyuno. Hay fórmulas poliméricas, semielementales y específicas por patología.",
+  "Siempre que sea posible se prefiere la <b>enteral sobre la parenteral</b> porque es más fisiológica.",
+  "Al iniciar se debe prevenir y vigilar el <b>síndrome de realimentación</b> (en bebés se inicia con calostro).",
+  "Los suplementos orales no sustituyen la alimentación habitual sin una indicación clínica clara."]],
+ ["Administración",[
+  "Fórmula artesanal: HCO 55 / proteína 15 / lípidos 30; alimentos fáciles de licuar; <b>4 tomas cada 6–8 h</b>.",
+  "<b>Intermitente</b>: alterna infusión y reposo; de elección en pacientes conscientes que deambulan, con tubo digestivo sano y vaciamiento gástrico normal.",
+  "<b>Con jeringa (bolo)</b>: cada toma en al menos <b>30 min</b> con jeringas de 20–60 ml. También por gravedad o por bomba.",
+  "<b>Continua</b>: 18–24 h; reduce distensión gástrica y aspiración; indicada en pacientes graves.",
+  "Siempre en posición <b>semi-Fowler (30–45°)</b> y con higiene de la sonda."]]
+],fc:[
+ ["Tiempo máximo de sonda nasogástrica","15 días."],
+ ["¿Enteral o parenteral? ¿Por qué?","Enteral, siempre que se pueda, porque es más fisiológica."],
+ ["Complicación a vigilar al iniciar nutrición enteral","Síndrome de realimentación."],
+ ["Distribución de la fórmula artesanal","HCO 55%, proteína 15%, lípidos 30%."],
+ ["¿Cuántas tomas tiene la enteral artesanal?","4 tomas, cada 6–8 h."],
+ ["Administración de elección en paciente grave","Continua (18–24 h)."],
+ ["Posición para la nutrición enteral","Semi-Fowler, 30–45°."],
+ ["Tiempo mínimo por toma con jeringa","30 minutos (jeringas de 20–60 ml)."]
+],qz:[
+ ["La sonda nasogástrica se puede usar como máximo:",["3 días","15 días","3 meses","Indefinidamente"],1,"Otras vías permiten meses."],
+ ["En un paciente grave, la administración recomendada es:",["Intermitente","En bolo con jeringa","Continua 18–24 h","Por vía oral"],2,"Disminuye el riesgo de distensión gástrica y aspiración."],
+ ["Posición durante la nutrición enteral:",["Decúbito supino a 0°","Semi-Fowler 30–45°","Trendelenburg","Decúbito prono"],1,"Reduce el riesgo de aspiración."],
+ ["La administración intermitente es de elección en pacientes:",["Graves e inconscientes","Conscientes que deambulan, con tubo digestivo sano","Con vaciamiento gástrico lento","Con íleo"],1,"Alterna periodos de infusión y de reposo digestivo."]
+]},
+
+{id:"deportiva",b:3,t:"Nutrición deportiva",s:[
+ ["Energía",[
+  "Una estrategia bien planificada sostiene el entrenamiento, mejora la recuperación y reduce el riesgo de enfermedad y sobreentrenamiento.",
+  "Energía insuficiente: pérdida muscular, peor rendimiento, recuperación lenta, alteración hormonal en mujeres, más fatiga, lesiones y enfermedad."]],
+ ["Hidratos de carbono",[
+  "Requerimiento: <b>3–7 g/kg/día</b> para entrenamiento diario de intensidad baja o moderada de hasta 1 h.",
+  "Recuperación: en los <b>30 min</b> posteriores, <b>1.0–1.5 g/kg/h</b>, y luego cada 2 h hasta 6 h después.",
+  "Actividad &lt;45 min: no hay beneficio en agregar HCO. 45–75 min intensa: cantidades muy pequeñas, incluso un enjuague bucal con bebida de HCO.",
+  "Mezcla glucosa:fructosa <b>2:1</b> con mínimas molestias GI; preferir HCO de alto IG (bebidas deportivas, geles, barras, plátano)."]],
+ ["Proteína, lípidos e hidratación",[
+  "Proteína: <b>1.2–1.7 g/kg/día</b>. Combinar HCO + proteína al terminar mejora la recuperación. La proteína de suero de leche (rápida absorción) es óptima.",
+  "Lo que hace crecer el músculo es el estímulo del ejercicio.",
+  "<b>Ventana anabólica</b>: 30–120 min después de entrenar. Las comidas antes y después no deben separarse más de 3–4 h.",
+  "Lípidos: sin recomendación específica; el omega 3 ayuda.",
+  "Hidratación: bebidas con sodio si la sudoración es alta; reponer agua y sodio. Recuperación rápida: <b>450–675 ml por cada 500 g</b> de peso perdido."]]
+],fc:[
+ ["HCO en deportistas (intensidad baja-moderada)","3–7 g/kg/día."],
+ ["HCO para recuperación","1.0–1.5 g/kg/h en los 30 min posteriores; luego cada 2 h hasta 6 h."],
+ ["Proteína en deportistas","1.2–1.7 g/kg/día."],
+ ["¿Qué es la ventana anabólica?","30–120 min tras entrenar, cuando la proteína se aprovecha mejor."],
+ ["Razón glucosa:fructosa recomendada","2:1."],
+ ["¿Conviene dar HCO en actividad de menos de 45 min?","No, no aporta beneficio al rendimiento."],
+ ["Líquido por cada 500 g de peso perdido","450–675 ml."],
+ ["Proteína óptima para la recuperación","Suero de leche (whey), por su absorción rápida."]
+],qz:[
+ ["Requerimiento de proteína en deportistas:",["0.8 g/kg/día","1.2–1.7 g/kg/día","2.5–3 g/kg/día","0.6 g/kg/día"],1,"0.8 g/kg es el adulto sedentario."],
+ ["Un atleta perdió 1 kg en el entrenamiento. ¿Cuánto líquido debe reponer?",["450–675 ml","900–1,350 ml","2–3 L","250 ml"],1,"450–675 ml por cada 500 g → el doble para 1 kg."],
+ ["La ventana anabólica es:",["0–15 min","30–120 min","4–6 h","24 h"],1,"Las comidas pre y post no deben separarse más de 3–4 h."],
+ ["En una actividad intensa de 45–75 min se recomienda:",["Nada de HCO","Cantidades muy pequeñas de HCO o enjuague bucal","1.5 g/kg de HCO antes","Solo proteína"],1,"Menos de 45 min no hay beneficio."],
+ ["Mezcla de HCO con menos molestias gastrointestinales:",["Glucosa:fructosa 2:1","Solo fructosa","Sacarosa pura","Glucosa:fructosa 1:3"],0,"Junto con HCO de alto índice glucémico."]
+]}
+];
+
+// ---------- estado ----------
+let bloque="all", view="res";
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let known=LS.get("nut-known",{});
+const $=s=>document.querySelector(s);
+const esc=s=>s;
+function topics(){return T.filter(t=>bloque==="all"||bloque==="ex"||String(t.b)===bloque)}
+function allCards(){const out=[];topics().forEach(t=>t.fc.forEach((c,i)=>{if(bloque==="ex"&&!c[2])return;out.push({id:t.id+"-"+i,q:c[0],a:c[1],ex:!!c[2],topic:t.t})}));return out}
+function allQs(){const out=[];topics().forEach(t=>t.qz.forEach(q=>{if(bloque==="ex"&&!q[4])return;out.push({q:q[0],o:q[1],c:q[2],e:q[3],ex:!!q[4],topic:t.t})}));return out}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+// ---------- resúmenes ----------
+function renderRes(){
+  const ts=topics(); const el=$("#v-res");
+  let h='<div class="toc">'+ts.map(t=>`<a href="#t-${t.id}">${t.t}</a>`).join("")+'</div>';
+  ts.forEach(t=>{
+    let secs=t.s.map(([hd,pts])=>{
+      const list=bloque==="ex"?pts.filter(p=>p.includes('class="ex"')):pts;
+      if(!list.length)return"";
+      return `<h3>${hd}</h3><ul>${list.map(p=>`<li>${p}</li>`).join("")}</ul>`}).join("");
+    if(bloque==="ex"&&!secs)return;
+    if(t.tbl&&bloque!=="ex")secs+=`<h3>${t.tbl.h}</h3>${t.tbl.html}`;
+    h+=`<article class="label" id="t-${t.id}"><h2>${t.t}</h2><div class="meta"><span>Bloque ${t.b}</span><span>${t.fc.length} tarjetas · ${t.qz.length} preguntas</span></div>${secs}</article>`;
+  });
+  el.innerHTML=h;
+}
+
+// ---------- tarjetas ----------
+let deck=[],di=0,onlyPending=false;
+function buildDeck(){let c=allCards();if(onlyPending)c=c.filter(x=>!known[x.id]);deck=shuffle(c);di=0}
+function renderFc(){
+  const el=$("#v-fc"); const total=allCards(); const k=total.filter(x=>known[x.id]).length;
+  if(!deck.length){
+    el.innerHTML=`<div class="fc-bar"><span>${k} de ${total.length} dominadas</span><div class="progress"><i style="width:${total.length?k/total.length*100:0}%"></i></div></div>
+    <div class="qbox"><div class="qtext">${onlyPending&&total.length?"¡Ya dominas todas las tarjetas de esta selección!":"No hay tarjetas en esta selección."}</div>
+    <div class="row"><button class="btn primary" id="fc-all">Repasar todas otra vez</button><button class="btn" id="fc-reset">Reiniciar progreso</button></div></div>`;
+    $("#fc-all").onclick=()=>{onlyPending=false;buildDeck();renderFc()};
+    $("#fc-reset").onclick=()=>{total.forEach(x=>delete known[x.id]);LS.set("nut-known",known);buildDeck();renderFc()};
+    return;
+  }
+  const c=deck[di];
+  el.innerHTML=`<div class="fc-bar"><span>Tarjeta ${di+1} de ${deck.length} · ${k}/${total.length} dominadas</span><div class="progress"><i style="width:${total.length?k/total.length*100:0}%"></i></div></div>
+  <div class="card" id="card" tabindex="0" role="button" aria-label="Voltear tarjeta"><div class="card-inner">
+   <div class="face front"><div class="k">${c.topic}${c.ex?' · <span class="ex">Pregunta de examen</span>':''}</div><div class="q">${c.q}</div><div class="hint">Toca o presiona espacio para ver la respuesta</div></div>
+   <div class="face back"><div class="k">Respuesta</div><div class="a">${c.a}</div><div class="hint">¿La sabías?</div></div>
+  </div></div>
+  <div class="row"><button class="btn bad" id="fc-no">Repasar otra vez</button><button class="btn good" id="fc-yes">Ya la sé</button></div>
+  <div class="row" style="margin-top:10px"><button class="btn small" id="fc-shuf">Barajar</button><button class="btn small" id="fc-pend" aria-pressed="${onlyPending}">${onlyPending?"Mostrando: pendientes":"Mostrando: todas"}</button></div>`;
+  const card=$("#card"); const flip=()=>card.classList.toggle("flipped");
+  card.onclick=flip; card.onkeydown=e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip()}};
+  $("#fc-yes").onclick=()=>{known[c.id]=1;LS.set("nut-known",known);next()};
+  $("#fc-no").onclick=()=>{delete known[c.id];LS.set("nut-known",known);deck.push(c);next()};
+  $("#fc-shuf").onclick=()=>{buildDeck();renderFc()};
+  $("#fc-pend").onclick=()=>{onlyPending=!onlyPending;buildDeck();renderFc()};
+  function next(){di++;if(di>=deck.length){deck=[];}renderFc()}
+}
+
+// ---------- quiz ----------
+let qs=[],qi=0,correct=0,missed=[],answered=false,qlen=10;
+function startQuiz(){const pool=allQs();qs=shuffle(pool).slice(0,Math.min(qlen,pool.length)).map(q=>{const idx=shuffle(q.o.map((_,i)=>i));return{...q,o:idx.map(i=>q.o[i]),c:idx.indexOf(q.c)}});qi=0;correct=0;missed=[];answered=false;renderQz()}
+function renderQz(){
+  const el=$("#v-qz");
+  if(!qs.length){el.innerHTML=`<div class="qbox"><div class="qtext">No hay preguntas en esta selección.</div></div>`;return}
+  if(qi>=qs.length){
+    const pct=Math.round(correct/qs.length*100);
+    el.innerHTML=`<div class="qbox"><div class="qnum"><span>Resultado</span><span>${qs.length} preguntas</span></div>
+    <div class="score">${correct}/${qs.length}</div><p>${pct>=80?"Muy bien. Sigue así.":pct>=60?"Vas bien; repasa las que fallaste.":"Conviene volver al resumen de estos temas."}</p>
+    ${missed.length?`<h3 style="font-family:var(--f-display);text-transform:uppercase;font-size:15px">Para repasar</h3><ol class="missed">${missed.map(m=>`<li><b>${m.q}</b><br>Respuesta: ${m.o[m.c]}<br><span class="note">${m.topic}</span></li>`).join("")}</ol>`:""}
+    <div class="row"><button class="btn primary" id="qz-again">Nuevo quiz</button></div></div>`;
+    $("#qz-again").onclick=startQuiz; return;
+  }
+  const q=qs[qi]; const L="ABCD";
+  el.innerHTML=`<div class="filters" style="padding-top:0"><span class="lbl">Preguntas por ronda:</span>${[10,20,9999].map(n=>`<button class="chip qlen" data-n="${n}" aria-pressed="${qlen===n}">${n===9999?"Todas":n}</button>`).join("")}</div>
+  <div class="qbox"><div class="qnum"><span>Pregunta ${qi+1} de ${qs.length}${q.ex?' · <span class="ex">Pregunta de examen</span>':''}</span><span>Aciertos: ${correct}</span></div>
+  <div class="qtext">${q.q}</div>
+  <div class="opts">${q.o.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${L[i]}</span><span>${o}</span></button>`).join("")}</div>
+  <div id="qz-after"></div></div>`;
+  document.querySelectorAll(".qlen").forEach(b=>b.onclick=()=>{qlen=+b.dataset.n;startQuiz()});
+  document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    if(answered)return; answered=true; const i=+b.dataset.i;
+    document.querySelectorAll(".opt").forEach(x=>{x.disabled=true;if(+x.dataset.i===q.c)x.classList.add("right")});
+    if(i===q.c)correct++;else{b.classList.add("wrong");missed.push(q)}
+    $("#qz-after").innerHTML=`<div class="expl"><b>${i===q.c?"Correcto.":"Incorrecto."}</b> ${q.e}<br><span class="note">Tema: ${q.topic}</span></div><div class="row" style="margin-top:12px"><button class="btn primary" id="qz-next">${qi+1<qs.length?"Siguiente":"Ver resultado"}</button></div>`;
+    $("#qz-next").onclick=()=>{qi++;answered=false;renderQz()}; $("#qz-next").focus();
+  });
+}
+
+// ---------- calculadora ----------
+function renderCalc(){
+  $("#v-calc").innerHTML=`<p class="sub" style="margin-bottom:12px">Para practicar los ejercicios de clase. Usa los mismos pasos que en tus apuntes: Owen y Mifflin multiplican la TMB por el factor de actividad; Harris-Benedict suma el ETA (10%) y luego multiplica por el factor.</p>
+  <div class="calc">
+   <div class="grid">
+    <label class="f">Sexo<select id="c-sex"><option value="h">Hombre</option><option value="m">Mujer</option></select></label>
+    <label class="f">Peso (kg)<input id="c-p" type="number" inputmode="decimal" value="75"></label>
+    <label class="f">Estatura (cm)<input id="c-t" type="number" inputmode="decimal" value="175"></label>
+    <label class="f">Edad (años)<input id="c-e" type="number" inputmode="numeric" value="22"></label>
+    <label class="f">Actividad<select id="c-fa"><option value="1.1">Sedentario 1.1</option><option value="1.2">Ligero 1.2</option><option value="1.3">Moderado 1.3</option><option value="1.4" selected>Activo 1.4</option><option value="1.5">Muy activo 1.5</option></select></label>
+    <label class="f">Emergencia (kcal/kg)<input id="c-em" type="number" value="30"></label>
+    <label class="f">Factor de lesión<input id="c-fl" type="number" step="0.05" value="1"></label>
+   </div>
+   <div class="out" id="c-out"></div>
+   <div class="grid">
+    <label class="f">% HCO<input id="c-h" type="number" value="60"></label>
+    <label class="f">% Proteína<input id="c-pr" type="number" value="15"></label>
+    <label class="f">% Lípidos<input id="c-l" type="number" value="25"></label>
+    <label class="f">Repartir sobre<select id="c-base"><option value="owen">GET Owen</option><option value="mif">GET Mifflin</option><option value="hb">GET Harris-Benedict</option><option value="em">Emergencia</option></select></label>
+   </div>
+   <div class="out" id="c-mac"></div>
+  </div>`;
+  document.querySelectorAll("#v-calc input,#v-calc select").forEach(x=>x.oninput=calc);
+  calc();
+}
+function calc(){
+  const v=id=>parseFloat($(id).value)||0, sex=$("#c-sex").value, P=v("#c-p"),Tm=v("#c-t"),E=v("#c-e"),FA=v("#c-fa"),FL=v("#c-fl")||1;
+  const owen=sex==="h"?879+10.2*P:795+7.18*P;
+  const mif=10*P+6.25*Tm-5*E+(sex==="h"?5:-161);
+  const hb=sex==="h"?66+13.7*P+5*Tm-6.8*E:655+9.6*P+1.8*Tm-4.7*E;
+  const r=n=>Math.round(n).toLocaleString("es-MX");
+  const get={owen:owen*FA*FL,mif:mif*FA*FL,hb:(hb*1.1)*FA*FL,em:P*v("#c-em")*FL};
+  const fl=FL!==1?` × ${FL}`:"";
+  $("#c-out").innerHTML=`
+   <div class="line"><span>Owen · TMB ${r(owen)} × ${FA}${fl}</span><b>${r(get.owen)} kcal</b></div>
+   <div class="line"><span>Mifflin · TMB ${r(mif)} × ${FA}${fl}</span><b>${r(get.mif)} kcal</b></div>
+   <div class="line"><span>Harris-Benedict · GEB ${r(hb)} + ETA ${r(hb*.1)} = ${r(hb*1.1)} × ${FA}${fl}</span><b>${r(get.hb)} kcal</b></div>
+   <div class="line"><span>Emergencia · ${P} kg × ${v("#c-em")} kcal/kg${fl} (sin FA)</span><b>${r(get.em)} kcal</b></div>
+   <div class="formula">Owen ${sex==="h"?"879 + 10.2·P":"795 + 7.18·P"} · Mifflin 10·P + 6.25·T − 5·E ${sex==="h"?"+ 5":"− 161"} · HB ${sex==="h"?"66 + 13.7·P + 5·T − 6.8·E":"655 + 9.6·P + 1.8·T − 4.7·E"}</div>`;
+  const tot=get[$("#c-base").value], h=v("#c-h"),p=v("#c-pr"),l=v("#c-l"), sum=h+p+l;
+  $("#c-mac").innerHTML=`
+   <div class="line big"><span>Cuadro dietosintético</span><span>${r(tot)} kcal</span></div>
+   <div class="line"><span>HCO ${h}% · ${r(tot*h/100)} kcal ÷ 4</span><b>${r(tot*h/400)} g</b></div>
+   <div class="line"><span>Proteína ${p}% · ${r(tot*p/100)} kcal ÷ 4</span><b>${r(tot*p/400)} g · ${(tot*p/400/(P||1)).toFixed(2)} g/kg</b></div>
+   <div class="line"><span>Lípidos ${l}% · ${r(tot*l/100)} kcal ÷ 9</span><b>${r(tot*l/900)} g</b></div>
+   ${sum!==100?`<div class="line" style="color:var(--bad)"><span>Los porcentajes suman ${sum}%; deben sumar 100%.</span><span></span></div>`:""}`;
+}
+
+// ---------- navegación ----------
+function render(){
+  $("#filters").hidden=view==="calc";
+  if(view==="res")renderRes();
+  if(view==="fc"){buildDeck();renderFc()}
+  if(view==="qz")startQuiz();
+  if(view==="calc"&&!$("#c-out"))renderCalc();
+}
+function setView(v){
+  view=v;
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.view===v));
+  ["res","fc","qz","calc"].forEach(x=>$("#v-"+x).hidden=x!==v);
+  if(location.hash!=="#"+v)history.replaceState(null,"","#"+v);
+  render();
+}
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>setView(t.dataset.view));
+document.querySelectorAll("#filters .chip").forEach(c=>c.onclick=()=>{
+  bloque=c.dataset.b;
+  document.querySelectorAll("#filters .chip").forEach(x=>x.setAttribute("aria-pressed",x===c));
+  render();
+});
+const h0=(location.hash||"").slice(1);
+setView(["res","fc","qz","calc"].includes(h0)?h0:"res");
+</script>
+
+</body></html>

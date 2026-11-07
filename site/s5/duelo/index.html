@@ -1,0 +1,940 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Duelo Gastro</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/gc724084e37.css">
+<style>
+/* Layout: marcador fijo arriba, tablero de 7 temas x 5 niveles; las preguntas abren en un panel grande pensado para proyectar en una sola pantalla. */
+:root{
+  color-scheme: dark;
+  --bg:#0c1d22;          /* tinta quirúrgica */
+  --panel:#132c34;
+  --panel-2:#1a3a44;
+  --line:#2a5260;
+  --fg:#eef6f4;
+  --muted:#9dbcbb;
+  --accent:#ff8f7a;      /* mucosa */
+  --gold:#f3c45a;        /* puntos */
+  --good:#5fd39a;
+  --bad:#ff6b6b;
+  --focus:#9fe7ff;
+  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.45;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:14px 40px;
+  background-image:radial-gradient(1200px 500px at 85% -10%, rgba(255,143,122,.10), transparent 60%),radial-gradient(900px 500px at -10% 110%, rgba(95,211,154,.07), transparent 60%);
+  background-attachment:fixed}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0}
+.wrap{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.btn{border:1px solid var(--line);background:var(--panel-2);border-radius:999px;padding:10px 18px;font-weight:700}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:#22100c;border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent}
+.btn.small{padding:6px 12px;font-size:14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* ---------- Encabezado ---------- */
+header.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{display:flex;align-items:baseline;gap:10px}
+.logo h1{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.02em}
+.logo h1 span{color:var(--accent)}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav .btn[aria-current="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+
+/* ---------- Inicio ---------- */
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:22px}
+@media (max-width:860px){.hero{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.hero h2{font-size:clamp(30px,5vw,54px);line-height:1.02;font-weight:800;letter-spacing:-.025em}
+.hero h2 em{font-style:normal;color:var(--gold)}
+.hero p{color:var(--muted);max-width:60ch}
+.modes{display:grid;gap:12px;margin-top:18px}
+.mode{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:start;text-align:left;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.mode:hover{border-color:var(--accent)}
+.mode b{font-family:var(--f-display);font-size:20px}
+.mode small{grid-column:2;color:var(--muted)}
+.mode .k{grid-row:span 2;font-family:var(--f-mono);font-size:13px;color:var(--bg);background:var(--gold);border-radius:6px;padding:3px 7px;margin-top:3px}
+.teams-edit{display:flex;flex-direction:column;gap:8px;margin-block:12px}
+.team-line{display:flex;gap:8px;align-items:center}
+.team-line input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.swatch{width:16px;height:16px;border-radius:50%;flex:none}
+.x{background:none;border:none;color:var(--muted);font-size:20px;line-height:1;padding:4px 8px}
+.settings{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+.settings label{display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--muted)}
+.settings select{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.topics{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--muted)}
+
+/* ---------- Marcador ---------- */
+.score{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.team{position:relative;background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;transition:transform .25s, border-color .25s}
+.team.turn{border-color:var(--tc);transform:translateY(-2px);box-shadow:0 0 0 4px color-mix(in srgb, var(--tc) 25%, transparent)}
+.team .nm{font-weight:700;display:flex;gap:8px;align-items:center;min-width:0}
+.team .nm span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.team .pts{font-family:var(--f-mono);font-size:30px;font-weight:700;color:var(--gold);font-variant-numeric:tabular-nums}
+.team .adj{position:absolute;right:8px;bottom:8px;display:flex;gap:4px}
+.team .adj button{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:var(--panel-2);font-weight:700;line-height:1}
+.turnTag{font-size:11px;font-family:var(--f-mono);letter-spacing:.1em;color:var(--tc);text-transform:uppercase;min-height:14px}
+.pop{animation:pop .5s}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+
+/* ---------- Tablero ---------- */
+.board-wrap{overflow-x:auto}
+.board{display:grid;grid-template-columns:repeat(7,minmax(118px,1fr));gap:8px;min-width:860px}
+.cat{background:var(--panel-2);border-radius:10px;padding:10px 8px;text-align:center;font-family:var(--f-display);font-weight:700;font-size:15px;line-height:1.15;display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:64px;border-top:4px solid var(--cc)}
+.cat small{font-family:var(--f-body);font-weight:400;font-size:11px;color:var(--muted)}
+.cell{position:relative;height:78px;border-radius:10px;border:1px solid var(--line);background:linear-gradient(180deg,var(--panel),var(--panel-2));font-family:var(--f-mono);font-weight:700;font-size:28px;color:var(--gold);display:flex;align-items:center;justify-content:center;transition:transform .15s, border-color .15s}
+.cell:hover:not(:disabled){transform:translateY(-2px);border-color:var(--gold)}
+.cell .tag{position:absolute;top:6px;left:8px;font-size:10px;letter-spacing:.12em;color:var(--accent);font-weight:700}
+.cell:disabled{background:transparent;border-style:dashed;color:transparent;cursor:default}
+.cell:disabled .tag{display:none}
+.cell .who{position:absolute;inset:auto 0 8px 0;font-size:11px;font-family:var(--f-body);color:var(--muted);text-align:center}
+.board-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+
+/* ---------- Pregunta ---------- */
+.overlay{position:fixed;inset:0;background:rgba(5,12,14,.82);backdrop-filter:blur(4px);display:flex;align-items:flex-start;justify-content:center;overflow:auto;z-index:20;
+  padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));padding-left:max(12px, env(safe-area-inset-left,0px));padding-right:max(12px, env(safe-area-inset-right,0px))}
+.qbox{width:min(980px,100%);background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px clamp(16px,3vw,32px);display:flex;flex-direction:column;gap:16px;animation:rise .3s ease-out}
+@keyframes rise{from{transform:translateY(14px);opacity:.4}to{transform:none;opacity:1}}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.badge{display:inline-flex;gap:8px;align-items:center;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:999px;border:1px solid var(--line)}
+.badge.case{border-color:var(--accent);color:var(--accent)}
+.badge.ddx{border-color:var(--gold);color:var(--gold)}
+.worth{font-family:var(--f-mono);font-weight:700;font-size:22px;color:var(--gold)}
+.timer{display:flex;align-items:center;gap:10px}
+.timer .bar{width:150px;height:10px;border-radius:99px;background:var(--bg);overflow:hidden}
+.timer .bar i{display:block;height:100%;background:var(--good);transition:width 1s linear, background .3s}
+.timer .t{font-family:var(--f-mono);font-weight:700;min-width:3ch;text-align:right}
+.qtext{font-family:var(--f-display);font-size:clamp(22px,3vw,32px);font-weight:700;line-height:1.18;letter-spacing:-.01em}
+.clues{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.clues li{display:flex;gap:12px;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:18px;animation:rise .35s}
+.clues li b{font-family:var(--f-mono);color:var(--accent);font-size:14px;margin-top:3px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:700px){.opts{grid-template-columns:1fr}}
+.opt{text-align:left;display:flex;gap:12px;align-items:flex-start;background:var(--panel-2);border:2px solid var(--line);border-radius:12px;padding:14px 16px;font-size:17px;line-height:1.3;min-width:0}
+.opt:hover:not(:disabled){border-color:var(--fg)}
+.opt .l{font-family:var(--f-mono);font-weight:700;color:var(--muted);flex:none}
+.opt.right{border-color:var(--good);background:color-mix(in srgb, var(--good) 18%, var(--panel-2))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb, var(--bad) 14%, var(--panel-2));text-decoration:line-through;text-decoration-color:var(--bad)}
+.opt:disabled{cursor:default}
+.msg{border-radius:12px;padding:12px 16px;font-weight:700;font-size:18px}
+.msg.ok{background:color-mix(in srgb, var(--good) 20%, transparent);color:var(--good)}
+.msg.no{background:color-mix(in srgb, var(--bad) 18%, transparent);color:var(--bad)}
+.msg.info{background:color-mix(in srgb, var(--gold) 16%, transparent);color:var(--gold)}
+.steal{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.steal .tb{border:2px solid var(--tc);background:transparent;border-radius:999px;padding:8px 14px;font-weight:700;color:var(--fg)}
+.exp{background:var(--bg);border-left:4px solid var(--gold);border-radius:8px;padding:14px 16px;font-size:16px}
+.exp .src{display:block;margin-top:8px;color:var(--muted);font-size:13px;font-style:italic}
+.answering{font-weight:700;color:var(--tc)}
+.double{text-align:center;padding:30px 10px;display:flex;flex-direction:column;gap:12px;align-items:center}
+.double h3{font-size:clamp(38px,7vw,72px);color:var(--gold);font-weight:800;letter-spacing:-.02em;animation:pop .8s}
+
+/* ---------- Relámpago ---------- */
+.flash{display:flex;flex-direction:column;gap:16px;align-items:stretch}
+.flash .set{font-family:var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-size:13px;text-align:center}
+.flash .stmt{font-family:var(--f-display);font-size:clamp(26px,4.5vw,44px);font-weight:800;text-align:center;line-height:1.1;min-height:2.4em;display:flex;align-items:center;justify-content:center;text-wrap:balance}
+.ab{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ab button{font-family:var(--f-display);font-size:clamp(20px,3vw,28px);font-weight:800;padding:22px 10px;border-radius:14px;border:2px solid var(--line);background:var(--panel-2)}
+.ab button:hover{border-color:var(--gold)}
+.ab button.right{border-color:var(--good);background:color-mix(in srgb, var(--good) 22%, var(--panel-2))}
+.ab button.wrong{border-color:var(--bad);background:color-mix(in srgb, var(--bad) 18%, var(--panel-2))}
+.big-t{font-family:var(--f-mono);font-size:44px;font-weight:700;text-align:center;color:var(--gold)}
+.flash-stats{display:flex;justify-content:center;gap:22px;font-family:var(--f-mono)}
+
+/* ---------- Estudio ---------- */
+.study-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.study-tools input{flex:1;min-width:200px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.study-tools select{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.slist{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.sitem{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0;border-top:4px solid var(--cc)}
+.sitem h4{margin:0;font-family:var(--f-display);font-size:17px;line-height:1.25}
+.sitem .ans{color:var(--good);font-weight:700}
+.sitem .ex{color:var(--muted);font-size:14px}
+.sitem ol{margin:0;padding-left:20px;font-size:14px;color:var(--fg)}
+.sitem details summary{cursor:pointer;color:var(--accent);font-size:14px}
+
+/* ---------- Podio ---------- */
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:12px;min-height:260px;padding-top:20px;flex-wrap:wrap}
+.pod{display:flex;flex-direction:column;align-items:center;gap:8px;width:min(200px,30%)}
+.pod .blk{width:100%;border-radius:12px 12px 0 0;background:var(--tc);display:flex;align-items:flex-start;justify-content:center;padding-top:10px;font-family:var(--f-mono);font-weight:700;font-size:28px;color:#10181a}
+.pod b{font-family:var(--f-display);font-size:20px;text-align:center}
+.pod .p{font-family:var(--f-mono);color:var(--gold);font-weight:700}
+.kbd{font-family:var(--f-mono);font-size:12px;border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap" id="app"></div>
+
+<script>
+/* =====================================================================
+   BANCO DE PREGUNTAS. Fuentes: los 8 artículos del parcial.
+   En cada pregunta la PRIMERA opción es la correcta; se barajan al jugar.
+   ===================================================================== */
+const SRC = {
+  da:"Meisenheimer, Epstein y Thiel. Acute Diarrhea in Adults. Am Fam Physician 2022",
+  dc:"Gómez-Escudero y Remes-Troche. Abordaje de la diarrea crónica en el adulto. Rev Gastroenterol Mex 2021",
+  cy:"Giangaspero y Gasser. Human cyclosporiasis. Lancet Infect Dis 2019",
+  ce:"Murray y Husby. Celiac Disease. N Engl J Med 2026",
+  cr:"Dolinger, Torres y Vermeire. Crohn's disease. Lancet 2024",
+  sii:"Corsetti et al. Bowel Disorders (Roma V). Gastroenterology 2026",
+  es:"Scott et al. y Corsetti et al. Chronic constipation in adults 1 y 2. Neurogastroenterol Motil 2021",
+  esr:"Corsetti et al. Bowel Disorders (Roma V). Gastroenterology 2026"
+};
+const CATS = [
+  {k:"da", n:"Diarrea aguda", s:"AFP 2022", c:"#ff8f7a"},
+  {k:"dc", n:"Diarrea crónica", s:"RGMx 2021", c:"#f3c45a"},
+  {k:"cy", n:"Ciclosporiasis", s:"Lancet ID 2019", c:"#7fd6c2"},
+  {k:"ce", n:"Celiaquía", s:"NEJM 2026", c:"#c9a6ff"},
+  {k:"cr", n:"Crohn", s:"Lancet 2024", c:"#7ab8ff"},
+  {k:"sii", n:"SII y Roma V", s:"Gastro 2026", c:"#ff9fcf"},
+  {k:"es", n:"Estreñimiento", s:"NMO 2021 · Roma V", c:"#b6e36b"}
+];
+const Q = [];
+function q(c,l,text,opts,e,src){Q.push({c,l,t:"q",q:text,o:opts,e,s:src||SRC[c]})}
+function d(c,l,text,opts,e,src){Q.push({c,l,t:"ddx",q:text,o:opts,e,s:src||SRC[c]})}
+function cs(c,l,clues,text,opts,e,src){Q.push({c,l,t:"case",p:clues,q:text,o:opts,e,s:src||SRC[c]})}
+
+/* ---------------- DIARREA AGUDA ---------------- */
+q("da",1,"¿Cuál es la definición de diarrea que usa el artículo?",
+ ["3 o más evacuaciones sueltas o acuosas en 24 horas","2 o más evacuaciones sueltas en 24 horas","Peso fecal mayor de 500 g en 24 horas","Cualquier cambio en la consistencia de las heces"],
+ "Diarrea = 3 o más evacuaciones sueltas o acuosas en 24 h. Aguda: menos de 2 semanas (algunos expertos dicen menos de 7 días, y 7 a 14 días 'prolongada').");
+q("da",1,"Un paciente lleva 20 días con diarrea. ¿Cómo se clasifica?",
+ ["Persistente","Aguda","Prolongada","Crónica"],
+ "Aguda menos de 14 días; persistente de 14 a 30 días; crónica más de 1 mes.");
+q("da",1,"¿Cuál es la presentación MÁS común de diarrea aguda?",
+ ["Infecciosa no inflamatoria, casi siempre viral","Infecciosa inflamatoria por bacterias invasoras","Parasitaria","Por medicamentos"],
+ "La diarrea infecciosa no inflamatoria es la más común y suele ser viral (norovirus, rotavirus); las bacterianas se asocian a viajes o alimentos.");
+q("da",1,"Receta casera de suero oral con agua (Tabla 4):",
+ ["1 litro de agua + 1/4 de cucharadita de sal + 2 cucharadas de azúcar","1 litro de agua + 2 cucharadas de sal + 1/4 de cucharadita de azúcar","1 litro de agua + 1 cucharada de bicarbonato","Agua natural sin nada más"],
+ "La rehidratación oral es la primera línea (evidencia A). La glucosa mejora la reabsorción de sodio y agua. IV solo si hay deshidratación grave, choque, sepsis o alteración del estado mental.");
+q("da",2,"¿Qué dato de la historia es TRANQUILIZADOR y sugiere etiología viral?",
+ ["Vómito como síntoma predominante","Moco en las heces","Fiebre persistente","Dolor abdominal intenso"],
+ "Tabla 3: el vómito sugiere etiología viral. Sangre, moco, fiebre persistente y dolor intenso sugieren proceso inflamatorio y ameritan estudios de heces.");
+q("da",2,"Paciente inmunocompetente con 2 días de diarrea acuosa y vómito, sin fiebre ni sangre, bien hidratado. ¿Qué haces?",
+ ["Hidratación oral y manejo sintomático, sin estudios de heces","PCR multiplex en heces","Coprocultivo y ciprofloxacino empírico","Coproparasitoscópico seriado"],
+ "La mayoría de las diarreas agudas acuosas sin datos sistémicos en inmunocompetentes no requieren estudios. Choosing Wisely: no pedir coproparasitoscópico si dura menos de 7 días sin inmunodeficiencia ni viaje a zona endémica.");
+q("da",2,"Cuando SÍ está indicado estudiar las heces, ¿qué prueba se prefiere en general?",
+ ["Prueba molecular: PCR multiplex","Coprocultivo tradicional","Leucocitos fecales","Sangre oculta en heces"],
+ "Las pruebas moleculares (PCR multiplex/NAAT) se prefieren por rapidez. Limitación: detectan el organismo pero no su relevancia clínica. Si sospechas BROTE, pide cultivo para salud pública.");
+q("da",2,"¿Cuál es la secuela posinfecciosa más común de una gastroenteritis aguda?",
+ ["SII posinfeccioso (prevalencia combinada ~11%)","Enfermedad celíaca","Colitis microscópica","Cáncer colorrectal"],
+ "El SII posinfeccioso ocurre en 4% a 36% según el patógeno (combinado 11%), sobre todo tras Campylobacter. Otras secuelas: intolerancia a lactosa, eritema nodoso, glomerulonefritis.");
+q("da",3,"¿Cuál de estas pruebas NO se recomienda en la diarrea aguda infecciosa?",
+ ["Leucocitos fecales","PCR multiplex si hay datos de invasión","Prueba de C. difficile tras uso de antibióticos","Química sanguínea si hay deshidratación"],
+ "Leucocitos fecales, lactoferrina, calprotectina y sangre oculta tienen utilidad limitada y no se recomiendan. Los leucocitos se degradan fácilmente y pierden sensibilidad.");
+q("da",3,"¿A qué paciente adulto debes estudiar para C. difficile?",
+ ["Hospitalizado más de 3 días o con antibióticos en las últimas 12 semanas","Cualquier paciente con diarrea y vómito","Viajero con diarrea acuosa","Diarrea tras comer mariscos crudos"],
+ "NAAT o prueba en varios pasos en una muestra fresca no formada. Tratamiento: fidaxomicina de primera elección; vancomicina oral como alternativa.");
+q("da",3,"La loperamida debe EVITARSE en:",
+ ["Diarrea con sangre o sospecha de diarrea inflamatoria","Diarrea del viajero tratada con antibiótico","Diarrea acuosa sin fiebre","Diarrea acuosa con gases (junto con simeticona)"],
+ "Riesgo de megacolon tóxico y enfermedad prolongada. El subsalicilato de bismuto es alternativa segura con fiebre o diarrea inflamatoria. Loperamida + antibiótico en diarrea del viajero aumenta la curación a 24 y 48 h (evidencia A).");
+q("da",3,"Antibiótico empírico PREFERIDO en diarrea del viajero con fiebre o sangre:",
+ ["Azitromicina 1 g en dosis única","Rifaximina 200 mg cada 8 h","Ciprofloxacino de entrada en cualquier región","Metronidazol"],
+ "Azitromicina es la preferida si hay fiebre, sangre o Campylobacter resistente a fluoroquinolonas. La rifaximina se evita si se sospechan patógenos invasores.");
+d("da",4,"Patógeno identificado y tratamiento de primera elección (Tabla 6). ¿Cuál pareja es correcta?",
+ ["Yersinia enterocolitica → TMP/SMX","Campylobacter → ciprofloxacino como primera opción","Vibrio cholerae → metronidazol","Giardia → azitromicina"],
+ "Campylobacter → azitromicina. V. cholerae → doxiciclina. Giardia → tinidazol o nitazoxanida (alterna metronidazol). Yersinia → TMP/SMX. Shigella → azitromicina, cipro o ceftriaxona. C. difficile → fidaxomicina.");
+d("da",4,"¿Cuál de estos patógenos causa típicamente diarrea NO inflamatoria?",
+ ["Escherichia coli enterotoxigénica","Shigella","Campylobacter","Entamoeba histolytica"],
+ "No inflamatoria: ETEC, C. perfringens, B. cereus, S. aureus, V. cholerae, rotavirus, norovirus, Giardia, Cryptosporidium. Inflamatoria: Salmonella, Shigella, Campylobacter, STEC, E. coli enteroinvasiva, C. difficile, Yersinia, E. histolytica.");
+q("da",4,"Adulto sano de 30 años con Salmonella no tifoidea confirmada y diarrea leve. ¿Antibiótico?",
+ ["No; solo se considera si es mayor de 50 años con inmunosupresión o enfermedad articular o cardiaca importante","Sí, ciprofloxacino siempre","Sí, ceftriaxona IV","Sí, azitromicina 3 días"],
+ "Tabla 6: Salmonella no tifoidea se trata solo en pacientes de riesgo. S. typhi o paratyphi sí se tratan siempre (ceftriaxona o cipro).");
+q("da",4,"Paciente con SIDA y diarrea. Además del panel estándar, ¿qué buscas?",
+ ["Cryptosporidium, Cyclospora, Cystoisospora, microsporidios, MAC y CMV","Solo Salmonella","Rotavirus","Helicobacter pylori"],
+ "En inmunocomprometidos con estudios no diagnósticos o diarrea incapacitante, considera además endoscopia.");
+q("da",4,"Diarrea tras comer ostiones crudos o nadar en agua salobre. ¿Qué agregas a la búsqueda?",
+ ["Vibrio","Giardia","Yersinia","Cyclospora"],
+ "La exposición específica dicta pruebas extra: agua salobre o mariscos mal cocidos → Vibrio.");
+cs("da",5,["Hombre de 34 años con 3 días de cólico abdominal intenso.","Comió hamburguesa poco cocida en una feria.","Evacuaciones con sangre visible.","Está AFEBRIL.","Hemoglobina y plaquetas normales hoy."],
+ "¿Cuál es la conducta correcta?",
+ ["PCR o cultivo con toxina Shiga, sin antibióticos ni antidiarreicos; vigilar biometría y función renal","Azitromicina empírica 1 g","Loperamida para el cólico","Colonoscopia urgente"],
+ "Sangre SIN fiebre = sospecha de E. coli productora de toxina Shiga (O157). Evita antibióticos hasta confirmar y vigila hemoglobina, plaquetas, electrolitos y creatinina por riesgo de síndrome urémico hemolítico. El SUH posdiarreico es de notificación obligatoria.");
+cs("da",5,["Mujer de 72 años que vive en un asilo.","Hace 3 semanas recibió clindamicina por celulitis.","Ahora 7 evacuaciones acuosas al día.","Leucocitos 18,000.","Tienes una muestra fresca no formada."],
+ "Diagnóstico y tratamiento de primera elección:",
+ ["C. difficile por NAAT → fidaxomicina","Norovirus → solo hidratación","C. difficile → metronidazol IV","Colitis isquémica → angiotomografía"],
+ "Antibióticos en las últimas 12 semanas u hospitalización de más de 3 días → estudiar C. difficile. Fidaxomicina es más cara que vancomicina oral, pero con menos resistencia y menos dosis. Precauciones de contacto con bata y guantes.");
+cs("da",5,["Estudiante de 22 años que regresa de un viaje.","La diarrea empezó al 4º día del viaje.","Fiebre de 38.8 °C.","Ahora con moco y algo de sangre.","Signos vitales estables, tolera la vía oral."],
+ "¿Cuál es el mejor manejo?",
+ ["Hidratación oral + PCR en heces + azitromicina empírica","Rifaximina","Loperamida sola","Solo bismuto y observar 7 días"],
+ "Fiebre ≥38.3 °C con o sin sangre en un viajero: estudio de heces y antibiótico empírico. Azitromicina es la preferida en diarrea febril o con sangre; rifaximina NO si se sospecha invasión.");
+
+/* ---------------- DIARREA CRÓNICA ---------------- */
+q("dc",1,"La diarrea crónica se define por una duración mayor a:",
+ ["4 semanas","2 semanas","7 días","6 meses"],
+ "Diarrea crónica: aumento en número o disminución de consistencia por más de 4 semanas.");
+q("dc",1,"Diarrea acuosa y abundante que CEDE con el ayuno. ¿Mecanismo?",
+ ["Osmótica","Secretora","Inflamatoria","Por dismotilidad"],
+ "Mecanismos: osmótica, secretora, inflamatoria, malabsortiva y por dismotilidad. La osmótica cede con el ayuno; la secretora persiste.");
+q("dc",2,"En la diarrea secretora, la osmolaridad fecal:",
+ ["Se explica casi por completo por electrólitos (brecha osmótica baja)","Se explica por solutos no absorbibles (brecha alta)","Siempre es mayor de 600 mOsm/kg","No se puede calcular"],
+ "Brecha osmótica = 290 − 2(Na + K fecales). En la osmótica hay una diferencia por moléculas poco absorbibles; en la secretora la osmolaridad la dan los electrólitos (clásicamente brecha menor de 50).");
+q("dc",2,"¿Cuál es causa de diarrea OSMÓTICA?",
+ ["Laxantes o antiácidos con magnesio, o malabsorción de lactosa, fructosa o sorbitol","VIPoma","Colitis microscópica","Tumor carcinoide"],
+ "Secretoras: colitis microscópicas, laxantes no osmóticos, enteropatía diabética, tumores neuroendocrinos (VIP, somatostatina, gastrina) y carcinoides.");
+q("dc",2,"¿Qué fármacos aumentan el riesgo de colitis microscópica?",
+ ["IBP, AINE e ISRS","Metformina, estatinas e IECA","Paracetamol y antihistamínicos","Insulina y levotiroxina"],
+ "Uso actual de AINE e IBP aumenta el riesgo de ambos subtipos; colagenosa más con AINE e IBP, linfocítica con IBP e ISRS. También antibióticos.");
+q("dc",3,"Grasa fecal cuantitativa: ¿a partir de qué valor es anormal?",
+ ["Más de 7 g en 24 h","Más de 2 g en 24 h","Más de 20 g en 24 h","Más de 50 g en 24 h"],
+ "Un peso fecal mayor de 1000 g en 24 h sugiere malabsorción grave: insuficiencia pancreática, trastornos biliares o causa neuroendocrina. Cualitativa: Sudán III.");
+q("dc",3,"Elastasa fecal-1 menor de 200 µg/g sugiere:",
+ ["Insuficiencia pancreática exocrina","Diarrea por ácidos biliares","Enfermedad celíaca","Sobrepoblación bacteriana (SIBO)"],
+ "Con corte de 200: sensibilidad 77–96%, especificidad 88%. Con corte de 100: sensibilidad 97% y VPN 100%.");
+q("dc",3,"Prueba práctica para diarrea por ácidos biliares cuando no hay SeHCAT:",
+ ["Respuesta a colestiramina o colestipol","Rifaximina","Budesonida","Prueba de D-xilosa"],
+ "SeHCAT con retención menor de 15% al día 7 tiene S 100% y E 94%, pero casi no está disponible. Hasta 22.5% de diarrea funcional o SII tienen diarrea por ácidos biliares.");
+q("dc",3,"Hallazgo histológico de la colitis COLAGENOSA:",
+ ["Banda de colágena subepitelial mayor de 7 µm","Granulomas epitelioides","Microabscesos y distorsión de criptas","Atrofia de vellosidades"],
+ "Colitis linfocítica: más de 20 linfocitos intraepiteliales por 100 células epiteliales. Colagenosa: banda mayor de 7 µm (normal menor de 5). Endoscopia macroscópicamente normal en ambas.");
+d("dc",4,"¿Qué hallazgo histológico orienta a CUCI y NO a Crohn?",
+ ["Microabscesos y distorsión de criptas","Inflamación granulomatosa","Fisuras","Afección transmural"],
+ "CUCI: microabscesos crípticos y distorsión de criptas. Crohn: inflamación granulomatosa, fisuras y afección transmural.");
+q("dc",4,"Según el algoritmo, sin datos de malabsorción, ¿qué estudio sigue para buscar diarrea inflamatoria?",
+ ["Calprotectina y/o lactoferrina fecal","Prueba de D-xilosa","Elastasa fecal-1","Carotenos séricos"],
+ "Si calprotectina o lactoferrina son positivas → colonoscopia para descartar EII. Si hay alarma sin inflamación → ileocolonoscopia con biopsias de ambos sitios.");
+q("dc",4,"¿Cuál es un síntoma de ALARMA en diarrea crónica?",
+ ["Diarrea nocturna que despierta al paciente","Distensión después de comer","Heces Bristol 6 por la mañana","Alivio del dolor al evacuar"],
+ "Alarma: sangrado rectal, melena, pérdida de peso, síntomas nocturnos, historia familiar de EII, pólipos o cáncer de colon, masas o adenomegalias.");
+d("dc",4,"Diarrea acuosa de más de 3 L/día que persiste en ayuno, con hipokalemia y aclorhidria:",
+ ["VIPoma","Gastrinoma","Intolerancia a la lactosa","SII con diarrea"],
+ "VIPoma = diarrea secretora masiva. El gastrinoma produce diarrea con esteatorrea porque el ácido inactiva las enzimas pancreáticas. Carcinoide: rubor, sustancias vasoactivas.");
+cs("dc",5,["Mujer de 64 años.","8 semanas de diarrea acuosa, incluso nocturna.","Toma omeprazol, sertralina y naproxeno.","Serología celíaca negativa.","Colonoscopia macroscópicamente NORMAL."],
+ "¿Qué haces para confirmar el diagnóstico más probable?",
+ ["Biopsias escalonadas de colon por sospecha de colitis microscópica","Nada: es SII con diarrea","Prueba de SeHCAT","Cápsula endoscópica"],
+ "Mujer mayor + IBP/ISRS/AINE + colon normal a la vista = colitis microscópica hasta demostrar lo contrario. El diagnóstico es histológico. Suspender los fármacos asociados.");
+cs("dc",5,["Hombre de 45 años.","Colecistectomía hace 1 año.","Desde entonces evacuaciones acuosas urgentes, sobre todo después de comer.","Calprotectina normal y serología celíaca negativa.","Colonoscopia con biopsias normales."],
+ "¿Diagnóstico y siguiente paso?",
+ ["Diarrea por ácidos biliares → prueba terapéutica con colestiramina","Colitis microscópica → budesonida","SII con diarrea → rifaximina","Insuficiencia pancreática → enzimas"],
+ "La colecistectomía y la resección ileal se asocian a diarrea por ácidos biliares: los ácidos biliares en colon (más de 3 mmol/L) reducen la absorción de sodio y aumentan la secreción de cloro.");
+cs("dc",5,["Hombre de 52 años con consumo intenso de alcohol.","Pérdida de 8 kg.","Heces voluminosas, grasosas, que flotan.","Diabetes de diagnóstico reciente.","Calcificaciones pancreáticas en la tomografía."],
+ "¿Qué prueba no invasiva confirma el mecanismo?",
+ ["Elastasa fecal-1","Calprotectina fecal","Anti-transglutaminasa IgA","Prueba de aliento con lactosa"],
+ "Pancreatitis crónica → insuficiencia pancreática exocrina → esteatorrea (malabsortiva). Elastasa fecal-1 menor de 200 µg/g la apoya.");
+
+/* ---------------- CICLOSPORIASIS ---------------- */
+q("cy",1,"¿Cómo se transmite Cyclospora cayetanensis?",
+ ["Vía fecal-oral por agua o alimentos contaminados con ooquistes esporulados","De persona a persona directamente","Picadura de mosquito","Vía respiratoria"],
+ "Los ooquistes salen NO esporulados en las heces y necesitan días o semanas en el ambiente para volverse infectantes, por eso no hay transmisión directa de persona a persona.");
+q("cy",1,"Alimentos clásicamente implicados en brotes de ciclosporiasis:",
+ ["Frambuesas, albahaca, cilantro y lechugas","Carne de cerdo poco cocida","Leche no pasteurizada","Arroz recalentado"],
+ "Frutas blandas (frambuesas), hojas verdes y hierbas (cilantro, albahaca, pesto, mezcla de ensaladas, chícharos).");
+q("cy",2,"Tamaño del ooquiste de Cyclospora comparado con Cryptosporidium:",
+ ["8–10 µm contra 4–6 µm","4–6 µm contra 8–10 µm","20–30 µm contra 4–6 µm","Son del mismo tamaño"],
+ "Su tamaño pequeño, baja gravedad específica y alta infectividad facilitan la contaminación. Sobreviven semanas a meses en el ambiente.");
+q("cy",2,"Cuadro clínico típico de ciclosporiasis:",
+ ["Diarrea acuosa, a veces explosiva y fétida, con cólico, distensión, anorexia y pérdida de peso","Diarrea con sangre y fiebre alta","Ictericia y coluria","Estreñimiento crónico"],
+ "Puede haber vómito y fiebre baja. Sin tratamiento dura días a más de un mes y puede ir y venir. Los viajeros de países no endémicos suelen enfermar más.");
+q("cy",3,"Según la revisión, ¿qué tinción tiene la mejor sensibilidad para Cyclospora?",
+ ["Ziehl-Neelsen modificada (ácido-alcohol resistente), ooquistes rosa a rojo","Tinción de Gram","Tinta china","Tricrómica ácido-resistente, siempre confiable"],
+ "La tricrómica no es confiable: los ooquistes pueden quedar sin teñir ('fantasmas'). Safranina también es muy sensible. Los ooquistes autofluorescen con luz UV.");
+q("cy",3,"¿Por qué se recomiendan varias muestras de heces cada 2–3 días?",
+ ["La eliminación de ooquistes es intermitente y escasa","Los ooquistes mueren en una hora","Para medir la carga viral","La PCR exige tres muestras"],
+ "Se recomienda concentrar la muestra (formol-acetato de etilo, gradientes) para mejorar la sensibilidad.");
+q("cy",3,"Tratamiento de primera línea de la ciclosporiasis:",
+ ["TMP-SMX 160/800 mg cada 12 h por 7 días","Metronidazol","Albendazol","Nitazoxanida"],
+ "Recomendado por los CDC. Resuelve síntomas y eliminación de ooquistes en 1–2 días. Alternativas: ciprofloxacino (p. ej. trasplantados) y nitazoxanida si hay intolerancia a sulfas, aunque no siempre funciona. No hay vacuna.");
+q("cy",4,"Manifestaciones extraintestinales descritas, sobre todo en VIH:",
+ ["Colecistitis alitiásica, Guillain-Barré y artritis reactiva","Hepatitis fulminante y SUH","Meningitis y endocarditis","Pancreatitis necrotizante"],
+ "También oligoartritis, inflamación ocular y uretritis estéril; aparecen semanas después de la infección intestinal.");
+q("cy",4,"Único indicador de viabilidad de los ooquistes que se usa hoy:",
+ ["Esporulación en dicromato de potasio al 2.5% (7 a 13 días)","Cultivo celular","Serología IgM","Inoculación en ratón"],
+ "No hay cultivo in vitro ni modelo animal eficaz. El ooquiste esporulado tiene 2 esporoquistes con 2 esporozoítos cada uno.");
+d("cy",4,"Viajero con diarrea acuosa prolongada y fatiga. ¿Cuál NO es un coccidio intestinal?",
+ ["Giardia lamblia","Cyclospora","Cryptosporidium","Cystoisospora"],
+ "Giardia es un flagelado (tratamiento: tinidazol o nitazoxanida). Los coccidios se ven con tinciones ácido-alcohol resistentes; Cyclospora mide 8–10 µm y Cryptosporidium 4–6 µm.");
+cs("cy",5,["Mujer de 38 años, en verano.","Varios invitados de una boda tienen lo mismo.","3 semanas de diarrea acuosa explosiva que va y viene, con fatiga, anorexia y pérdida de 4 kg.","En la boda sirvieron pesto de albahaca y postre de frambuesas importadas.","El coproparasitoscópico estándar fue negativo."],
+ "¿Qué pides y cómo tratas?",
+ ["Ziehl-Neelsen modificada o PCR para Cyclospora; TMP-SMX","Toxina de C. difficile; vancomicina oral","Coprocultivo; ciprofloxacino","Serología para amiba; metronidazol"],
+ "Brote estacional por producto fresco + diarrea prolongada con pérdida de peso = Cyclospora. Hay que pedirla de forma dirigida (tinción específica, autofluorescencia o PCR, por ejemplo panel BioFire).");
+cs("cy",5,["Hombre de 40 años con VIH y CD4 bajos.","Diarrea acuosa crónica.","En heces: ooquistes esféricos de 8–10 µm que autofluorescen con luz UV.","Alergia grave a las sulfonamidas."],
+ "¿Qué tratamiento le das?",
+ ["Ciprofloxacino (nitazoxanida si falla)","TMP-SMX de todos modos","Albendazol","Fluconazol"],
+ "En intolerancia a sulfas: ciprofloxacino como alternativa; nitazoxanida si no hay respuesta, aunque no siempre es eficaz.");
+
+/* ---------------- CELIAQUÍA ---------------- */
+q("ce",1,"Prevalencia aproximada de la enfermedad celíaca:",
+ ["Alrededor de 1%","Alrededor de 0.01%","Alrededor de 10%","Alrededor de 25%"],
+ "En Suecia se estima 2–3%. Gradiente norte–sur. El pico de incidencia pasó de 1–2 años a 5–8 años, y muchos se diagnostican de adultos.");
+q("ce",1,"Prerrequisito genético para la enfermedad celíaca:",
+ ["HLA-DQ2 o HLA-DQ8","HLA-B27","NOD2","CFTR"],
+ "Estos haplotipos están en 30–40% de la población, así que tenerlos no diagnostica; no tenerlos prácticamente DESCARTA celiaquía.");
+q("ce",2,"Primer estudio ante sospecha de celiaquía:",
+ ["IgA anti-transglutaminasa tisular + IgA sérica total","Biopsia duodenal directa","Anticuerpos antigliadina nativa","Tipificación HLA a todos"],
+ "La tTG-IgA es el primer paso; si es positiva, se confirma. La IgA total detecta deficiencia selectiva de IgA, que es más frecuente en celíacos.");
+q("ce",2,"¿Por qué hay que medir la IgA sérica total?",
+ ["Para descartar deficiencia de IgA, que da falsos negativos en la tTG-IgA","Para medir actividad de la enfermedad","Para graduar Marsh","Para decidir cuándo iniciar la dieta"],
+ "Con deficiencia de IgA usa pruebas IgG (DGP-IgG o tTG-IgG). En deficiencia de IgA la biopsia siempre es necesaria.");
+q("ce",2,"Enfermedades autoinmunes asociadas con frecuencia a la celiaquía:",
+ ["Diabetes tipo 1 y enfermedad tiroidea autoinmune","Gota y psoriasis","Asma y rinitis","Hipertensión y dislipidemia"],
+ "También se asocia a anemia (hierro, B12, folato), osteoporosis, hipoesplenismo, deficiencia de IgA y mayor riesgo de cáncer de intestino delgado.");
+q("ce",3,"Estrategia de diagnóstico SIN biopsia:",
+ ["tTG-IgA ≥10 veces el límite superior + anticuerpos antiendomisio IgA positivos en una segunda muestra","tTG-IgA ≥2 veces el límite superior","HLA-DQ2 positivo","DGP-IgG positivo aislado"],
+ "Muy validada en niños. En adultos las guías todavía consideran esencial la biopsia, salvo en circunstancias seleccionadas.");
+q("ce",3,"Antes de hacer serología o biopsia, el paciente debe:",
+ ["Seguir comiendo gluten","Hacer dieta sin gluten 6 semanas","Suspender los lácteos","Ayunar 12 horas"],
+ "La sensibilidad de la tTG baja con dieta sin gluten (el artículo de Roma V lo recuerda para pacientes con SII).");
+q("ce",3,"Umbral acordado de gluten para un alimento 'sin gluten':",
+ ["20 ppm","200 ppm","2 ppm","100 ppm"],
+ "La dieta sin gluten estricta de por vida es el pilar. Requiere nutriólogo. La mayoría tolera avena no contaminada.");
+q("ce",3,"Manifestación cutánea de la enfermedad celíaca:",
+ ["Dermatitis herpetiforme","Eritema nodoso","Pioderma gangrenoso","Psoriasis"],
+ "Eritema nodoso y pioderma son manifestaciones extraintestinales de EII.");
+q("ce",4,"La celiaquía refractaria tipo II se caracteriza por:",
+ ["Linfocitos aberrantes clonales con riesgo de linfoma T asociado a enteropatía","Respuesta completa al reintroducir gluten","Síntomas sin atrofia","Deficiencia de IgA"],
+ "Tipo I: linfocitos normales. Tipo II: aberrantes, puede progresar a linfoma T asociado a enteropatía (pronóstico muy malo).");
+q("ce",4,"Por el hipoesplenismo de la celiaquía se recomienda:",
+ ["Ofrecer vacuna antineumocócica","Esplenectomía","Penicilina profiláctica de por vida","Nada adicional"],
+ "Seguimiento: serología a los 3–6 meses y al año; densitometría, hierro, vitaminas; vacuna neumocócica.");
+d("ce",4,"Al año de dieta, la tTG-IgA sigue alta. ¿Causa más común?",
+ ["Ingesta inadvertida de gluten: revisar la dieta con nutriólogo","Celiaquía refractaria tipo II","Error del laboratorio","Diagnóstico equivocado"],
+ "Antes de pensar en refractaria, busca contaminación por gluten. La normalización de la serología puede tardar 1–2 años más.");
+cs("ce",5,["Mujer de 18 años.","1 año con distensión diaria y flatulencia fétida.","Fatiga y aftas orales recurrentes.","VCM 65 fL, ferritina 6; no mejora con hierro oral. ALT 70.","Hermano de 10 años con diabetes tipo 1 y celiaquía."],
+ "Su tTG-IgA sale en 150 U/mL (referencia menor de 15). ¿Qué sigue?",
+ ["Confirmar con biopsias duodenales (o antiendomisio en 2ª muestra) antes de la dieta sin gluten","Dieta sin gluten de inmediato sin más estudios","Pedir HLA para confirmar","Hierro IV y repetir en un año"],
+ "Es el caso del artículo del NEJM. tTG 10 veces el límite superior: valor muy predictivo, pero se confirma antes de una dieta de por vida. Ferropenia que no responde a hierro oral y transaminasas elevadas son pistas clásicas.");
+cs("ce",5,["Hombre de 25 años con diarrea crónica.","Anemia ferropénica.","tTG-IgA NEGATIVA.","IgA sérica total indetectable."],
+ "¿Qué haces?",
+ ["Pruebas IgG (DGP-IgG o tTG-IgG) y biopsia duodenal","Descartar celiaquía","Dieta sin gluten empírica","Repetir tTG-IgA en un mes"],
+ "La deficiencia selectiva de IgA da tTG-IgA falsamente negativa. En este escenario la biopsia es obligatoria.");
+
+/* ---------------- CROHN ---------------- */
+q("cr",1,"Sitio afectado con más frecuencia en la enfermedad de Crohn:",
+ ["Íleon terminal y colon proximal","Solo el recto","Esófago","Duodeno"],
+ "Puede afectar cualquier parte del tubo digestivo de la boca al ano.");
+q("cr",1,"Patrón de la inflamación en Crohn:",
+ ["Discontinuo, en parches, segmentario y transmural","Continuo desde el recto y solo mucoso","Solo submucoso","Siempre limitado al colon"],
+ "Lesiones salteadas, úlceras longitudinales y aspecto en empedrado.");
+q("cr",2,"Factor de riesgo MÁS fuerte para Crohn:",
+ ["Tener un familiar de primer grado afectado","Comida picante","Estrés","Consumo de café"],
+ "Razón de tasas 7.77. Concordancia en gemelos monocigóticos de 50%. Tabaquismo OR 1.76, antibióticos 1.74; la actividad física protege (RR 0.63).");
+q("cr",2,"Primer gen identificado en Crohn:",
+ ["NOD2 (CARD15)","HLA-DQ2","CFTR","APC"],
+ "NOD2 se expresa en células de Paneth del íleon terminal, que controlan la invasión bacteriana con factores antimicrobianos.");
+q("cr",2,"Calprotectina fecal en atención primaria que prácticamente EXCLUYE el diagnóstico:",
+ ["Menor de 40 µg/g","Menor de 500 µg/g","Menor de 1000 µg/g","Menor de 250 µg/g"],
+ "Con menos de 40 µg/g, menos de 1% se diagnostica después. Menos de 250 correlaciona con remisión endoscópica; dos valores mayores de 250 sin síntomas: más de 50% de recaída en 3 meses.");
+q("cr",3,"Hallazgo histológico característico de Crohn, pero presente en menos de 20% de las biopsias:",
+ ["Granuloma epitelioide no caseificante","Granuloma caseificante","Microabscesos crípticos","Banda de colágeno subepitelial"],
+ "Otros hallazgos: inflamación focal en parches, agregados linfoides y metaplasia de glándulas pilóricas.");
+q("cr",3,"Estudio de imagen de elección al diagnóstico para evaluar todo el intestino:",
+ ["Enterorresonancia (por encima de enterotomografía, menos radiación)","Radiografía simple de abdomen","Colon por enema","PET-CT"],
+ "El ultrasonido intestinal complementa: sensibilidad para íleon terminal similar a la enterorresonancia (92% contra 97%). La endoscopia con histología sigue siendo el estándar de oro.");
+q("cr",3,"Fístula enterovesical: ¿cómo se manifiesta?",
+ ["Fecaluria, neumaturia o infecciones urinarias recurrentes","Hematuria aislada","Ictericia","Disfagia"],
+ "Rectovaginal: dispareunia o salida de heces por vagina. Enteroentérica: asintomática o con flemón o absceso.");
+q("cr",3,"¿Qué proporción de pacientes se presenta con lesiones perianales?",
+ ["Aproximadamente una quinta parte","La mitad","Menos de 1%","90%"],
+ "Plicomas, fisuras, úlceras, estenosis, fístulas con o sin abscesos. Las manifestaciones extraintestinales ocurren hasta en 50%.");
+d("cr",4,"Tuberculosis intestinal contra Crohn: ¿qué las distingue?",
+ ["TB: exposición endémica y granulomas CASEIFICANTES","TB: granulomas epitelioides no caseificantes","Crohn: granulomas caseificantes","No se pueden distinguir"],
+ "Siempre pregunta contacto con TB antes de diagnosticar Crohn y antes de iniciar anti-TNF.");
+d("cr",4,"Inflamación intestinal + úlceras orales y GENITALES recurrentes:",
+ ["Behçet intestinal","Crohn perianal","Fiebre mediterránea familiar","Colitis microscópica"],
+ "Simuladores de Crohn: enterocolitis infecciosa, Behçet intestinal, TB intestinal y fiebre mediterránea familiar (úlceras lineales sin granulomas). En menores de 6 años, buscar causas monogénicas.");
+q("cr",4,"Meta a largo plazo de la estrategia 'tratar al objetivo' (STRIDE II):",
+ ["Curación endoscópica y normalización de PCR y calprotectina","Solo remisión de síntomas","Recuperar el peso","Esteroide de mantenimiento"],
+ "Objetivos a corto plazo: respuesta clínica y biomarcadores (calprotectina menor de 150–200). A largo plazo: curación endoscópica y calidad de vida.");
+q("cr",4,"¿Qué NO debe usarse como terapia de mantenimiento?",
+ ["Corticoides, incluida budesonida, a largo plazo","Anti-TNF","Ustekinumab","Vedolizumab"],
+ "Los corticoides inducen remisión pero no mantienen. Mantenimiento: anti-TNF, ustekinumab, risankizumab, vedolizumab, upadacitinib, tiopurinas o metotrexato en casos seleccionados.");
+q("cr",4,"Antes de iniciar azatioprina debes medir:",
+ ["Actividad de TPMT","HLA-B27","Calprotectina","Ferritina"],
+ "Las tiopurinas aumentan riesgo de linfoma, cáncer de piel no melanoma, trastornos mieloides y cáncer urotelial. Se usan sobre todo combinadas con anti-TNF para reducir inmunogenicidad.");
+cs("cr",5,["Mujer de 23 años, fumadora.","6 meses de diarrea sin sangre y dolor en fosa iliaca derecha.","Pérdida de peso, aftas orales y eritema nodoso.","Masa dolorosa en FID y fístula perianal.","Colonoscopia: úlceras longitudinales y empedrado en íleon; recto respetado."],
+ "¿Cuál es el diagnóstico?",
+ ["Enfermedad de Crohn ileocolónica con enfermedad perianal","Colitis ulcerosa (CUCI)","Tuberculosis intestinal","Apendicitis complicada"],
+ "Recto respetado + íleon + fístula perianal + manifestaciones extraintestinales = Crohn. Se clasifica por Montreal (edad, localización, comportamiento, perianal) y se estadifica con enterorresonancia.");
+cs("cr",5,["Hombre de 19 años.","5 días de fiebre, diarrea y dolor en FID.","Comió carne de cerdo poco cocida.","Ultrasonido: adenitis mesentérica, apéndice normal."],
+ "Antes de pensar en Crohn, ¿cuál es el diagnóstico más probable?",
+ ["Yersinia enterocolitica (tratamiento: TMP/SMX)","Enfermedad de Crohn","Apendicitis","Enfermedad celíaca"],
+ "Yersinia da ileítis y adenitis mesentérica que simula Crohn y apendicitis (pseudoapendicitis). La enterocolitis infecciosa es aguda y autolimitada; descártala antes de diagnosticar Crohn.", SRC.da+" · "+SRC.cr);
+cs("cr",5,["Paciente con Crohn conocido.","Dolor perianal intenso y fiebre.","Fístula perianal compleja.","Absceso perianal en la resonancia."],
+ "¿Cuál es el manejo correcto?",
+ ["Drenar el absceso (antibiótico para el absceso) y anti-TNF para cerrar la fístula","Solo antibióticos a largo plazo","Corticoides sistémicos","Colectomía total inmediata"],
+ "Los antibióticos sirven para abscesos, no para la enfermedad fistulizante compleja. Anti-TNF es de lo más eficaz para cerrar fístulas perianales.");
+
+/* ---------------- SII Y ROMA V ---------------- */
+q("sii",1,"¿Cuántas categorías de trastornos intestinales define Roma V?",
+ ["6: SII, estreñimiento crónico, diarrea funcional, distensión funcional, no clasificado y estreñimiento por opioides","4","5, sin incluir opioides","8"],
+ "Roma V deja de llamarlos 'funcionales' y habla de trastornos intestinales (bowel disorders).");
+q("sii",2,"Frecuencia del dolor o molestia para SII según Roma V:",
+ ["Al menos 3 días al mes en los últimos 3 meses","Al menos 1 día a la semana","Al menos 2 días a la semana","Todos los días"],
+ "Roma IV pedía ≥1 día por semana y quitó 'molestia', lo que bajó la prevalencia. Roma V reintroduce 'molestia' y baja el umbral a ≥3 días al mes. Inicio ≥6 meses antes.");
+q("sii",2,"¿Qué agregó Roma V para separar SII del síndrome de dolor abdominal de mediación central?",
+ ["Que el dolor o molestia NO sea continuo","Edad menor de 50 años","Que haya sangre","Que sea nocturno"],
+ "Además, criterio de soporte: el dolor no debe estar relacionado solo con la menstruación.");
+q("sii",2,"El dolor/molestia del SII debe asociarse a 2 o más de:",
+ ["Relación con la defecación, cambio en la frecuencia y cambio en la forma de las heces","Fiebre, sangre y pérdida de peso","Náusea, vómito y pirosis","Dolor nocturno, ayuno y estrés"],
+ "SII NO es diagnóstico de exclusión: se hace diagnóstico positivo con criterios y sin datos de alarma.");
+q("sii",3,"SII con diarrea (SII-D) se define por:",
+ ["Más de 25% de evacuaciones Bristol 6–7 y menos de 25% Bristol 1–2","Más de 50% de evacuaciones Bristol 7","Más de 25% Bristol 1–2 y más de 25% Bristol 6–7","Heces Bristol 4"],
+ "Más de 25% Bristol 1–2 y más de 25% Bristol 6–7 = SII mixto. Subtipificar sin laxantes ni antidiarreicos y solo con los días de evacuaciones anormales.");
+q("sii",3,"Calprotectina fecal ≤50 µg/g para diferenciar SII de EII:",
+ ["VPN de 99.8%, pero VPP de solo 9%","VPP de 99%","Sensibilidad de 50%","No tiene utilidad"],
+ "PCR menor de 0.5 mg/dL: menos de 1% de probabilidad de EII. VSG y lactoferrina sirven poco. La calprotectina sube en ancianos, obesidad, infección, IBP y AINE.");
+q("sii",3,"¿Qué estudio SÍ recomiendan las guías en sospecha de SII?",
+ ["Serología celíaca: tTG-IgA + IgA total","Prueba de aliento para SIBO de rutina","Elastasa fecal de rutina","Sangre oculta en heces para descartar enfermedad estructural"],
+ "Celiaquía confirmada por biopsia en 3.3% de pacientes con SII. Roma V no recomienda de rutina aliento para SIBO, elastasa, ni pruebas de sangre oculta para diferenciar SII.");
+q("sii",3,"Si haces colonoscopia en sospecha de SII-D, ¿qué debes biopsiar para descartar?",
+ ["Colitis microscópica","Celiaquía","Helicobacter pylori","Amiloidosis"],
+ "Sin alarma, el rendimiento de colonoscopia en SII no constipado fue de 2% (colitis microscópica 1.5%, sobre todo mujeres mayores de 45).");
+q("sii",4,"Mecanismo de linaclotida y plecanatida:",
+ ["Agonistas del receptor guanilato ciclasa C","Activadores del canal de cloro tipo 2","Inhibidores del intercambiador NHE3","Agonistas 5-HT4"],
+ "Lubiprostona: canal de cloro tipo 2. Tenapanor: inhibe NHE3. Tegaserod y prucaloprida: 5-HT4. Efecto adverso más común de los secretagogos: diarrea.");
+q("sii",4,"¿Qué fibra sirve en SII?",
+ ["Soluble (psyllium/ispágula), NNT de 7","Insoluble (salvado)","Ninguna","Ambas igual"],
+ "La dieta con mejor evidencia es la baja en FODMAP. El salvado no mostró beneficio (RR 0.90).");
+q("sii",4,"Antagonista 5-HT3 aprobado por la FDA para mujeres con SII-D:",
+ ["Alosetrón","Eluxadolina","Rifaximina","Linaclotida"],
+ "Inicio 0.5 mg cada 12 h. Ondansetrón también mejora SII-D pero no el dolor. Eluxadolina (agonista µ/κ, antagonista δ) tiene efectos adversos graves como pancreatitis.");
+q("sii",4,"Esquema de rifaximina en SII-D:",
+ ["550 mg cada 8 h por 14 días; se puede repetir hasta 2 veces","Diario de forma indefinida","1 g en dosis única","No sirve en SII"],
+ "Mejora síntomas globales y distensión (40% contra 30% con placebo).");
+q("sii",4,"Neuromodulador central MEJOR estudiado en SII:",
+ ["Antidepresivos tricíclicos (amitriptilina)","ISRS","Benzodiacepinas","Opioides"],
+ "Para dolor también: antiespasmódicos (otilonio, hioscina) y aceite de menta (NNT 3–4). Psicoterapias con más evidencia: TCC e hipnoterapia dirigida al intestino.");
+cs("sii",5,["Mujer de 27 años.","Desde hace 1 año: dolor o molestia abdominal unos 4 días al mes, no continuo.","Mejora al evacuar; esos días las heces son más sueltas y frecuentes.","Sin sangrado, pérdida de peso ni síntomas nocturnos; exploración normal.","Hb normal, PCR 0.2 mg/dL, calprotectina 30 µg/g, tTG-IgA negativa."],
+ "Diagnóstico según Roma V:",
+ ["SII con diarrea: diagnóstico positivo, sin más estudios","Diarrea funcional","Enfermedad inflamatoria intestinal","Colitis microscópica"],
+ "Cumple ≥3 días al mes, no continuo, asociado a defecación y cambio de forma y frecuencia. Con 4 días al mes ya no cumpliría Roma IV (≥1 día por semana), pero sí Roma V.");
+cs("sii",5,["Hombre de 40 años.","Heces sueltas o acuosas en más de 25% de las evacuaciones durante 8 meses.","No tiene dolor ni molestia abdominal predominante.","Estudios básicos normales."],
+ "¿Cuál es el diagnóstico?",
+ ["Diarrea funcional","SII con diarrea","Distensión abdominal funcional","Trastorno intestinal no clasificado"],
+ "Diarrea funcional: heces sueltas en más de 25% sin criterios de SII. Puede haber algo de dolor o distensión, pero no predominan. Roma V agregó un punto para hacerla consistente con estreñimiento crónico.");
+cs("sii",5,["Mujer de 30 años.","Hace 6 meses tuvo gastroenteritis por Campylobacter.","Desde entonces dolor abdominal y diarrea recurrente.","Coprocultivos y PCR ahora negativos; calprotectina normal."],
+ "¿Diagnóstico más probable?",
+ ["SII posinfeccioso","Infección crónica por Campylobacter","Colitis ulcerosa","Celiaquía"],
+ "Más de 10% desarrolla SII posinfeccioso tras gastroenteritis aguda (11% combinado en el AFP). También puede seguir a COVID-19.", SRC.sii+" · "+SRC.da);
+
+/* ---------------- ESTREÑIMIENTO ---------------- */
+q("es",1,"Prevalencia global de estreñimiento crónico (estudios poblacionales):",
+ ["Alrededor de 14%","Alrededor de 1%","Alrededor de 40%","Menos de 0.5%"],
+ "Más frecuente en mujeres y en menor nivel socioeconómico. En la encuesta global de la Fundación Roma, el estreñimiento funcional fue 11.7%, más que el SII.");
+q("es",1,"En Roma V, el 'estreñimiento funcional' se renombró como:",
+ ["Estreñimiento crónico","Estreñimiento idiopático","Dismotilidad colónica","Obstrucción funcional"],
+ "Se eligió 'crónico' para subrayar que rara vez es secundario a causas orgánicas. CC, FC y CIC son prácticamente intercambiables.", SRC.esr);
+q("es",2,"Criterios Roma V de estreñimiento crónico: ¿cuál NO es uno de los síntomas?",
+ ["Dolor abdominal predominante","Pujo en más de 25% de las evacuaciones","Heces Bristol 1–2 en más de 25%","Menos de 3 evacuaciones espontáneas por semana"],
+ "Se necesitan 2 o más: pujo, heces duras, evacuación incompleta, sensación de bloqueo, maniobras manuales (cada uno en más de 25%) o menos de 3 por semana. Heces sueltas raras sin laxantes. Sin criterios de SII.", SRC.esr);
+q("es",2,"Diferencia conceptual entre estreñimiento crónico y SII-E:",
+ ["En SII-E el dolor o molestia abdominal es predominante","La frecuencia de evacuaciones","La edad de inicio","La forma de las heces"],
+ "Muchos pacientes con estreñimiento tienen algo de dolor, pero en estreñimiento crónico no es lo principal.", SRC.esr);
+q("es",2,"Laboratorio inicial en estreñimiento crónico:",
+ ["Biometría hemática; TSH y calcio solo si hay sospecha clínica","Perfil hormonal completo","Tomografía de abdomen","Colonoscopia a todos"],
+ "La anemia es dato de alarma. El diagnóstico positivo se hace con síntomas típicos y sin alarma, sin pruebas extensas.", SRC.esr);
+q("es",3,"Tránsito colónico con marcadores radiopacos: es anormal si",
+ ["Queda más de 20% de los marcadores a las 120 h (día 5)","Queda cualquier marcador al día 1","Todos salen al día 2","Queda más de 80% a las 24 h"],
+ "Prueba de tamizaje sencilla. Alternativas: gammagrafía y cápsula inalámbrica de motilidad.");
+q("es",3,"Prueba de expulsión del balón y manometría anorrectal sirven para diagnosticar:",
+ ["Trastornos de la evacuación (disinergia defecatoria)","Tránsito lento","Hipotiroidismo","Celiaquía"],
+ "También detectan hiposensibilidad rectal. La defecografía por resonancia evalúa la anatomía obstructiva.");
+q("es",3,"Tratamiento de elección de la disinergia defecatoria:",
+ ["Biofeedback","Colectomía","Laxantes estimulantes de por vida","Diazepam"],
+ "El biofeedback fue superior a biofeedback simulado, placebo y diazepam. Hay versiones caseras y cortas.");
+q("es",3,"Primera línea farmacológica después de medidas de estilo de vida y fibra:",
+ ["Laxante osmótico: polietilenglicol (PEG)","Prucaloprida","Linaclotida","Colectomía"],
+ "PEG fue superior a lactulosa. Si persiste: estimulantes (senósidos, bisacodilo), luego procinéticos o secretagogos.");
+q("es",4,"Mecanismo de la prucaloprida:",
+ ["Agonista 5-HT4 selectivo de alta afinidad (procinético)","Agonista de guanilato ciclasa C","Antagonista µ periférico","Inhibidor del transportador ileal de ácidos biliares"],
+ "Su selectividad la separa de cisaprida y tegaserod (riesgo cardiovascular). Efecto adverso común: cefalea (25–30%). Elobixibat inhibe el transportador ileal de ácidos biliares.");
+q("es",4,"Estreñimiento por opioides que no responde a laxantes:",
+ ["Antagonista µ periférico (PAMORA): naloxegol, metilnaltrexona, naldemedina","Suspender toda la analgesia","Loperamida","Colectomía"],
+ "Roma V incluye el estreñimiento inducido por opioides como 6ª categoría: aparece o empeora al iniciar, cambiar o aumentar opioides.", SRC.esr);
+q("es",4,"La colectomía con anastomosis ileorrectal solo se considera en:",
+ ["Tránsito lento refractario, tras descartar trastorno de evacuación y dismotilidad generalizada","Cualquier estreñimiento de más de 1 año","Disinergia defecatoria","SII-E"],
+ "Otras opciones antes de cirugía: irrigación transanal, enemas anterógrados.");
+q("es",4,"Frutas con evidencia en ensayos para estreñimiento:",
+ ["Kiwi y ciruelas pasas","Plátano verde","Manzana sin cáscara","Guayaba"],
+ "La ciruela pasa fue comparable o mejor que psyllium en un ensayo pequeño; el kiwi mejoró frecuencia y consistencia.");
+cs("es",5,["Mujer de 35 años.","Años de estreñimiento con pujo intenso y evacuación incompleta.","Usa maniobras digitales para evacuar.","A veces las heces son de consistencia normal pero no logra expulsarlas.","Tacto rectal: contracción paradójica del puborrectal al pujar."],
+ "¿Diagnóstico y tratamiento?",
+ ["Disinergia defecatoria: manometría y expulsión de balón, luego biofeedback","Tránsito lento: colectomía","SII-E: linaclotida","Hipotiroidismo: levotiroxina"],
+ "El tacto rectal bien hecho orienta a disinergia. Se confirma con manometría anorrectal de alta resolución y prueba de expulsión del balón. Biofeedback es el tratamiento.");
+cs("es",5,["Hombre de 62 años.","Estreñimiento de inicio reciente (3 meses).","Heces más delgadas y pérdida de 5 kg.","Hb 9.8 g/dL, microcítica."],
+ "¿Qué sigue?",
+ ["Colonoscopia por datos de alarma","PEG y revalorar en 6 meses","Biofeedback","Más fibra"],
+ "Edad mayor de 50, inicio reciente, pérdida de peso y anemia son datos de alarma: descartar cáncer colorrectal antes de etiquetar como funcional.");
+cs("es",5,["Mujer de 58 años con dolor oncológico.","Inició morfina hace 3 semanas.","Ahora menos de 3 evacuaciones por semana, heces duras y pujo.","No mejora con PEG + senósidos."],
+ "¿Diagnóstico y tratamiento?",
+ ["Estreñimiento inducido por opioides: PAMORA (p. ej. naloxegol)","Suspender la morfina","Colectomía","Biofeedback"],
+ "Los PAMORA bloquean receptores µ en el intestino sin revertir la analgesia central.", SRC.esr);
+
+/* ---------------- RELÁMPAGO: ESTO O AQUELLO ---------------- */
+const FLASH = [
+ {set:"Crohn o CUCI", a:"Crohn", b:"CUCI", items:[
+  ["Granulomas","a"],["Afección continua desde el recto","b"],["Fístulas perianales","a"],["Inflamación transmural","a"],
+  ["Microabscesos y distorsión de criptas","b"],["Lesiones salteadas","a"],["El tabaquismo aumenta el riesgo","a"],["Fisuras profundas","a"]]},
+ {set:"Diarrea crónica: osmótica o secretora", a:"Osmótica", b:"Secretora", items:[
+  ["Cede con el ayuno","a"],["VIPoma","b"],["Laxantes con magnesio","a"],["Brecha osmótica baja","b"],
+  ["Malabsorción de sorbitol","a"],["Tumor carcinoide","b"],["Colitis microscópica","b"],["Intolerancia a la lactosa","a"],["Enteropatía diabética","b"]]},
+ {set:"Diarrea aguda: inflamatoria o no inflamatoria", a:"Inflamatoria", b:"No inflamatoria", items:[
+  ["Shigella","a"],["Norovirus","b"],["E. coli enterotoxigénica","b"],["Campylobacter","a"],["Entamoeba histolytica","a"],
+  ["Giardia","b"],["Vibrio cholerae","b"],["Bacillus cereus","b"],["Yersinia","a"],["Clostridioides difficile","a"],["Cryptosporidium","b"],["E. coli productora de toxina Shiga","a"]]},
+ {set:"¿Roma IV o Roma V?", a:"Roma IV", b:"Roma V", items:[
+  ["Reintroduce la 'molestia' abdominal","b"],["Dolor al menos 1 día por semana","a"],["Dolor o molestia al menos 3 días al mes","b"],
+  ["Se llama 'estreñimiento funcional'","a"],["Se llama 'estreñimiento crónico'","b"],["El dolor no debe ser continuo","b"],["'Trastorno intestinal no clasificado'","b"]]},
+ {set:"¿Verdadero o falso?", a:"Verdadero", b:"Falso", items:[
+  ["Sin HLA-DQ2 ni DQ8 prácticamente se descarta celiaquía","a"],["Cyclospora se contagia de persona a persona","b"],["La loperamida es segura en diarrea con sangre","b"],
+  ["El salvado (fibra insoluble) mejora el SII","b"],["La calprotectina se pide de rutina en diarrea aguda","b"],["El granuloma aparece en menos de 20% de biopsias de Crohn","a"],
+  ["La mayoría de celíacos tolera avena no contaminada","a"],["Para Roma V el SII es un diagnóstico de exclusión","b"],["Fidaxomicina es la primera elección para C. difficile","a"],
+  ["La tinción tricrómica detecta siempre a Cyclospora","b"],["El PEG es superior a la lactulosa","a"],["La rifaximina sirve en diarrea invasiva","b"],
+  ["Diarrea con sangre sin fiebre hace pensar en E. coli productora de toxina Shiga","a"],["Elastasa fecal menor de 200 µg/g sugiere insuficiencia pancreática","a"],["TMP-SMX es primera línea en ciclosporiasis","a"]]}
+];
+
+/* =====================================================================
+   ESTADO Y UTILIDADES
+   ===================================================================== */
+const TEAM_COLORS = ["#ff8f7a","#7fd6c2","#f3c45a","#c9a6ff","#7ab8ff","#b6e36b"];
+const TEAM_NAMES = ["Íleon","Colon","Ciego","Yeyuno","Recto","Duodeno"];
+const LS = "duelo-gastro-v1";
+let S = load() || fresh();
+function fresh(){return {view:"home",teams:[{n:"Equipo Íleon",p:0},{n:"Equipo Colon",p:0}],turn:0,time:45,board:null,used:[],flashBest:{}}}
+function load(){try{const r=localStorage.getItem(LS);return r?JSON.parse(r):null}catch(e){return null}}
+function save(){try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}}
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const catOf=k=>CATS.find(c=>c.k===k);
+const tc=i=>TEAM_COLORS[i%TEAM_COLORS.length];
+const L="ABCD";
+
+/* ---------- Sonidos cortos (solo tras interacción) ---------- */
+let AC=null;
+function beep(type){try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.connect(g);g.connect(AC.destination);
+  const now=AC.currentTime;const seq=type==="ok"?[523,659,784]:type==="no"?[220,175]:[440];
+  seq.forEach((f,i)=>{o.frequency.setValueAtTime(f,now+i*.11)});g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(.18,now+.02);g.gain.exponentialRampToValueAtTime(.0001,now+seq.length*.11+.15);
+  o.start(now);o.stop(now+seq.length*.11+.2)}catch(e){}}
+
+/* =====================================================================
+   VISTAS
+   ===================================================================== */
+function render(){
+  const app=$("#app");
+  app.innerHTML=header()+(S.view==="home"?home():S.view==="board"?boardView():S.view==="flash"?flashView():S.view==="study"?studyView():S.view==="end"?endView():"");
+  bind();
+  save();
+}
+function header(){
+  const nav=[["home","Inicio"],["board","Tablero"],["flash","Relámpago"],["study","Estudio"]];
+  return `<header class="top"><div class="logo"><h1>Duelo <span>Gastro</span></h1><span class="eyebrow">repaso del parcial</span></div>
+  <nav class="nav">${nav.map(([v,t])=>`<button class="btn small ghost" data-nav="${v}" aria-current="${S.view===v}">${t}</button>`).join("")}</nav></header>`;
+}
+function scoreBar(showTurn=true){
+  return `<section class="score" aria-label="Marcador">${S.teams.map((t,i)=>`
+   <div class="team ${showTurn&&i===S.turn?"turn":""}" style="--tc:${tc(i)}" id="team${i}">
+    <span class="turnTag">${showTurn&&i===S.turn?"Turno":""}</span>
+    <span class="nm"><span class="swatch" style="background:${tc(i)}"></span><span>${esc(t.n)}</span></span>
+    <span class="pts">${t.p}</span>
+    <span class="adj"><button data-adj="${i}" data-d="-100" aria-label="Restar 100 a ${esc(t.n)}">−</button><button data-adj="${i}" data-d="100" aria-label="Sumar 100 a ${esc(t.n)}">+</button></span>
+   </div>`).join("")}</section>`;
+}
+
+/* ---------- Inicio ---------- */
+function home(){
+  const n=Q.length, cases=Q.filter(x=>x.t==="case").length, ddx=Q.filter(x=>x.t==="ddx").length, fl=FLASH.reduce((a,s)=>a+s.items.length,0);
+  return `<section class="hero">
+   <div class="card">
+    <span class="eyebrow">${n} preguntas · ${cases} casos clínicos · ${ddx} diferenciales · ${fl} relámpagos</span>
+    <h2 style="margin-top:8px">Siete temas, un tablero y <em>quién sabe más gastro</em>.</h2>
+    <p>Cada equipo elige una casilla en su turno. Los casos clínicos dan pistas una por una: entre menos pistas uses, más puntos. Si fallas, otro equipo puede robar por la mitad. Hay dos casillas de doble o nada escondidas.</p>
+    <div class="modes">
+     <button class="mode" data-go="board"><span class="k">1</span><b>Tablero</b><small>Preguntas, diferenciales y casos de 100 a 500 puntos.</small></button>
+     <button class="mode" data-go="flash"><span class="k">2</span><b>Relámpago</b><small>45 segundos por equipo. ¿Crohn o CUCI? ¿Osmótica o secretora? +50 por acierto, −25 por error.</small></button>
+     <button class="mode" data-go="study"><span class="k">3</span><b>Estudio</b><small>Todas las preguntas con respuesta y explicación, para repasar solos.</small></button>
+    </div>
+    <div class="topics">${CATS.map(c=>`<span class="chip" style="border-color:${c.c}">${c.n}</span>`).join("")}</div>
+   </div>
+   <div class="card">
+    <h3 style="font-size:22px">Equipos</h3>
+    <div class="teams-edit">${S.teams.map((t,i)=>`<div class="team-line"><span class="swatch" style="background:${tc(i)}"></span>
+      <input id="tn${i}" value="${esc(t.n)}" aria-label="Nombre del equipo ${i+1}" maxlength="24">
+      ${S.teams.length>1?`<button class="x" data-del="${i}" aria-label="Quitar equipo">×</button>`:""}</div>`).join("")}</div>
+    <div class="row">${S.teams.length<6?`<button class="btn small" id="addTeam">+ Agregar equipo</button>`:""}<button class="btn small ghost" id="resetScores">Reiniciar puntos</button></div>
+    <div class="settings">
+     <label>Tiempo por pregunta<select id="timeSel">${[0,30,45,60,90].map(v=>`<option value="${v}" ${S.time===v?"selected":""}>${v?v+" s":"Sin tiempo"}</option>`).join("")}</select></label>
+     <label>Los casos clínicos<select disabled><option>tienen el doble de tiempo</option></select></label>
+    </div>
+    <p style="color:var(--muted);font-size:14px;margin-top:14px">Atajos en una pregunta: <span class="kbd">1</span>–<span class="kbd">4</span> elegir opción, <span class="kbd">P</span> siguiente pista, <span class="kbd">Espacio</span> pausar.</p>
+    <button class="btn primary" style="width:100%;margin-top:6px" data-go="board">${S.board?"Seguir jugando":"Empezar tablero"}</button>
+   </div>
+  </section>`;
+}
+
+/* ---------- Tablero ---------- */
+function newBoard(){
+  const used=new Set(S.used);
+  const cells={};
+  CATS.forEach(c=>{
+    const pool=Q.map((x,i)=>({x,i})).filter(o=>o.x.c===c.k);
+    for(let l=1;l<=5;l++){
+      let cand=pool.filter(o=>o.x.l===l&&!Object.values(cells).some(v=>v.qi===o.i));
+      if(!cand.length) cand=pool.filter(o=>Math.abs(o.x.l-l)<=1&&!Object.values(cells).some(v=>v.qi===o.i));
+      const fresh=cand.filter(o=>!used.has(o.i));
+      const pick=shuffle(fresh.length?fresh:cand)[0];
+      cells[c.k+l]={qi:pick.i,done:false,by:null};
+    }
+  });
+  const keys=shuffle(Object.keys(cells).filter(k=>!k.endsWith("1")));
+  cells[keys[0]].dbl=true; cells[keys[1]].dbl=true;
+  S.board=cells;
+}
+function boardView(){
+  if(!S.board) newBoard();
+  const left=Object.values(S.board).filter(c=>!c.done).length;
+  let g=CATS.map(c=>`<div class="cat" style="--cc:${c.c}">${c.n}<small>${c.s}</small></div>`).join("");
+  for(let l=1;l<=5;l++) g+=CATS.map(c=>{const cell=S.board[c.k+l];const qq=Q[cell.qi];
+    const tag=qq.t==="case"?"CASO":qq.t==="ddx"?"DDX":"";
+    return `<button class="cell" data-cell="${c.k+l}" ${cell.done?"disabled":""} aria-label="${c.n} por ${l*100}">${tag?`<span class="tag">${tag}</span>`:""}${l*100}${cell.done&&cell.by!=null?`<span class="who">${esc(cell.by)}</span>`:""}</button>`}).join("");
+  return scoreBar()+`<div class="board-wrap"><div class="board">${g}</div></div>
+   <div class="board-foot"><span>Quedan <b class="mono">${left}</b> casillas · elige ${esc(S.teams[S.turn].n)}</span>
+   <span class="row"><button class="btn small ghost" id="skipTurn">Pasar turno</button><button class="btn small ghost" id="newBoard">Tablero nuevo</button>${left===0?`<button class="btn small primary" data-go="end">Ver podio</button>`:""}</span></div>`;
+}
+
+/* ---------- Pregunta ---------- */
+let QS=null, TIMER=null;
+function openCell(key){
+  const cell=S.board[key]; if(cell.done) return;
+  const qq=Q[cell.qi]; const l=+key.slice(-1);
+  const order=shuffle(qq.o.map((t,i)=>({t,ok:i===0})));
+  QS={key,qq,base:l*100,order,team:S.turn,clues:qq.t==="case"?1:0,phase:cell.dbl?"double":"ask",wrong:[],stealer:null,result:null,dbl:!!cell.dbl,time:0,paused:false};
+  S.used=[...new Set([...S.used,cell.qi])];
+  drawQ(); beep();
+}
+function worth(){
+  if(!QS) return 0;
+  let v=QS.base;
+  if(QS.qq.t==="case"){const n=QS.qq.p.length;const extra=QS.clues-1;v=Math.round(v*Math.max(.4,1-extra*(.6/Math.max(1,n-1)))/10)*10}
+  if(QS.dbl) v*=2;
+  return v;
+}
+function startTimer(){
+  clearInterval(TIMER);
+  const total=S.time?(QS.qq.t==="case"?S.time*2:S.time):0;
+  QS.total=total; QS.time=total;
+  if(!total) return;
+  TIMER=setInterval(()=>{
+    if(!QS||QS.paused||(QS.phase!=="ask"&&QS.phase!=="steal-ask")) return;
+    QS.time--; paintTimer();
+    if(QS.time<=0){clearInterval(TIMER);answer(-1)}
+  },1000);
+}
+function paintTimer(){
+  const el=$("#tbar"); if(!el||!QS.total) return;
+  const f=Math.max(0,QS.time/QS.total);
+  el.style.width=(f*100)+"%"; el.style.background=f>.5?"var(--good)":f>.2?"var(--gold)":"var(--bad)";
+  $("#tval").textContent=QS.time;
+}
+function drawQ(){
+  let ov=$("#ov"); if(!ov){ov=document.createElement("div");ov.id="ov";ov.className="overlay";ov.setAttribute("role","dialog");ov.setAttribute("aria-modal","true");document.body.appendChild(ov)}
+  const qq=QS.qq, cat=catOf(qq.c);
+  const answeringIdx=QS.phase==="steal-ask"?QS.stealer:QS.team;
+  const ateam=S.teams[answeringIdx];
+  if(QS.phase==="double"){
+    ov.innerHTML=`<div class="qbox"><div class="double"><span class="eyebrow">${cat.n} · ${QS.base}</span><h3>¡Doble o nada!</h3>
+     <p style="font-size:18px;max-width:46ch">${esc(S.teams[QS.team].n)}: si aciertas ganas <b class="mono">${QS.base*2}</b>. Si fallas pierdes <b class="mono">${QS.base}</b>. Aquí no hay robo.</p>
+     <button class="btn primary" id="goDbl">Ver la pregunta</button></div></div>`;
+    $("#goDbl").onclick=()=>{QS.phase="ask";drawQ();startTimer()};$("#goDbl").focus();return;
+  }
+  const locked=QS.phase==="reveal";
+  const optHTML=QS.order.map((o,i)=>{
+    let cls="opt"; if(QS.wrong.includes(i)) cls+=" wrong"; if(locked&&o.ok) cls+=" right";
+    const dis=locked||QS.wrong.includes(i)||QS.phase==="steal-pick";
+    return `<button class="${cls}" data-opt="${i}" ${dis?"disabled":""}><span class="l">${L[i]}</span><span>${esc(o.t)}</span></button>`}).join("");
+  const typeBadge=qq.t==="case"?`<span class="badge case">Caso clínico</span>`:qq.t==="ddx"?`<span class="badge ddx">Diagnóstico diferencial</span>`:`<span class="badge">Pregunta</span>`;
+  let clues="";
+  if(qq.t==="case"){
+    const shown=locked?qq.p.length:QS.clues;
+    clues=`<ol class="clues">${qq.p.slice(0,shown).map((p,i)=>`<li><b>${i+1}</b><span>${esc(p)}</span></li>`).join("")}</ol>`;
+    if(!locked&&QS.clues<qq.p.length&&QS.phase==="ask") clues+=`<div class="row"><button class="btn small" id="moreClue">Siguiente pista (P)</button><span style="color:var(--muted);font-size:14px">${qq.p.length-QS.clues} pistas más · cada pista baja el valor</span></div>`;
+  }
+  let status="";
+  if(QS.phase==="ask") status=`<div class="answering" style="--tc:${tc(QS.team)}">Contesta ${esc(ateam.n)}</div>`;
+  if(QS.phase==="steal-pick") status=`<div class="msg no">Incorrecto${QS.timeout?" (se acabó el tiempo)":""}. ¿Algún equipo quiere robar por <span class="mono">${Math.round(worth()/2)}</span>?</div>
+     <div class="steal">${S.teams.map((t,i)=>i===QS.team?"":`<button class="tb" style="--tc:${tc(i)}" data-steal="${i}">${esc(t.n)}</button>`).join("")}<button class="btn small ghost" id="noSteal">Nadie, ver respuesta</button></div>`;
+  if(QS.phase==="steal-ask") status=`<div class="answering" style="--tc:${tc(QS.stealer)}">Roba ${esc(ateam.n)} por <span class="mono">${Math.round(worth()/2)}</span></div>`;
+  if(locked){
+    const r=QS.result;
+    status=`<div class="msg ${r.ok?"ok":r.pts<0?"no":"info"}">${r.text}</div>
+      <div class="exp"><b>Por qué:</b> ${esc(qq.e)}<span class="src">Fuente: ${esc(qq.s)}</span></div>
+      <div class="row" style="justify-content:flex-end"><button class="btn primary" id="nextQ">Siguiente turno</button></div>`;
+  }
+  const showTimer=QS.total&&(QS.phase==="ask"||QS.phase==="steal-ask");
+  ov.innerHTML=`<div class="qbox">
+    <div class="qhead"><div class="row">${typeBadge}<span class="eyebrow" style="color:${cat.c}">${cat.n}</span></div>
+     <div class="row">${showTimer?`<div class="timer"><div class="bar"><i id="tbar"></i></div><span class="t" id="tval">${QS.time}</span><button class="btn small ghost" id="pauseBtn">${QS.paused?"Seguir":"Pausa"}</button></div>`:""}
+     <span class="worth">${QS.dbl?"×2 · ":""}${worth()} pts</span></div></div>
+    ${clues}
+    <div class="qtext">${esc(qq.q)}</div>
+    <div class="opts">${optHTML}</div>
+    ${status}
+  </div>`;
+  paintTimer();
+  ov.querySelectorAll("[data-opt]").forEach(b=>b.onclick=()=>answer(+b.dataset.opt));
+  const mc=$("#moreClue"); if(mc) mc.onclick=moreClue;
+  const pb=$("#pauseBtn"); if(pb) pb.onclick=()=>{QS.paused=!QS.paused;pb.textContent=QS.paused?"Seguir":"Pausa"};
+  ov.querySelectorAll("[data-steal]").forEach(b=>b.onclick=()=>{QS.stealer=+b.dataset.steal;QS.phase="steal-ask";drawQ();startTimer()});
+  const ns=$("#noSteal"); if(ns) ns.onclick=()=>finish({ok:false,pts:0,text:"Nadie robó. La respuesta correcta está en verde."});
+  const nx=$("#nextQ"); if(nx){nx.onclick=closeQ;nx.focus()}
+}
+function moreClue(){if(QS.qq.t==="case"&&QS.clues<QS.qq.p.length&&QS.phase==="ask"){QS.clues++;drawQ()}}
+function answer(i){
+  if(!QS) return;
+  const opt=QS.order[i];
+  QS.timeout=i<0;
+  if(QS.phase==="ask"){
+    if(opt&&opt.ok){finish({ok:true,pts:worth(),team:QS.team,text:`¡Correcto! +${worth()} para ${esc(S.teams[QS.team].n)}.`});return}
+    if(i>=0) QS.wrong.push(i);
+    beep("no");
+    if(QS.dbl){finish({ok:false,pts:-QS.base,team:QS.team,text:`Incorrecto. ${esc(S.teams[QS.team].n)} pierde ${QS.base}.`});return}
+    if(S.teams.length<2||QS.wrong.length>=3){finish({ok:false,pts:0,text:"Incorrecto. La respuesta correcta está en verde."});return}
+    QS.phase="steal-pick";clearInterval(TIMER);drawQ();return;
+  }
+  if(QS.phase==="steal-ask"){
+    const half=Math.round(worth()/2);
+    if(opt&&opt.ok){finish({ok:true,pts:half,team:QS.stealer,text:`¡Robo exitoso! +${half} para ${esc(S.teams[QS.stealer].n)}.`});return}
+    if(i>=0) QS.wrong.push(i);
+    finish({ok:false,pts:0,text:"Tampoco. La respuesta correcta está en verde."});
+  }
+}
+function finish(r){
+  clearInterval(TIMER);
+  QS.result=r; QS.phase="reveal";
+  if(r.team!=null&&r.pts){S.teams[r.team].p+=r.pts}
+  const cell=S.board[QS.key]; cell.done=true; cell.by=r.ok&&r.team!=null?S.teams[r.team].n:null;
+  beep(r.ok?"ok":"no");
+  save(); drawQ();
+  if(r.team!=null){const sb=document.querySelector("#team"+r.team+" .pts");if(sb){sb.textContent=S.teams[r.team].p;sb.classList.remove("pop");void sb.offsetWidth;sb.classList.add("pop")}}
+}
+function closeQ(){
+  clearInterval(TIMER); QS=null; const ov=$("#ov"); if(ov) ov.remove();
+  S.turn=(S.turn+1)%S.teams.length;
+  const left=Object.values(S.board).filter(c=>!c.done).length;
+  if(left===0) S.view="end";
+  render();
+}
+document.addEventListener("keydown",e=>{
+  if(QS){
+    if(e.target.tagName==="INPUT") return;
+    if(/^[1-4]$/.test(e.key)){const b=document.querySelector(`[data-opt="${+e.key-1}"]`);if(b&&!b.disabled){e.preventDefault();b.click()}}
+    else if(e.key.toLowerCase()==="p"){moreClue()}
+    else if(e.key===" "&&QS.total&&(QS.phase==="ask"||QS.phase==="steal-ask")){e.preventDefault();const pb=$("#pauseBtn");if(pb)pb.click()}
+    return;
+  }
+  if(FL&&FL.running&&(e.key==="ArrowLeft"||e.key==="ArrowRight"||e.key==="1"||e.key==="2")){e.preventDefault();flashAnswer(e.key==="ArrowLeft"||e.key==="1"?"a":"b")}
+});
+
+/* ---------- Relámpago ---------- */
+let FL=null, FT=null;
+function flashView(){
+  if(FL&&FL.running){
+    const it=FL.deck[FL.idx];
+    return scoreBar(false)+`<section class="card flash">
+     <div class="flash-stats"><span>${esc(S.teams[FL.team].n)}</span><span style="color:var(--good)">✓ ${FL.ok}</span><span style="color:var(--bad)">✗ ${FL.bad}</span></div>
+     <div class="big-t" id="ftime">${FL.t}</div>
+     <div class="set">${esc(it.set)}</div>
+     <div class="stmt">${esc(it.q)}</div>
+     <div class="ab"><button data-ab="a" id="abA">${esc(it.la)}</button><button data-ab="b" id="abB">${esc(it.lb)}</button></div>
+     <p style="text-align:center;color:var(--muted);font-size:14px;margin:0">Teclas <span class="kbd">←</span> y <span class="kbd">→</span> también funcionan</p>
+    </section>`;
+  }
+  const last=FL&&FL.done?`<div class="msg ${FL.score>=0?"ok":"no"}">${esc(S.teams[FL.team].n)}: ${FL.ok} aciertos y ${FL.bad} errores → ${FL.score>=0?"+":""}${FL.score} puntos.</div>
+    ${FL.miss.length?`<div class="exp"><b>Para repasar:</b><ul style="margin:6px 0 0;padding-left:20px">${FL.miss.map(m=>`<li>${esc(m.q)} → <b>${esc(m.ans)}</b></li>`).join("")}</ul></div>`:""}`:"";
+  return scoreBar(false)+`<section class="card flash">
+   <span class="eyebrow">Ronda relámpago</span>
+   <h2 style="font-size:clamp(26px,4vw,40px)">45 segundos. Esto o aquello.</h2>
+   <p style="color:var(--muted);margin:0">Crohn o CUCI, osmótica o secretora, inflamatoria o no, Roma IV o Roma V y verdadero o falso. +50 por acierto, −25 por error.</p>
+   ${last}
+   <div class="row">${S.teams.map((t,i)=>`<button class="tb btn" style="border:2px solid ${tc(i)}" data-fteam="${i}">Juega ${esc(t.n)}</button>`).join("")}</div>
+  </section>`;
+}
+function startFlash(team){
+  const deck=shuffle(FLASH.flatMap(s=>s.items.map(([q,a])=>({set:s.set,q,a,la:s.a,lb:s.b}))));
+  FL={team,deck,idx:0,ok:0,bad:0,t:45,running:true,miss:[]};
+  render();
+  clearInterval(FT);
+  FT=setInterval(()=>{FL.t--;const el=$("#ftime");if(el)el.textContent=FL.t;if(FL.t<=0)endFlash()},1000);
+}
+let flashLock=false;
+function flashAnswer(ch){
+  if(!FL||!FL.running||flashLock) return;
+  const it=FL.deck[FL.idx]; const ok=ch===it.a;
+  if(ok){FL.ok++;beep("ok")}else{FL.bad++;FL.miss.push({q:it.q,ans:it.a==="a"?it.la:it.lb});beep("no")}
+  const btn=$(ch==="a"?"#abA":"#abB"); if(btn) btn.classList.add(ok?"right":"wrong");
+  if(!ok){const r=$(it.a==="a"?"#abA":"#abB"); if(r) r.classList.add("right")}
+  flashLock=true;
+  setTimeout(()=>{flashLock=false;FL.idx++;if(FL.idx>=FL.deck.length){endFlash();return}render()},ok?250:700);
+}
+function endFlash(){
+  clearInterval(FT); if(!FL||!FL.running) return;
+  FL.running=false;FL.done=true;FL.score=FL.ok*50-FL.bad*25;
+  S.teams[FL.team].p+=FL.score; render();
+}
+
+/* ---------- Estudio ---------- */
+let SF={q:"",c:"all",t:"all"};
+function studyView(){
+  return `<section class="study-tools"><input id="sq" placeholder="Buscar: calprotectina, HLA, TMP-SMX…" value="${esc(SF.q)}" aria-label="Buscar">
+   <select id="sc" aria-label="Tema"><option value="all">Todos los temas</option>${CATS.map(c=>`<option value="${c.k}" ${SF.c===c.k?"selected":""}>${c.n}</option>`).join("")}</select>
+   <select id="st" aria-label="Tipo"><option value="all">Todo</option><option value="case" ${SF.t==="case"?"selected":""}>Casos clínicos</option><option value="ddx" ${SF.t==="ddx"?"selected":""}>Diferenciales</option><option value="q" ${SF.t==="q"?"selected":""}>Preguntas</option></select></section>
+   <div class="slist" id="slist">${studyItems()}</div>`;
+}
+function studyItems(){
+  const t=SF.q.trim().toLowerCase();
+  const items=Q.filter(x=>(SF.c==="all"||x.c===SF.c)&&(SF.t==="all"||x.t===SF.t)&&(!t||JSON.stringify(x).toLowerCase().includes(t)));
+  if(!items.length) return `<p style="color:var(--muted)">No hay preguntas con ese filtro.</p>`;
+  return items.map(x=>{const c=catOf(x.c);return `<article class="sitem" style="--cc:${c.c}">
+    <span class="eyebrow">${c.n} · ${x.l*100} · ${x.t==="case"?"Caso":x.t==="ddx"?"Diferencial":"Pregunta"}</span>
+    ${x.t==="case"?`<ol>${x.p.map(p=>`<li>${esc(p)}</li>`).join("")}</ol>`:""}
+    <h4>${esc(x.q)}</h4>
+    <details><summary>Ver respuesta</summary><p class="ans">${esc(x.o[0])}</p><p class="ex">${esc(x.e)}</p><p class="ex"><i>${esc(x.s)}</i></p></details>
+   </article>`}).join("");
+}
+
+/* ---------- Podio ---------- */
+function endView(){
+  const r=S.teams.map((t,i)=>({...t,i})).sort((a,b)=>b.p-a.p);
+  const order=r.length>=3?[r[1],r[0],r[2]]:r.length===2?[r[1],r[0]]:[r[0]];
+  const h={0:220,1:160,2:120};
+  return `<section class="card" style="text-align:center"><span class="eyebrow">Fin del tablero</span>
+   <h2 style="font-size:clamp(30px,5vw,52px);margin-top:6px">Gana ${esc(r[0].n)}</h2>
+   <div class="podium">${order.map(t=>{const place=r.indexOf(t);return `<div class="pod" style="--tc:${tc(t.i)}"><b>${esc(t.n)}</b><span class="p">${t.p} pts</span><div class="blk" style="height:${h[place]||100}px">${place+1}</div></div>`}).join("")}</div>
+   ${r.length>3?`<p style="color:var(--muted)">${r.slice(3).map((t,k)=>`${k+4}. ${esc(t.n)} (${t.p})`).join(" · ")}</p>`:""}
+   <div class="row" style="justify-content:center;margin-top:16px"><button class="btn primary" id="newBoard">Tablero nuevo</button><button class="btn" data-go="flash">Ronda relámpago</button><button class="btn ghost" data-go="study">Repasar en estudio</button></div>
+  </section>`;
+}
+
+/* ---------- Eventos ---------- */
+function bind(){
+  document.querySelectorAll("[data-nav],[data-go]").forEach(b=>b.onclick=()=>{collectTeams();if(FL&&FL.running)endFlash();S.view=b.dataset.nav||b.dataset.go;render();window.scrollTo(0,0)});
+  document.querySelectorAll("[data-adj]").forEach(b=>b.onclick=()=>{const i=+b.dataset.adj;S.teams[i].p+=+b.dataset.d;render()});
+  document.querySelectorAll("[data-cell]").forEach(b=>b.onclick=()=>openCell(b.dataset.cell));
+  document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{collectTeams();S.teams.splice(+b.dataset.del,1);S.turn=0;render()});
+  document.querySelectorAll("[data-fteam]").forEach(b=>b.onclick=()=>startFlash(+b.dataset.fteam));
+  document.querySelectorAll("[data-ab]").forEach(b=>b.onclick=()=>flashAnswer(b.dataset.ab));
+  const add=$("#addTeam"); if(add) add.onclick=()=>{collectTeams();const n=S.teams.length;S.teams.push({n:"Equipo "+TEAM_NAMES[n%TEAM_NAMES.length],p:0});render()};
+  const rs=$("#resetScores"); if(rs) rs.onclick=()=>{collectTeams();S.teams.forEach(t=>t.p=0);S.turn=0;render()};
+  const ts=$("#timeSel"); if(ts) ts.onchange=()=>{S.time=+ts.value;save()};
+  document.querySelectorAll(".team-line input").forEach(inp=>inp.oninput=()=>{collectTeams();save()});
+  const nb=$("#newBoard"); if(nb) nb.onclick=()=>{newBoard();S.view="board";render()};
+  const sk=$("#skipTurn"); if(sk) sk.onclick=()=>{S.turn=(S.turn+1)%S.teams.length;render()};
+  const sq=$("#sq"); if(sq) sq.oninput=()=>{SF.q=sq.value;$("#slist").innerHTML=studyItems()};
+  const sc=$("#sc"); if(sc) sc.onchange=()=>{SF.c=sc.value;$("#slist").innerHTML=studyItems()};
+  const st=$("#st"); if(st) st.onchange=()=>{SF.t=st.value;$("#slist").innerHTML=studyItems()};
+}
+function collectTeams(){S.teams.forEach((t,i)=>{const el=$("#tn"+i);if(el&&el.value.trim())t.n=el.value.trim()})}
+if(S.turn>=S.teams.length) S.turn=0;
+render();
+</script>
+
+</body></html>

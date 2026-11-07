@@ -1,0 +1,1313 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Quiz de Pruebas Hepáticas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/gaa65f3420f.css">
+<style>
+/* Layout: hoja de laboratorio. Cabecera tipo reporte, una tarjeta de pregunta, banda de resultado al final. */
+:root {
+  --bg: #f3f5f2;
+  --paper: #ffffff;
+  --ink: #1b2620;
+  --muted: #5d6b63;
+  --line: #d8ded9;
+  --accent: #2c6a4c;       /* verde biliar */
+  --accent-soft: #e2efe7;
+  --bili: #b9800c;         /* ámbar bilirrubina */
+  --bili-soft: #fbf1db;
+  --ok: #1f7a4a;
+  --ok-soft: #e1f3e8;
+  --bad: #b23a2e;
+  --bad-soft: #fbe6e2;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121815; --paper: #1a221e; --ink: #e5ece7; --muted: #9aaba1; --line: #2c3832;
+  --accent: #6cc196; --accent-soft: #1f3329; --bili: #e2b04a; --bili-soft: #352a12;
+  --ok: #6fd39d; --ok-soft: #173325; --bad: #f08a7c; --bad-soft: #3a1f1b; color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --bg: #121815; --paper: #1a221e; --ink: #e5ece7; --muted: #9aaba1; --line: #2c3832;
+  --accent: #6cc196; --accent-soft: #1f3329; --bili: #e2b04a; --bili-soft: #352a12;
+  --ok: #6fd39d; --ok-soft: #173325; --bad: #f08a7c; --bad-soft: #3a1f1b; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 20px; }
+h1, h2 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.01em; }
+h2 { font-size: 22px; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.ref { color: var(--muted); font-size: 15px; margin: 6px 0 0; }
+.ref em { font-style: italic; }
+
+/* Cabecera de reporte */
+.report { border-top: 3px solid var(--accent); padding-top: 14px; display: grid; gap: 10px; }
+.panel { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-family: var(--f-mono); font-size: 12px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); background: var(--paper); }
+
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 22px; display: grid; gap: 16px; min-width: 0; }
+
+/* Inicio */
+.start p { margin: 0; }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; }
+button { font: inherit; cursor: pointer; }
+.btn { font-family: var(--f-body); font-weight: 600; font-size: 16px; padding: 11px 18px; border-radius: 8px; border: 1px solid var(--accent); background: var(--accent); color: var(--paper); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:disabled { opacity: .45; cursor: default; }
+.btn:focus-visible, .opt:focus-visible { outline: 3px solid var(--bili); outline-offset: 2px; }
+
+/* Barra de progreso */
+.progress { display: grid; gap: 6px; }
+.progress-top { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); flex-wrap: wrap; }
+.bar { display: grid; grid-template-columns: repeat(50, 1fr); gap: 2px; height: 8px; }
+.bar i { background: var(--line); border-radius: 1px; }
+.bar i.ok { background: var(--ok); }
+.bar i.bad { background: var(--bad); }
+.bar i.cur { background: var(--bili); }
+
+/* Pregunta */
+.qhead { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+.topic { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.qtext { font-size: 19px; font-weight: 600; margin: 0; }
+.opts { display: grid; gap: 10px; }
+.opt { display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; text-align: left; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); line-height: 1.4; }
+.opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.opt .k { font-family: var(--f-mono); font-size: 13px; width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; color: var(--muted); }
+.opt:disabled { cursor: default; }
+.opt.correct { border-color: var(--ok); background: var(--ok-soft); }
+.opt.correct .k { background: var(--ok); color: var(--paper); border-color: var(--ok); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .k { background: var(--bad); color: var(--paper); border-color: var(--bad); }
+.opt.dim { opacity: .6; }
+
+.explain { border-left: 3px solid var(--bili); background: var(--bili-soft); padding: 12px 14px; border-radius: 0 8px 8px 0; display: grid; gap: 6px; }
+.explain .verdict { font-weight: 600; }
+.explain .verdict.ok { color: var(--ok); }
+.explain .verdict.bad { color: var(--bad); }
+.explain p { margin: 0; }
+.explain .src { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.navrow { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.hint { font-size: 13px; color: var(--muted); }
+
+/* Resultados */
+.score { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.score .big { font-family: var(--f-display); font-size: 64px; font-weight: 700; line-height: 1; }
+.score .of { font-family: var(--f-mono); color: var(--muted); }
+.grade { font-weight: 600; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { font-family: var(--f-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+td.n { font-family: var(--f-mono); text-align: right; white-space: nowrap; }
+.meter { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; min-width: 60px; }
+.meter b { display: block; height: 100%; background: var(--accent); }
+.meter b.low { background: var(--bad); }
+.meter b.mid { background: var(--bili); }
+.tablewrap { overflow-x: auto; }
+.review { display: grid; gap: 14px; }
+.ritem { border-top: 1px solid var(--line); padding-top: 12px; display: grid; gap: 6px; }
+.ritem p { margin: 0; }
+.ritem .yours { color: var(--bad); }
+.ritem .right { color: var(--ok); font-weight: 600; }
+.ritem .why { color: var(--muted); font-size: 15px; }
+footer { font-size: 13px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .card.enter { animation: rise .22s ease-out; } }
+@keyframes rise { from { transform: translateY(6px); opacity: .6; } to { transform: none; opacity: 1; } }
+@media (max-width: 480px) { .card { padding: 16px; } .qtext { font-size: 18px; } }
+
+/* Barra de herramientas: sonido + Pomodoro (fija arriba al hacer scroll) */
+.tools { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 8px 0; background: var(--bg); border-bottom: 1px solid var(--line); }
+.tool { font-family: var(--f-body); font-weight: 600; font-size: 14px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); min-height: 34px; }
+.tool:hover { border-color: var(--accent); }
+.tool.icon { padding: 6px 10px; }
+.tool:focus-visible { outline: 3px solid var(--bili); outline-offset: 2px; }
+.pomo { --p: 0; position: relative; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 3px 4px 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); overflow: hidden; }
+.pomo::after { content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: calc(var(--p) * 100%); background: var(--bad); transition: width .5s linear; }
+.pomo[data-mode="short"]::after, .pomo[data-mode="long"]::after { background: var(--ok); }
+.pomo-label { font-family: var(--f-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.pomo[data-mode="focus"] .pomo-label { color: var(--bad); }
+.pomo[data-mode="short"] .pomo-label, .pomo[data-mode="long"] .pomo-label { color: var(--ok); }
+.pomo-time { font-size: 20px; min-width: 62px; }
+.pomo-count { font-size: 13px; color: var(--muted); padding-right: 6px; }
+.pomo-aviso { flex-basis: 100%; font-size: 14px; font-weight: 600; color: var(--accent); }
+
+/* Juego */
+.btn.bili { background: var(--bili); border-color: var(--bili); color: var(--paper); }
+.game-promo { border-color: var(--bili); background: linear-gradient(135deg, var(--bili-soft), var(--paper) 70%); }
+.game-promo p { margin: 0; }
+.hud { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.hud > div { display: grid; gap: 2px; }
+.hud-t { text-align: right; }
+.hud-n { font-size: 28px; font-weight: 500; line-height: 1.1; }
+.mult { font-style: normal; font-size: 16px; color: var(--paper); background: var(--bili); padding: 1px 6px; border-radius: 4px; vertical-align: middle; }
+.tbar-wrap { position: relative; }
+.flash { position: absolute; left: 50%; top: -12px; transform: translateX(-50%); font-size: 24px; font-weight: 500; pointer-events: none; padding: 0 8px; border-radius: 6px; background: var(--paper); }
+.flash.ok { color: var(--ok); } .flash.bad { color: var(--bad); }
+.tbar { height: 10px; background: var(--line); border-radius: 5px; overflow: hidden; }
+.tbar b { display: block; height: 100%; background: var(--accent); border-radius: 5px; }
+.tbar b.hot { background: var(--bad); }
+@media (prefers-reduced-motion: no-preference) {
+  .flash { animation: floatup .65s ease-out forwards; }
+  .card.pulse-ok { animation: pulse .35s ease-out; }
+  .card.shake { animation: shake .35s ease-in-out; }
+  .tbar b.hot { animation: blink .6s ease-in-out infinite alternate; }
+}
+@keyframes floatup { from { opacity: 1; transform: translate(-50%, 6px); } to { opacity: 0; transform: translate(-50%, -18px); } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--ok); } 100% { box-shadow: 0 0 0 10px transparent; } }
+@keyframes shake { 0%,100% { transform: none; } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+@keyframes blink { to { opacity: .55; } }
+@media (max-width: 480px) { .hud-n { font-size: 22px; } }
+</style>
+
+<div class="wrap">
+  <header class="report">
+    <div class="eyebrow">Gastro LMR3053 · Bloque III · Hígado</div>
+    <h1>Quiz de pruebas hepáticas</h1>
+    <p class="ref">50 preguntas basadas en Kwo PY, Masuoka HC, Schaefer EA, Friedman LS. <em>Evaluation of Abnormal Liver Biochemical Test Results.</em> Gastroenterology 2026;170:1457–1472.</p>
+    <div class="panel" aria-label="Pruebas del panel hepático">
+      <span class="chip">ALT</span><span class="chip">AST</span><span class="chip">FA</span><span class="chip">GGT</span><span class="chip">BT/BD</span><span class="chip">TP/INR</span><span class="chip">Alb</span>
+    </div>
+    <div class="tools" id="tools" aria-label="Sonido y temporizador"></div>
+  </header>
+  <main id="app"></main>
+  <footer>Cada explicación cita la sección, figura o tabla del artículo de donde sale. Tu avance, tu récord y el Pomodoro se guardan en este navegador.</footer>
+</div>
+
+<script>
+// Sonido (WebAudio, sin archivos), música del juego y temporizador Pomodoro.
+const lsGet = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+
+const Snd = (() => {
+  let ctx = null, master = null, noise = null;
+  let muted = lsGet("qph-mute") === "1";
+  function ac() {
+    if (!ctx) {
+      const C = window.AudioContext || window.webkitAudioContext;
+      if (!C) return null;
+      ctx = new C();
+      master = ctx.createGain();
+      master.gain.value = muted ? 0 : 0.6;
+      master.connect(ctx.destination);
+    }
+    if (ctx.state === "suspended") ctx.resume();
+    return ctx;
+  }
+  // Nota simple con envolvente corta; `at` es tiempo absoluto del contexto.
+  function tone(f, dur, o = {}) {
+    const c = ac(); if (!c) return;
+    const t = o.at || c.currentTime, vol = o.vol ?? 0.2;
+    const osc = c.createOscillator(), g = c.createGain();
+    osc.type = o.type || "sine";
+    osc.frequency.setValueAtTime(f, t);
+    if (o.slide) osc.frequency.exponentialRampToValueAtTime(o.slide, t + dur);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + 0.005);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    osc.connect(g); g.connect(o.dest || master);
+    osc.start(t); osc.stop(t + dur + 0.02);
+  }
+  function hat(at, dest, vol = 0.05) {
+    const c = ac(); if (!c) return;
+    if (!noise) {
+      noise = c.createBuffer(1, c.sampleRate * 0.1, c.sampleRate);
+      const d = noise.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    }
+    const s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = noise; f.type = "highpass"; f.frequency.value = 7000;
+    g.gain.setValueAtTime(vol, at); g.gain.exponentialRampToValueAtTime(0.0001, at + 0.05);
+    s.connect(f); f.connect(g); g.connect(dest || master);
+    s.start(at); s.stop(at + 0.06);
+  }
+  const seq = (notas, paso, o) => { const c = ac(); if (!c) return; notas.forEach((f, i) => tone(f, o.dur || paso * 1.6, { ...o, at: c.currentTime + i * paso })); };
+  return {
+    ac, tone, hat,
+    get master() { ac(); return master; },
+    click() { if (muted) return; tone(1250, 0.045, { type: "triangle", vol: 0.16, slide: 820 }); },
+    ok() { if (!muted) seq([660, 990], 0.07, { type: "sine", vol: 0.18 }); },
+    bad() { if (!muted) tone(220, 0.22, { type: "sawtooth", vol: 0.07, slide: 140 }); },
+    chime() { if (!muted) seq([784, 988, 1175, 1568], 0.16, { type: "sine", vol: 0.2, dur: 0.6 }); },
+    fin() { if (!muted) seq([523, 659, 784, 1047, 784, 1047], 0.11, { type: "square", vol: 0.06 }); },
+    get muted() { return muted; },
+    toggle() {
+      muted = !muted; lsSet("qph-mute", muted ? "1" : "0");
+      if (master) master.gain.setTargetAtTime(muted ? 0 : 0.6, ctx.currentTime, 0.02);
+      return muted;
+    },
+  };
+})();
+
+// Clic en cualquier botón de la página (también los que se crean después).
+document.addEventListener("click", (ev) => {
+  const b = ev.target.closest("button");
+  if (b && !b.disabled && !b.hasAttribute("data-mudo")) Snd.click();
+}, true);
+
+// Música de 8 bits para el juego: Lam–Fa–Do–Sol con arpegio, bajo y hi-hat.
+const Musica = (() => {
+  const PROG = [[57, 60, 64], [53, 57, 60], [48, 52, 55], [55, 59, 62]];
+  const ARP = [0, 1, 2, 1, 0, 2, 1, 2];
+  const mtof = (m) => 440 * Math.pow(2, (m - 69) / 12);
+  let timer = null, step = 0, next = 0, bpm = 120, bus = null;
+  let on = lsGet("qph-musica") !== "0";
+  function sched() {
+    const c = Snd.ac();
+    while (next < c.currentTime + 0.12) {
+      const dur = 60 / bpm / 2, ch = PROG[Math.floor(step / 8) % 4];
+      Snd.tone(mtof(ch[ARP[step % 8]] + 12), dur * 0.9, { type: "square", vol: 0.035, at: next, dest: bus });
+      if (step % 4 === 0) Snd.tone(mtof(ch[0] - 12), dur * 3, { type: "triangle", vol: 0.16, at: next, dest: bus });
+      if (step % 2 === 1) Snd.hat(next, bus, 0.03);
+      if (step % 8 === 4) Snd.tone(110, 0.12, { type: "sine", vol: 0.18, slide: 50, at: next, dest: bus });
+      step++; next += dur;
+    }
+  }
+  return {
+    get on() { return on; },
+    start() {
+      if (!on || timer) return;
+      const c = Snd.ac(); if (!c) return;
+      bus = c.createGain(); bus.gain.value = 1; bus.connect(Snd.master);
+      step = 0; next = c.currentTime + 0.05; bpm = 120;
+      timer = setInterval(sched, 25);
+    },
+    stop() {
+      if (!timer) return;
+      clearInterval(timer); timer = null;
+      const b = bus, c = Snd.ac();
+      b.gain.setTargetAtTime(0, c.currentTime, 0.05);
+      setTimeout(() => b.disconnect(), 400);
+    },
+    tempo(b) { bpm = b; },
+    toggle() { on = !on; lsSet("qph-musica", on ? "1" : "0"); if (!on) this.stop(); return on; },
+  };
+})();
+
+// Pomodoro: 25 min enfoque, 5 de descanso, 15 de descanso largo cada 4.
+const Pomodoro = (() => {
+  const KEY = "qph-pomodoro";
+  const MIN = { focus: 25, short: 5, long: 15 };
+  const NOMBRE = { focus: "Enfoque", short: "Descanso", long: "Descanso largo" };
+  const TITULO = document.title;
+  let P = null;
+  try { P = JSON.parse(lsGet(KEY)); } catch (e) {}
+  if (!P || !MIN[P.mode]) P = { mode: "focus", running: false, remain: MIN.focus * 60000, endAt: 0, count: 0 };
+  let el = null, aviso = "";
+
+  const save = () => lsSet(KEY, JSON.stringify(P));
+  const restante = () => (P.running ? Math.max(0, P.endAt - Date.now()) : P.remain);
+  const fmt = (ms) => { const s = Math.ceil(ms / 1000); return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`; };
+
+  function cambiar(mode) { P.mode = mode; P.running = false; P.remain = MIN[mode] * 60000; save(); }
+  function terminar() {
+    if (P.mode === "focus") {
+      P.count++;
+      cambiar(P.count % 4 === 0 ? "long" : "short");
+      aviso = "¡Pomodoro terminado! Toca descansar.";
+    } else {
+      cambiar("focus");
+      aviso = "Descanso terminado. A estudiar.";
+    }
+    Snd.chime();
+    pintar();
+  }
+  function tick() {
+    if (!el) return;
+    if (P.running && restante() <= 0) return terminar();
+    el.querySelector(".pomo-time").textContent = fmt(restante());
+    const total = MIN[P.mode] * 60000;
+    el.style.setProperty("--p", (1 - restante() / total).toFixed(4));
+    document.title = P.running ? `${fmt(restante())} ${NOMBRE[P.mode]} · ${TITULO}` : TITULO;
+  }
+  function pintar() {
+    el.dataset.mode = P.mode;
+    el.innerHTML = `
+      <span class="pomo-label">${NOMBRE[P.mode]}</span>
+      <span class="pomo-time mono" aria-live="off"></span>
+      <button class="tool" id="pomo-go">${P.running ? "Pausa" : "Iniciar"}</button>
+      <button class="tool icon" id="pomo-reset" title="Reiniciar" aria-label="Reiniciar">↺</button>
+      <button class="tool icon" id="pomo-skip" title="Saltar a la siguiente fase" aria-label="Saltar fase">⏭</button>
+      <span class="pomo-count mono" title="Pomodoros completados">🍅 ${P.count}</span>
+      ${aviso ? `<span class="pomo-aviso" role="status">${aviso}</span>` : ""}`;
+    el.querySelector("#pomo-go").onclick = () => {
+      aviso = "";
+      if (P.running) { P.remain = restante(); P.running = false; }
+      else { P.endAt = Date.now() + P.remain; P.running = true; }
+      save(); pintar();
+    };
+    el.querySelector("#pomo-reset").onclick = () => { aviso = ""; cambiar(P.mode); pintar(); };
+    el.querySelector("#pomo-skip").onclick = () => { aviso = ""; cambiar(P.mode === "focus" ? "short" : "focus"); pintar(); };
+    tick();
+  }
+  return {
+    montar(nodo) {
+      el = nodo;
+      if (P.running && restante() <= 0) terminar(); else pintar();
+      setInterval(tick, 500);
+    },
+  };
+})();
+
+</script>
+<script>
+// 50 preguntas basadas en Kwo PY, Masuoka HC, Schaefer EA, Friedman LS.
+// Evaluation of Abnormal Liver Biochemical Test Results. Gastroenterology 2026;170:1457–1472.
+// En cada pregunta la opción correcta es o[0]; la página baraja las opciones al mostrarlas.
+const TEMAS = {
+  A: "Aminotransferasas",
+  B: "Fosfatasa alcalina y colestasis",
+  C: "Pruebas de función hepática",
+  D: "Abordaje del paciente",
+  E: "Causas extrahepáticas",
+  F: "Fibrosis no invasiva",
+  G: "Escalas pronósticas",
+  H: "Inmunoglobulinas",
+  I: "Hepatotoxicidad por fármacos (DILI)",
+  J: "Paciente hospitalizado y en UCI",
+  K: "Quimioterapia e inhibidores de checkpoint",
+  L: "Embarazo"
+};
+
+const PREGUNTAS = [
+  {
+    "t": "A",
+    "q": "¿Cuál afirmación sobre la localización y la vida media de ALT y AST es correcta?",
+    "o": [
+      "La ALT es sobre todo hepática y citosólica (vida media ≈47 h); la AST es en 80% mitocondrial y su vida media es ≈17 h",
+      "La AST es sobre todo hepática y citosólica (vida media ≈47 h); la ALT es en 80% mitocondrial",
+      "Ambas tienen vida media ≈17 h y la AST es más específica de hígado por estar en la mitocondria",
+      "La ALT abunda en músculo cardíaco y esquelético, por eso es menos específica que la AST"
+    ],
+    "e": "La ALT se localiza principalmente en el citosol del hepatocito (vida media sérica ≈47 h). La AST está también en corazón, músculo esquelético, riñón y cerebro, tiene una vida media más corta (≈17 h) y el 80% de su actividad es mitocondrial; por eso es menos específica que la ALT.",
+    "s": "Sección «Aminotransferases»"
+  },
+  {
+    "t": "A",
+    "q": "Un análisis combinado de más de 400,000 personas sin enfermedad metabólica estimó el percentil 95 del límite superior normal (LSN) de ALT en:",
+    "o": [
+      "36 U/L en hombres y 28 U/L en mujeres (32 U/L global)",
+      "40 U/L en hombres y 35 U/L en mujeres (38 U/L global)",
+      "45 U/L en hombres y 35 U/L en mujeres (40 U/L global)",
+      "50 U/L en hombres y 40 U/L en mujeres (45 U/L global)"
+    ],
+    "e": "El LSN de ALT fue 36 U/L en hombres y 28 U/L en mujeres (32 U/L global), y subió a 40 U/L en personas con sobrepeso y a 36 U/L en diabéticos tipo 2. Otra guía propone 29–33 U/L (hombres) y 19–25 U/L (mujeres); la Figura 1 usa 33 y 25 U/L.",
+    "s": "Sección «Aminotransferases»"
+  },
+  {
+    "t": "A",
+    "q": "Una paciente tiene ALT de 8 veces el LSN. Según la clasificación clásica que cita el artículo, esta elevación es:",
+    "o": [
+      "Moderada (5–15 × LSN)",
+      "Leve (2–5 × LSN)",
+      "Grave (>15 × LSN)",
+      "Limítrofe (<2 × LSN)"
+    ],
+    "e": "Limítrofe <2×, leve 2–5×, moderada 5–15×, grave >15× LSN y masiva >10,000 U/L. La urgencia de la evaluación depende del grado, pero siempre en contexto: es más urgente si el INR está prolongado o la bilirrubina elevada.",
+    "s": "Sección «Aminotransferases» y Figura 1"
+  },
+  {
+    "t": "A",
+    "q": "Un cociente AST/ALT >2 sugiere enfermedad hepática por alcohol. ¿Qué mecanismo da el artículo?",
+    "o": [
+      "Deficiencia de piridoxina, que deprime la ALT más que la AST",
+      "Aumento de la síntesis de AST inducido por el etanol",
+      "Formación de complejos de AST con inmunoglobulinas (macro-AST)",
+      "Mayor vida media de la AST por daño mitocondrial"
+    ],
+    "e": "El cociente >2 en la EHA se explica por deficiencia de piridoxina (vitamina B6), que deprime más la ALT que la AST. La macro-AST explica en cambio una AST aislada elevada como artefacto.",
+    "s": "Sección «Aminotransferases»"
+  },
+  {
+    "t": "A",
+    "q": "Hombre de 52 años con consumo intenso de alcohol llega con AST 1,250 U/L y ALT 900 U/L. ¿Qué conclusión es la más apropiada?",
+    "o": [
+      "Una AST >400 U/L es poco probable en la EHA: buscar otra causa",
+      "Es el patrón típico de hepatitis alcohólica y no requiere más estudio",
+      "El cociente AST/ALT <2 descarta cualquier participación del alcohol",
+      "Requiere biopsia urgente para confirmar hepatitis alcohólica"
+    ],
+    "e": "El artículo señala que una AST >400 U/L es poco probable en la EHA. Elevaciones de este grado (>15 × LSN) obligan a buscar ingestas tóxicas, isquemia y nivel de paracetamol (rama derecha de la Figura 1).",
+    "s": "Sección «Aminotransferases» y Figura 1"
+  },
+  {
+    "t": "A",
+    "q": "Joven de 19 años con hepatitis aguda: AST mayor que ALT y fosfatasa alcalina baja. ¿Qué diagnóstico sugiere fuertemente este patrón?",
+    "o": [
+      "Enfermedad de Wilson",
+      "Hepatitis autoinmune",
+      "Hemocromatosis hereditaria",
+      "Deficiencia de α1-antitripsina"
+    ],
+    "e": "En la presentación aguda o con cirrosis por Wilson, la AST supera a la ALT; esto, combinado con una fosfatasa alcalina baja, es muy sugestivo de enfermedad de Wilson.",
+    "s": "Sección «Aminotransferases»"
+  },
+  {
+    "t": "A",
+    "q": "Paciente asintomático con AST elevada de forma aislada y persistente; ALT, CK, fosfatasa alcalina y bilirrubina normales. ¿Qué explicación menciona el artículo?",
+    "o": [
+      "Complejos de AST con inmunoglobulinas (macro-AST)",
+      "Deficiencia de piridoxina que deprime solo la ALT",
+      "Hepatitis autoinmune en fase temprana sin fibrosis",
+      "Colestasis intrahepática incipiente con fuga enzimática"
+    ],
+    "e": "Una AST aislada elevada puede ser un artefacto por macro-AST (AST unida a inmunoglobulinas). El artículo también contempla un periodo de observación de hasta 3 meses cuando solo la AST o la fosfatasa alcalina están elevadas.",
+    "s": "Sección «Aminotransferases» y «Approach to the Patient»"
+  },
+  {
+    "t": "B",
+    "q": "Ante una fosfatasa alcalina elevada de forma aislada, ¿qué prueba confirma que su origen es hepático?",
+    "o": [
+      "Elevación concomitante de GGT o 5′-nucleotidasa",
+      "Elevación de la bilirrubina indirecta",
+      "Albúmina sérica baja",
+      "Cociente AST/ALT mayor de 2"
+    ],
+    "e": "La elevación simultánea de GGT o 5′-nucleotidasa confirma origen hepático. Al revés, una GGT o 5′-nucleotidasa normal (o la isoenzima ósea elevada) apunta a hueso.",
+    "s": "Sección «Alkaline Phosphatase»"
+  },
+  {
+    "t": "B",
+    "q": "En la colestasis aguda por un cálculo retenido en el colédoco o por colangitis, el patrón bioquímico típico es:",
+    "o": [
+      "Elevación abrupta de aminotransferasas con aumento gradual de fosfatasa alcalina y bilirrubina",
+      "Elevación aislada de fosfatasa alcalina sin cambios en aminotransferasas",
+      "Elevación gradual de aminotransferasas precedida por fosfatasa alcalina >10 × LSN",
+      "Bilirrubina indirecta aislada <7 mg/dL"
+    ],
+    "e": "En la obstrucción aguda hay un aumento abrupto de aminotransferasas, seguido de elevaciones graduales de fosfatasa alcalina y bilirrubina. Quien llega con dolor biliar y fosfatasa alcalina alta debe estudiarse de inmediato para obstrucción biliar.",
+    "s": "Sección «Alkaline Phosphatase» y Figura 2"
+  },
+  {
+    "t": "B",
+    "q": "ALT 360 U/L (LSN 30) y fosfatasa alcalina 200 U/L (LSN 100). ¿Cuál es el cociente R y qué patrón indica?",
+    "o": [
+      "R = 6: patrón hepatocelular",
+      "R = 1.8: patrón colestásico",
+      "R = 3.6: patrón mixto",
+      "R = 0.17: patrón colestásico"
+    ],
+    "e": "R = (ALT/LSN ALT) ÷ (FA/LSN FA) = (360/30) ÷ (200/100) = 12 ÷ 2 = 6. R >5 es hepatocelular, <2 colestásico y 2–5 mixto. Se diseñó para DILI.",
+    "s": "Sección «Alkaline Phosphatase» (R ratio)"
+  },
+  {
+    "t": "B",
+    "q": "ALT 90 U/L (LSN 30) y fosfatasa alcalina 450 U/L (LSN 100). El patrón de lesión es:",
+    "o": [
+      "Colestásico (R ≈0.7)",
+      "Hepatocelular (R ≈5)",
+      "Mixto (R ≈3)",
+      "No puede calcularse sin la bilirrubina"
+    ],
+    "e": "R = (90/30) ÷ (450/100) = 3 ÷ 4.5 ≈ 0.67, menor de 2, así que el patrón es colestásico.",
+    "s": "Sección «Alkaline Phosphatase» (R ratio)"
+  },
+  {
+    "t": "B",
+    "q": "Fosfatasa alcalina elevada con ALT, AST y bilirrubina normales. Se pide GGT y resulta normal. Según la Figura 2, el siguiente paso es:",
+    "o": [
+      "Buscar causas extrahepáticas (p. ej., óseas)",
+      "Colangiorresonancia (CPRM) inmediata",
+      "Solicitar AMA, ANA y ASMA",
+      "Biopsia hepática"
+    ],
+    "e": "Con FA elevada y ALT/AST/bilirrubina normales se revisa GGT o 5′-nucleotidasa. Si es normal, se evalúan causas extrahepáticas; si es anormal, se piden AMA, ANA, ASMA, ultrasonido y se suspenden hepatotóxicos.",
+    "s": "Figura 2"
+  },
+  {
+    "t": "B",
+    "q": "Fosfatasa alcalina elevada con bilirrubina y aminotransferasas también elevadas. El ultrasonido muestra dilatación de la vía biliar. Según la Figura 2, sigue:",
+    "o": [
+      "CPRM o CPRE ± ultrasonido endoscópico",
+      "AMA, ANA y ASMA, y suspender fármacos hepatotóxicos",
+      "Fraccionar la fosfatasa alcalina por isoenzimas",
+      "Observar 3 meses sin fármacos y repetir las pruebas"
+    ],
+    "e": "Con FA y ALT/AST/bilirrubina elevadas se hace ultrasonido. Si hay dilatación ductal (o signos clínicos de obstrucción) se pasa a CPRM/CPRE ± USE. Sin dilatación se sigue la rama de AMA/ANA/ASMA.",
+    "s": "Figura 2"
+  },
+  {
+    "t": "B",
+    "q": "Colestasis con GGT elevada, AMA, ANA y ASMA negativos, y fosfatasa alcalina persistentemente >50% sobre el LSN. ¿Qué anticuerpos de la Figura 2 son muy específicos de colangitis biliar primaria?",
+    "o": [
+      "Anti-SP100 y anti-GP210",
+      "Anti-LKM y anti-SLA",
+      "Anti-transglutaminasa IgA y anti-endomisio",
+      "ANCA y anti-músculo liso"
+    ],
+    "e": "En ese escenario la Figura 2 indica IgG4, anti-SP100 y anti-GP210 (muy específicos de CBP), considerar CPRM y/o biopsia, y buscar causas genéticas raras de colestasis y trastornos infiltrativos.",
+    "s": "Figura 2"
+  },
+  {
+    "t": "C",
+    "q": "¿Cuál afirmación sobre las pruebas que reflejan función hepática es correcta?",
+    "o": [
+      "El TP es más sensible que la albúmina, cuya vida media es ≈18 días",
+      "La albúmina es más sensible que el TP porque su vida media es ≈18 horas",
+      "ALT y AST son las pruebas que mejor reflejan la función hepática",
+      "El TP solo depende del factor VII y no cambia con la vitamina K"
+    ],
+    "e": "Solo albúmina, TP y bilirrubina reflejan función; las demás reflejan lesión. La albúmina tiene vida media ≈18 días (se acorta en enfermedad aguda). El TP es más sensible e incluye los factores I, II, V, VII y X; también se prolonga por déficit de vitamina K, anticoagulantes o coagulopatías.",
+    "s": "Sección «Tests of Liver Function»"
+  },
+  {
+    "t": "C",
+    "q": "Paciente con cirrosis e INR de 2.0 que va a un procedimiento. Según el artículo:",
+    "o": [
+      "No reduce el riesgo de trombosis ni predice sangrado",
+      "Protege contra la trombosis de la vena porta",
+      "Un INR >1.5 predice sangrado y obliga a transfundir plasma",
+      "Refleja sobre todo deficiencia de vitamina K y se corrige con ella"
+    ],
+    "e": "El artículo es explícito: en cirrosis, un INR prolongado no reduce el riesgo de trombosis ni predice sangrado.",
+    "s": "Sección «Tests of Liver Function»"
+  },
+  {
+    "t": "C",
+    "q": "Hombre de 24 años con ictericia leve tras ayuno; bilirrubina total 3.1 mg/dL a expensas de indirecta; resto de pruebas hepáticas normales. Lo más probable es:",
+    "o": [
+      "Síndrome de Gilbert",
+      "Obstrucción biliar extrahepática por coledocolitiasis",
+      "Hepatitis viral aguda en fase prodrómica",
+      "Colangitis biliar primaria en etapa temprana"
+    ],
+    "e": "La elevación aislada de bilirrubina indirecta hasta 7 mg/dL suele deberse a Gilbert, aunque puede ser hemólisis. Fraccionar la bilirrubina es más útil precisamente cuando las demás pruebas son normales o casi normales.",
+    "s": "Sección «Tests of Liver Function»"
+  },
+  {
+    "t": "D",
+    "q": "Antes de iniciar el estudio de unas pruebas hepáticas alteradas, el artículo recomienda primero:",
+    "o": [
+      "Repetir el panel (o una prueba confirmatoria) y suspender hepatotóxicos y alcohol",
+      "Biopsia hepática para establecer la causa lo antes posible",
+      "Pedir de entrada el panel autoinmune, metabólico y genético completo",
+      "Elastografía por resonancia magnética antes de cualquier laboratorio"
+    ],
+    "e": "Antes de iniciar la evaluación se repite el panel o se obtiene una prueba confirmatoria (p. ej., GGT para FA aislada), y se suspenden fármacos potencialmente hepatotóxicos y todo consumo de alcohol.",
+    "s": "Sección «Approach to the Patient»"
+  },
+  {
+    "t": "D",
+    "q": "Se sospecha consumo oculto de alcohol en un paciente que lo niega. ¿Qué marcador sérico propone el artículo y qué periodo refleja?",
+    "o": [
+      "Fosfatidiletanol (PEth): consumo de los últimos 30 días",
+      "GGT: consumo de las últimas 24 horas",
+      "Cociente AST/ALT: consumo del último año",
+      "Volumen corpuscular medio: consumo de la última semana"
+    ],
+    "e": "El fosfatidiletanol (PEth) refleja consumo de alcohol en los 30 días previos. Aparece también en la Figura 1 («considerar PEth»).",
+    "s": "Sección «Approach to the Patient» y Figura 1"
+  },
+  {
+    "t": "D",
+    "q": "Mujer de 45 años con ALT de 1.5 × LSN, asintomática. ¿Qué estudios iniciales indica el artículo para elevaciones leves?",
+    "o": [
+      "VHB, VHC (con ARN si anti-VHC es positivo) y perfil de hierro",
+      "Biopsia hepática como estudio inicial para no retrasar el diagnóstico",
+      "IgM anti-VHA, tóxicos en orina y nivel de paracetamol",
+      "Genotipo SERPINA1 y ceruloplasmina como primer paso obligatorio"
+    ],
+    "e": "En elevaciones leves se piden de entrada VHB, VHC (confirmar con ARN) y perfil de hierro. ANA, ASMA, ceruloplasmina y α1-antitripsina pueden pedirse o diferirse tras un periodo de observación si la elevación es mínima (<2 × LSN). La Figura 1 añade BH y ultrasonido/elastografía.",
+    "s": "Sección «Approach to the Patient» y Figura 1"
+  },
+  {
+    "t": "D",
+    "q": "Hombre de 50 años con obesidad, diabetes tipo 2, ALT 2 × LSN y ferritina elevada con saturación de transferrina normal. ¿Cuál es la interpretación más acorde al artículo?",
+    "o": [
+      "Lo más probable es MASLD con sobrecarga de hierro dismetabólica",
+      "Hemocromatosis hereditaria: iniciar flebotomías sin más estudio",
+      "Linfohistiocitosis hemofagocítica: aspirado de médula ósea",
+      "La ferritina elevada descarta MASLD y obliga a biopsia"
+    ],
+    "e": "La ferritina elevada es mucho más frecuente por EHA o MASLD (hasta un tercio de los pacientes con MASLD), por el síndrome de sobrecarga de hierro dismetabólico. Si la saturación o la ferritina están altas se hace genotipo HFE, pero la hemocromatosis tiene baja penetrancia.",
+    "s": "Sección «Approach to the Patient»"
+  },
+  {
+    "t": "D",
+    "q": "Paciente con elevación marcada de aminotransferasas y ferritina de 18,000 µg/L. ¿Qué diagnóstico debe evaluarse?",
+    "o": [
+      "Linfohistiocitosis hemofagocítica",
+      "Hemocromatosis hereditaria tipo HFE",
+      "Síndrome de sobrecarga de hierro dismetabólico",
+      "Hepatitis alcohólica grave"
+    ],
+    "e": "La ferritina es reactante de fase aguda y suele elevarse en lesiones importantes, pero valores extremos (>10,000 µg/L) deben llevar a evaluar linfohistiocitosis hemofagocítica.",
+    "s": "Sección «Approach to the Patient»"
+  },
+  {
+    "t": "D",
+    "q": "Si el estudio inicial no revela la causa y la elevación es mínima, puede considerarse un periodo de observación. ¿Qué condición establece el artículo?",
+    "o": [
+      "Hasta 3 meses, asegurando que no haya fibrosis avanzada",
+      "Hasta 12 meses, sin necesidad de valorar fibrosis",
+      "Hasta 2 semanas, con biopsia hepática al terminar",
+      "Solo si la ALT es >5 × LSN y el INR está elevado"
+    ],
+    "e": "Se puede observar hasta 3 meses, sobre todo con elevaciones mínimas (p. ej., AST o FA aisladas), pero hay que asegurarse de que no exista fibrosis avanzada.",
+    "s": "Sección «Approach to the Patient»"
+  },
+  {
+    "t": "D",
+    "q": "Mujer de 22 años con ALT 3,500 U/L (>15 × LSN) tras una crisis emocional. Según la Figura 1, además del panel serológico, ¿qué debe hacerse?",
+    "o": [
+      "Buscar tóxicos e isquemia, nivel de paracetamol y N-acetilcisteína si se sospecha",
+      "Cambios de estilo de vida para MASLD y repetir las pruebas en 3 meses",
+      "Biopsia hepática como primer paso diagnóstico",
+      "Anti-transglutaminasa y esperar el resultado antes de actuar"
+    ],
+    "e": "En la rama >15 × LSN de la Figura 1 se buscan ingestas tóxicas, isquemia y rabdomiólisis (tóxicos en orina, nivel de paracetamol), se da N-acetilcisteína si se sospecha paracetamol y se valora insuficiencia hepática aguda.",
+    "s": "Figura 1"
+  },
+  {
+    "t": "D",
+    "q": "En la Figura 1, ¿qué prueba se agrega en la rama de 5–15 × LSN que no aparece en el estudio inicial de <5 × LSN?",
+    "o": [
+      "IgM anti-VHA",
+      "HBsAg y anti-HBc",
+      "Ferritina y saturación de transferrina",
+      "Ultrasonido abdominal"
+    ],
+    "e": "En la hepatitis aguda (5–15× y >15×) se agrega IgM anti-VHA; la hepatitis A sintomática aguda suele cursar con 5–15 × LSN o más. HBsAg, ferritina y ultrasonido están en todas las ramas.",
+    "s": "Figura 1"
+  },
+  {
+    "t": "D",
+    "q": "Paciente sin hepatopatía conocida, con pruebas hepáticas alteradas, que presenta asterixis y confusión. ¿Qué indica el artículo?",
+    "o": [
+      "Evaluar de inmediato insuficiencia hepática aguda",
+      "Observar 3 meses sin fármacos hepatotóxicos",
+      "Pedir elastografía de forma ambulatoria",
+      "Calcular FIB-4 para decidir si se estudia"
+    ],
+    "e": "La asterixis o el cambio del estado mental sin hepatopatía previa obligan a evaluar de inmediato insuficiencia hepática aguda, con traslado a un centro de trasplante si es apropiado. La Figura 1 pide buscar IHA cuando la ALT es >5 × LSN y el INR está elevado.",
+    "s": "Figura 3 y Figura 1"
+  },
+  {
+    "t": "D",
+    "q": "¿Cuál pareja hallazgo físico–enfermedad de la Figura 3 es INCORRECTA?",
+    "o": [
+      "Anillos de Kayser-Fleischer: hemocromatosis",
+      "Piel bronceada: hemocromatosis",
+      "Crecimiento parotídeo y fetor hepático: enfermedad por alcohol",
+      "P2 acentuado: hipertensión portopulmonar"
+    ],
+    "e": "Los anillos de Kayser-Fleischer y las cataratas en girasol son de Wilson, no de hemocromatosis. La piel bronceada es de hemocromatosis, el crecimiento parotídeo de alcohol y el P2 acentuado de hipertensión portopulmonar.",
+    "s": "Figura 3"
+  },
+  {
+    "t": "E",
+    "q": "Sobre la enfermedad celíaca como causa de pruebas hepáticas alteradas, ¿cuál es correcta?",
+    "o": [
+      "Tiene ALT > AST y se tamiza con IgA anti-transglutaminasa más IgA total, con gluten en la dieta",
+      "La AST suele ser el doble que la ALT, como en la enfermedad por alcohol",
+      "Se tamiza con IgG anti-gliadina después de retirar el gluten de la dieta",
+      "Las pruebas hepáticas no se normalizan aunque se siga una dieta sin gluten"
+    ],
+    "e": "La celíaca explica 6–9% de las hipertransaminasemias inexplicadas, y 15–55% de los celíacos tienen elevaciones leves a moderadas, con ALT > AST. Se tamiza con IgA anti-tTG (con gluten en la dieta) más IgA total. Con dieta sin gluten, las pruebas se normalizan en hasta varios meses.",
+    "s": "Sección «Extrahepatic Causes»"
+  },
+  {
+    "t": "E",
+    "q": "Corredor de maratón con AST 420 U/L, ALT 180 U/L y dolor muscular difuso. ¿Qué prueba distingue la causa?",
+    "o": [
+      "Creatina cinasa (CK)",
+      "Gamma-glutamil transpeptidasa (GGT)",
+      "Ceruloplasmina sérica",
+      "Anticuerpos antimitocondriales (AMA)"
+    ],
+    "e": "En la lesión muscular la AST inicialmente supera a la ALT, por lo común al menos 2:1. La rabdomiólisis se distingue por CK muy elevada y dolor muscular a la palpación.",
+    "s": "Sección «Extrahepatic Causes»"
+  },
+  {
+    "t": "E",
+    "q": "Paciente con insuficiencia cardíaca derecha e insuficiencia tricuspídea. ¿Qué perfil corresponde a la hepatopatía congestiva?",
+    "o": [
+      "Aminotransferasas 2–3 × LSN, bilirrubina rara vez >3 mg/dL, FA leve e INR aumentado",
+      "AST >10,000 U/L que cae rápido en 48–72 h, con LDH muy alta",
+      "FA aislada >10 × LSN con bilirrubina y aminotransferasas normales",
+      "Bilirrubina indirecta aislada con el resto del panel normal"
+    ],
+    "e": "En la hepatopatía congestiva (IC derecha, insuficiencia tricuspídea, pericarditis constrictiva) las aminotransferasas suben 2–3 × LSN, la bilirrubina rara vez pasa de 3 mg/dL, la FA sube levemente y el INR aumenta.",
+    "s": "Sección «Extrahepatic Causes»"
+  },
+  {
+    "t": "E",
+    "q": "Mujer de 68 años con fosfatasa alcalina elevada, GGT normal y antecedente de fractura de cadera reciente. Lo más probable es:",
+    "o": [
+      "Origen óseo de la fosfatasa alcalina",
+      "Colangitis biliar primaria",
+      "Coledocolitiasis",
+      "Hepatotoxicidad por estatinas"
+    ],
+    "e": "La enfermedad ósea es causa frecuente de FA elevada: osteomalacia por déficit de vitamina D, osteoporosis, fractura u ortopedia reciente y Paget. Se confirma con isoenzima ósea elevada o GGT/5′-nucleotidasa normales.",
+    "s": "Sección «Extrahepatic Causes»"
+  },
+  {
+    "t": "F",
+    "q": "¿Qué variables usa el índice FIB-4?",
+    "o": [
+      "Edad, AST, ALT y plaquetas",
+      "AST y plaquetas",
+      "Edad, sexo, bilirrubina, GGT, α2-macroglobulina, apolipoproteína A1 y haptoglobina",
+      "Ácido hialurónico, TIMP-1 y propéptido N-terminal del colágeno III"
+    ],
+    "e": "FIB-4: edad, AST, ALT y plaquetas (desarrollado en coinfección VIH/VHC). APRI usa solo AST y plaquetas. Las otras opciones corresponden a FibroTest y a ELF.",
+    "s": "Sección «Liver Tests in the Assessment of Hepatic Fibrosis» y Tabla 1"
+  },
+  {
+    "t": "F",
+    "q": "Sobre el uso de FIB-4 en MASLD, ¿cuál es correcta?",
+    "o": [
+      "<1.3 excluye fibrosis avanzada; es menos confiable en <35 y >65 años",
+      "<3.25 excluye cirrosis con certeza en cualquier edad",
+      "Es igual de confiable en delgados y en obesidad clase III",
+      "Solo está validado en hepatitis C; no debe usarse en MASLD"
+    ],
+    "e": "FIB-4 <1.3 excluye fibrosis avanzada en MASLD (AUROC 0.802). Puede ser menos útil en delgados u obesidad clase III, y debe usarse con cautela en <35 y >65 años; en >65 un corte de 2.0 mejora la exclusión.",
+    "s": "Sección «Liver Tests in the Assessment of Hepatic Fibrosis»"
+  },
+  {
+    "t": "F",
+    "q": "¿En cuál de estos pacientes NO debe usarse FibroTest porque sobreestima el estadio de fibrosis?",
+    "o": [
+      "Paciente con síndrome de Gilbert",
+      "Paciente con hepatitis C crónica",
+      "Paciente con MASLD",
+      "Paciente con enfermedad hepática por alcohol"
+    ],
+    "e": "FibroTest incluye bilirrubina total y haptoglobina, por eso no debe usarse en Gilbert, hemólisis, obstrucción biliar ni hepatitis aguda: sobreestiman la fibrosis. Está validado en VHC, VHB, EHA y MASLD.",
+    "s": "Sección «Liver Tests in the Assessment of Hepatic Fibrosis»"
+  },
+  {
+    "t": "F",
+    "q": "Un paciente con MASLD tiene FIB-4 en rango indeterminado. ¿Qué recomienda el artículo?",
+    "o": [
+      "Elastografía de transición, elastografía por RM o biopsia",
+      "Repetir FIB-4 cada semana hasta que sea concluyente",
+      "Considerar que no hay fibrosis y dar de alta",
+      "Calcular APRI, que siempre es más exacto que FIB-4"
+    ],
+    "e": "Con resultados indeterminados se sigue con elastografía de transición, elastografía por RM o biopsia, salvo cirrosis evidente en imagen. Una estrategia secuencial FIB-4 → ELF redujo la necesidad de elastografía confirmatoria sin perder casos de fibrosis avanzada.",
+    "s": "Sección «Liver Tests in the Assessment of Hepatic Fibrosis»"
+  },
+  {
+    "t": "G",
+    "q": "¿Qué variables incluía el MELD original y en qué población se desarrolló?",
+    "o": [
+      "Bilirrubina, creatinina e INR; en cirróticos sometidos a TIPS electivo",
+      "Bilirrubina, albúmina, TP, ascitis y encefalopatía; en cirugía de derivación portosistémica",
+      "Sodio, albúmina y sexo; en candidatos a trasplante",
+      "Edad, albúmina, plaquetas e IMC; en cirugía no hepática"
+    ],
+    "e": "El MELD original (bilirrubina, creatinina, INR) se desarrolló en 231 cirróticos con TIPS electivo, y desde 2002 se usa para asignar órganos. MELD-Na agregó sodio y MELD 3.0 sexo y albúmina.",
+    "s": "Sección «Liver Tests in the Assessment of Prognosis»"
+  },
+  {
+    "t": "G",
+    "q": "Sobre la escala Child-Turcotte-Pugh, ¿cuál es correcta?",
+    "o": [
+      "Bilirrubina, albúmina, TP, ascitis y encefalopatía; clase B = 7–9 puntos",
+      "Creatinina, INR y bilirrubina; clase B = 10–15 puntos",
+      "Bilirrubina, albúmina, sodio, sexo y creatinina; clase B = 5–6 puntos",
+      "Edad, albúmina, plaquetas e IMC; clase B = 7–9 puntos"
+    ],
+    "e": "CTP: 5 parámetros de 1–3 puntos cada uno (total 5–15). A 5–6, B 7–9, C 10–15. Limitaciones: parámetros subjetivos (ascitis, encefalopatía), efectos techo y piso, y mala correlación con mortalidad. Sigue siendo útil para comunicar el grado de descompensación.",
+    "s": "Sección «Liver Tests in the Assessment of Prognosis»"
+  },
+  {
+    "t": "G",
+    "q": "En hepatitis asociada a alcohol, una función discriminante de Maddrey >32 indica:",
+    "o": [
+      "Hepatitis grave con mortalidad >50% a 30 días; puede beneficiarse de glucocorticoides",
+      "Respuesta adecuada a los glucocorticoides tras 7 días de tratamiento",
+      "Hepatitis leve que puede manejarse de forma ambulatoria",
+      "Indicación de TIPS urgente por hipertensión portal"
+    ],
+    "e": "Maddrey (bilirrubina y TP) >32 identifica hepatitis alcohólica grave con mortalidad >50% a 30 días que puede beneficiarse de glucocorticoides. Hoy el MELD lo ha reemplazado como herramienta pronóstica preferida.",
+    "s": "Sección «Liver Tests in the Assessment of Prognosis»"
+  },
+  {
+    "t": "G",
+    "q": "Paciente con hepatitis alcohólica grave tratado con glucocorticoides; al día 7 su puntuación de Lille es 0.62. ¿Qué significa?",
+    "o": [
+      "Falta de respuesta a glucocorticoides; considerar otras estrategias",
+      "Respuesta excelente; completar 28 días de glucocorticoides",
+      "Debe recalcularse con Maddrey antes de tomar decisiones",
+      "Indica cirrosis compensada sin hepatitis activa"
+    ],
+    "e": "Lille usa albúmina, creatinina, TP, bilirrubina, edad y la bilirrubina del día 7 (el día 4 predice igual). Un valor >0.45 sugiere falta de respuesta y obliga a considerar otras estrategias.",
+    "s": "Sección «Liver Tests in the Assessment of Prognosis»"
+  },
+  {
+    "t": "H",
+    "q": "¿Qué asociación entre inmunoglobulina y enfermedad hepática es correcta?",
+    "o": [
+      "IgA: enfermedad por alcohol; IgM: colangitis biliar primaria; IgG: hepatitis autoinmune",
+      "IgA: hepatitis autoinmune; IgM: alcohol; IgG: colangitis biliar primaria",
+      "IgG4 >1.4 g/L es 90% específica de hepatitis autoinmune",
+      "La IgG no cambia con el tratamiento de la hepatitis autoinmune"
+    ],
+    "e": "IgA alta en EHA, IgM en CBP e IgG en HAI. La IgG está elevada en 85% de las HAI, forma parte de los criterios diagnósticos y se normaliza en remisión bioquímica. Una IgG4 >1.4 g/L fue 90% sensible para colangitis esclerosante por IgG4.",
+    "s": "Sección «Immunoglobulin Levels in Liver Disease»"
+  },
+  {
+    "t": "I",
+    "q": "¿Cuál ejemplo corresponde correctamente al tipo de DILI?",
+    "o": [
+      "Intrínseca: paracetamol; indirecta: hepatitis por inhibidores de checkpoint",
+      "Idiosincrática: paracetamol; intrínseca: amoxicilina-clavulanato",
+      "Indirecta: isoniazida; intrínseca: estatinas en dosis habituales",
+      "Intrínseca: extracto de té verde; idiosincrática: paracetamol"
+    ],
+    "e": "La DILI intrínseca (directa) ocurre al exceder una dosis segura; el ejemplo clásico es el paracetamol, aparece poco después de la exposición y suele ser hepatocelular. La idiosincrática es impredecible y no depende de la dosis. La indirecta resulta de la acción del fármaco, como la hepatitis por ICI.",
+    "s": "Sección «Drug-Induced Liver Injury»"
+  },
+  {
+    "t": "I",
+    "q": "Sobre la epidemiología de la DILI idiosincrática, ¿cuál es correcta?",
+    "o": [
+      "Antimicrobianos primero y suplementos herbolarios y dietéticos en segundo lugar",
+      "Estatinas primero y antimicrobianos en segundo lugar",
+      "Suplementos primero, aunque su proporción bajó de 20% a 9%",
+      "Antiinflamatorios primero y cúrcuma, con lesión colestásica, en segundo"
+    ],
+    "e": "Antimicrobianos primero, suplementos (HDS) segundo; los HDS subieron de 9% (2004–2007) a casi 20% (2010–2014). Anabólicos: colestásica; té verde: mixta; cúrcuma: sobre todo hepatocelular con latencia de 1–4 meses. La DILI causa >50% de la IHA en EUA.",
+    "s": "Sección «Drug-Induced Liver Injury»"
+  },
+  {
+    "t": "I",
+    "q": "Hombre de 70 años con prurito y fosfatasa alcalina muy elevada con ALT leve, 4 semanas después de tomar amoxicilina-clavulanato. Según la Tabla 2, el patrón es:",
+    "o": [
+      "Colestásico",
+      "Hepatocelular agudo grave",
+      "Esteatosis",
+      "Mixto por macrólidos"
+    ],
+    "e": "La Tabla 2 coloca amoxicilina-clavulanato, anabólicos, cefazolina y estrógenos en el patrón colestásico (semanas a meses, FA muy elevada, ALT leve, puede haber prurito). La DILI crónica (casi 20%) es más común tras lesión colestásica.",
+    "s": "Tabla 2"
+  },
+  {
+    "t": "J",
+    "q": "Paciente en UCI tras choque cardiogénico: AST 4,800 U/L y ALT 2,900 U/L que bajan rápido en 3 días, LDH alta y creatinina en ascenso. ¿Cuál afirmación es correcta?",
+    "o": [
+      "Hepatitis isquémica: mortalidad hospitalaria ≈50%",
+      "Hepatitis viral aguda: la caída rápida descarta isquemia",
+      "Hepatitis isquémica: la bilirrubina sube antes que la AST",
+      "Hepatitis isquémica: buen pronóstico y sin lesión renal"
+    ],
+    "e": "La hepatitis isquémica es la causa más frecuente de AST >10 × LSN en UCI (2.5% de los ingresos) y la primera causa de lesión grave en hospitalizados (42.7%). AST > ALT con ascenso y caída rápidos, LDH alta, bilirrubina tardía y necrosis tubular aguda paralela. Mortalidad hospitalaria ≈50%.",
+    "s": "Sección «Hospitalized and Critically Ill Patients»"
+  },
+  {
+    "t": "J",
+    "q": "Paciente séptico en UCI que desarrolla FA, GGT y bilirrubina elevadas. ¿Cuál es el primer paso en la evaluación de la colestasis?",
+    "o": [
+      "Excluir obstrucción biliar con ultrasonido abdominal o CPRM",
+      "Atribuirla a colestasis de la sepsis sin más estudio",
+      "Suspender la nutrición parenteral",
+      "Biopsia hepática transyugular"
+    ],
+    "e": "El primer paso es excluir obstrucción biliar con ultrasonido o CPRM. Sin obstrucción, las causas en UCI son colestasis de la sepsis, DILI y nutrición parenteral. Una bilirrubina de 2–3 mg/dL se asocia a 27% de mortalidad hospitalaria y >10 mg/dL a 48%; la bilirrubina delta (unida a albúmina) prolonga la ictericia.",
+    "s": "Sección «Hospitalized and Critically Ill Patients»"
+  },
+  {
+    "t": "K",
+    "q": "Tres semanas después de un trasplante de células progenitoras con acondicionamiento mieloablativo, un paciente presenta ictericia (bilirrubina 4 mg/dL), hepatomegalia dolorosa y ascitis. El diagnóstico más probable es:",
+    "o": [
+      "Enfermedad venooclusiva / síndrome de obstrucción sinusoidal",
+      "Enfermedad injerto contra huésped crónica",
+      "Hiperplasia nodular regenerativa por oxaliplatino",
+      "Hepatitis por inhibidores de checkpoint"
+    ],
+    "e": "La EVO/SOS aparece con ictericia (bilirrubina >2 mg/dL), hepatomegalia y ascitis en las 3–4 semanas tras terapia mieloablativa, con hipertensión portal postsinusoidal; incidencia 5–15%. La EICH crónica es colestásica lenta y la hepatitis por EICH aguda ocurre en los primeros 100 días.",
+    "s": "Sección «Chemotherapy and Immune Checkpoint Inhibitor Toxicity»"
+  },
+  {
+    "t": "K",
+    "q": "Paciente con melanoma en tratamiento con pembrolizumab; en la semana 10 tiene ALT de 12 × LSN y está asintomático. Según CTCAE v5.0, ¿qué grado es y cómo suele manejarse?",
+    "o": [
+      "Grado 3; suele requerir glucocorticoides",
+      "Grado 2; basta con interrumpir el tratamiento",
+      "Grado 4; requiere trasplante hepático",
+      "Grado 1; continuar sin cambios"
+    ],
+    "e": "Grados CTCAE v5.0: 1 = 1–3×, 2 = 3–5×, 3 = 5–20×, 4 = >20 × LSN; 12 × LSN es grado 3. Los grados 1–2 pueden resolver al interrumpir el ICI; los más graves suelen requerir glucocorticoides u otra inmunomodulación. Suele aparecer entre las semanas 4 y 16, en 10–15% de los tratados.",
+    "s": "Sección «Chemotherapy and Immune Checkpoint Inhibitor Toxicity»"
+  },
+  {
+    "t": "L",
+    "q": "Embarazada de 34 semanas con fosfatasa alcalina de 2 × LSN, sin síntomas y con el resto de pruebas normales. La explicación más probable es:",
+    "o": [
+      "Elevación fisiológica de origen placentario",
+      "Colestasis intrahepática del embarazo",
+      "Hígado graso agudo del embarazo",
+      "Síndrome HELLP incipiente"
+    ],
+    "e": "La FA sube de forma fisiológica desde el segundo trimestre y alcanza su máximo (por lo general 2 × LSN) en el tercero; es de origen placentario.",
+    "s": "Sección «Pregnancy»"
+  },
+  {
+    "t": "L",
+    "q": "Embarazada de 32 semanas con prurito intenso y ácidos biliares séricos de 48 µmol/L. ¿Qué indica la Tabla 3?",
+    "o": [
+      "Colestasis intrahepática del embarazo; considerar parto temprano",
+      "Hiperémesis gravídica; piridoxina con doxilamina",
+      "Síndrome HELLP; sulfato de magnesio y observar",
+      "Cambio fisiológico del embarazo; no requiere acción"
+    ],
+    "e": "La colestasis intrahepática del embarazo (≈1%, final del 2.º–3.er trimestre) cursa con prurito y ácidos biliares >10, con o sin ALT/AST elevadas. El grado de elevación se asocia a mortalidad perinatal, y se considera parto temprano con ácidos biliares >40.",
+    "s": "Tabla 3"
+  },
+  {
+    "t": "L",
+    "q": "¿Cuál afirmación distingue al hígado graso agudo del embarazo (HGAE) del síndrome HELLP según la Tabla 3?",
+    "o": [
+      "El HGAE se diagnostica con criterios de Swansea y su mejoría tras el parto puede tardar semanas",
+      "El HGAE aparece en el primer trimestre y HELLP en el tercero",
+      "El HGAE se trata con magnesio y HELLP con piridoxina",
+      "El HGAE es más frecuente que HELLP: 1 de cada 100 embarazos"
+    ],
+    "e": "HGAE: raro (1 en 10,000–20,000), cerca de la semana 37, criterios de Swansea (15 índices; diagnóstico con 6), parto inmediato y mejoría que puede tardar días a semanas. HELLP: >20 semanas (sobre todo 28–36), ALT/AST >70 U/L, LDH alta, plaquetas bajas; parto, y normalización en 48–72 h.",
+    "s": "Tabla 3"
+  }
+];
+
+</script>
+<script>
+(function () {
+  const KEY = "quiz-pruebas-hepaticas-v1";
+  const LETRAS = ["A", "B", "C", "D"];
+  const app = document.getElementById("app");
+  let S = null; // { ids, perms, ans, cur, done }
+  let G = null; // juego Contrarreloj en curso
+
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } };
+  const clear = () => { try { localStorage.removeItem(KEY); } catch (e) {} };
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+  function nuevo(ids, aleatorio) {
+    const orden = aleatorio ? shuffle(ids) : ids.slice();
+    S = { ids: orden, perms: orden.map((id) => shuffle(PREGUNTAS[id].o.map((_, i) => i))), ans: orden.map(() => null), cur: 0, done: false };
+    save(); render();
+  }
+
+  function render() {
+    if (G) return renderJuego();
+    if (!S) return renderInicio();
+    if (S.done) return renderResultados();
+    renderPregunta();
+  }
+
+  function renderInicio() {
+    const prev = load();
+    const conteo = {};
+    PREGUNTAS.forEach((p) => { conteo[p.t] = (conteo[p.t] || 0) + 1; });
+    app.innerHTML = `
+      <section class="card start enter">
+        <h2>Cómo funciona</h2>
+        <p>Cada pregunta tiene una sola respuesta correcta. Al elegir ves de inmediato si acertaste y la explicación con la parte del artículo que la respalda. Al final tienes tu calificación por tema y el repaso de tus errores.</p>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Tema</th><th style="text-align:right">Preguntas</th></tr></thead>
+          <tbody>${Object.keys(TEMAS).map((k) => `<tr><td>${TEMAS[k]}</td><td class="n">${conteo[k] || 0}</td></tr>`).join("")}</tbody>
+        </table></div>
+        <div class="btns">
+          ${prev && !prev.done && prev.ans.some((a) => a !== null) ? `<button class="btn" id="seguir">Continuar donde me quedé (${prev.ans.filter((a) => a !== null).length}/${prev.ids.length})</button>` : ""}
+          <button class="btn ${prev && !prev.done && prev.ans.some((a) => a !== null) ? "ghost" : ""}" id="azar">Empezar en orden aleatorio</button>
+          <button class="btn ghost" id="temas">Empezar por temas</button>
+        </div>
+        <p class="hint">Atajos: teclas 1–4 o A–D para responder, Enter para avanzar.</p>
+      </section>
+      <section class="card game-promo enter">
+        <div class="eyebrow">Juego · con música</div>
+        <h2>Contrarreloj hepático</h2>
+        <p>60 segundos con las mismas 50 preguntas. Cada acierto suma puntos y +2 s; las rachas multiplican (×2, ×3, ×4). Cada error resta 4 s y te enseña la respuesta.${mejor() ? ` Tu récord: <strong class="mono">${mejor()}</strong> pts.` : ""}</p>
+        <div class="btns"><button class="btn bili" id="jugar">Jugar Contrarreloj</button></div>
+      </section>`;
+    const todos = PREGUNTAS.map((_, i) => i);
+    document.getElementById("azar").onclick = () => nuevo(todos, true);
+    document.getElementById("temas").onclick = () => nuevo(todos, false);
+    document.getElementById("jugar").onclick = iniciarJuego;
+    const s = document.getElementById("seguir");
+    if (s) s.onclick = () => { S = prev; render(); };
+  }
+
+  function renderPregunta() {
+    const i = S.cur, id = S.ids[i], p = PREGUNTAS[id], perm = S.perms[i], elegido = S.ans[i];
+    const n = S.ids.length;
+    const aciertos = S.ans.filter((a, k) => a === 0).length;
+    const respondidas = S.ans.filter((a) => a !== null).length;
+    const bar = S.ids.map((_, k) => {
+      const a = S.ans[k];
+      const c = k === i ? "cur" : a === null ? "" : a === 0 ? "ok" : "bad";
+      return `<i class="${c}"></i>`;
+    }).join("");
+    let html = `
+      <section class="progress" aria-label="Progreso">
+        <div class="progress-top"><span class="mono">Pregunta ${i + 1} / ${n}</span><span class="mono">Aciertos ${aciertos} / ${respondidas}</span></div>
+        <div class="bar" style="grid-template-columns:repeat(${n},1fr)">${bar}</div>
+      </section>
+      <section class="card enter">
+        <div class="qhead"><span class="topic">${esc(TEMAS[p.t])}</span></div>
+        <p class="qtext">${esc(p.q)}</p>
+        <div class="opts" role="group" aria-label="Opciones">
+          ${perm.map((orig, k) => {
+            let cls = "";
+            if (elegido !== null) {
+              if (orig === 0) cls = "correct";
+              else if (orig === elegido) cls = "wrong";
+              else cls = "dim";
+            }
+            return `<button class="opt ${cls}" data-o="${orig}" ${elegido !== null ? "disabled" : ""}><span class="k">${LETRAS[k]}</span><span>${esc(p.o[orig])}</span></button>`;
+          }).join("")}
+        </div>`;
+    if (elegido !== null) {
+      const ok = elegido === 0;
+      const letraOk = LETRAS[perm.indexOf(0)];
+      html += `
+        <div class="explain" aria-live="polite">
+          <p class="verdict ${ok ? "ok" : "bad"}">${ok ? "Correcto." : `Incorrecto. La respuesta es la ${letraOk}.`}</p>
+          <p>${esc(p.e)}</p>
+          <p class="src">Kwo et al. 2026 · ${esc(p.s)}</p>
+        </div>`;
+    }
+    html += `
+        <div class="navrow">
+          <button class="btn ghost" id="prev" ${i === 0 ? "disabled" : ""}>Anterior</button>
+          ${elegido !== null ? `<button class="btn" id="next">${i === n - 1 ? "Ver resultados" : "Siguiente"}</button>` : `<span class="hint">Elige una opción</span>`}
+        </div>
+      </section>
+      <div class="btns"><button class="btn ghost" id="salir">Volver al inicio</button></div>`;
+    app.innerHTML = html;
+    app.querySelectorAll(".opt").forEach((b) => b.onclick = () => responder(+b.dataset.o));
+    document.getElementById("prev").onclick = () => { S.cur--; save(); render(); };
+    const nx = document.getElementById("next");
+    if (nx) { nx.onclick = avanzar; nx.focus({ preventScroll: true }); }
+    document.getElementById("salir").onclick = () => { S = null; render(); };
+  }
+
+  function responder(orig) {
+    if (S.ans[S.cur] !== null) return;
+    S.ans[S.cur] = orig; save();
+    orig === 0 ? Snd.ok() : Snd.bad();
+    render();
+  }
+  function avanzar() {
+    if (S.ans[S.cur] === null) return;
+    if (S.cur < S.ids.length - 1) { S.cur++; save(); render(); window.scrollTo({ top: 0 }); }
+    else {
+      const pend = S.ans.findIndex((a) => a === null);
+      if (pend >= 0) { S.cur = pend; save(); render(); return; }
+      S.done = true; save(); Snd.fin(); render(); window.scrollTo({ top: 0 });
+    }
+  }
+
+  function renderResultados() {
+    const n = S.ids.length;
+    const ok = S.ans.filter((a) => a === 0).length;
+    const pct = Math.round((ok / n) * 100);
+    const nota = (ok / n) * 10;
+    const juicio = pct >= 90 ? "Dominas el abordaje." : pct >= 80 ? "Muy bien; repasa los temas en ámbar o rojo." : pct >= 60 ? "Vas bien, pero hay huecos importantes." : "Conviene releer el artículo antes del examen.";
+    const porTema = {};
+    S.ids.forEach((id, k) => {
+      const t = PREGUNTAS[id].t;
+      porTema[t] = porTema[t] || { ok: 0, n: 0 };
+      porTema[t].n++; if (S.ans[k] === 0) porTema[t].ok++;
+    });
+    const errores = S.ids.map((id, k) => ({ id, k })).filter((x) => S.ans[x.k] !== 0);
+    app.innerHTML = `
+      <section class="card enter">
+        <div class="eyebrow">Resultado</div>
+        <div class="score"><span class="big mono">${ok}</span><span class="of">/ ${n} · ${pct}% · calificación ${nota.toFixed(1)}</span></div>
+        <p class="grade">${juicio}</p>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Tema</th><th style="text-align:right">Aciertos</th><th></th></tr></thead>
+          <tbody>${Object.keys(TEMAS).filter((t) => porTema[t]).map((t) => {
+            const r = porTema[t], p = r.ok / r.n;
+            return `<tr><td>${TEMAS[t]}</td><td class="n">${r.ok}/${r.n}</td><td style="width:30%"><div class="meter"><b class="${p < 0.6 ? "low" : p < 0.8 ? "mid" : ""}" style="width:${Math.round(p * 100)}%"></b></div></td></tr>`;
+          }).join("")}</tbody>
+        </table></div>
+        <div class="btns">
+          ${errores.length ? `<button class="btn" id="fallos">Repetir solo las ${errores.length} falladas</button>` : ""}
+          <button class="btn ${errores.length ? "ghost" : ""}" id="otra">Nuevo intento con las 50</button>
+          <button class="btn ghost" id="inicio">Volver al inicio</button>
+        </div>
+      </section>
+      ${errores.length ? `<section class="card">
+        <h2>Repaso de errores</h2>
+        <div class="review">${errores.map(({ id, k }) => {
+          const p = PREGUNTAS[id];
+          return `<div class="ritem">
+            <span class="topic">${esc(TEMAS[p.t])}</span>
+            <p><strong>${esc(p.q)}</strong></p>
+            <p class="yours">Elegiste: ${esc(p.o[S.ans[k]])}</p>
+            <p class="right">Correcta: ${esc(p.o[0])}</p>
+            <p class="why">${esc(p.e)} <span class="mono" style="font-size:12px">(${esc(p.s)})</span></p>
+          </div>`;
+        }).join("")}</div>
+      </section>` : ""}`;
+    const f = document.getElementById("fallos");
+    if (f) f.onclick = () => nuevo(errores.map((x) => x.id), true);
+    document.getElementById("otra").onclick = () => nuevo(PREGUNTAS.map((_, i) => i), true);
+    document.getElementById("inicio").onclick = () => { S = null; clear(); render(); };
+  }
+
+  // ---------- Juego Contrarreloj ----------
+  const DURACION = 60000;
+  const mejor = () => +(lsGet("qph-record") || 0);
+  const mult = (racha) => Math.min(4, 1 + Math.floor(racha / 3));
+
+  function iniciarJuego() {
+    G = { pool: shuffle(PREGUNTAS.map((_, i) => i)), k: 0, pts: 0, racha: 0, maxRacha: 0, ok: 0, n: 0,
+          endAt: Date.now() + DURACION, lock: false, over: false, fallos: [], raf: 0, rapido: false };
+    nuevaPreguntaJuego();
+    Musica.start();
+    render(); window.scrollTo({ top: 0 });
+    bucleJuego();
+  }
+  function nuevaPreguntaJuego() {
+    if (G.k >= G.pool.length) { G.pool = shuffle(G.pool); G.k = 0; }
+    const id = G.pool[G.k++];
+    G.cur = { id, perm: shuffle([0, 1, 2, 3]), elegido: null };
+  }
+  function bucleJuego() {
+    cancelAnimationFrame(G.raf);
+    const paso = () => {
+      if (!G || G.over) return;
+      const resta = G.endAt - Date.now();
+      if (resta <= 0) return terminarJuego();
+      const t = document.getElementById("g-time"), b = document.getElementById("g-bar");
+      if (t) t.textContent = (resta / 1000).toFixed(1);
+      if (b) { b.style.width = `${Math.min(100, (resta / DURACION) * 100)}%`; b.classList.toggle("hot", resta < 15000); }
+      if (resta < 15000 && !G.rapido) { G.rapido = true; Musica.tempo(150); }
+      if (resta >= 15000 && G.rapido) { G.rapido = false; Musica.tempo(120); }
+      G.raf = requestAnimationFrame(paso);
+    };
+    G.raf = requestAnimationFrame(paso);
+  }
+  function responderJuego(orig) {
+    if (!G || G.lock || G.over) return;
+    G.lock = true; G.cur.elegido = orig; G.n++;
+    const p = PREGUNTAS[G.cur.id];
+    let delta;
+    if (orig === 0) {
+      G.racha++; G.maxRacha = Math.max(G.maxRacha, G.racha); G.ok++;
+      delta = 10 * mult(G.racha); G.pts += delta; G.endAt += 2000;
+      Snd.ok();
+    } else {
+      G.racha = 0; G.endAt -= 4000; G.fallos.push(G.cur.id);
+      Snd.bad();
+    }
+    renderJuego(orig === 0 ? `+${delta}` : "−4 s");
+    setTimeout(() => {
+      if (!G || G.over) return;
+      if (G.endAt - Date.now() <= 0) return terminarJuego();
+      G.lock = false; nuevaPreguntaJuego(); renderJuego();
+    }, orig === 0 ? 650 : 1700);
+  }
+  function terminarJuego() {
+    G.over = true; cancelAnimationFrame(G.raf);
+    Musica.stop(); Snd.fin();
+    G.record = G.pts > mejor();
+    if (G.record) lsSet("qph-record", String(G.pts));
+    renderJuego();
+  }
+  function salirJuego() { if (G) { cancelAnimationFrame(G.raf); Musica.stop(); } G = null; render(); }
+
+  function renderJuego(flash) {
+    if (G.over) return renderFinJuego();
+    const p = PREGUNTAS[G.cur.id], el = G.cur.elegido, resta = Math.max(0, G.endAt - Date.now());
+    app.innerHTML = `
+      <section class="card game ${flash ? (el === 0 ? "pulse-ok" : "shake") : "enter"}">
+        <div class="hud">
+          <div><span class="eyebrow">Puntos</span><span class="hud-n mono">${G.pts}</span></div>
+          <div><span class="eyebrow">Racha</span><span class="hud-n mono">${G.racha}${mult(G.racha) > 1 ? ` <em class="mult">×${mult(G.racha)}</em>` : ""}</span></div>
+          <div class="hud-t"><span class="eyebrow">Tiempo</span><span class="hud-n mono" id="g-time">${(resta / 1000).toFixed(1)}</span></div>
+        </div>
+        <div class="tbar-wrap">
+          <div class="tbar"><b id="g-bar" class="${resta < 15000 ? "hot" : ""}" style="width:${Math.min(100, (resta / DURACION) * 100)}%"></b></div>
+          ${flash ? `<span class="flash ${el === 0 ? "ok" : "bad"} mono">${flash}</span>` : ""}
+        </div>
+        <span class="topic">${esc(TEMAS[p.t])}</span>
+        <p class="qtext">${esc(p.q)}</p>
+        <div class="opts">
+          ${G.cur.perm.map((orig, k) => {
+            const cls = el === null ? "" : orig === 0 ? "correct" : orig === el ? "wrong" : "dim";
+            return `<button class="opt ${cls}" data-o="${orig}" ${el !== null ? "disabled" : ""}><span class="k">${LETRAS[k]}</span><span>${esc(p.o[orig])}</span></button>`;
+          }).join("")}
+        </div>
+        <div class="navrow">
+          <button class="btn ghost" id="g-salir">Salir del juego</button>
+          <button class="btn ghost" id="g-musica" data-mudo aria-pressed="${Musica.on}">Música: ${Musica.on ? "sí" : "no"}</button>
+        </div>
+      </section>`;
+    app.querySelectorAll(".opt").forEach((b) => b.onclick = () => responderJuego(+b.dataset.o));
+    document.getElementById("g-salir").onclick = salirJuego;
+    document.getElementById("g-musica").onclick = () => { Snd.click(); if (Musica.toggle()) Musica.start(); renderJuego(); };
+  }
+  function renderFinJuego() {
+    const unicos = [...new Set(G.fallos)];
+    app.innerHTML = `
+      <section class="card enter">
+        <div class="eyebrow">Fin del Contrarreloj</div>
+        <div class="score"><span class="big mono">${G.pts}</span><span class="of">pts · ${G.ok}/${G.n} aciertos · mejor racha ${G.maxRacha}</span></div>
+        <p class="grade">${G.record ? "¡Nuevo récord!" : `Récord: ${mejor()} pts.`}</p>
+        <div class="btns">
+          <button class="btn bili" id="g-otra">Jugar otra vez</button>
+          <button class="btn ghost" id="g-inicio">Volver al inicio</button>
+        </div>
+      </section>
+      ${unicos.length ? `<section class="card">
+        <h2>Lo que fallaste</h2>
+        <div class="review">${unicos.map((id) => {
+          const p = PREGUNTAS[id];
+          return `<div class="ritem">
+            <span class="topic">${esc(TEMAS[p.t])}</span>
+            <p><strong>${esc(p.q)}</strong></p>
+            <p class="right">Correcta: ${esc(p.o[0])}</p>
+            <p class="why">${esc(p.e)} <span class="mono" style="font-size:12px">(${esc(p.s)})</span></p>
+          </div>`;
+        }).join("")}</div>
+      </section>` : ""}`;
+    document.getElementById("g-otra").onclick = iniciarJuego;
+    document.getElementById("g-inicio").onclick = salirJuego;
+  }
+
+  // ---------- Barra de herramientas ----------
+  const tools = document.getElementById("tools");
+  tools.innerHTML = `<button class="tool" id="snd" data-mudo aria-pressed="${!Snd.muted}"></button><div class="pomo" id="pomo"></div>`;
+  const sndBtn = document.getElementById("snd");
+  const pintaSnd = () => { sndBtn.textContent = Snd.muted ? "🔇 Sonido: no" : "🔊 Sonido: sí"; sndBtn.setAttribute("aria-pressed", !Snd.muted); };
+  sndBtn.onclick = () => { Snd.toggle(); Snd.click(); pintaSnd(); };
+  pintaSnd();
+  Pomodoro.montar(document.getElementById("pomo"));
+
+  document.addEventListener("keydown", (ev) => {
+    if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
+    if (G && !G.over) {
+      const k = ev.key.toUpperCase();
+      let idx = "1234".indexOf(k); if (idx < 0) idx = "ABCD".indexOf(k);
+      if (idx >= 0 && k.length === 1 && !G.lock) responderJuego(G.cur.perm[idx]);
+      return;
+    }
+    if (G || !S || S.done) return;
+    const k = ev.key.toUpperCase();
+    let idx = "1234".indexOf(k); if (idx < 0) idx = "ABCD".indexOf(k);
+    if (idx >= 0 && k.length === 1 && S.ans[S.cur] === null) {
+      const orig = S.perms[S.cur][idx];
+      if (orig !== undefined) responder(orig);
+    } else if (ev.key === "Enter" && S.ans[S.cur] !== null && document.activeElement?.id !== "prev") {
+      ev.preventDefault(); avanzar();
+    }
+  });
+
+  render();
+})();
+
+</script>
+
+</body></html>

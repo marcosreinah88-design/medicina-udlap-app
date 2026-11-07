@@ -1,0 +1,366 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>4to semestre</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../fonts/gf04d6d6220.css">
+<style>
+/* Layout: carpeta de argollas del semestre. Portada con separadores de color por materia, rejilla de expedientes con portada ilustrada; cada material se abre a pantalla completa. */
+:root{
+  --bg:#edf1f4;
+  --dot:#c9d3db;
+  --paper:#ffffff;
+  --paper-2:#e4eaef;
+  --ink:#14202b;
+  --ink-2:#556472;
+  --line:#d3dce3;
+  --accent:#2b5d86;
+  --shadow:rgba(20,32,43,.16);
+  --f-display:"Gloock", "Times New Roman", Georgia, serif;
+  --f-body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f151b; --dot:#25313b; --paper:#18212a; --paper-2:#222d37; --ink:#e8eef3; --ink-2:#9cabb8; --line:#2b3843;
+  --accent:#86bce4; --shadow:rgba(0,0,0,.5); color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0f151b; --dot:#25313b; --paper:#18212a; --paper-2:#222d37; --ink:#e8eef3; --ink-2:#9cabb8; --line:#2b3843;
+  --accent:#86bce4; --shadow:rgba(0,0,0,.5); color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:var(--bg);background-image:radial-gradient(var(--dot) 1px, transparent 1.2px);background-size:22px 22px;color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55}
+body.viewing{overflow:hidden}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;text-wrap:balance;line-height:1.08}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+
+/* Portada */
+.hero{padding-block:56px 36px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.kicker::before{content:"";width:28px;height:2px;background:var(--ink-2)}
+.hero h1{font-size:clamp(2.8rem,8vw,5.8rem);letter-spacing:-.02em;margin-top:14px;white-space:nowrap}
+.hero h1 sup{font-size:.36em;vertical-align:.95em;letter-spacing:0;margin-left:2px}
+.hero p{margin:18px 0 0;color:var(--ink-2);font-size:1.08rem;max-width:46ch}
+.tally{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 18px 40px -26px var(--shadow)}
+.tally div{background:var(--paper);padding:16px 18px;display:grid;gap:2px}
+.tally b{font-family:var(--f-display);font-weight:400;font-size:2.2rem;line-height:1;font-variant-numeric:tabular-nums}
+.tally span{font-size:.85rem;color:var(--ink-2)}
+
+/* Separadores de carpeta */
+.dividers{display:flex;gap:6px;align-items:flex-end;overflow-x:auto;scrollbar-width:none;padding-top:6px}
+.dividers::-webkit-scrollbar{display:none}
+.dividers a,.dividers .add{flex:none;text-decoration:none;font-weight:700;font-size:.88rem;padding:10px 16px 12px;border-radius:12px 12px 0 0;transform:translateY(6px);transition:transform .18s}
+.dividers a{background:var(--c);color:#fff}
+.dividers a:hover{transform:translateY(0)}
+.dividers .add{background:transparent;color:var(--ink-2);border:1px dashed var(--line);border-bottom:0;font-weight:600}
+.rule{height:6px;background:var(--ink);border-radius:3px}
+
+.tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding-block:22px 18px}
+.tools h2{font-size:1.6rem}
+.search{flex:0 1 360px;display:flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:0 16px;min-width:0}
+.search input{flex:1;min-width:0;border:0;background:transparent;font:inherit;color:var(--ink);padding:10px 0}
+.search input:focus{outline:none}
+.search:focus-within{border-color:var(--accent)}
+.search svg{flex:none;color:var(--ink-2)}
+
+/* Expedientes */
+main{padding-block:0 56px}
+.shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:24px}
+.card{display:grid;grid-template-rows:auto 1fr;background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 1px 0 var(--line), 0 22px 44px -32px var(--shadow);transition:transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s}
+.card:hover{transform:translateY(-4px);box-shadow:0 1px 0 var(--line), 0 30px 54px -28px var(--shadow)}
+.cover{position:relative;display:block;aspect-ratio:16/8;max-width:100%;background:var(--cbg);overflow:hidden;text-decoration:none}
+.cover svg.art{position:absolute;inset:0;width:100%;height:100%;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.card:hover .cover svg.art{transform:scale(1.04)}
+.cover .badge{position:absolute;left:18px;top:16px;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.32);backdrop-filter:blur(6px);padding:5px 10px;border-radius:999px}
+.cover .open{position:absolute;right:16px;bottom:14px;display:inline-flex;align-items:center;gap:6px;background:#fff;color:#14202b;font-weight:700;font-size:.9rem;padding:8px 14px;border-radius:999px;box-shadow:0 8px 20px -8px rgba(0,0,0,.4);transition:gap .2s}
+.card:hover .cover .open{gap:10px}
+.body{padding:20px 22px 22px;display:grid;gap:12px;align-content:start;min-width:0}
+.body .sub{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--c)}
+.body h3{font-size:2rem}
+.body p{margin:0;color:var(--ink-2)}
+.nums{display:flex;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.nums div{flex:1 1 0;min-width:80px;padding:10px 12px;display:grid;border-right:1px solid var(--line)}
+.nums div:last-child{border-right:0}
+.nums b{font-family:var(--f-display);font-weight:400;font-size:1.5rem;line-height:1.1;font-variant-numeric:tabular-nums;color:var(--c)}
+.nums span{font-size:.78rem;color:var(--ink-2)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:999px;background:color-mix(in srgb, var(--c) 14%, var(--paper));color:var(--ink)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.link2{font-size:.88rem;font-weight:600;color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--line)}
+.link2:hover{color:var(--ink);border-color:var(--ink)}
+.empty{padding:40px;text-align:center;color:var(--ink-2);border:1px dashed var(--line);border-radius:20px;background:var(--paper)}
+
+footer{padding-block:22px 44px;color:var(--ink-2);font-size:.86rem;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;border-top:1px solid var(--line)}
+footer p{margin:0;max-width:62ch}
+
+/* Visor */
+.viewer{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.vbar{display:flex;align-items:center;gap:10px;background:var(--paper);border-bottom:3px solid var(--c);padding-block:8px;padding-left:max(12px, env(safe-area-inset-left, 0px));padding-right:max(12px, env(safe-area-inset-right, 0px));flex-wrap:wrap}
+.vbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;font-weight:600;font-size:.88rem;padding:6px 12px;border-radius:999px;text-decoration:none;cursor:pointer}
+.vbtn:hover{border-color:var(--ink-2)}
+.vt{font-family:var(--f-display);font-size:1.2rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.vt small{font-family:var(--f-body);font-size:.8rem;color:var(--ink-2);margin-left:8px}
+.vswitch{display:flex;gap:4px}
+.vswitch button{border:0;background:var(--paper-2);color:var(--ink-2);font:inherit;font-size:.82rem;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer}
+.vswitch button[aria-current="true"]{background:var(--sc);color:#fff}
+.viewer iframe{flex:1;width:100%;border:0;background:var(--paper);display:block}
+
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;gap:24px;padding-top:36px}
+  .vswitch{display:none}
+  .vt small{display:none}
+}
+@media (max-width:480px){
+  .body h3{font-size:1.7rem}
+  .cover{aspect-ratio:16/10}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.card:hover{transform:none}}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <span class="kicker">Medicina · Repositorio de estudio</span>
+      <h1>4<sup>to</sup> semestre</h1>
+      <p>Todos tus materiales interactivos en una sola carpeta. Abre cualquiera y úsalo completo: apuntes, flashcards, casos, exámenes y herramientas.</p>
+    </div>
+    <div class="tally" id="tally"></div>
+  </header>
+  <nav class="dividers" id="dividers" aria-label="Materias"></nav>
+  <div class="rule"></div>
+  <div class="tools">
+    <h2>Materias</h2>
+    <label class="search" for="q">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Buscar materia o tema" autocomplete="off">
+    </label>
+  </div>
+  <main>
+    <div class="shelf" id="shelf"></div>
+  </main>
+  <footer>
+    <p>Tu progreso (tarjetas dominadas, mejores resultados, último tema abierto) se guarda en este navegador, por separado en cada materia.</p>
+    <span id="count"></span>
+  </footer>
+</div>
+
+<div class="viewer" id="viewer" hidden>
+  <div class="vbar">
+    <button class="vbtn" id="v-back" type="button">← Semestre</button>
+    <span class="vt" id="v-title"></span>
+    <div class="vswitch" id="v-switch"></div>
+    <a class="vbtn" id="v-open" href="#" target="_blank" rel="noopener">Pestaña nueva ↗</a>
+  </div>
+  <iframe id="v-frame" title="Material de estudio"></iframe>
+</div>
+
+<script>
+/* Para agregar una materia: pon su archivo en apps/ y añade un objeto a esta lista. */
+const ITEMS = [
+  {
+    id:"hematologia",
+    file:"apps/hematologia.html",
+    title:"Hematología",
+    subject:"Atlas de estudio",
+    color:"#b8325a",
+    bg:"linear-gradient(135deg,#f9e3ea 0%,#eadff4 100%)",
+    bgDark:"linear-gradient(135deg,#3a1f2b 0%,#2a2140 100%)",
+    desc:"Hematopoyesis, anemias, neoplasias hematológicas y hemostasia, con tus apuntes corregidos y complementados.",
+    nums:[["23","temas"],["150","flashcards"],["9","casos"],["47","preguntas"]],
+    tags:["Apuntes","Flashcards","Casos clínicos","Examen","Atlas del frotis","Calculadoras","Correcciones"],
+    keywords:"sangre anemia leucemia linfoma mieloma hierro b12 coagulacion hemostasia plaquetas frotis",
+    art:`<svg class="art" viewBox="0 0 480 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs><radialGradient id="hf" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#f7e8ee"/><stop offset=".82" stop-color="#f1d9e3"/><stop offset="1" stop-color="#b98fa5"/></radialGradient></defs>
+      <circle cx="360" cy="120" r="150" fill="url(#hf)"/>
+      ${[[300,60,26],[372,48,24],[430,96,25],[290,130,25],[350,128,27],[420,170,24],[310,200,26],[382,206,22],[452,40,18],[250,90,18],[262,180,20]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#e58f9e"/><circle cx="${x}" cy="${y}" r="${r*.42}" fill="#f6c9d1"/>`).join("")}
+      <g transform="translate(400,128)"><circle r="22" fill="#f3d9e3"/>${[[-9,-7],[3,-11],[11,-1],[4,10],[-8,7]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="6" ry="5" fill="#5b3f91"/>`).join("")}</g>
+      <g transform="translate(270,60)"><circle r="16" fill="#cfc3e6"/><circle r="11" fill="#3d2768"/></g>
+      ${[[60,40,10],[120,190,14],[40,150,7],[180,60,6],[200,210,9]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#e58f9e" opacity=".35"/>`).join("")}
+    </svg>`
+  },
+  {
+    id:"farmacologia-ii",
+    file:"apps/farmacologia-ii.html",
+    title:"Farmacología II",
+    subject:"Antiinfecciosos, SNC y endocrino",
+    color:"#0b7a62",
+    bg:"linear-gradient(135deg,#dcf2ea 0%,#e2edf7 100%)",
+    bgDark:"linear-gradient(135deg,#123a30 0%,#1a2a3a 100%)",
+    desc:"Prescripción, antibióticos, antituberculosos, antimicóticos, antivirales, antiparasitarios, Parkinson, diabetes, tiroides y ansiolíticos.",
+    nums:[["10","temas"],["127","fármacos"],["Buscador","por RAM o uso"]],
+    tags:["Estudiar","Búsqueda","Flashcards","Examen"],
+    keywords:"farmacos antibioticos tuberculosis hongos antivirales parasitos parkinson diabetes insulina tiroides ansioliticos benzodiacepinas receta",
+    art:`<svg class="art" viewBox="0 0 480 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      ${[[300,70,-28,"#0b7a62","#7cc7ae"],[390,120,18,"#2563a8","#9cc2ec"],[320,170,8,"#b5651d","#f0c08f"],[420,50,-50,"#7a4fb0","#c9b0ea"],[250,120,-70,"#b0306a","#f1a7c6"],[440,190,-20,"#0f7b8a","#8fd3dd"]].map(([x,y,a,c1,c2])=>`<g transform="translate(${x},${y}) rotate(${a})"><rect x="-38" y="-15" width="76" height="30" rx="15" fill="${c2}"/><path d="M0 -15 H23 A15 15 0 0 1 23 15 H0 Z" fill="${c1}"/><rect x="-30" y="-10" width="18" height="5" rx="2.5" fill="#fff" opacity=".55"/></g>`).join("")}
+      ${[[360,215,13],[455,110,11],[275,215,10],[350,30,9]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#ffffff" stroke="#0b7a62" stroke-opacity=".35" stroke-width="2"/><line x1="${x-r+3}" y1="${y}" x2="${x+r-3}" y2="${y}" stroke="#0b7a62" stroke-opacity=".35" stroke-width="2"/>`).join("")}
+      <text x="70" y="170" font-family="Gloock, Georgia, serif" font-size="150" fill="#0b7a62" opacity=".14">℞</text>
+    </svg>`
+  },
+  {
+    id:"inmunologia",
+    file:"apps/inmunologia.html",
+    title:"Inmunología",
+    subject:"Del antígeno a la hipersensibilidad",
+    color:"#4a3a91",
+    bg:"linear-gradient(135deg,#e7e3fa 0%,#f8e4ee 100%)",
+    bgDark:"linear-gradient(135deg,#251f45 0%,#3a2130 100%)",
+    desc:"Generalidades, inmunidad innata, fagocitosis y complemento, MHC, linfocitos T y B, inmunodeficiencias, autoinmunidad e hipersensibilidad I a IV.",
+    nums:[["11","temas"],["100","flashcards"],["17","casos"],["59","preguntas"]],
+    tags:["Resúmenes","Interactivos","Flashcards","Relacionar","Quiz"],
+    keywords:"inmune antigeno anticuerpo inmunoglobulinas innato tlr pamp complemento fagocitosis mhc hla linfocitos th1 th2 treg inmunodeficiencias bruton digeorge autoinmunidad alergia anafilaxia hipersensibilidad sarampion",
+    art:`<svg class="art" viewBox="0 0 480 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      ${[[310,70,-20,30],[400,140,25,34],[300,180,160,26],[440,50,60,22],[250,110,-60,22],[450,215,-35,24]].map(([x,y,a,s])=>`<g transform="translate(${x},${y}) rotate(${a})" stroke="#4a3a91" stroke-width="${s/5}" stroke-linecap="round" fill="none"><path d="M0 ${s} V0 L${-s*.7} ${-s*.8} M0 0 L${s*.7} ${-s*.8}"/><path d="M${-s*.25} ${s*.1} L${-s*.85} ${-s*.6} M${s*.25} ${s*.1} L${s*.85} ${-s*.6}" stroke="#c2416e" stroke-width="${s/9}"/></g>`).join("")}
+      ${[[360,90,22],[350,200,18],[230,200,15],[470,120,14]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#ebe7fa" stroke="#4a3a91" stroke-opacity=".4" stroke-width="2"/><circle cx="${x}" cy="${y}" r="${r*.68}" fill="#4a3a91" opacity=".75"/>`).join("")}
+      ${[[60,50,9],[140,200,12],[40,160,6],[190,40,7]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#c2416e" opacity=".25"/>`).join("")}
+    </svg>`
+  },
+  {
+    id:"simulacion-iv",
+    file:"apps/simulacion-iv.html",
+    title:"Simulación IV",
+    subject:"ECG, ACLS y ATLS",
+    color:"#c4142f",
+    bg:"linear-gradient(135deg,#fde6e3 0%,#fdf0dc 100%)",
+    bgDark:"linear-gradient(135deg,#3b1d22 0%,#3a2714 100%)",
+    desc:"Protocolos de clase para verbalizar, monitor de ritmos en vivo, RCP y fármacos en paro, bradi y taquicardias, revisión primaria xABCDE y choque hemorrágico.",
+    nums:[["23","ritmos"],["79","flashcards"],["3","casos"],["35","preguntas"]],
+    tags:["Resumen","Monitor ECG","Tarjetas","Quiz","Casos"],
+    keywords:"simu simulacion ecg electrocardiograma ritmos acls atls rcp paro desfibrilacion fv tv asistolia bradicardia taquicardia marcapasos cardioversion trauma glasgow choque neumotorax rosc",
+    art:`<svg class="art" viewBox="0 0 480 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g transform="translate(222,34)"><rect width="236" height="150" rx="14" fill="#07120e"/>
+      ${[...Array(11)].map((_,i)=>`<line x1="${12+i*21}" y1="12" x2="${12+i*21}" y2="138" stroke="#12281f" stroke-width="1"/>`).join("")}
+      <path d="M8 86 H40 l5 -4 l5 4 H62 l4 3 l7 -46 l7 58 l5 -15 H100 l10 -6 l10 6 H134 l5 -4 l5 4 H156 l4 3 l7 -46 l7 58 l5 -15 H194 l10 -6 l10 6 H228" fill="none" stroke="#5ef59a" stroke-width="3" stroke-linejoin="round"/>
+      <text x="16" y="30" font-family="JetBrains Mono, monospace" font-size="14" fill="#5ef59a" opacity=".8">FC 72</text>
+      <text x="196" y="30" font-family="Arial" font-size="16" fill="#ff5c6c">♥</text></g>
+      <path d="M0 210 H60 l6 -5 l6 5 H90 l4 4 l8 -34 l8 42 l5 -12 H150 l12 -6 l12 6 H480" fill="none" stroke="#c4142f" stroke-opacity=".35" stroke-width="3" stroke-linejoin="round"/>
+      <g transform="translate(110,110)" fill="#c4142f" opacity=".2"><rect x="-10" y="-30" width="20" height="60" rx="3"/><rect x="-30" y="-10" width="60" height="20" rx="3"/></g>
+    </svg>`
+  },
+  {
+    id:"nutricion",
+    file:"apps/nutricion.html",
+    title:"Nutrición",
+    subject:"Nutrición y metabolismo",
+    color:"#4d7a1f",
+    bg:"linear-gradient(135deg,#eef3dc 0%,#fdf3d6 100%)",
+    bgDark:"linear-gradient(135deg,#1f2c14 0%,#33290f 100%)",
+    desc:"Historia de la alimentación, lactancia, requerimientos por etapa, macro y micronutrimentos, SMAE, PAN, enfermedades, dietas hospitalarias, enteral y deportiva.",
+    nums:[["14","temas"],["132","flashcards"],["74","preguntas"],["4","fórmulas de GET"]],
+    tags:["Resúmenes","Tarjetas","Quiz","Calculadora","Preguntas de examen"],
+    keywords:"nutricion alimentacion metabolismo lactancia calostro nom-043 embarazo macronutrimentos vitaminas minerales smae plato del bien comer owen mifflin harris benedict get pan soap renal dash fodmap celiaca diabetes dieta hospitalaria enteral deportiva",
+    art:`<svg class="art" viewBox="0 0 480 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g transform="translate(300,22) rotate(4)"><rect width="150" height="196" fill="#fffdf6" stroke="#1d2414" stroke-width="3"/>
+      <text x="10" y="26" font-family="Archivo, Arial Narrow, Arial" font-weight="900" font-size="19" fill="#1d2414">Información</text>
+      <text x="10" y="45" font-family="Archivo, Arial Narrow, Arial" font-weight="900" font-size="19" fill="#1d2414">nutrimental</text>
+      <rect x="10" y="53" width="130" height="7" fill="#1d2414"/>
+      ${[["Energía","2,250"],["Proteína","84 g"],["HCO","338 g"],["Lípidos","63 g"],["Fibra","30 g"]].map(([a,b],i)=>`<text x="10" y="${80+i*22}" font-family="Arial" font-size="12" fill="#1d2414">${a}</text><text x="140" y="${80+i*22}" text-anchor="end" font-family="Arial" font-weight="700" font-size="12" fill="#1d2414">${b}</text><line x1="10" y1="${86+i*22}" x2="140" y2="${86+i*22}" stroke="#1d2414" stroke-width="1"/>`).join("")}</g>
+      <g transform="translate(200,140)"><circle r="62" fill="#fffdf6" stroke="#4d7a1f" stroke-opacity=".5" stroke-width="3"/>
+      <path d="M0 0 L0 -50 A50 50 0 0 1 47.5 15.5 Z" fill="#7cb342"/><path d="M0 0 L47.5 15.5 A50 50 0 0 1 -29.4 40.5 Z" fill="#e9b949"/><path d="M0 0 L-29.4 40.5 A50 50 0 0 1 0 -50 Z" fill="#d9774b"/></g>
+      ${[[70,50,8],[120,200,11],[40,150,6],[160,40,7]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#4d7a1f" opacity=".2"/>`).join("")}
+    </svg>`
+  },
+  {
+    id:"cirugia",
+    file:"apps/cirugia.html",
+    title:"Principios de cirugía",
+    subject:"Cirugía general",
+    color:"#2b5f8c",
+    bg:"linear-gradient(135deg,#e2edf6 0%,#e4f3f0 100%)",
+    bgDark:"linear-gradient(135deg,#132536 0%,#10302c 100%)",
+    desc:"Historia, respuesta metabólica al trauma, asepsia, instrumental, vestido, valoración y preparación preoperatoria, trans y postoperatorio, hemostasia y transfusión, infección del sitio quirúrgico, drenajes y NPT.",
+    nums:[["13","temas"],["151","flashcards"],["103","preguntas"],["4","de examen"]],
+    tags:["Resúmenes","Tarjetas","Quiz","Calculadora NPT","Temas de examen"],
+    keywords:"cirugia principios quirurgica historia pare galeno lister halsted asepsia antisepsia esterilizacion autoclave instrumental bisturi pinzas separadores suturas vestido bata guantes asa goldman lee preoperatorio transoperatorio postoperatorio aldrete hemostasia transfusion plaquetas plasma isq infeccion herida profilaxis cefazolina drenajes penrose jackson pratt hemovac kehr npt nutricion parenteral",
+    art:`<svg class="art" viewBox="0 0 480 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g transform="translate(250,70) rotate(-18)"><rect x="0" y="-7" width="120" height="14" rx="7" fill="#9fb3c4" stroke="#1c3348" stroke-width="2.5"/>
+      ${[...Array(6)].map((_,i)=>`<line x1="${24+i*14}" y1="-5" x2="${24+i*14}" y2="5" stroke="#1c3348" stroke-width="1.5" opacity=".5"/>`).join("")}
+      <path d="M120 -5 L134 -5 L196 2 C170 14 146 12 134 7 L120 7 Z" fill="#e8eef3" stroke="#1c3348" stroke-width="2.5" stroke-linejoin="round"/></g>
+      <g transform="translate(286,150) rotate(8)" fill="none" stroke="#1c3348" stroke-width="2.5" stroke-linejoin="round">
+      <circle cx="0" cy="0" r="13" fill="#fff"/><circle cx="0" cy="34" r="13" fill="#fff"/>
+      <path d="M12 6 L60 14 L150 16" /><path d="M12 28 L60 20 L150 18"/><rect x="54" y="12" width="10" height="10" rx="2" fill="#9fb3c4"/></g>
+      <path d="M40 200 C90 150 130 230 180 180" fill="none" stroke="#2b5f8c" stroke-opacity=".4" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>
+      <path d="M176 172 a14 14 0 1 1 10 18" fill="none" stroke="#2b5f8c" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/>
+      <g transform="translate(90,80)" fill="#2b5f8c" opacity=".18"><rect x="-10" y="-30" width="20" height="60" rx="3"/><rect x="-30" y="-10" width="60" height="20" rx="3"/></g>
+    </svg>`
+  }
+];
+
+const $ = s => document.querySelector(s);
+const norm = s => s.normalize("NFD").replace(/\p{M}/gu,"").toLowerCase();
+const isDark = () => {
+  const t = document.documentElement.getAttribute("data-theme");
+  if (t) return t === "dark";
+  try { return matchMedia("(prefers-color-scheme: dark)").matches; } catch(e) { return false; }
+};
+const sumOf = label => ITEMS.reduce((a,it)=>{const n=it.nums.find(x=>x[1]===label);return a+(n?(+n[0]||0):0)},0);
+
+function renderTop(){
+  $("#tally").innerHTML = [
+    [ITEMS.length,"materias"],
+    [sumOf("temas"),"temas"],
+    [sumOf("casos"),"casos clínicos"],
+    [sumOf("fármacos"),"fármacos"]
+  ].map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join("");
+  $("#dividers").innerHTML = ITEMS.map(it=>`<a href="#${it.id}" style="--c:${it.color}">${it.title}</a>`).join("") + `<span class="add">+ próximamente</span>`;
+}
+
+function renderShelf(){
+  const q = norm($("#q").value.trim());
+  const list = ITEMS.filter(it => !q || norm([it.title,it.subject,it.desc,it.tags.join(" "),it.keywords].join(" ")).includes(q));
+  $("#count").textContent = `${list.length} de ${ITEMS.length} materias`;
+  if (!list.length){ $("#shelf").innerHTML = `<div class="empty">Ninguna materia coincide con tu búsqueda.</div>`; return; }
+  const dark = isDark();
+  $("#shelf").innerHTML = list.map(it => `
+    <article class="card" style="--c:${it.color};--cbg:${dark?it.bgDark:it.bg}">
+      <a class="cover" href="#${it.id}" aria-label="Abrir ${it.title}">
+        ${it.art}
+        <span class="badge">${it.subject}</span>
+        <span class="open">Abrir <span aria-hidden="true">→</span></span>
+      </a>
+      <div class="body">
+        <h3>${it.title}</h3>
+        <p>${it.desc}</p>
+        <div class="nums">${it.nums.map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join("")}</div>
+        <div class="tags">${it.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+        <div class="row"><span class="sub">${it.tags.length} secciones</span><a class="link2" href="${it.file}" target="_blank" rel="noopener">Abrir en pestaña nueva ↗</a></div>
+      </div>
+    </article>`).join("");
+}
+
+let lastScroll = 0;
+function route(){
+  const id = (location.hash||"").slice(1);
+  const it = ITEMS.find(x => x.id === id);
+  const v = $("#viewer"), f = $("#v-frame");
+  if (it){
+    if (v.hidden) lastScroll = window.scrollY;
+    v.style.setProperty("--c", it.color);
+    $("#v-title").innerHTML = `${it.title}<small>${it.subject}</small>`;
+    $("#v-open").href = it.file;
+    $("#v-switch").innerHTML = ITEMS.map(x=>`<button type="button" data-go="${x.id}" style="--sc:${x.color}" aria-current="${x.id===it.id}">${x.title}</button>`).join("");
+    if (f.getAttribute("src") !== it.file) f.setAttribute("src", it.file);
+    v.hidden = false; document.body.classList.add("viewing");
+    document.title = it.title + " · 4to semestre";
+  } else {
+    v.hidden = true; document.body.classList.remove("viewing");
+    document.title = "4to semestre";
+    window.scrollTo(0, lastScroll);
+  }
+}
+
+$("#q").addEventListener("input", renderShelf);
+$("#v-back").addEventListener("click", () => { location.hash = ""; });
+$("#v-switch").addEventListener("click", e => { const b = e.target.closest("[data-go]"); if (b) location.hash = b.dataset.go; });
+window.addEventListener("hashchange", route);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#viewer").hidden) location.hash = ""; });
+try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", renderShelf); } catch(e) {}
+new MutationObserver(renderShelf).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+
+renderTop();
+renderShelf();
+route();
+</script>
+
+</body></html>

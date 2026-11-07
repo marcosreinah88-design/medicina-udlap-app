@@ -1,0 +1,209 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Repositorio de estudio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../fonts/g0f33ff8dab.css">
+<style>
+/* Layout: un archivero. Cabecera con el inventario real (materias, temas, tarjetas, preguntas),
+   filtros, y una cuadrícula de fichas; cada ficha lleva la portada con la identidad de su artefacto.
+   Al abrir una ficha, el artefacto ocupa toda la pantalla con una barra mínima para volver. */
+:root{
+  --bg:#EEF0F3; --panel:#FFFFFF; --sunk:#E2E6EB; --ink:#151A22; --muted:#5A6371; --line:#D2D8E0;
+  --acc:#3D4FB8; --acc-soft:#E3E6F7;
+  --display:"Gloock","Iowan Old Style",Georgia,serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --shadow:0 1px 2px rgba(21,26,34,.05),0 8px 24px rgba(21,26,34,.06);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1216; --panel:#171B21; --sunk:#1E232B; --ink:#E6E9EE; --muted:#97A0AD; --line:#2A313B;
+  --acc:#9AA8FF; --acc-soft:#1F2547; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1216; --panel:#171B21; --sunk:#1E232B; --ink:#E6E9EE; --muted:#97A0AD; --line:#2A313B;
+  --acc:#9AA8FF; --acc-soft:#1F2547; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+.wrap{max-width:1180px;margin:0 auto;padding-block:28px 64px}
+
+/* cabecera */
+.head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 32px;align-items:end;padding-bottom:22px;border-bottom:1px solid var(--line)}
+@media (max-width:760px){.head{grid-template-columns:minmax(0,1fr)}}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--acc);margin:0 0 8px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,6.4vw,64px);line-height:.98;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.lede{margin:12px 0 0;color:var(--muted);max-width:56ch}
+.inv{display:grid;grid-template-columns:repeat(4,auto);gap:4px 22px;margin:0}
+@media (max-width:760px){.inv{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.inv div{display:grid;gap:0}
+.inv dt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);order:2}
+.inv dd{margin:0;font-family:var(--display);font-size:34px;line-height:1.05;font-variant-numeric:tabular-nums}
+
+/* filtros */
+.tools{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:20px 0 22px}
+.search{position:relative;flex:1 1 260px;max-width:380px}
+.search input{width:100%;padding:10px 14px 10px 38px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font:inherit}
+.search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--muted);fill:none;stroke-width:2}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 13px;font-size:14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.count{margin-left:auto;font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+
+/* fichas */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:20px}
+.card{display:grid;grid-template-rows:auto 1fr;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);text-align:left;padding:0;cursor:pointer;transition:transform .18s,border-color .18s}
+.card:hover{transform:translateY(-2px);border-color:var(--acc)}
+.cover{position:relative;aspect-ratio:16/8;max-width:100%;overflow:hidden;display:grid;padding:18px 20px}
+.cover .tag{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;align-self:start}
+.cover .big{align-self:end;line-height:.95;position:relative;z-index:1}
+.info{display:grid;gap:10px;padding:18px 20px 18px;align-content:start}
+.info .sub{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.info h2{font-family:var(--display);font-weight:400;font-size:28px;line-height:1.08;margin:0;text-wrap:balance}
+.info p{margin:0;color:var(--muted);font-size:15px}
+.feats{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 0;padding:0;list-style:none}
+.feats li{font-size:12.5px;padding:2px 9px;border-radius:999px;background:var(--sunk)}
+.stats{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--mono);font-size:12.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px;font-variant-numeric:tabular-nums}
+.stats b{color:var(--ink);font-weight:500}
+.open{justify-self:start;margin-top:2px;font-weight:600;color:var(--acc);font-size:15px}
+.empty{grid-column:1/-1;padding:40px 20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px}
+
+/* portadas: cada una toma colores y tipografía de su artefacto */
+.cv-farma{--c1:#1C6B66;--c2:#FBEADB;--c3:#B1530C;background:var(--c1);color:#F3F6F5}
+.cv-farma .big{font-family:"Bricolage Grotesque",var(--body);font-weight:800;font-size:40px;letter-spacing:-.02em}
+.cv-farma .rx{position:absolute;right:-6px;bottom:-30px;font-family:"Bricolage Grotesque",var(--body);font-weight:800;font-size:170px;color:#EE9A55;opacity:.45;line-height:1}
+.cv-farma .pills{position:absolute;right:120px;top:20px;display:flex;gap:6px}
+.cv-farma .pills i{display:block;width:30px;height:12px;border-radius:99px;background:#FBEADB}
+.cv-farma .pills i:nth-child(2){background:#EE9A55}
+.cv-anat{background:#1C1214;color:#F1E9E9}
+.cv-anat .big{font-family:"Instrument Serif",var(--display);font-size:42px}
+.cv-anat .big i{color:#FF8A8F}
+.cv-anat .spine{position:absolute;left:20px;right:20px;top:54px;height:2px;background:rgba(255,255,255,.28)}
+.cv-anat .spine span{position:absolute;top:-8px;width:12px;height:16px;border-radius:3px;border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.06);transform:translateX(-50%)}
+.cv-anat .spine span.k{border-color:#FF8A8F;background:rgba(255,138,143,.2)}
+.cv-gen{background:var(--acc);color:#fff}
+.cv-gen .big{font-family:var(--display);font-size:44px}
+
+/* visor */
+.viewer{position:fixed;inset:0;z-index:40;background:var(--bg);display:grid;grid-template-rows:auto minmax(0,1fr);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.vbar{display:flex;align-items:center;gap:12px;padding:8px max(16px,env(safe-area-inset-right,0px)) 8px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line);background:var(--panel);min-width:0}
+.back{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:6px 12px;cursor:pointer;font-weight:600;font-size:14px;white-space:nowrap}
+.back:hover{border-color:var(--acc)}
+.vt{min-width:0;display:grid}
+.vt b{font-family:var(--display);font-weight:400;font-size:20px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vt span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.vnav{margin-left:auto;display:flex;gap:6px}
+.vnav button{border:1px solid var(--line);background:var(--bg);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:16px}
+.vnav button:disabled{opacity:.35;cursor:default}
+.viewer iframe{width:100%;height:100%;border:0;display:block;background:var(--bg)}
+.foot{margin-top:36px;font-size:13px;color:var(--muted);max-width:80ch}
+</style>
+
+<div class="wrap" id="home">
+  <header class="head">
+    <div>
+      <p class="eyebrow">Repositorio · 3er semestre</p>
+      <h1>Repositorio de estudio</h1>
+      <p class="lede">Todos tus artefactos de repaso en un solo lugar. Cada uno abre completo, con sus resúmenes, tarjetas, quizzes y herramientas funcionando igual que antes.</p>
+    </div>
+    <dl class="inv" id="inv"></dl>
+  </header>
+
+  <div class="tools">
+    <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Buscar: farmacología, irrigación, quiz…" aria-label="Buscar artefactos"></label>
+    <div class="chips" id="chips" role="group" aria-label="Filtrar por materia"></div>
+    <span class="count" id="count"></span>
+  </div>
+
+  <main class="grid" id="grid"></main>
+
+  <p class="foot">Tu avance (temas dominados, mejores puntajes de quiz) se guarda en este navegador para cada artefacto. Al abrirlos desde aquí empiezan un registro nuevo, separado del de sus links originales.</p>
+</div>
+
+<div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-labelledby="vtitle">
+  <div class="vbar">
+    <button class="back" id="back" aria-label="Volver al repositorio">← Repositorio</button>
+    <div class="vt"><span id="vsub"></span><b id="vtitle"></b></div>
+    <div class="vnav"><button id="prev" aria-label="Artefacto anterior">‹</button><button id="next" aria-label="Artefacto siguiente">›</button></div>
+  </div>
+  <iframe id="frame" title="Artefacto"></iframe>
+</div>
+
+<script>
+/* Para agregar un artefacto: súbelo en su carpeta (p. ej. nombre/index.html) y añade una entrada aquí. */
+const ITEMS=[
+ {id:"farmacologia",src:"farmacologia/index.html",materia:"Farmacología",title:"Farmacología Básica",
+  desc:"Resumen interactivo de las 13 presentaciones del curso, de generalidades a adrenérgicos.",
+  feats:["Resumen por unidad","Tarjetas","Quiz","Repaso general","Calculadora de pKa","Regla de tres","Algoritmo de Naranjo"],
+  stats:{"unidades":13,"tarjetas":126,"preguntas":73},cover:"farma",keys:"pka naranjo cyp opioides aine colinergicos adrenergicos posologia ram farmacovigilancia"},
+ {id:"anatomia",src:"anatomia/index.html",materia:"Anatomía",title:"Anatomía II · Digestivo",
+  desc:"Del tubo digestivo al páncreas, con la irrigación como eje. Para el 2º parcial.",
+  feats:["Resumen por tema","Árbol arterial","Mapa de territorios","Flashcards","Tablas rápidas","Láminas del Gray","Tus dibujos"],
+  stats:{"temas":23,"tarjetas":79,"preguntas":65},cover:"anat",keys:"irrigacion tronco celiaco mesenterica estomago higado pancreas colon recto esofago"}
+];
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm=s=>String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const fmt=n=>n.toLocaleString("es-MX");
+
+function cover(it){
+  if(it.cover==="farma") return `<div class="cover cv-farma"><span class="tag">Clase 1 – 12 · ℞</span><span class="pills" aria-hidden="true"><i></i><i></i></span><span class="rx" aria-hidden="true">℞</span><span class="big">Farmacología<br>Básica</span></div>`;
+  if(it.cover==="anat"){const v=[["T10"],["T11"],["T12",1],["L1",1],["L2"],["L3",1],["L4"],["L5"],["S3"]];
+    return `<div class="cover cv-anat"><span class="tag">MED · Anatomía II</span><span class="spine" aria-hidden="true">${v.map((x,i)=>`<span class="${x[1]?"k":""}" style="left:${4+i*11.5}%"></span>`).join("")}</span><span class="big">Anatomía II <i>·</i> Digestivo</span></div>`;}
+  return `<div class="cover cv-gen"><span class="tag">${esc(it.materia)}</span><span class="big">${esc(it.title)}</span></div>`;
+}
+function cardHTML(it){
+  return `<button class="card" data-open="${it.id}" aria-label="Abrir ${esc(it.title)}">${cover(it)}
+   <div class="info"><span class="sub">${esc(it.materia)}</span><h2>${esc(it.title)}</h2><p>${esc(it.desc)}</p>
+   <ul class="feats">${it.feats.map(f=>`<li>${esc(f)}</li>`).join("")}</ul>
+   <div class="stats">${Object.entries(it.stats).map(([k,v])=>`<span><b>${fmt(v)}</b> ${k}</span>`).join("")}</div>
+   <span class="open">Abrir artefacto →</span></div></button>`;
+}
+
+/* inventario */
+const sum=k=>ITEMS.reduce((a,it)=>a+(it.stats[k]||0),0);
+const materias=[...new Set(ITEMS.map(i=>i.materia))];
+$("#inv").innerHTML=[["artefactos",ITEMS.length],["unidades y temas",sum("unidades")+sum("temas")],["tarjetas",sum("tarjetas")],["preguntas",sum("preguntas")]]
+  .map(([k,v])=>`<div><dt>${k}</dt><dd>${fmt(v)}</dd></div>`).join("");
+
+/* filtros */
+let mat="", query="";
+$("#chips").innerHTML=[["","Todas"],...materias.map(m=>[m,m])].map(([k,l])=>`<button class="chip" data-m="${esc(k)}" aria-pressed="${k===mat}">${esc(l)}</button>`).join("");
+$("#chips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;mat=b.dataset.m;document.querySelectorAll("#chips .chip").forEach(c=>c.setAttribute("aria-pressed",c===b));render()});
+$("#q").addEventListener("input",e=>{query=e.target.value.trim();render()});
+function visible(){const q=norm(query);return ITEMS.filter(it=>(!mat||it.materia===mat)&&(!q||norm([it.title,it.materia,it.desc,it.feats.join(" "),it.keys||""].join(" ")).includes(q)))}
+function render(){const v=visible();
+  $("#grid").innerHTML=v.map(cardHTML).join("")||`<div class="empty">Ningún artefacto coincide con «${esc(query)}».</div>`;
+  $("#count").textContent=`${v.length} de ${ITEMS.length}`}
+render();
+
+/* visor */
+const viewer=$("#viewer"),frame=$("#frame");let curId=null;
+function syncTheme(){try{const d=frame.contentDocument&&frame.contentDocument.documentElement;if(!d)return;const t=document.documentElement.getAttribute("data-theme");if(t)d.setAttribute("data-theme",t);else d.removeAttribute("data-theme")}catch(e){}}
+frame.addEventListener("load",syncTheme);
+new MutationObserver(syncTheme).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+function openItem(id,push){const it=ITEMS.find(x=>x.id===id);if(!it){closeViewer(false);return}
+  curId=id;$("#vtitle").textContent=it.title;$("#vsub").textContent=it.materia;
+  if(frame.dataset.id!==id){frame.dataset.id=id;frame.title=it.title;frame.src=it.src}
+  const i=ITEMS.indexOf(it);$("#prev").disabled=i===0;$("#next").disabled=i===ITEMS.length-1;
+  viewer.hidden=false;document.body.style.overflow="hidden";
+  if(push){try{history.replaceState(null,"","#"+id)}catch(e){}}
+  $("#back").focus({preventScroll:true});
+}
+function closeViewer(push){viewer.hidden=true;document.body.style.overflow="";curId=null;
+  if(push){try{history.replaceState(null,"","#")}catch(e){}}
+  const c=document.querySelector(`[data-open="${frameIdSafe()}"]`);if(c)c.focus({preventScroll:true})}
+function frameIdSafe(){return (frame.dataset.id||"").replace(/[^a-z0-9-]/gi,"")}
+$("#grid").addEventListener("click",e=>{const c=e.target.closest("[data-open]");if(c)openItem(c.dataset.open,true)});
+$("#back").onclick=()=>closeViewer(true);
+$("#prev").onclick=()=>{const i=ITEMS.findIndex(x=>x.id===curId);if(i>0)openItem(ITEMS[i-1].id,true)};
+$("#next").onclick=()=>{const i=ITEMS.findIndex(x=>x.id===curId);if(i<ITEMS.length-1)openItem(ITEMS[i+1].id,true)};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!viewer.hidden)closeViewer(true)});
+function route(){const h=(location.hash||"").slice(1);if(h&&ITEMS.some(x=>x.id===h))openItem(h,false);else if(!viewer.hidden)closeViewer(false)}
+window.addEventListener("hashchange",route);route();
+</script>
+
+</body></html>

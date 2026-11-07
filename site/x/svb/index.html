@@ -1,0 +1,618 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Soporte Vital Básico · AHA 2025</title><link rel="stylesheet" href="../../fonts/gb1c5ffe8fc.css">
+<style>
+html,body{margin:0;height:100%;background:#0b0d0f;color:#eee;font-family:system-ui,sans-serif;overflow:hidden}
+#stage{position:absolute;inset:0 0 56px;display:grid;place-items:center}
+#scaler{width:1920px;height:1080px;transform-origin:center;position:relative;flex:none}
+section{position:absolute;inset:0;width:1920px;height:1080px;box-sizing:border-box;overflow:hidden}
+section:not(.on){display:none!important}
+section aside{display:none}
+section ul{margin:0;padding-left:1.2em} section h1,section h2,section h3,section p{margin:0}
+section table{border-collapse:collapse;width:100%} section th,section td{text-align:left;padding:14px 18px;border-bottom:2px solid #E2DED6;vertical-align:top} section th{background:#1A1F23;color:#F2F0EC;font-weight:600}
+[data-build-in]{transition:opacity .35s} [data-build-in].pend{opacity:0;pointer-events:none}
+#bar{position:absolute;left:0;right:0;bottom:0;height:56px;display:flex;align-items:center;gap:10px;padding:0 14px;background:#13171A;border-top:3px solid #FF5A5F;box-sizing:border-box}
+#bar button{border:1px solid #3a4248;background:#1d2327;color:#f2f0ec;border-radius:999px;padding:7px 14px;font:600 14px system-ui,sans-serif;cursor:pointer}
+#bar button:disabled{opacity:.35;cursor:default}
+#n{font:500 14px ui-monospace,monospace;color:#c9d1d4;min-width:70px;text-align:center}
+#t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px;color:#8e9a9f}
+#notes{position:absolute;left:0;right:0;bottom:56px;max-height:40%;overflow:auto;background:rgba(19,23,26,.97);border-top:1px solid #3a4248;padding:16px 20px;font-size:15px;line-height:1.55;color:#dfe5e7;box-sizing:border-box}
+#notes b{color:#FF5A5F;font:600 12px ui-monospace,monospace;letter-spacing:.1em;display:block;margin-bottom:6px}
+@media (max-width:560px){#t{display:none} #bar button{padding:7px 11px}}
+</style></head><body>
+<div id="stage"><div id="scaler"><section id="cover" data-transition="fade" style="background:#13171A;color:#F2F0EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
+<svg aria-label="Trazo de electrocardiograma" width="1920" height="300" viewBox="0 0 1920 300" style="position:absolute;left:0;top:560px;width:1920px;height:300px;opacity:0.9"><path d="M0 180 H220 l20 -14 l20 14 H320 l14 22 l22 -150 l22 180 l14 -52 H460 q40 -44 80 0 H760 l20 -14 l20 14 H860 l14 22 l22 -150 l22 180 l14 -52 H1000 q40 -44 80 0 H1300 l18 -6 l18 8 l18 -4 l18 6 l18 -8 l18 4 l18 -6 H1920" fill="none" stroke="#FF5A5F" stroke-width="5" stroke-linejoin="round"/></svg>
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#FF5A5F;letter-spacing:2px">MASTERCLASS · GUÍAS AHA 2025</p>
+<div style="display:flex;flex-direction:column;gap:24px">
+<h1 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:180px;font-weight:700;line-height:0.95;text-transform:uppercase;color:#F2F0EC">Soporte vital<br><span style="color:#FF5A5F">básico</span></h1>
+<p style="font-size:36px;color:#C9D1D4;width:1300px">RCP en adultos, niños y lactantes, ventilación, uso del DEA y manejo del atragantamiento</p>
+</div>
+<div style="display:flex;gap:64px;font-family:'IBM Plex Mono', 'Courier New', monospace">
+<p style="font-size:28px;color:#FF5A5F">100–120 /min</p>
+<p style="font-size:28px;color:#F2F0EC">5–6 cm</p>
+<p style="font-size:28px;color:#6CB8FF">30:2</p>
+<p style="font-size:28px;color:#F2B544">DEA lo antes posible</p>
+</div>
+<aside>Bienvenida. Todo lo que vamos a ver sale de las guías 2025 de la American Heart Association para RCP y atención cardiovascular de emergencia: la Parte 7 (soporte vital básico del adulto) y la Parte 6 (soporte vital básico pediátrico, hecha junto con la Academia Americana de Pediatría). Los números de abajo son el esqueleto de la clase: frecuencia de 100 a 120 compresiones por minuto, profundidad de 5 a 6 cm en el adulto, relación 30:2 y desfibrilar con el DEA en cuanto llegue. El trazo cambia de ritmo sinusal a fibrilación ventricular: ese es el ritmo que el DEA está buscando.</aside>
+</section>
+<section id="agenda" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4232A;letter-spacing:2px">AGENDA</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Seis bloques, una secuencia</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:36px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#B4232A">01</p>
+<h3 style="font-size:32px;font-weight:600">Cadena de supervivencia</h3>
+<p style="font-size:24px;color:#4A5258">Los eslabones que sostienen la sobrevida</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:36px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#B4232A">02</p>
+<h3 style="font-size:32px;font-weight:600">RCP en el adulto</h3>
+<p style="font-size:24px;color:#4A5258">Reconocer el paro y comprimir con calidad</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:36px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#B4232A">03</p>
+<h3 style="font-size:32px;font-weight:600">Niños y lactantes</h3>
+<p style="font-size:24px;color:#4A5258">Profundidad, técnica y relaciones</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:36px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#B4232A">04</p>
+<h3 style="font-size:32px;font-weight:600">Ventilación</h3>
+<p style="font-size:24px;color:#4A5258">Vía aérea, volumen y frecuencias</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:36px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#B4232A">05</p>
+<h3 style="font-size:32px;font-weight:600">Uso del DEA</h3>
+<p style="font-size:24px;color:#4A5258">Parches, descarga y pediatría</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:36px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#B4232A">06</p>
+<h3 style="font-size:32px;font-weight:600">Atragantamiento</h3>
+<p style="font-size:24px;color:#4A5258">Heimlich en adulto, niño y lactante</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA 2025 · Partes 6 y 7 · 2</p>
+<aside>Presenta el recorrido. Vamos del adulto a la pediatría porque la secuencia es la misma y solo cambian números y técnicas. Al final hay una diapositiva de perlas para examen con lo que cambió en 2025, y la bibliografía.</aside>
+</section>
+<section id="cadena" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4232A;letter-spacing:2px">CADENA DE SUPERVIVENCIA</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Los eslabones del soporte vital básico</h2>
+</div>
+<div style="display:flex;gap:24px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1A1F23;border-radius:16px;padding:32px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#FF5A5F">1</p>
+<h3 style="font-size:32px;font-weight:600;color:#F2F0EC">Reconocer</h3>
+<p style="font-size:24px;color:#C9D1D4">No responde, no respira o solo jadea</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1A1F23;border-radius:16px;padding:32px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#FF5A5F">2</p>
+<h3 style="font-size:32px;font-weight:600;color:#F2F0EC">Activar</h3>
+<p style="font-size:24px;color:#C9D1D4">Llamar al sistema de emergencias</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1A1F23;border-radius:16px;padding:32px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#FF5A5F">3</p>
+<h3 style="font-size:32px;font-weight:600;color:#F2F0EC">RCP</h3>
+<p style="font-size:24px;color:#C9D1D4">Compresiones de alta calidad y ventilación</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1A1F23;border-radius:16px;padding:32px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#FF5A5F">4</p>
+<h3 style="font-size:32px;font-weight:600;color:#F2F0EC">Desfibrilar</h3>
+<p style="font-size:24px;color:#C9D1D4">DEA en cuanto esté disponible</p>
+</div>
+</div>
+<div style="display:flex;gap:48px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:4px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:96px;font-weight:700;line-height:1;color:#B4232A">&gt;50%</p>
+<p style="font-size:24px;color:#4A5258;width:440px">de los paros del adulto con RCP por un testigo</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:96px;font-weight:700;line-height:1;color:#1F5FA8">&gt;20%</p>
+<p style="font-size:24px;color:#4A5258;width:440px">con DEA colocado antes de que llegue la ambulancia</p>
+</div>
+<p style="font-size:28px;color:#1A1F23;width:600px">Metas de la AHA para 2030. Los primeros cuatro eslabones dependen de quien está ahí.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA 2025 · Parte 7, BLS del adulto · 3</p>
+<aside>La cadena de supervivencia de 2025 sigue empezando con el reconocimiento y la activación del sistema de emergencias, después RCP con compresiones y ventilación, y desfibrilación con DEA. Después siguen el soporte avanzado y los cuidados posparo, que no son tema de hoy. La guía pone dos metas para 2030: que más de la mitad de los paros del adulto reciban RCP por un testigo y que en más de 20% se coloque un DEA antes de que llegue el servicio médico de emergencias. En pediatría la cadena agrega un eslabón inicial de prevención: seguridad, prevención de muerte súbita del lactante, entrenar a cuidadores y reconocer temprano al niño enfermo.</aside>
+</section>
+<section id="sec-adulto" data-transition="fade" style="background:#13171A;color:#F2F0EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:24px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#FF5A5F;letter-spacing:2px">BLOQUE 01</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:140px;font-weight:700;line-height:0.95;text-transform:uppercase">RCP en<br>el adulto</h2>
+<p style="font-size:36px;color:#C9D1D4;width:1200px">Cada minuto sin compresiones cuenta: reconocer rápido y comprimir bien es lo que más cambia el desenlace.</p>
+<aside>Transición al bloque del adulto. Aquí van tres cosas: cómo reconocer el paro, qué es una compresión de alta calidad y cómo colocarse. La adolescencia con signos de pubertad también se maneja con estas reglas.</aside>
+</section>
+<section id="reconocer" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4232A;letter-spacing:2px">ADULTO · RECONOCIMIENTO</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Reconocer el paro y activar</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:40px">
+<h3 style="font-size:32px;font-weight:600">Reanimador lego</h3>
+<ul style="font-size:28px;line-height:1.45;color:#2E353A">
+<li>No responde y no respira o solo jadea: asume paro</li>
+<li>No busca pulso</li>
+<li>Solo: activa emergencias y empieza compresiones</li>
+<li>Con celular: llama en altavoz y comprime casi al mismo tiempo</li>
+</ul>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:40px">
+<h3 style="font-size:32px;font-weight:600">Personal de salud</h3>
+<ul style="font-size:28px;line-height:1.45;color:#2E353A">
+<li>Pulso por <b>no más de 10 s</b></li>
+<li>Sin pulso definitivo: asume paro</li>
+<li>Solo: empieza por compresiones, no por ventilación</li>
+<li>Compresiones con ventilación, sea cual sea la causa</li>
+</ul>
+</div>
+</div>
+<p style="font-size:28px;color:#B4232A;font-weight:600">El jadeo agónico no es respiración: es un signo de paro.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA 2025 · Parte 7, secciones 6.1 y 6.2 · 5</p>
+<aside>La guía es explícita: el lego asume paro en un adulto que no responde y que no respira o respira de forma anormal, es decir, solo jadea. No se le pide buscar pulso porque se equivoca y pierde tiempo. El personal de salud puede buscar pulso, pero por no más de 10 segundos; si no está seguro de sentirlo, empieza compresiones. Un reanimador solo activa el sistema de emergencias y empieza RCP; si trae celular, lo pone en altavoz y hace las dos cosas casi al mismo tiempo. Para el personal de salud solo, la recomendación es iniciar con compresiones. Los legos entrenados pueden agregar ventilaciones.</aside>
+</section>
+<section id="compresiones" data-transition="fade" style="background:#13171A;color:#F2F0EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#FF5A5F;letter-spacing:2px">ADULTO · RCP DE ALTA CALIDAD</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Cinco números que definen la compresión</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:120px;font-weight:700;line-height:1;color:#FF5A5F">100–120</p>
+<p style="font-size:28px;color:#C9D1D4">compresiones por minuto</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:120px;font-weight:700;line-height:1;color:#FF5A5F">5–6 cm</p>
+<p style="font-size:28px;color:#C9D1D4">de profundidad, al menos 5 y no más de 6</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:120px;font-weight:700;line-height:1;color:#6CB8FF">100%</p>
+<p style="font-size:28px;color:#C9D1D4">de reexpansión: no te recargues en el tórax</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:120px;font-weight:700;line-height:1;color:#6CB8FF">≤10 s</p>
+<p style="font-size:28px;color:#C9D1D4">por pausa para ritmo o pulso; ≥60% del tiempo comprimiendo</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:120px;font-weight:700;line-height:1;color:#F2B544">2 min</p>
+<p style="font-size:28px;color:#C9D1D4">cambio de compresor, unos 5 ciclos de 30:2</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+<p style="font-size:28px;color:#F2F0EC">Tras una descarga se reanudan las compresiones de inmediato, sin revisar ritmo.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8E9A9F">AHA 2025 · Parte 7, secciones 7.2 y 7.3 · 6</p>
+<aside>Esta es la diapositiva más importante del adulto. Frecuencia de 100 a 120 por minuto. Profundidad de al menos 5 cm, evitando pasar de 6 cm. Reexpansión completa del tórax: recargarse disminuye el llenado del corazón. La guía también sugiere que el tiempo de compresión y el de relajación sean más o menos iguales. Las pausas para revisar ritmo o pulso no deben pasar de 10 segundos y la fracción de compresión de al menos 60% es razonable. Con dos o más reanimadores se cambia de compresor más o menos cada 2 minutos, que son unos cinco ciclos de 30:2, porque la fatiga baja la calidad sin que uno lo note. Después de una descarga se reanudan compresiones de inmediato. Los dispositivos de retroalimentación audiovisual son razonables para mejorar la calidad en tiempo real.</aside>
+</section>
+<section id="posicion" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4232A;letter-spacing:2px">ADULTO · POSICIÓN Y MANOS</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Dónde y cómo colocarse</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:36px">
+<h3 style="font-size:32px;font-weight:600">Las manos</h3>
+<p style="font-size:28px;line-height:1.4;color:#2E353A">Talón de una mano en la mitad inferior del esternón, la otra encima. Puede usarse la mano dominante sobre el esternón.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:36px">
+<h3 style="font-size:32px;font-weight:600">El reanimador</h3>
+<p style="font-size:28px;line-height:1.4;color:#2E353A">El torso del paciente a la altura de tus rodillas. Reanima donde lo encuentres si es seguro.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:36px">
+<h3 style="font-size:32px;font-weight:600">La superficie</h3>
+<p style="font-size:28px;line-height:1.4;color:#2E353A">Firme y en decúbito supino cuando se pueda, sin retrasar el inicio de las compresiones.</p>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:8px;border-left:6px solid #B4232A;padding:8px 0 8px 28px">
+<h3 style="font-size:32px;font-weight:600">Paciente en prono</h3>
+<p style="font-size:28px;color:#4A5258">Voltéalo a supino; si no es seguro, considera RCP en prono.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;border-left:6px solid #1F5FA8;padding:8px 0 8px 28px">
+<h3 style="font-size:32px;font-weight:600">Paciente con obesidad</h3>
+<p style="font-size:28px;color:#4A5258">Misma técnica; puede requerir más fuerza para lograr la profundidad.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA 2025 · Parte 7, secciones 7.1 y 11 · 7</p>
+<aside>La mano va en la mitad inferior, el tercio inferior del esternón, con la otra mano encima. La guía 2025 considera razonable que la mano dominante sea la que apoya sobre el esternón. Colócate de forma que el torso del paciente quede a la altura de tus rodillas: así usas el peso del cuerpo con los brazos rectos. Se reanima donde se encuentra a la persona si se puede hacer RCP de calidad de forma segura, y la superficie firme ayuda, pero no vale la pena retrasar compresiones para moverla. Si el paciente está en prono, lo razonable es voltearlo; si no es seguro, se puede considerar RCP en prono. En obesidad no cambia la técnica; puede hacer falta más fuerza, y en el hospital una tabla parcial no aporta beneficio sobre el colchón.</aside>
+</section>
+<section id="sec-pedia" data-transition="fade" style="background:#13171A;color:#F2F0EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:24px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#FF5A5F;letter-spacing:2px">BLOQUE 02</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:140px;font-weight:700;line-height:0.95;text-transform:uppercase">Niños y<br>lactantes</h2>
+<p style="font-size:36px;color:#C9D1D4;width:1200px">En pediatría el paro suele ser respiratorio: la ventilación pesa tanto como la compresión.</p>
+<aside>Transición a pediatría. La diferencia de fondo con el adulto es la causa: en niños y lactantes el paro casi siempre viene de una falla respiratoria, no de una arritmia primaria. Por eso la guía insiste en RCP convencional con ventilaciones.</aside>
+</section>
+<section id="edades" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4232A;letter-spacing:2px">PEDIATRÍA · DEFINICIONES</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">¿Lactante, niño o adulto?</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-top:8px solid #B4232A;border-radius:16px;padding:36px">
+<h3 style="font-size:32px;font-weight:600">Lactante</h3>
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;color:#B4232A">&lt;1 año</p>
+<p style="font-size:24px;color:#4A5258">Al nacer, el recién nacido sigue la guía neonatal</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-top:8px solid #1F5FA8;border-radius:16px;padding:36px">
+<h3 style="font-size:32px;font-weight:600">Niño</h3>
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;color:#1F5FA8">1 año–pubertad</p>
+<p style="font-size:24px;color:#4A5258">Pubertad: desarrollo mamario o vello axilar</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-top:8px solid #4A5258;border-radius:16px;padding:36px">
+<h3 style="font-size:32px;font-weight:600">Adolescente</h3>
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;color:#2E353A">Con pubertad</p>
+<p style="font-size:24px;color:#4A5258">Se maneja con el BLS del adulto</p>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<p style="font-size:28px;color:#2E353A"><b>Lego:</b> no responde, no respira normal y sin signos de vida: inicia RCP sin buscar pulso.</p>
+<p style="font-size:28px;color:#2E353A"><b>Personal de salud:</b> pulso hasta 10 s; si no hay pulso definitivo, comprime.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA/AAP 2025 · Parte 6, BLS pediátrico · 9</p>
+<aside>Las definiciones de edad deciden qué números usar. Lactante es menor de un año aproximadamente; el recién nacido en sala de partos se maneja con la guía neonatal. Niño es de un año hasta la pubertad, y para enseñarlo la guía usa signos fáciles: desarrollo mamario en mujeres o vello axilar en hombres. Un adolescente con signos de pubertad ya se reanima como adulto. El reconocimiento es igual de sencillo que en el adulto: el lego inicia RCP sin buscar pulso. El personal de salud puede buscarlo hasta 10 segundos y, si no está seguro, empieza compresiones.</aside>
+</section>
+<section id="ped-compresiones" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4232A;letter-spacing:2px">PEDIATRÍA · COMPRESIONES</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Un tercio del tórax, a la misma frecuencia</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:40px">
+<h3 style="font-size:32px;font-weight:600">Lactante</h3>
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:96px;font-weight:700;line-height:1;color:#B4232A">≈4 cm</p>
+<ul style="font-size:28px;line-height:1.45;color:#2E353A">
+<li>Talón de una mano, o</li>
+<li>Dos pulgares con manos que rodean el tórax</li>
+<li>Si no puedes rodear el tórax: talón de una mano</li>
+</ul>
+<p style="font-size:24px;font-weight:600;color:#FCFBF8;background:#B4232A;padding:8px 16px;border-radius:8px">NUEVO 2025: se elimina la técnica de dos dedos</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:40px">
+<h3 style="font-size:32px;font-weight:600">Niño</h3>
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:96px;font-weight:700;line-height:1;color:#1F5FA8">≈5 cm</p>
+<ul style="font-size:28px;line-height:1.45;color:#2E353A">
+<li>Una o dos manos, según tamaño</li>
+<li>Frecuencia de 100–120 por minuto</li>
+<li>Reexpansión completa y pausas &lt;10 s</li>
+</ul>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA/AAP 2025 · Parte 6 · profundidad ≥1/3 del diámetro anteroposterior · 10</p>
+<aside>La profundidad pediátrica se define como al menos un tercio del diámetro anteroposterior del tórax: unos 4 cm en el lactante y unos 5 cm en el niño. La frecuencia es la misma del adulto, 100 a 120 por minuto, con reexpansión completa y pausas menores de 10 segundos. El cambio grande de 2025 es en el lactante: se eliminó la técnica de dos dedos porque casi nunca logra la profundidad adecuada. Ahora se usa el talón de una mano o la técnica de dos pulgares con las manos rodeando el tórax; si no alcanzas a rodear el tórax, usa el talón de una mano. En el niño se puede usar una o dos manos. Una superficie firme es razonable, y en el hospital una tabla ayuda a lograr la profundidad.</aside>
+</section>
+<section id="comparativa" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4232A;letter-spacing:2px">RESUMEN · ADULTO, NIÑO Y LACTANTE</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">La tabla para memorizar</h2>
+</div>
+<table style="font-size:26px;color:#1A1F23">
+<tr><th style="width:25%">Componente</th><th style="width:25%">Adulto</th><th style="width:25%">Niño</th><th style="width:25%">Lactante</th></tr>
+<tr><td>Profundidad</td><td>5–6 cm</td><td>≈5 cm (≥1/3 AP)</td><td>≈4 cm (≥1/3 AP)</td></tr>
+<tr><td>Técnica</td><td>Dos manos</td><td>Una o dos manos</td><td>Talón de una mano o dos pulgares</td></tr>
+<tr><td>Frecuencia</td><td>100–120/min</td><td>100–120/min</td><td>100–120/min</td></tr>
+<tr><td>1 reanimador</td><td>30:2</td><td>30:2</td><td>30:2</td></tr>
+<tr><td>2 reanimadores</td><td>30:2</td><td>15:2</td><td>15:2</td></tr>
+<tr><td>Con pulso, sin respiración</td><td>1 cada 6 s</td><td>1 cada 2–3 s</td><td>1 cada 2–3 s</td></tr>
+<tr><td>Parches del DEA</td><td>Adulto</td><td>Pediátricos si &lt;8 años</td><td>Manual o pediátricos</td></tr>
+</table>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA 2025 · Parte 7 (adulto) y Parte 6 (pediatría) · 11</p>
+<aside>Esta tabla resume lo que más preguntan. La frecuencia de compresión es igual en todas las edades. Lo que cambia es la profundidad, la técnica y la relación cuando hay dos reanimadores: en el adulto siempre 30:2, en pediatría 30:2 con un reanimador y 15:2 con dos. Con pulso pero sin respiración adecuada, el adulto recibe una ventilación cada 6 segundos y el niño o lactante una cada 2 a 3 segundos. Para el DEA, en menores de 8 años se prefiere el atenuador con parches pediátricos; en lactantes, idealmente un desfibrilador manual. Lo veremos con detalle en el bloque de DEA.</aside>
+</section>
+<section id="sec-vent" data-transition="fade" style="background:#13171A;color:#F2F0EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:24px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#6CB8FF;letter-spacing:2px">BLOQUE 03</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:140px;font-weight:700;line-height:0.95;text-transform:uppercase">Vía aérea y<br>ventilación</h2>
+<p style="font-size:36px;color:#C9D1D4;width:1200px">Lo justo para que el tórax se eleve: ni de menos ni de más.</p>
+<aside>Transición al bloque de ventilación. Primero cómo abrir la vía aérea, luego cómo ventilar y al final las frecuencias según la situación y la edad.</aside>
+</section>
+<section id="via-aerea" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#1F5FA8;letter-spacing:2px">VENTILACIÓN · VÍA AÉREA</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Abrir la vía aérea</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:40px">
+<h3 style="font-size:32px;font-weight:600">Sin sospecha de lesión cervical</h3>
+<p style="font-size:28px;line-height:1.4;color:#2E353A">Inclinación de la cabeza y elevación del mentón.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:40px">
+<h3 style="font-size:32px;font-weight:600">Con trauma de cabeza o cuello</h3>
+<p style="font-size:28px;line-height:1.4;color:#2E353A">Tracción mandibular sin extender la cabeza. Si no abre la vía aérea, pasa a inclinación y elevación del mentón.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-size:28px;color:#2E353A"><b>Fractura de base de cráneo o coagulopatía grave:</b> cánula orofaríngea mejor que nasofaríngea.</p>
+<p style="font-size:28px;color:#2E353A"><b>No se recomienda:</b> presión cricoidea de rutina, ni collarín rígido colocado por legos.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA 2025 · Parte 7, sección 6.3 · Parte 6 · 13</p>
+<aside>Sin sospecha de lesión cervical se abre la vía aérea con inclinación de la cabeza y elevación del mentón. Con trauma de cabeza o cuello, los reanimadores entrenados usan tracción mandibular sin extensión. Pero la vía aérea manda: si la tracción mandibular con un adjunto no la abre, se pasa a inclinación y elevación del mentón. Lo mismo aplica en pediatría. Si se sospecha fractura de base de cráneo o hay coagulopatía grave, se prefiere la cánula orofaríngea sobre la nasofaríngea. La presión cricoidea de rutina no tiene beneficio, y la guía dice que los legos no deben poner collarines rígidos porque pueden hacer daño.</aside>
+</section>
+<section id="ventilacion" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#1F5FA8;letter-spacing:2px">VENTILACIÓN · TÉCNICA</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Cómo dar una buena ventilación</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:96px;font-weight:700;line-height:1;color:#1F5FA8">1 s</p>
+<p style="font-size:28px;color:#2E353A">por ventilación, con elevación visible del tórax</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:96px;font-weight:700;line-height:1;color:#1F5FA8">2</p>
+<p style="font-size:28px;color:#2E353A">ventilaciones en cada pausa del 30:2 sin vía aérea avanzada</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:96px;font-weight:700;line-height:1;color:#B4232A">Daño</p>
+<p style="font-size:28px;color:#2E353A">hipoventilar o hiperventilar: ambos se evitan</p>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:8px;border-left:6px solid #1F5FA8;padding:8px 0 8px 28px">
+<h3 style="font-size:32px;font-weight:600">Bolsa-válvula-mascarilla</h3>
+<p style="font-size:28px;color:#4A5258">Mejor con dos: uno sella con ambas manos, otro aprieta la bolsa.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;border-left:6px solid #4A5258;padding:8px 0 8px 28px">
+<h3 style="font-size:32px;font-weight:600">Otras vías</h3>
+<p style="font-size:28px;color:#4A5258">Boca a boca o boca-mascarilla; boca-nariz o al estoma si la boca no sirve.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA 2025 · Parte 7, secciones 7.2, 8.1 y 8.2 · 14</p>
+<aside>Cada ventilación se da en un segundo, con el volumen suficiente para ver que el tórax se eleva; no más. Sin vía aérea avanzada se hace una pausa para dar dos ventilaciones. La guía clasifica como dañino tanto hipoventilar como hiperventilar: el exceso aumenta la presión intratorácica y baja el retorno venoso. Con bolsa-válvula-mascarilla, lo ideal es que una persona use las dos manos para abrir la vía aérea y sellar la mascarilla mientras otra aprieta la bolsa. Si no se puede por la boca, la ventilación boca-nariz es razonable, y en pacientes con traqueostomía se puede ventilar por el estoma. En pediatría es razonable usar oxígeno al 100% durante las ventilaciones.</aside>
+</section>
+<section id="frecuencias" data-transition="fade" style="background:#13171A;color:#F2F0EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#6CB8FF;letter-spacing:2px">VENTILACIÓN · FRECUENCIAS</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Cuántas ventilaciones por minuto</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #6CB8FF;padding-top:28px">
+<h3 style="font-size:32px;font-weight:600">Adulto</h3>
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:120px;font-weight:700;line-height:1;color:#6CB8FF">10 /min</p>
+<p style="font-size:28px;color:#C9D1D4">Una cada 6 s: con pulso y sin respiración, o en RCP con vía aérea avanzada y compresiones continuas.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #F2B544;padding-top:28px">
+<h3 style="font-size:32px;font-weight:600">Niño y lactante</h3>
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:120px;font-weight:700;line-height:1;color:#F2B544">20–30 /min</p>
+<p style="font-size:28px;color:#C9D1D4">Una cada 2–3 s: con pulso y respiración ausente o inadecuada, o en RCP con vía aérea avanzada.</p>
+</div>
+</div>
+<p style="font-size:28px;color:#F2F0EC">Sin vía aérea avanzada no se cuenta por minuto: se ventila en las pausas del 30:2 o del 15:2.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8E9A9F">AHA 2025 · Parte 7, secciones 8.3 y 8.4 · Parte 6 · 15</p>
+<aside>Dos números para recordar. En el adulto con pulso pero en paro respiratorio, una ventilación cada 6 segundos, es decir, 10 por minuto, cada una con elevación visible del tórax; el mismo ritmo se usa cuando ya hay vía aérea avanzada y las compresiones son continuas. En niños y lactantes es mucho más rápido: una cada 2 a 3 segundos, de 20 a 30 por minuto, tanto con pulso como durante la RCP con vía aérea avanzada. La guía pediátrica advierte que frecuencias excesivas pueden bajar la presión sistólica en niños mayores. Sin vía aérea avanzada, se ventila en las pausas: 30:2 en el adulto, y en pediatría 30:2 con un reanimador o 15:2 con dos. Si el adulto tiene pulso, revisa el pulso más o menos cada 2 minutos mientras ventilas.</aside>
+</section>
+<section id="sec-dea" data-transition="fade" style="background:#13171A;color:#F2F0EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:24px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#F2B544;letter-spacing:2px">BLOQUE 04</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:140px;font-weight:700;line-height:0.95;text-transform:uppercase">Uso del<br>DEA</h2>
+<p style="font-size:36px;color:#C9D1D4;width:1200px">El DEA se usa en cuanto llega, en todas las edades. Mientras no esté listo, se sigue comprimiendo.</p>
+<aside>Transición al DEA. El mensaje es que el desfibrilador no sustituye a la RCP: la RCP sigue hasta que el DEA está colocado, y se reanuda inmediatamente después de cada descarga.</aside>
+</section>
+<section id="dea-pasos" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#9A5B00;letter-spacing:2px">DEA · ADULTO</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Cinco pasos con el DEA</h2>
+</div>
+<div style="display:flex;gap:20px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:28px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;color:#9A5B00">1</p>
+<p style="font-size:28px;color:#2E353A">Enciéndelo y sigue sus indicaciones</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:28px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;color:#9A5B00">2</p>
+<p style="font-size:28px;color:#2E353A">Coloca los parches sobre el tórax descubierto</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:28px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;color:#9A5B00">3</p>
+<p style="font-size:28px;color:#2E353A">Nadie toca al paciente durante el análisis</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:28px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;color:#9A5B00">4</p>
+<p style="font-size:28px;color:#2E353A">Si indica descarga: todos fuera y descarga</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1A1F23;border-radius:16px;padding:28px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;color:#FF5A5F">5</p>
+<p style="font-size:28px;color:#F2F0EC">Reanuda compresiones de inmediato</p>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:8px;border-left:6px solid #9A5B00;padding:8px 0 8px 28px">
+<h3 style="font-size:32px;font-weight:600">Posición de los parches</h3>
+<p style="font-size:28px;color:#4A5258">Anterolateral (el lateral en la línea axilar media) o anteroposterior. Parches de 8 a 12 cm.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;border-left:6px solid #4A5258;padding:8px 0 8px 28px">
+<h3 style="font-size:32px;font-weight:600">Sostén</h3>
+<p style="font-size:28px;color:#4A5258">Puede ajustarse en vez de retirarse para colocar los parches.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA 2025 · Parte 7, secciones 7.2, 9.1 y 9.2 · 17</p>
+<aside>La secuencia del DEA es sencilla: lo enciendes y sigues lo que dice. Colocas los parches en el tórax descubierto, en posición anterolateral, con el parche lateral en la línea axilar media, o en posición anteroposterior; la guía pide parches de más de 8 cm, en el rango de 8 a 12. En 2025 se agregó que puede ser razonable acomodar el sostén en lugar de quitarlo, para no retrasar la colocación. Nadie toca al paciente mientras el equipo analiza. Si indica descarga, te aseguras de que todos estén fuera y descargas. Después, sin revisar pulso ni ritmo, reanudas compresiones de inmediato. La RCP continúa hasta que el DEA está colocado; en un paro no monitorizado es razonable dar RCP breve mientras se prepara el equipo, y en un paro presenciado y monitorizado con desfibrilador listo, la descarga inmediata es razonable.</aside>
+</section>
+<section id="dea-pedia" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#9A5B00;letter-spacing:2px">DEA · NIÑOS Y LACTANTES</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Qué desfibrilador usar en pediatría</h2>
+</div>
+<div style="display:flex;gap:20px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#1A1F23;border-radius:16px;padding:36px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#F2B544">PRIMERA OPCIÓN</p>
+<h3 style="font-size:32px;font-weight:600;color:#F2F0EC">Desfibrilador manual</h3>
+<p style="font-size:24px;color:#C9D1D4">En manos de personal de salud entrenado</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:36px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#9A5B00">SI NO HAY</p>
+<h3 style="font-size:32px;font-weight:600">DEA con atenuador</h3>
+<p style="font-size:24px;color:#4A5258">Con parches pediátricos; obligado en &lt;8 años si existe</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:36px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#9A5B00">ÚLTIMO RECURSO</p>
+<h3 style="font-size:32px;font-weight:600">DEA sin atenuador</h3>
+<p style="font-size:24px;color:#4A5258">Mejor que no desfibrilar</p>
+</div>
+</div>
+<ul style="font-size:28px;line-height:1.5;color:#2E353A">
+<li>Usa los parches más grandes que quepan sin tocarse; anteroposterior o anterolateral</li>
+<li>Una sola descarga y reanuda RCP de inmediato, empezando por compresiones</li>
+<li>Mantén la RCP hasta que el desfibrilador esté listo y acorta las pausas</li>
+</ul>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA/AAP 2025 · Parte 6, desfibrilación · 18</p>
+<aside>En pediatría el DEA también se usa en todos los paros en cuanto esté disponible. En niños menores de 8 años se recomienda el atenuador pediátrico con parches pediátricos. Si el paciente está a cargo de personal de salud entrenado, el desfibrilador manual es razonable y es lo ideal en lactantes. Si no hay ni manual ni DEA con atenuador, se puede considerar un DEA sin atenuador: desfibrilar con dosis de adulto es mejor que no desfibrilar. Los parches deben ser los más grandes que quepan dejando separación entre ellos; anteroposterior o anterolateral son razonables. Se da una sola descarga y se reanuda la RCP de inmediato, iniciando con compresiones.</aside>
+</section>
+<section id="sec-ovace" data-transition="fade" style="background:#B4232A;color:#FBF4F2;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:24px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:28px;color:#FBF4F2;letter-spacing:2px">BLOQUE 05 · CAMBIO CLAVE 2025</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:140px;font-weight:700;line-height:0.95;text-transform:uppercase">Atragantamiento<br>y Heimlich</h2>
+<p style="font-size:36px;color:#FBF4F2;width:1300px">En adultos y niños ya no basta con compresiones abdominales: ahora se alternan con golpes en la espalda.</p>
+<aside>Este es el cambio más visible de las guías 2025 para el público. En la obstrucción grave de la vía aérea por cuerpo extraño, en adultos y niños conscientes, se alternan cinco golpes en la espalda con cinco compresiones abdominales, la maniobra de Heimlich. En lactantes no cambia: golpes en la espalda y compresiones torácicas, nunca abdominales.</aside>
+</section>
+<section id="ovace-adulto" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4232A;letter-spacing:2px">ATRAGANTAMIENTO · ADULTO CONSCIENTE</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Leve: deja toser. Grave: 5 y 5</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 2fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:16px;background:#FCFBF8;border:1px solid #E2DED6;border-radius:16px;padding:36px">
+<h3 style="font-size:32px;font-weight:600">Obstrucción leve</h3>
+<p style="font-size:28px;line-height:1.4;color:#2E353A">Tose con fuerza y puede hablar. No intervengas: anímalo a toser y vigila si se vuelve grave.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;background:#1A1F23;border-radius:16px;padding:36px">
+<h3 style="font-size:32px;font-weight:600;color:#F2F0EC">Obstrucción grave: activa emergencias y repite ciclos</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;color:#FF5A5F">5 golpes</p>
+<p style="font-size:24px;color:#C9D1D4">En la espalda, entre los omóplatos, con el talón de la mano y la persona inclinada hacia adelante</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;color:#F2B544">5 abdominales</p>
+<p style="font-size:24px;color:#C9D1D4">Heimlich: puño arriba del ombligo y bajo el esternón, empuje rápido hacia adentro y arriba</p>
+</div>
+</div>
+<p style="font-size:24px;color:#F2F0EC">Hasta que salga el objeto o la persona deje de responder.</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;border-left:6px solid #1F5FA8;padding:8px 0 8px 28px">
+<h3 style="font-size:32px;font-weight:600">Embarazo avanzado o no alcanzas a rodear el abdomen</h3>
+<p style="font-size:28px;color:#4A5258">5 golpes en la espalda y 5 compresiones torácicas, en ciclos.</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA 2025 · Parte 7, secciones 10.1 y 10.3 · 20</p>
+<aside>Primero distingue leve de grave. En la obstrucción leve la persona tose con fuerza y puede hablar: no la golpees ni hagas Heimlich, déjala toser y vigila. En la grave no puede hablar, toser con eficacia ni respirar, y muchas veces se lleva las manos al cuello. Ahí activas el sistema de emergencias y aplicas ciclos de cinco golpes en la espalda seguidos de cinco compresiones abdominales, hasta que salga el objeto o la persona pierda la respuesta. Los golpes se dan con el talón de la mano entre los omóplatos, con la persona inclinada hacia adelante. Para las compresiones abdominales te colocas detrás, pones el puño con el lado del pulgar arriba del ombligo y bien por debajo del esternón, lo tomas con la otra mano y empujas rápido hacia adentro y hacia arriba. En embarazo avanzado, o si no alcanzas a rodear el abdomen, por ejemplo en obesidad, se cambian las abdominales por compresiones torácicas.</aside>
+</section>
+<section id="ovace-ped" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4232A;letter-spacing:2px">ATRAGANTAMIENTO · NIÑO Y LACTANTE</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Mismo ritmo, distinta maniobra</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+<div style="display:flex;flex-direction:column;gap:20px;background:#FCFBF8;border:1px solid #E2DED6;border-top:8px solid #1F5FA8;border-radius:16px;padding:40px">
+<h3 style="font-size:32px;font-weight:600">Niño con obstrucción grave</h3>
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;color:#1F5FA8">5 golpes + 5 abdominales</p>
+<p style="font-size:28px;line-height:1.4;color:#2E353A">Igual que en el adulto: golpes entre los omóplatos y Heimlich, en ciclos, hasta que salga el objeto o deje de responder.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:20px;background:#FCFBF8;border:1px solid #E2DED6;border-top:8px solid #B4232A;border-radius:16px;padding:40px">
+<h3 style="font-size:32px;font-weight:600">Lactante con obstrucción grave</h3>
+<p style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;color:#B4232A">5 golpes + 5 torácicas</p>
+<p style="font-size:28px;line-height:1.4;color:#2E353A">Boca abajo sobre tu antebrazo, cabeza más baja: golpes en la espalda. Boca arriba: compresiones torácicas con el talón de una mano en el esternón.</p>
+</div>
+</div>
+<p style="font-size:28px;font-weight:600;color:#B4232A">En el lactante no se hacen compresiones abdominales. En todas las edades, si tose con fuerza, se le deja toser.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA/AAP 2025 · Parte 6, obstrucción por cuerpo extraño · 21</p>
+<aside>En el niño con obstrucción grave la secuencia es la misma del adulto: cinco golpes en la espalda alternados con cinco compresiones abdominales, repitiendo hasta que salga el objeto o el niño deje de responder. En el lactante se alternan cinco golpes en la espalda con cinco compresiones torácicas. La forma práctica: lo colocas boca abajo sobre tu antebrazo, sosteniendo la mandíbula y con la cabeza más baja que el tronco, y das los golpes entre los omóplatos con el talón de la mano; luego lo volteas boca arriba, apoyado en tu antebrazo, y das las compresiones torácicas con el talón de una mano sobre el esternón. La guía es clara: en el lactante no se recomiendan compresiones abdominales por el riesgo de lesionar el hígado y otros órganos. Si la obstrucción es leve y el niño tose con fuerza, se le deja toser y se vigila.</aside>
+</section>
+<section id="ovace-inconsciente" data-transition="fade" style="background:#13171A;color:#F2F0EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#FF5A5F;letter-spacing:2px">ATRAGANTAMIENTO · DEJA DE RESPONDER</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Si pierde el conocimiento, empieza RCP</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px">
+<div style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #FF5A5F;padding-top:28px">
+<h3 style="font-size:32px;font-weight:600">Comprime</h3>
+<p style="font-size:28px;color:#C9D1D4">Inicia RCP con compresiones y activa emergencias si no se ha hecho. En pediatría, sin buscar pulso.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #6CB8FF;padding-top:28px">
+<h3 style="font-size:32px;font-weight:600">Mira la boca</h3>
+<p style="font-size:28px;color:#C9D1D4">Cada vez que abras la vía aérea para ventilar, retira el objeto solo si lo ves.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px;border-top:4px solid #F2B544;padding-top:28px">
+<h3 style="font-size:32px;font-weight:600">Nunca a ciegas</h3>
+<p style="font-size:28px;color:#C9D1D4">El barrido digital a ciegas está contraindicado: puede empujar el objeto más adentro.</p>
+</div>
+</div>
+<p style="font-size:28px;color:#F2F0EC">Los dispositivos de succión para atragantamiento no tienen evidencia suficiente para recomendarse.</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#8E9A9F">AHA 2025 · Parte 7, sección 10.2 · Parte 6 · 22</p>
+<aside>Si la persona deja de responder, sea adulto, niño o lactante, ya no se siguen los golpes ni el Heimlich: se inicia RCP empezando con compresiones y se activa el sistema de emergencias si no se ha hecho. En pediatría la guía dice explícitamente que se empiece sin buscar pulso. Las compresiones generan presión que puede expulsar el objeto. Cada vez que abras la vía aérea para dar ventilaciones, mira la boca y retira el cuerpo extraño solo si lo ves. El barrido digital a ciegas es una recomendación clase 3, de daño. Los dispositivos de succión que se venden para atragantamiento no tienen evidencia suficiente.</aside>
+</section>
+<section id="perlas" data-transition="fade" style="background:#F5F3EF;color:#1A1F23;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#B4232A;letter-spacing:2px">PERLAS PARA EL EXAMEN</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Lo que no puedes fallar</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px 48px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#FCFBF8;background:#B4232A;padding:4px 12px;border-radius:6px;align-self:start">NUEVO 2025</p>
+<p style="font-size:28px;color:#2E353A">Atragantamiento grave en adulto y niño: 5 golpes en la espalda + 5 compresiones abdominales.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#FCFBF8;background:#B4232A;padding:4px 12px;border-radius:6px;align-self:start">NUEVO 2025</p>
+<p style="font-size:28px;color:#2E353A">Lactante: adiós a los dos dedos; talón de una mano o dos pulgares.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#1F5FA8">COMPRESIONES</p>
+<p style="font-size:28px;color:#2E353A">100–120/min en todas las edades; adulto 5–6 cm, niño ≈5 cm, lactante ≈4 cm.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#1F5FA8">RELACIONES</p>
+<p style="font-size:28px;color:#2E353A">Adulto siempre 30:2. Pediatría: 30:2 con uno, 15:2 con dos reanimadores.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#1F5FA8">VENTILACIÓN</p>
+<p style="font-size:28px;color:#2E353A">Adulto 1 cada 6 s; niño y lactante 1 cada 2–3 s. Cada una en 1 s.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#1F5FA8">DEA</p>
+<p style="font-size:28px;color:#2E353A">Atenuador en &lt;8 años; tras la descarga, compresiones sin revisar ritmo.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5A6268">AHA 2025 · Partes 6 y 7 · 23</p>
+<aside>Repaso rápido para cerrar. Los dos cambios que más van a preguntar de 2025 son el atragantamiento, que en adultos y niños ahora alterna golpes en la espalda con compresiones abdominales, y la eliminación de la técnica de dos dedos en lactantes. Lo demás son los números de siempre: frecuencia 100 a 120 en todas las edades, profundidades de 5 a 6, 5 y 4 cm, relación 30:2 en el adulto y 15:2 en pediatría con dos reanimadores, ventilación cada 6 segundos en el adulto y cada 2 a 3 en pediatría, atenuador en menores de 8 años y compresiones inmediatas después de la descarga. Recuerda también: pulso por no más de 10 segundos y nada de barrido digital a ciegas.</aside>
+</section>
+<section id="fuentes" data-transition="fade" style="background:#13171A;color:#F2F0EC;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:44px">
+<div style="display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'IBM Plex Mono', 'Courier New', monospace;font-size:24px;color:#FF5A5F;letter-spacing:2px">FUENTES</p>
+<h2 style="font-family:'Barlow Condensed', 'Arial Narrow', sans-serif;font-size:72px;font-weight:700;line-height:1;text-transform:uppercase">Bibliografía</h2>
+</div>
+<div style="display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:32px;font-weight:600">Part 7: Adult Basic Life Support</h3>
+<p style="font-size:24px;color:#C9D1D4">2025 American Heart Association Guidelines for CPR and ECC. Circulation. 2025;152(16 Suppl 2). doi:10.1161/CIR.0000000000001369</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:32px;font-weight:600">Part 6: Pediatric Basic Life Support</h3>
+<p style="font-size:24px;color:#C9D1D4">2025 AHA and American Academy of Pediatrics Guidelines for CPR and ECC. Circulation. 2025;152(16 Suppl 2):S424–S447. doi:10.1161/CIR.0000000000001370 · PMID 41122891</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<h3 style="font-size:32px;font-weight:600">Versiones en línea de la AHA</h3>
+<p style="font-size:24px;color:#C9D1D4">cpr.heart.org › Resuscitation Science › CPR and ECC Guidelines › Adult Basic Life Support y Pediatric Basic Life Support</p>
+</div>
+</div>
+<p style="font-size:24px;color:#8E9A9F">La técnica descrita de golpes en la espalda y Heimlich sigue la enseñanza estándar del curso BLS de la AHA.</p>
+<aside>Toda la información de la presentación sale de estas dos partes de las guías 2025 de la AHA, publicadas en Circulation en octubre de 2025. Las dos se pueden consultar gratis en cpr.heart.org. Cierra agradeciendo y abre preguntas.</aside>
+</section>
+</div></div>
+<div id="notes" hidden><b>NOTAS DEL EXPOSITOR</b><div id="nt"></div></div>
+<div id="bar"><button id="p" aria-label="Anterior">‹</button><span id="n"></span><button id="x" aria-label="Siguiente">›</button><span id="t">Soporte Vital Básico · AHA 2025</span><button id="nb" aria-pressed="false">Notas</button></div>
+<script>
+const S=[...document.querySelectorAll('#scaler>section')];let i=0;const K='svb-slide';
+try{i=Math.min(S.length-1,Math.max(0,+localStorage.getItem(K)||0))}catch(e){}
+const sc=document.getElementById('scaler'),st=document.getElementById('stage');
+function fit(){const k=Math.min(st.clientWidth/1920,st.clientHeight/1080);sc.style.transform='scale('+k+')';sc.style.margin=((st.clientHeight-1080)/2)+'px '+((st.clientWidth-1920)/2)+'px'}
+const builds=s=>[...s.querySelectorAll('[data-build-in]')];
+function show(n,revealAll){i=Math.max(0,Math.min(S.length-1,n));S.forEach((s,j)=>s.classList.toggle('on',j===i));
+ builds(S[i]).forEach(b=>b.classList.toggle('pend',!revealAll));upd()}
+function upd(){document.getElementById('n').textContent=(i+1)+' / '+S.length;
+ document.getElementById('p').disabled=i===0&&!builds(S[0]).some(b=>!b.classList.contains('pend'));
+ document.getElementById('x').disabled=i===S.length-1&&!builds(S[i]).some(b=>b.classList.contains('pend'));
+ const a=S[i].querySelector('aside');document.getElementById('nt').textContent=a?a.textContent:'Sin notas.';try{localStorage.setItem(K,i)}catch(e){}}
+function next(){const p=builds(S[i]).find(b=>b.classList.contains('pend'));if(p){p.classList.remove('pend');upd()}else if(i<S.length-1)show(i+1,false)}
+function prev(){const r=builds(S[i]).filter(b=>!b.classList.contains('pend'));if(r.length){r[r.length-1].classList.add('pend');upd()}else if(i>0)show(i-1,true)}
+document.getElementById('p').onclick=prev;document.getElementById('x').onclick=next;
+document.getElementById('nb').onclick=e=>{const n=document.getElementById('notes');n.hidden=!n.hidden;e.currentTarget.setAttribute('aria-pressed',String(!n.hidden))};
+addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();next()}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();prev()}});
+let x0=null;st.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});st.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)(dx<0?next:prev)();x0=null});
+st.addEventListener('click',e=>{if(e.target.closest('a'))return;const r=st.getBoundingClientRect();(e.clientX-r.left>r.width/3?next:prev)()});
+addEventListener('resize',fit);fit();show(i,false);
+</script></body></html>

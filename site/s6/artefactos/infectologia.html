@@ -1,0 +1,1350 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Repaso de Infectología</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/g17c6ff9686.css">
+<style>
+/* Layout: cuaderno de laboratorio. Barra de modos arriba, índice de clases a la izquierda (chips en móvil), una clase a la vez.
+   Color: tinción de Gram. Violeta cristal = acento / grampositivo; safranina = grampositivo... negativo; tinta verde-azulada como neutro. */
+:root{
+  --bg:#f4f6f5; --surface:#ffffff; --surface-2:#eaefed; --ink:#18262a; --muted:#56666a; --line:#d3dcd9;
+  --violet:#5a3ea6; --violet-soft:#ece6fa; --safra:#b8355f; --safra-soft:#fbe5ec;
+  --ok:#1f7a4d; --ok-soft:#e0f2e8; --warn:#9a5b00; --warn-soft:#fbefd9; --alarm:#b42318; --alarm-soft:#fde7e4;
+  --font-display:"Spectral",Georgia,"Times New Roman",serif;
+  --font-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111a1c; --surface:#172326; --surface-2:#1f2e31; --ink:#e3ecea; --muted:#9db0ad; --line:#2d3f42;
+  --violet:#b8a3f5; --violet-soft:#2a2440; --safra:#f08aa9; --safra-soft:#3a1f2a;
+  --ok:#6fd3a0; --ok-soft:#173327; --warn:#f2bf6b; --warn-soft:#352a14; --alarm:#ff8f84; --alarm-soft:#3a1d1a;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111a1c; --surface:#172326; --surface-2:#1f2e31; --ink:#e3ecea; --muted:#9db0ad; --line:#2d3f42;
+  --violet:#b8a3f5; --violet-soft:#2a2440; --safra:#f08aa9; --safra-soft:#3a1f2a;
+  --ok:#6fd3a0; --ok-soft:#173327; --warn:#f2bf6b; --warn-soft:#352a14; --alarm:#ff8f84; --alarm-soft:#3a1d1a;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.topbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;padding-block:12px}
+.brand{display:flex;align-items:baseline;gap:10px;margin-right:auto;min-width:0}
+.brand h1{font-family:var(--font-display);font-weight:700;font-size:1.45rem;margin:0;letter-spacing:-.01em}
+.brand .sub{color:var(--muted);font-size:.85rem}
+.modes{display:flex;gap:4px;background:var(--surface-2);padding:4px;border-radius:999px}
+.modes button{border:0;background:transparent;color:var(--muted);font:600 .9rem var(--font-body);padding:6px 14px;border-radius:999px;cursor:pointer}
+.modes button[aria-pressed="true"]{background:var(--violet);color:var(--surface)}
+.search{flex:1 1 220px;max-width:320px}
+.search input{width:100%;font:inherit;font-size:.95rem;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+button:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible,select:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;padding-block:24px 64px}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 80px);align-self:start;display:flex;flex-direction:column;gap:2px}
+nav.toc .lbl{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px 10px;font-weight:700}
+nav.toc a{display:flex;justify-content:space-between;gap:8px;text-decoration:none;color:var(--ink);padding:7px 10px;border-radius:8px;font-size:.95rem}
+nav.toc a:hover{background:var(--surface-2)}
+nav.toc a[aria-current="true"]{background:var(--violet-soft);color:var(--violet);font-weight:700}
+nav.toc .n{font-family:var(--font-mono);font-size:.75rem;color:var(--muted)}
+@media (max-width:820px){
+  .layout{grid-template-columns:minmax(0,1fr);gap:16px;padding-block:14px 48px}
+  nav.toc{position:static;flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:6px;scrollbar-width:thin}
+  nav.toc .lbl{display:none}
+  nav.toc a{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);white-space:nowrap}
+  nav.toc .n{display:none}
+  header.top{position:static}
+}
+
+main{min-width:0}
+.topic-head{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.eyebrow{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--violet);font-weight:700}
+.topic-head h2{font-family:var(--font-display);font-size:clamp(1.6rem,3.2vw,2.2rem);line-height:1.15;margin:0;text-wrap:balance}
+.topic-head p{margin:0;color:var(--muted);max-width:68ch}
+h3{font-family:var(--font-display);font-size:1.25rem;margin:28px 0 10px;text-wrap:balance}
+h3 small{font-family:var(--font-body);font-size:.8rem;color:var(--muted);font-weight:400;margin-left:6px}
+p,li{max-width:72ch}
+
+details.org{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px}
+details.org>summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:12px 16px}
+details.org>summary::-webkit-details-marker{display:none}
+details.org>summary::after{content:"+";margin-left:auto;font-family:var(--font-mono);color:var(--muted);font-size:1.1rem}
+details.org[open]>summary::after{content:"−"}
+details.org[open]>summary{border-bottom:1px solid var(--line)}
+.org-name{font-family:var(--font-display);font-size:1.12rem;font-weight:500}
+.org-name em{font-style:italic}
+.hint{color:var(--muted);font-size:.9rem;flex-basis:100%;order:3}
+.tag{font:700 .68rem var(--font-body);letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:5px;white-space:nowrap}
+.gpos{background:var(--violet-soft);color:var(--violet)}
+.gneg{background:var(--safra-soft);color:var(--safra)}
+.virus{background:var(--surface-2);color:var(--ink)}
+.para{background:var(--warn-soft);color:var(--warn)}
+.fungi{background:var(--ok-soft);color:var(--ok)}
+.cto{background:transparent;border:1px solid var(--line);color:var(--muted)}
+dl.facts{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 18px;margin:0;padding:14px 16px 16px}
+dl.facts dt{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;padding-top:2px}
+dl.facts dd{margin:0}
+dl.facts dd.tx{background:var(--ok-soft);border-radius:6px;padding:6px 10px}
+@media (max-width:560px){dl.facts{grid-template-columns:minmax(0,1fr);gap:2px}dl.facts dd{margin-bottom:10px}}
+.dose{font-family:var(--font-mono);font-size:.84em;white-space:nowrap}
+.from-cto{border-left:3px solid var(--line);padding-left:10px;color:var(--muted);font-size:.93rem;margin-top:6px}
+.from-cto b:first-child{color:var(--ink)}
+
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);margin:8px 0 6px}
+table{border-collapse:collapse;width:100%;font-size:.93rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--surface-2);font-weight:700;font-size:.82rem;letter-spacing:.02em}
+tr:last-child td{border-bottom:0}
+.caption{font-size:.82rem;color:var(--muted);margin:0 0 4px}
+
+.pearls{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;padding:0;margin:0;list-style:none}
+.pearls li{background:var(--violet-soft);border-radius:var(--r);padding:12px 14px;font-size:.95rem}
+.pearls li b{display:block;color:var(--violet);font-weight:700;margin-bottom:2px}
+.alarm{background:var(--alarm-soft);border-radius:var(--r);padding:12px 16px 12px 16px}
+.alarm h4{margin:0 0 6px;color:var(--alarm);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
+.alarm ul{margin:0;padding-left:18px}
+.callout{background:var(--warn-soft);border-radius:var(--r);padding:10px 14px;margin:10px 0}
+.topic-foot{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{font:600 .95rem var(--font-body);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 14px;border-radius:8px;cursor:pointer}
+.btn.primary{background:var(--violet);border-color:var(--violet);color:var(--surface)}
+.btn:hover{border-color:var(--violet)}
+.noresult{color:var(--muted);font-style:italic}
+mark{background:var(--warn-soft);color:inherit;padding:0 2px;border-radius:3px}
+
+/* Flashcards y examen */
+.tools-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px}
+.tools-head select{font:inherit;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.counter{font-family:var(--font-mono);font-size:.85rem;color:var(--muted);margin-left:auto}
+.card{perspective:1200px;max-width:640px}
+.card-inner{position:relative;min-height:240px;transition:transform .45s ease;transform-style:preserve-3d;cursor:pointer}
+.card.flipped .card-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:14px;padding:26px;display:flex;flex-direction:column;justify-content:center;gap:10px;border:1px solid var(--line)}
+.face.front{background:var(--surface)}
+.face.back{background:var(--violet-soft);transform:rotateY(180deg)}
+.face .q{font-family:var(--font-display);font-size:1.35rem;line-height:1.3}
+.face .a{font-size:1.1rem}
+.face .meta{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.card-inner{transition:none}}
+.card-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;max-width:640px}
+.progress{height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden;max-width:640px;margin-bottom:14px}
+.progress span{display:block;height:100%;background:var(--violet);width:0;transition:width .3s}
+.quiz{max-width:720px}
+.qblock{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.qblock .q{font-family:var(--font-display);font-size:1.25rem;line-height:1.35;margin:4px 0 14px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts button{text-align:left;font:inherit;padding:10px 14px;border-radius:9px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.opts button:hover:not(:disabled){border-color:var(--violet)}
+.opts button.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ink)}
+.opts button.wrong{background:var(--alarm-soft);border-color:var(--alarm);color:var(--ink)}
+.opts button:disabled{cursor:default}
+.explain{margin-top:14px;padding:10px 14px;border-radius:9px;background:var(--surface-2);font-size:.95rem}
+.score{font-family:var(--font-display);font-size:2.4rem;margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.85rem;color:var(--muted);margin:4px 0 0}
+</style>
+
+<header class="top">
+  <div class="wrap topbar">
+    <div class="brand"><h1>Repaso de Infectología</h1><span class="sub">Clases 2026 + Manual CTO</span></div>
+    <div class="modes" role="group" aria-label="Modo">
+      <button type="button" id="m-study" data-mode="study" aria-pressed="true">Estudiar</button>
+      <button type="button" id="m-cards" data-mode="cards" aria-pressed="false">Flashcards</button>
+      <button type="button" id="m-quiz" data-mode="quiz" aria-pressed="false">Examen</button>
+    </div>
+    <div class="search"><input id="q" type="search" placeholder="Buscar: Löffler, NSP4, Kanavel…" aria-label="Buscar en el resumen"></div>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <nav class="toc" id="toc" aria-label="Clases">
+    <p class="lbl">Clases</p>
+  </nav>
+
+  <main id="main">
+
+  <!-- ============ STUDY MODE ============ -->
+  <div id="study">
+
+  <!-- 1. SNC -->
+  <section class="topic" id="snc" data-title="Infecciones del SNC" data-short="SNC">
+    <div class="topic-head">
+      <span class="eyebrow">Clase · Dr. Mario Jiménez</span>
+      <h2>Infecciones del sistema nervioso central</h2>
+      <p>Meningitis bacteriana, encefalitis herpética, criptococosis, neurocisticercosis y toxoplasmosis. La pregunta de examen casi siempre se resuelve leyendo el LCR y el contexto del paciente.</p>
+    </div>
+
+    <h3>Lectura del LCR</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Parámetro</th><th>Normal</th><th>Bacteriana</th><th>Viral</th><th>Fúngica / TB</th></tr></thead>
+      <tbody>
+        <tr><td>Células</td><td>0-5</td><td>&gt;1000, PMN</td><td>10-500, mononucleares</td><td>10-500, mononucleares</td></tr>
+        <tr><td>Glucosa</td><td>40-80 mg/dL (60-80% de la glucemia)</td><td><b>Muy baja</b> (&lt;40)</td><td>Normal</td><td><b>Baja</b> (TB &lt;25% de la glucemia)</td></tr>
+        <tr><td>Proteínas</td><td>15-45 mg/dL</td><td><b>Muy altas</b> (&gt;100)</td><td>Levemente altas</td><td>Altas (50-300)</td></tr>
+        <tr><td>Presión</td><td>&lt;200 mmH₂O</td><td>Muy aumentada</td><td>Normal o leve</td><td>Elevada (muy alta en criptococo)</td></tr>
+      </tbody>
+    </table></div>
+    <p class="from-cto"><b>CTO:</b> el lactato alto en LCR y la procalcitonina o PCR séricas elevadas orientan a bacteriana. En la encefalitis por VHS puede haber hematíes en el LCR (hasta 20%).</p>
+
+    <h3>Agente según edad <small>CTO, tabla 10.1</small></h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Edad o situación</th><th>Agentes más probables</th><th>Empírico</th></tr></thead>
+      <tbody>
+        <tr><td>&lt;3 meses</td><td><i>S. agalactiae</i>, <i>E. coli</i>, <i>Listeria</i></td><td>Ampicilina + cefotaxima</td></tr>
+        <tr><td>3 meses a 20 años</td><td>Meningococo, neumococo (Hib &lt;5 a, raro con vacuna)</td><td>Ceftriaxona/cefotaxima + vancomicina</td></tr>
+        <tr><td>20 a 55 años</td><td>Neumococo, meningococo</td><td>Ceftriaxona/cefotaxima + vancomicina</td></tr>
+        <tr><td>&gt;55 años, embarazo, inmunosupresión celular, alcoholismo</td><td>Neumococo, enterobacterias, <i>Listeria</i></td><td>Ceftriaxona + vancomicina + <b>ampicilina</b></td></tr>
+        <tr><td>Neurocirugía o TCE abierto</td><td><i>S. aureus</i>, <i>Pseudomonas</i></td><td>Cefepime o meropenem + vancomicina/linezolid</td></tr>
+        <tr><td>Derivación de LCR</td><td><i>S. epidermidis</i></td><td>Vancomicina + retirar dispositivo</td></tr>
+        <tr><td>Fístula de LCR, fractura de base de cráneo</td><td>Neumococo</td><td>—</td></tr>
+        <tr><td>Déficit C5-C9</td><td>Meningococo</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Bacterianas</h3>
+    <details class="org" open>
+      <summary><span class="tag gpos">G+</span><span class="org-name"><em>Streptococcus pneumoniae</em> (neumococo)</span><span class="hint">Causa más frecuente en adultos y niños &gt;5 años. Mortalidad 20%, secuelas (sordera).</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Diplococo grampositivo con cápsula de polisacáridos (evita la fagocitosis).</dd>
+        <dt>Riesgo</dt><dd>Otitis media, sinusitis, neumonía, esplenectomía, fístula de LCR (rinorrea). CTO: alcohólicos con neumonía + endocarditis + meningitis = tríada de Austrian.</dd>
+        <dt>Fisiopatología</dt><dd>Colonización nasofaríngea → invasión hematógena → cruza la BHE → replicación en espacio subaracnoideo → <b>respuesta inflamatoria masiva</b>. El daño lo hace la inflamación, no solo la bacteria.</dd>
+        <dt>Clínica</dt><dd>Tríada: fiebre + rigidez de nuca + alteración del estado mental (completa en &lt;50%, pero si faltan las tres casi se descarta). Kernig (dolor al extender la rodilla con cadera flexionada) y Brudzinski (flexión involuntaria de rodillas al flexionar el cuello).</dd>
+        <dt>Diagnóstico</dt><dd>Punción lumbar: &gt;1000 PMN, glucosa &lt;40, proteínas &gt;100. <b>TC antes de la PL</b> si hay papiledema, déficit focal, convulsión nueva, inmunosupresión (CTO añade GCS &lt;10 y foco parameníngeo).</dd>
+        <dt>Tratamiento</dt><dd class="tx">Ceftriaxona <span class="dose">2 g IV c/12 h</span> + vancomicina <span class="dose">15-20 mg/kg c/8-12 h</span>, 10-14 días. <b>Dexametasona</b> <span class="dose">0.15 mg/kg c/6 h</span> (máx 10 mg) antes o junto con la 1.ª dosis de antibiótico, 4-5 días: reduce sordera y edema cerebral.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag gneg">G−</span><span class="org-name"><em>Neisseria meningitidis</em> (meningococo)</span><span class="hint">Meningitis + petequias/púrpura. Epidemias en internados y cuarteles.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Diplococo gramnegativo. Serogrupos A, B, C, W135, Y.</dd>
+        <dt>Clínica</dt><dd>Petequias y púrpura en tronco y miembros inferiores; evolución fulminante (sepsis meningocócica).</dd>
+        <dt>Complicación</dt><dd><b>Waterhouse-Friderichsen</b>: hemorragia de suprarrenales con insuficiencia suprarrenal aguda.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Penicilina G <span class="dose">4 MUI IV c/4 h</span> o cefotaxima/ceftriaxona, mínimo 7 días. Soporte agresivo: líquidos IV, norepinefrina, intubación temprana, manejo de CID. <b>Suspender dexametasona</b> si se confirma meningococo.</dd>
+        <dt>Quimioprofilaxis</dt><dd>A contactos íntimos:
+          <div class="tbl"><table><thead><tr><th>Fármaco</th><th>Niños</th><th>Adultos</th></tr></thead><tbody>
+            <tr><td>Rifampicina (2 días)</td><td><span class="dose">&lt;1 mes 5 mg/kg c/12 h</span> · <span class="dose">&gt;1 mes 10 mg/kg c/12 h</span></td><td><span class="dose">600 mg c/12 h</span></td></tr>
+            <tr><td>Ciprofloxacino</td><td><span class="dose">20 mg/kg DU</span></td><td><span class="dose">500 mg DU</span></td></tr>
+            <tr><td>Ceftriaxona IM</td><td><span class="dose">125 mg DU</span> (&lt;15 años)</td><td><span class="dose">250 mg DU</span></td></tr>
+          </tbody></table></div>
+          <p class="from-cto"><b>CTO:</b> embarazadas y niños no deben recibir quinolonas; la vacuna complementa pero no sustituye a la profilaxis.</p></dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag gpos">G+</span><span class="org-name"><em>Listeria monocytogenes</em></span><span class="hint">Bacilo G+. Recién nacidos, &gt;65 años, embarazadas, inmunodeprimidos.</span></summary>
+      <dl class="facts">
+        <dt>Transmisión</dt><dd>Quesos no pasteurizados, embutidos.</dd>
+        <dt>Pista</dt><dd>Bacilos grampositivos en el LCR o romboencefalitis (tronco cerebral). Mortalidad ~30%.</dd>
+        <dt>Tratamiento</dt><dd class="tx"><b>Añadir ampicilina</b> al esquema ceftriaxona + vancomicina: las cefalosporinas no cubren <i>Listeria</i>. Duración 14-21 días.</dd>
+      </dl>
+    </details>
+    <div class="tbl"><p class="caption" style="padding:8px 12px 0">Guía de tratamiento dirigido (clase)</p><table>
+      <thead><tr><th>Organismo</th><th>Elección</th><th>Duración</th></tr></thead><tbody>
+      <tr><td><i>S. pneumoniae</i></td><td>Cefotaxima o ceftriaxona + vancomicina</td><td>10-14 d</td></tr>
+      <tr><td><i>N. meningitidis</i></td><td>Penicilina G o cefotaxima/ceftriaxona</td><td>≥7 d</td></tr>
+      <tr><td><i>Listeria</i></td><td>Ampicilina + vancomicina + ceftriaxona/cefotaxima</td><td>14-21 d</td></tr>
+      <tr><td>Enterobacterias / <i>Pseudomonas</i></td><td>Cefotaxima, ceftriaxona o meropenem + aminoglucósido; para <i>Pseudomonas</i> ceftazidima/cefepime/pipera­cilina/meropenem + aminoglucósido</td><td>21 d</td></tr>
+      <tr><td><i>S. aureus</i> MSSA</td><td>Nafcilina/oxacilina ± rifampicina</td><td>—</td></tr>
+      <tr><td><i>S. aureus</i> MRSA</td><td>Vancomicina + rifampicina</td><td>—</td></tr>
+    </tbody></table></div>
+    <div class="tbl"><table>
+      <thead><tr><th>Antibiótico</th><th>Adulto</th><th>Pediátrico</th><th>Nota</th></tr></thead><tbody>
+      <tr><td>Ceftriaxona</td><td><span class="dose">2 g IV c/12 h</span></td><td><span class="dose">50 mg/kg c/12 h</span></td><td></td></tr>
+      <tr><td>Cefotaxima</td><td><span class="dose">2 g IV c/4-6 h</span></td><td><span class="dose">50 mg/kg c/6 h</span></td><td>Preferidas: eficacia y dosificación</td></tr>
+      <tr><td>Penicilina G</td><td><span class="dose">4 MUI IV c/4 h</span></td><td></td><td></td></tr>
+      <tr><td>Cloranfenicol</td><td colspan="2"><span class="dose">50 mg/kg IV c/6 h</span></td><td>Vigilar niveles: síndrome del bebé gris</td></tr>
+    </tbody></table></div>
+
+    <h3>Virales</h3>
+    <details class="org">
+      <summary><span class="tag virus">Virus ADN</span><span class="org-name">Encefalitis por <em>VHS-1</em></span><span class="hint">Fiebre + cefalea + alteración de conducta + convulsiones. Lóbulo temporal.</span></summary>
+      <dl class="facts">
+        <dt>Definición</dt><dd>Infección del parénquima cerebral, no solo de las meninges. Encefalitis esporádica más frecuente en adultos.</dd>
+        <dt>Fisiopatología</dt><dd>Ingreso orofaríngeo o cutáneo → latencia en ganglio de Gasser → reactivación con predilección por <b>lóbulos temporales</b> (región orbitofrontal).</dd>
+        <dt>Clínica</dt><dd>Fiebre, cefalea, psicosis aguda, desorientación, convulsiones (50%).</dd>
+        <dt>Diagnóstico</dt><dd><b>PCR de VHS en LCR</b>. EEG con descargas periódicas temporales. RM de elección (edema temporal).</dd>
+        <dt>Tratamiento</dt><dd class="tx">Aciclovir IV <span class="dose">10 mg/kg c/8 h</span> por 14-21 días. Iniciar ante la sospecha: la demora aumenta la mortalidad. CTO: hidratar para evitar nefrotoxicidad.</dd>
+        <dt>Tardío</dt><dd class="from-cto" style="margin:0"><b>CTO:</b> semanas después puede aparecer encefalitis autoinmune anti-NMDA (psicosis, discinesias, crisis).</dd>
+      </dl>
+    </details>
+
+    <h3>Hongos</h3>
+    <details class="org">
+      <summary><span class="tag fungi">Hongo</span><span class="org-name"><em>Cryptococcus neoformans</em></span><span class="hint">Meningitis subaguda oportunista. VIH con CD4 &lt;100.</span></summary>
+      <dl class="facts">
+        <dt>Riesgo</dt><dd>SIDA, linfoma de Hodgkin y otros linfomas, sarcoidosis, corticoides prolongados, trasplante de órgano sólido.</dd>
+        <dt>Fisiopatología</dt><dd>Inhalación → pulmón (lesiones a menudo asintomáticas y autolimitadas en inmunocompetentes) → diseminación con tropismo por SNC. También piel, hueso, hígado, bazo, riñón, próstata. Histología: masas quísticas gelatinosas (cápsula) con <b>escasa respuesta inflamatoria</b>.</dd>
+        <dt>Clínica</dt><dd>Cefalea persistente que empeora en semanas, náuseas, vómitos, papiledema. Sin fiebre alta ni rigidez de nuca marcada. Criptococomas en RM.</dd>
+        <dt>Diagnóstico</dt><dd><b>Tinta china</b> en LCR (levaduras encapsuladas) o antígeno criptocócico en LCR. Presión de apertura muy elevada.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Anfotericina B liposomal + flucitosina, seguido de fluconazol. <b>Crucial:</b> controlar la PIC con punciones lumbares seriadas.</dd>
+      </dl>
+    </details>
+
+    <h3>Parásitos</h3>
+    <details class="org">
+      <summary><span class="tag para">Cestodo</span><span class="org-name">Neurocisticercosis (<em>Taenia solium</em>)</span><span class="hint">Causa n.º 1 de crisis convulsivas de inicio tardío en el adulto en México.</span></summary>
+      <dl class="facts">
+        <dt>Concepto</dt><dd>Larva (cisticerco) en parénquima, ventrículos o espacio subaracnoideo.</dd>
+        <dt>Ciclo</dt><dd>Humano = hospedero definitivo (teniasis) al comer cerdo mal cocido; hospedero <b>intermediario</b> (cisticercosis) al ingerir <b>huevos</b> por fecalismo humano. La oncosfera cruza el intestino y viaja por sangre al cerebro.</dd>
+        <dt>Riesgo</dt><dd>Endémica en México, Centro y Sudamérica, India, África. Convivir con portadores de solitaria.</dd>
+        <dt>Clínica</dt><dd><b>Parenquimatosa</b>: convulsiones, cefalea crónica. <b>Extraparenquimatosa (racemosa)</b>: hidrocefalia obstructiva, hipertensión intracraneal, riesgo de muerte súbita.</dd>
+        <dt>Diagnóstico</dt><dd>RM (elección; quistes pequeños y fase vesicular) y TC (calcificaciones). Patognomónico: quiste con punto hiperdenso (<b>escólex</b>). Western blot (&gt;90% en lesiones múltiples). Fases: vesicular, coloidal, granular, calcificada.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Albendazol <span class="dose">15 mg/kg/día por 8-15 días</span> + praziquantel. <b>Dexametasona obligatoria</b>, 24-48 h antes del antiparasitario. Antiepilépticos (carbamazepina o fenitoína).</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag para">Protozoo</span><span class="org-name">Toxoplasmosis cerebral (<em>Toxoplasma gondii</em>)</span><span class="hint">LOE más común en SIDA. VIH + CD4 &lt;100 + déficit focal.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Protozoo intracelular Apicomplexa. Hospedero definitivo: gato. Transmisión por ooquistes (heces de gato), quistes (carne cruda) o transplacentaria.</dd>
+        <dt>Fisiopatología</dt><dd>Reactivación de quistes latentes por caída de inmunidad celular → necrosis focal con hemorragia y edema.</dd>
+        <dt>Clínica</dt><dd>Inicio subagudo (1-2 semanas): cefalea, fiebre, hemiparesia, afasia, convulsiones, alteración de conciencia.</dd>
+        <dt>Diagnóstico</dt><dd>RM o TC con contraste: <b>múltiples lesiones anulares</b> en ganglios basales y unión córtico-medular. IgG positiva. Prueba terapéutica: si no mejora en 2 semanas, pensar en <b>linfoma primario del SNC</b> (biopsia).</dd>
+        <dt>Tratamiento</dt><dd class="tx">Pirimetamina + sulfadiazina + ácido folínico, 6 semanas. Alternativa: TMP/SMX. Profilaxis con TMP/SMX si CD4 &lt;100.</dd>
+      </dl>
+    </details>
+    <div class="tbl"><table>
+      <thead><tr><th>Parásito</th><th>Clave del caso</th><th>Imagen o hallazgo</th></tr></thead><tbody>
+      <tr><td>Neurocisticercosis</td><td>Adulto con 1.ª convulsión, come tacos de cerdo</td><td>Quiste con escólex o calcificaciones</td></tr>
+      <tr><td>Toxoplasmosis</td><td>VIH, CD4 &lt;100, déficit focal</td><td>Lesiones múltiples que realzan en anillo</td></tr>
+      <tr><td><i>Naegleria</i></td><td>Joven sano que nadó en un lago, evolución fulminante</td><td>Trofozoítos móviles en LCR</td></tr>
+      <tr><td><i>Plasmodium</i></td><td>Viaje reciente a África, coma y fiebre</td><td>Hemorragias petequiales difusas</td></tr>
+    </tbody></table></div>
+
+    <h3>Perlas ENARM / MIR</h3>
+    <ul class="pearls">
+      <li><b>LCR con linfocitos y glucosa normal</b>Meningitis viral.</li>
+      <li><b>LCR con linfocitos y glucosa baja</b>TB u hongos.</li>
+      <li><b>LCR con neutrófilos y glucosa baja</b>Meningitis bacteriana.</li>
+      <li><b>Meningitis en VIH con CD4 &lt;100</b>Criptococo.</li>
+      <li><b>Encefalitis con afectación temporal</b>Herpes simple tipo 1.</li>
+      <li><b>Meningitis + púrpura</b>Meningococo.</li>
+    </ul>
+    <div class="alarm" style="margin-top:14px"><h4>Referencia urgente</h4><ul>
+      <li>Déficit motor progresivo: hemiparesia o parálisis.</li>
+      <li>Herniación: midriasis unilateral, bradicardia, alteración respiratoria.</li>
+      <li>Estado epiléptico.</li>
+      <li>Hidrocefalia aguda: cefalea intensa, vómito en proyectil, papiledema.</li>
+    </ul></div>
+  </section>
+
+  <!-- 2. ITU -->
+  <section class="topic" id="itu" data-title="Infecciones urinarias" data-short="ITU" hidden>
+    <div class="topic-head">
+      <span class="eyebrow">Clase · Dr. Mario Jiménez</span>
+      <h2>Infecciones del tracto urinario</h2>
+      <p>Cuatro agentes y cuatro síndromes. Distingue cistitis de pielonefritis por la fiebre y el dolor lumbar, y elige antibiótico según si hay embarazo o pH alcalino.</p>
+    </div>
+    <h3>Agentes</h3>
+    <details class="org" open>
+      <summary><span class="tag gneg">G−</span><span class="org-name"><em>Escherichia coli</em> uropatógena (UPEC)</span><span class="hint">80-90% de las ITU comunitarias; referente del tratamiento empírico.</span></summary>
+      <dl class="facts">
+        <dt>Virulencia</dt><dd><b>Fimbrias tipo P</b> (se unen al urotelio), hemolisinas, sideróforos.</dd>
+        <dt>Transmisión</dt><dd>Ascendente desde la microbiota fecal y perineal.</dd>
+        <dt>Riesgo</dt><dd>Mujeres jóvenes (uretra corta), embarazadas, diabéticos, anomalías anatómicas.</dd>
+        <dt>Fisiopatología</dt><dd>Colonización periuretral → vejiga (cistitis) → uréteres → parénquima renal (pielonefritis). Inflamación y neutrófilos = piuria.</dd>
+        <dt>Clínica</dt><dd><b>Cistitis</b>: disuria, polaquiuria, urgencia, dolor suprapúbico, <b>sin fiebre</b>. <b>Pielonefritis</b>: fiebre alta, escalofríos, dolor en flanco, Giordano positivo.</dd>
+        <dt>Diagnóstico</dt><dd>Tira reactiva: <b>nitritos</b> (enterobacterias) y <b>esterasa leucocitaria</b> (piuria). Urocultivo es el estándar de oro: ≥10⁵ UFC/mL (en cistitis sintomática bastan 10²-10³).</dd>
+        <dt>Tratamiento</dt><dd class="tx">Cistitis no complicada: nitrofurantoína <span class="dose">100 mg VO c/12 h × 5 d</span> o fosfomicina <span class="dose">3 g DU</span>. Pielonefritis ambulatoria: ciprofloxacino <span class="dose">500 mg c/12 h × 7 d</span>. Pielonefritis hospitalaria: ceftriaxona <span class="dose">1 g IV c/24 h</span>.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag gneg">G−</span><span class="org-name"><em>Proteus mirabilis</em></span><span class="hint">Ureasa → pH &gt;7 → cálculos coraliformes de estruvita.</span></summary>
+      <dl class="facts">
+        <dt>Fisiopatología</dt><dd>La ureasa transforma urea en amoníaco, alcaliniza la orina y precipita fosfato amónico magnésico.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Amoxicilina o cefalosporinas. <b>Evitar nitrofurantoína</b> por el pH alcalino.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag gpos">G+</span><span class="org-name"><em>Staphylococcus saprophyticus</em></span><span class="hint">2.º agente en mujeres jóvenes sexualmente activas: “cistitis de la luna de miel”.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Coco grampositivo coagulasa negativo, <b>resistente a novobiocina</b>.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Sensible a TMP/SMX y nitrofurantoína.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag gpos">G+</span><span class="org-name"><em>Enterococcus faecalis</em></span><span class="hint">Adultos mayores, hiperplasia prostática, sondas.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Coco grampositivo en cadenas, <b>resistencia intrínseca a cefalosporinas</b>.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Ampicilina o vancomicina.</dd>
+      </dl>
+    </details>
+
+    <h3>Síndromes específicos</h3>
+    <details class="org">
+      <summary><span class="tag cto">Síndrome</span><span class="org-name">Prostatitis aguda bacteriana</span><span class="hint">Fiebre + dolor perineal + próstata muy dolorosa al tacto.</span></summary>
+      <dl class="facts">
+        <dt>Agente</dt><dd>Generalmente <i>E. coli</i>.</dd>
+        <dt>Clínica</dt><dd>Fiebre, dolor perineal intenso, síntomas obstructivos (chorro débil), próstata caliente, edematosa y extremadamente dolorosa.</dd>
+        <dt>Precaución</dt><dd><b>Masaje prostático contraindicado</b> por riesgo de bacteriemia.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Fluoroquinolonas o TMP/SMX por <span class="dose">4-6 semanas</span> (penetran tejido prostático).</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag cto">Síndrome</span><span class="org-name">Bacteriuria asintomática</span><span class="hint">Cultivo positivo sin síntomas. ¿Cuándo tratar? Pregunta clásica.</span></summary>
+      <dl class="facts">
+        <dt>Tratar</dt><dd><b>Embarazadas</b> (riesgo de parto pretérmino y pielonefritis) y pacientes que irán a <b>cirugía urológica</b> (riesgo de sepsis).</dd>
+        <dt>No tratar</dt><dd>Ancianos y pacientes con sonda.</dd>
+      </dl>
+    </details>
+
+    <h3>Diagnóstico diferencial</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Patología</th><th>Fiebre</th><th>Dolor</th><th>Sedimento</th></tr></thead><tbody>
+      <tr><td>Cistitis</td><td>Ausente</td><td>Suprapúbico</td><td>Piuria + bacteriuria</td></tr>
+      <tr><td>Pielonefritis</td><td>Presente</td><td>Lumbar (Giordano)</td><td><b>Cilindros leucocitarios</b></td></tr>
+      <tr><td>Uretritis</td><td>Ausente</td><td>Uretral, disuria</td><td>Piuria con escasa bacteriuria</td></tr>
+      <tr><td>Prostatitis</td><td>Presente</td><td>Perineal</td><td>Piuria</td></tr>
+    </tbody></table></div>
+
+    <h3>Perlas ENARM / MIR</h3>
+    <ul class="pearls">
+      <li><b>Causa más común de ITU</b><i>E. coli</i>.</li>
+      <li><b>Cilindros leucocitarios en orina</b>Pielonefritis: la inflamación viene del túbulo renal.</li>
+      <li><b>ITU + pH urinario &gt;7.5</b>Sospechar <i>Proteus mirabilis</i>.</li>
+      <li><b>Elección en cistitis no complicada</b>Nitrofurantoína o fosfomicina.</li>
+      <li><b>Elección en embarazo</b>Nitrofurantoína (evitar al final), amoxicilina o cefalexina.</li>
+    </ul>
+    <div class="alarm" style="margin-top:14px"><h4>Referencia urgente</h4><ul>
+      <li>Sepsis urinaria: hipotensión, taquicardia, alteración del estado de alerta.</li>
+      <li>Pielonefritis enfisematosa: gas en parénquima renal, común en diabéticos; urgencia quirúrgica.</li>
+      <li>Obstrucción urinaria: cálculo impactado con infección (riesgo de pionefrosis).</li>
+      <li>Vómito persistente que impide el tratamiento oral.</li>
+    </ul></div>
+  </section>
+
+  <!-- 3. Cardiovascular -->
+  <section class="topic" id="cardio" data-title="Infección cardiovascular" data-short="Cardio" hidden>
+    <div class="topic-head">
+      <span class="eyebrow">Clase · Dr. Mario Jiménez</span>
+      <h2>Infección cardiovascular</h2>
+      <p>Endocarditis aguda contra subaguda, criterios de Duke, a quién operar, y miocarditis o pericarditis infecciosa.</p>
+    </div>
+    <h3>Endocarditis infecciosa</h3>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>Aguda</th><th>Subaguda</th></tr></thead><tbody>
+      <tr><td>Agente típico</td><td><i>S. aureus</i></td><td><i>Streptococcus</i> grupo viridans</td></tr>
+      <tr><td>Válvula</td><td>Sana (no requiere daño previo)</td><td>Con lesión previa (prolapso mitral, cardiopatía congénita)</td></tr>
+      <tr><td>Antecedente</td><td>UDVP, catéter de hemodiálisis, poscirugía cardiaca</td><td>Procedimiento dental</td></tr>
+      <tr><td>Curso</td><td>Días; fiebre alta, escalofríos, soplo nuevo, émbolos</td><td>Lento: febrícula, malestar, pérdida de peso, anemia de enfermedad crónica</td></tr>
+    </tbody></table></div>
+    <details class="org" open>
+      <summary><span class="tag gpos">G+</span><span class="org-name"><em>Staphylococcus aureus</em> (endocarditis aguda)</span><span class="hint">Causa más común de EI en el mundo y la más agresiva.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Coco grampositivo en racimos, coagulasa positivo. Toxinas destructoras y adherencia a <b>válvulas sanas</b>.</dd>
+        <dt>Transmisión</dt><dd>Bacteriemia por focos cutáneos, catéteres o drogas IV.</dd>
+        <dt>Localización</dt><dd>En UDVP, <b>tricúspide</b> (corazón derecho) → infartos sépticos pulmonares. Izquierda → cerebro y bazo.</dd>
+        <dt>Fisiopatología</dt><dd>Bacteriemia → adherencia al endotelio valvular → vegetación (bacterias + fibrina + plaquetas) que destruye la valva y emite émbolos sépticos.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag gpos">G+</span><span class="org-name"><em>Streptococcus</em> grupo viridans (subaguda)</span><span class="hint">Curso larvado tras procedimiento dental, sobre válvula dañada.</span></summary>
+      <dl class="facts">
+        <dt>Fisiopatología</dt><dd>Sobre la lesión previa se forma un trombo fibrina-plaquetas (endocarditis trombótica no bacteriana) que el estreptococo coloniza en una bacteriemia transitoria.</dd>
+        <dt>Estigmas</dt><dd><b>Nódulos de Osler</b> (dolorosos, pulpejos), <b>manchas de Roth</b> (hemorragia retiniana con centro pálido), <b>lesiones de Janeway</b> (máculas hemorrágicas no dolorosas en palmas y plantas, embólicas), hemorragias en astilla.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag cto">Otros</span><span class="org-name">Otros agentes relevantes</span><span class="hint">Enterococo, HACEK, <em>Coxiella</em>, <em>S. gallolyticus</em>.</span></summary>
+      <dl class="facts">
+        <dt><i>E. faecalis</i></dt><dd>Ancianos tras procedimientos genitourinarios (RTU de próstata) o digestivos. Requiere sinergia: <b>ampicilina + ceftriaxona o gentamicina</b>.</dd>
+        <dt>HACEK</dt><dd><i>Haemophilus, Aggregatibacter, Cardiobacterium, Eikenella, Kingella</i>: endocarditis con <b>hemocultivos negativos</b> (crecimiento lento).</dd>
+        <dt><i>Coxiella burnetii</i></dt><dd>Fiebre Q: causa más común de endocarditis con hemocultivo persistentemente negativo; contacto con ganado.</dd>
+        <dt><i>S. bovis</i> / <i>gallolyticus</i></dt><dd>Endocarditis + <b>cáncer de colon</b>: colonoscopia obligada (CTO: asociación en &gt;30%).</dd>
+        <dt>CTO</dt><dd class="from-cto" style="margin:0"><b>CTO:</b> estafilococos coagulasa negativos (<i>S. epidermidis</i>) son la causa más frecuente de endocarditis protésica precoz (&lt;1 año).</dd>
+      </dl>
+    </details>
+
+    <h3>Criterios de Duke</h3>
+    <p>Definitiva con <b>2 mayores</b>, o <b>1 mayor + 3 menores</b>, o <b>5 menores</b>.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Mayores</th><th>Menores</th></tr></thead><tbody>
+      <tr><td>Hemocultivos positivos: 2 cultivos separados con microorganismo típico</td><td>Predisposición: cardiopatía o UDVP</td></tr>
+      <tr><td>Ecocardiograma: vegetación, absceso o dehiscencia de prótesis</td><td>Fiebre ≥38 °C</td></tr>
+      <tr><td></td><td>Fenómenos vasculares: Janeway, embolias</td></tr>
+      <tr><td></td><td>Fenómenos inmunológicos: Osler, Roth, factor reumatoide, glomerulonefritis</td></tr>
+      <tr><td></td><td>Microbiología que no cumple criterio mayor</td></tr>
+    </tbody></table></div>
+    <p class="from-cto"><b>CTO:</b> el ecocardiograma transesofágico es más sensible que el transtorácico para cavidades izquierdas (90% vs 70%) y se indica con prótesis o ETT negativo con alta sospecha. En UDVP basta el transtorácico.</p>
+
+    <h3>Tratamiento</h3>
+    <p>Debe ser <b>IV, bactericida y prolongado</b> (4-6 semanas).</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Escenario</th><th>Esquema</th></tr></thead><tbody>
+      <tr><td>Válvula nativa (empírico)</td><td>Ampicilina/sulbactam <span class="dose">12 g/día</span> + gentamicina <span class="dose">3 mg/kg/día</span></td></tr>
+      <tr><td>Sospecha de MRSA</td><td>Vancomicina <span class="dose">30 mg/kg/día en 2 dosis</span> + gentamicina</td></tr>
+      <tr><td>Válvula protésica &lt;1 año</td><td>Vancomicina + gentamicina + <b>rifampicina</b> (penetra el biofilm)</td></tr>
+    </tbody></table></div>
+    <div class="callout"><b>Cirugía urgente (pregunta de examen):</b> insuficiencia cardiaca refractaria (causa n.º 1), infección no controlada (absceso perivalvular, fiebre persistente), vegetaciones móviles &gt;10 mm con eventos embólicos, hongos o bacterias muy resistentes.</div>
+
+    <h3>Pericarditis, miocarditis y Chagas</h3>
+    <details class="org">
+      <summary><span class="tag virus">Virus ARN</span><span class="org-name"><em>Coxsackie B</em>: pericarditis y miocarditis</span><span class="hint">Dolor que alivia al inclinarse hacia adelante; ST difuso cóncavo.</span></summary>
+      <dl class="facts">
+        <dt>Pericarditis</dt><dd>Dolor torácico pleurítico que alivia al inclinarse hacia adelante (posición mahometana) + frote pericárdico. EKG: elevación difusa del ST cóncava hacia arriba.</dd>
+        <dt>Miocarditis</dt><dd>Disfunción sistólica, troponinas elevadas, falla cardiaca súbita en joven previamente sano.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag para">Protozoo</span><span class="org-name"><em>Trypanosoma cruzi</em> (enfermedad de Chagas)</span><span class="hint">Causa de miocarditis crónica en México.</span></summary>
+      <dl class="facts">
+        <dt>Clínica</dt><dd>Miocardiopatía dilatada, <b>bloqueo de rama derecha</b>, aneurismas apicales.</dd>
+        <dt>CTO</dt><dd class="from-cto" style="margin:0"><b>CTO:</b> transmitida por triatominos (“chinche besucona”); fase aguda con signo de Romaña; fase crónica con megaesófago y megacolon; causa importante de muerte súbita en zonas endémicas.</dd>
+      </dl>
+    </details>
+
+    <h3>Perlas ENARM / MIR</h3>
+    <ul class="pearls">
+      <li><b>Causa n.º 1 de EI en válvula nativa</b><i>S. aureus</i>.</li>
+      <li><b>Causa n.º 1 tras procedimiento dental</b><i>S. viridans</i>.</li>
+      <li><b>Causa n.º 1 en UDVP</b><i>S. aureus</i>, válvula tricúspide.</li>
+      <li><b>Endocarditis + cáncer de colon</b><i>Streptococcus bovis</i> (<i>S. gallolyticus</i>).</li>
+      <li><b>EKG que sugiere absceso perivalvular</b>Bloqueo AV de primer grado (PR largo) en endocarditis aórtica.</li>
+    </ul>
+    <div class="alarm" style="margin-top:14px"><h4>Referencia urgente</h4><ul>
+      <li>Disnea súbita o edema agudo de pulmón: ruptura de cuerdas o insuficiencia valvular aguda.</li>
+      <li>Déficit neurológico focal: embolismo séptico cerebral.</li>
+      <li>Dolor abdominal súbito: embolismo esplénico o renal.</li>
+      <li>Nuevos bloqueos de la conducción en el EKG.</li>
+    </ul></div>
+  </section>
+
+  <!-- 4. GI bacterianas -->
+  <section class="topic" id="gibact" data-title="Diarreas bacterianas" data-short="GI bacterianas" hidden>
+    <div class="topic-head">
+      <span class="eyebrow">Clase · Infecciones gastrointestinales I</span>
+      <h2>Infecciones gastrointestinales bacterianas</h2>
+      <p>La presentación cubre <i>Campylobacter</i> a fondo y resume el resto en perlas. Los demás agentes se completan con el capítulo 8 del Manual CTO, ordenados por mecanismo.</p>
+    </div>
+    <h3>Mecanismos de diarrea bacteriana <small>CTO, tabla 8.1</small></h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Mecanismo</th><th>Incubación</th><th>Cuadro</th><th>Agentes</th></tr></thead><tbody>
+      <tr><td>Neurotoxina preformada</td><td>&lt;6 h</td><td>Náuseas y vómitos</td><td><i>S. aureus</i> (pasteles, cremas, mayonesa), <i>B. cereus</i> emético (arroz frito)</td></tr>
+      <tr><td>Enterotoxina</td><td>&gt;8 h</td><td>Diarrea acuosa sin leucocitos</td><td><i>V. cholerae</i>, ETEC, <i>C. perfringens</i>, <i>B. cereus</i> diarreico</td></tr>
+      <tr><td>Citotoxina</td><td>48-72 h</td><td>Disentería: fiebre, moco, sangre, tenesmo, leucocitos en heces</td><td><i>Shigella dysenteriae</i>, EHEC O157:H7, <i>C. difficile</i>, <i>V. parahaemolyticus</i></td></tr>
+      <tr><td>Enteroinvasivo</td><td>3-5 d</td><td>Fiebre y diarrea, puede ser disenteriforme</td><td><i>Campylobacter</i>, <i>Shigella</i>, <i>Salmonella</i> no typhi, EIEC</td></tr>
+    </tbody></table></div>
+
+    <h3>Agentes</h3>
+    <details class="org" open>
+      <summary><span class="tag gneg">G−</span><span class="org-name"><em>Campylobacter jejuni</em></span><span class="hint">Gastroenteritis bacteriana muy frecuente; principal antecedente infeccioso de Guillain-Barré.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Bacilo gramnegativo curvo en “ala de gaviota”, <b>microaerofílico</b> y <b>termofílico</b> (crece a 42 °C).</dd>
+        <dt>Transmisión</dt><dd>Aves de corral mal cocidas, leche no pasteurizada, mascotas (perros, gatos).</dd>
+        <dt>Fisiopatología</dt><dd>Daño directo a la mucosa de yeyuno, íleon y colon; inflamación intensa que imita EII o apendicitis.</dd>
+        <dt>Clínica</dt><dd>Pródromo de fiebre, cefalea y mialgias; dolor abdominal severo (<b>pseudoapendicitis</b>); diarrea de acuosa a sanguinolenta.</dd>
+        <dt>Diagnóstico</dt><dd>Cultivo en medio de <b>Skirrow</b> a 42 °C; campo oscuro con movimiento “en dardo”.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Autolimitada. Si es grave o prolongada: azitromicina <span class="dose">500 mg/día × 3 d</span> (elección por resistencia a quinolonas).</dd>
+        <dt>Alarma</dt><dd>Debilidad muscular ascendente semanas después de la diarrea: Guillain-Barré.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag gneg">G−</span><span class="org-name"><em>Escherichia coli</em> diarreogénica</span><span class="tag cto">CTO</span><span class="hint">ETEC = diarrea del viajero. EHEC O157:H7 = SUH.</span></summary>
+      <dl class="facts">
+        <dt>ETEC</dt><dd>Enterotoxigénica: causa más frecuente de <b>diarrea del viajero</b>; diarrea acuosa.</dd>
+        <dt>EHEC</dt><dd>Enterohemorrágica (O157:H7): toxina Shiga, disentería y <b>síndrome hemolítico urémico</b> (15%). <b>Antibióticos contraindicados</b>: aumentan el riesgo de SUH.</dd>
+        <dt>EPEC</dt><dd>Enteropatógena: diarrea no inflamatoria en niños, lesión en “copa con pedestal”.</dd>
+        <dt>EAEC</dt><dd>Enteroagregativa: “ladrillos apilados”; diarrea prolongada en niños e inmunodeprimidos.</dd>
+        <dt>EIEC</dt><dd>Enteroinvasiva: cuadro parecido a shigelosis.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag gneg">G−</span><span class="org-name"><em>Shigella</em></span><span class="tag cto">CTO</span><span class="hint">Dosis infectante muy baja (10-100 bacterias). Disentería con fiebre.</span></summary>
+      <dl class="facts">
+        <dt>Mecanismo</dt><dd>Enteroinvasiva; <i>S. dysenteriae</i> tipo 1 produce citotoxina (Shiga) y puede causar SUH.</dd>
+        <dt>Clínica</dt><dd>Disentería: fiebre, moco y sangre, dolor, tenesmo, leucocitos en heces.</dd>
+        <dt>Pista</dt><dd>Niño con disentería + falla renal (SUH): EHEC o <i>Shigella</i>.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag gneg">G−</span><span class="org-name"><em>Salmonella typhi</em> y no typhi</span><span class="tag cto">CTO</span><span class="hint">Fiebre en escalera + bradicardia relativa + roséola tifoidea.</span></summary>
+      <dl class="facts">
+        <dt>No typhi</dt><dd><i>S. enteritidis</i> (huevo, lácteos, salsas): gastroenteritis enteroinvasiva. Puede dar bacteriemia y aneurismas micóticos.</dd>
+        <dt>Fiebre tifoidea</dt><dd><i>S. typhi</i> y <i>paratyphi</i> (agua y verduras contaminadas). Penetra placas de Peyer → bacteriemia. Predomina lo sistémico: fiebre, cefalea, leucopenia sin eosinofilia, esplenomegalia, <b>bradicardia relativa</b>, roséola en tórax y abdomen. Diarrea poco frecuente (puede haber estreñimiento). Perforación intestinal en 5%.</dd>
+        <dt>Diagnóstico</dt><dd><b>Hemocultivo</b> en las 2 primeras semanas (mejor la 1.ª); coprocultivo desde la 3.ª.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Fluoroquinolonas o cefalosporinas de 3.ª generación (elección si hay bacteriemia). Portador crónico (vesícula, mujeres con colelitiasis): ciprofloxacino <span class="dose">4 semanas</span> ± colecistectomía.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag gneg">G−</span><span class="org-name"><em>Vibrio cholerae</em></span><span class="tag cto">CTO</span><span class="hint">Diarrea acuosa en “agua de arroz”.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Bacilo gramnegativo curvo con flagelo polar; serogrupo O1 (biotipos clásico y El Tor). Medio selectivo TCBS; campo oscuro.</dd>
+        <dt>Mecanismo</dt><dd>Toxina colérica (subunidad B de anclaje, A activa): diarrea isosmótica masiva sin destrucción de mucosa.</dd>
+        <dt>Otros <i>Vibrio</i></dt><dd><i>V. parahaemolyticus</i>: pescado crudo. <i>V. vulnificus</i>: sepsis en hemocromatosis y hepatópatas.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag gpos">G+</span><span class="org-name"><em>Clostridioides difficile</em></span><span class="tag cto">CTO</span><span class="hint">Antibióticos previos + diarrea nosocomial. Colitis pseudomembranosa.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Bacilo grampositivo esporulado, anaerobio estricto.</dd>
+        <dt>Riesgo</dt><dd>Clindamicina (mayor riesgo individual), cefalosporinas de 3.ª y fluoroquinolonas; edad &gt;60, hospitalización prolongada, IBP.</dd>
+        <dt>Clínica</dt><dd>Diarrea verdosa, fiebre, dolor, leucocitosis (a veces reacción leucemoide). Complicaciones: megacolon tóxico, perforación.</dd>
+        <dt>Diagnóstico</dt><dd>Glutamato deshidrogenasa en heces como cribado → toxinas A/B por ELISA o PCR. No repetir para comprobar curación.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Primer episodio (leve o grave): <b>vancomicina oral</b>. Megacolon o íleo: metronidazol IV + vancomicina en enemas, valorar colectomía. Recurrencia: fidaxomicina ± bezlotoxumab. Múltiples recurrencias: trasplante fecal. Lavado con agua y jabón (el alcohol no elimina esporas).</dd>
+      </dl>
+    </details>
+
+    <h3>Manejo general <small>CTO</small></h3>
+    <p>La hidratación es lo primordial (oral si es posible). Antibiótico empírico (fluoroquinolona o TMP/SMX 3-5 días) en inmunodeprimidos, edades extremas, comorbilidad o prótesis vascular, y si hay fiebre, disentería, &gt;6-8 evacuaciones/día o deshidratación. Evitar loperamida si hay fiebre o disentería.</p>
+    <div class="alarm"><h4>Indicaciones de hospitalización</h4><ul>
+      <li>Deshidratación grave que no tolera VSO.</li>
+      <li>Sepsis o bacteriemia sospechada.</li>
+      <li>Megacolon tóxico.</li>
+      <li>Extremos de la vida con comorbilidades.</li>
+      <li>Inmunosupresión.</li>
+    </ul></div>
+
+    <h3>Perlas para examen</h3>
+    <ul class="pearls">
+      <li><b>¿Diarrea del viajero?</b><i>E. coli</i> enterotoxigénica (ETEC).</li>
+      <li><b>¿Niño con disentería + falla renal (SUH)?</b><i>E. coli</i> enterohemorrágica o <i>Shigella</i>.</li>
+      <li><b>¿Baja dosis infectante (10-100 bacterias)?</b><i>Shigella</i>.</li>
+      <li><b>¿Aves de corral + riesgo de Guillain-Barré?</b><i>Campylobacter</i>.</li>
+      <li><b>¿Antibióticos previos + diarrea nosocomial?</b><i>Clostridioides difficile</i>.</li>
+      <li><b>¿Diarrea acuosa en agua de arroz?</b><i>Vibrio cholerae</i>.</li>
+      <li><b>¿Fiebre en escalera + bradicardia relativa + roséola?</b><i>Salmonella typhi</i>.</li>
+    </ul>
+  </section>
+
+  <!-- 5. GI virales -->
+  <section class="topic" id="givir" data-title="Diarreas virales" data-short="GI virales" hidden>
+    <div class="topic-head">
+      <span class="eyebrow">Clase · Infecciones gastrointestinales II</span>
+      <h2>Infecciones gastrointestinales virales</h2>
+      <p>Rotavirus, norovirus y adenovirus 40/41, más los planes de hidratación A, B y C.</p>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>Característica</th><th>Rotavirus</th><th>Norovirus</th><th>Adenovirus 40/41</th></tr></thead><tbody>
+      <tr><td>Población</td><td>Lactantes (&lt;2 años; pico 6-24 meses)</td><td>Todas las edades (adultos)</td><td>Niños pequeños</td></tr>
+      <tr><td>Síntoma predominante</td><td>Diarrea + vómito + fiebre</td><td><b>Vómito intenso</b></td><td>Diarrea prolongada</td></tr>
+      <tr><td>Estacionalidad</td><td>Invierno</td><td>Invierno, brotes todo el año</td><td>Todo el año</td></tr>
+      <tr><td>Duración</td><td>3-8 días</td><td>1-3 días</td><td><b>7-14 días</b></td></tr>
+      <tr><td>Prevención</td><td><b>Vacuna</b></td><td>Lavado de manos con jabón</td><td>Higiene general</td></tr>
+    </tbody></table></div>
+    <details class="org" open>
+      <summary><span class="tag virus">Virus ARN</span><span class="org-name">Rotavirus (serogrupo A)</span><span class="hint">Causa principal de diarrea grave y deshidratación en menores de 5 años.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Familia <i>Reoviridae</i>, ARN bicatenario segmentado (11 segmentos), icosaédrico sin envoltura, aspecto de <b>“rueda de carro”</b>. Proteína <b>NSP4</b>: única enterotoxina viral.</dd>
+        <dt>Epidemiología</dt><dd>Invierno en climas templados. Niños de 6 a 24 meses; adultos leves por inmunidad previa. Antes de la vacuna, &gt;500 000 muertes al año.</dd>
+        <dt>Fisiopatología</dt><dd>Infecta enterocitos maduros de las puntas de las vellosidades → atrofia. Mecanismo mixto: <b>osmótico</b> (pérdida de disacaridasas, malabsorción de lactosa) y <b>secretor</b> (NSP4 moviliza calcio → salida de cloro y agua).</dd>
+        <dt>Clínica</dt><dd>Fiebre + vómitos (preceden) + diarrea acuosa explosiva, 3-8 días. Mayor riesgo de choque hipovolémico que otros virus.</dd>
+        <dt>Diagnóstico</dt><dd>Clínico (niño pequeño con vómitos en invierno); antígeno en heces por ELISA o inmunocromatografía; PCR en vigilancia.</dd>
+        <dt>Tratamiento</dt><dd class="tx">VSO según plan A, B o C. <b>Zinc</b> <span class="dose">10-20 mg/día × 10-14 d</span> (OMS). Vacuna Rotarix o RotaTeq en los primeros meses.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag virus">Virus ARN</span><span class="org-name">Norovirus (virus Norwalk)</span><span class="hint">Gastroenteritis aguda en todas las edades. “Virus de los cruceros”.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd><i>Caliciviridae</i>, ARN monocatenario positivo, sin envoltura, resistente a detergentes y alcohol. Dosis infectante &lt;20 viriones.</dd>
+        <dt>Transmisión</dt><dd>Fecal-oral, aerosoles de vómito, superficies, mariscos (ostras).</dd>
+        <dt>Epidemiología</dt><dd>Brotes en hospitales, escuelas, cruceros, asilos; picos en meses fríos.</dd>
+        <dt>Fisiopatología</dt><dd>Intestino delgado superior: aplanamiento de vellosidades; <b>retraso del vaciamiento gástrico</b> que explica el vómito.</dd>
+        <dt>Clínica</dt><dd>Inicio brusco (12-48 h), vómito en proyectil, diarrea acuosa, autolimitada en 1-3 días.</dd>
+        <dt>Diagnóstico</dt><dd>Criterios de <b>Kaplan</b>: duración 12-60 h, incubación 24-48 h, vómito en ≥50%, coprocultivos negativos. Confirmación por RT-PCR.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Hidratación. Sin antivirales. Lavado con agua y jabón (gel de alcohol poco eficaz).</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag virus">Virus ADN</span><span class="org-name">Adenovirus entéricos (40 y 41)</span><span class="hint">Diarrea viral que dura más de una semana.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>ADN bicatenario sin envoltura; serotipos 40 y 41 específicos del tracto GI.</dd>
+        <dt>Clínica</dt><dd>2.ª causa viral en niños tras rotavirus (zonas sin vacuna). Diarrea 7-14 días, sin estacionalidad marcada.</dd>
+        <dt>Diagnóstico y tratamiento</dt><dd class="tx">Antígeno en heces por ELISA; soporte (hidratación).</dd>
+      </dl>
+    </details>
+
+    <h3>Planes de hidratación</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Plan</th><th>Clínica</th><th>Manejo</th></tr></thead><tbody>
+      <tr><td><b>A</b><br>Sin deshidratación</td><td>Alerta, ojos normales, mucosas húmedas, sed normal, llenado capilar &lt;2 s</td><td>En casa. Continuar lactancia y alimentación (comida extra al día 1-2 semanas tras remitir). Más líquidos: VSO <span class="dose">&lt;1 año ½ taza (75 mL)</span>, <span class="dose">&gt;1 año 1 taza (150 mL)</span> tras cada evacuación. Sin bebidas industrializadas.</td></tr>
+      <tr><td><b>B</b><br>Con deshidratación</td><td>Inquieto o irritable, ojos hundidos sin lágrimas, boca seca, sed intensa, pliegue &gt;2 s, taquicardia, fontanela hundida</td><td>VSO <span class="dose">100 mL/kg en 4 h</span>, fraccionado c/30 min. Sin peso: &lt;4 m 200-400 mL; 4-11 m 400-600; 12-23 m 600-1200; 2-5 a 800-1400; 5-9 a 1200-2200. Reevaluar a las 4 h.</td></tr>
+      <tr><td><b>C</b><br>Choque hipovolémico</td><td>Inconsciente o hipotónico, no puede beber, pulso débil o ausente, llenado &gt;2 s</td><td>Solución salina o Ringer IV: <span class="dose">1.ª h 50-60 mL/kg</span>, <span class="dose">2.ª h 25 mL/kg</span>, <span class="dose">3.ª h 25 mL/kg</span>. Reevaluar pulso; si mejora, pasar a A o B. Si no puede beber, SNG con VSO a <span class="dose">20 mL/kg/h</span>.</td></tr>
+    </tbody></table></div>
+
+    <h3>Perlas ENARM / MIR</h3>
+    <ul class="pearls">
+      <li><b>Vómitos masivos en crucero o asilo</b>Norovirus.</li>
+      <li><b>Lactante no vacunado con diarrea grave</b>Rotavirus.</li>
+      <li><b>¿Por qué norovirus resiste la limpieza?</b>No tiene envoltura lipídica; el alcohol no lo inactiva bien.</li>
+      <li><b>Función de la NSP4</b>Enterotoxina viral que induce secreción de Cl⁻.</li>
+      <li><b>Diarrea viral de más de una semana</b>Adenovirus.</li>
+    </ul>
+    <div class="alarm" style="margin-top:14px"><h4>Datos de alarma y referencia</h4><ul>
+      <li>Deshidratación moderada o grave: ojos hundidos, llanto sin lágrimas, signo del lienzo húmedo positivo.</li>
+      <li>Intolerancia a la vía oral: vómitos persistentes.</li>
+      <li>Alteración neurológica: irritabilidad o letargia.</li>
+      <li>Gasto fecal elevado: &gt;10 evacuaciones en 24 h o &gt;3 por hora.</li>
+    </ul></div>
+  </section>
+
+  <!-- 6. Hepatitis -->
+  <section class="topic" id="hepa" data-title="Hepatitis virales" data-short="Hepatitis" hidden>
+    <div class="topic-head">
+      <span class="eyebrow">Clase · Hepatitis</span>
+      <h2>Hepatitis virales A, B, C, D y E</h2>
+      <p>Las vocales (A y E) se transmiten por vía fecal-oral y no cronifican; las consonantes (B, C, D) por sangre o sexo y sí cronifican. La serología de la B es la clave del examen.</p>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>Virus</th><th>Genoma</th><th>Transmisión</th><th>¿Cronifica?</th><th>Diagnóstico clave</th><th>Particularidad</th></tr></thead><tbody>
+      <tr><td><b>A</b></td><td>ARN, picornavirus</td><td>Fecal-oral</td><td>No</td><td>IgM anti-VHA</td><td>Niños, autolimitada</td></tr>
+      <tr><td><b>B</b></td><td><b>ADN</b>, hepadnavirus</td><td>Sexual, sangre, vertical</td><td>Sí (90% neonatos, &lt;5% adultos)</td><td>HBsAg, anti-HBc</td><td>Vacuna; cáncer sin cirrosis</td></tr>
+      <tr><td><b>C</b></td><td>ARN, flavivirus</td><td>Sangre</td><td><b>Sí (80%)</b></td><td>ARN-VHC por PCR</td><td>Curable con AAD</td></tr>
+      <tr><td><b>D</b></td><td>ARN defectuoso</td><td>Sexual, sangre</td><td>Sí</td><td>Anti-VHD</td><td>Requiere HBsAg</td></tr>
+      <tr><td><b>E</b></td><td>ARN</td><td>Fecal-oral</td><td>No*</td><td>Serología</td><td>Grave en embarazadas</td></tr>
+    </tbody></table></div>
+    <p class="caption">*Puede cronificar en inmunodeprimidos.</p>
+
+    <details class="org" open>
+      <summary><span class="tag virus">Virus ARN</span><span class="org-name">Hepatitis A (VHA)</span><span class="hint">Causa más común de hepatitis viral aguda en niños. No cronifica.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Picornavirus, ARN monocatenario sin envoltura, muy resistente al ambiente.</dd>
+        <dt>Epidemiología</dt><dd>Guarderías, viajeros a zonas endémicas, contactos de casos índice. Brotes escolares o por mariscos crudos.</dd>
+        <dt>Fisiopatología</dt><dd>Ingestión → replicación en orofaringe y epitelio intestinal → viremia → hepatocitos. El daño lo produce la respuesta de <b>linfocitos T CD8+</b>, no el virus.</dd>
+        <dt>Clínica</dt><dd>Pródromo (fiebre, malestar, anorexia, náuseas) → fase ictérica (ictericia, coluria, acolia). Niños: 80% asintomática o anictérica. Adultos: más sintomática.</dd>
+        <dt>Diagnóstico</dt><dd><b>IgM anti-VHA</b> = aguda (desde el inicio, dura 3-6 meses). IgG = inmunidad (infección pasada o vacuna). Diferencial: otras hepatitis, paracetamol, obstrucción biliar.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Soporte: reposo relativo, hidratación, evitar hepatotóxicos. Prevención: vacuna (2 dosis) y gammaglobulina posexposición en &lt;2 semanas.</dd>
+        <dt>Alarma</dt><dd>Hepatitis fulminante (&lt;1%): encefalopatía y TP/INR prolongado.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag virus">Virus ADN</span><span class="org-name">Hepatitis B (VHB)</span><span class="hint">Único virus de hepatitis con ADN. Riesgo de cirrosis y hepatocarcinoma.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Hepadnavirus, ADN bicatenario circular con polimerasa con actividad de <b>transcriptasa inversa</b>.</dd>
+        <dt>Transmisión</dt><dd>Parenteral, sexual y <b>vertical</b> (la más importante para cronicidad). Mayor tasa en África subsahariana (≥8%).</dd>
+        <dt>Fisiopatología</dt><dd>El ADN viral persiste como cccDNA en el hepatocito; la inflamación crónica por respuesta inmune lleva a fibrosis y cáncer.</dd>
+        <dt>Clínica</dt><dd>Aguda: ictericia, fatiga; 1% falla fulminante. Crónica: asintomática hasta cirrosis o HCC. Extrahepáticas: <b>poliarteritis nodosa</b> y <b>glomerulonefritis membranosa</b>.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Aguda: soporte (95% de adultos resuelve); antivirales solo si es grave o fulminante. Crónica: <b>tenofovir</b> (TDF o TAF; resistencia casi nula) o <b>entecavir</b>, a largo plazo. Peg-IFN 48 semanas en casos seleccionados (contraindicado en cirrosis avanzada).</dd>
+      </dl>
+    </details>
+    <h3>Serología del VHB <small>la clave del examen</small></h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Marcador</th><th>Significado</th></tr></thead><tbody>
+      <tr><td>HBsAg (+)</td><td>Infección presente, aguda o crónica (&gt;6 meses = crónica)</td></tr>
+      <tr><td>Anti-HBs (+)</td><td>Inmunidad por vacuna o infección curada. <b>Único marcador positivo en el vacunado</b></td></tr>
+      <tr><td>Anti-HBc IgM (+)</td><td>Infección aguda; <b>marcador del periodo de ventana</b> si HBsAg es negativo</td></tr>
+      <tr><td>Anti-HBc IgG (+)</td><td>Infección pasada o crónica; nunca aparece por vacuna</td></tr>
+      <tr><td>HBeAg (+)</td><td>Alta replicación viral e infectividad</td></tr>
+    </tbody></table></div>
+    <div class="tbl"><table>
+      <thead><tr><th>Fase crónica</th><th>HBeAg</th><th>Anti-HBe</th><th>ALT</th><th>ADN-VHB (UI/mL)</th><th>Histología</th><th>¿Tratar?</th></tr></thead><tbody>
+      <tr><td>Inmunotolerante</td><td>+</td><td>−</td><td>Normal</td><td>&gt;20 000</td><td>Normal o leve</td><td>No</td></tr>
+      <tr><td>HBeAg positiva</td><td>+</td><td>−</td><td>↑</td><td>&gt;20 000</td><td>Activa</td><td><b>Sí</b></td></tr>
+      <tr><td>HBeAg negativa</td><td>−</td><td>+</td><td>↑ o fluctuante</td><td>&gt;2 000</td><td>Activa</td><td><b>Sí</b></td></tr>
+      <tr><td>Portador inactivo</td><td>−</td><td>+</td><td>Normal</td><td>&lt;2 000</td><td>Normal o residual</td><td>No</td></tr>
+    </tbody></table></div>
+    <details class="org">
+      <summary><span class="tag virus">Virus ARN</span><span class="org-name">Hepatitis C (VHC)</span><span class="hint">Causa principal de trasplante hepático. 80% cronifica. Hoy es curable.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Flavivirus, ARN monocatenario.</dd>
+        <dt>Transmisión</dt><dd>Parenteral: transfusiones antes de 1992, drogas IV, tatuajes.</dd>
+        <dt>Evolución</dt><dd>Fibrosis → cirrosis → hepatocarcinoma (sobre cirrosis). Descompensación: ascitis, várices, encefalopatía, ictericia. Extrahepática: <b>crioglobulinemia</b>.</dd>
+        <dt>Diagnóstico</dt><dd>Tamizaje: anti-VHC (exposición, no necesariamente infección activa). Confirmación: <b>ARN-VHC por PCR</b>; detectable = infección activa.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Antivirales de acción directa (AAD), orales, 8-12 semanas, curación &gt;95%. Pangenotípicos: sofosbuvir/velpatasvir (12 semanas), glecaprevir/pibrentasvir.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag virus">Virus ARN</span><span class="org-name">Hepatitis D (delta) y E</span><span class="hint">D necesita al VHB. E mata hasta 20% de embarazadas en el 3.er trimestre.</span></summary>
+      <dl class="facts">
+        <dt>VHD</dt><dd>Virus defectuoso que requiere HBsAg. <b>Coinfección</b> (B y D a la vez): mismo riesgo de cronicidad que B sola. <b>Superinfección</b> (D sobre portador crónico de B): alto riesgo de falla hepática y cirrosis rápida.</dd>
+        <dt>VHE</dt><dd>Fecal-oral. Perla: mortalidad hasta 20% en <b>embarazadas</b> por hepatitis fulminante en el tercer trimestre.</dd>
+      </dl>
+    </details>
+    <h3>Perlas ENARM / MIR</h3>
+    <ul class="pearls">
+      <li><b>Único marcador positivo tras la vacuna</b>Anti-HBs.</li>
+      <li><b>Marcador del periodo de ventana en VHB</b>Anti-HBc IgM.</li>
+      <li><b>Hepatitis con mayor riesgo de cáncer sin cirrosis</b>Hepatitis B.</li>
+      <li><b>Glomerulonefritis membranosa</b>Hepatitis B.</li>
+      <li><b>Crioglobulinemia esencial</b>Hepatitis C.</li>
+      <li><b>Niño con ictericia y transaminasas &gt;1000</b>Primer estudio: IgM anti-VHA.</li>
+    </ul>
+  </section>
+
+  <!-- 7. Protozoos, trematodos, hongos GI -->
+  <section class="topic" id="proto" data-title="Protozoos, trematodos y hongos" data-short="Protozoos" hidden>
+    <div class="topic-head">
+      <span class="eyebrow">Clase · Infecciones gastrointestinales III</span>
+      <h2>Amebiasis, giardiasis, trematodos y candidiasis esofágica</h2>
+      <p>Dos protozoos intestinales, dos trematodos (uno biliar y uno vascular) y la candidiasis esofágica del paciente con VIH.</p>
+    </div>
+    <details class="org" open>
+      <summary><span class="tag para">Protozoo</span><span class="org-name"><em>Entamoeba histolytica</em> (amebiasis)</span><span class="hint">Colitis invasiva o absceso hepático. Tercera causa parasitaria de muerte.</span></summary>
+      <dl class="facts">
+        <dt>Epidemiología</dt><dd>Saneamiento deficiente; en México y zonas tropicales es causa frecuente de diarrea inflamatoria.</dd>
+        <dt>Fisiopatología</dt><dd>Ingestión de quistes → trofozoítos en colon → invasión → úlceras en <b>“botón de camisa”</b> o “cuello de botella”. Diseminación por vía porta al hígado.</dd>
+        <dt>Clínica</dt><dd>Intestinal: disentería (moco y sangre), pujo, tenesmo. <b>Absceso hepático</b>: fiebre alta, dolor en hipocondrio derecho, hepatomegalia; típicamente único en <b>lóbulo derecho</b>, contenido en “pasta de anchoas”.</dd>
+        <dt>Diagnóstico</dt><dd>Intestinal: CPS (trofozoítos o quistes); antígeno en heces más específico. Absceso: USG hepático + serología (positiva en 90%).</dd>
+        <dt>Tratamiento</dt><dd class="tx">Invasivo (trofozoítos): metronidazol <span class="dose">500-750 mg c/8 h × 7-10 d</span> o tinidazol. Luego luminal (quistes): paromomicina o teclozán para erradicar el estado de portador.</dd>
+        <dt>CTO</dt><dd class="from-cto" style="margin:0"><b>CTO:</b> la disentería amebiana suele ser sin fiebre y sin leucocitos en heces (los fagocita el trofozoíto). El absceso rara vez necesita drenaje. <i>E. dispar</i> es idéntica al microscopio pero no patógena.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag para">Protozoo</span><span class="org-name"><em>Giardia lamblia</em> (giardiasis)</span><span class="hint">Diarrea parasitaria más común en países desarrollados y viajeros. Déficit de IgA.</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Flagelado; trofozoíto en forma de pera con dos núcleos (“ojos”) y <b>disco suctor</b> ventral.</dd>
+        <dt>Transmisión</dt><dd>Agua contaminada (quistes resistentes al cloro), guarderías. Riesgo: excursionistas, <b>déficit de IgA</b>.</dd>
+        <dt>Fisiopatología</dt><dd>“Alfombra” de parásitos adherida al duodeno → aplanamiento de vellosidades → malabsorción de grasas y carbohidratos, sin invasión.</dd>
+        <dt>Clínica</dt><dd>Diarrea acuosa que pasa a <b>esteatorrea</b>, distensión, flatulencia con olor a azufre, pérdida de peso.</dd>
+        <dt>Diagnóstico</dt><dd>CPS seriado (quistes); antígeno en heces por ELISA. Estándar de oro: aspirado duodenal o enterotest (rara vez se usan).</dd>
+        <dt>Tratamiento</dt><dd class="tx">Metronidazol <span class="dose">250 mg c/8 h × 5-7 d</span> o tinidazol <span class="dose">2 g DU</span>. Albendazol como alternativa. CTO: en el 1.er trimestre del embarazo, paromomicina.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag para">Trematodo</span><span class="org-name"><em>Fasciola hepatica</em> (fasciolosis)</span><span class="hint">Berros + eosinofilia extrema.</span></summary>
+      <dl class="facts">
+        <dt>Ciclo</dt><dd>Huésped intermediario: caracol <i>Lymnaea</i>. Se ingieren metacercarias en plantas acuáticas (berros, lechuga de agua).</dd>
+        <dt>Fisiopatología</dt><dd>Fase aguda migratoria: la larva cruza la pared intestinal y la cápsula de Glisson. Fase crónica: adultos en conductos biliares, inflamación y fibrosis.</dd>
+        <dt>Clínica</dt><dd>Aguda: fiebre, dolor en hipocondrio derecho, hepatomegalia, <b>eosinofilia &gt;50%</b>. Crónica: cuadro de colelitiasis o colangitis.</dd>
+        <dt>Diagnóstico</dt><dd>CPS con huevos operculados (solo fase crónica); en fase aguda, serología (ELISA).</dd>
+        <dt>Tratamiento</dt><dd class="tx"><b>Triclabendazol</b> <span class="dose">10 mg/kg DU</span>. Metronidazol y albendazol <b>no</b> sirven.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag para">Trematodo</span><span class="org-name"><em>Schistosoma</em> spp. (esquistosomiasis)</span><span class="hint">Hipertensión portal sin cirrosis en paciente de África o Asia.</span></summary>
+      <dl class="facts">
+        <dt>Importancia</dt><dd>Segunda enfermedad parasitaria más devastadora tras la malaria.</dd>
+        <dt>Especies</dt><dd><i>S. mansoni</i> y <i>S. japonicum</i>: intestino e hígado. <i>S. haematobium</i>: tracto urinario.</dd>
+        <dt>Transmisión</dt><dd>Las <b>cercarias</b> penetran la piel al nadar en agua dulce con caracoles.</dd>
+        <dt>Fisiopatología</dt><dd>Adultos en plexos venosos; el daño lo causan los <b>huevos</b> (granulomas). <i>S. mansoni</i>: fibrosis de Symmers → <b>hipertensión portal presinusoidal</b>.</dd>
+        <dt>Clínica</dt><dd>Dermatitis del nadador; fiebre de Katayama (aguda: fiebre, tos, urticaria, adenopatías); crónica: hepatoesplenomegalia, várices o hematuria. <i>S. haematobium</i> → <b>carcinoma epidermoide de vejiga</b>.</dd>
+        <dt>Diagnóstico</dt><dd>Huevos en heces u orina: <i>S. mansoni</i> espina lateral; <i>S. haematobium</i> espina terminal.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Praziquantel <span class="dose">40-60 mg/kg en dos dosis</span>.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag fungi">Hongo</span><span class="org-name">Esofagitis por <em>Candida albicans</em></span><span class="hint">Infección esofágica más común en VIH; criterio definitorio de SIDA (categoría C).</span></summary>
+      <dl class="facts">
+        <dt>Microorganismo</dt><dd>Levadura comensal con hifas, pseudohifas y blastoconidias. Transmisión endógena.</dd>
+        <dt>Riesgo</dt><dd>VIH con CD4 &lt;200, diabetes descompensada, antibióticos prolongados, corticoides inhalados o sistémicos.</dd>
+        <dt>Clínica</dt><dd>Tríada: <b>odinofagia</b>, disfagia, dolor retroesternal. Suele acompañarse de muguet (su ausencia no la descarta).</dd>
+        <dt>Diagnóstico</dt><dd>En VIH con odinofagia se puede tratar empíricamente. Estándar: endoscopia con placas blancas adheridas; cepillado o biopsia con PAS o Grocott.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Fluconazol <span class="dose">200-400 mg</span> el día 1, luego <span class="dose">100-200 mg/día × 14-21 d</span>. Refractarios: voriconazol o equinocandinas (caspofungina).</dd>
+      </dl>
+    </details>
+    <h3>Perlas ENARM / MIR</h3>
+    <ul class="pearls">
+      <li><b>Diarrea que flota, huele muy mal, déficit de IgA</b><i>Giardia</i>.</li>
+      <li><b>Absceso hepático único en lóbulo derecho (“pasta de anchoas”)</b>Amiba.</li>
+      <li><b>Comió berros + eosinofilia extrema</b><i>Fasciola</i>.</li>
+      <li><b>Hipertensión portal sin cirrosis, África o Asia</b><i>Schistosoma</i>.</li>
+      <li><b><i>S. haematobium</i> y cáncer</b>Carcinoma de células escamosas de vejiga.</li>
+    </ul>
+  </section>
+
+  <!-- 8. Helmintos -->
+  <section class="topic" id="helm" data-title="Helmintos intestinales" data-short="Helmintos" hidden>
+    <div class="topic-head">
+      <span class="eyebrow">Clase · Infecciones por helmintos · Infectología 2026</span>
+      <h2>Infecciones por helmintos</h2>
+      <p>Cada gusano tiene una palabra clave de caso clínico y un fármaco de elección. Recuerda: los helmintos dan eosinofilia; los protozoos casi nunca.</p>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th>Parásito</th><th>Palabra clave del caso</th><th>Tratamiento de elección</th></tr></thead><tbody>
+      <tr><td><i>Ascaris</i></td><td>Obstrucción intestinal, síndrome de Löffler</td><td>Albendazol</td></tr>
+      <tr><td><i>Enterobius</i></td><td>Prurito nocturno, prueba de Graham</td><td>Albendazol (a toda la familia)</td></tr>
+      <tr><td><i>T. solium</i></td><td>Convulsiones en adulto, cerdo</td><td>Albendazol + esteroides</td></tr>
+      <tr><td><i>Trichuris</i></td><td><b>Prolapso rectal</b> en niños</td><td>Mebendazol</td></tr>
+      <tr><td>Uncinarias</td><td><b>Anemia ferropénica</b> + pies descalzos</td><td>Albendazol + hierro</td></tr>
+      <tr><td><i>Strongyloides</i></td><td>Hiperinfección por esteroides</td><td>Ivermectina</td></tr>
+    </tbody></table></div>
+    <details class="org" open>
+      <summary><span class="tag para">Nematodo</span><span class="org-name"><em>Ascaris lumbricoides</em> (ascariasis)</span><span class="hint">El nematodo más grande que infecta al humano (hembra hasta 35 cm).</span></summary>
+      <dl class="facts">
+        <dt>Importancia</dt><dd>&gt;1000 millones de infectados; en pediatría causa obstrucción mecánica.</dd>
+        <dt>Transmisión</dt><dd>Huevos embrionados en suelo, agua o alimentos (geofagia). Áreas rurales; niños que juegan en la tierra.</dd>
+        <dt>Ciclo de Loss</dt><dd>Huevo → larva en intestino → atraviesa la pared → porta → <b>pulmón</b> → rompe alvéolos, asciende por tráquea, se deglute → adulto en intestino delgado.</dd>
+        <dt>Clínica</dt><dd>Fase larvaria: <b>síndrome de Löffler</b> (tos, disnea, infiltrados migratorios, eosinofilia). Fase adulta: asintomática; cargas masivas dan dolor y anorexia. Complicaciones: oclusión (ovillo), vólvulo, migración biliar (colangitis); CTO añade pancreatitis.</dd>
+        <dt>Diagnóstico</dt><dd>CPS con huevos mamelonados. Rx de abdomen: imagen en <b>“madeja de estambre”</b> o “migajón de pan”.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Albendazol <span class="dose">400 mg DU</span> o mebendazol <span class="dose">100 mg c/12 h × 3 d</span>. Obstrucción: piperazina (paraliza al gusano) o cirugía si hay peritonitis.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag para">Nematodo</span><span class="org-name"><em>Enterobius vermicularis</em> (oxiuriasis)</span><span class="hint">“Gusano de los niños”; helmintiasis más común en zonas urbanas.</span></summary>
+      <dl class="facts">
+        <dt>Fisiopatología</dt><dd>Adultos en el ciego; la hembra migra de noche a la región perianal a poner huevos.</dd>
+        <dt>Transmisión</dt><dd>Ciclo ano-mano-boca, uñas, fómites (sábanas).</dd>
+        <dt>Clínica</dt><dd><b>Prurito anal nocturno</b>, insomnio, irritabilidad, enuresis, bruxismo (CTO). En niñas, vulvovaginitis.</dd>
+        <dt>Diagnóstico</dt><dd><b>Prueba de Graham</b> (cinta adhesiva perianal por la mañana, antes del baño). El CPS normal no sirve.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Albendazol <span class="dose">400 mg DU</span>, <b>repetir en 2 semanas</b>. Tratar a toda la familia y lavar sábanas con agua caliente.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag para">Cestodo</span><span class="org-name"><em>Taenia solium</em> y <em>T. saginata</em></span><span class="hint">Teniasis (come carne) frente a cisticercosis (come huevos).</span></summary>
+      <dl class="facts">
+        <dt>Diferencia ENARM</dt><dd><b>Teniasis</b>: come carne de cerdo o res con cisticercos → gusano adulto en intestino, suele ser asintomática. <b>Cisticercosis</b>: ingiere huevos de <i>T. solium</i> (contaminación fecal humana) → larvas en cerebro, músculo y ojos.</dd>
+        <dt>Epidemiología</dt><dd><i>T. solium</i> = cerdo; <i>T. saginata</i> = res. México es zona endémica de <i>T. solium</i>.</dd>
+        <dt>Diagnóstico</dt><dd>Teniasis: proglótides en heces. Neurocisticercosis: TC o RM.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Teniasis: praziquantel DU. Neurocisticercosis: albendazol + praziquantel + dexametasona (ver la clase de SNC).</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag para">Nematodo</span><span class="org-name"><em>Trichuris trichiura</em> (tricocefalosis)</span><span class="hint">Gusano en forma de látigo; prolapso rectal.</span></summary>
+      <dl class="facts">
+        <dt>Clínica</dt><dd>Niño con diarrea crónica, anemia y <b>prolapso rectal</b>.</dd>
+        <dt>Diagnóstico</dt><dd>CPS: huevos en “balón de fútbol americano” o “limón” con tapones polares.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Mebendazol o albendazol por 3 días.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag para">Nematodo</span><span class="org-name">Uncinarias (<em>Necator americanus</em>, <em>Ancylostoma</em>)</span><span class="hint">Pies descalzos + anemia ferropénica grave.</span></summary>
+      <dl class="facts">
+        <dt>Mecanismo</dt><dd>La larva penetra la piel (pies descalzos) → pulmón → intestino. El gusano “muerde” la mucosa y chupa sangre.</dd>
+        <dt>Clínica</dt><dd><b>Anemia ferropénica grave</b> + eosinofilia + dermatitis pruriginosa en pies.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Albendazol + hierro oral.</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag para">Nematodo</span><span class="org-name"><em>Strongyloides stercoralis</em></span><span class="tag cto">CTO</span><span class="hint">Autoinfestación por años; hiperinfección con esteroides o inmunosupresión.</span></summary>
+      <dl class="facts">
+        <dt>Hiperinfección</dt><dd>En inmunidad celular alterada (trasplante, VIH, corticoides): larvas en múltiples tejidos, sepsis o <b>meningitis por enterobacterias</b>, púrpura, distrés respiratorio.</dd>
+        <dt>Diagnóstico</dt><dd>Larvas en fluidos; serología; método de Baermann o placa de agar.</dd>
+        <dt>Tratamiento</dt><dd class="tx">Ivermectina.</dd>
+      </dl>
+    </details>
+    <div class="alarm" style="margin-top:14px"><h4>Datos de alarma parasitarios</h4><ul>
+      <li>Abdomen agudo: oclusión intestinal o perforación por áscaris.</li>
+      <li>Estatus epiléptico: complicación de neurocisticercosis.</li>
+      <li>Anemia grave (Hb &lt;7): carga masiva de uncinarias.</li>
+      <li>Signos de focalización neurológica.</li>
+    </ul></div>
+    <h3>Perlas</h3>
+    <ul class="pearls">
+      <li><b>Löffler</b>Tránsito pulmonar de <i>Ascaris</i>, <i>Strongyloides</i>, <i>Ancylostoma</i> y <i>Necator</i> (CTO).</li>
+      <li><b>Prurito anal nocturno en niño</b><i>Enterobius</i>: Graham, no CPS.</li>
+      <li><b>Niño con prolapso rectal</b><i>Trichuris</i>.</li>
+      <li><b>Inmunodeprimido con infiltrados, sepsis por gramnegativos</b>Hiperinfección por <i>Strongyloides</i>.</li>
+    </ul>
+  </section>
+
+  <!-- 9. Artritis -->
+  <section class="topic" id="artritis" data-title="Artritis séptica y tenosinovitis" data-short="Artritis séptica" hidden>
+    <div class="topic-head">
+      <span class="eyebrow">Clase · Echevarría Castañeda y Pérez Díaz</span>
+      <h2>Artritis séptica y tenosinovitis infecciosa</h2>
+      <p>Las dos son urgencias de drenaje. <i>S. aureus</i> es el agente más frecuente en ambas.</p>
+    </div>
+    <div class="tbl"><table>
+      <thead><tr><th></th><th>Artritis séptica</th><th>Tenosinovitis infecciosa</th></tr></thead><tbody>
+      <tr><td>Definición</td><td>Infección del espacio articular, aguda y generalmente monoarticular; destruye el cartílago rápido</td><td>Infección de la vaina sinovial de un tendón, por inoculación directa; riesgo de necrosis tendinosa</td></tr>
+      <tr><td>Epidemiología</td><td>2-10/100 000/año. Ancianos e inmunosuprimidos. 80-90% monoarticular. <b>Rodilla</b> (50%). Mortalidad 7-15%</td><td>Menos frecuente. Personas laboralmente activas; manos; trauma o heridas</td></tr>
+      <tr><td>Vía</td><td>Hematógena (más frecuente), inoculación directa o contigüidad</td><td>Inoculación directa</td></tr>
+      <tr><td>Diagnóstico</td><td><b>Artrocentesis</b> (estándar de oro): leucocitos &gt;50 000/mm³, PMN &gt;75%, glucosa ↓, proteínas ↑, Gram y cultivo. Apoyo: PCR y VSG, hemocultivos, BH</td><td>Clínico: <b>signos de Kanavel</b>. Apoyo: USG (líquido en la vaina), cultivo del drenaje</td></tr>
+      <tr><td>Drenaje</td><td>Artrocentesis, artroscopia o artrotomía</td><td>Quirúrgico abierto (tenosinovectomía): incisión longitudinal, irrigación, desbridamiento</td></tr>
+      <tr><td>Antibiótico IV empírico</td><td>Vancomicina <span class="dose">15-20 mg/kg c/8-12 h</span> + ceftriaxona <span class="dose">2 g c/24 h</span></td><td>Vancomicina <span class="dose">15-20 mg/kg c/8-12 h</span> + ampicilina/sulbactam <span class="dose">3 g c/6 h</span></td></tr>
+      <tr><td>Duración</td><td>2-4 semanas</td><td>1-2 semanas</td></tr>
+    </tbody></table></div>
+
+    <h3>Agentes según edad</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>Grupo</th><th>Artritis séptica</th></tr></thead><tbody>
+      <tr><td>Neonatos</td><td><i>Streptococcus</i> grupo B, <i>E. coli</i>, <i>S. aureus</i></td></tr>
+      <tr><td>Niños &lt;5 años</td><td><i>Kingella kingae</i>, <i>S. aureus</i></td></tr>
+      <tr><td>Adulto joven</td><td><b><i>Neisseria gonorrhoeae</i></b>, <i>S. aureus</i></td></tr>
+      <tr><td>Adulto mayor</td><td><i>S. aureus</i>, gramnegativos (<i>E. coli</i>, <i>Pseudomonas</i>)</td></tr>
+    </tbody></table></div>
+    <p>Tenosinovitis: <i>S. aureus</i>, <i>Streptococcus</i>, <i>Pasteurella multocida</i> (mordeduras de animales).</p>
+
+    <h3>Signos de Kanavel</h3>
+    <ul class="pearls">
+      <li><b>1. Dedo en flexión</b>Posición antiálgica de semiflexión.</li>
+      <li><b>2. Dolor a la extensión pasiva</b>El signo más sensible y precoz.</li>
+      <li><b>3. Tumefacción fusiforme</b>Todo el dedo engrosado.</li>
+      <li><b>4. Dolor en el trayecto del tendón</b>Sensibilidad a lo largo de la vaina flexora.</li>
+    </ul>
+
+    <h3>Fisiopatología</h3>
+    <details class="org">
+      <summary><span class="tag cto">Mecanismo</span><span class="org-name">Artritis séptica</span><span class="hint">El daño lo hace la respuesta del huésped.</span></summary>
+      <dl class="facts">
+        <dt>Secuencia</dt><dd>Entrada (hematógena) → membrana sinovial → adhesión de <i>S. aureus</i> a sinovial y matriz → IL-1, TNF-α, IL-6 y neutrófilos → proteasas, ROS y metaloproteinasas → <b>destrucción del cartílago rápida e irreversible</b> (24-48 h).</dd>
+      </dl>
+    </details>
+    <details class="org">
+      <summary><span class="tag cto">Mecanismo</span><span class="org-name">Tenosinovitis infecciosa</span><span class="hint">Pus en espacio cerrado → isquemia del tendón.</span></summary>
+      <dl class="facts">
+        <dt>Secuencia</dt><dd>Inoculación → IL-1, TNF, IL-6 → neutrófilos → muerte bacteriana y celular → pus → <b>↑ presión en la vaina → ↓ perfusión → necrosis tendinosa</b>.</dd>
+      </dl>
+    </details>
+    <div class="alarm" style="margin-top:14px"><h4>Complicaciones</h4><ul>
+      <li>Destrucción tisular irreversible: cartílago en 24-48 h; necrosis del tendón.</li>
+      <li>Pérdida funcional: rigidez, anquilosis, contracturas.</li>
+      <li>Diseminación: bacteriemia, sepsis, osteomielitis, extensión a mano y antebrazo.</li>
+      <li>Ruptura tendinosa; necrosis avascular (cadera); abscesos.</li>
+      <li>Síndrome compartimental y amputación en casos no controlados.</li>
+    </ul></div>
+    <p class="callout">Prevención: controlar tabaquismo, diabetes, artritis reumatoide y cirugía articular reciente; técnica estéril en infiltraciones, cirugías y curaciones.</p>
+  </section>
+
+  </div><!-- /study -->
+
+  <!-- ============ FLASHCARDS ============ -->
+  <div id="cards" hidden>
+    <div class="topic-head"><span class="eyebrow">Repaso activo</span><h2>Flashcards</h2><p>Toca la tarjeta para voltearla. Marca las que ya dominas; se guardan en este navegador.</p></div>
+    <div class="tools-head">
+      <label for="cards-topic" class="caption" style="margin:0">Clase</label>
+      <select id="cards-topic"></select>
+      <label class="caption" style="margin:0;display:flex;gap:6px;align-items:center"><input type="checkbox" id="cards-hide"> Ocultar dominadas</label>
+      <span class="counter" id="cards-count"></span>
+    </div>
+    <div class="progress"><span id="cards-bar"></span></div>
+    <div class="card" id="card" tabindex="0" role="button" aria-label="Voltear tarjeta">
+      <div class="card-inner">
+        <div class="face front"><span class="meta" id="card-meta"></span><div class="q" id="card-q"></div><span class="caption">Toca para ver la respuesta</span></div>
+        <div class="face back"><span class="meta">Respuesta</span><div class="a" id="card-a"></div></div>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button type="button" class="btn" id="card-prev">Anterior</button>
+      <button type="button" class="btn" id="card-flip">Voltear</button>
+      <button type="button" class="btn primary" id="card-known">La domino</button>
+      <button type="button" class="btn" id="card-next">Siguiente</button>
+      <button type="button" class="btn" id="card-shuffle">Barajar</button>
+    </div>
+  </div>
+
+  <!-- ============ QUIZ ============ -->
+  <div id="quiz" hidden>
+    <div class="topic-head"><span class="eyebrow">Autoevaluación</span><h2>Examen tipo ENARM</h2><p>Preguntas de opción múltiple con explicación. Elige una clase o mezcla todas.</p></div>
+    <div class="tools-head">
+      <label for="quiz-topic" class="caption" style="margin:0">Clase</label>
+      <select id="quiz-topic"></select>
+      <button type="button" class="btn" id="quiz-restart">Nuevo examen</button>
+      <span class="counter" id="quiz-count"></span>
+    </div>
+    <div class="quiz" id="quiz-box"></div>
+  </div>
+
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+var store={get:function(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+
+/* ---------- Navegación de clases ---------- */
+var topics=[].slice.call(document.querySelectorAll("section.topic"));
+var toc=document.getElementById("toc");
+topics.forEach(function(s,i){
+  var a=document.createElement("a");
+  a.href="#"+s.id; a.dataset.id=s.id;
+  a.innerHTML='<span>'+s.dataset.title+'</span><span class="n">'+String(i+1).padStart(2,"0")+'</span>';
+  a.addEventListener("click",function(e){e.preventDefault();showTopic(s.id,true);});
+  toc.appendChild(a);
+});
+function showTopic(id,scroll){
+  setMode("study");
+  topics.forEach(function(s){s.hidden=(s.id!==id);});
+  [].forEach.call(toc.querySelectorAll("a"),function(a){a.setAttribute("aria-current",a.dataset.id===id?"true":"false");});
+  try{history.replaceState(null,"","#"+id);}catch(e){}
+  store.set("ri-topic",id);
+  if(scroll){window.scrollTo({top:0,behavior:"smooth"});}
+}
+
+/* ---------- Modos ---------- */
+var modeBtns=[].slice.call(document.querySelectorAll(".modes button"));
+var panes={study:document.getElementById("study"),cards:document.getElementById("cards"),quiz:document.getElementById("quiz")};
+function setMode(m){
+  Object.keys(panes).forEach(function(k){panes[k].hidden=(k!==m);});
+  modeBtns.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.mode===m?"true":"false");});
+  toc.style.display=(m==="study")?"":"none";
+  document.querySelector(".layout").style.gridTemplateColumns=(m==="study")?"":"minmax(0,1fr)";
+}
+modeBtns.forEach(function(b){b.addEventListener("click",function(){
+  setMode(b.dataset.mode);
+  if(b.dataset.mode==="cards"){renderCard();}
+  if(b.dataset.mode==="quiz"&&!quizState.qs.length){startQuiz();}
+});});
+
+/* ---------- Búsqueda ---------- */
+var qInput=document.getElementById("q");
+qInput.addEventListener("input",function(){
+  var term=qInput.value.trim().toLowerCase();
+  var norm=function(s){return s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();};
+  var nt=norm(term);
+  setMode("study");
+  if(!nt){
+    topics.forEach(function(s){[].forEach.call(s.querySelectorAll("details.org"),function(d){d.hidden=false;});});
+    var cur=store.get("ri-topic",topics[0].id);showTopic(cur,false);
+    var nr=document.getElementById("noresult");if(nr)nr.remove();
+    return;
+  }
+  var any=false;
+  topics.forEach(function(s){
+    var hit=false;
+    [].forEach.call(s.querySelectorAll("details.org"),function(d){
+      var m=norm(d.textContent).indexOf(nt)>-1; d.hidden=!m; if(m){d.open=true;hit=true;}
+    });
+    var other=norm(s.textContent).indexOf(nt)>-1;
+    s.hidden=!(hit||other); if(hit||other)any=true;
+  });
+  [].forEach.call(toc.querySelectorAll("a"),function(a){a.setAttribute("aria-current","false");});
+  var nr=document.getElementById("noresult");
+  if(!any){if(!nr){nr=document.createElement("p");nr.id="noresult";nr.className="noresult";panes.study.prepend(nr);}nr.textContent="Sin resultados para “"+qInput.value+"”. Prueba con el nombre del microorganismo o un signo.";}
+  else if(nr){nr.remove();}
+});
+
+/* ---------- Flashcards ---------- */
+var CARDS=[
+["snc","Causa más frecuente de meningitis bacteriana en adultos y niños mayores de 5 años","<i>Streptococcus pneumoniae</i>"],
+["snc","Tríada clásica de meningitis","Fiebre + rigidez de nuca + alteración del estado mental (completa en menos de la mitad)."],
+["snc","LCR bacteriano típico","&gt;1000 células PMN, glucosa &lt;40 mg/dL, proteínas &gt;100 mg/dL, presión muy alta."],
+["snc","¿Cuándo hacer TC antes de la punción lumbar?","Papiledema, déficit focal, convulsión nueva, inmunosupresión (también GCS &lt;10, foco parameníngeo)."],
+["snc","Esquema empírico de meningitis en adulto sin factores de riesgo","Ceftriaxona 2 g IV c/12 h + vancomicina 15-20 mg/kg c/8-12 h + dexametasona."],
+["snc","Dosis y momento de la dexametasona","0.15 mg/kg c/6 h, antes o con la primera dosis de antibiótico. Beneficio en neumococo; suspender si es meningococo."],
+["snc","¿Qué fármaco añadir si sospechas Listeria y por qué?","Ampicilina: las cefalosporinas no cubren <i>Listeria</i>."],
+["snc","Grupos de riesgo de Listeria","Recién nacidos, &gt;65 años (CTO &gt;50-55), embarazadas, inmunodeprimidos. Quesos no pasteurizados."],
+["snc","Meningitis + petequias + falla suprarrenal","Meningococo con síndrome de Waterhouse-Friderichsen."],
+["snc","Quimioprofilaxis de meningococo en adulto","Rifampicina 600 mg c/12 h × 2 días, ciprofloxacino 500 mg DU o ceftriaxona 250 mg IM DU."],
+["snc","Encefalitis con fiebre, psicosis y lesión temporal","VHS-1. PCR en LCR, RM de elección, aciclovir IV 10 mg/kg c/8 h × 14-21 días."],
+["snc","Meningitis subaguda en VIH con CD4 &lt;100","<i>Cryptococcus neoformans</i>: tinta china o antígeno en LCR."],
+["snc","Tratamiento de la meningitis criptocócica","Anfotericina B liposomal + flucitosina → fluconazol. PL seriadas para la presión intracraneal."],
+["snc","Causa n.º 1 de convulsiones de inicio tardío en México","Neurocisticercosis (<i>Taenia solium</i>)."],
+["snc","Hallazgo patognomónico de neurocisticercosis","Quiste con punto hiperdenso en su interior (escólex)."],
+["snc","¿Por qué dar dexametasona en neurocisticercosis?","Evitar la inflamación cerebral al morir los quistes; iniciarla 24-48 h antes del albendazol."],
+["snc","Lesiones múltiples con realce en anillo en ganglios basales, VIH","Toxoplasmosis: pirimetamina + sulfadiazina + ácido folínico × 6 semanas."],
+["snc","Toxoplasmosis que no mejora en 2 semanas de tratamiento","Sospechar linfoma primario del SNC: biopsia."],
+["snc","Joven que nadó en un lago con meningoencefalitis fulminante","<i>Naegleria fowleri</i>: trofozoítos móviles en LCR."],
+["itu","Agente de 80-90% de las ITU","<i>E. coli</i> uropatógena (fimbrias tipo P)."],
+["itu","¿Qué indican los nitritos y la esterasa leucocitaria?","Nitritos: enterobacterias. Esterasa: piuria."],
+["itu","Urocultivo positivo","≥10⁵ UFC/mL; en cistitis sintomática bastan 10²-10³."],
+["itu","Tratamiento de cistitis no complicada","Nitrofurantoína 100 mg c/12 h × 5 días o fosfomicina 3 g DU."],
+["itu","Pielonefritis ambulatoria y hospitalaria","Ambulatoria: ciprofloxacino 500 mg c/12 h × 7 d. Hospitalaria: ceftriaxona 1 g IV c/24 h."],
+["itu","ITU con pH urinario &gt;7.5 y cálculos coraliformes","<i>Proteus mirabilis</i> (ureasa, estruvita). Evitar nitrofurantoína."],
+["itu","Cistitis de la luna de miel; resistente a novobiocina","<i>Staphylococcus saprophyticus</i>."],
+["itu","ITU por coco G+ resistente a cefalosporinas en anciano con sonda","<i>Enterococcus faecalis</i>: ampicilina o vancomicina."],
+["itu","Cilindros leucocitarios en el sedimento","Pielonefritis."],
+["itu","¿Qué está contraindicado en prostatitis aguda?","El masaje prostático (riesgo de bacteriemia). Tratar 4-6 semanas con FQ o TMP/SMX."],
+["itu","¿A quién tratar con bacteriuria asintomática?","Embarazadas y pacientes antes de cirugía urológica. No a ancianos ni sondados."],
+["cardio","Causa n.º 1 de endocarditis en válvula nativa y en UDVP","<i>S. aureus</i>; en UDVP afecta la tricúspide."],
+["cardio","Endocarditis subaguda tras procedimiento dental","<i>Streptococcus</i> grupo viridans."],
+["cardio","Nódulos de Osler frente a lesiones de Janeway","Osler: dolorosos, pulpejos, inmunológicos. Janeway: no dolorosas, palmas y plantas, embólicas."],
+["cardio","Criterios de Duke para endocarditis definitiva","2 mayores, o 1 mayor + 3 menores, o 5 menores."],
+["cardio","Criterios mayores de Duke","Hemocultivos positivos (2 separados con microorganismo típico) y ecocardiograma con vegetación, absceso o dehiscencia."],
+["cardio","Endocarditis + cáncer de colon","<i>Streptococcus bovis</i> / <i>gallolyticus</i>."],
+["cardio","Endocarditis con hemocultivos negativos","Grupo HACEK, <i>Coxiella burnetii</i> (fiebre Q)."],
+["cardio","Empírico en válvula protésica &lt;1 año","Vancomicina + gentamicina + rifampicina."],
+["cardio","Causa n.º 1 de cirugía urgente en endocarditis","Insuficiencia cardiaca refractaria."],
+["cardio","PR prolongado en endocarditis aórtica","Absceso perivalvular."],
+["cardio","Dolor torácico que alivia al inclinarse adelante + ST difuso cóncavo","Pericarditis (Coxsackie B)."],
+["cardio","Miocardiopatía dilatada + bloqueo de rama derecha + aneurisma apical","Enfermedad de Chagas (<i>Trypanosoma cruzi</i>)."],
+["gibact","Bacilo G− en ala de gaviota que crece a 42 °C","<i>Campylobacter jejuni</i>: Skirrow; azitromicina 500 mg × 3 d."],
+["gibact","Complicación tardía de Campylobacter","Síndrome de Guillain-Barré."],
+["gibact","Diarrea del viajero","<i>E. coli</i> enterotoxigénica (ETEC)."],
+["gibact","¿Por qué no dar antibiótico en EHEC O157:H7?","Aumenta el riesgo de síndrome hemolítico urémico."],
+["gibact","Dosis infectante de 10-100 bacterias","<i>Shigella</i>."],
+["gibact","Diarrea en agua de arroz","<i>Vibrio cholerae</i> (toxina colérica)."],
+["gibact","Fiebre en escalera, bradicardia relativa, roséola","Fiebre tifoidea (<i>Salmonella typhi</i>). Hemocultivo en la 1.ª semana."],
+["gibact","Vómitos 2-4 h después de comer arroz frito","<i>Bacillus cereus</i> (toxina emética preformada)."],
+["gibact","Tratamiento del primer episodio de C. difficile","Vancomicina oral (fidaxomicina en recurrencias)."],
+["gibact","Antibiótico con mayor riesgo individual de C. difficile","Clindamicina."],
+["givir","Proteína de rotavirus que actúa como enterotoxina","NSP4: moviliza calcio y causa secreción de Cl⁻."],
+["givir","Aspecto de rotavirus al microscopio electrónico","Rueda de carro (<i>Reoviridae</i>, ARN bicatenario segmentado)."],
+["givir","Brote de vómitos en crucero o asilo","Norovirus (criterios de Kaplan, RT-PCR)."],
+["givir","¿Por qué el gel de alcohol no sirve contra norovirus?","No tiene envoltura lipídica; lavar con agua y jabón."],
+["givir","Diarrea viral que dura 7-14 días","Adenovirus entérico 40/41."],
+["givir","Dosis de zinc en diarrea infantil","10-20 mg/día por 10-14 días (OMS)."],
+["givir","Plan B de hidratación","VSO 100 mL/kg en 4 horas, fraccionado cada 30 min; reevaluar."],
+["givir","Plan C: cargas IV","1.ª hora 50-60 mL/kg, 2.ª hora 25 mL/kg, 3.ª hora 25 mL/kg."],
+["hepa","Único marcador positivo tras la vacuna de VHB","Anti-HBs."],
+["hepa","Marcador del periodo de ventana","Anti-HBc IgM."],
+["hepa","Marcador de alta replicación del VHB","HBeAg."],
+["hepa","Anti-HBc IgG positivo: ¿vacuna o infección?","Infección pasada o crónica; nunca aparece por vacuna."],
+["hepa","Diagnóstico de hepatitis A aguda","IgM anti-VHA."],
+["hepa","¿Qué destruye el hepatocito en hepatitis A?","Los linfocitos T CD8+, no el virus."],
+["hepa","Manifestaciones extrahepáticas del VHB","Poliarteritis nodosa y glomerulonefritis membranosa."],
+["hepa","Tratamiento de VHB crónica","Tenofovir (TDF/TAF) o entecavir; Peg-IFN 48 semanas en casos seleccionados."],
+["hepa","Confirmación de infección activa por VHC","ARN-VHC por PCR (anti-VHC solo indica exposición)."],
+["hepa","Tratamiento de hepatitis C","Antivirales de acción directa 8-12 semanas (sofosbuvir/velpatasvir, glecaprevir/pibrentasvir); cura &gt;95%."],
+["hepa","Hepatitis con crioglobulinemia","Hepatitis C."],
+["hepa","Superinfección delta","VHD sobre portador crónico de VHB: alto riesgo de falla hepática y cirrosis rápida."],
+["hepa","Hepatitis grave en embarazadas del 3.er trimestre","Hepatitis E (mortalidad hasta 20%)."],
+["proto","Úlceras en botón de camisa","<i>Entamoeba histolytica</i>."],
+["proto","Absceso hepático único en lóbulo derecho, pasta de anchoas","Absceso amebiano: metronidazol + amebicida luminal (paromomicina)."],
+["proto","Esteatorrea, flatulencia azufrada, déficit de IgA","<i>Giardia lamblia</i>: metronidazol o tinidazol 2 g DU."],
+["proto","Comió berros y tiene eosinofilia &gt;50%","<i>Fasciola hepatica</i>: triclabendazol 10 mg/kg DU."],
+["proto","Hipertensión portal presinusoidal sin cirrosis","<i>Schistosoma mansoni</i> (fibrosis de Symmers)."],
+["proto","Huevo con espina terminal en orina","<i>Schistosoma haematobium</i>: riesgo de carcinoma escamoso de vejiga."],
+["proto","Tratamiento de esquistosomiasis","Praziquantel 40-60 mg/kg en dos dosis."],
+["proto","Odinofagia en VIH con CD4 &lt;200","Esofagitis por <i>Candida</i>: fluconazol empírico 14-21 días."],
+["helm","Síndrome de Löffler","Tos, disnea, infiltrados migratorios y eosinofilia por tránsito pulmonar de larvas (<i>Ascaris</i>)."],
+["helm","Imagen en madeja de estambre en Rx de abdomen","Obstrucción por <i>Ascaris</i>."],
+["helm","Tratamiento de Ascaris","Albendazol 400 mg DU o mebendazol 100 mg c/12 h × 3 d; en obstrucción, piperazina."],
+["helm","Prueba diagnóstica de oxiuros","Prueba de Graham (cinta adhesiva perianal por la mañana)."],
+["helm","Tratamiento de Enterobius","Albendazol 400 mg DU, repetir a las 2 semanas, a toda la familia."],
+["helm","Teniasis frente a cisticercosis","Teniasis: come carne con cisticercos. Cisticercosis: ingiere huevos de <i>T. solium</i>."],
+["helm","Niño con prolapso rectal y huevos en limón","<i>Trichuris trichiura</i>: mebendazol."],
+["helm","Anemia ferropénica grave + andar descalzo","Uncinarias: albendazol + hierro."],
+["helm","Hiperinfección en paciente con esteroides","<i>Strongyloides stercoralis</i>: ivermectina."],
+["artritis","Agente más frecuente de artritis séptica y tenosinovitis","<i>Staphylococcus aureus</i>."],
+["artritis","Artritis séptica en adulto joven sexualmente activo","<i>Neisseria gonorrhoeae</i> (y <i>S. aureus</i>)."],
+["artritis","Artritis séptica en niño &lt;5 años","<i>Kingella kingae</i> y <i>S. aureus</i>."],
+["artritis","Líquido sinovial séptico","Leucocitos &gt;50 000/mm³, PMN &gt;75%, glucosa baja, proteínas altas."],
+["artritis","Signos de Kanavel","Dedo en flexión, dolor a la extensión pasiva, tumefacción fusiforme, dolor en el trayecto del tendón."],
+["artritis","Empírico en artritis séptica","Vancomicina 15-20 mg/kg c/8-12 h + ceftriaxona 2 g c/24 h, 2-4 semanas, con drenaje."],
+["artritis","Empírico en tenosinovitis","Vancomicina + ampicilina/sulbactam 3 g c/6 h, 1-2 semanas, tras drenaje quirúrgico."],
+["artritis","Articulación más afectada en artritis séptica","Rodilla (50%)."]
+];
+var topicNames={};topics.forEach(function(s){topicNames[s.id]=s.dataset.short;});
+function fillSelect(sel){
+  var o=document.createElement("option");o.value="all";o.textContent="Todas las clases";sel.appendChild(o);
+  topics.forEach(function(s){var x=document.createElement("option");x.value=s.id;x.textContent=s.dataset.title;sel.appendChild(x);});
+}
+var cardsTopic=document.getElementById("cards-topic"),cardsHide=document.getElementById("cards-hide");
+fillSelect(cardsTopic);
+var known=store.get("ri-known",{});
+var deck=[],idx=0;
+function buildDeck(shuffle){
+  var t=cardsTopic.value;
+  deck=CARDS.map(function(c,i){return i;}).filter(function(i){
+    return (t==="all"||CARDS[i][0]===t)&&!(cardsHide.checked&&known[i]);
+  });
+  if(shuffle){for(var i=deck.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=deck[i];deck[i]=deck[j];deck[j]=tmp;}}
+  idx=0;renderCard();
+}
+var cardEl=document.getElementById("card");
+function renderCard(){
+  cardEl.classList.remove("flipped");
+  var total=CARDS.filter(function(c){return cardsTopic.value==="all"||c[0]===cardsTopic.value;}).length;
+  var mastered=CARDS.filter(function(c,i){return (cardsTopic.value==="all"||c[0]===cardsTopic.value)&&known[i];}).length;
+  document.getElementById("cards-bar").style.width=(total?Math.round(mastered/total*100):0)+"%";
+  if(!deck.length){
+    document.getElementById("card-meta").textContent="";
+    document.getElementById("card-q").textContent="Dominaste todas las tarjetas de esta selección.";
+    document.getElementById("card-a").textContent="Desmarca “Ocultar dominadas” para repasarlas otra vez.";
+    document.getElementById("cards-count").textContent=mastered+"/"+total+" dominadas";
+    return;
+  }
+  var c=CARDS[deck[idx]];
+  document.getElementById("card-meta").textContent=topicNames[c[0]]+(known[deck[idx]]?" · dominada":"");
+  document.getElementById("card-q").innerHTML=c[1];
+  document.getElementById("card-a").innerHTML=c[2];
+  document.getElementById("cards-count").textContent=(idx+1)+" de "+deck.length+" · "+mastered+"/"+total+" dominadas";
+  document.getElementById("card-known").textContent=known[deck[idx]]?"Quitar de dominadas":"La domino";
+}
+function flip(){cardEl.classList.toggle("flipped");}
+cardEl.addEventListener("click",flip);
+cardEl.addEventListener("keydown",function(e){if(e.key===" "||e.key==="Enter"){e.preventDefault();flip();}if(e.key==="ArrowRight"){next();}if(e.key==="ArrowLeft"){prev();}});
+function next(){if(deck.length){idx=(idx+1)%deck.length;renderCard();}}
+function prev(){if(deck.length){idx=(idx-1+deck.length)%deck.length;renderCard();}}
+document.getElementById("card-next").addEventListener("click",next);
+document.getElementById("card-prev").addEventListener("click",prev);
+document.getElementById("card-flip").addEventListener("click",flip);
+document.getElementById("card-shuffle").addEventListener("click",function(){buildDeck(true);});
+document.getElementById("card-known").addEventListener("click",function(){
+  if(!deck.length)return;
+  var i=deck[idx];
+  if(known[i]){delete known[i];}else{known[i]=1;}
+  store.set("ri-known",known);
+  if(cardsHide.checked&&known[i]){deck.splice(idx,1);if(idx>=deck.length)idx=0;}
+  else{idx=(idx+1)%deck.length;}
+  renderCard();
+});
+cardsTopic.addEventListener("change",function(){buildDeck(false);});
+cardsHide.addEventListener("change",function(){buildDeck(false);});
+
+/* ---------- Examen ---------- */
+var QUIZ=[
+["snc","Hombre de 34 años con fiebre, cefalea y rigidez de nuca. LCR: 2500 células (90% PMN), glucosa 22 mg/dL, proteínas 210 mg/dL. ¿Esquema empírico más adecuado?",["Aciclovir IV","Ceftriaxona + vancomicina + dexametasona","Anfotericina B + flucitosina","Ampicilina + gentamicina"],1,"LCR bacteriano en adulto sin factores de riesgo: cefalosporina de 3.ª + vancomicina, con dexametasona antes o junto con la primera dosis."],
+["snc","Mujer de 72 años con meningitis bacteriana. Además de ceftriaxona y vancomicina, debes añadir:",["Metronidazol","Rifampicina","Ampicilina","Clindamicina"],2,"En mayores de 50-65 años, embarazadas e inmunodeprimidos se cubre <i>Listeria</i>, que no responde a cefalosporinas."],
+["snc","¿En cuál de estas situaciones debes hacer TC antes de la punción lumbar?",["Fiebre de 39 °C","Rigidez de nuca","Papiledema","Signo de Kernig positivo"],2,"Papiledema, déficit focal, convulsión nueva o inmunosupresión obligan a TC antes de la PL."],
+["snc","Paciente con VIH (CD4 60) y cefalea de tres semanas con papiledema, sin rigidez de nuca. La prueba más útil en LCR es:",["Tinción de Gram","Tinta china o antígeno criptocócico","PCR de VHS","Ziehl-Neelsen"],1,"Meningitis subaguda en VIH con CD4 &lt;100 sugiere <i>Cryptococcus</i>."],
+["snc","Joven con fiebre, conducta extraña y crisis convulsivas; RM con edema temporal. Tratamiento inmediato:",["Ceftriaxona","Aciclovir IV 10 mg/kg c/8 h","Fluconazol","Praziquantel"],1,"Encefalitis herpética: iniciar aciclovir ante la sospecha; la demora aumenta la mortalidad."],
+["snc","Adulto de 40 años, primera crisis convulsiva; TC con quiste que contiene un punto hiperdenso. Diagnóstico:",["Toxoplasmosis","Neurocisticercosis","Absceso cerebral","Glioblastoma"],1,"El escólex dentro del quiste es patognomónico de neurocisticercosis."],
+["snc","En neurocisticercosis, la dexametasona se indica para:",["Erradicar el parásito","Prevenir la inflamación al morir los quistes","Tratar la hidrocefalia","Evitar recaídas convulsivas"],1,"Se inicia 24-48 h antes del albendazol para evitar la respuesta inflamatoria grave."],
+["snc","VIH con CD4 50, hemiparesia y múltiples lesiones con realce en anillo en ganglios basales. Elección:",["Pirimetamina + sulfadiazina + ácido folínico","Anfotericina B","Albendazol","Radioterapia"],0,"Toxoplasmosis cerebral; si no mejora en 2 semanas, pensar en linfoma primario."],
+["snc","Contactos de un caso de meningitis meningocócica. Profilaxis en embarazada:",["Ciprofloxacino 500 mg DU","Ceftriaxona IM DU","Doxiciclina","No requiere"],1,"Embarazadas y niños no deben recibir quinolonas; ceftriaxona IM es segura."],
+["itu","Mujer de 24 años con disuria y polaquiuria, sin fiebre ni dolor lumbar. Tratamiento:",["Ceftriaxona IV","Nitrofurantoína 100 mg c/12 h × 5 d","Ciprofloxacino × 14 d","Observación"],1,"Cistitis no complicada: nitrofurantoína o fosfomicina 3 g DU."],
+["itu","¿Qué hallazgo urinario distingue pielonefritis de cistitis?",["Nitritos positivos","Esterasa leucocitaria","Cilindros leucocitarios","Hematuria"],2,"Los cilindros leucocitarios indican que la inflamación viene del túbulo renal."],
+["itu","ITU recurrente con pH urinario de 8 y cálculo coraliforme. Agente probable:",["<i>E. coli</i>","<i>Proteus mirabilis</i>","<i>Enterococcus faecalis</i>","<i>S. saprophyticus</i>"],1,"<i>Proteus</i> produce ureasa, alcaliniza la orina y forma estruvita."],
+["itu","Coco grampositivo coagulasa negativo resistente a novobiocina en mujer joven:",["<i>S. epidermidis</i>","<i>S. saprophyticus</i>","<i>S. aureus</i>","<i>Enterococcus</i>"],1,"Segundo agente de cistitis en mujeres jóvenes sexualmente activas."],
+["itu","Bacteriuria asintomática: ¿en quién SÍ se trata?",["Anciano con sonda","Diabético","Embarazada","Mujer joven sana"],2,"Se trata en embarazadas y antes de cirugía urológica."],
+["itu","Hombre con fiebre, dolor perineal y próstata muy dolorosa. ¿Qué está contraindicado?",["Urocultivo","Masaje prostático","Fluoroquinolonas","Hemocultivos"],1,"El masaje prostático puede provocar bacteriemia."],
+["cardio","Usuario de drogas IV con fiebre y nódulos pulmonares cavitados. Válvula y agente probables:",["Mitral, <i>S. viridans</i>","Tricúspide, <i>S. aureus</i>","Aórtica, enterococo","Pulmonar, HACEK"],1,"En UDVP la tricúspide es la más afectada y los émbolos van al pulmón."],
+["cardio","Adulto mayor con endocarditis por <i>Streptococcus gallolyticus</i>. Estudio obligado:",["Ecocardiograma de estrés","Colonoscopia","Cistoscopia","TC de cráneo"],1,"Se asocia a cáncer colorrectal o adenoma."],
+["cardio","Endocarditis definitiva por criterios de Duke:",["1 mayor + 1 menor","2 mayores","3 menores","1 mayor + 2 menores"],1,"2 mayores, 1 mayor + 3 menores, o 5 menores."],
+["cardio","Lesión de endocarditis no dolorosa en palmas y plantas, de origen embólico:",["Nódulos de Osler","Manchas de Roth","Lesiones de Janeway","Hemorragias en astilla"],2,"Osler son dolorosos e inmunológicos; Janeway son no dolorosas y embólicas."],
+["cardio","Endocarditis aórtica que desarrolla PR prolongado. Sospecha:",["Pericarditis","Absceso perivalvular","Embolia coronaria","Toxicidad por gentamicina"],1,"El bloqueo AV nuevo sugiere absceso que invade el sistema de conducción."],
+["cardio","Endocarditis en prótesis valvular de 6 meses. Esquema empírico:",["Ampicilina/sulbactam + gentamicina","Vancomicina + gentamicina + rifampicina","Ceftriaxona sola","Penicilina G"],1,"La rifampicina penetra el biofilm de la prótesis."],
+["cardio","Indicación n.º 1 de cirugía urgente en endocarditis:",["Fiebre de 5 días","Insuficiencia cardiaca refractaria","Hemocultivo positivo","Soplo nuevo"],1,"La IC refractaria es la causa principal de cirugía."],
+["gibact","Viajero a México con diarrea acuosa sin sangre al tercer día de viaje. Agente más probable:",["EHEC","ETEC","<i>Shigella</i>","<i>Campylobacter</i>"],1,"<i>E. coli</i> enterotoxigénica es la causa más frecuente de diarrea del viajero."],
+["gibact","Niño con diarrea sanguinolenta que desarrolla anemia hemolítica, trombocitopenia e insuficiencia renal. ¿Qué evitar?",["Hidratación","Antibióticos","Medir creatinina","Frotis de sangre"],1,"En EHEC O157:H7 los antibióticos aumentan el riesgo de SUH."],
+["gibact","Diarrea tras comer pollo; una semana después, debilidad ascendente. Agente:",["<i>Salmonella</i>","<i>Campylobacter jejuni</i>","<i>Vibrio</i>","<i>Yersinia</i>"],1,"<i>Campylobacter</i> es el principal antecedente infeccioso de Guillain-Barré."],
+["gibact","Tratamiento de elección de <i>Campylobacter</i> grave:",["Ciprofloxacino","Azitromicina","Metronidazol","Vancomicina oral"],1,"Macrólidos por la alta resistencia a quinolonas."],
+["gibact","Paciente hospitalizado con clindamicina que inicia diarrea profusa. Primer tratamiento:",["Metronidazol oral","Vancomicina oral","Loperamida","Ciprofloxacino"],1,"CTO: vancomicina oral es de elección en el primer episodio de <i>C. difficile</i>."],
+["gibact","Fiebre progresiva, bradicardia relativa y exantema en tronco en la primera semana. Mejor estudio diagnóstico:",["Coprocultivo","Hemocultivo","Serología de Widal","Colonoscopia"],1,"En fiebre tifoidea el hemocultivo es más rentable en la 1.ª semana."],
+["givir","Lactante de 10 meses no vacunado, invierno, vómitos seguidos de diarrea acuosa profusa. Agente:",["Norovirus","Rotavirus","Adenovirus 40/41","<i>Giardia</i>"],1,"Rotavirus: niños de 6 a 24 meses, invierno, vómito que precede a la diarrea."],
+["givir","Brote de vómito en proyectil en un crucero, con coprocultivos negativos y resolución en 48 h:",["Rotavirus","Norovirus","ETEC","<i>S. aureus</i>"],1,"Norovirus: brotes en lugares cerrados, criterios de Kaplan."],
+["givir","Niño con diarrea de 12 días sin estacionalidad. Virus más probable:",["Rotavirus","Norovirus","Adenovirus entérico","Astrovirus"],2,"La diarrea por adenovirus 40/41 dura 7-14 días."],
+["givir","Niño con ojos hundidos, sin lágrimas, inquieto, pliegue &gt;2 s, tolera la vía oral. Plan:",["Plan A","Plan B: 100 mL/kg en 4 h","Plan C","Solo zinc"],1,"Deshidratación sin choque: Plan B."],
+["givir","Primera hora del Plan C:",["20 mL/kg","25 mL/kg","50-60 mL/kg","100 mL/kg"],2,"Cargas: 50-60 mL/kg la 1.ª hora, 25 la 2.ª y 25 la 3.ª."],
+["hepa","Paciente vacunado contra VHB. Perfil serológico esperado:",["HBsAg+","Anti-HBc IgG+","Anti-HBs+ solo","HBeAg+"],2,"La vacuna solo genera anti-HBs."],
+["hepa","HBsAg negativo, anti-HBs negativo, anti-HBc IgM positivo. Interpretación:",["Vacunado","Periodo de ventana de hepatitis B aguda","Portador inactivo","Infección curada"],1,"Anti-HBc IgM es el marcador de la ventana."],
+["hepa","Niño con ictericia y ALT de 1800 U/L tras brote en guardería. Primer estudio:",["HBsAg","IgM anti-VHA","ARN-VHC","IgG anti-VHA"],1,"Perla de la clase: IgM anti-VHA."],
+["hepa","Anti-VHC positivo. Siguiente paso para confirmar infección activa:",["Biopsia hepática","ARN-VHC por PCR","Repetir anti-VHC","Genotipo"],1,"El anticuerpo solo indica exposición."],
+["hepa","Embarazada en el tercer trimestre con hepatitis fulminante tras viaje a zona endémica:",["VHA","VHB","VHE","VHC"],2,"La hepatitis E tiene mortalidad de hasta 20% en el embarazo."],
+["hepa","Paciente con VHB y glomerulonefritis. Tipo histológico típico:",["Cambios mínimos","Membranosa","IgA","Rápidamente progresiva"],1,"VHB se asocia a GN membranosa y poliarteritis nodosa."],
+["proto","Absceso hepático único en lóbulo derecho tras disentería. Tratamiento:",["Drenaje quirúrgico inmediato","Metronidazol seguido de paromomicina","Albendazol","Triclabendazol"],1,"Amebicida tisular y luego luminal; el drenaje rara vez es necesario."],
+["proto","Paciente con déficit de IgA, esteatorrea y flatulencia fétida:",["<i>E. histolytica</i>","<i>Giardia lamblia</i>","<i>Cryptosporidium</i>","<i>Strongyloides</i>"],1,"<i>Giardia</i> se asocia al déficit de IgA y causa malabsorción."],
+["proto","Fiebre, hepatomegalia dolorosa y eosinofilia de 60% tras comer berros. Tratamiento:",["Metronidazol","Albendazol","Triclabendazol","Praziquantel"],2,"<i>Fasciola hepatica</i>; metronidazol y albendazol no sirven."],
+["proto","Migrante africano con várices esofágicas, esplenomegalia y biopsia sin cirrosis:",["<i>Schistosoma mansoni</i>","<i>Fasciola</i>","VHC","<i>Echinococcus</i>"],0,"Fibrosis de Symmers: hipertensión portal presinusoidal."],
+["proto","VIH con CD4 120 y odinofagia. Conducta inicial:",["Endoscopia obligatoria antes de tratar","Fluconazol empírico","Aciclovir","Omeprazol"],1,"En VIH con odinofagia se puede iniciar fluconazol empírico."],
+["helm","Niño con tos, infiltrados pulmonares migratorios y eosinofilia. Síndrome y agente típico:",["Katayama, <i>Schistosoma</i>","Löffler, <i>Ascaris</i>","Larva migrans, <i>Toxocara</i>","Hiperinfección, <i>Strongyloides</i>"],1,"El tránsito pulmonar de larvas de <i>Ascaris</i> causa síndrome de Löffler."],
+["helm","Niña de 5 años con prurito anal nocturno e insomnio. Estudio diagnóstico:",["CPS seriado","Prueba de Graham","Serología","Colonoscopia"],1,"El CPS normal no sirve para oxiuros."],
+["helm","Niño con diarrea crónica, anemia y prolapso rectal:",["<i>Ascaris</i>","<i>Trichuris trichiura</i>","<i>Enterobius</i>","<i>Taenia</i>"],1,"<i>Trichuris</i> se asocia a prolapso rectal."],
+["helm","Campesino que anda descalzo con Hb de 6.5 g/dL microcítica y eosinofilia:",["Uncinarias","<i>Giardia</i>","<i>Ascaris</i>","<i>Taenia saginata</i>"],0,"Uncinarias: anemia ferropénica; tratar con albendazol + hierro."],
+["helm","Paciente con esteroides crónicos que presenta sepsis por gramnegativos e infiltrados pulmonares:",["<i>Ascaris</i>","Hiperinfección por <i>Strongyloides</i>","<i>Enterobius</i>","<i>Fasciola</i>"],1,"Tratamiento: ivermectina."],
+["artritis","Rodilla caliente; líquido sinovial con 85 000 leucocitos/mm³, 92% PMN, glucosa baja. Diagnóstico:",["Gota","Artritis séptica","Artrosis","Artritis reactiva"],1,"&gt;50 000 leucocitos con &gt;75% PMN y glucosa baja es séptico."],
+["artritis","Adulto joven sexualmente activo con monoartritis aguda de rodilla. Agente a considerar además de <i>S. aureus</i>:",["<i>Kingella kingae</i>","<i>Neisseria gonorrhoeae</i>","Estreptococo grupo B","<i>Pseudomonas</i>"],1,"En el adulto joven el gonococo es causa importante."],
+["artritis","¿Cuál de los siguientes NO es signo de Kanavel?",["Dedo en flexión","Dolor a la extensión pasiva","Crepitación","Tumefacción fusiforme"],2,"Kanavel: flexión, dolor a la extensión pasiva, tumefacción fusiforme y dolor en el trayecto del tendón."],
+["artritis","Tratamiento de la tenosinovitis infecciosa del flexor:",["Solo antibiótico oral","Drenaje quirúrgico abierto + vancomicina + ampicilina/sulbactam","Inmovilización y AINE","Infiltración con esteroide"],1,"Requiere drenaje urgente y antibiótico IV 1-2 semanas."]
+];
+var quizTopic=document.getElementById("quiz-topic");fillSelect(quizTopic);
+var quizBox=document.getElementById("quiz-box");
+var quizState={qs:[],i:0,score:0,answered:false};
+function startQuiz(){
+  var t=quizTopic.value;
+  var pool=QUIZ.filter(function(q){return t==="all"||q[0]===t;});
+  for(var i=pool.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=pool[i];pool[i]=pool[j];pool[j]=tmp;}
+  quizState={qs:(t==="all"?pool.slice(0,15):pool),i:0,score:0,answered:false};
+  renderQ();
+}
+function renderQ(){
+  var st=quizState;
+  if(st.i>=st.qs.length){
+    var pct=st.qs.length?Math.round(st.score/st.qs.length*100):0;
+    var best=store.get("ri-best",{});var key=quizTopic.value;
+    if(!best[key]||pct>best[key]){best[key]=pct;store.set("ri-best",best);}
+    quizBox.innerHTML='<div class="qblock"><p class="caption">Resultado</p><p class="score">'+st.score+' / '+st.qs.length+'</p><p>'+(pct>=80?'Muy bien. Repasa las flashcards de lo que fallaste.':pct>=60?'Vas bien. Vuelve a las perlas de cada clase.':'Repasa primero el modo Estudiar y vuelve a intentarlo.')+'</p><p class="caption">Mejor puntaje en esta selección: '+best[key]+'%</p><div class="card-actions"><button type="button" class="btn primary" id="quiz-again">Otro examen</button></div></div>';
+    document.getElementById("quiz-again").addEventListener("click",startQuiz);
+    document.getElementById("quiz-count").textContent="";
+    return;
+  }
+  var q=st.qs[st.i];st.answered=false;
+  document.getElementById("quiz-count").textContent="Pregunta "+(st.i+1)+" de "+st.qs.length+" · aciertos "+st.score;
+  var h='<div class="qblock"><span class="eyebrow">'+topicNames[q[0]]+'</span><p class="q">'+q[1]+'</p><div class="opts">';
+  q[2].forEach(function(o,k){h+='<button type="button" data-k="'+k+'">'+String.fromCharCode(65+k)+'. '+o+'</button>';});
+  h+='</div><div id="q-explain"></div></div>';
+  quizBox.innerHTML=h;
+  [].forEach.call(quizBox.querySelectorAll(".opts button"),function(b){b.addEventListener("click",function(){answer(+b.dataset.k);});});
+}
+function answer(k){
+  var st=quizState;if(st.answered)return;st.answered=true;
+  var q=st.qs[st.i];var ok=(k===q[3]);if(ok)st.score++;
+  [].forEach.call(quizBox.querySelectorAll(".opts button"),function(b){
+    var bk=+b.dataset.k;b.disabled=true;
+    if(bk===q[3])b.classList.add("right");else if(bk===k)b.classList.add("wrong");
+  });
+  document.getElementById("q-explain").innerHTML='<div class="explain"><b>'+(ok?'Correcto. ':'Incorrecto. ')+'</b>'+q[4]+'</div><div class="card-actions"><button type="button" class="btn primary" id="q-next">'+(st.i+1<st.qs.length?'Siguiente pregunta':'Ver resultado')+'</button></div>';
+  document.getElementById("quiz-count").textContent="Pregunta "+(st.i+1)+" de "+st.qs.length+" · aciertos "+st.score;
+  var nb=document.getElementById("q-next");nb.addEventListener("click",function(){st.i++;renderQ();});nb.focus();
+}
+quizTopic.addEventListener("change",startQuiz);
+document.getElementById("quiz-restart").addEventListener("click",startQuiz);
+
+/* ---------- Inicio ---------- */
+var start=(location.hash||"").replace("#","");
+var valid=topics.some(function(s){return s.id===start;});
+var saved=store.get("ri-topic",topics[0].id);
+showTopic(valid?start:(topics.some(function(s){return s.id===saved;})?saved:topics[0].id),false);
+buildDeck(false);
+})();
+</script>
+
+</body></html>

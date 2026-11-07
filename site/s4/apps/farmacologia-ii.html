@@ -1,0 +1,1239 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Farmacología II</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/gfcd122426d.css">
+<style>
+/* Layout: sticky toolbar (búsqueda + modos) · rail de temas a la izquierda (chips arriba en móvil) · tarjetas plegables por fármaco */
+:root{
+  --bg:#f5f7f6; --surface:#ffffff; --surface-2:#eef2f0; --ink:#17231f; --muted:#5b6b65; --line:#d9e1dd;
+  --accent:#0b7a62; --accent-ink:#ffffff; --accent-soft:#dff1eb;
+  --c-bp:#5a6472; --c-atb:#2563a8; --c-tb:#b5651d; --c-hongos:#7a4fb0; --c-virus:#c0392b; --c-par:#2f7d32; --c-park:#0f7b8a; --c-dm:#b0306a; --c-tir:#8a7410; --c-ans:#3b4fa0;
+  --good:#1f7a3f; --bad:#b3261e; --mark:#fff1a8;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101614; --surface:#18201d; --surface-2:#1f2a26; --ink:#e4ece8; --muted:#9db0a8; --line:#2c3a35;
+  --accent:#3fc7a3; --accent-ink:#06231b; --accent-soft:#183a31;
+  --c-bp:#a3adbb; --c-atb:#6ea8ec; --c-tb:#e5a15e; --c-hongos:#b796e6; --c-virus:#f08074; --c-par:#7cc77f; --c-park:#5cc6d4; --c-dm:#f07fb0; --c-tir:#e0cc5a; --c-ans:#96a6f0;
+  --good:#5fd08a; --bad:#ff8a80; --mark:#5c5214; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101614; --surface:#18201d; --surface-2:#1f2a26; --ink:#e4ece8; --muted:#9db0a8; --line:#2c3a35;
+  --accent:#3fc7a3; --accent-ink:#06231b; --accent-soft:#183a31;
+  --c-bp:#a3adbb; --c-atb:#6ea8ec; --c-tb:#e5a15e; --c-hongos:#b796e6; --c-virus:#f08074; --c-par:#7cc77f; --c-park:#5cc6d4; --c-dm:#f07fb0; --c-tir:#e0cc5a; --c-ans:#96a6f0;
+  --good:#5fd08a; --bad:#ff8a80; --mark:#5c5214; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.top-in{max-width:1180px;margin:0 auto;padding-block:12px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.brand{display:flex;align-items:baseline;gap:10px;min-width:0}
+.brand h1{font-size:1.25rem;font-weight:800;letter-spacing:-.01em}
+.brand .rx{font-family:var(--f-display);font-weight:800;color:var(--accent);font-size:1.4rem}
+.brand small{color:var(--muted);font-size:.85rem}
+.modes{display:flex;gap:4px;background:var(--surface-2);padding:4px;border-radius:10px;margin-left:auto}
+.modes button{border:0;background:transparent;padding:6px 12px;border-radius:7px;font-weight:600;font-size:.92rem;color:var(--muted)}
+.modes button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgb(0 0 0 / .12)}
+.search{flex:1 1 260px;display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:0 10px;min-width:0}
+.search input{flex:1;border:0;background:transparent;padding:9px 0;font:inherit;color:var(--ink);min-width:0}
+.search input:focus{outline:none}
+.search:focus-within{border-color:var(--accent)}
+.search svg{flex:none;color:var(--muted)}
+
+.layout{max-width:1180px;margin:0 auto;padding-block:20px 60px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:28px}
+nav.topics{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px);align-self:start;display:flex;flex-direction:column;gap:4px}
+nav.topics .lbl{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 6px 10px}
+.tbtn{display:flex;align-items:center;gap:10px;text-align:left;border:0;background:transparent;padding:8px 10px;border-radius:8px;font-weight:600;color:var(--ink)}
+.tbtn .dot{width:10px;height:10px;border-radius:3px;background:var(--tc);flex:none}
+.tbtn .ct{margin-left:auto;font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+.tbtn:hover{background:var(--surface-2)}
+.tbtn[aria-current="true"]{background:var(--surface);box-shadow:inset 3px 0 0 var(--tc), 0 0 0 1px var(--line)}
+main{min-width:0}
+
+.thead{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.eyebrow{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--tc)}
+.thead h2{font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:800;letter-spacing:-.02em}
+.thead p{margin:0;color:var(--muted);max-width:68ch}
+
+.keys{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:0 0 26px;align-items:start}
+.key{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0}
+.key h4{font-size:.95rem;margin-bottom:6px;color:var(--tc)}
+.key ul{margin:0;padding-left:18px}
+.key li{margin:2px 0}
+
+.group{margin:0 0 28px}
+.group > h3{font-size:1.15rem;font-weight:700;display:flex;align-items:center;gap:10px;margin:0 0 10px}
+.group > h3::before{content:"";width:18px;height:3px;border-radius:2px;background:var(--tc)}
+.group > p.gnote{margin:-4px 0 10px;color:var(--muted);font-size:.95rem}
+.cards{display:flex;flex-direction:column;gap:8px}
+
+details.drug{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+details.drug[open]{border-color:color-mix(in srgb,var(--tc) 45%,var(--line))}
+details.drug summary{list-style:none;display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer}
+details.drug summary::-webkit-details-marker{display:none}
+summary .nm{font-weight:700;font-size:1.05rem}
+summary .tag{font-size:.82rem;color:var(--muted);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+summary .chev{margin-left:auto;flex:none;transition:transform .15s;color:var(--muted)}
+details[open] summary .chev{transform:rotate(90deg)}
+.preg{flex:none;font-family:var(--f-mono);font-size:.72rem;font-weight:600;padding:2px 6px;border-radius:5px;border:1px solid var(--line);color:var(--muted)}
+.body{padding:2px 16px 16px;display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 16px;border-top:1px dashed var(--line);padding-top:12px}
+.body dt{font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;font-weight:700;color:var(--muted);padding-top:3px}
+.body dd{margin:0;min-width:0}
+.body dd.mono{font-family:var(--f-mono);font-size:.86rem;line-height:1.6}
+.body dd.ram{color:var(--ink)}
+.body dt.ci-t{color:var(--bad)}
+.pearl{grid-column:1/-1;background:var(--accent-soft);border-radius:8px;padding:8px 12px;font-size:.95rem}
+.pearl b{color:var(--accent)}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 1px}
+
+.empty{padding:30px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+
+/* Buenas prácticas */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:22px}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:4px}
+.step .n{font-family:var(--f-mono);font-weight:600;color:var(--tc);font-size:.8rem}
+.step b{font-family:var(--f-display);font-size:1.02rem}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:22px}
+.case blockquote{margin:8px 0 12px;padding-left:12px;border-left:3px solid var(--tc);color:var(--muted);font-style:italic}
+.tbl-wrap{overflow-x:auto;margin-bottom:22px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.95rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+
+/* Flashcards + examen */
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px}
+.chip{border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:999px;font-size:.88rem;font-weight:600}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.flash{perspective:1200px;max-width:640px;margin:0 auto}
+.fc{position:relative;min-height:300px;transform-style:preserve-3d;transition:transform .45s;cursor:pointer;border:0;background:none;width:100%;padding:0;text-align:left}
+.fc.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px;box-shadow:0 6px 24px rgb(0 0 0 / .06);overflow:auto}
+.face.back{transform:rotateY(180deg)}
+.face .q{font-family:var(--f-display);font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;margin:auto 0}
+.face .a{font-size:1.08rem;margin:auto 0}
+.face .meta{font-size:.78rem;letter-spacing:.07em;text-transform:uppercase;font-weight:700;color:var(--tc)}
+.face .hint{font-size:.85rem;color:var(--muted)}
+.fnav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--surface);padding:9px 16px;border-radius:10px;font-weight:600}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.good{border-color:var(--good);color:var(--good)}
+.btn.bad{border-color:var(--bad);color:var(--bad)}
+.counter{font-family:var(--f-mono);font-size:.85rem;color:var(--muted)}
+.prog{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden;margin-top:12px}
+.prog i{display:block;height:100%;background:var(--accent);transition:width .25s}
+
+.quiz{max-width:720px;margin:0 auto}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px}
+.qcard .stem{font-size:1.12rem;font-weight:600;margin:6px 0 16px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;border:1px solid var(--line);background:var(--surface-2);padding:11px 14px;border-radius:10px;font-weight:600}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt.ok{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--surface));}
+.opt.ko{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--surface));}
+.opt:disabled{cursor:default}
+.expl{margin-top:14px;padding:10px 12px;border-radius:8px;background:var(--accent-soft);font-size:.95rem}
+.score{font-family:var(--f-display);font-size:3rem;font-weight:800;color:var(--accent)}
+.note{font-size:.85rem;color:var(--muted);margin-top:24px;max-width:70ch}
+
+@media (max-width:820px){
+  .layout{grid-template-columns:minmax(0,1fr);gap:14px;padding-top:12px}
+  nav.topics{position:static;flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:4px;scrollbar-width:none}
+  nav.topics .lbl{display:none}
+  .tbtn{flex:none;border:1px solid var(--line);background:var(--surface);padding:6px 10px}
+  .tbtn .ct{display:none}
+  .tbtn[aria-current="true"]{box-shadow:inset 0 -3px 0 var(--tc)}
+  .modes{margin-left:0;order:3;width:100%}
+  .modes button{flex:1}
+  .brand small{display:none}
+  .body{grid-template-columns:minmax(0,1fr);gap:2px}
+  .body dd{margin-bottom:8px}
+  summary .tag{display:none}
+}
+@media (prefers-reduced-motion:reduce){.fc,summary .chev,.prog i{transition:none}}
+</style>
+
+<header class="top wrap">
+  <div class="top-in">
+    <div class="brand"><span class="rx">℞</span><h1>Farmacología II</h1><small>Antiinfecciosos, SNC y endocrino · Dra. Palacios Rosas</small></div>
+    <label class="search" for="q">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Buscar fármaco, RAM, indicación… (ej. QT, embarazo, Pseudomonas)" autocomplete="off">
+    </label>
+    <div class="modes" role="group" aria-label="Modo">
+      <button data-mode="study" aria-pressed="true">Estudiar</button>
+      <button data-mode="flash" aria-pressed="false">Flashcards</button>
+      <button data-mode="quiz" aria-pressed="false">Examen</button>
+    </div>
+  </div>
+</header>
+
+<div class="layout wrap">
+  <nav class="topics" id="nav" aria-label="Temas"></nav>
+  <main id="main"></main>
+</div>
+
+<script>
+const T = [
+ {id:"bp", name:"Buenas prácticas de prescripción", short:"Prescripción", color:"--c-bp",
+  intro:"Proceso de prescripción racional, selección de la farmacoterapia y cómo escribir la receta."},
+ {id:"atb", name:"Antibióticos", short:"Antibióticos", color:"--c-atb",
+  intro:"Sustancias elaboradas por microorganismos que actúan sobre otros: suprimen su crecimiento y multiplicación o provocan su destrucción. Base: toxicidad selectiva.",
+  keys:[
+   {h:"Clasificación de antimicrobianos",l:["Por efecto de acción","Por espectro","Por estructura química","Por mecanismo de acción"]},
+   {h:"Bacteriostático vs bactericida",l:["<b>Bacteriostático:</b> frena crecimiento y replicación; el sistema inmunitario inmoviliza y elimina","<b>Bactericida:</b> lisis y muerte. β-lactámicos, quinolonas, aminoglucósidos, vancomicina"]},
+   {h:"Espectro",l:["<b>Reducido:</b> 1 microorganismo o grupo limitado (isoniazida → micobacterias)","<b>Amplio:</b> Gram + y varios Gram − (ampicilina)","Terapéutica empírica cuando aún no se conoce el agente"]},
+   {h:"Resistencia",l:["La Cmax tolerable ya no es eficaz","Mutaciones espontáneas","Enzimas (β-lactamasas)","Transferencia de bacterias resistentes y de genes R"]},
+   {h:"Mecanismos (4 grandes grupos)",l:["Interfieren con el folato (antimetabolitos)","Síntesis de pared celular","Síntesis de proteínas (ribosoma)","Ácidos nucleicos (DNA girasa)"]}
+  ]},
+ {id:"tb", name:"Antimicobacterianos", short:"Antituberculosos", color:"--c-tb",
+  intro:"Tuberculosis: infección intracelular y lenta, con gran resistencia. Tratamiento de 6 meses a 2 años, siempre combinado.",
+  keys:[
+   {h:"Primera línea: I R P E",l:["<b>I</b>soniacida · <b>R</b>ifampicina · <b>P</b>irazinamida · <b>E</b>tambutol"]},
+   {h:"Esquema (6 meses)",l:["<b>Fase intensiva, 2 meses:</b> I + R + P","<b>Fase de continuación, 4 meses:</b> I + R","Dosis: INH 5 mg/kg · RIF 10 mg/kg · PZA 30 mg/kg"]},
+   {h:"Zonas con resistencia",l:["Agregar <b>estreptomicina</b> 15 mg/kg (NO en embarazadas)","o <b>etambutol</b> 25 mg/kg (NO en niños ni sin control de agudeza visual)"]},
+   {h:"Segunda línea",l:["Aminoglucósidos, fluoroquinolonas, macrólidos","Etionamida, cicloserina","Menos eficaces; para resistencia a la primera línea"]}
+  ]},
+ {id:"hongos", name:"Antimicóticos", short:"Antimicóticos", color:"--c-hongos",
+  intro:"Dianas: ergosterol de la membrana (polienos, azoles, terbinafina), glucano de la pared (equinocandinas), DNA (flucitosina) y mitosis (griseofulvina).",
+  keys:[
+   {h:"Micosis sistémicas",l:["Anfotericina B","Flucitosina","Equinocandinas","Azoles: fluconazol, ketoconazol, itraconazol"]},
+   {h:"Mucocutáneas",l:["Terbinafina (elección en tiñas y onicomicosis por dermatofitos)","Griseofulvina","Itraconazol (no dermatofitos)"]},
+   {h:"Tópicos",l:["Nistatina (polieno)","Azoles: clotrimazol, miconazol (tioconazol, sulconazol, econazol)"]},
+   {h:"Dónde actúa cada uno",l:["<b>Polienos:</b> forman poros en membrana (↑ permeabilidad)","<b>Azoles:</b> inhiben 14-α-desmetilasa de lanosterol (CYP450 fúngico)","<b>Terbinafina:</b> inhibe escualeno epoxidasa","<b>Equinocandinas:</b> inhiben síntesis de glucano","<b>Griseofulvina:</b> se une a microtúbulos, inhibe mitosis"]}
+  ]},
+ {id:"virus", name:"Antivirales", short:"Antivirales", color:"--c-virus",
+  intro:"Actúan sobre las etapas del ciclo viral: adhesión, transcripción o translocación y ensamblaje. Cuatro bloques clínicos más COVID-19.",
+  keys:[
+   {h:"Bloques",l:["Infecciones respiratorias (influenza)","Herpes y citomegalovirus","VIH","Hepatitis B y C","COVID-19"]},
+   {h:"Influenza: quién cubre qué",l:["<b>Solo A:</b> amantadina, rimantadina (canal M2)","<b>A y B:</b> oseltamivir, zanamivir, peramivir (neuraminidasa)","<b>Baloxavir:</b> endonucleasa, dosis única"]},
+   {h:"VIH: familias",l:["Inhibidores de TI (nucleósidos y no nucleósidos)","Inhibidores de integrasa","Inhibidores de proteasa","Inhibidores de fusión"]}
+  ]},
+ {id:"par", name:"Antiparasitarios", short:"Antiparasitarios", color:"--c-par",
+  intro:"Protozoarios (eucariontes unicelulares sin pared celular, ligados a condiciones sanitarias inadecuadas) y helmintos (nematodos, cestodos, trematodos).",
+  keys:[
+   {h:"Amebiasis (E. histolytica): elección según cuadro",l:["<b>Intestinal aguda:</b> metronidazol, diloxanida, metronidazol + yodoquinol, tinidazol, cloroquina, paromomicina","<b>Intestinal crónica:</b> diloxanida, metronidazol, yodoquinol","<b>Absceso hepático:</b> metronidazol, diloxanida","<b>Portador asintomático de quistes:</b> diloxanida"]},
+   {h:"Paludismo (Anopheles)",l:["Especies: P. falciparum, vivax, malariae, ovale","<b>Eritrocítica:</b> cloroquina (elección), quinina/quinidina","<b>Exoeritrocítica y gametocítica:</b> primaquina","<b>Grave multirresistente:</b> artemisinina"]},
+   {h:"Helmintos",l:["<b>Nematodos:</b> mebendazol, pamoato de pirantel, ivermectina, (tiabendazol)","<b>Trematodos:</b> prazicuantel","<b>Cestodos:</b> niclosamida, prazicuantel, albendazol (cisticercosis)","Antihelmínticos: alteran la membrana (fagocitosis) e interrumpen el ciclo"]}
+  ]},
+ {id:"park", name:"Fármacos antiparkinsonianos", short:"Parkinson", color:"--c-park",
+  intro:"Reducción de la actividad de las neuronas dopaminérgicas inhibitorias de la sustancia negra y el cuerpo estriado: hay menos dopamina y la acetilcolina queda aumentada.",
+  keys:[
+   {h:"Clínica",l:["Temblor, rigidez muscular, lentitud para iniciar y completar movimientos","Voz hipofónica, rostro inexpresivo, menos parpadeo, babeo","Giro en bloque, menor braceo, arrastre de pies, retropulsión (caer hacia atrás)","Pérdida de olfato, alteraciones cognitivas y del sueño, ansiedad"]},
+   {h:"Epidemiología y causas secundarias",l:["Edad típica 40–70 años","Infecciones (micosis, SIDA, encefalitis), traumatismo craneoencefálico, tumores, multiinfartos, hidrocefalia, hipoxia","<b>Fármacos: haloperidol</b>","Intoxicaciones: CO, cianuro, metanol, litio","Metabólicas: hipocalcemia, degeneración hepatocerebral crónica"]},
+   {h:"Estrategia farmacológica",l:["<b>Aumentar la dopamina:</b> levodopa, agonistas dopaminérgicos, inhibidores de MAO-B y de COMT, amantadina","<b>Disminuir la ACh elevada:</b> antimuscarínicos"]},
+   {h:"Tratamiento quirúrgico",l:["<b>Talamotomía:</b> lesión eléctrica permanente y pequeña en el tálamo; reduce temblor y rigidez","<b>Estimulación cerebral profunda:</b> electrodo y generador bajo la clavícula (tipo marcapasos) para temblor, rigidez o bradicinesia"]}
+  ]},
+ {id:"dm", name:"Insulina e hipoglucemiantes orales", short:"Diabetes", color:"--c-dm",
+  intro:"Diabetes: síndromes con acción insuficiente de la insulina endógena que causan hiperglucemia, alteración de lípidos séricos y lesiones vasculares. Tipos: 1, 2, gestacional y por otras causas.",
+  keys:[
+   {h:"Secreción de insulina",l:["<b>Basal</b>: la imitan NPH y las prolongadas","<b>Estimulada</b> (posprandial): la imitan regular y ultracortas"]},
+   {h:"Hipoglucemiantes: 6 familias",l:["<b>Secretagogos:</b> sulfonilureas, glinidas","<b>Sensibilizadores:</b> biguanidas (metformina), glitazonas","<b>Inhibidores de α-glucosidasa:</b> acarbosa, miglitol","<b>Inhibidores de DPP-4 (gliptinas)</b>","<b>Análogos de GLP-1 (incretinas)</b>","<b>Inhibidores de SGLT2</b> (gliflozinas)"]},
+   {h:"Dónde actúa cada familia",l:["<b>Páncreas</b> (↑ secreción): sulfonilureas, glinidas","<b>Hígado</b> (↓ gluconeogénesis): biguanidas","<b>Músculo y grasa</b> (↑ sensibilidad): glitazonas","<b>Intestino</b> (retrasan absorción de carbohidratos): inhibidores de α-glucosidasa","<b>Incretinas e iDPP-4</b>: ↑ insulina dependiente de glucosa","<b>Riñón</b>: iSGLT2, glucosuria"]},
+   {h:"Objetivos de HbA1c (GPC)",l:["<b>&lt; 6.5%</b>: menores de 70 años, sin complicaciones ni comorbilidades, menos de 10 años de evolución","<b>&lt; 7.5%</b>: mayores de 70 años, complicaciones o comorbilidades avanzadas, más de 10 años de evolución"]}
+  ],
+  extra:`<div class="group"><h3>Tipos de insulina</h3><div class="tbl-wrap"><table><thead><tr><th>Tipo</th><th>Preparados</th><th>Inicio</th><th>Duración</th><th>Uso</th></tr></thead><tbody>
+   <tr><td><b>Ultracorta</b></td><td>Lispro, aspart, glulisina</td><td>15 min</td><td>2–4 h</td><td>SC 5–15 min antes de comer</td></tr>
+   <tr><td><b>Rápida</b></td><td>Regular</td><td>SC 15–30 min antes de comer</td><td>5–7 h</td><td>La única IV: cetoacidosis, coma hiperosmolar, perioperatorio</td></tr>
+   <tr><td><b>Intermedia</b></td><td>NPH / NPL</td><td>2–4 h</td><td>~10 h</td><td>Basal; 30–45 min antes del desayuno o al acostarse. No sirve en urgencias</td></tr>
+   <tr><td><b>Prolongada</b></td><td>Glargina · Detemir · Degludec</td><td>Degludec 30 min</td><td>Detemir 17 h · Degludec 42 h</td><td>Glargina 1 vez/día · Detemir 2 veces/día</td></tr>
+   <tr><td><b>Inhalada</b></td><td>Polvo nebulizado</td><td>15 min</td><td>3 h</td><td>No en asma, EPOC ni fumadores</td></tr>
+   <tr><td><b>Premezclas</b></td><td>70% NPH + 30% regular · 75% NPL + 25% lispro · 50/50</td><td colspan="3">Combinan basal y prandial</td></tr>
+  </tbody></table></div></div>
+  <div class="group"><h3>Algoritmo de la GPC para DM2</h3><div class="steps">
+   <div class="step"><span class="n">SIEMPRE</span><b>Estilo de vida</b><span>Terapia nutricional y ejercicio en todas las etapas.</span></div>
+   <div class="step"><span class="n">HbA1c 6.5–8.5%</span><b>Metformina</b><span>Si no la tolera: 1) sulfonilurea (gliclazida o glimepirida), 2) iDPP-4 (sitagliptina), 3) TZD, 4) repaglinida, 5) inhibidores de disacaridasas.</span></div>
+   <div class="step"><span class="n">HbA1c &gt; 8.5%</span><b>Según síntomas</b><span>Asintomático: metformina + segundo fármaco. Hiperglucemia sintomática: insulina + metformina.</span></div>
+   <div class="step"><span class="n">SIN META A 3 MESES</span><b>Metformina + 1</b><span>Sulfonilurea o glinida, iDPP-4, TZD, insulina basal o agonista GLP-1.</span></div>
+   <div class="step"><span class="n">SIN META A 3 MESES</span><b>Escalar</b><span>Añadir insulina basal o triple terapia oral; al final, metformina + insulinoterapia intensiva.</span></div>
+  </div></div>`},
+ {id:"tir", name:"Fármacos tiroideos y antitiroideos", short:"Tiroides", color:"--c-tir",
+  intro:"Eje TRH (hipotálamo) → TSH (hipófisis) → T4 y T3, la hormona activa. Funciones: desarrollo y crecimiento normales, control del metabolismo energético y regulación de la temperatura.",
+  keys:[
+   {h:"Causas de hipertiroidismo",l:["Enfermedad de Graves","Bocio multinodular tóxico, adenoma tóxico","Inducido por yodo","Resistencia hipofisaria a TSH, tumor trofoblástico"]},
+   {h:"Tratar el hipertiroidismo",l:["<b>Destruir tejido:</b> yodo-131","<b>Bloquear síntesis:</b> propiltiouracilo, metimazol/carbimazol","<b>Control sintomático:</b> β-bloqueadores y calcioantagonistas"]},
+   {h:"Hipotiroidismo",l:["<b>Primario:</b> falla la tiroides, TSH elevada","<b>Secundario/terciario:</b> falla la hipófisis (TSH) o el hipotálamo (TRH)","Causas: Hashimoto, tratamiento del hipertiroidismo, cirugía, radioterapia de cabeza y cuello, <b>litio y amiodarona</b>, congénito, tumor hipofisario, embarazo, déficit de yodo"]},
+   {h:"Factores de riesgo de hipotiroidismo",l:["Mujer, mayor de 60 años, antecedentes familiares","Enfermedad autoinmune","Yodo radiactivo o antitiroideos previos","Radioterapia de cuello o tórax alto, tiroidectomía parcial"]}
+  ]},
+ {id:"ans", name:"Ansiolíticos e hipnóticos", short:"Ansiolíticos", color:"--c-ans",
+  intro:"Ansiedad: respuesta anticipatoria involuntaria ante estímulos percibidos como amenazantes, con malestar y síntomas somáticos de tensión (predominio simpático). Es patológica cuando es exagerada, desproporcionada o se prolonga.",
+  keys:[
+   {h:"Trastornos de ansiedad",l:["Ansiedad generalizada","Ansiedad social","Fobias","Trastorno de pánico","Estrés postraumático","Trastorno obsesivo-compulsivo"]},
+   {h:"¿Qué se usa en cada caso?",l:["<b>ISRS:</b> generalizada, fobias, social, postraumático","<b>BZD:</b> ansiedad aguda o en combinación con ISRS","<b>Buspirona:</b> generalizada (no fobias ni social)","<b>Propranolol:</b> síntomas somáticos","<b>Otros:</b> antiepilépticos, antipsicóticos atípicos"]},
+   {h:"Efecto según la dosis",l:["Ansiolítico → sedante → hipnótico → coma","Las <b>BZD</b> se quedan en sedación y ataxia; anticonvulsivas","Los <b>barbitúricos</b> llegan a coma, anestesia y depresión respiratoria"]},
+   {h:"BZD según su uso",l:["<b>Preanestésicos:</b> midazolam (amnesia anterógrada), diazepam","<b>Anticonvulsivos:</b> clonazepam, diazepam, lorazepam, clorazepato","<b>Ansiolíticos:</b> alprazolam, diazepam, lorazepam, clorazepato, clordiazepóxido","<b>Insomnio:</b> triazolam, nitrazepam, flunitrazepam, flurazepam, quazepam, temazepam"]}
+  ]}
+];
+
+// Fármacos: t=tema, g=grupo, n=nombre, tag=resumen corto, mec, esp (espectro/usos), dosis, fc, ram, ci, preg (categoría embarazo), perla, clave (pista única para examen)
+const D = [
+// ── ANTIBIÓTICOS · folato
+{t:"atb",g:"Antagonistas del folato",n:"Sulfonamidas",tag:"Inhiben la síntesis de folato",
+ mec:"Antimetabolitos: bloquean la <b>síntesis</b> de folato.",
+ esp:"Amplio espectro. IVU, toxoplasmosis, conjuntivitis, disentería por Shigella, vías respiratorias superiores e inferiores, quemaduras y piel. Profilaxis. <b>No cubren anaerobios.</b>",
+ dosis:"Sulfametoxazol: IVU leve recurrente 1 g c/12 h; grave 2 g y luego 1 g c/8 h · Sulfisoxazol: 4–8 g/día en 4–6 dosis · Sulfadiazina: 2–4 g/día en 3–6 dosis (tópica en quemaduras; VO en toxoplasmosis) · Sulfacetamida: 1–2 gotas al 30% c/2 h (oftálmica)",
+ fc:"Cruzan placenta y pasan a la leche. Eliminación: orina, heces, bilis, leche.",
+ ram:"Hipoglucemia, anemia hemolítica, hepatotoxicidad, cristaluria y litiasis renal, síndrome de Stevens-Johnson.",
+ ci:"Embarazo, lactancia, prematuros y menores de 2 meses (hepatotoxicidad).",
+ clave:"Cristaluria, litiasis renal y Stevens-Johnson; contraindicadas en menores de 2 meses"},
+{t:"atb",g:"Antagonistas del folato",n:"Trimetoprim",tag:"Inhibe la reducción del folato",
+ mec:"Bloquea la <b>reducción</b> del folato (paso siguiente a las sulfas).",
+ esp:"IVU agudas. Se concentra en líquido vaginal y prostático. 20 a 50 veces más potente que las sulfas.",
+ dosis:"100 mg c/12 h. En combinación: trimetoprim/sulfa en proporción 1:5.",
+ fc:"Farmacocinética similar a las sulfonamidas.",
+ clave:"20–50 veces más potente que las sulfas y se concentra en líquido prostático"},
+{t:"atb",g:"Antagonistas del folato",n:"Trimetoprim-sulfametoxazol (cotrimoxazol)",tag:"Doble bloqueo del folato · elección en Pneumocystis",
+ mec:"Bloqueo secuencial: síntesis (sulfa) + reducción (trimetoprim) del folato.",
+ esp:"Salmonella, Shigella, tifoidea resistente a cloranfenicol, IRAs agudas y crónicas, IVU agudas y crónicas, prostatitis crónica. <b>Elección en profilaxis y tratamiento de neumonía por <i>Pneumocystis jirovecii</i> en VIH/SIDA.</b>",
+ dosis:"Oral (IVU, prostatitis): 480 mg (80 T / 400 S) c/12 h por 10 días · IV (neumonía): 960 mg c/12 h por 10 días. Tabletas 480 mg, ampolletas 960 mg, suspensión.",
+ fc:"VO y EV. Metabolismo hepático, eliminación urinaria.",
+ ram:"Alteraciones hematológicas: anemia y granulocitopenia.",
+ ci:"Glomerulonefritis, hepatitis, lactancia.",
+ clave:"Elección para profilaxis y tratamiento de Pneumocystis jirovecii en VIH"},
+// ── pared
+{t:"atb",g:"Pared celular · Penicilinas",n:"Penicilina G y V",tag:"Cocos, estreptococos, sífilis",
+ mec:"β-lactámico: inactiva las PBP (penicillin binding proteins) e impide la síntesis de pared. Bactericida.",
+ esp:"Cocos + y −, estreptococos, neumococos, sífilis. <b>G es elección en sífilis</b> y meningococo; neumococo sensible, estreptococo β-hemolítico, endocarditis bacteriana subaguda, profilaxis y tratamiento de faringoamigdalitis estreptocócica. V: infecciones leves-moderadas por Gram + sensibles.",
+ dosis:"V: 250–500 mg c/6 h VO · G: IV 5–30 millones UI/día · G procaínica 400 000, 800 000 y 2 000 000 UI · G benzatínica 600 000 y 1 200 000 UI.",
+ fc:"V oral, G parenteral (IM, IV). G es 5–10 veces más activa. Unión a proteínas 60%, poco metabolismo, eliminación urinaria. Con procaína: absorción lenta y eliminación renal retardada. Inactivadas por penicilinasa.",
+ ram:"<b>Inmediatas:</b> anafilaxia, urticaria, rinitis. <b>Tardías</b> (8%, ~10 días después): exantemas, dermatitis exfoliativa. Nefritis, anemia hemolítica, leucopenia, trombocitopenia. Neurológicas: confusión, agitación, irritabilidad.",
+ clave:"Elección en sífilis; la forma benzatínica es de depósito"},
+{t:"atb",g:"Pared celular · Penicilinas",n:"Penicilinas antiestafilocócicas",tag:"Dicloxacilina, oxacilina, meticilina, nafcilina, cloxacilina",
+ mec:"β-lactámicos resistentes a penicilinasa.",
+ esp:"Menos potentes que G y V contra microorganismos sensibles, pero <b>muy potentes contra <i>S. aureus</i> productor de penicilinasa</b>.",
+ clave:"Muy potentes contra S. aureus productor de penicilinasa"},
+{t:"atb",g:"Pared celular · Penicilinas",n:"Ampicilina",tag:"Amplio espectro · cruza BHE",
+ mec:"β-lactámico de amplio espectro.",
+ esp:"Gram −: <i>E. coli</i>, Salmonella, Haemophilus, Shigella; meningitis por meningococo y neumococo. Profilaxis de endocarditis bacteriana.",
+ dosis:"VO 250–500 mg c/6 h · Parenteral 1–2 g c/4–6 h. Cápsulas y ampolletas 500 mg, suspensión.",
+ fc:"Distribución amplia, cruza BHE. M: hígado. E: orina, bilis, leche materna.",
+ ram:"GI, prurito, urticaria, edema, colitis pseudomembranosa, neutropenia.",
+ ci:"Insuficiencia renal grave.",
+ perla:"Combinada con <b>sulbactam</b> (inhibidor de β-lactamasa).",
+ clave:"Penicilina de amplio espectro que cruza BHE; se combina con sulbactam"},
+{t:"atb",g:"Pared celular · Penicilinas",n:"Amoxicilina",tag:"Solo oral · otitis, H. pylori",
+ mec:"β-lactámico de amplio espectro (igual que ampicilina).",
+ esp:"Otitis media en niños, sinusitis, bronquitis aguda, IVU por <i>E. coli</i>, Proteus y enterococo, profilaxis de endocarditis, <i>H. pylori</i>.",
+ dosis:"Solo VO: 250–500 mg c/8 h.",
+ fc:"M: hígado. E: orina, bilis, heces. Sustituye a la ampicilina con menos RAM GI.",
+ ram:"Colitis pseudomembranosa.",
+ ci:"Asma, insuficiencia renal grave.",
+ perla:"Combinada con <b>ácido clavulánico</b>.",
+ clave:"Solo vía oral; reemplaza a la ampicilina con menos efectos GI"},
+{t:"atb",g:"Pared celular · Penicilinas",n:"Inhibidores de β-lactamasas",tag:"Ácido clavulánico, sulbactam, tazobactam",
+ mec:"Inhiben las β-lactamasas bacterianas y protegen al β-lactámico acompañante.",
+ esp:"Ácido clavulánico + amoxicilina · sulbactam + ampicilina · tazobactam (con piperacilina).",
+ clave:"Ácido clavulánico, sulbactam y tazobactam"},
+{t:"atb",g:"Pared celular · Penicilinas",n:"Piperacilina (antipseudomonas)",tag:"Ticarcilina, piperacilina, carbenicilina",
+ mec:"Penicilinas sintéticas con actividad sobre bacilos Gram −.",
+ esp:"<b>Pseudomonas y Klebsiella</b> (incluso Pseudomonas resistentes). Infecciones graves: neumonía, urinaria (se elimina activa), intraabdominal, piel y tejidos blandos, artritis séptica, ginecológica, septicemia.",
+ dosis:"IV 300–400 mg/kg/día en 4 dosis.",
+ clave:"Penicilina para Pseudomonas resistentes, IV 300–400 mg/kg/día"},
+{t:"atb",g:"Pared celular · Cefalosporinas",n:"Cefalosporinas (generalidades)",tag:"5 generaciones · no cubren enterococo",
+ mec:"β-lactámicos (inactivan PBP). Frente a penicilinas: mayor espectro, mejores propiedades farmacológicas, menor vida media, más resistentes a β-lactamasas.",
+ esp:"Profilaxis en cirugía ortopédica, abdominal y pélvica; bacilos − y cocos +. <b>No cubren enterococo</b> como la penicilina.",
+ fc:"Mayoría parenterales. Buena distribución; 1ª y 2ª generación <b>no entran al SNC</b>. Unión a proteínas, M: hígado, E: bilis y orina.",
+ ram:"Leucopenia, trombocitopenia. Dolor en sitio de inyección IM y tromboflebitis tras IV.",
+ clave:"No cubren enterococo; la 1ª y 2ª generación no entran al SNC"},
+{t:"atb",g:"Pared celular · Cefalosporinas",n:"1ª generación",tag:"Cefalotina, cefazolina, cefalexina, cefadroxilo",
+ esp:"Muy activas contra cocos +: neumococo, estreptococo, <i>S. aureus</i>. Cefazolina: IVU, osteomielitis, piel y tejidos blandos, <b>profilaxis quirúrgica</b>. Cefalexina/cefadroxilo: infecciones leves-moderadas de piel o urinarias. Sinusitis: cefadroxilo.",
+ dosis:"Cefalotina IV 0.5–2 g c/4–6 h (IM muy dolorosa) · Cefazolina IM/IV 0.5–2 g c/6–8 h · Cefalexina VO 250 mg–1 g c/6 h · Cefadroxilo VO 500 mg–1 g c/12 h",
+ clave:"Muy activas contra cocos Gram +; cefazolina para profilaxis quirúrgica"},
+{t:"atb",g:"Pared celular · Cefalosporinas",n:"2ª generación",tag:"Cefamandol, cefaclor, cefuroxima, cefonicid",
+ esp:"Menos Gram + y más Gram −: <i>H. influenzae</i>, Klebsiella. Infecciones de vías aéreas. Cefaclor: otitis media, vías respiratorias, piel, urinarias. Cefuroxima: vías respiratorias inferiores no hospitalarias por productores de β-lactamasa; profilaxis en cirugía de tórax.",
+ dosis:"Cefamandol 500 mg–2 g c/4–8 h · Cefaclor VO 250–500 mg c/8 h · Cefuroxima 750 mg–1.5 g c/6–8 h · Cefonicid 500 mg–2 g una vez al día",
+ ram:"Alteración de la coagulación.",
+ clave:"Más Gram − (H. influenzae); RAM: alteración de la coagulación"},
+{t:"atb",g:"Pared celular · Cefalosporinas",n:"3ª generación",tag:"Cefotaxima, ceftriaxona, ceftizoxima, ceftazidima",
+ esp:"Amplio espectro, más estables a β-lactamasas; excelentes en Gram −, enterobacterias, estreptococos. <b>Meningitis: ceftriaxona.</b> Sepsis: cefotaxima (IVU, sobre todo en embarazo). Ceftizoxima: anaerobios leves/moderados. Ceftazidima: bacilos − incluida meningitis, neutropénicos febriles, peritonitis por diálisis.",
+ dosis:"Cefotaxima 1–2 g c/4–8 h · Ceftriaxona 1–2 g 1–2 veces/día; gonorrea no complicada 125 mg IM unidosis; portador de meningococo 250 mg unidosis · Ceftizoxima 1–2 g c/6–12 h · Ceftazidima 1–2 g c/8–12 h",
+ clave:"Ceftriaxona en meningitis y gonorrea (125 mg IM unidosis)"},
+{t:"atb",g:"Pared celular · Cefalosporinas",n:"4ª generación (cefepima)",tag:"Intrahospitalarias · neutropénicos",
+ esp:"Poca afinidad a β-lactamasas. Neumonía por estreptococo penicilinorresistente, infecciones intrahospitalarias de vías respiratorias inferiores, urinarias, piel y tejidos blandos; febriles neutropénicos y pacientes críticos.",
+ dosis:"Cefepima 1–2 g c/12 h.",
+ ram:"Neurotoxicidad, nefrotoxicidad.",
+ clave:"Cefepima: infecciones intrahospitalarias; RAM neuro y nefrotoxicidad"},
+{t:"atb",g:"Pared celular · Cefalosporinas",n:"5ª generación",tag:"Ceftarolina, ceftobiprol (IV)",
+ esp:"Infecciones intrahospitalarias por estafilococo <b>resistente a meticilina</b>; alternativa a vancomicina.",
+ fc:"IV.",
+ clave:"Cefalosporinas contra estafilococo resistente a meticilina, alternativa a vancomicina"},
+{t:"atb",g:"Pared celular · Otros β-lactámicos",n:"Carbapenems (imipenem, meropenem, ertapenem)",tag:"Fármaco de reserva",
+ mec:"β-lactámicos estables frente a β-lactamasas; atraviesan fácilmente las paredes. Bactericidas.",
+ esp:"Amplísimo: Gram +, Gram −, aerobios y anaerobios. Infecciones graves: neumonía, septicemia por <i>P. aeruginosa</i>. Imipenem: vías respiratorias inferiores, urinarias, intraabdominales, ginecológicas, septicemia, endocarditis por <i>S. aureus</i>, piel.",
+ fc:"Imipenem (el 1er carbapenem) parenteral <b>+ cilastatina</b>, que inhibe la hidropeptidasa renal I y evita que el riñón lo metabolice.",
+ ram:"Elevación transitoria de enzimas hepáticas.",
+ perla:"<b>FÁRMACO DE RESERVA.</b>",
+ clave:"Se administra con cilastatina para evitar su metabolismo renal"},
+{t:"atb",g:"Pared celular · Otros β-lactámicos",n:"Aztreonam (monobactámico)",tag:"Solo bacilos aerobios Gram −",
+ mec:"Monobactámico (β-lactámico).",
+ esp:"<b>Solo bacilos aerobios Gram −:</b> Pseudomonas, <i>H. influenzae</i>, <i>Neisseria meningitidis</i>.",
+ fc:"Parenteral.",
+ clave:"Monobactámico que solo cubre bacilos aerobios Gram −"},
+{t:"atb",g:"Pared celular · Glucopéptidos y otros",n:"Vancomicina",tag:"Solo Gram + · síndrome del hombre rojo",
+ mec:"Glucopéptido: inhibe la transglucosidasa, la síntesis de fosfolípidos de pared y la polimerización del peptidoglicano. Bactericida.",
+ esp:"<b>Solo Gram +</b>, sobre todo estafilococo. Microorganismos multirresistentes; graves por <i>S. aureus</i>, <i>S. epidermidis</i>, <i>S. pneumoniae</i>, <i>C. difficile</i>. Endocarditis por estafilococo resistente a meticilina. Alérgicos a penicilinas y cefalosporinas con estafilococo grave. Septicemia, endocarditis, meningitis.",
+ fc:"IV, intraperitoneal. M: hepático, E: renal.",
+ ram:"<b>Síndrome del hombre rojo</b> (erupción macular en cara, cuello, tronco, espalda y brazos; ligado a administración rápida), taquicardia, nefrotoxicidad, ototoxicidad.",
+ preg:"B",
+ clave:"Síndrome del hombre rojo por infusión rápida"},
+{t:"atb",g:"Pared celular · Glucopéptidos y otros",n:"Bacitracina",tag:"Tópica · Gram + y −",
+ esp:"Gram + y −. Oral para colitis pseudomembranosa.",
+ fc:"Tópica (cremas, gotas oftálmicas), IM, oral.",
+ preg:"C",
+ clave:"Antibiótico tópico (cremas, gotas oftálmicas)"},
+// ── proteínas
+{t:"atb",g:"Inhibidores de la síntesis de proteínas",n:"Eritromicina",tag:"Macrólido · alérgicos a penicilina",
+ mec:"Macrólido: inhibe la síntesis proteica (ribosoma).",
+ esp:"Mismos microorganismos que la penicilina (estafilo, estrepto, neumococo) + los que no tienen pared: <i>Mycoplasma pneumoniae</i>, <i>Chlamydia trachomatis</i>, micobacterias; legionelosis, tos ferina. Alérgicos a penicilinas/cefalosporinas: amigdalitis, otitis, vías respiratorias, piel, urogenitales. Uno de los más recetados.",
+ fc:"Oral, parenteral y tópica (gel, ungüento oftálmico). Buena distribución excepto cerebro y LCR; se concentra en PMN/macrófagos y tejidos ORL.",
+ ram:"GI dosis-dependientes (náusea, vómito, diarrea), tromboflebitis IV frecuente, ictericia transitoria. Prolonga el QT.",
+ preg:"B",
+ clave:"Macrólido de elección en alérgicos a penicilina; cubre Mycoplasma y Chlamydia"},
+{t:"atb",g:"Inhibidores de la síntesis de proteínas",n:"Claritromicina / azitromicina",tag:"Macrólidos · H. pylori · QT largo",
+ mec:"Macrólidos.",
+ esp:"Mismo espectro que eritromicina. Infecciones leves-moderadas respiratorias: faringitis, amigdalitis, sinusitis maxilar, neumonía; piel sin complicaciones. <b>Claritromicina + amoxicilina + omeprazol para <i>H. pylori</i>.</b>",
+ dosis:"Claritromicina 250–500 mg c/12 h.",
+ fc:"Oral y parenteral. No penetran SNC.",
+ ram:"<b>Prolongan el intervalo QT</b> (bloquean Ca²⁺, prolongan la fase 2) → torsade de pointes.",
+ preg:"Azitro B · Claritro C",
+ clave:"Prolonga el QT y forma parte de la triple terapia para H. pylori"},
+{t:"atb",g:"Inhibidores de la síntesis de proteínas",n:"Cloranfenicol",tag:"Anemia aplásica · síndrome del bebé gris",
+ mec:"Inhibe la síntesis proteica.",
+ esp:"Amplio espectro (Gram +, Gram −, anaerobios), hoy sustituido por agentes menos tóxicos. Infecciones graves: meningitis bacteriana, fiebre tifoidea, rickettsias, Bacteroides. Tópico: seguro y eficaz en conjuntivitis bacteriana.",
+ fc:"Oral, tópico y parenteral. Buena distribución incluso LCR (cruza BHE). M: hígado, E: bilis, orina, leche.",
+ ram:"<b>Mielosupresión → anemia aplásica</b>, infecciones oportunistas (Candida), confusión, depresión. Neonatos: no excretan el metabolito, se acumula en ribosomas mitocondriales → <b>síndrome del bebé gris</b>.",
+ ci:"Lactantes, insuficiencia hepática, depresión de médula ósea.",
+ clave:"Anemia aplásica y síndrome del bebé gris en neonatos"},
+{t:"atb",g:"Inhibidores de la síntesis de proteínas",n:"Clindamicina",tag:"Lincosamida 50S · anaerobios",
+ mec:"Lincosamida: subunidad ribosomal 50S.",
+ esp:"Similar a eritromicina + <b>anaerobios (<i>B. fragilis</i>)</b>, Toxoplasma, Pneumocystis, estafilococo resistente a meticilina, Clostridium. Profilaxis de endocarditis en alérgicos a penicilina con valvulopatía antes de procedimientos dentales. Acné (tópica).",
+ fc:"Oral, tópica y parenteral (espuma, gel, crema vaginal, óvulos). Buena distribución excepto LCR; atraviesa placenta y pasa a la leche.",
+ ram:"GI, mal sabor de boca, erupciones, alergia, dolor en sitio de inyección, alteraciones hematológicas, <b>colitis pseudomembranosa</b>.",
+ clave:"Profilaxis de endocarditis en alérgicos a penicilina antes de procedimientos dentales"},
+{t:"atb",g:"Inhibidores de la síntesis de proteínas",n:"Aminoglucósidos (generalidades)",tag:"Solo aerobios Gram − · oto y nefrotóxicos",
+ mec:"Inhiben la síntesis proteica. <b>Solo aerobios:</b> el O₂ transporta el antibiótico al interior. Acción dosis-dependiente. Bactericidas.",
+ esp:"Infecciones graves por bacilos aerobios Gram − intestinales. Muy tóxicos: se suelen sustituir por cefalosporinas de 3ª y fluoroquinolonas.",
+ fc:"Mala absorción oral (excepto neomicina): parenterales (IM, IV) o tópicos. No SNC. D: oído, riñón, placenta. Se excretan sin cambios por filtración glomerular. <b>Parenterales:</b> amikacina, estreptomicina, gentamicina, tobramicina. <b>Tópicos/orales:</b> neomicina, paromomicina.",
+ ram:"<b>Ototoxicidad</b> (destrucción progresiva de células ciliadas, depende de dosis y tiempo), <b>nefrotoxicidad</b>, debilidad muscular / bloqueo neuromuscular (bloquean entrada de Ca²⁺ y liberación de ACh).",
+ clave:"Necesitan oxígeno para entrar a la bacteria: solo sirven contra aerobios"},
+{t:"atb",g:"Inhibidores de la síntesis de proteínas",n:"Amikacina",tag:"Nosocomiales Gram −",
+ esp:"Bacilos aerobios Gram −. Infecciones nosocomiales: <i>E. coli</i>, Proteus, Pseudomonas. Vías urinarias resistentes. Se concentra en líquido sinovial y vías urinarias.",
+ dosis:"15 mg/kg/día en 2 dosis por 7–10 días.",
+ ci:"Insuficiencia renal aguda, lactancia.",
+ clave:"Aminoglucósido para infecciones nosocomiales, 15 mg/kg/día"},
+{t:"atb",g:"Inhibidores de la síntesis de proteínas",n:"Estreptomicina",tag:"Brucelosis, peste, tuberculosis",
+ esp:"Brucelosis, peste, tuberculosis, micobacterias no tuberculosas.",
+ dosis:"IM 0.5–1 g c/12 h (adultos); 10–20 mg/kg c/12 h (niños), para infecciones distintas de TB.",
+ clave:"Aminoglucósido de brucelosis y peste"},
+{t:"atb",g:"Inhibidores de la síntesis de proteínas",n:"Neomicina y kanamicina",tag:"Solo oral o tópica · encefalopatía hepática",
+ esp:"Preparación intestinal antes de cirugía y <b>encefalopatía hepática</b> (reduce flora GI y producción de amoníaco).",
+ fc:"Limitadas a oral o tópica por toxicidad. Neomicina: tópica, oral, rectal, irrigación vesical.",
+ clave:"Reduce la producción de amoníaco en encefalopatía hepática"},
+{t:"atb",g:"Inhibidores de la síntesis de proteínas",n:"Gentamicina, tobramicina, netilmicina",tag:"Gram − graves",
+ esp:"Infecciones graves por bacilos Gram −: IVU complicadas, peritonitis por diálisis, endocarditis, otitis externa maligna (osteomielitis del temporal).",
+ clave:"Otitis externa maligna y peritonitis por diálisis"},
+{t:"atb",g:"Inhibidores de la síntesis de proteínas",n:"Tetraciclinas (generalidades)",tag:"Bacteriostáticos · dientes y fotosensibilidad",
+ mec:"Inhiben la síntesis proteica. Bacteriostáticos de amplio espectro.",
+ esp:"Gram +, Gram −, ciertos anaerobios; rickettsias, <i>Mycoplasma pneumoniae</i>, Chlamydia, Vibrio, <i>H. pylori</i>, acné. Tetraciclina, minociclina, doxiciclina, metaciclina, clortetraciclina, oxitetraciclina. Resistencia intrínseca: Pseudomonas, Proteus, Providencia.",
+ fc:"Absorción oral incompleta. Eliminación 80% biliar.",
+ ram:"Fotosensibilidad, oscurecimiento dental, quelatos en hueso, hepatotoxicidad, flebitis (pH ácido), vaginosis.",
+ ci:"Embarazo.",
+ preg:"C/D",
+ clave:"Oscurecen los dientes, forman quelatos en hueso y dan fotosensibilidad"},
+{t:"atb",g:"Inhibidores de la síntesis de proteínas",n:"Tetraciclina",tag:"Rickettsia, Chlamydia, Mycoplasma",
+ esp:"<b>Elección para rickettsias, Chlamydia, Mycoplasma</b> y ETS. Acné vulgar inflamatorio; gonorrea y sífilis en alérgicos a penicilina.",
+ dosis:"Tabletas o cápsulas de 250 mg; efecto 4–6 h. IV lento para no producir flebitis.",
+ fc:"Leche, antiácidos y contenido gástrico disminuyen su absorción. Pasa a próstata, leche y placenta.",
+ clave:"Su absorción baja con leche y antiácidos; elección para rickettsias"},
+{t:"atb",g:"Inhibidores de la síntesis de proteínas",n:"Doxiciclina",tag:"Primera línea en cólera · segura en IR",
+ esp:"<b>Tratamiento de primera línea del cólera</b> y profilaxis selectiva; diarrea del viajero, acné, cervicitis y uretritis no gonocócicas, Chlamydia, Trichomonas.",
+ fc:"Oral con estómago vacío. Acción prolongada (12 h). <b>La más segura en insuficiencia renal</b>: se elimina por bilis y heces.",
+ clave:"Tetraciclina más segura en insuficiencia renal; primera línea en cólera"},
+// ── ácidos nucleicos
+{t:"atb",g:"Inhibidores de ácidos nucleicos",n:"Quinolonas 1ª generación",tag:"Ácido nalidíxico · solo IVU",
+ mec:"Inhiben la DNA girasa (topoisomerasa II): impiden relajar el DNA superenrollado para transcripción y replicación.",
+ esp:"Bacilos Gram −; por su farmacocinética solo vías urinarias agudas y crónicas. Ácido nalidíxico, cinoxacina, ácido oxolínico, pipemídico, piromídico. No fluoradas, mucha resistencia.",
+ fc:"Oral.",
+ ram:"Gastrointestinales.",
+ ci:"Lactancia, hipertensión intracraneal.",
+ clave:"Quinolona no fluorada útil solo en vías urinarias"},
+{t:"atb",g:"Inhibidores de ácidos nucleicos",n:"Fluoroquinolonas (generalidades)",tag:"Topoisomerasas II y IV · tendinitis, QT",
+ mec:"Inhiben topoisomerasas II y IV.",
+ esp:"Alternativa en alergia a penicilinas y cefalosporinas.",
+ fc:"Oral, IV, tópica. Distribución a todos los tejidos (intracelular). Sin metabolismo; eliminación renal activa. Quelan metales por vía oral.",
+ ram:"Síndrome confusional (psicosis, alucinaciones; desplazan al GABA), <b>tendinitis</b>, prolongan QT, fotosensibilidad.",
+ ci:"<b>Niños:</b> artropatía (dañan el cartílago articular).",
+ preg:"D",
+ perla:"Interacción con <b>warfarina</b> (al matar bacterias productoras de vitamina K).",
+ clave:"Tendinitis, artropatía en niños e interacción con warfarina"},
+{t:"atb",g:"Inhibidores de ácidos nucleicos",n:"Ciprofloxacino (2ª gen.)",tag:"Gram − y Pseudomonas",
+ esp:"Bacilos Gram −, Gram + moderado, <b>Pseudomonas</b>. Vías urinarias, prostatitis, Chlamydia, osteomielitis, Shigella, Salmonella; fiebre tifoidea, diarrea infecciosa, peritonitis; bronquitis aguda, fibrosis quística; hueso, articulación, piel (úlceras, quemaduras, abscesos); conjuntivitis tópica. <b>No sirve para sífilis.</b> Otras: norfloxacino, ofloxacino.",
+ fc:"Oral, tópica e IV. M: hígado, E: orina y heces.",
+ ram:"Toxicidad de cartílagos.",
+ preg:"C",
+ clave:"Fluoroquinolona de 2ª generación con actividad antipseudomonas; no sirve para sífilis"},
+{t:"atb",g:"Inhibidores de ácidos nucleicos",n:"Levofloxacino (3ª gen.)",tag:"Bacterias resistentes · enterococo",
+ esp:"Bacterias resistentes, enterococo (Gram +). Vías respiratorias, urinarias, piel, tejidos blandos y GI. Otras: gatifloxacina, lomefloxacina…",
+ dosis:"500 mg c/24 h.",
+ ram:"GI, somnolencia, fatiga, toxicidad de cartílagos.",
+ clave:"Quinolona de 3ª generación que cubre enterococo, 500 mg c/24 h"},
+{t:"atb",g:"Inhibidores de ácidos nucleicos",n:"Moxifloxacino (4ª gen.)",tag:"Anaerobios · TB multirresistente",
+ esp:"Neumonía y bronquitis (no de primera línea), <b>tuberculosis multirresistente</b>, infecciones intraabdominales por <b>anaerobios</b>. También gatifloxacino.",
+ ram:"Varias de esta generación se retiraron por daño hepático, cardiotoxicidad y toxicidad renal.",
+ clave:"Fluoroquinolona con cobertura de anaerobios, usada en TB multirresistente"},
+{t:"atb",g:"Otros",n:"Nitrofurantoína / nitrofurazona",tag:"IVU por E. coli · orina marrón",
+ mec:"Bacteriostático: altera los ribosomas bacterianos por mecanismo desconocido.",
+ esp:"No son de elección para ningún agente común. Profilaxis y tratamiento de IVU por <i>E. coli</i>. Nitrofurazona: infecciones locales (quemaduras, heridas, escaras, úlceras) en pomadas, óvulos, gotas.",
+ fc:"Oral.",
+ ram:"<b>Tiñe la orina de color marrón.</b>",
+ clave:"Tiñe la orina de color marrón; profilaxis de IVU"},
+
+// ── TUBERCULOSIS
+{t:"tb",g:"Primera línea",n:"Isoniacida (INH)",tag:"Ácidos micólicos · hepatitis, neuropatía",
+ mec:"Inhibe la síntesis de <b>ácidos micólicos</b> (pared celular).",
+ esp:"Tuberculosis; tratamiento de la infección latente. Ejemplo clásico de espectro reducido.",
+ dosis:"5 mg/kg (fase intensiva y de continuación).",
+ fc:"Oral (también IM/IV), con alimentos. M: hígado. E: orina.",
+ ram:"Dosis-dependientes: <b>hepatitis</b> con aumento de transaminasas (medir enzimas hepáticas), exantema, fiebre, ictericia, <b>parestesias (dar vitamina B6)</b>, riesgo de convulsiones, alteraciones psiquiátricas en predispuestos.",
+ ci:"Embarazo solo si es necesario.",
+ perla:"Interacción con azoles.",
+ clave:"Parestesias que se previenen con vitamina B6"},
+{t:"tb",g:"Primera línea",n:"Rifampicina",tag:"ARN polimerasa · anticonceptivos",
+ mec:"Inhibe la <b>ARN polimerasa</b> procariota. Bactericida sobre microorganismos activos.",
+ esp:"Tuberculosis, micobacterias atípicas (<i>M. leprae</i>), brucelosis, Legionella, osteomielitis grave por estafilococo.",
+ dosis:"10 mg/kg.",
+ fc:"Oral (IV). Atraviesa BHE y LCR. M: hígado. E: 30% orina, 65% heces.",
+ ram:"Hepatotoxicidad (factor de riesgo: alcoholismo y hepatopatía). <b>Disminuye la eficacia de anticonceptivos.</b> Hemorragias en las últimas semanas de gestación y en el recién nacido.",
+ clave:"Reduce la eficacia de los anticonceptivos; inhibe la ARN polimerasa"},
+{t:"tb",g:"Primera línea",n:"Pirazinamida",tag:"Acorta a 6 meses · gota",
+ mec:"Altera el pH intracelular, daña la membrana y afecta el metabolismo en medio ácido; inhibe la síntesis de ácidos micólicos. Bactericida débil.",
+ esp:"Primeros 2 meses: <b>acorta el tratamiento a 6 meses</b>.",
+ dosis:"30 mg/kg (solo fase intensiva).",
+ fc:"Oral. Atraviesa BHE y LCR. M: hígado. E: orina.",
+ ram:"Disminuye la eliminación de ácido úrico → <b>gota</b>; hepatitis, anorexia.",
+ clave:"Eleva el ácido úrico (gota) y permite acortar el esquema a 6 meses"},
+{t:"tb",g:"Primera línea",n:"Etambutol",tag:"Pared · ceguera a colores",
+ mec:"Inhibe la síntesis de pared de micobacterias. <b>Bacteriostático.</b>",
+ esp:"Cepas resistentes a INH y rifampicina. En combinación hasta conocer la sensibilidad; solo genera resistencia.",
+ dosis:"25 mg/kg.",
+ fc:"Oral.",
+ ram:"<b>Alteraciones visuales: ceguera a los colores.</b>",
+ ci:"Niños y pacientes sin control de agudeza visual.",
+ clave:"Ceguera a los colores; requiere control de agudeza visual"},
+{t:"tb",g:"Segunda línea",n:"Estreptomicina",tag:"Aminoglucósido · no en embarazo",
+ esp:"Zonas con resistencia a la primera línea.",
+ dosis:"15 mg/kg IM/IV.",
+ ram:"Lesiones auditivas y vestibulares en el feto.",
+ ci:"Embarazo.",
+ clave:"Antituberculoso contraindicado en embarazo por daño auditivo fetal"},
+{t:"tb",g:"Segunda línea",n:"Fluoroquinolonas en TB",tag:"Levofloxacino, cipro, oflox",
+ esp:"Ciprofloxacino y ofloxacino: varias micobacterias. <b>Levofloxacino:</b> pacientes con TB resistente y VIH.",
+ clave:"Levofloxacino en TB resistente con VIH"},
+{t:"tb",g:"Segunda línea",n:"Etionamida",tag:"Síntesis proteica",
+ mec:"Inhibe la síntesis de proteínas.",
+ dosis:"Oral 10–20 mg/kg/día.",
+ ci:"No usar en monoterapia.",
+ clave:"Antituberculoso de 2ª línea que inhibe la síntesis proteica"},
+{t:"tb",g:"Segunda línea",n:"Cicloserina",tag:"Pared bacteriana",
+ mec:"Altera la síntesis de pared bacteriana.",
+ dosis:"Oral 25 mg/kg.",
+ clave:"Antituberculoso de 2ª línea que altera la pared, 25 mg/kg"},
+
+// ── ANTIMICÓTICOS
+{t:"hongos",g:"Micosis sistémicas",n:"Anfotericina B",tag:"Polieno · nefrotóxico",
+ mec:"Polieno (macrólido): se une al ergosterol y forma poros. También se une a esteroles humanos, de ahí su toxicidad.",
+ esp:"Amplio espectro (levaduras, mohos). Muy eficaz contra <i>Candida albicans</i>. Meningitis por Coccidioides (intrarraquídea), cistitis y esofagitis por Candida, úlceras micóticas, histoplasmosis, aspergilosis invasora, blastomicosis, <b>inicio en meningitis criptocócica</b>, profilaxis de recaídas en inmunocomprometidos.",
+ fc:"IV y tópica (úlceras corneales, queratitis); intraarticular, subconjuntival. Oral: biodisponibilidad &lt;5% (solo micosis digestiva alta).",
+ ram:"Dosis-dependientes: <b>nefrotoxicidad</b> (se acumula), broncoespasmo, necrosis tisular, anemia, flebitis, hipotensión. La forma liposomal es menos nefrotóxica pero cara.",
+ preg:"C",
+ perla:"Se da al inicio para sacar al paciente grave y luego se cambia a azoles. Potencia a la flucitosina.",
+ clave:"Polieno nefrotóxico que se usa al inicio y luego se cambia a azoles"},
+{t:"hongos",g:"Micosis sistémicas",n:"Flucitosina",tag:"Profármaco · compite con uracilo",
+ mec:"Profármaco: inhibe la síntesis de DNA compitiendo con el uracilo.",
+ esp:"Meningitis criptocócica, candidiasis generalizada.",
+ fc:"Muy buena distribución en ojo, articulaciones, SNC.",
+ ram:"Toxicidad medular: anemia, trombocitopenia, leucopenia.",
+ ci:"No usar sola (resistencia): siempre con anfotericina.",
+ preg:"C",
+ clave:"Compite con el uracilo y siempre va con anfotericina B"},
+{t:"hongos",g:"Micosis sistémicas",n:"Equinocandinas (caspofungina)",tag:"Inhiben glucano de la pared",
+ mec:"Lipopéptidos: inhiben la síntesis de <b>glucano</b>, polímero que da estructura a la pared.",
+ esp:"Candidiasis diseminada y mucocutánea. Tratamiento empírico en neutropénicos febriles con sospecha de Candida o Aspergillus; casos que no responden a anfotericina o resistentes a azoles. Otras: micafungina, anidulafungina.",
+ fc:"IV. Unión a proteínas 97%. M: hepático. E: renal y heces.",
+ ram:"GI, enrojecimiento de la piel.",
+ ci:"Embarazo: bajo peso fetal y defectos de osificación.",
+ preg:"C",
+ clave:"Inhibe la síntesis de glucano de la pared fúngica"},
+{t:"hongos",g:"Micosis sistémicas",n:"Azoles (generalidades)",tag:"14-α-desmetilasa · interacciones",
+ mec:"Inhiben la lanosterol 14-α-desmetilasa (CYP450 fúngico) y con ello la síntesis de ergosterol.",
+ esp:"Sistémicos y superficiales.",
+ ram:"GI, somnolencia, <b>muchas interacciones</b> (inhiben CYP450). Voriconazol: visión borrosa.",
+ clave:"Inhiben el CYP450 fúngico y por eso tienen muchas interacciones"},
+{t:"hongos",g:"Micosis sistémicas",n:"Fluconazol",tag:"Ideal en meningitis · semivida 25 h",
+ mec:"Azol.",
+ esp:"Onicomicosis, dermatomicosis (tinea pedis, corporis, cruris), candidiasis genital y de mucosas, balanitis, histoplasmosis, blastomicosis, esporotricosis, criptococosis pulmonar o cutánea. <b>Ideal para meningitis criptocócica</b> (alcanza LCR).",
+ fc:"Oral e IV. Semivida 25 h. Pasa a leche, esputo, saliva y LCR.",
+ preg:"D",
+ clave:"Azol que alcanza el LCR: ideal en meningitis criptocócica"},
+{t:"hongos",g:"Micosis sistémicas",n:"Itraconazol",tag:"Micosis sistémicas y no dermatofitos",
+ mec:"Azol.",
+ esp:"Micosis sistémicas y tiñas. <b>Elección para hongos no dermatofitos (levaduras)</b>; alternativa a la terbinafina.",
+ fc:"Oral.",
+ ram:"Hepatotóxico, fotosensibilidad, inhibe la síntesis de testosterona (ginecomastia), recaídas frecuentes. IV: hipopotasemia, disnea, hepatitis, ictericia.",
+ ci:"Embarazo, lactancia, disfunción ventricular.",
+ preg:"C",
+ clave:"Elección para hongos no dermatofitos; contraindicado en disfunción ventricular"},
+{t:"hongos",g:"Mucocutáneas",n:"Terbinafina",tag:"Elección en tiñas y onicomicosis",
+ mec:"Inhibe la <b>escualeno epoxidasa</b>: bloquea el paso de escualeno a ergosterol y el escualeno acumulado es tóxico para el hongo.",
+ esp:"<b>Elección en tiñas y onicomicosis por dermatofitos.</b>",
+ dosis:"250 mg/día en onicomicosis.",
+ fc:"Se acumula en piel, uñas y grasa. Unión a proteínas 99%, t½ 12 h. M: hepático, E: renal.",
+ preg:"B",
+ clave:"Inhibe la escualeno epoxidasa; elección en onicomicosis por dermatofitos"},
+{t:"hongos",g:"Mucocutáneas",n:"Griseofulvina",tag:"Microtúbulos · se fija a queratina",
+ mec:"Se une a los microtúbulos e inhibe la mitosis (altera la quitina sintetasa).",
+ esp:"Espectro reducido: dermatofitos (tiñas, pie de atleta).",
+ fc:"Se concentra en el estrato córneo (se fija a la queratina). Tratamientos prolongados. M: hepático (tóxico). E: renal/heces.",
+ ram:"Teratógena: malformaciones óseas, neurológicas, oculares y urogenitales.",
+ ci:"Usar anticoncepción hasta 1 mes después del tratamiento.",
+ preg:"C",
+ clave:"Se fija a la queratina y exige anticoncepción hasta un mes después"},
+{t:"hongos",g:"Tópicos",n:"Nistatina",tag:"Polieno solo tópico",
+ mec:"Polieno.",
+ esp:"Candidiasis bucofaríngea y vaginal.",
+ fc:"Restringida a uso tópico por gran toxicidad sistémica. Solución oral con 95% de primer paso.",
+ clave:"Polieno restringido a uso tópico en candidiasis oral y vaginal"},
+{t:"hongos",g:"Tópicos",n:"Miconazol / clotrimazol",tag:"Azoles tópicos",
+ mec:"Azoles. Clotrimazol además interfiere el transporte de aminoácidos al interior actuando en la membrana.",
+ esp:"Miconazol: infecciones orales, del tubo digestivo y cutáneas. Micosis tópica u óvulos (grave toxicidad sistémica). Otros: tioconazol, sulconazol, econazol.",
+ clave:"Azoles tópicos y en óvulos por su toxicidad sistémica"},
+
+// ── ANTIVIRALES
+{t:"virus",g:"Influenza",n:"Amantadina / rimantadina",tag:"Canal M2 · solo influenza A",
+ mec:"Bloquean la proteína M2 (canal iónico) e impiden el desmantelamiento de la cubierta viral.",
+ esp:"<b>Solo influenza A</b>, eficacia 70–90%. Profilácticos.",
+ fc:"Oral, aerosol. Penetran SNC. E: renal.",
+ ram:"Insomnio, mareo.",
+ ci:"Embriotóxicas y teratógenas; no en lactancia. Precaución en psiquiátricos, nefrópatas, epilépticos.",
+ preg:"C",
+ clave:"Bloquea el canal M2; solo sirve para influenza A"},
+{t:"virus",g:"Influenza",n:"Oseltamivir",tag:"Neuraminidasa · influenza A y B",
+ mec:"Inhibe la <b>neuraminidasa</b> (que permite al virus salir de la célula).",
+ esp:"Influenza A y B.",
+ dosis:"Tratamiento: 75 mg c/12 h por 5 días · Profilaxis: 75 mg/día por 7 días.",
+ ram:"GI. En niños puede producir delirio.",
+ preg:"C",
+ clave:"Inhibe la neuraminidasa; 75 mg dos veces al día por 5 días"},
+{t:"virus",g:"Influenza",n:"Zanamivir",tag:"Neuraminidasa inhalada",
+ mec:"Inhibe la neuraminidasa.",
+ esp:"Profilaxis y tratamiento de influenza A y B.",
+ dosis:"2 inhalaciones al día por 5 días.",
+ fc:"Directo a vía respiratoria.",
+ clave:"Inhibidor de neuraminidasa inhalado"},
+{t:"virus",g:"Influenza",n:"Peramivir",tag:"Neuraminidasa IV unidosis",
+ mec:"Inhibe la neuraminidasa.",
+ esp:"Influenza aguda no complicada.",
+ dosis:"Dosis única IV.",
+ ram:"Alucinaciones, delirio, comportamiento anómalo.",
+ clave:"Inhibidor de neuraminidasa en dosis única IV"},
+{t:"virus",g:"Influenza",n:"Baloxavir marboxil",tag:"Endonucleasa · dosis única oral",
+ mec:"Inhibe la <b>endonucleasa</b>: interfiere la transcripción del RNA viral y bloquea la replicación.",
+ dosis:"Oral, dosis única (t½ 80 h). No tomar con lácteos.",
+ clave:"Inhibe la endonucleasa viral; dosis única oral sin lácteos"},
+{t:"virus",g:"Herpes y CMV",n:"Aciclovir",tag:"Análogo de purina · HSV y VZV",
+ mec:"Análogo de purina: inhibe la DNA polimerasa viral.",
+ esp:"HSV-1 y 2, VZV; Epstein-Barr débil; <b>no CMV</b> (muy resistente).",
+ dosis:"Herpes genital 400 mg c/8 h × 7–10 días · Varicela 800 mg c/6 h × 5 días · Herpes zóster 800 mg 5 veces/día · Herpes labial: película 5 veces/día × 4 días · HSV grave 5 mg/kg c/8 h × 7–10 días · Inmunosuprimido 10 mg/kg c/8 h × 7 días",
+ fc:"IV, oral, tópica. Biodisponibilidad 10–30%. E: renal.",
+ ram:"Náusea, diarrea, cefalea; IV: toxicidad renal reversible; neurológicos (temblor, delirio, convulsiones). Sin teratogenicidad; en embarazo iniciar en semana 36.",
+ clave:"Análogo de purina para HSV y VZV que no sirve contra CMV"},
+{t:"virus",g:"Herpes y CMV",n:"Valaciclovir / famciclovir",tag:"Orales para herpes",
+ mec:"Inhiben la DNA polimerasa viral.",
+ esp:"Herpes/VZV. <b>Valaciclovir: embarazadas con herpes genital recurrente.</b>",
+ fc:"Orales. Tópicos del grupo: docosanol, penciclovir, trifluridina.",
+ clave:"Antiherpético oral para embarazadas con herpes genital recurrente"},
+{t:"virus",g:"Herpes y CMV",n:"Foscarnet",tag:"HSV/VZV resistentes · CMV",
+ mec:"Inhibe la DNA polimerasa viral.",
+ esp:"HSV y VZV resistentes a aciclovir y ganciclovir; CMV.",
+ dosis:"IV 40 mg/kg c/8 h hasta la curación.",
+ clave:"Para herpes resistente a aciclovir y ganciclovir, IV 40 mg/kg c/8 h"},
+{t:"virus",g:"Herpes y CMV",n:"Ganciclovir / valganciclovir",tag:"CMV",
+ mec:"Inhiben la DNA polimerasa viral.",
+ esp:"CMV: retinitis, colitis, esofagitis, SNC, neumonitis. Valganciclovir: profilaxis en trasplante.",
+ dosis:"Valganciclovir 900 mg/día VO.",
+ fc:"Ganciclovir IV, oral, implante ocular.",
+ perla:"Otros para CMV: cidofovir IV (análogo de pirimidina), foscarnet IV. <b>Letermovir es hoy el más activo contra CMV.</b>",
+ clave:"Valganciclovir oral para profilaxis de CMV en trasplante"},
+{t:"virus",g:"VIH",n:"Zidovudina (AZT)",tag:"ITIAN · protección fetal",
+ mec:"Inhibidor de la transcriptasa inversa, análogo de pirimidina.",
+ esp:"Protección del feto, profilaxis posexposición a VIH.",
+ fc:"Oral, IV. M: hepático, E: orina.",
+ ram:"Tóxica para médula ósea (anemia), lipotrofia.",
+ clave:"Análogo de pirimidina que protege al feto; RAM anemia"},
+{t:"virus",g:"VIH",n:"ITINN (efavirenz, nevirapina…)",tag:"Inhibición alostérica de TI",
+ mec:"No nucleósidos: se unen a la TI y la inhiben alostéricamente (cambio de conformación en la subunidad p66).",
+ esp:"Efavirenz (2ª gen.), nevirapina, doravirina, etravirina, rilpivirina.",
+ clave:"Inhiben la transcriptasa inversa por unión alostérica a la subunidad p66"},
+{t:"virus",g:"VIH",n:"Inhibidores de integrasa",tag:"Raltegravir, elvitegravir, bictegravir",
+ mec:"Inhiben la enzima que integra el ADN proviral al genoma del hospedador.",
+ esp:"<b>Raltegravir: embarazo.</b>",
+ ram:"Rabdomiólisis.",
+ clave:"Impiden integrar el ADN proviral; RAM rabdomiólisis"},
+{t:"virus",g:"VIH",n:"Saquinavir",tag:"Inhibidor de proteasa",
+ mec:"Inhibidor de proteasa: evita que las células infectadas produzcan nuevos virus.",
+ dosis:"1000 mg/100 mg (con ritonavir) 2 veces al día, junto a otros antirretrovirales, con o después de la comida.",
+ fc:"La absorción mejora con alimentos. Distribución extensa, gran unión a proteínas. M: hepático CYP3A. E: heces.",
+ ram:"Náusea, diarrea, fatiga, vómito, flatulencia, dolor abdominal: problemas digestivos y hematológicos.",
+ clave:"Inhibidor de proteasa que se da 1000/100 mg con ritonavir"},
+{t:"virus",g:"VIH",n:"Ritonavir",tag:"Inhibidor de proteasa",
+ mec:"Inhibidor de proteasa.",
+ dosis:"100–200 mg/día como potenciador, o 600 mg 2 veces al día con alimentos.",
+ fc:"Absorción VO 15%, con alimentos. M: hepático. E: hepatobiliar, 10% orina.",
+ ram:"Náusea, vómito, astenia, alteración del gusto, parestesias.",
+ ci:"Insuficiencia hepática grave.",
+ clave:"Inhibidor de proteasa con alteración del gusto y parestesias"},
+{t:"virus",g:"VIH",n:"Enfuvirtida",tag:"Inhibidor de fusión SC",
+ mec:"Inhibe la reordenación estructural de gp41 (fusión).",
+ fc:"Subcutánea.",
+ clave:"Inhibidor de fusión que actúa sobre gp41"},
+{t:"virus",g:"Hepatitis",n:"Interferones",tag:"α-2a, α-2b, alfacon-1",
+ mec:"Glucoproteínas naturales inducibles (citocinas) con acción antiviral, inmunorreguladora y antiproliferativa.",
+ esp:"α-2b: hepatitis B · α-2a, α-2b, alfacon-1: hepatitis C.",
+ fc:"SC, IM. M: hepático, E: biliar.",
+ ci:"Evitar en lactancia.",
+ preg:"C",
+ clave:"Citocinas antivirales e inmunorreguladoras usadas en hepatitis B y C"},
+{t:"virus",g:"Hepatitis",n:"Antivirales para hepatitis B",tag:"Lamivudina, adefovir, entecavir, tenofovir, telbivudina",
+ mec:"Análogos nucleosídicos que inhiben la DNA polimerasa.",
+ esp:"<b>Lamivudina:</b> supresión rápida y potente, pero genera resistencia. <b>Telbivudina:</b> mejor que lamivudina. Adefovir, entecavir, tenofovir.",
+ fc:"Orales.",
+ clave:"Lamivudina: supresión rápida de VHB pero con resistencia"},
+{t:"virus",g:"Hepatitis",n:"Antivirales para hepatitis C",tag:"Ribavirina, sofosbuvir, NS5A, grazoprevir",
+ mec:"<b>Ribavirina:</b> nucleósido análogo de guanosina · <b>Elbasvir, ombitasvir:</b> inhiben la proteína NS5A (replicación y ensamblaje) · <b>Sofosbuvir:</b> inhibe la RNA polimerasa · <b>Grazoprevir:</b> inhibe la proteasa.",
+ perla:"Hepatitis crónica → cirrosis → cáncer.",
+ clave:"Sofosbuvir inhibe la RNA polimerasa del virus C"},
+{t:"virus",g:"COVID-19",n:"Remdesivir",tag:"IV · hospitalizados",
+ mec:"Inhibe la ARN polimerasa viral.",
+ esp:"COVID moderado a grave en hospitalizados, dentro de 7 días del inicio de síntomas.",
+ dosis:"200 mg IV el día 1, luego 100 mg IV/día por 5 días.",
+ clave:"Antiviral IV para COVID en hospitalizados: 200 mg y luego 100 mg/día"},
+{t:"virus",g:"COVID-19",n:"Paxlovid (nirmatrelvir/ritonavir)",tag:"Oral · inhibe proteasa",
+ mec:"Inhibe la proteasa viral.",
+ esp:"Leve a moderado, no hospitalizados con alto riesgo de progresión.",
+ dosis:"300 mg nirmatrelvir + 100 mg ritonavir 2 veces/día por 5 días.",
+ clave:"Inhibidor de proteasa oral para COVID con alto riesgo de progresión"},
+{t:"virus",g:"COVID-19",n:"Molnupiravir",tag:"Oral · errores en ARN",
+ mec:"Introduce errores en el ARN viral.",
+ esp:"Leve a moderado con riesgo de progresión, cuando no se pueden usar otros antivirales.",
+ dosis:"800 mg 2 veces/día por 5 días.",
+ clave:"Introduce errores en el ARN viral; 800 mg dos veces al día"},
+{t:"virus",g:"COVID-19",n:"Anticuerpos monoclonales",tag:"Casirivimab-imdevimab, bamlanivimab-etesevimab",
+ mec:"Bloquean la entrada del virus a las células.",
+ esp:"Leve a moderado con riesgo elevado de progresión.",
+ dosis:"Casirivimab-imdevimab 600 mg IV de cada uno · Bamlanivimab 700 mg + etesevimab 1400 mg IV, dentro de 10 días de síntomas.",
+ clave:"Bloquean la entrada del virus; se usan en los primeros 10 días"},
+
+// ── ANTIPARASITARIOS
+{t:"par",g:"Amebicidas",n:"Metronidazol / tinidazol",tag:"Amebicida mixto · elección extraluminal",
+ mec:"Al aceptar electrones produce compuestos citotóxicos que se fijan a proteínas y DNA → muerte.",
+ esp:"<b>Elección en amebiasis extraluminal</b> (absceso hepático); amebosis, giardiosis, tricomoniosis.",
+ dosis:"Adultos: 750 mg VO 3 veces al día por 10 días.",
+ fc:"Absorción oral rápida y extensa; concentraciones altas en líquidos orgánicos y LCR. Poco metabolismo. E: orina y heces.",
+ ram:"Neurotóxicos: parestesias, dificultad para el movimiento, convulsiones.",
+ clave:"Amebicida mixto de elección en el absceso hepático amebiano"},
+{t:"par",g:"Amebicidas",n:"Diloxanida (furoato)",tag:"Luminal · portadores asintomáticos",
+ mec:"Amebicida luminal.",
+ esp:"<b>Elección en portadores asintomáticos de quistes</b>; con metronidazol o después de él.",
+ ci:"Embarazo.",
+ clave:"Amebicida luminal de elección en portadores asintomáticos de quistes"},
+{t:"par",g:"Amebicidas",n:"Yodoquinol",tag:"Luminal",
+ mec:"Amebicida luminal.",
+ esp:"Se combina con metronidazol; amebiasis intestinal aguda y crónica.",
+ clave:"Amebicida luminal que se asocia a metronidazol"},
+{t:"par",g:"Amebicidas",n:"Paromomicina",tag:"Aminoglucósido luminal",
+ mec:"Aminoglucósido: produce fugas en las membranas.",
+ esp:"<i>E. histolytica</i> y solitarias (platelmintos).",
+ clave:"Aminoglucósido luminal activo contra amebas y tenias"},
+{t:"par",g:"Amebicidas",n:"Emetina y dehidroemetina",tag:"Sistémicos",
+ mec:"Inhiben la síntesis de proteínas.",
+ esp:"Amebicidas sistémicos.",
+ clave:"Amebicidas sistémicos que inhiben la síntesis proteica"},
+{t:"par",g:"Antipalúdicos",n:"Cloroquina",tag:"Elección en forma eritrocítica",
+ mec:"Inhibe la proteinasa del parásito.",
+ esp:"<b>Elección contra la forma eritrocítica</b> del paludismo. También elimina trofozoítos en abscesos hepáticos amebianos.",
+ ram:"Alteraciones neurológicas o sanguíneas, disfunción hepática, GI, cambios electrocardiográficos.",
+ clave:"Elección contra la forma eritrocítica; también sirve en absceso hepático amebiano"},
+{t:"par",g:"Antipalúdicos",n:"Quinina y quinidina",tag:"Graves y resistentes a cloroquina",
+ esp:"Forma eritrocítica: infecciones graves y especies resistentes a cloroquina.",
+ dosis:"Sulfato de quinina VO 600 mg (2 tabletas) c/8 h por 3–10 días. Parenteral/IV en casos graves.",
+ clave:"Para paludismo resistente a cloroquina, 600 mg c/8 h"},
+{t:"par",g:"Antipalúdicos",n:"Primaquina",tag:"Cura radical · vivax y ovale",
+ mec:"Produce especies reactivas de oxígeno tóxicas.",
+ esp:"Erradica formas exoeritrocíticas de <i>P. falciparum</i> y <i>P. vivax</i>; forma gametocítica en los 4 plasmodios. <b>Cura radical de <i>P. vivax</i> y <i>P. ovale</i></b>.",
+ ram:"No es eficaz contra el estadio eritrocítico.",
+ clave:"Cura radical de P. vivax y P. ovale al eliminar las formas hepáticas"},
+{t:"par",g:"Antipalúdicos",n:"Artemisinina y derivados",tag:"P. falciparum multirresistente",
+ mec:"Interviene en la producción de radicales libres y reduce mucho la biomasa del parásito en cada ciclo asexuado.",
+ esp:"Paludismo grave por <i>P. falciparum</i> multirresistente. En combinación con otros antipalúdicos (mefloquina); el parásito desarrolla menos resistencia.",
+ fc:"Oral, IV, rectal.",
+ clave:"De elección en P. falciparum multirresistente, combinada con mefloquina"},
+{t:"par",g:"Nematodos",n:"Mebendazol",tag:"Microtúbulos · áscaris",
+ mec:"Se une a los microtúbulos del parásito y disminuye la captación de glucosa; los parásitos se expulsan en heces.",
+ esp:"Ascariasis, tricuriasis, enterobiosis, capilariasis.",
+ dosis:"Ascariasis: dosis única de 500 mg.",
+ fc:"La absorción aumenta con grasa.",
+ ram:"Cefalea, mialgia, artralgia, anorexia, náusea, vómito (comunes a antihelmínticos).",
+ clave:"Dosis única de 500 mg en ascariasis"},
+{t:"par",g:"Nematodos",n:"Pamoato de pirantel",tag:"Bloqueador neuromuscular · alternativa",
+ mec:"Bloqueador neuromuscular: parálisis del gusano, que se expulsa por el tracto intestinal.",
+ esp:"Alternativa en ascaridosis, oxiurosis, anquilostomosis.",
+ dosis:"<i>A. lumbricoides</i>: dosis única oral 8.5–11 mg/kg.",
+ ram:"Náusea, vómito, diarrea.",
+ clave:"Paraliza al gusano por bloqueo neuromuscular"},
+{t:"par",g:"Nematodos",n:"Ivermectina",tag:"Elección en oncocercosis",
+ mec:"Actúa sobre canales de Cl⁻: entrada de cloro y parálisis.",
+ esp:"<b>Elección en oncocercosis.</b>",
+ dosis:"Dosis única anual de 0.12–0.20 mg/kg (70 kg: 14 mg = 2 tabletas).",
+ clave:"Elección en oncocercosis; abre canales de cloro"},
+{t:"par",g:"Trematodos",n:"Prazicuantel",tag:"Elección en esquistosomiasis",
+ mec:"Aumenta la permeabilidad al Ca²⁺: contractura y parálisis.",
+ esp:"<b>Elección en todas las formas de esquistosomiasis</b> (<i>S. mansoni, japonicum, haematobium</i>) y otros trematodos (duelas). Amplio espectro: cisticercosis, <i>Taenia solium</i>, <i>T. saginata</i>, <i>Hymenolepis nana</i>.",
+ fc:"Oral. Se distribuye al LCR.",
+ ram:"Somnolencia, mareo, malestar general, trastornos digestivos.",
+ clave:"Elección en esquistosomiasis; aumenta la permeabilidad al calcio"},
+{t:"par",g:"Cestodos",n:"Niclosamida",tag:"Elección en tenias adultas",
+ mec:"Inhibe la absorción de glucosa.",
+ esp:"<b>Elección en cestodos</b> (tenias).",
+ dosis:"Adultos: 2 g en dosis única (2 tabletas).",
+ ram:"Trastornos GI leves.",
+ perla:"Antes de la dosis oral dar un laxante para eliminar los segmentos muertos y evitar la liberación de huevos.",
+ clave:"Tenicida que requiere laxante previo para eliminar segmentos muertos"},
+{t:"par",g:"Cestodos",n:"Albendazol",tag:"Neurocisticercosis · amplio espectro",
+ mec:"Inhibe la síntesis de microtúbulos y la captación de glucosa.",
+ esp:"<b>Neurocisticercosis</b> (<i>T. solium</i> larvaria), hidatidosis (<i>Echinococcus</i>), <i>Ascaris</i>, <i>Ancylostoma</i>, <i>Trichuris</i>, <i>Enterobius</i>, <i>Giardia</i>, <i>H. nana</i>.",
+ dosis:"Adultos: dosis única de 400 mg (2 tabletas).",
+ clave:"Elección en neurocisticercosis e hidatidosis, 400 mg dosis única"},
+
+// ── PARKINSON
+{t:"park",g:"Aumentan la dopamina",n:"Levodopa (L-dopa)",tag:"Precursor de dopamina · 1ª línea",
+ mec:"Aminoácido precursor de la dopamina; cruza al SNC y ahí se convierte en dopamina.",
+ esp:"<b>Base del tratamiento, primera línea.</b> Aumento gradual de dosis.",
+ dosis:"200–1000 mg, 2 a 4 veces al día.",
+ ram:"Náusea, vómito, anorexia, somnolencia, confusión, discinesia.",
+ perla:"Se combina con un <b>inhibidor de la descarboxilasa</b> para que no se metabolice en la periferia: baja 4–5 veces la dosis y las RAM. También se suele asociar a un inhibidor de COMT.",
+ clave:"Precursor de dopamina que se da con un inhibidor de la descarboxilasa"},
+{t:"park",g:"Aumentan la dopamina",n:"Agonistas dopaminérgicos",tag:"Bromocriptina, pergolida, cabergolina, pramipexol, ropinirol, rotigotina",
+ mec:"Estimulan directamente los receptores de dopamina.",
+ esp:"Fases tempranas, solos o en combinación con levodopa. Rotigotina en parche.",
+ ram:"Fibrosis pulmonar y pericárdica; confusión, alucinaciones, <b>ludopatía</b>.",
+ clave:"Agonistas de dopamina que pueden causar ludopatía y fibrosis pulmonar"},
+{t:"park",g:"Aumentan la dopamina",n:"Apomorfina",tag:"Agonista de rescate SC",
+ mec:"Agonista dopaminérgico.",
+ esp:"Rescate en situaciones graves cuando el paciente no responde.",
+ fc:"Subcutánea. Actúa en 10 min y dura 2 h.",
+ clave:"Agonista dopaminérgico SC de rescate: actúa en 10 min y dura 2 h"},
+{t:"park",g:"Aumentan la dopamina",n:"Inhibidores de MAO-B",tag:"Selegilina, rasagilina, safinamida",
+ mec:"Inhiben la MAO-B (selectivos a dosis bajas) y frenan la degradación de dopamina.",
+ esp:"En conjunto con levodopa; casi nunca bastan solos.",
+ dosis:"Selegilina 5 mg c/12 h · rasagilina 1 mg cada mañana.",
+ perla:"El metabolito de la selegilina es <b>anfetamina</b>.",
+ clave:"Selegilina: su metabolito es la anfetamina"},
+{t:"park",g:"Aumentan la dopamina",n:"Inhibidores de COMT",tag:"Tolcapona, entacapona",
+ mec:"Inhiben la COMT y prolongan el efecto de la levodopa.",
+ esp:"Siempre junto con levodopa.",
+ ram:"Náusea, diarrea, cansancio, cefalea, discinesia, <b>coloración de la orina</b>.",
+ clave:"Se asocian a levodopa y colorean la orina"},
+{t:"park",g:"Aumentan la dopamina",n:"Amantadina",tag:"Libera dopamina · reduce discinesias",
+ mec:"Estimula la liberación de dopamina en el cerebro. Si la liberación ya es máxima, deja de tener efecto.",
+ esp:"Menos eficaz que levodopa, pero reduce mejor las discinesias.",
+ dosis:"100 mg VO 2 veces al día.",
+ ram:"Náusea, pigmentación de la piel de las piernas, ideación suicida, irritabilidad, psicosis.",
+ perla:"Es el mismo fármaco que se usa contra la influenza A.",
+ clave:"Libera dopamina, reduce discinesias y pigmenta la piel de las piernas"},
+{t:"park",g:"Disminuyen la acetilcolina",n:"Antimuscarínicos",tag:"Biperideno, trihexifenidilo, benztropina, prociclidina",
+ mec:"Bloquean receptores muscarínicos y corrigen el exceso de acetilcolina.",
+ esp:"Terapia “vieja”, anterior a la levodopa. Eficaces contra temblor y rigidez.",
+ ram:"Boca seca, estreñimiento, dificultad para orinar.",
+ clave:"Biperideno y trihexifenidilo: útiles en temblor y rigidez, con boca seca"},
+
+// ── DIABETES
+{t:"dm",g:"Insulinas",n:"Insulina regular",tag:"Acción rápida · la única IV",
+ mec:"Insulina humana de acción rápida y breve.",
+ esp:"Control prandial. <b>IV en urgencias diabéticas:</b> cetoacidosis, coma hiperosmolar no cetósico, estabilización pre, intra y posoperatoria.",
+ dosis:"SC 15–30 min antes de las comidas; efecto 5–7 h. Dosis diaria total 0.5–1.0 UI/kg.",
+ ram:"Hipoglucemia, lipodistrofias, reacciones inmunológicas.",
+ clave:"Insulina que se puede dar IV en cetoacidosis"},
+{t:"dm",g:"Insulinas",n:"Insulinas ultracortas",tag:"Lispro, aspart, glulisina",
+ mec:"Análogos monoméricos: se absorben más rápido.",
+ dosis:"SC 5–15 min antes de comer (o hasta 20 min después de empezar). Actúan a los 15 min y no duran más de 2–4 h.",
+ clave:"Lispro, aspart y glulisina: actúan a los 15 min y duran 2–4 h"},
+{t:"dm",g:"Insulinas",n:"Insulina NPH (intermedia)",tag:"Protamina · basal",
+ mec:"Conjugada con protamina (Hagedorn), menos soluble: absorción retardada.",
+ esp:"Niveles de insulina basal. 30–45 min antes del desayuno o al acostarse. <b>No útil en urgencias.</b>",
+ fc:"SC: inicio 2–4 h, efecto ~10 h.",
+ clave:"Insulina con protamina, inicio 2–4 h, no útil en urgencias"},
+{t:"dm",g:"Insulinas",n:"Insulinas prolongadas",tag:"Glargina, detemir, degludec",
+ mec:"<b>Glargina:</b> precipita en el sitio de inyección y prolonga su efecto · <b>Detemir:</b> se une a albúmina.",
+ dosis:"Glargina SC 1 vez/día a la misma hora · Detemir SC 2 veces/día (desayuno y cena o al acostarse), dura 17 h · Degludec: inicia en 30 min y dura 42 h.",
+ clave:"Glargina precipita en el sitio de inyección; degludec dura 42 h"},
+{t:"dm",g:"Insulinas",n:"Insulina inhalada",tag:"Polvo nebulizado",
+ esp:"Tan efectiva como la subcutánea, no mejor (revisión sistemática 2007).",
+ fc:"Efecto a los 15 min, dura 3 h.",
+ ci:"Asma, EPOC, fumadores.",
+ perla:"Factores que cambian la absorción de cualquier insulina: lugar y profundidad de la inyección. Dispositivos: plumas y bombas.",
+ clave:"Insulina contraindicada en asma, EPOC y fumadores"},
+{t:"dm",g:"Secretagogos",n:"Sulfonilureas",tag:"Glibenclamida, glimepirida, gliclazida…",
+ mec:"Bloquean los canales de K⁺ (ATP) de la célula β → despolarización → entrada de Ca²⁺ → secreción de insulina.",
+ esp:"1ª generación: acetohexamida, clorpropamida, tolazamida, tolbutamida · 2ª: <b>glibenclamida</b>, gliclazida, glipentida, glipizida, gliquidona · 3ª: <b>glimepirida</b>. Glibenclamida atraviesa poco la placenta: alternativa en embarazo.",
+ dosis:"Glibenclamida 2.5–5 mg/día de inicio, máx. 15 mg, dura 12–24 h · Gliclazida 40–320 mg · Glimepirida 1–8 mg, dura 24 h.",
+ fc:"Unión a proteínas, M: hepático, E: hígado o riñón.",
+ ram:"<b>Hipoglucemia, aumento de peso.</b>",
+ ci:"Insuficiencia renal (excreción retrasada).",
+ clave:"Bloquean canales de K⁺ de la célula β; dan hipoglucemia y aumento de peso"},
+{t:"dm",g:"Secretagogos",n:"Glinidas (repaglinida)",tag:"Secretagogo posprandial corto",
+ mec:"Como las sulfonilureas pero en otro sitio del receptor: inicio rápido y duración corta (4–7 h); solo estimulan la secreción posprandial.",
+ esp:"Control del pico posprandial de glucosa.",
+ dosis:"Repaglinida 1 mg 3 veces al día, 10–30 min antes de cada comida.",
+ fc:"Oral. M: hepático, E: bilis.",
+ ram:"Menos hipoglucemia y menos aumento de peso que las sulfonilureas.",
+ clave:"Secretagogo de acción corta que se toma antes de cada comida"},
+{t:"dm",g:"Sensibilizadores",n:"Metformina",tag:"Biguanida · primera elección",
+ mec:"Favorece la captación periférica de glucosa, reduce la resistencia a la insulina e <b>inhibe la gluconeogénesis hepática</b>. Potencia la insulina en músculo y tejido adiposo. No produce hiperinsulinemia.",
+ esp:"Primera elección en DM2 según la GPC.",
+ dosis:"Inicio 500–1000 mg/día · promedio 1500 mg/día · máximo 2000–3000 mg/día. Subir una tableta por semana.",
+ fc:"VO, sin unión a proteínas, no se metaboliza, E: orina.",
+ ram:"Digestivas.",
+ ci:"Insuficiencia renal, insuficiencia hepática.",
+ preg:"C",
+ clave:"Biguanida que inhibe la gluconeogénesis hepática; primera elección en DM2"},
+{t:"dm",g:"Sensibilizadores",n:"Pioglitazona",tag:"Glitazona · PPAR-γ",
+ mec:"Tiazolidinediona: agonista de PPAR-γ (receptor nuclear) que regula genes del metabolismo de lípidos y glucosa; aumenta la sensibilidad a la insulina en tejido adiposo, hígado y músculo.",
+ fc:"Unión a albúmina, M: hepático, E: renal.",
+ ram:"Aumento de grasa subcutánea, osteopenia, reduce los niveles de anticonceptivos con estrógenos.",
+ clave:"Agonista PPAR-γ que causa osteopenia y aumento de grasa subcutánea"},
+{t:"dm",g:"Otros hipoglucemiantes",n:"Acarbosa y miglitol",tag:"Inhibidores de α-glucosidasa",
+ mec:"Inhiben la enzima intestinal que hidroliza oligosacáridos: impiden absorber carbohidratos complejos.",
+ esp:"Bajan el pico posprandial; en combinación cuando la glucosa posprandial está alta.",
+ ram:"Distensión por gases, flatulencia, diarrea, calambres abdominales.",
+ perla:"Si hay hipoglucemia se corrige con <b>glucosa pura</b> (no con azúcar de mesa).",
+ clave:"Su hipoglucemia se corrige con glucosa pura, no con sacarosa"},
+{t:"dm",g:"Otros hipoglucemiantes",n:"Gliptinas (iDPP-4)",tag:"Sitagliptina, saxagliptina, linagliptina",
+ mec:"Inhiben la DPP-4, enzima que inactiva las incretinas. Las incretinas aumentan la insulina en respuesta al alimento y reducen el glucagón inapropiado.",
+ fc:"M: hepático, E: renal.",
+ perla:"<b>Linagliptina:</b> indicada en insuficiencia renal y en hemodiálisis.",
+ clave:"Linagliptina se puede usar en insuficiencia renal y hemodiálisis"},
+{t:"dm",g:"Otros hipoglucemiantes",n:"Análogos de GLP-1",tag:"Liraglutida, exenatida, semaglutida",
+ mec:"Incretinas (responsables del 50–70% de la insulina posprandial): aumentan la insulina si la glucosa está alta, bajan la gluconeogénesis y <b>retrasan el vaciamiento gástrico</b>.",
+ dosis:"Liraglutida SC 1 vez/día · Exenatida SC 2 veces/día, 60 min antes de las comidas · Semaglutida (Ozempic).",
+ ram:"Gastrointestinales.",
+ ci:"Insuficiencia renal grave.",
+ clave:"Retrasan el vaciamiento gástrico; incluyen a semaglutida (Ozempic)"},
+{t:"dm",g:"Otros hipoglucemiantes",n:"Inhibidores de SGLT2",tag:"Canagliflozina, dapagliflozina",
+ mec:"Bloquean el cotransportador sodio-glucosa 2 del túbulo proximal (90% de la reabsorción de glucosa) → glucosuria.",
+ ram:"Infecciones micóticas genitales y urinarias; gangrena necrosante de periné.",
+ clave:"Causan glucosuria e infecciones micóticas genitales"},
+
+// ── TIROIDES
+{t:"tir",g:"Hipertiroidismo",n:"Yodo-131",tag:"Destruye parénquima tiroideo",
+ mec:"Yodo radiactivo que destruye el parénquima tiroideo.",
+ dosis:"80–150 µCi por gramo de peso calculado de tiroides, VO.",
+ ci:"Embarazo y lactancia.",
+ clave:"Destruye el parénquima tiroideo; contraindicado en embarazo y lactancia"},
+{t:"tir",g:"Hipertiroidismo",n:"Propiltiouracilo (PTU)",tag:"Tioamida · elección en 1er trimestre",
+ mec:"Inhibe la incorporación de yoduro a la tiroglobulina; también la conversión de T4 a T3.",
+ esp:"<b>Opción más segura en embarazo (1er trimestre)</b>: atraviesa muy poco la placenta.",
+ dosis:"Inicio 50–150 mg 3 veces/día · mantenimiento 50 mg c/8 h, VO.",
+ ram:"<b>Hepatitis grave.</b>",
+ preg:"D",
+ clave:"Antitiroideo de elección en el primer trimestre; RAM hepatitis grave"},
+{t:"tir",g:"Hipertiroidismo",n:"Metimazol / carbimazol",tag:"Tioamida · 10 veces más potente",
+ mec:"Inhibe la peroxidasa tiroidea (oxidación) y evita la conjugación. El carbimazol es profármaco del tiamazol (metimazol).",
+ esp:"10 veces más potente que el propiltiouracilo.",
+ dosis:"Inicio VO 10–20 mg/día por 6 meses · mantenimiento 5–10 mg/día por 12–24 meses.",
+ ram:"GI, fiebre, alteración del gusto y olfato, leucopenia, erupciones, <b>agranulocitosis</b>, artralgias.",
+ preg:"D",
+ clave:"Inhibe la peroxidasa tiroidea, 10 veces más potente que PTU; riesgo de agranulocitosis"},
+{t:"tir",g:"Hipertiroidismo",n:"β-bloqueadores y calcioantagonistas",tag:"Tratamiento sintomático",
+ mec:"No tocan la hormona: controlan los síntomas adrenérgicos.",
+ esp:"β-bloqueadores (propranolol, metoprolol, atenolol, nadolol): temblor, ansiedad, palpitaciones, FC y sudoración. Calcioantagonistas (diltiazem, verapamilo): temblor, palpitaciones y FC.",
+ dosis:"Propranolol 10–40 mg/día · Diltiazem 60–120 mg/día.",
+ clave:"Control sintomático del hipertiroidismo: propranolol 10–40 mg/día"},
+{t:"tir",g:"Hipotiroidismo",n:"Levotiroxina sódica (T4)",tag:"Preparado de elección VO",
+ mec:"T4 sintética; se convierte en T3 en los tejidos.",
+ esp:"Hipotiroidismo.",
+ fc:"Vía oral.",
+ clave:"T4 sintética oral para el hipotiroidismo"},
+{t:"tir",g:"Hipotiroidismo",n:"Liotironina sódica (T3)",tag:"IV u oral",
+ mec:"T3 sintética, la hormona activa.",
+ fc:"IV u oral.",
+ clave:"T3 sintética que se puede dar IV"},
+{t:"tir",g:"Hipotiroidismo",n:"Liotrix y tiroides desecada",tag:"T3 + T4 · origen porcino",
+ esp:"Liotrix: combinación de T3 y T4 · Tiroides desecada de cerdo.",
+ clave:"Combinación sintética de T3 y T4"},
+
+// ── ANSIOLÍTICOS
+{t:"ans",g:"Benzodiacepinas",n:"Benzodiacepinas",tag:"Diazepam, lorazepam, midazolam, clonazepam…",
+ mec:"Se unen a su sitio en el receptor GABA-A y aumentan la afinidad por GABA: el canal de Cl⁻ se abre <b>con más frecuencia</b> → hiperpolarización → inhiben el potencial de acción.",
+ esp:"Ansiedad aguda, preanestesia (midazolam: amnesia anterógrada), anticonvulsivas, insomnio (prolongan la fase no REM). Preferidas sobre barbitúricos: menos rebote, mejor índice terapéutico, no inducen enzimas, tolerancia más lenta, menos interacciones.",
+ fc:"Absorción completa (excepto clorazepato), unión a proteínas, cruzan placenta y leche. M: hepático, E: renal. En hepatopatía, las más seguras: lorazepam y oxazepam.",
+ ram:"Laxitud. Con alcohol y otros depresores del SNC: peligro. Abstinencia tipo <b>delirium tremens</b>: insomnio, náusea, vómito, irritabilidad, tinnitus, delirio, convulsiones.",
+ ci:"Embarazo: malformaciones en el primer trimestre.",
+ perla:"Retirar <b>reduciendo 25% de la dosis por semana</b>. Aumentan su efecto: macrólidos, verapamilo, ranitidina, fluconazol, ketoconazol, <b>jugo de toronja</b>. Lo disminuyen: fenitoína, rifampicina, omeprazol.",
+ clave:"Abren el canal de Cl⁻ con más frecuencia; se retiran bajando 25% por semana"},
+{t:"ans",g:"Benzodiacepinas",n:"Midazolam",tag:"Preanestésico · amnesia anterógrada",
+ esp:"Preanestesia y sedación; produce <b>amnesia anterógrada</b>.",
+ clave:"Benzodiacepina preanestésica que causa amnesia anterógrada"},
+{t:"ans",g:"Benzodiacepinas",n:"Flumazenil",tag:"Antagonista de BZD IV",
+ mec:"Antagonista del receptor de benzodiacepinas.",
+ esp:"Sobredosis de BZD y reversión de su sedación. <b>No sirve para barbitúricos.</b>",
+ fc:"IV, inicio rápido, dura 1 h.",
+ clave:"Antagonista IV de benzodiacepinas que no revierte barbitúricos"},
+{t:"ans",g:"Hipnóticos no benzodiacepínicos",n:"Hipnóticos Z",tag:"Zolpidem, zopiclona, zaleplón, clometiazol",
+ esp:"Inducir el sueño.",
+ clave:"Zolpidem y zopiclona: inducen el sueño"},
+{t:"ans",g:"Barbitúricos",n:"Barbitúricos (generalidades)",tag:"Sin antídoto · depresión respiratoria",
+ mec:"Prolongan la apertura del canal de Cl⁻; <b>a concentraciones altas abren el canal sin necesidad de GABA</b>.",
+ esp:"<b>Prolongados</b> (más hidrosolubles): barbital, fenobarbital, metilfenobarbital · <b>Intermedios:</b> amobarbital, hexobarbital, pentobarbital · <b>Cortos</b> (más liposolubles, cruzan BHE): tiopental, tiobarbital.",
+ fc:"Absorción oral rápida.",
+ ram:"<b>Sobredosis:</b> depresión respiratoria, pérdida del control vasomotor del tallo, depresión miocárdica; <b>no hay antídoto</b>. Cardiovascular: bajan FC y PA; a dosis altas, colapso. Bajan el flujo renal y cerebral. Abstinencia: ansiedad, insomnio, convulsiones.",
+ perla:"Intoxicación: proteger la vía aérea, evitar broncoaspiración, lavado gástrico, carbón activado y un catártico.",
+ clave:"A dosis altas abren el canal de Cl⁻ sin GABA y no tienen antídoto"},
+{t:"ans",g:"Barbitúricos",n:"Fenobarbital",tag:"Acción prolongada · epilepsia IV",
+ esp:"IV en el paciente epiléptico.",
+ fc:"Acción prolongada, más hidrosoluble.",
+ clave:"Barbitúrico de acción prolongada usado IV en epilepsia"},
+{t:"ans",g:"Barbitúricos",n:"Tiopental",tag:"Acción corta · anestesia",
+ esp:"Inducir o mantener la anestesia general (IV).",
+ fc:"Acción corta, muy liposoluble, cruza la BHE.",
+ clave:"Barbitúrico liposoluble de acción corta para inducir anestesia"},
+{t:"ans",g:"Otros ansiolíticos",n:"Buspirona",tag:"Agonista parcial 5-HT1A",
+ mec:"Azaspirodecanodiona, agonista parcial 5-HT1A.",
+ esp:"<b>Ansiedad generalizada.</b> No sirve para fobias, ansiedad social, convulsiones ni como hipnótico, ni para desintoxicar a dependientes de BZD.",
+ fc:"Tarda <b>2 semanas</b> en hacer efecto.",
+ ram:"Inquietud. <b>No causa sedación, incoordinación ni dependencia.</b>",
+ ci:"Precaución en insuficiencia renal o hepática y antecedentes de alcohol o drogas. No con IMAO ni en menores de 18 años.",
+ preg:"B",
+ clave:"Ansiolítico sin sedación ni dependencia que tarda 2 semanas en actuar"}
+];
+
+// Preguntas fijas de buenas prácticas
+const BPQ = [
+ {s:"¿Cuáles son los 4 criterios para la correcta selección de la farmacoterapia, en orden?",o:["Eficacia, seguridad, conveniencia, costo","Costo, eficacia, seguridad, conveniencia","Seguridad, costo, disponibilidad, eficacia","Eficacia, potencia, costo, vía"],a:0,e:"Eficacia → seguridad → conveniencia → costo."},
+ {s:"Paciente de 52 años, fumador, con tos seca nocturna tras un resfriado. Según la clase, ¿cuál es la mejor elección de antitusígeno?",o:["Dextrometorfano","Codeína 15 mg c/8 h","Difenhidramina","Morfina"],a:0,e:"Dextrometorfano: mejor elección por forma farmacéutica y precio. Los opiáceos dan estreñimiento, mareo, sedación y, a dosis altas, depresión respiratoria."},
+ {s:"En el inventario de tratamientos, ¿qué va primero?",o:["Información y consejos","Tratamiento con fármacos","Remisión al especialista","Tratamiento sin fármacos"],a:0,e:"Inventario: a) información y consejos, b) sin fármacos, c) con fármacos, d) remisión. Para problemas comunes muchas veces bastan los consejos."},
+ {s:"¿Cuál de estos datos NO es obligatorio en la receta según la clase?",o:["Diagnóstico del paciente","Nombre genérico y concentración","Firma o iniciales del prescriptor","Nombre y edad del paciente"],a:0,e:"La receta lleva: datos del prescriptor, fecha, nombre genérico y potencia, forma farmacéutica, frecuencia y duración, instrucciones, nombre y edad del paciente, firma."},
+ {s:"¿Cada cuánto tiempo, como máximo, debe citarse a un paciente con tratamiento crónico?",o:["3 meses","1 mes","6 meses","12 meses"],a:0,e:"Supervisión activa: agendar cita con intervalo máximo de 3 meses."},
+ {s:"¿Qué grupo de fármacos NO aparece entre los que deben retirarse reduciendo la dosis lentamente?",o:["Antibióticos","Corticoides","β-bloqueadores","Opiáceos"],a:0,e:"Se retiran lentamente: antidepresivos (BZD, ISRS), β-bloqueadores, corticoides, opiáceos, antipsicóticos."}
+];
+
+const FIELDS=[["mec","Mecanismo"],["esp","Espectro / usos"],["dosis","Dosis"],["fc","Farmacocinética"],["ram","RAM"],["ci","Contraindicaciones"]];
+const $=s=>document.querySelector(s);
+const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const strip=s=>s.replace(/<[^>]+>/g,"");
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const topic=id=>T.find(t=>t.id===id);
+
+let state={mode:"study",topic:store.get("fx-topic","atb"),q:""};
+
+function hl(html,q){
+  if(!q) return html;
+  const nq=norm(q); if(nq.length<2) return html;
+  return html.replace(/(^|>)([^<]+)/g,(m,a,txt)=>{
+    const n=norm(txt); let out="",i=0,idx;
+    while((idx=n.indexOf(nq,i))!==-1){out+=txt.slice(i,idx)+"<mark>"+txt.slice(idx,idx+nq.length)+"</mark>";i=idx+nq.length}
+    return a+out+txt.slice(i);
+  });
+}
+
+function drugCard(d,q,open){
+  const t=topic(d.t);
+  let body="";
+  for(const [k,l] of FIELDS){ if(d[k]) body+=`<dt class="${k==='ci'?'ci-t':''}">${l}</dt><dd class="${k==='dosis'?'mono':''}">${hl(d[k],q)}</dd>`; }
+  if(d.perla) body+=`<div class="pearl"><b>Clave:</b> ${hl(d.perla,q)}</div>`;
+  return `<details class="drug" style="--tc:var(${t.color})"${open?" open":""}>
+    <summary><span class="nm">${hl(d.n,q)}</span><span class="tag">${hl(d.tag||"",q)}</span>${d.preg?`<span class="preg" title="Categoría en embarazo">Emb. ${d.preg}</span>`:""}
+    <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></summary>
+    <dl class="body">${body}</dl></details>`;
+}
+
+function renderNav(){
+  $("#nav").innerHTML=`<p class="lbl">Temas</p>`+T.map(t=>{
+    const c=D.filter(d=>d.t===t.id).length;
+    return `<button class="tbtn" data-t="${t.id}" style="--tc:var(${t.color})" aria-current="${state.topic===t.id&&!state.q}"><span class="dot"></span>${t.short}<span class="ct">${c||""}</span></button>`}).join("");
+}
+
+function renderBP(t){
+  return `<div class="thead" style="--tc:var(${t.color})"><span class="eyebrow">Tema 1</span><h2>${t.name}</h2><p>${t.intro}</p></div>
+  <div style="--tc:var(${t.color})">
+  <div class="group"><h3>Proceso de prescripción racional</h3>
+   <div class="steps">
+    <div class="step"><span class="n">PASO 1</span><b>Definir el problema</b><span>Diagnóstico.</span></div>
+    <div class="step"><span class="n">PASO 2</span><b>Objetivos terapéuticos</b><span>¿Qué quiero lograr?</span></div>
+    <div class="step"><span class="n">PASO 3</span><b>Diseñar el esquema completo</b><span>Tratamiento de primera elección según eficacia, seguridad, conveniencia y costo.</span></div>
+    <div class="step"><span class="n">PASO 4</span><b>Escribir la receta</b><span>Comenzar el tratamiento, informar y supervisar.</span></div>
+   </div></div>
+  <div class="keys">
+   <div class="key"><h4>Relación terapéutica</h4><ul><li><b>Evaluación:</b> ¿qué necesita el paciente?</li><li><b>Plan:</b> ¿qué voy a hacer por él?</li><li><b>Evaluación:</b> ¿cómo sabremos que funciona?</li><li>Seguimiento continuo: resolución o no resolución</li></ul></div>
+   <div class="key"><h4>Inventario de tratamientos</h4><ul><li>a) Información y consejos</li><li>b) Tratamiento sin fármacos</li><li>c) Tratamiento con fármacos</li><li>d) Remisión al especialista</li></ul></div>
+   <div class="key"><h4>Selección de la farmacoterapia</h4><ul><li>1. Eficacia</li><li>2. Seguridad</li><li>3. Conveniencia</li><li>4. Costo</li></ul></div>
+   <div class="key"><h4>Conveniencia y costo: revisar</h4><ul><li>Contraindicaciones y otras enfermedades</li><li>Embarazo o lactancia</li><li>Interacciones con alimentos o fármacos</li><li>Forma farmacéutica y vía; genéricos</li></ul></div>
+  </div>
+  <div class="group"><h3>¿Es adecuado para este paciente?</h3>
+  <div class="tbl-wrap"><table><thead><tr><th>Pregunta</th><th>Efectivo</th><th>Conveniente</th><th>Seguro</th></tr></thead><tbody>
+   <tr><td><b>1. ¿Principio activo y forma farmacéutica?</b></td><td>Indicación: ¿realmente necesario?</td><td>¿Fácil de manejar, costo?</td><td>Contraindicaciones, otras enfermedades, interacciones (fármacos, comida, alcohol)</td></tr>
+   <tr><td><b>2. ¿Pauta de dosificación?</b></td><td>Dosificación adecuada</td><td>¿Fácil de recordar y aplicar?</td><td>Contraindicaciones, riesgo elevado</td></tr>
+   <tr><td><b>3. ¿Duración?</b></td><td>Duración suficiente (infecciones, latencia)</td><td>¿Fácil de almacenar, costo?</td><td>Efectos indeseados, dependencia, sobrantes</td></tr>
+  </tbody></table></div></div>
+  <div class="keys">
+   <div class="key"><h4>La receta lleva</h4><ul><li>Nombre, dirección y teléfono del prescriptor</li><li>Fecha</li><li>Nombre genérico y potencia (concentración)</li><li>Forma farmacéutica, frecuencia y duración</li><li>Instrucciones, recomendaciones y advertencias</li><li>Nombre y edad del paciente</li><li>Firma o iniciales</li></ul></div>
+   <div class="key"><h4>Supervisar (¿y detener?)</h4><ul><li><b>Pasiva:</b> explicar qué hacer si no funciona</li><li><b>Activa:</b> cita, máximo cada 3 meses en crónicos</li><li><b>Retirar lentamente:</b> antidepresivos (BZD, ISRS), β-bloqueadores, corticoides, opiáceos, antipsicóticos</li></ul></div>
+   <div class="key"><h4>Dificultades</h4><ul><li>No hay muchas alternativas</li><li>Elegir por los motivos correctos, no por ventas ni muestras médicas</li><li>“Para problemas comunes, la primera elección muchas veces no incluye fármacos”</li></ul></div>
+  </div>
+  <div class="case"><h3 style="font-size:1.1rem">Caso clínico: taxista de 52 años con tos</h3>
+   <blockquote>Dolor de garganta y tos de 2 semanas tras un resfriado, sobre todo nocturna. Gran fumador. Solo inflamación faríngea. El médico prescribe codeína 15 mg 3 veces al día por 3 días.</blockquote>
+   <div class="keys" style="margin:0">
+    <div class="key"><h4>Resolución</h4><ul><li><b>Dx:</b> tos seca</li><li><b>Objetivo:</b> suprimir la tos seca</li><li><b>Consejos:</b> evitar irritantes (dejar de fumar); la mucosa se recupera</li><li><b>Sin fármacos:</b> no existe</li><li><b>Con fármacos:</b> antitusígeno opiáceo o antihistamínico sedante</li><li><b>Remisión:</b> no necesaria</li></ul></div>
+    <div class="key"><h4>Opciones</h4><ul><li><b>Opiáceos:</b> codeína, dextrometorfano, noscapina, folcodina, morfina, metadona</li><li><b>Antihistamínico:</b> difenhidramina (somnolencia, eficacia discutida)</li><li><b>RAM opiáceos:</b> estreñimiento, mareo, sedación; dosis altas: depresión respiratoria; uso prolongado: tolerancia</li><li><b>Mejor elección: dextrometorfano</b> (forma farmacéutica y precio)</li><li><b>Seguimiento:</b> a la semana; si no mejora, revisar Dx y adherencia</li></ul></div>
+   </div></div>
+  <div class="group"><h3>Ejercicio: lista de tratamientos</h3>
+  <div class="tbl-wrap"><table><thead><tr><th>Problema</th><th>Consejos</th><th>Sin fármacos</th><th>Fármacos</th><th>Especialista</th></tr></thead><tbody>
+   <tr><td><b>Estreñimiento</b></td><td>Muchos líquidos, fruta y fibra; no forzar la defecación; cuidar la posición</td><td>Ejercicio físico</td><td>Laxante</td><td>No indicado</td></tr>
+   <tr><td><b>Diarrea aguda con deshidratación ligera en niño</b></td><td colspan="4" style="color:var(--muted)">Para completar en clase.</td></tr>
+   <tr><td><b>Herida superficial abierta</b></td><td colspan="4" style="color:var(--muted)">Para completar en clase.</td></tr>
+  </tbody></table></div></div>
+  </div>`;
+}
+
+function renderTopic(t){
+  if(t.id==="bp") return renderBP(t);
+  const idx=T.indexOf(t)+1;
+  let h=`<div class="thead" style="--tc:var(${t.color})"><span class="eyebrow">Tema ${idx}</span><h2>${t.name}</h2><p>${t.intro}</p></div>`;
+  if(t.keys) h+=`<div class="keys" style="--tc:var(${t.color})">`+t.keys.map(k=>`<div class="key"><h4>${k.h}</h4><ul>${k.l.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("")+`</div>`;
+  if(t.extra) h+=`<div style="--tc:var(${t.color})">${t.extra}</div>`;
+  const groups=[...new Set(D.filter(d=>d.t===t.id).map(d=>d.g))];
+  for(const g of groups){
+    h+=`<section class="group" style="--tc:var(${t.color})"><h3>${g}</h3><div class="cards">`+D.filter(d=>d.t===t.id&&d.g===g).map(d=>drugCard(d,"",false)).join("")+`</div></section>`;
+  }
+  return h;
+}
+
+function renderSearch(q){
+  const nq=norm(q);
+  const hits=D.filter(d=>norm(strip([d.n,d.tag,d.g,d.mec,d.esp,d.dosis,d.fc,d.ram,d.ci,d.perla,d.preg].filter(Boolean).join(" "))).includes(nq));
+  let h=`<div class="thead" style="--tc:var(--accent)"><span class="eyebrow">Búsqueda</span><h2>${hits.length} resultado${hits.length===1?"":"s"} para “${q.replace(/</g,"&lt;")}”</h2><p>Las coincidencias aparecen resaltadas dentro de cada tarjeta.</p></div>`;
+  if(!hits.length) return h+`<div class="empty">Sin coincidencias. Prueba con un nombre de fármaco, una bacteria o una RAM.</div>`;
+  for(const t of T){
+    const th=hits.filter(d=>d.t===t.id); if(!th.length) continue;
+    h+=`<section class="group" style="--tc:var(${t.color})"><h3>${t.name}</h3><div class="cards">${th.map(d=>drugCard(d,q,true)).join("")}</div></section>`;
+  }
+  return h;
+}
+
+// ── Flashcards
+let fc={pool:[],i:0,flip:false,filter:"all"};
+function buildFlash(){
+  const known=store.get("fx-known",{});
+  let cards=[];
+  for(const d of D){
+    if(fc.filter!=="all"&&d.t!==fc.filter) continue;
+    for(const [k,l] of [["mec","Mecanismo de acción"],["ram","Reacciones adversas"],["esp","Espectro / usos principales"]]){
+      if(d[k]) cards.push({id:d.n+"|"+k,t:d.t,q:d.n,meta:l,a:d[k]});
+    }
+  }
+  if(fc.filter==="all"||fc.filter==="bp") BPQ.forEach((b,i)=>cards.push({id:"bp"+i,t:"bp",q:b.s,meta:"Buenas prácticas",a:b.o[b.a]+". "+b.e}));
+  fc.all=cards.length;
+  fc.pool=shuffle(cards.filter(c=>!known[c.id]));
+  fc.i=0;fc.flip=false;
+}
+function renderFlash(){
+  const known=store.get("fx-known",{});
+  const chips=[["all","Todo"],...T.map(t=>[t.id,t.short])].map(([id,l])=>`<button class="chip" data-ff="${id}" aria-pressed="${fc.filter===id}">${l}</button>`).join("");
+  let h=`<div class="thead" style="--tc:var(--accent)"><span class="eyebrow">Repaso activo</span><h2>Flashcards</h2><p>Toca la tarjeta para voltearla. Marca “La sé” para sacarla del mazo; “Repasar” la manda al final.</p></div><div class="toolbar">${chips}</div>`;
+  if(!fc.pool.length){
+    return h+`<div class="empty">Dominaste este mazo (${fc.all} tarjetas). <br><br><button class="btn primary" id="fc-reset">Reiniciar mazo</button></div>`;
+  }
+  const c=fc.pool[fc.i%fc.pool.length], t=topic(c.t);
+  const done=fc.all-fc.pool.length;
+  h+=`<div class="flash"><button class="fc${fc.flip?" flip":""}" id="fc-card" style="--tc:var(${t.color})" aria-label="Voltear tarjeta">
+    <div class="face"><span class="meta">${t.short} · ${c.meta}</span><div class="q">${c.q}</div><span class="hint">Toca para ver la respuesta</span></div>
+    <div class="face back"><span class="meta">${c.q}</span><div class="a">${c.a}</div></div></button>
+   <div class="fnav"><button class="btn bad" id="fc-again">Repasar</button><span class="counter">${done} de ${fc.all} dominadas · quedan ${fc.pool.length}</span><button class="btn good" id="fc-know">La sé</button></div>
+   <div class="prog"><i style="width:${fc.all?done/fc.all*100:0}%"></i></div></div>`;
+  return h;
+}
+
+// ── Examen
+let qz=null, qzFilter="all";
+function buildQuiz(){
+  let src=D.filter(d=>d.clave&&(qzFilter==="all"||d.t===qzFilter));
+  let qs=shuffle(src).slice(0,qzFilter==="bp"?0:10).map(d=>{
+    let pool=D.filter(x=>x.t===d.t&&x!==d&&x.g===d.g); if(pool.length<3) pool=D.filter(x=>x.t===d.t&&x!==d);
+    const opts=shuffle([d,...shuffle(pool).slice(0,3)]);
+    return {t:d.t,s:`¿Qué fármaco es? “${d.clave}”`,o:opts.map(x=>x.n),a:opts.indexOf(d),e:`<b>${d.n}:</b> ${d.tag}.`};
+  });
+  if(qzFilter==="all"||qzFilter==="bp"){
+    const b=shuffle(BPQ).slice(0,qzFilter==="bp"?6:2).map(x=>{const o=shuffle(x.o.map((v,i)=>({v,i})));return {t:"bp",s:x.s,o:o.map(z=>z.v),a:o.findIndex(z=>z.i===x.a),e:x.e}});
+    qs=shuffle(qs.concat(b));
+  }
+  qz={qs,i:0,score:0,ans:null};
+}
+function renderQuiz(){
+  const chips=[["all","Todo"],...T.map(t=>[t.id,t.short])].map(([id,l])=>`<button class="chip" data-qf="${id}" aria-pressed="${qzFilter===id}">${l}</button>`).join("");
+  let h=`<div class="thead" style="--tc:var(--accent)"><span class="eyebrow">Autoevaluación</span><h2>Examen rápido</h2><p>Preguntas al azar con pistas tomadas de tus diapositivas. Cada intento es distinto.</p></div><div class="toolbar">${chips}</div><div class="quiz">`;
+  if(qz.i>=qz.qs.length){
+    const best=store.get("fx-best",{}); const k=qzFilter; const pct=Math.round(qz.score/qz.qs.length*100);
+    if(!best[k]||pct>best[k]){best[k]=pct;store.set("fx-best",best)}
+    return h+`<div class="qcard" style="text-align:center"><div class="score">${qz.score}/${qz.qs.length}</div><p>${pct>=80?"Muy bien, dominas este bloque.":pct>=60?"Vas bien; repasa las que fallaste en modo Estudiar.":"Conviene repasar este tema con las flashcards."}</p><p class="counter">Mejor resultado en este filtro: ${best[k]}%</p><button class="btn primary" id="qz-new">Nuevo examen</button></div></div>`;
+  }
+  const q=qz.qs[qz.i], t=topic(q.t);
+  h+=`<div class="qcard" style="--tc:var(${t.color})"><span class="eyebrow">${t.short} · pregunta ${qz.i+1} de ${qz.qs.length}</span><div class="stem">${q.s}</div><div class="opts">`+
+   q.o.map((o,i)=>{let cls="";if(qz.ans!==null){if(i===q.a)cls="ok";else if(i===qz.ans)cls="ko"}return `<button class="opt ${cls}" data-o="${i}" ${qz.ans!==null?"disabled":""}>${o}</button>`}).join("")+`</div>`;
+  if(qz.ans!==null) h+=`<div class="expl">${qz.ans===q.a?"✔ Correcto. ":"✘ Incorrecto. "}${q.e}</div><div class="fnav"><span class="counter">Aciertos: ${qz.score}</span><button class="btn primary" id="qz-next">${qz.i+1<qz.qs.length?"Siguiente":"Ver resultado"}</button></div>`;
+  return h+`</div></div>`;
+}
+
+function render(){
+  document.querySelectorAll(".modes button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===state.mode));
+  $("#nav").hidden = state.mode!=="study";
+  document.querySelector(".layout").style.gridTemplateColumns = state.mode==="study"?"":"minmax(0,1fr)";
+  renderNav();
+  let h="";
+  if(state.mode==="study") h = state.q ? renderSearch(state.q) : renderTopic(topic(state.topic));
+  else if(state.mode==="flash") h=renderFlash();
+  else h=renderQuiz();
+  h+=`<p class="note">Resumen elaborado solo con el texto de tus diapositivas de Farmacología II (Dra. Erika Palacios Rosas). Las tablas que estaban como imagen pueden no estar completas; contrasta dosis con tu bibliografía.</p>`;
+  $("#main").innerHTML=h;
+}
+
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button"); if(!b) return;
+  if(b.dataset.mode){state.mode=b.dataset.mode; if(state.mode==="flash"&&!fc.pool.length&&!fc.all) buildFlash(); if(state.mode==="quiz"&&!qz) buildQuiz(); render(); window.scrollTo(0,0); return}
+  if(b.dataset.t){state.topic=b.dataset.t;state.q="";$("#q").value="";store.set("fx-topic",state.topic);render();window.scrollTo(0,0);return}
+  if(b.dataset.ff){fc.filter=b.dataset.ff;buildFlash();render();return}
+  if(b.id==="fc-card"){fc.flip=!fc.flip;b.classList.toggle("flip",fc.flip);return}
+  if(b.id==="fc-know"){const k=store.get("fx-known",{});k[fc.pool[fc.i%fc.pool.length].id]=1;store.set("fx-known",k);fc.pool.splice(fc.i%fc.pool.length,1);fc.flip=false;render();return}
+  if(b.id==="fc-again"){const c=fc.pool.splice(fc.i%fc.pool.length,1)[0];fc.pool.push(c);fc.flip=false;render();return}
+  if(b.id==="fc-reset"){const k=store.get("fx-known",{});const ids=new Set();buildFlashIds(ids);for(const id of ids)delete k[id];store.set("fx-known",k);buildFlash();render();return}
+  if(b.dataset.qf){qzFilter=b.dataset.qf;buildQuiz();render();return}
+  if(b.dataset.o!==undefined&&qz.ans===null){qz.ans=+b.dataset.o;if(qz.ans===qz.qs[qz.i].a)qz.score++;render();return}
+  if(b.id==="qz-next"){qz.i++;qz.ans=null;render();return}
+  if(b.id==="qz-new"){buildQuiz();render();return}
+});
+function buildFlashIds(set){
+  for(const d of D){ if(fc.filter!=="all"&&d.t!==fc.filter) continue; for(const k of ["mec","ram","esp"]) if(d[k]) set.add(d.n+"|"+k); }
+  if(fc.filter==="all"||fc.filter==="bp") BPQ.forEach((b,i)=>set.add("bp"+i));
+}
+let deb;
+$("#q").addEventListener("input",e=>{clearTimeout(deb);deb=setTimeout(()=>{state.q=e.target.value.trim();if(state.mode!=="study")state.mode="study";render()},140)});
+buildFlash();
+render();
+</script>
+
+</body></html>

@@ -1,0 +1,383 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>5to semestre</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../fonts/g40be026fc2.css">
+<style>
+/* Layout: biblioteca nocturna. Banda superior oscura con trazo de ECG y un estante con los seis lomos (clicables);
+   debajo, cada guía como portada de libro de su color. Al abrir una, la guía original llena la pantalla bajo una barra fina. */
+:root{
+  --bg:#f1f3f2; --paper:#ffffff; --sunk:#e6ebe9; --ink:#16201e; --muted:#5b6865; --line:#d6ddda;
+  --accent:#1f6b58; --night:#0f1a18; --night-2:#16251f; --night-ink:#eef4f1; --night-mut:#9fb3ad; --night-line:#28403a; --brass:#e2b65a;
+  --gastro:#1E6A4E; --imagen:#9a5a00; --oftalmo:#2a62b8; --oto:#b8335a; --psiq:#6c3a63; --ciru:#b5562a;
+  --s-gastro:#2a8a66; --s-imagen:#c27a12; --s-oftalmo:#3b74cc; --s-oto:#cc4670; --s-psiq:#8a4f80; --s-ciru:#c8673a;
+  --shadow:0 1px 2px rgba(22,32,30,.06),0 18px 40px -26px rgba(22,32,30,.45);
+  --f-display:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1312; --paper:#151e1c; --sunk:#1c2826; --ink:#e4ece9; --muted:#9aaba6; --line:#26342f;
+  --accent:#7cc4b2; --night:#08100e; --night-2:#0f1c18; --night-line:#22362f;
+  --gastro:#62C79D; --imagen:#f0b03c; --oftalmo:#7aa7ef; --oto:#f27fa2; --psiq:#d79acb; --ciru:#f0a072;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 40px -24px rgba(0,0,0,.8); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1312; --paper:#151e1c; --sunk:#1c2826; --ink:#e4ece9; --muted:#9aaba6; --line:#26342f;
+  --accent:#7cc4b2; --night:#08100e; --night-2:#0f1c18; --night-line:#22362f;
+  --gastro:#62C79D; --imagen:#f0b03c; --oftalmo:#7aa7ef; --oto:#f27fa2; --psiq:#d79acb; --ciru:#f0a072;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 40px -24px rgba(0,0,0,.8); color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--night)}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.05}
+[hidden]{display:none!important}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.in{max-width:1160px;margin:0 auto}
+.mono{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+
+/* ===== banda nocturna ===== */
+.night{position:relative;overflow:hidden;color:var(--night-ink);background:
+  radial-gradient(900px 420px at 85% 0%,color-mix(in srgb,var(--brass) 14%,transparent),transparent 70%),
+  radial-gradient(700px 400px at 0% 100%,color-mix(in srgb,var(--s-gastro) 22%,transparent),transparent 70%),
+  linear-gradient(180deg,var(--night-2),var(--night));padding-block:48px 0}
+.night::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--night-line) 1px,transparent 1px),linear-gradient(90deg,var(--night-line) 1px,transparent 1px);background-size:28px 28px;opacity:.35;mask-image:linear-gradient(180deg,#000 0%,transparent 85%);-webkit-mask-image:linear-gradient(180deg,#000 0%,transparent 85%);pointer-events:none}
+.night .in{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:24px 48px;align-items:end}
+.eyebrow{color:var(--brass);display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--brass)}
+.night h1{font-size:clamp(2.9rem,7.4vw,5.6rem);font-weight:800;letter-spacing:-.03em;margin-top:14px}
+.night h1 em{font-style:italic;font-weight:500;color:var(--brass)}
+.night p.lede{margin:16px 0 0;color:var(--night-mut);max-width:50ch;font-size:1.08rem}
+.totals{display:flex;flex-wrap:wrap;gap:0;margin-top:26px;border-top:1px solid var(--night-line)}
+.totals div{padding:12px 22px 4px 0;margin-right:22px;border-right:1px solid var(--night-line)}
+.totals div:last-child{border-right:0;margin-right:0}
+.totals b{display:block;font:700 2rem/1 var(--f-display);font-variant-numeric:tabular-nums;color:var(--night-ink)}
+.totals span{font-size:.8rem;color:var(--night-mut)}
+.resume{margin-top:20px;display:inline-flex;align-items:center;gap:10px;border:1px solid color-mix(in srgb,var(--brass) 50%,transparent);background:color-mix(in srgb,var(--brass) 10%,transparent);color:var(--night-ink);padding:9px 16px 9px 12px;border-radius:999px;cursor:pointer;font-weight:600;font-size:.92rem}
+.resume:hover{background:color-mix(in srgb,var(--brass) 20%,transparent)}
+.resume i{width:10px;height:10px;border-radius:3px;background:var(--c)}
+.resume small{color:var(--night-mut);font-weight:500}
+
+/* ECG */
+.ecg{position:absolute;left:52%;right:0;bottom:96px;height:90px;pointer-events:none;opacity:.4}
+.ecg path{fill:none;stroke:var(--brass);stroke-width:1.6;stroke-linejoin:round;stroke-dasharray:2400;stroke-dashoffset:2400;animation:draw 3.2s .3s ease-out forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* estante */
+.shelf-wrap{align-self:end;display:flex;flex-direction:column;align-items:stretch}
+.books{display:flex;align-items:flex-end;justify-content:center;gap:6px;padding:0 10px;min-height:260px}
+.book{--h:220px;position:relative;width:clamp(44px,5.2vw,60px);height:var(--h);border:0;padding:0;cursor:pointer;border-radius:4px 4px 2px 2px;background:
+  linear-gradient(90deg,rgba(0,0,0,.28) 0,rgba(255,255,255,.12) 10%,transparent 22%,transparent 78%,rgba(0,0,0,.25) 100%),var(--sp);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 10px 18px -10px rgba(0,0,0,.8);transform-origin:bottom center;transition:transform .25s cubic-bezier(.3,.7,.3,1.3),filter .2s;color:#fff}
+.book:hover,.book:focus-visible{transform:translateY(-14px) rotate(-2deg);filter:brightness(1.12)}
+.book::before,.book::after{content:"";position:absolute;left:0;right:0;height:3px;background:var(--brass);opacity:.8}
+.book::before{top:16px}.book::after{bottom:30px}
+.book span{position:absolute;inset:26px 0 38px;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;transform:rotate(180deg);font:700 .95rem/1 var(--f-display);letter-spacing:.02em;white-space:nowrap;text-shadow:0 1px 1px rgba(0,0,0,.3)}
+.book em{position:absolute;bottom:8px;left:0;right:0;text-align:center;font:500 .6rem var(--f-mono);letter-spacing:.06em;opacity:.85;font-style:normal}
+.book.lean{transform:rotate(4deg) translateX(4px)}
+.book.lean:hover,.book.lean:focus-visible{transform:translateY(-14px) rotate(1deg)}
+.plank{height:16px;border-radius:3px;background:linear-gradient(180deg,#a9743a,#7b4f24);box-shadow:0 12px 24px -8px rgba(0,0,0,.7)}
+.plank-shadow{height:22px;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent)}
+
+/* ===== herramientas ===== */
+.tools{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-block:12px}
+.tools .in{display:flex;gap:10px 14px;align-items:center;flex-wrap:wrap}
+.sbox{position:relative;flex:1 1 280px;max-width:460px}
+.sbox svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:17px;height:17px;stroke:var(--muted);fill:none;stroke-width:2}
+.sbox input{width:100%;padding:11px 14px 11px 42px;border:1px solid var(--line);border-radius:999px;background:var(--paper);box-shadow:var(--shadow)}
+.sbox input:focus{outline:none;border-color:var(--accent)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px;font-size:.84rem;font-weight:600;cursor:pointer}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.chip:hover{border-color:var(--c)}
+.count{color:var(--muted);font-size:.88rem;margin-left:auto}
+
+/* ===== portadas ===== */
+.shelf{padding-block:30px 64px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:26px 22px}
+.book-card{display:flex;flex-direction:column;background:var(--paper);border-radius:6px 18px 18px 6px;box-shadow:var(--shadow);overflow:hidden;min-width:0;position:relative;transition:transform .25s cubic-bezier(.3,.7,.3,1.2),box-shadow .25s;scroll-margin-top:90px}
+.book-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;background:linear-gradient(90deg,rgba(0,0,0,.22),transparent);z-index:2;pointer-events:none}
+.book-card:hover{transform:translateY(-5px)}
+.book-card.flash{animation:flash 1.2s ease}
+@keyframes flash{30%{box-shadow:0 0 0 4px var(--c),var(--shadow)}}
+.cov{position:relative;min-height:176px;padding:20px 22px 18px 26px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;gap:14px;overflow:hidden;background:
+  repeating-linear-gradient(135deg,rgba(255,255,255,.06) 0 2px,transparent 2px 14px),
+  radial-gradient(120% 120% at 100% 0%,rgba(255,255,255,.18),transparent 55%),var(--sp)}
+.cov .big{position:absolute;right:-18px;bottom:-22px;width:150px;height:150px;opacity:.22;transform:rotate(-8deg)}
+.cov .big svg{width:100%;height:100%;fill:none;stroke:#fff;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.cov .area{font:500 .68rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px;opacity:.92}
+.cov .area::after{content:"";flex:0 0 26px;height:1px;background:currentColor;opacity:.6}
+.cov h2{font-size:1.85rem;font-weight:800;letter-spacing:-.015em;position:relative;max-width:14ch}
+.cov small{display:block;font-size:.84rem;opacity:.88;margin-top:6px;position:relative;max-width:34ch;line-height:1.4}
+.band{height:5px;background:var(--brass);opacity:.85}
+.pg{padding:16px 20px 20px 24px;display:flex;flex-direction:column;gap:14px;flex:1}
+.pg p{margin:0;font-size:.95rem}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.stats div{background:color-mix(in srgb,var(--c) 9%,var(--paper));border-radius:10px;padding:9px 11px;min-width:0}
+.stats b{display:block;font:800 1.45rem/1 var(--f-display);font-variant-numeric:tabular-nums;color:color-mix(in srgb,var(--c) 85%,var(--ink))}
+.stats span{font-size:.74rem;color:var(--muted)}
+.feat{display:flex;flex-wrap:wrap;gap:6px}
+.feat span{font-size:.77rem;padding:3px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+details.toc{border-top:1px dashed var(--line);padding-top:10px}
+details.toc summary{cursor:pointer;font-size:.88rem;font-weight:600;color:var(--muted);list-style:none;display:flex;align-items:center;gap:8px}
+details.toc summary::-webkit-details-marker{display:none}
+details.toc summary::before{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform .15s}
+details.toc[open] summary::before{transform:rotate(45deg)}
+details.toc summary:hover{color:var(--ink)}
+details.toc ol{margin:10px 0 0;padding-left:1.6em;font-size:.86rem;color:var(--muted);display:grid;gap:3px}
+details.toc li::marker{color:var(--c);font:500 .74rem var(--f-mono)}
+.open{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px;border:0;border-radius:12px;padding:12px 16px;background:var(--ink);color:var(--paper);font-weight:700;cursor:pointer;transition:background .2s}
+.open:hover{background:color-mix(in srgb,var(--c) 75%,var(--ink))}
+.open svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.open:hover svg{transform:translateX(4px)}
+.empty{grid-column:1/-1;padding:44px 20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px;background:var(--paper)}
+mark{background:color-mix(in srgb,var(--c,var(--accent)) 24%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+.cov mark{background:rgba(255,255,255,.3);color:#fff}
+.extra{padding-block:0 56px}
+.xhead{display:flex;align-items:baseline;gap:8px 18px;flex-wrap:wrap;border-top:2px solid var(--ink);padding-top:18px;margin-bottom:18px}
+.xhead h2{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:800;letter-spacing:-.02em}
+.xhead h2 em{font-style:italic;font-weight:500;color:var(--accent)}
+.xhead p{margin:0;color:var(--muted)}
+.xlist{display:grid;gap:12px}
+.xitem{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px 18px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow);text-align:left;width:100%;cursor:pointer;transition:border-color .2s,transform .2s}
+.xitem:hover{border-color:var(--accent);transform:translateY(-2px)}
+.xitem .xi{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 14%,var(--paper));color:var(--accent)}
+.xitem .xi svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.xitem h3{font-size:1.35rem;font-weight:700}
+.xitem p{margin:4px 0 0;font-size:.92rem;color:var(--muted)}
+.xmeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.xmeta span{font-size:.76rem;padding:2px 9px;border-radius:999px;background:var(--sunk);color:var(--muted)}
+.xmeta b{color:var(--ink);font-variant-numeric:tabular-nums}
+.xgo{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--accent);white-space:nowrap}
+.xgo svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:560px){.xitem{grid-template-columns:auto minmax(0,1fr)}.xgo{grid-column:2}.xitem .xi{width:44px;height:44px}}
+footer{color:var(--muted);font-size:.85rem;padding-block:0 36px}
+footer .in{border-top:1px solid var(--line);padding-top:16px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+/* ===== visor ===== */
+.viewer{position:fixed;inset:0;z-index:30;background:var(--bg);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+.vbar{flex:none;display:flex;align-items:center;gap:8px;min-height:52px;padding-block:6px;background:var(--night);color:var(--night-ink);box-shadow:inset 0 -3px 0 var(--sp)}
+.vbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--night-line);background:transparent;color:var(--night-ink);border-radius:999px;padding:6px 12px;cursor:pointer;font-size:.88rem;font-weight:600;white-space:nowrap}
+.vbtn:hover{background:rgba(255,255,255,.08)}
+.vbtn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.vtitle{flex:1;min-width:0;display:flex;align-items:center;gap:10px;font-family:var(--f-display);font-weight:700;font-size:1.12rem;white-space:nowrap;overflow:hidden}
+.vtitle i{width:12px;height:18px;border-radius:2px;background:var(--sp);flex:none}
+.vtitle span{overflow:hidden;text-overflow:ellipsis}
+.vnav{display:flex;gap:6px}
+.frames{flex:1;position:relative;min-height:0}
+.frames iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg)}
+
+@media (max-width:860px){
+  .night .in{grid-template-columns:minmax(0,1fr)}
+  .books{min-height:200px;justify-content:center}
+  .book{--h:170px}
+  .ecg{display:none}
+}
+@media (max-width:560px){
+  .night{padding-block:32px 0}
+  .totals div{padding-right:14px;margin-right:14px}
+  .totals b{font-size:1.6rem}
+  .book{width:42px;--h:150px}
+  .book span{font-size:.8rem}
+  .vbtn .lbl{display:none}
+  .vbtn{padding:7px 10px}
+  .count{margin-left:0}
+  .chips{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.ecg path{stroke-dashoffset:0}}
+</style>
+
+<header class="night gut">
+  <svg class="ecg" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60 H180 l10 -6 l10 6 H260 l8 4 l10 -52 l12 74 l8 -26 H360 l14 -10 l14 10 H560 l10 -6 l10 6 H640 l8 4 l10 -52 l12 74 l8 -26 H740 l14 -10 l14 10 H940 l10 -6 l10 6 H1020 l8 4 l10 -52 l12 74 l8 -26 H1120 l14 -10 l14 10 H1200"/></svg>
+  <div class="in">
+    <div style="padding-bottom:40px">
+      <div class="mono eyebrow">Medicina · apuntes de Marcos</div>
+      <h1>5to<br><em>semestre</em></h1>
+      <p class="lede">Tus seis guías de estudio en un solo estante. Elige un libro y se abre completo, con sus resúmenes, imágenes, tarjetas y exámenes.</p>
+      <div class="totals" id="totals"></div>
+      <button class="resume" id="resume" type="button" hidden></button>
+    </div>
+    <div class="shelf-wrap">
+      <div class="books" id="books"></div>
+      <div class="plank"></div>
+      <div class="plank-shadow"></div>
+    </div>
+  </div>
+</header>
+
+<div class="tools gut">
+  <div class="in">
+    <label class="sbox" for="q"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" placeholder="Buscar un tema: Barrett, Bosniak, epistaxis, TOC…" aria-label="Buscar materia o tema"></label>
+    <div class="chips" id="chips"></div>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<main class="shelf gut"><div class="in"><div class="grid" id="grid"></div></div></main>
+<section class="extra gut" aria-labelledby="xh"><div class="in">
+  <div class="xhead"><h2 id="xh">Material <em>extra</em></h2><p>Repasos sueltos que no pertenecen a una materia.</p></div>
+  <div class="xlist" id="xlist"></div>
+</div></section>
+<footer class="gut"><div class="in"><span>Cada guía es la original, sin cambios.</span><span>Tu progreso (temas repasados, puntajes) se guarda en este navegador.</span></div></footer>
+
+<div class="viewer" id="viewer" hidden>
+  <div class="vbar gut">
+    <button class="vbtn" id="vBack" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="lbl">Inicio</span></button>
+    <div class="vtitle"><i></i><span id="vTitle"></span></div>
+    <div class="vnav">
+      <button class="vbtn" id="vPrev" type="button" aria-label="Guía anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="vbtn" id="vNext" type="button" aria-label="Guía siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      <button class="vbtn" id="vFull" type="button" aria-label="Pantalla completa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+    </div>
+  </div>
+  <div class="frames" id="frames"></div>
+</div>
+
+<script>
+const ICONS={
+  gastro:'<path d="M14 3v4c0 2 2 3 2 6a7 7 0 0 1-7 7H6"/><path d="M14 7c4 0 5 3 5 6 0 5-4 8-9 8"/><path d="M10 3v5c0 2-2 3-2 5"/>',
+  imagen:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 6v12M8.5 8.5c-2 1-2.5 3-2.5 5M15.5 8.5c2 1 2.5 3 2.5 5M9 11h-2M17 11h-2M9 14h-2.5M17.5 14H15"/>',
+  oftalmo:'<path d="M2 12c3-5 6.5-7 10-7s7 2 10 7c-3 5-6.5 7-10 7s-7-2-10-7z"/><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/>',
+  oto:'<path d="M7 9a5 5 0 0 1 10 0c0 3-2 4-3 5s-1 3-3 4-3-1-3-2"/><path d="M10 9a2 2 0 0 1 4 0c0 1.5-2 2-2 3.5"/>',
+  ciru:'<path d="M3 21l7.5-7.5"/><path d="M9 12l9.5-9.5a2.1 2.1 0 0 1 3 3L12 15z"/><path d="M14 7l3 3"/>',
+  psiq:'<path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V5a3 3 0 0 0-3-1z"/><path d="M15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/><path d="M12 9h2M12 14h3"/>'
+};
+const G=[
+ {id:"cirugia",color:"var(--ciru)",area:"Cirugía",title:"Repaso de Cirugía",sub:"Coloproctología · Gastroenterología · Urología",
+  desc:"Siete temas de tus clases con resumen, imágenes, casos clínicos paso a paso, decisiones de tratamiento y ejercicios de estadificación TNM.",
+  stats:[["7","temas"],["74","imágenes"],["124","preguntas"]],
+  feat:["Casos clínicos","Decisiones de tratamiento","Juego contrarreloj","Atlas de imágenes","Pomodoro"],
+  toc:["Enfermedad hemorroidal","Fisura anal","Fístula anal","Quiste pilonidal","Sangrado de tubo digestivo alto y bajo","Cáncer de testículo","Cáncer de pene"]},
+ {id:"gastro",color:"var(--gastro)",area:"Gastroenterología",title:"Repaso Gastro Completo",sub:"Esófago y estómago · Intestino · Hígado, vía biliar y páncreas",
+  desc:"Tres repasos de clase combinados (LMR3053, UDLAP), con fichas por tema, algoritmos interactivos, figuras ampliables y cifras clave.",
+  stats:[["28","temas"],["3","bloques"],["28","figuras"]],
+  feat:["Simulacro","Tarjetas","Cifras","Buscador","Algoritmos"],
+  toc:["ERGE y trastornos motores del esófago","Acalasia","Esófago de Barrett","Enfermedad ácido-péptica","Dispepsia funcional","Gastroparesia","Helicobacter pylori","Sangrado de tubo digestivo alto","Diarrea aguda","Diarrea crónica","Ciclosporiasis","Enfermedad celiaca","Enfermedad de Crohn","Colitis ulcerosa (CUCI)","SII y trastornos intestinales","Estreñimiento crónico","Hemorragia digestiva baja","Pruebas de función hepática alteradas","Hepatitis virales A a E","Hepatitis autoinmune","Colangitis biliar primaria","MASLD","Cirrosis","Hipertensión portal: Baveno VIII","Litiasis biliar","Colangitis aguda: Tokio 2018","Pancreatitis aguda","Detección de cáncer GI (AMG)"]},
+ {id:"imagenologia",color:"var(--imagen)",area:"Imagenología",title:"Imagenología 5º semestre",sub:"Física · Neuro · Tórax · Abdomen · Genitourinario · Musculoesquelético",
+  desc:"Tus apuntes de Notion con las placas de cada clase, complementos del manual CTO Radiología y tablas rápidas para el examen.",
+  stats:[["354","imágenes"],["474","flashcards"],["269","preguntas"]],
+  feat:["39 temas","Examen","Tablas rápidas","Sección CTO","Visor de placas"],
+  toc:["Física y modalidades: ecografía, Doppler, RM, contrastes","Neurorradiología: EVC, HSA, edema, tumores","Tórax: telerradiografía, patrones, neumonía, EPOC","Derrame pleural, neumotórax, atelectasias, neumomediastino","Abdomen: íleo, obstrucción, apendicitis","Vías biliares, hígado, colecistitis, lesiones hepáticas","Riñón y vejiga, patología renal, Bosniak","Pelvis femenina y patología ginecológica","Fracturas, Salter-Harris, tumores óseos","Mama: mastografía y BI-RADS"]},
+ {id:"oftalmo",color:"var(--oftalmo)",area:"Oftalmología",title:"Guía de Oftalmología",sub:"Órbita · Párpado y lágrima · Globo · Retina · Patologías · Exploración",
+  desc:"Resumen de tus apuntes en seis bloques, con esquemas anatómicos dibujados, datos clave resaltados y un juego para practicar campos visuales.",
+  stats:[["43","temas"],["6","bloques"],["13","esquemas"]],
+  feat:["Tarjetas","Quiz","Juego de campos visuales","Progreso por tema"],
+  toc:["Órbita y músculos","Párpado, lágrima y conjuntiva","Globo ocular","Retina y vía visual","Patologías","Refracción, historia y exploración"]},
+ {id:"otorrino",color:"var(--oto)",area:"Otorrinolaringología",title:"Otorrino de bolsillo",sub:"Cavidad oral y faringe · Laringe · Nariz y senos paranasales",
+  desc:"Tus apuntes de clase organizados por región anatómica, con perlas de examen, alertas clínicas, ilustraciones y repaso mezclado.",
+  stats:[["13","temas"],["3","regiones"],["35","figuras"]],
+  feat:["Tarjetas","Quiz por tema","Repaso mezclado","Perlas de examen"],
+  toc:["Anatomía de cavidad oral, glándulas y faringe","Infecciones de faringe","SAOS","Laringe y patología benigna","CROUP y diferenciales","Laringomalacia y estridor congénito","Papilomatosis, laringitis y cáncer de laringe","Sx Disfónico","Cuerpos extraños nasales y rinosinusitis","Rinosinusitis fúngica, sistémicas y complicaciones","Trauma nasal y epistaxis","Desviación septal y tumores nasales","Repaso"]},
+ {id:"psiquiatria",color:"var(--psiq)",area:"Psiquiatría",title:"Psiquiatría clínica",sub:"Ansiedad · Bipolar · Psicosis · Conducta alimentaria",
+  desc:"Presentaciones de clase ordenadas por tema: definición, criterios DSM-5, epidemiología, fisiopatología y casos clínicos con respuesta.",
+  stats:[["13","temas"],["41","figuras"],["DSM-5","criterios"]],
+  feat:["Casos clínicos","Quiz","Tarjetas","Modo memoria","Explorador neuro"],
+  toc:["Bases de la ansiedad","Fobia específica y social","Pánico y agorafobia","Ansiedad generalizada","TOC y relacionados","TEPT y estrés agudo","Síntomas somáticos","Ansiedad por enfermedad","Conversión (TSNF)","Trastorno facticio","Trastorno bipolar I y II","Esquizofrenia y psicosis","Conducta alimentaria"]}
+];
+const EXTRA=[
+  {id:"esofago",title:"Repaso Esófago y Estómago",desc:"Ocho artículos de clase: ERGE y motilidad, acalasia, Barrett, úlcera péptica, dispepsia funcional, gastroparesia, H. pylori y sangrado de tubo digestivo alto.",stats:[["8","temas"],["212","tarjetas"],["172","preguntas"],["9","algoritmos"]],tags:"esofago estomago erge acalasia barrett ulcera peptica dispepsia gastroparesia pylori stda sangrado simulacro cifras"},
+  {id:"hepatobiliar",title:"Repaso Hepatobiliar Bloque III",desc:"Los 12 artículos troncales del Bloque III: pruebas hepáticas, hepatitis virales y autoinmune, CBP, MASLD, cirrosis y Baveno VIII, litiasis, colangitis (Tokio 2018), pancreatitis aguda y cáncer GI.",stats:[["11","temas"],["264","tarjetas"],["264","preguntas"],["22","algoritmos"]],tags:"higado hepatico biliar pfh hepatitis autoinmune cbp masld cirrosis baveno portal litiasis colangitis tokio pancreatitis cancer simulacro cifras"},
+  {id:"duelo",title:"Duelo Gastro",desc:"Juego por equipos para el parcial: tablero de 7 temas (diarrea aguda y crónica, ciclosporiasis, celiaquía, Crohn, SII y Roma V, estreñimiento), ronda relámpago y modo estudio.",stats:[["111","preguntas"],["7","temas"],["51","relámpagos"]],tags:"juego equipos tablero diarrea ciclosporiasis cyclospora celiaquia crohn sii roma estrenimiento relampago"},
+  {id:"quiz-hepatico",title:"Quiz de pruebas hepáticas",desc:"50 preguntas sobre el artículo de Kwo et al. (Gastroenterology 2026): aminotransferasas, FA y colestasis, factor R, fibrosis, escalas pronósticas, DILI y más. Incluye el juego Contrarreloj y un Pomodoro.",stats:[["50","preguntas"],["12","temas"],["60 s","contrarreloj"]],tags:"quiz pfh pruebas hepaticas alt ast fosfatasa colestasis factor r fib-4 meld child maddrey lille dili kwo contrarreloj pomodoro"}
+];
+const ALL=()=>G.concat(EXTRA);
+const XICONS={duelo:'<path d="M7 9h10a4 4 0 0 1 4 4v3a2 2 0 0 1-3.4 1.4L15 15H9l-2.6 2.4A2 2 0 0 1 3 16v-3a4 4 0 0 1 4-4z"/><path d="M8 11v3M6.5 12.5h3"/><circle cx="16" cy="12" r=".6"/><circle cx="17.5" cy="13.8" r=".6"/>'};
+const XICON='<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9.5 13h6M12.5 10v6"/>';
+const KEY={imagenologia:"imagen",otorrino:"oto",psiquiatria:"psiq",cirugia:"ciru"};
+const sk=g=>KEY[g.id]||g.id;
+const SPINE={cirugia:["Cirugía","CIR"],gastro:["Gastro","GI"],imagenologia:["Imagenología","RX"],oftalmo:["Oftalmología","OFT"],otorrino:["Otorrino","ORL"],psiquiatria:["Psiquiatría","PSQ"]};
+const HEIGHTS=[208,236,250,222,198,230];
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+function hl(t,q){if(!q)return esc(t);const n=norm(t),i=n.indexOf(q);if(i<0)return esc(t);return esc(t.slice(0,i))+"<mark>"+esc(t.slice(i,i+q.length))+"</mark>"+esc(t.slice(i+q.length))}
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+G.forEach(g=>{g.sp="var(--s-"+sk(g)+")"});EXTRA.forEach(x=>{x.sp="var(--accent)";x.area="Material extra"});
+
+/* estante y totales */
+$("#books").innerHTML=G.map((g,i)=>`<button class="book${i===4?" lean":""}" type="button" data-open="${g.id}" style="--sp:${g.sp};--h:${HEIGHTS[i]}px" aria-label="Abrir ${esc(g.title)}"><span>${esc(SPINE[g.id][0])}</span><em>${esc(SPINE[g.id][1])}</em></button>`).join("");
+const num=(id,label)=>{const g=G.find(x=>x.id===id);const s=g.stats.find(s=>s[1]===label);return s?+s[0]:0};
+const temas=num("cirugia","temas")+num("gastro","temas")+39+num("oftalmo","temas")+num("otorrino","temas")+num("psiquiatria","temas");
+const imgs=num("cirugia","imágenes")+num("gastro","figuras")+num("imagenologia","imágenes")+num("otorrino","figuras")+num("psiquiatria","figuras");
+$("#totals").innerHTML=`<div><b>${G.length}</b><span>guías</span></div><div><b>${temas}</b><span>temas</span></div><div><b>${imgs}</b><span>imágenes y figuras</span></div>`;
+$("#chips").innerHTML=G.map(g=>`<button class="chip" type="button" data-jump="${g.id}" style="--c:${g.color}"><i></i>${esc(g.area==="Otorrinolaringología"?"Otorrino":g.area==="Gastroenterología"?"Gastro":g.area)}</button>`).join("");
+
+function showResume(){
+  const id=store.get("biblio-last"),g=ALL().find(x=>x.id===id);const b=$("#resume");
+  if(!g){b.hidden=true;return}
+  b.style.setProperty("--c",g.sp);b.dataset.open=g.id;
+  b.innerHTML=`<i></i>Seguir con ${esc(g.title)} <small>· última abierta</small>`;b.hidden=false;
+}
+
+function render(){
+  const q=norm($("#q").value.trim());
+  const list=G.filter(g=>!q||norm([g.area,g.title,g.sub,g.desc,...g.feat,...g.toc].join(" ")).includes(q));
+  $("#count").textContent=list.length===G.length?G.length+" guías":list.length+" de "+G.length+" guías";
+  if(!list.length){$("#grid").innerHTML='<div class="empty">Ninguna guía menciona «'+esc($("#q").value)+'». Prueba con otra palabra o el nombre de la materia.</div>';return}
+  $("#grid").innerHTML=list.map(g=>{
+    const hits=q?g.toc.filter(t=>norm(t).includes(q)):[];
+    return `<article class="book-card" id="g-${g.id}" style="--c:${g.color};--sp:${g.sp}">
+      <div class="cov">
+        <div class="big" aria-hidden="true"><svg viewBox="0 0 24 24">${ICONS[sk(g)]}</svg></div>
+        <div class="area">${esc(g.area)}</div>
+        <div><h2>${hl(g.title,q)}</h2><small>${hl(g.sub,q)}</small></div>
+      </div>
+      <div class="band"></div>
+      <div class="pg">
+        <p>${hl(g.desc,q)}</p>
+        <div class="stats">${g.stats.map(s=>`<div><b>${s[0]}</b><span>${s[1]}</span></div>`).join("")}</div>
+        <div class="feat">${g.feat.map(f=>`<span>${hl(f,q)}</span>`).join("")}</div>
+        <details class="toc"${hits.length?" open":""}><summary>${hits.length?hits.length+" tema"+(hits.length>1?"s":"")+" coincide"+(hits.length>1?"n":""):"Ver contenido ("+g.toc.length+")"}</summary>
+          <ol>${(hits.length?hits:g.toc).map(t=>`<li>${hl(t,q)}</li>`).join("")}</ol></details>
+        <button class="open" type="button" data-open="${g.id}"><span>Abrir guía</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div></article>`}).join("");
+}
+function renderExtra(){
+  const q=norm($("#q").value.trim());
+  const list=EXTRA.filter(x=>!q||norm(x.title+" "+x.desc+" "+x.tags).includes(q));
+  $(".extra").hidden=!!q&&!list.length;
+  $("#xlist").innerHTML=list.map(x=>`<button class="xitem" type="button" data-open="${x.id}"><span class="xi" aria-hidden="true"><svg viewBox="0 0 24 24">${XICONS[x.id]||XICON}</svg></span><span><h3>${hl(x.title,q)}</h3><p>${hl(x.desc,q)}</p><span class="xmeta">${x.stats.map(s=>`<span><b>${s[0]}</b> ${s[1]}</span>`).join("")}</span></span><span class="xgo">Abrir<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button>`).join("");
+}
+$("#q").addEventListener("input",()=>{render();renderExtra()});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-open]");if(b){go(b.dataset.open);return}
+  const j=e.target.closest("[data-jump]");
+  if(j){if($("#q").value){$("#q").value="";render()}const el=document.getElementById("g-"+j.dataset.jump);if(el){el.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash")}}
+});
+
+const frames={};
+let current=null,lastScroll=0;
+function show(id){
+  const g=ALL().find(x=>x.id===id);
+  if(!g){hideViewer();return}
+  const isX=!G.includes(g);$("#vPrev").hidden=isX;$("#vNext").hidden=isX;
+  if(!current)lastScroll=window.scrollY;
+  current=id;store.set("biblio-last",id);
+  const v=$("#viewer");v.style.setProperty("--sp",g.sp);
+  $("#vTitle").textContent=g.title;
+  if(!frames[id]){const f=document.createElement("iframe");f.src=id+"/index.html";f.title=g.title;f.setAttribute("allow","fullscreen");frames[id]=f;$("#frames").appendChild(f)}
+  for(const k in frames)frames[k].hidden=k!==id;
+  v.hidden=false;document.documentElement.style.overflow="hidden";
+  document.title=g.title+" · 5to semestre";
+}
+function hideViewer(){
+  $("#viewer").hidden=true;document.documentElement.style.overflow="";
+  if(current){current=null;requestAnimationFrame(()=>window.scrollTo(0,lastScroll))}
+  document.title="5to semestre";showResume();
+}
+function go(id){if(location.hash.slice(1)===id)show(id);else location.hash=id}
+function route(){const h=location.hash.slice(1);if(ALL().some(g=>g.id===h))show(h);else hideViewer()}
+window.addEventListener("hashchange",route);
+$("#vBack").addEventListener("click",()=>{try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}hideViewer()});
+function step(d){const i=G.findIndex(g=>g.id===current);go(G[(i+d+G.length)%G.length].id)}
+$("#vPrev").addEventListener("click",()=>step(-1));
+$("#vNext").addEventListener("click",()=>step(1));
+$("#vFull").addEventListener("click",()=>{const el=$("#viewer");try{const p=el.requestFullscreen?el.requestFullscreen():null;if(p&&p.catch)p.catch(()=>{})}catch(e){}});
+if(!document.fullscreenEnabled)$("#vFull").hidden=true;
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&current&&!document.fullscreenElement)$("#vBack").click()});
+render();renderExtra();route();showResume();
+</script>
+
+</body></html>

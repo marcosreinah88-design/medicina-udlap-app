@@ -130,10 +130,19 @@ ipcMain.on("med:schedule", (e, items) => {
   saveNotif(); tickNotif();
 });
 
-// links externos (Drive, PubMed, la corona, etc.) se abren en el navegador
+// la corona abre la app de Plan de Volumen si está instalada; si no, su página
+const PLAN_APPS = ["/Applications/Plan de Volumen.app", path.join(require("os").homedir(), "Applications", "Plan de Volumen.app")];
+function openOut(url) {
+  if (/marcosreinah88-design\.github\.io\/plan-volumen|claude\.ai\/artifact\/Rk2qXH6zwGc8jRwbc142mK/.test(url)) {
+    const appPath = PLAN_APPS.find((p) => fs.existsSync(p));
+    if (appPath) { shell.openPath(appPath).then((err) => { if (err) shell.openExternal(url); }); return; }
+  }
+  shell.openExternal(url);
+}
+// links externos (Drive, PubMed, etc.) se abren en el navegador
 app.on("web-contents-created", (_e, wc) => {
-  wc.setWindowOpenHandler(({ url }) => { if (isInternal(url)) return { action: "allow" }; shell.openExternal(url); return { action: "deny" }; });
-  wc.on("will-frame-navigate", (e) => { if (!isInternal(e.url)) { e.preventDefault(); shell.openExternal(e.url); } });
+  wc.setWindowOpenHandler(({ url }) => { if (isInternal(url)) return { action: "allow" }; openOut(url); return { action: "deny" }; });
+  wc.on("will-frame-navigate", (e) => { if (!isInternal(e.url)) { e.preventDefault(); openOut(e.url); } });
 });
 
 function createWindow(hidden) {

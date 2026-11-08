@@ -1490,6 +1490,33 @@ const Cal=(()=>{
     for(const d in days)days[d].sort((a,b)=>a.e.date.localeCompare(b.e.date)||order[a.kind]-order[b.kind]);
     return days;
   }
+  /* App de Mac: le pasa a la app los avisos de los próximos días (en la página web no hace nada) */
+  function notify(days){
+    if(!window.medApp||!window.medApp.schedule)return;
+    const out=[],now=Date.now(),t=today();
+    const at=(d,h,m)=>{const x=parse(d);x.setHours(h,m||0,0,0);return x.getTime()};
+    const add1=(id,when,title,body,route)=>{if(when>now-5*6e4&&when<now+45*864e5)out.push({id,at:when,title,body,route:route||"calendario"})};
+    for(let k=0;k<21;k++){const d=ymd(add(parse(t),k)),its=days[d]||[];
+      const ex=its.filter(x=>x.kind==="exam"),tasks=its.filter(x=>x.kind!=="exam");
+      ex.forEach(x=>add1("exhoy:"+x.e.id,at(d,7),"Hoy es tu examen de "+x.e.name,"¡Mucho éxito, Marcos!"));
+      if(tasks.length){
+        const list=tasks.slice(0,3).map(x=>"• "+x.text).join("\n")+(tasks.length>3?"\n+ "+(tasks.length-3)+" más":"");
+        add1("plan:"+d,at(d,8),"Hoy toca estudiar ("+tasks.length+")",list);
+        const left=tasks.filter(x=>!state.done[x.key]);
+        if(left.length)add1("faltan:"+d+":"+left.length,at(d,21),(left.length===1?"Te falta 1 pendiente de hoy":"Te faltan "+left.length+" pendientes de hoy"),left.slice(0,3).map(x=>"• "+x.text).join("\n"));
+      }}
+    for(const e of state.exams){if(e.date<t)continue;
+      const n7=ymd(add(parse(e.date),-7)),n1=ymd(add(parse(e.date),-1));
+      add1("ex7:"+e.id+":"+e.date,at(n7,20),"Examen de "+e.name+" en 7 días",longDate(e.date));
+      add1("ex1:"+e.id+":"+e.date,at(n1,20),"Mañana es tu examen de "+e.name,"Duerme bien. Repaso general hoy y a descansar.");}
+    for(const ev of UDLAP){if(ev.s<t||!(UDLAP_KIND[ev.k].bar||ev.k==="inscripciones"))continue;
+      add1("ud:"+ev.s+":"+ev.k,at(ymd(add(parse(ev.s),-1)),19),"Mañana: "+ev.t,ev.e?uRange(ev):longDate(ev.s));}
+    for(const g of FBA){if((g.e||g.s)<t)continue;
+      if(g.t){add1("fba:"+g.s,at(g.s,9),"Aztecas · "+g.t,"Fecha tentativa: "+nice(g.s)+" o "+nice(g.e)+". Revisa udlap.mx/fba");continue}
+      const [h,m]=g.h.split(":").map(Number);
+      add1("fba:"+g.s,at(g.s,h,m)-2*36e5,(g.loc?"Hoy juegan los Aztecas vs ":"Hoy juegan los Aztecas en ")+g.r,g.h+" h · "+g.sede);}
+    window.medApp.schedule(out);
+  }
   function taskHTML(it){
     if(it.kind==="exam")return `<div class="task exam" style="--c:${it.e.color}"><div class="tx"><b>${esc(it.text)}</b><small>¡Mucho éxito!</small></div></div>`;
     const done=!!state.done[it.key];
@@ -1527,6 +1554,7 @@ const Cal=(()=>{
         ${tot?`<div class="prog"><i style="width:${Math.round(dn/tot*100)}%"></i></div>`:""}
       </div>`}).join(""):`<p class="empty-msg">Aún no agregas exámenes.</p>`;
     renderMonth(days);
+    try{notify(days)}catch(e){}
     const upU=UDLAP.filter(ev=>(ev.e||ev.s)>=t&&ev.k!=="colegios"&&ev.k!=="verano").slice(0,8);
     {const nx=upU[0];$("#calUdSub").textContent=nx?(diff(t,nx.s)<=0?"ahora: "+UDLAP_KIND[nx.k].l:"próximo: "+nice(nx.s)):"";}
     $("#calUdlap").innerHTML=upU.length?upU.map(ev=>{const n=diff(t,ev.s);return `<div class="urow" style="--u:${UDLAP_KIND[ev.k].c}"><span class="uk">${esc(UDLAP_KIND[ev.k].l)}</span><b>${esc(ev.t)}</b><small>${esc(uRange(ev))} · ${n<=0?"en curso":rel(n).toLowerCase()}</small></div>`}).join(""):`<p class="empty-msg">No hay más fechas cargadas.</p>`;
@@ -1642,9 +1670,10 @@ const Cal=(()=>{
   document.addEventListener("visibilitychange",()=>{if(!document.hidden&&today()!==lastDay){lastDay=today();render()}});
 
   connect();
-  return {open,close};
+  return {open,close,refresh:()=>render()};
 })();
 window.Cal=Cal;
+if(window.medApp)setInterval(()=>{try{Cal.refresh()}catch(e){}},3*36e5);
 if(location.hash==="#calendario")Cal.open();
 </script>
 <script>

@@ -1,7 +1,7 @@
 // Medicina UDLAP (Marcos David Reinah Guzmán)
 // Todo el contenido viene dentro de la app (carpeta site/) y funciona sin internet.
 // Cuando hay internet, la app revisa UPDATE_URL y baja solo los archivos que cambiaron.
-const { app, BrowserWindow, protocol, net, shell, Menu } = require("electron");
+const { app, BrowserWindow, protocol, net, shell, Menu, Notification, ipcMain } = require("electron");
 const path = require("path");
 const fs = require("fs");
 const crypto = require("crypto");
@@ -83,6 +83,7 @@ async function checkForUpdate(win) {
     }
     fs.writeFileSync(path.join(CACHE, "manifest.json"), JSON.stringify(remote));
     activeMan = remote;
+    if (changed) fire("Medicina UDLAP se actualizó", "Hay contenido nuevo en tu repositorio. Abre la app para verlo.", "");
     if (win && !win.isDestroyed()) {
       win.webContents.session.clearCache();
       win.webContents.executeJavaScript(`(()=>{if(document.getElementById("appUpd"))return;const d=document.createElement("div");d.id="appUpd";
@@ -94,17 +95,53 @@ async function checkForUpdate(win) {
   finally { updating = false; }
 }
 
+/* ===== notificaciones =====
+   La página (calendario) manda la lista de avisos de las próximas semanas; aquí se guardan y se lanzan a su hora,
+   aunque la ventana esté cerrada. Con "Abrir al iniciar sesión" la app queda trabajando en segundo plano. */
+let NOTIF_FILE, notif = { items: [], fired: [], enabled: true };
+const saveNotif = () => { try { fs.writeFileSync(NOTIF_FILE, JSON.stringify(notif)); } catch (e) {} };
+function showWindow(route) {
+  let w = BrowserWindow.getAllWindows()[0];
+  if (!w) w = createWindow();
+  if (route) w.webContents.executeJavaScript(`location.hash=${JSON.stringify(route)}`).catch(() => {});
+  if (w.isMinimized()) w.restore();
+  w.show(); w.focus();
+}
+function fire(title, body, route) {
+  if (!Notification.isSupported()) return;
+  const n = new Notification({ title, body, silent: false });
+  n.on("click", () => showWindow(route));
+  n.show();
+}
+function tickNotif() {
+  if (!notif.enabled) return;
+  const now = Date.now(), fired = new Set(notif.fired);
+  let changed = false;
+  for (const it of notif.items) {
+    if (fired.has(it.id) || it.at > now || it.at < now - 3 * 3600e3) continue;
+    fire(it.title, it.body, it.route); fired.add(it.id); changed = true;
+  }
+  if (changed) { notif.fired = [...fired].slice(-500); saveNotif(); }
+}
+ipcMain.on("med:schedule", (e, items) => {
+  if (!Array.isArray(items)) return;
+  notif.items = items.filter((x) => x && typeof x.id === "string" && typeof x.at === "number" && typeof x.title === "string")
+    .slice(0, 400).map((x) => ({ id: x.id.slice(0, 120), at: x.at, title: x.title.slice(0, 120), body: String(x.body || "").slice(0, 400), route: String(x.route || "calendario").slice(0, 80) }));
+  saveNotif(); tickNotif();
+});
+
 // links externos (Drive, PubMed, la corona, etc.) se abren en el navegador
 app.on("web-contents-created", (_e, wc) => {
   wc.setWindowOpenHandler(({ url }) => { if (isInternal(url)) return { action: "allow" }; shell.openExternal(url); return { action: "deny" }; });
   wc.on("will-frame-navigate", (e) => { if (!isInternal(e.url)) { e.preventDefault(); shell.openExternal(e.url); } });
 });
 
-function createWindow() {
+function createWindow(hidden) {
   const win = new BrowserWindow({
+    show: !hidden,
     width: 1320, height: 900, minWidth: 380, minHeight: 500,
     title: "Medicina UDLAP", backgroundColor: "#003b2a",
-    webPreferences: { contextIsolation: true, sandbox: true, spellcheck: false }
+    webPreferences: { contextIsolation: true, sandbox: true, spellcheck: false, preload: path.join(__dirname, "preload.js") }
   });
   win.loadURL("app://medicina/index.html");
   win.webContents.once("did-finish-load", () => checkForUpdate(win));
@@ -118,16 +155,27 @@ app.whenReady().then(() => {
   const cached = readJSON(path.join(CACHE, "manifest.json"));
   activeMan = cached && cached.version > bundledMan.version ? cached : bundledMan;
   registerProtocol();
+  NOTIF_FILE = path.join(app.getPath("userData"), "avisos.json");
+  notif = Object.assign(notif, readJSON(NOTIF_FILE) || {});
+  if (!notif.loginSet) { app.setLoginItemSettings({ openAtLogin: true, openAsHidden: true }); notif.loginSet = true; saveNotif(); }
+  setInterval(tickNotif, 30 * 1000);
   Menu.setApplicationMenu(Menu.buildFromTemplate([
     { role: "appMenu" }, { role: "editMenu" },
     { label: "Ver", submenu: [
       { label: "Buscar actualizaciones", click: () => { const w = BrowserWindow.getAllWindows()[0]; checkForUpdate(w); } },
       { role: "reload", label: "Recargar" }, { role: "togglefullscreen", label: "Pantalla completa" }, { type: "separator" },
       { role: "resetZoom", label: "Tamaño real" }, { role: "zoomIn", label: "Acercar" }, { role: "zoomOut", label: "Alejar" }] },
+    { label: "Avisos", submenu: [
+      { label: "Recibir notificaciones", type: "checkbox", checked: notif.enabled !== false, click: (mi) => { notif.enabled = mi.checked; saveNotif(); } },
+      { label: "Abrir al iniciar sesión (para avisar aunque no la abras)", type: "checkbox", checked: app.getLoginItemSettings().openAtLogin, click: (mi) => app.setLoginItemSettings({ openAtLogin: mi.checked, openAsHidden: true }) },
+      { type: "separator" },
+      { label: "Probar una notificación", click: () => fire("Medicina UDLAP", "Así te van a llegar los avisos de exámenes, plan de estudio, fechas UDLAP y partidos.", "calendario") }
+    ] },
     { role: "windowMenu" }
   ]));
-  const win = createWindow();
+  const atLogin = app.getLoginItemSettings().wasOpenedAtLogin || process.argv.includes("--hidden");
+  const win = createWindow(atLogin);
   setInterval(() => checkForUpdate(BrowserWindow.getAllWindows()[0] || win), CHECK_EVERY_MIN * 60 * 1000);
-  app.on("activate", () => { if (BrowserWindow.getAllWindows().length === 0) createWindow(); });
+  app.on("activate", () => { const w = BrowserWindow.getAllWindows()[0]; if (!w) createWindow(); else { w.show(); w.focus(); } });
 });
 app.on("window-all-closed", () => { if (process.platform !== "darwin") app.quit(); });

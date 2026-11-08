@@ -184,7 +184,7 @@ ${pushHTML()}
       else if(k==="push"){a.disabled=true;a.textContent="Activando…";try{await pushEnable()}catch(er){render(d);const e=d.querySelector("#pushErr");if(e){e.hidden=false;e.textContent=er.message&&/[áéíóú]|Sin/.test(er.message)?er.message:"No se pudo activar: "+(er.message||er)}return}render(d)}
       else if(k==="secret"){set(P+"secret","1");render(d)}
       else if(k==="poff"){await pushOff();render(d)}
-      else if(k==="ptest"){try{const reg=await navigator.serviceWorker.ready;reg.showNotification("Medicina UDLAP",{body:"Así te van a llegar los avisos de exámenes, plan, fechas UDLAP y partidos.",icon:"icon-192.png"})}catch(e){}}
+      else if(k==="ptest"){try{const reg=await navigator.serviceWorker.ready;reg.showNotification("Aviso de prueba",{body:"Así te van a llegar los avisos de exámenes, plan, fechas UDLAP y partidos.",icon:"icon-192.png"})}catch(e){}}
       else if(k==="go"){
         const v=d.querySelector("input").value.trim(),e=d.querySelector(".bad");
         if(!/^(ghp_|github_pat_)[A-Za-z0-9_]{20,}$/.test(v)){e.hidden=false;e.textContent="Esa no parece una clave de GitHub (empieza con ghp_).";return}

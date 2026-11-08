@@ -308,7 +308,7 @@ html{transition:background-color .3s}
 .pl-sem header{display:flex;align-items:center;gap:10px}
 .ps-n{width:34px;height:34px;flex:none;border-radius:11px;display:grid;place-items:center;font:900 1.05rem var(--f-display);color:#fff;background:linear-gradient(135deg,var(--green-3),var(--green-2))}
 .pl-sem.now .ps-n{background:linear-gradient(135deg,#ff9a57,var(--orange-2))}.pl-sem.todo .ps-n{background:var(--line);color:var(--muted)}
-.ps-t{flex:1;min-width:0}.ps-t b{display:block;font:800 .95rem var(--f-display)}.ps-t small{display:block;color:var(--muted);font-size:.72rem}
+.ps-n.sm{font-size:.62rem;letter-spacing:.02em}.ps-t{flex:1;min-width:0}.ps-t b{display:block;font:800 .95rem var(--f-display)}.ps-t small{display:block;color:var(--muted);font-size:.72rem}
 .ps-pill{font:700 .62rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:99px;background:color-mix(in srgb,var(--green-3) 14%,transparent);color:var(--go);white-space:nowrap}
 .pl-sem.now .ps-pill{background:var(--orange);color:#fff}.pl-sem.todo .ps-pill{background:transparent;border:1px solid var(--line);color:var(--muted)}
 .ps-bar{height:4px;border-radius:99px;background:color-mix(in srgb,var(--line) 60%,transparent);margin:10px 2px 8px;overflow:hidden}.ps-bar i{display:block;height:100%;background:var(--green-3);border-radius:99px}.pl-sem.now .ps-bar i{background:var(--orange)}
@@ -565,9 +565,9 @@ main{padding-block:52px 40px}
 .track-h b{font-weight:900;font-size:1.05rem;text-transform:uppercase;font-stretch:85%;letter-spacing:.02em}
 .track-h b em{font-style:normal;color:var(--orange-2)}
 .track-h span{color:var(--muted);font-size:.85rem}
-.tline{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:start}
-.tline::before,.tline::after{content:"";position:absolute;top:17px;left:calc(100%/24);height:4px;border-radius:4px}
-.tline::before{right:calc(100%/24);background:var(--line)}
+.tline{position:relative;display:grid;grid-template-columns:repeat(10,minmax(0,1fr));align-items:start}
+.tline::before,.tline::after{content:"";position:absolute;top:17px;left:calc(100%/20);height:4px;border-radius:4px}
+.tline::before{right:calc(100%/20);background:var(--line)}
 .tline::after{width:var(--p);background:linear-gradient(90deg,var(--green-3),var(--orange));transition:width 1s cubic-bezier(.2,.8,.2,1)}
 .tnode{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:6px;border:0;background:none;padding:0;color:var(--muted);font:inherit;cursor:default;min-width:0}
 .tnode .dot{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font:900 .95rem var(--f-display);font-stretch:80%;background:var(--paper);border:2.5px solid var(--line);color:var(--muted);transition:transform .2s}
@@ -582,7 +582,7 @@ main{padding-block:52px 40px}
 .tnode .gd{position:absolute;top:-4px;right:calc(50% - 25px);min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--orange);color:#fff;font:700 .6rem/17px var(--f-mono);text-align:center}
 .tnode.now .gd{background:var(--green)}
 @keyframes pulse{50%{box-shadow:0 0 0 11px color-mix(in srgb,var(--orange) 0%,transparent)}}
-.tyears{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));margin-top:10px;color:var(--muted);font:600 .62rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase}
+.tyears{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));margin-top:10px;color:var(--muted);font:600 .62rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase}
 .tyears span{grid-column:span 2;text-align:center;border-top:1.5px solid var(--line);margin:0 6px;padding-top:6px}
 .tyears span.one{grid-column:span 1}
 
@@ -902,7 +902,7 @@ const SEMS=[
   {n:3,name:"Tercer semestre",note:"Bases: farmacología general y anatomía del aparato digestivo."},
   {n:4,name:"Cuarto semestre",note:"Hematología, farmacología II, inmunología, simulación IV, nutrición y principios de cirugía."},
   {n:5,name:"Quinto semestre",note:"Clínicas: cirugía, gastro, imagen, oftalmo, otorrino y psiquiatría."},
-  {n:6,name:"Sexto semestre",note:"Infectología: agentes, LCR, tratamientos con dosis y perlas ENARM/MIR."},{n:7},{n:8},{n:9},{n:10},
+  {n:6,name:"Sexto semestre",note:"Infectología: agentes, LCR, tratamientos con dosis y perlas ENARM/MIR."},{n:7},{n:8},
   {n:"int",label:"Internado"},{n:"ss",label:"Servicio social"}
 ];
 const G=[
@@ -1014,13 +1014,13 @@ const SEM_ACTUAL=5; /* semestre que cursa Marcos ahora */
 const CHECK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 const semIdx=SEMS.findIndex(s=>s.n===SEM_ACTUAL);
 const stOf=s=>typeof s.n!=="number"?"next":s.n<SEM_ACTUAL?"done":s.n===SEM_ACTUAL?"now":"next";
-$("#track").innerHTML=`<div class="track-h"><b>Vas en <em>${ord(SEM_ACTUAL)} semestre</em></b><span>Semestre ${SEM_ACTUAL} de 10 · luego internado y servicio social</span></div>
-<div class="tline" style="--p:calc(${semIdx} * 100% / 12)">${SEMS.map(s=>{const gs=G.filter(g=>g.sem===s.n),st=stOf(s),lbl=s.label?(s.n==="int"?"Internado":"Serv. social"):(st==="now"?"Ahora":ord(s.n));
+$("#track").innerHTML=`<div class="track-h"><b>Vas en <em>${ord(SEM_ACTUAL)} semestre</em></b><span>Semestre ${SEM_ACTUAL} de 8 · luego internado y servicio social</span></div>
+<div class="tline" style="--p:calc(${semIdx} * 100% / ${SEMS.length})">${SEMS.map(s=>{const gs=G.filter(g=>g.sem===s.n),st=stOf(s),lbl=s.label?(s.n==="int"?"Internado":"Serv. social"):(st==="now"?"Ahora":ord(s.n));
   const dot=st==="done"&&!gs.length?CHECK:s.label?(s.n==="int"?"MIP":"SS"):s.n;
   const inner=`<span class="dot">${dot}</span><small>${esc(lbl)}</small>`;
   const title=(s.label||ord(s.n)+" semestre")+(st==="done"?" · cursado":st==="now"?" · cursando ahora":"")+(gs.length?" · "+gs.length+(gs.length>1?" guías":" guía"):" · sin guías aún");
   return gs.length?`<button class="tnode ${st} has" type="button" data-sem="${s.n}" title="${esc(title)}" aria-label="${esc(title)}">${inner}</button>`:`<span class="tnode ${st}" title="${esc(title)}">${inner}</span>`}).join("")}</div>
-<div class="tyears">${["1er año","2do año","3er año","4to año","5to año"].map(y=>`<span>${y}</span>`).join("")}<span class="one">Int.</span><span class="one">SS</span></div>`;
+<div class="tyears">${["1er año","2do año","3er año","4to año"].map(y=>`<span>${y}</span>`).join("")}<span class="one">Int.</span><span class="one">SS</span></div>`;
 const ST={done:["Cursado",CHECK],now:["Cursando ahora",'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>'],next:["Adelanto",'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>']};
 /* encabezado sobrio: verde liso, numeral fantasma y un trazo de ECG fino */
 function semScene(n){
@@ -1028,9 +1028,9 @@ function semScene(n){
   <text x="306" y="150" text-anchor="end" class="ghost">${String(n).padStart(2,"0")}</text>
   <path class="ecg" d="M-4 44 H196 L203 44 L207 35 L212 54 L218 22 L224 50 L228 44 H304" fill="none" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
 </svg>`}
-const SEMNOM={1:"Primer semestre",2:"Segundo semestre"};
-/* 1ro y 2do se muestran aunque aún no tengan guías; en cuanto tengan, se vuelven tarjetas normales */
-$("#sems").innerHTML=SEMS.filter(s=>semsWith.includes(s)||s.n===1||s.n===2).map(s=>{
+const SEMNOM={1:"Primer semestre",2:"Segundo semestre",7:"Séptimo semestre",8:"Octavo semestre"};
+/* 1ro, 2do, 7mo y 8vo se muestran aunque aún no tengan guías; en cuanto tengan, se vuelven tarjetas normales */
+$("#sems").innerHTML=SEMS.filter(s=>semsWith.includes(s)||[1,2,7,8].includes(s.n)).map(s=>{
   if(!semsWith.includes(s)){const st=stOf(s);
     return `<div class="stile ${st} empty" aria-label="${esc(SEMNOM[s.n]||ord(s.n)+" semestre")} · aún sin guías">
     <span class="top">${semScene(s.n)}<span class="num">${s.n}<sup>${ord(s.n).replace(/\d+/,"")}</sup></span><span class="tt"><span class="kind">Semestre</span><span class="st">${ST[st][1]}${ST[st][0]}</span></span></span>
@@ -1939,7 +1939,7 @@ document.querySelectorAll("#cal details.fold").forEach(d=>{const k="carrera-fold
 /* ===== Calificaciones finales: promedio por semestre y general, aprobadas, mejor y peor, distribución y "¿qué necesito?" ===== */
 const Grades=(()=>{
   const LS="carrera-calificaciones";
-  const SEMN=n=>ord(n)+" semestre";
+  const SEMN=n=>n===9?"Internado":n===10?"Servicio social":ord(n)+" semestre";
   let st={min:7.5,items:[]},editingSem=null;const openSems=new Set();
   /* Plan de estudios oficial de Médico Cirujano UDLAP (438 unidades). o = nombre de la optativa que cursó */
   const PLAN=[
@@ -1951,8 +1951,7 @@ const Grades=(()=>{
     [["Salud Pública y Epidemiología en Ciencias de la Salud",6],["Temas Selectos II",6],["Neurología",6],["Gastrocirugía",6],["Obstetricia",6],["Dermatología",6],["Nefrología",6],["Campos Clínicos II",3],["Casos Clínicos II",3]],
     [["Geriatría",6],["Ginecología",6],["Endocrinología",6],["Reumatología",6],["Pediatría I",6],["Cardiología",6],["Campos Clínicos III",3],["Casos Clínicos III",3]],
     [["Urgencias",6],["Metodología de la Investigación en Ciencias de la Salud",6],["Temas Selectos III",6],["Traumatología y Ortopedia",6],["Pediatría II",6],["Neumología",6],["Anatomía Patológica",6],["Campos Clínicos IV",3],["Casos Clínicos IV",3]],
-    [["Rotación de Internado de Pregrado I",30]],
-    [["Rotación de Internado de Pregrado II",30]],
+    [["Rotación de Internado de Pregrado I",30],["Rotación de Internado de Pregrado II",30]],
     [["Supervisión y Evaluación del Servicio Social",3]]
   ].map((l,i)=>l.map(([n,u,o],j)=>({sem:i+1,i:j,n,u,o:o||"",mat:o||n})));
   /* lo que Marcos cursa ahora (otoño 2026), según su portal UDLAP */
@@ -1960,7 +1959,7 @@ const Grades=(()=>{
   const PLANALL=PLAN.flat(),isX=p=>p.n==="Optativa extra",PLANU=PLANALL.filter(p=>!isX(p)).reduce((a,x)=>a+x.u,0);
   const norm=t=>String(t).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
   const planOf=mat=>{const k=norm(mat);return PLANALL.find(x=>norm(x.mat)===k||norm(x.n)===k)};
-  function load(){try{const v=JSON.parse(store.get(LS)||"null");if(v&&Array.isArray(v.items))st={min:[6,7,7.5,8].includes(+v.min)?+v.min:7.5,items:v.items.filter(x=>x&&x.id&&x.mat&&isFinite(+x.cal)).map(x=>({id:String(x.id),sem:Math.max(1,Math.min(11,+x.sem||1)),mat:String(x.mat).slice(0,80),cal:Math.max(0,Math.min(10,+x.cal)),cred:+x.cred>0?+x.cred:0}))}}catch(e){}}
+  function load(){try{const v=JSON.parse(store.get(LS)||"null");if(v&&Array.isArray(v.items))st={min:[6,7,7.5,8].includes(+v.min)?+v.min:7.5,items:v.items.filter(x=>x&&x.id&&x.mat&&isFinite(+x.cal)).map(x=>({id:String(x.id),sem:Math.max(1,Math.min(10,+x.sem||1)),mat:String(x.mat).slice(0,80),cal:Math.max(0,Math.min(10,+x.cal)),cred:+x.cred>0?+x.cred:0}))}}catch(e){}}
   function save(){store.set(LS,JSON.stringify(st));render()}
   const f1=n=>String(Number((+n).toFixed(2)));
   const avg=list=>{if(!list.length)return null;const w=list.every(x=>x.cred>0);const tw=w?list.reduce((a,x)=>a+x.cred,0):list.length;return list.reduce((a,x)=>a+x.cal*(w?x.cred:1),0)/tw};
@@ -2058,14 +2057,14 @@ const Grades=(()=>{
     const du=Math.min(PLANU,[...done.keys()].reduce((a,p)=>a+p.u,0)),isNow=p=>!done.has(p)&&ACTUALES.includes(p.n),nowL=PLANALL.filter(isNow),left=PLANALL.filter(p=>!isX(p)&&!done.has(p)).length;
     const gl=$g("#grLeft");if(gl&&!gl.dataset.touched)gl.value=String(left);
     const ICO={done:'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7"/><path d="M4.8 8.3l2.1 2.1 4.3-4.6"/></svg>',now:'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><circle cx="8" cy="8" r="2.6" class="f"/></svg>',todo:'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6"/></svg>'};
-    $g("#grPlan").innerHTML=`<div class="pl-head"><div><h3>Plan de estudios</h3><p class="pl-sub">Médico Cirujano · UDLAP · 11 semestres</p></div>
+    $g("#grPlan").innerHTML=`<div class="pl-head"><div><h3>Plan de estudios</h3><p class="pl-sub">Médico Cirujano · UDLAP · 8 semestres + internado y servicio social</p></div>
         <div class="pl-pct"><b>${Math.round(du/PLANU*100)}<small>%</small></b><span>de la carrera</span></div></div>
       <div class="pl-prog"><span><i style="width:${du/PLANU*100}%"></i></span><b>${du} / ${PLANU} unidades</b></div>
       <p class="pl-key"><span class="pl-k done">${ICO.done}Cursada</span><span class="pl-k now">${ICO.now}Cursando ahora</span><span class="pl-k todo">${ICO.todo}Por cursar</span></p>
-      <div class="pl-grid">${PLAN.map((l,i)=>{const n=i+1,lbl=n===9?"Internado I":n===10?"Internado II":n===11?"Servicio social":ord(n)+" semestre",k=l.filter(p=>done.has(p)).length,real=l.filter(p=>!isX(p)).length,
+      <div class="pl-grid">${PLAN.map((l,i)=>{const n=i+1,lbl=n===9?"Internado de pregrado":n===10?"Servicio social":ord(n)+" semestre",k=l.filter(p=>done.has(p)).length,real=l.filter(p=>!isX(p)).length,
           gs=l.filter(p=>done.has(p)).map(p=>done.get(p)),sa=gs.length?avg(gs):null,full=k>=real,hasNow=l.some(isNow),
           state=full?"done":hasNow||n===cur?"now":k?"part":"todo",pill=full?"Completo":hasNow||n===cur?"En curso":k?k+" de "+real:"Pendiente";
-        return `<article class="pl-sem ${state}"><header><span class="ps-n">${n}</span><div class="ps-t"><b>${lbl}</b><small>${real} materia${real>1?"s":""}${sa!=null?" · promedio "+f1(sa):""}</small></div><span class="ps-pill">${pill}</span></header>
+        return `<article class="pl-sem ${state}"><header><span class="ps-n${n>8?" sm":""}">${n===9?"MIP":n===10?"SS":n}</span><div class="ps-t"><b>${lbl}</b><small>${real} materia${real>1?"s":""}${sa!=null?" · promedio "+f1(sa):""}</small></div><span class="ps-pill">${pill}</span></header>
           <div class="ps-bar"><i style="width:${Math.min(100,k/real*100)}%"></i></div>
           <ul>${l.map(p=>{const g=done.get(p),st2=g?"done":(isNow(p)?"now":"todo");
           return `<li class="${st2}">${ICO[st2]}<span>${p.o?`${esc(p.o)}<small>${esc(p.n)}</small>`:esc(p.n)}</span>${g?`<b style="--c:${color(g.cal)}">${f1(g.cal)}</b>`:st2==="now"?`<em class="nw">cursando</em>`:`<em>${p.u} u</em>`}</li>`}).join("")}</ul></article>`}).join("")}</div>

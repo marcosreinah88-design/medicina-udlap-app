@@ -8,7 +8,7 @@
   const API=window.__MEDSYNC_API||"https://api.github.com",P="__medsync_",DESC="Medicina UDLAP · sincronización (no borrar)",FILE="medicina-udlap.json";
   const SKIP=new Set(["carrera-theme"]);
   const get=k=>{try{return localStorage.getItem(k)}catch(e){return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del=k=>{try{localStorage.removeItem(k)}catch(e){}};
-  const T0=Date.now();let busy=false,again=false,lastOk=+get(P+"ok")||0,lastErr="";
+  const T0=Date.now();let flash=0,busy=false,again=false,lastOk=+get(P+"ok")||0,lastErr="";
   const token=()=>get(P+"token");
   function snap(){const o={};try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&!k.startsWith(P)&&!SKIP.has(k))o[k]=localStorage.getItem(k)}}catch(e){}return o}
   const base=()=>{try{return JSON.parse(get(P+"base")||"{}")}catch(e){return {}}};
@@ -120,7 +120,7 @@
     const c=d.querySelector(".card");
     if(token()){
       c.innerHTML=`<h3>Sincronización activa</h3><p>Tus exámenes, plan de estudio, material y avances de las guías se comparten entre todos los aparatos donde pegaste esta clave.</p>
-<p class="st ${lastErr?"bad":""}">${lastErr||"Última sincronización: "+ago(lastOk)}</p>
+<p class="st ${lastErr?"bad":""}" style="${!lastErr&&Date.now()-flash<5000?"color:#0a7a4f;font-weight:700":""}">${lastErr||(Date.now()-flash<5000?"✓ Listo, todo está al día en este aparato":"Última sincronización: "+ago(lastOk))}</p>
 <div class="row"><button data-a="now">Sincronizar ahora</button><button class="sec" data-a="close">Cerrar</button></div>
 ${pushHTML()}
 <p class="st" style="margin-top:16px">¿Cambiaste de clave? <a href="#" data-a="off">Desconectar este aparato</a></p>`;
@@ -179,7 +179,7 @@ ${pushHTML()}
       const a=ev.target.closest("[data-a]");if(!a)return;
       const k=a.dataset.a;
       if(k==="close")d.remove();
-      else if(k==="now")sync(true);
+      else if(k==="now"){a.disabled=true;a.textContent="Sincronizando…";await sync(true);flash=Date.now();render(d);setTimeout(()=>{const x=document.getElementById("syncDlg");if(x)render(x)},5200)}
       else if(k==="off"){ev.preventDefault();[P+"token",P+"gist",P+"base",P+"ok",P+"secret"].forEach(del);lastOk=0;lastErr="";paint()}
       else if(k==="push"){a.disabled=true;a.textContent="Activando…";try{await pushEnable()}catch(er){render(d);const e=d.querySelector("#pushErr");if(e){e.hidden=false;e.textContent=er.message&&/[áéíóú]|Sin/.test(er.message)?er.message:"No se pudo activar: "+(er.message||er)}return}render(d)}
       else if(k==="secret"){set(P+"secret","1");render(d)}

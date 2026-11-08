@@ -1,5 +1,5 @@
 /* Medicina UDLAP · funciona sin internet: guarda todo el repositorio en el cel y lo renueva cuando hay versión nueva */
-const V=1794159347,C="med-"+V;
+const V=1794160036,C="med-"+V;
 self.addEventListener("install",ev=>ev.waitUntil((async()=>{
   const man=await (await fetch("manifest.json?v="+V,{cache:"no-store"})).json();
   const cache=await caches.open(C);
@@ -34,5 +34,19 @@ self.addEventListener("fetch",ev=>{
       if(ev.request.mode==="navigate"){const a=await cache.match(new URL("app.html",self.registration.scope).href);if(a)return a}
       return new Response("Sin internet",{status:503});
     }
+  })());
+});
+/* avisos que manda GitHub (exámenes, plan, fechas UDLAP, partidos) */
+self.addEventListener("push",ev=>{
+  let d={};try{d=ev.data?ev.data.json():{}}catch(e){d={title:"Medicina UDLAP",body:ev.data?ev.data.text():""}}
+  ev.waitUntil(self.registration.showNotification(d.title||"Medicina UDLAP",{body:d.body||"",icon:"icon-192.png",badge:"icon-192.png",tag:d.id||undefined,data:{route:d.route||"calendario"}}));
+});
+self.addEventListener("notificationclick",ev=>{
+  ev.notification.close();
+  const url=new URL("app.html#"+(ev.notification.data&&ev.notification.data.route||"calendario"),self.registration.scope).href;
+  ev.waitUntil((async()=>{
+    const cs=await self.clients.matchAll({type:"window",includeUncontrolled:true});
+    for(const c of cs){if("focus" in c){try{await c.navigate(url)}catch(e){}return c.focus()}}
+    return self.clients.openWindow(url);
   })());
 });

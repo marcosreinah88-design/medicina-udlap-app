@@ -1,0 +1,26 @@
+# Cada 10 minutos revisa los avisos de Marcos (en su gist de sincronización) y los manda a su cel como notificación
+name: Avisos al cel
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: avisos
+  cancel-in-progress: false
+jobs:
+  enviar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: tools-push
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: cd tools-push && npm install --no-audit --no-fund web-push@3.6.7
+      - run: node tools-push/avisos.js
+        env:
+          MED_SYNC: ${{ secrets.MED_SYNC }}

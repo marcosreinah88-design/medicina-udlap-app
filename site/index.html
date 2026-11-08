@@ -1503,7 +1503,6 @@ const Cal=(()=>{
   }
   /* App de Mac: le pasa a la app los avisos de los próximos días (en la página web no hace nada) */
   function notify(days){
-    if(!window.medApp||!window.medApp.schedule)return;
     const out=[],now=Date.now(),t=today();
     const at=(d,h,m)=>{const x=parse(d);x.setHours(h,m||0,0,0);return x.getTime()};
     const add1=(id,when,title,body,route)=>{if(when>now-5*6e4&&when<now+45*864e5)out.push({id,at:when,title,body,route:route||"calendario"})};
@@ -1526,7 +1525,9 @@ const Cal=(()=>{
       if(g.t){add1("fba:"+g.s,at(g.s,9),"Aztecas · "+g.t,"Fecha tentativa: "+nice(g.s)+" o "+nice(g.e)+". Revisa udlap.mx/fba");continue}
       const [h,m]=g.h.split(":").map(Number);
       add1("fba:"+g.s,at(g.s,h,m)-2*36e5,(g.loc?"Hoy juegan los Aztecas vs ":"Hoy juegan los Aztecas en ")+g.r,g.h+" h · "+g.sede);}
-    window.medApp.schedule(out);
+    /* la app de Mac los lanza ella misma; para el cel se guardan y GitHub los manda como notificación */
+    if(window.medApp&&window.medApp.schedule)window.medApp.schedule(out);
+    if(location.protocol==="app:"||/github\.io$/.test(location.hostname)||location.hostname==="localhost")try{const v=JSON.stringify(out.slice(0,300));if(localStorage.getItem("medicina-avisos")!==v)localStorage.setItem("medicina-avisos",v)}catch(e){}
   }
   function taskHTML(it){
     if(it.kind==="exam")return `<div class="task exam" style="--c:${it.e.color}"><div class="tx"><b>${esc(it.text)}</b><small>¡Mucho éxito!</small></div></div>`;

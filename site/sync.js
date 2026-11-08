@@ -122,6 +122,7 @@
       c.innerHTML=`<h3>Sincronización activa</h3><p>Tus exámenes, plan de estudio, material y avances de las guías se comparten entre todos los aparatos donde pegaste esta clave.</p>
 <p class="st ${lastErr?"bad":""}">${lastErr||"Última sincronización: "+ago(lastOk)}</p>
 <div class="row"><button data-a="now">Sincronizar ahora</button><button class="sec" data-a="close">Cerrar</button></div>
+${pushHTML()}
 <p class="st" style="margin-top:16px">¿Cambiaste de clave? <a href="#" data-a="off">Desconectar este aparato</a></p>`;
     }else{
       c.innerHTML=`<h3>Sincronizar Mac y cel</h3><p>Tus exámenes, plan, material y avances se guardan en un archivo privado de tu cuenta de GitHub, y tus aparatos lo comparten. Se hace una sola vez:</p>
@@ -129,6 +130,45 @@
 <input placeholder="ghp_…" autocomplete="off" autocapitalize="off" spellcheck="false"><p class="st bad" hidden></p>
 <div class="row"><button data-a="go">Conectar</button><button class="sec" data-a="close">Cerrar</button></div>`;
     }
+  }
+  /* ===== avisos en el cel (Web Push) ===== */
+  const canPush=()=>location.protocol!=="app:"&&"serviceWorker" in navigator&&"PushManager" in window&&"Notification" in window;
+  const standalone=()=>matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+  const pushOn=()=>!!get(P+"pushdev")&&window.Notification&&Notification.permission==="granted";
+  function pushHTML(){
+    if(location.protocol==="app:")return `<p class="st">En esta Mac los avisos los manda la app (menú Avisos).</p>`;
+    if(!canPush())return `<h3 style="margin-top:18px;font-size:16px">Avisos en este cel</h3><p class="st">${/iPhone|iPad/.test(navigator.userAgent)&&!standalone()?"Para recibir avisos, primero agrega la app a tu pantalla de inicio (Compartir → Agregar a pantalla de inicio) y ábrela desde ese ícono.":"Este navegador no permite avisos."}</p>`;
+    if(!pushOn())return `<h3 style="margin-top:18px;font-size:16px">Avisos en este cel</h3><p>Exámenes, plan de estudio, fechas UDLAP y partidos, aunque la app esté cerrada.</p><p class="st bad" id="pushErr" hidden></p><div class="row"><button data-a="push">Activar avisos</button></div>`;
+    return `<h3 style="margin-top:18px;font-size:16px">Avisos en este cel: activados</h3>${get(P+"secret")?`<p class="st">GitHub te los manda (pueden llegar unos minutos tarde).</p>`:`<p><b>Último paso, una sola vez:</b> para que GitHub pueda mandarte los avisos necesita tu misma clave.</p><ol><li><a href="https://github.com/marcosreinah88-design/medicina-udlap-app/settings/secrets/actions/new" target="_blank" rel="noopener">Abre esta página de GitHub</a>.</li><li>En <b>Name</b> escribe <b>MED_SYNC</b>.</li><li>En <b>Secret</b> pega tu clave (la misma ghp_…) y presiona <b>Add secret</b>.</li></ol><div class="row"><button class="sec" data-a="secret">Ya la guardé</button></div>`}<div class="row"><button class="sec" data-a="ptest">Probar un aviso aquí</button><button class="sec" data-a="poff">Apagar avisos en este cel</button></div>`;
+  }
+  const b64u=b=>btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+  const ub64=s=>{s=s.replace(/-/g,"+").replace(/_/g,"/");s+="===".slice((s.length+3)%4);return Uint8Array.from(atob(s),c=>c.charCodeAt(0))};
+  async function vapid(){
+    let v=null;try{v=JSON.parse(get("medicina-push-vapid")||"null")}catch(e){}
+    if(v&&v.publicKey&&v.privateKey)return v;
+    const k=await crypto.subtle.generateKey({name:"ECDSA",namedCurve:"P-256"},true,["sign"]);
+    const pub=b64u(await crypto.subtle.exportKey("raw",k.publicKey)),jwk=await crypto.subtle.exportKey("jwk",k.privateKey);
+    v={publicKey:pub,privateKey:jwk.d};set("medicina-push-vapid",JSON.stringify(v));return v;
+  }
+  async function pushEnable(){
+    const perm=await Notification.requestPermission();
+    if(perm!=="granted")throw new Error("Sin permiso: actívalo en Ajustes → Notificaciones → Medicina UDLAP.");
+    await sync(true);
+    const v=await vapid(),reg=await navigator.serviceWorker.ready;
+    let sub=await reg.pushManager.getSubscription();
+    if(sub&&b64u(sub.options&&sub.options.applicationServerKey||new ArrayBuffer(0))!==v.publicKey){try{await sub.unsubscribe()}catch(e){}sub=null}
+    if(!sub)sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:ub64(v.publicKey)});
+    const dev=get(P+"pushdev")||("cel-"+Math.random().toString(36).slice(2,10));
+    let subs=[];try{subs=JSON.parse(get("medicina-push-subs")||"[]")}catch(e){}
+    subs=subs.filter(x=>x&&x.id!==dev).concat([{id:dev,sub:sub.toJSON(),ua:navigator.userAgent.slice(0,120),t:Date.now()}]);
+    set("medicina-push-subs",JSON.stringify(subs));set(P+"pushdev",dev);
+    await sync(true);
+  }
+  async function pushOff(){
+    const dev=get(P+"pushdev");
+    try{const reg=await navigator.serviceWorker.ready,sub=await reg.pushManager.getSubscription();if(sub)await sub.unsubscribe()}catch(e){}
+    let subs=[];try{subs=JSON.parse(get("medicina-push-subs")||"[]")}catch(e){}
+    set("medicina-push-subs",JSON.stringify(subs.filter(x=>x&&x.id!==dev)));del(P+"pushdev");await sync(true);
   }
   function open(){
     let d=document.getElementById("syncDlg");if(d)return;
@@ -140,7 +180,11 @@
       const k=a.dataset.a;
       if(k==="close")d.remove();
       else if(k==="now")sync(true);
-      else if(k==="off"){ev.preventDefault();[P+"token",P+"gist",P+"base",P+"ok"].forEach(del);lastOk=0;lastErr="";paint()}
+      else if(k==="off"){ev.preventDefault();[P+"token",P+"gist",P+"base",P+"ok",P+"secret"].forEach(del);lastOk=0;lastErr="";paint()}
+      else if(k==="push"){a.disabled=true;a.textContent="Activando…";try{await pushEnable()}catch(er){render(d);const e=d.querySelector("#pushErr");if(e){e.hidden=false;e.textContent=er.message&&/[áéíóú]|Sin/.test(er.message)?er.message:"No se pudo activar: "+(er.message||er)}return}render(d)}
+      else if(k==="secret"){set(P+"secret","1");render(d)}
+      else if(k==="poff"){await pushOff();render(d)}
+      else if(k==="ptest"){try{const reg=await navigator.serviceWorker.ready;reg.showNotification("Medicina UDLAP",{body:"Así te van a llegar los avisos de exámenes, plan, fechas UDLAP y partidos.",icon:"icon-192.png"})}catch(e){}}
       else if(k==="go"){
         const v=d.querySelector("input").value.trim(),e=d.querySelector(".bad");
         if(!/^(ghp_|github_pat_)[A-Za-z0-9_]{20,}$/.test(v)){e.hidden=false;e.textContent="Esa no parece una clave de GitHub (empieza con ghp_).";return}

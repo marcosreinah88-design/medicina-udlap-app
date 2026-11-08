@@ -240,29 +240,84 @@ html{transition:background-color .3s}
 .mini.warn{background:#c62828;border-color:#c62828;color:#fff}
 .xrow.past{opacity:.55}
 .cform{display:grid;gap:12px}
-.gr-big{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:6px 0 10px}.gr-big b{font:900 3.6rem/1 var(--f-display);font-stretch:80%;color:#fff}.gr-big span{color:var(--on-green-mut);font-size:.86rem}
-.gr-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:14px}.gr-stats div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:8px 10px;min-width:0}
-.gr-stats b{display:block;font:800 1.25rem var(--f-display);color:#fff}.gr-stats small{display:block;color:var(--on-green-mut);font-size:.74rem;line-height:1.3;overflow-wrap:anywhere}
-.gr-chart{display:flex;align-items:flex-end;gap:10px;height:130px;padding:6px 2px 0;border-bottom:1px solid rgba(255,255,255,.18)}
-.gr-chart .gc{flex:1;max-width:70px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;position:relative}
-.gr-chart i{display:block;width:100%;border-radius:6px 6px 0 0;background:var(--c)}.gr-chart .gv{font:700 .78rem var(--f-mono);color:#fff}.gr-chart small{position:absolute;bottom:-20px;font:600 .7rem var(--f-mono);color:var(--on-green-mut)}
-.gr-dist{margin-top:30px;display:grid;gap:6px}.gr-dist div{display:grid;grid-template-columns:86px minmax(0,1fr) 26px;gap:8px;align-items:center}.gr-dist small{color:var(--on-green-mut);font-size:.74rem}
-.gr-dist span{height:8px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}.gr-dist span i{display:block;height:100%;background:var(--orange);border-radius:99px}.gr-dist b{color:#fff;font-size:.82rem;text-align:right}
+/* calificaciones: hero */
+.gr-hero{position:relative;overflow:hidden;border-radius:22px;padding:26px 28px 24px;margin-bottom:22px;color:#fff;background:radial-gradient(120% 140% at 0% 0%,#0a7a55 0%,var(--green) 38%,var(--green-2) 100%);box-shadow:var(--shadow)}
+.gr-hero::before{content:"";position:absolute;inset:auto -60px -90px auto;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(242,107,33,.35),transparent 65%);pointer-events:none}
+.gr-hero::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 44px);pointer-events:none}
+.gr-hero>*{position:relative;z-index:1}
+.gh-top{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+.gh-ring{position:relative;width:164px;height:164px;flex:none}.gh-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.gh-ring circle{fill:none;stroke-width:11;stroke-linecap:round}.gh-ring .trk{stroke:rgba(255,255,255,.12)}.gh-ring .val{stroke:url(#ghG);filter:drop-shadow(0 0 10px rgba(242,107,33,.45));animation:ghIn 1.1s cubic-bezier(.2,.8,.2,1)}
+@keyframes ghIn{from{stroke-dasharray:0 400}}
+.gh-ring>div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}.gh-ring b{font:900 2.9rem/1 var(--f-display);font-stretch:80%;letter-spacing:-.02em}.gh-ring small{font:600 .72rem var(--f-mono);color:var(--on-green-mut);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+.gh-info{flex:1;min-width:240px}.gh-kick{font:700 .7rem var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:#ffb37a;margin:0 0 6px}
+.gr-hero h2{margin:0;font:900 clamp(1.7rem,3.4vw,2.4rem)/1.05 var(--f-display);font-stretch:85%;text-transform:uppercase;letter-spacing:-.01em}
+.gh-sub{margin:6px 0 16px;color:var(--on-green-mut);font-size:.88rem}
+.gh-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px}
+.gh-kpis div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:11px 13px;backdrop-filter:blur(4px)}
+.gh-kpis b{display:block;font:800 1.45rem/1.1 var(--f-display)}.gh-kpis small{display:block;margin-top:3px;color:var(--on-green-mut);font-size:.74rem;line-height:1.3}
+.gh-kpis .up b{color:#7cf0b6}.gh-kpis .down b{color:#ffb08a}
+.gh-bottom{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px;margin-top:22px}
+.gh-box{background:rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:14px 16px 16px;min-width:0}
+.gh-box h4{margin:0 0 12px;font:700 .7rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--on-green-mut)}
+.gh-chart{display:flex;align-items:flex-end;gap:10px;height:150px;padding-bottom:22px}
+.gh-chart .gc{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;position:relative;min-width:0}
+.gh-chart i{display:block;width:100%;max-width:46px;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--c),color-mix(in srgb,var(--c) 45%,transparent));box-shadow:0 0 18px -4px var(--c);transform-origin:bottom;animation:ghBar .9s cubic-bezier(.2,.8,.2,1) both}
+.gh-chart .gc:nth-child(2) i{animation-delay:.05s}.gh-chart .gc:nth-child(3) i{animation-delay:.1s}.gh-chart .gc:nth-child(4) i{animation-delay:.15s}.gh-chart .gc:nth-child(5) i{animation-delay:.2s}.gh-chart .gc:nth-child(6) i{animation-delay:.25s}
+@keyframes ghBar{from{transform:scaleY(0)}}
+.gh-chart .gv{font:700 .78rem var(--f-mono)}.gh-chart small{position:absolute;bottom:-22px;font:600 .7rem var(--f-mono);color:var(--on-green-mut)}
+.gh-stack{display:flex;height:14px;border-radius:99px;overflow:hidden;gap:3px}.gh-stack i{background:var(--c);min-width:6px}
+.gh-leg{list-style:none;margin:10px 0 14px;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.78rem;color:var(--on-green-mut)}.gh-leg li::before{content:"";display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--c);margin-right:6px}.gh-leg b{color:#fff}
+.gh-bw{display:grid;grid-template-columns:1fr 1fr;gap:8px}.gh-bw div{background:rgba(255,255,255,.06);border-radius:12px;padding:9px 11px;min-width:0}
+.gh-bw small{display:block;font:700 .62rem var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-green-mut)}.gh-bw b{font:800 1.3rem var(--f-display)}.gh-bw span{display:block;font-size:.74rem;color:var(--on-green-mut);line-height:1.25;overflow-wrap:anywhere}
+.gh-empty .empty-msg{color:var(--on-green-mut)}
+/* calificaciones: plan de estudios */
+.pl-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:12px}.pl-head h3{margin:0}.pl-sub{margin:4px 0 0;color:var(--muted);font-size:.82rem}
+.pl-pct{text-align:right}.pl-pct b{font:900 2.2rem/1 var(--f-display);color:var(--orange)}.pl-pct b small{font-size:1rem}.pl-pct span{display:block;font:600 .66rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.pl-prog{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;margin:0 0 12px}.pl-prog span{height:12px;border-radius:99px;background:color-mix(in srgb,var(--line) 70%,transparent);overflow:hidden}.pl-prog i{display:block;height:100%;background:linear-gradient(90deg,var(--green-3),#3fb07f 60%,var(--orange));border-radius:99px}.pl-prog b{font:700 .76rem var(--f-mono);color:var(--muted)}
+.pl-key{display:flex;flex-wrap:wrap;gap:14px;margin:0 0 16px;font-size:.78rem;color:var(--muted)}.pl-k{display:inline-flex;align-items:center;gap:6px}
+.pl-k svg,.pl-sem li svg{width:16px;height:16px;flex:none;fill:none;stroke-width:1.6}
+.pl-k.done svg,.pl-sem li.done svg{stroke:none}.pl-k.done svg circle,.pl-sem li.done svg circle{fill:var(--green-3)}.pl-k.done svg path,.pl-sem li.done svg path{stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pl-k.now svg,.pl-sem li.now svg{stroke:var(--orange)}.pl-k.now svg .f,.pl-sem li.now svg .f{fill:var(--orange);stroke:none}
+.pl-k.todo svg,.pl-sem li.todo svg{stroke:var(--line);stroke-width:2}
+.pl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.pl-sem{border:1px solid var(--line);border-radius:16px;padding:12px 12px 10px;background:var(--paper);transition:transform .15s,box-shadow .15s}
+.pl-sem:hover{transform:translateY(-2px);box-shadow:0 14px 30px -22px rgba(0,0,0,.5)}
+.pl-sem.now{border:2px solid var(--orange);background:linear-gradient(180deg,color-mix(in srgb,var(--orange) 7%,var(--paper)),var(--paper) 40%)}
+.pl-sem.todo{background:color-mix(in srgb,var(--bg) 60%,var(--paper))}
+.pl-sem header{display:flex;align-items:center;gap:10px}
+.ps-n{width:34px;height:34px;flex:none;border-radius:11px;display:grid;place-items:center;font:900 1.05rem var(--f-display);color:#fff;background:linear-gradient(135deg,var(--green-3),var(--green-2))}
+.pl-sem.now .ps-n{background:linear-gradient(135deg,#ff9a57,var(--orange-2))}.pl-sem.todo .ps-n{background:var(--line);color:var(--muted)}
+.ps-t{flex:1;min-width:0}.ps-t b{display:block;font:800 .95rem var(--f-display)}.ps-t small{display:block;color:var(--muted);font-size:.72rem}
+.ps-pill{font:700 .62rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:99px;background:color-mix(in srgb,var(--green-3) 14%,transparent);color:var(--go);white-space:nowrap}
+.pl-sem.now .ps-pill{background:var(--orange);color:#fff}.pl-sem.todo .ps-pill{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.ps-bar{height:4px;border-radius:99px;background:color-mix(in srgb,var(--line) 60%,transparent);margin:10px 2px 8px;overflow:hidden}.ps-bar i{display:block;height:100%;background:var(--green-3);border-radius:99px}.pl-sem.now .ps-bar i{background:var(--orange)}
+.pl-sem ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.pl-sem li{display:flex;gap:9px;align-items:center;font-size:.8rem;line-height:1.28;padding:5px 6px;border-radius:10px}
+.pl-sem li span{flex:1;min-width:0;overflow-wrap:anywhere}.pl-sem li span small{display:block;font-size:.68rem;color:var(--muted);text-decoration:none}
+.pl-sem li em{font-style:normal;font:600 .66rem var(--f-mono);color:var(--muted);white-space:nowrap}
+.pl-sem li b{font:800 .74rem var(--f-mono);white-space:nowrap;padding:2px 7px;border-radius:99px;color:var(--c);background:color-mix(in srgb,var(--c) 13%,transparent)}
+.pl-sem li.done span{text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--muted) 70%,transparent);text-decoration-thickness:1.5px;color:var(--muted)}
+.pl-sem li.now{border:2px solid var(--orange);border-radius:99px;padding:4px 10px 4px 6px;font-weight:700;background:color-mix(in srgb,var(--orange) 8%,var(--paper))}
+.pl-sem li.now em.nw{color:var(--orange);font-weight:700;text-transform:uppercase;font-size:.6rem;letter-spacing:.06em}
+.pl-sem li.todo span{color:var(--ink)}
+.pl-foot{margin-top:12px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pl-sem li b,:root:not([data-theme="light"]) .gs-a{color:color-mix(in srgb,var(--c) 55%,#fff)}}
+:root[data-theme="dark"] .pl-sem li b,:root[data-theme="dark"] .gs-a{color:color-mix(in srgb,var(--c) 55%,#fff)}
+/* calificaciones: editar */
+.gr-sem{border:1px solid var(--line);border-radius:14px;margin-top:8px;overflow:hidden;background:var(--paper)}
+.gr-sem summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px 12px}.gr-sem summary::-webkit-details-marker{display:none}
+.gr-sem summary::after{content:"";width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);margin:0 4px 4px 0;transition:transform .2s}.gr-sem[open] summary::after{transform:rotate(225deg);margin:4px 4px 0 0}
+.gs-n{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font:800 .9rem var(--f-display);background:color-mix(in srgb,var(--green-3) 14%,transparent);color:var(--go)}
+.gs-t{flex:1;font-weight:700}.gs-t small{display:block;font-weight:500;color:var(--muted);font-size:.72rem}
+.gs-a{font:800 .82rem var(--f-mono);color:var(--c);background:color-mix(in srgb,var(--c) 13%,transparent);padding:3px 9px;border-radius:99px}
+.gr-sem .gr-row{margin:0 12px}.gr-sem .gr-row:last-child{margin-bottom:10px}
+@media (max-width:760px){.gr-hero{padding:20px 16px;border-radius:18px}.gh-top{gap:16px;justify-content:center}.gh-ring{width:138px;height:138px}.gh-ring b{font-size:2.4rem}.gh-info{min-width:0;flex-basis:100%}.gh-bottom{grid-template-columns:minmax(0,1fr)}.pl-grid{grid-template-columns:minmax(0,1fr)}}
 .gr-row{display:grid;grid-template-columns:minmax(0,1fr) 78px auto;gap:10px;align-items:center;padding:8px 0 8px 12px;border-top:1px solid var(--line);border-left:4px solid var(--c);margin-top:6px;border-radius:4px}
 .gr-row .gm{font-weight:650;min-width:0;overflow-wrap:anywhere}.gr-row .gm small{display:block;color:var(--muted);font-size:.74rem;font-weight:500}
 .gr-row .gcal{width:100%;box-sizing:border-box;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:6px 8px;font:800 1rem var(--f-display);text-align:center}
 .gr-paste{width:100%;box-sizing:border-box;min-height:130px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px 12px;font:500 .9rem var(--f-display);resize:vertical;margin:6px 0 10px}
 .gr-help{color:var(--muted);font-size:.82rem;line-height:1.45;margin:4px 0}.gr-need{font-size:.95rem;margin:10px 0 4px}.gr-need b{color:var(--orange);font-size:1.15rem}
-.pl-prog{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;margin:4px 0 8px}.pl-prog span{height:10px;border-radius:99px;background:var(--line);overflow:hidden}.pl-prog i{display:block;height:100%;background:linear-gradient(90deg,var(--green,#0b5a3c),var(--orange));border-radius:99px}.pl-prog b{font:700 .8rem var(--f-mono);color:var(--muted)}
-.pl-key{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px;font-size:.78rem}.pl-k{padding:2px 9px;border-radius:99px;border:1.5px solid var(--line)}.pl-k.done{text-decoration:line-through;color:var(--muted)}.pl-k.now{border:2px solid var(--orange);color:var(--orange);font-weight:700}
-.pl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-.pl-sem{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--bg)}.pl-sem.cur{border:2px solid var(--orange);box-shadow:0 0 0 3px color-mix(in srgb,var(--orange) 18%,transparent)}
-.pl-sem h4{margin:0 0 6px;font:800 .92rem var(--f-display);display:flex;justify-content:space-between;gap:8px}.pl-sem h4 small{font:600 .72rem var(--f-mono);color:var(--muted);white-space:nowrap}
-.pl-sem ul{list-style:none;margin:0;padding:0;display:grid;gap:3px}
-.pl-sem li{display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-size:.8rem;line-height:1.3;padding:3px 7px;border-radius:8px;border:2px solid transparent}
-.pl-sem li span{min-width:0;overflow-wrap:anywhere}.pl-sem li em{font-style:normal;font:600 .68rem var(--f-mono);color:var(--muted);white-space:nowrap}.pl-sem li b{font:700 .74rem var(--f-mono);color:var(--muted);white-space:nowrap}
-.pl-sem li.done span{text-decoration:line-through;text-decoration-thickness:1.5px;color:var(--muted)}
-.pl-sem li.now{border-color:var(--orange);border-radius:99px;font-weight:700}.pl-sem li.now em{color:var(--orange)}
 .gr-min{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.88rem}.gr-min select{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:6px 10px;font:700 .9rem var(--f-display)}
 .pform{margin:4px 0 6px}.pform .row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 @media (max-width:640px){.pform .row3{grid-template-columns:1fr 1fr}.pform .row3 label:last-child{grid-column:1/-1}}
@@ -1860,7 +1915,7 @@ if(location.hash==="#calendario")Cal.open();
 const Grades=(()=>{
   const LS="carrera-calificaciones";
   const SEMN=n=>ord(n)+" semestre";
-  let st={min:7.5,items:[]},editingSem=null;
+  let st={min:7.5,items:[]},editingSem=null;const openSems=new Set();
   /* Plan de estudios oficial de Médico Cirujano UDLAP (438 unidades). o = nombre de la optativa que cursó */
   const PLAN=[
     [["Lengua Extranjera I",6,"Alemán I"],["Tecnologías de la Información en la Construcción del Conocimiento",6],["Optativa de Ciencias Naturales",6,"Anatomía Dental"],["Optativa de Matemáticas",6,"Matemáticas para Pensar"],["Histología",6],["Bioquímica Clínica",6],["Anatomofisiología",6],["Embriología y Genética",6],["Laboratorio de Simulación I",3]],
@@ -1891,11 +1946,12 @@ const Grades=(()=>{
   const html=`<div class="cal" id="grades" hidden role="dialog" aria-modal="true" aria-labelledby="grTtl">
   <div class="vbar gut"><a class="vbtn" href="#" id="grBack"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="lbl">Inicio</span></a>
     <div class="ttl" id="grTtl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Calificaciones</div></div>
-  <div class="cal-body gut"><div class="in cal-grid">
+  <div class="cal-body gut"><div class="in">
+    <section class="gr-hero" id="grSum"></section>
+    <div class="cal-grid gr-grid">
     <div class="cal-main">
-      <section class="ccard today" id="grSum"></section>
       <section class="ccard gr-plan" id="grPlan"></section>
-      <div id="grSems"></div>
+      <section class="ccard gr-edit" id="grEdit"><h3>Tus calificaciones <small>abre un semestre para corregir</small></h3><div id="grSems"></div></section>
     </div>
     <div class="cal-side">
       <section class="ccard"><h3>Agregar calificación</h3>
@@ -1920,7 +1976,7 @@ const Grades=(()=>{
       <section class="ccard"><h3>Ajustes</h3>
         <label class="gr-min">Calificación mínima aprobatoria <select id="grMin"><option>6</option><option>7</option><option>7.5</option><option>8</option></select></label></section>
     </div>
-  </div></div></div>`;
+  </div></div></div></div>`;
   document.body.insertAdjacentHTML("beforeend",html);
   const $g=s=>document.querySelector(s);
   function render(){
@@ -1930,7 +1986,7 @@ const Grades=(()=>{
     $g("#grMats").innerHTML=known().map(m=>`<option value="${esc(m)}">`).join("");
     $g("#grMin").value=String(st.min);
     if(!items.length){
-      $g("#grSum").innerHTML=`<h3>Tu promedio</h3><p class="tdate">Todavía no hay calificaciones.</p><p class="empty-msg">Agrégalas una por una o pégalas todas juntas a la derecha (abajo en el cel). Aquí verás tu promedio general, el de cada semestre y qué necesitas para tu meta.</p>`;
+      $g("#grSum").innerHTML=`<div class="gh-empty"><p class="gh-kick">Médico Cirujano · UDLAP</p><h2>Tu promedio</h2><p class="gh-sub">Todavía no hay calificaciones.</p><p class="empty-msg">Agrégalas una por una o pégalas todas juntas a la derecha (abajo en el cel). Aquí verás tu promedio general, el de cada semestre y qué necesitas para tu meta.</p></div>`;
       $g("#grSems").innerHTML="";$g("#grNeed").innerHTML="";return;
     }
     const pass=items.filter(x=>x.cal>=st.min).length,fail=items.length-pass,cred=items.reduce((a,x)=>a+x.cred,0);
@@ -1941,22 +1997,34 @@ const Grades=(()=>{
     const bins=[["10",x=>x.cal>=10],["9 – 9.9",x=>x.cal>=9&&x.cal<10],["8 – 8.9",x=>x.cal>=8&&x.cal<9],[st.min+" – 7.9",x=>x.cal>=st.min&&x.cal<8],["Reprobadas",x=>x.cal<st.min]].filter(([l],i)=>i<4||fail);
     const mx=Math.max(...bins.map(([,f])=>items.filter(f).length),1);
     const lo=Math.max(0,Math.floor(Math.min(...bySem.map(s=>s.a))-1));
-    $g("#grSum").innerHTML=`<h3>Tu promedio <small>${items.every(x=>x.cred>0)?"ponderado por créditos":"simple"}</small></h3>
-      <div class="gr-big"><b>${f1(all)}</b><span>promedio general · ${items.length} materia${items.length>1?"s":""}${cred?" · "+cred+" créditos":""}</span></div>
-      <div class="gr-stats">
-        <div><b>${pass}</b><small>aprobada${pass===1?"":"s"}</small></div>
-        <div><b>${fail}</b><small>reprobada${fail===1?"":"s"}</small></div>
-        <div><b>${f1(best.cal)}</b><small>mejor: ${esc(best.mat)}</small></div>
-        <div><b>${f1(worst.cal)}</b><small>más baja: ${esc(worst.mat)}</small></div>
-        ${bySem.length>1?`<div><b>${ord(bestSem.n)}</b><small>mejor semestre (${f1(bestSem.a)})</small></div><div><b>${trend>=0?"▲":"▼"} ${f1(Math.abs(trend))}</b><small>vs. semestre anterior</small></div>`:""}
-      </div>
-      <div class="gr-chart" aria-label="Promedio por semestre">${bySem.map(s=>`<div class="gc"><span class="gv">${f1(s.a)}</span><i style="height:${Math.max(6,(s.a-lo)/(10-lo)*100)}%;--c:${light(s.a)}"></i><small>${ord(s.n)}</small></div>`).join("")}</div>
-      <div class="gr-dist">${bins.map(([l,f])=>{const n=items.filter(f).length;return `<div><small>${l}</small><span><i style="width:${n/mx*100}%"></i></span><b>${n}</b></div>`}).join("")}</div>`;
+    const tens=items.filter(x=>x.cal>=10).length,nines=items.filter(x=>x.cal>=9&&x.cal<10).length,eights=items.filter(x=>x.cal>=8&&x.cal<9).length,rest=items.length-tens-nines-eights;
+    const R=54,C=2*Math.PI*R,pct=Math.max(0,Math.min(1,all/10));
+    const mix=[["10",tens,"#5fe0a0"],["9 – 9.9",nines,"#a8e6c4"],["8 – 8.9",eights,"#ffd27a"],["Menos de 8",rest,"#ff9a6b"]].filter(x=>x[1]);
+    $g("#grSum").innerHTML=`<div class="gh-top">
+      <div class="gh-ring" role="img" aria-label="Promedio general ${f1(all)} de 10"><svg viewBox="0 0 128 128" aria-hidden="true"><defs><linearGradient id="ghG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffb37a"/><stop offset="1" stop-color="#f26b21"/></linearGradient></defs>
+        <circle cx="64" cy="64" r="${R}" class="trk"/><circle cx="64" cy="64" r="${R}" class="val" stroke-dasharray="${(C*pct).toFixed(1)} ${C.toFixed(1)}"/></svg>
+        <div><b>${f1(all)}</b><small>de 10</small></div></div>
+      <div class="gh-info"><p class="gh-kick">Médico Cirujano · UDLAP</p>
+        <h2>Promedio general</h2>
+        <p class="gh-sub">${items.every(x=>x.cred>0)?"Ponderado por créditos":"Promedio simple"} · ${items.length} materia${items.length>1?"s":""}${cred?" · "+cred+" unidades":""}</p>
+        <div class="gh-kpis">
+          <div><b>${pass}</b><small>aprobada${pass===1?"":"s"}${fail?" · "+fail+" reprobada"+(fail>1?"s":""):""}</small></div>
+          <div><b>${tens}</b><small>diece${tens===1?"":"s"} perfecto${tens===1?"":"s"}</small></div>
+          ${bySem.length>1?`<div><b>${ord(bestSem.n)}</b><small>mejor semestre · ${f1(bestSem.a)}</small></div><div class="${trend>=0?"up":"down"}"><b>${trend>=0?"↑":"↓"} ${f1(Math.abs(trend))}</b><small>último vs. anterior</small></div>`:""}
+        </div></div></div>
+      <div class="gh-bottom">
+        <div class="gh-box"><h4>Promedio por semestre</h4>
+          <div class="gh-chart">${bySem.map(s=>`<div class="gc" title="${ord(s.n)} semestre: ${f1(s.a)}"><span class="gv">${f1(s.a)}</span><i style="height:${Math.max(8,(s.a-lo)/(10-lo)*100)}%;--c:${light(s.a)}"></i><small>${ord(s.n)}</small></div>`).join("")}</div></div>
+        <div class="gh-box"><h4>Cómo se reparten tus calificaciones</h4>
+          <div class="gh-stack">${mix.map(([l,n,c])=>`<i style="flex:${n};--c:${c}" title="${l}: ${n}"></i>`).join("")}</div>
+          <ul class="gh-leg">${mix.map(([l,n,c])=>`<li style="--c:${c}"><b>${n}</b> ${l}</li>`).join("")}</ul>
+          <div class="gh-bw"><div><small>Mejor</small><b>${f1(best.cal)}</b><span>${esc(best.mat)}</span></div><div><small>Más baja</small><b>${f1(worst.cal)}</b><span>${esc(worst.mat)}</span></div></div></div>
+      </div>`;
     $g("#grSems").innerHTML=sems.slice().reverse().map(n=>{const ord2=x=>{const p=planOf(x.mat);return p&&p.sem===x.sem?p.i:99},list=items.filter(x=>x.sem===n).sort((a,b)=>ord2(a)-ord2(b)||a.mat.localeCompare(b.mat,"es")),a=avg(list);
-      return `<section class="ccard gr-sem"><h3>${SEMN(n)} <small>promedio ${f1(a)} · ${list.length} materia${list.length>1?"s":""}</small></h3>
-        ${list.map(x=>`<div class="gr-row" style="--c:${color(x.cal)}"><span class="gm">${esc(x.mat)}${x.cred?`<small>${x.cred} créditos</small>`:""}</span>
+      return `<details class="gr-sem" data-sem="${n}"${openSems.has(n)?" open":""}><summary><span class="gs-n">${n}</span><span class="gs-t">${SEMN(n)}<small>${list.length} materia${list.length>1?"s":""}</small></span><span class="gs-a" style="--c:${color(a)}">${f1(a)}</span></summary>
+        ${list.map(x=>`<div class="gr-row" style="--c:${color(x.cal)}"><span class="gm">${esc(x.mat)}${x.cred?`<small>${x.cred} unidades</small>`:""}</span>
           <input class="gcal" type="number" min="0" max="10" step="0.01" value="${x.cal}" data-gid="${esc(x.id)}" aria-label="Calificación de ${esc(x.mat)}">
-          <button class="mini" type="button" data-gdel="${esc(x.id)}">Borrar</button></div>`).join("")}</section>`}).join("");
+          <button class="mini" type="button" data-gdel="${esc(x.id)}">Borrar</button></div>`).join("")}</details>`}).join("");
     need();
   }
   function renderPlan(){
@@ -1964,13 +2032,19 @@ const Grades=(()=>{
     for(const x of st.items){const p=planOf(x.mat);if(p)done.set(p,x)}
     const du=Math.min(PLANU,[...done.keys()].reduce((a,p)=>a+p.u,0)),isNow=p=>!done.has(p)&&ACTUALES.includes(p.n),nowL=PLANALL.filter(isNow),left=PLANALL.filter(p=>!isX(p)&&!done.has(p)).length;
     const gl=$g("#grLeft");if(gl&&!gl.dataset.touched)gl.value=String(left);
-    $g("#grPlan").innerHTML=`<h3>Plan de estudios <small>Médico Cirujano · UDLAP</small></h3>
-      <div class="pl-prog"><span><i style="width:${du/PLANU*100}%"></i></span><b>${du} de ${PLANU} unidades · ${Math.round(du/PLANU*100)}%</b></div>
-      <p class="pl-key"><span class="pl-k done">Cursada</span><span class="pl-k now">Cursando ahora</span><span class="pl-k">Por cursar</span></p>
-      <div class="pl-grid">${PLAN.map((l,i)=>{const n=i+1,lbl=n===9?"9º · Internado I":n===10?"10º · Internado II":n===11?"Servicio social":ord(n)+" semestre",k=l.filter(p=>done.has(p)).length;
-        return `<div class="pl-sem${n===cur?" cur":""}"><h4>${lbl}<small>${k===l.length?"✓ completo":n===cur?"ahora":k?k+" de "+l.length:""}</small></h4><ul>${l.map(p=>{const g=done.get(p),st2=g?"done":(isNow(p)?"now":"");
-          return `<li class="${st2}"><span>${esc(p.o?p.n+": "+p.o:p.n)}</span>${g?`<b>${f1(g.cal)}</b>`:`<em>${p.u} u</em>`}</li>`}).join("")}</ul></div>`}).join("")}</div>
-      <p class="gr-help">${nowL.length?"Encerradas: las "+nowL.length+" que llevas ahora. ":""}Tachadas: ya aprobadas, con su calificación. Te faltan ${left} materias del plan.</p>`;
+    const ICO={done:'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7"/><path d="M4.8 8.3l2.1 2.1 4.3-4.6"/></svg>',now:'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><circle cx="8" cy="8" r="2.6" class="f"/></svg>',todo:'<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6"/></svg>'};
+    $g("#grPlan").innerHTML=`<div class="pl-head"><div><h3>Plan de estudios</h3><p class="pl-sub">Médico Cirujano · UDLAP · 11 semestres</p></div>
+        <div class="pl-pct"><b>${Math.round(du/PLANU*100)}<small>%</small></b><span>de la carrera</span></div></div>
+      <div class="pl-prog"><span><i style="width:${du/PLANU*100}%"></i></span><b>${du} / ${PLANU} unidades</b></div>
+      <p class="pl-key"><span class="pl-k done">${ICO.done}Cursada</span><span class="pl-k now">${ICO.now}Cursando ahora</span><span class="pl-k todo">${ICO.todo}Por cursar</span></p>
+      <div class="pl-grid">${PLAN.map((l,i)=>{const n=i+1,lbl=n===9?"Internado I":n===10?"Internado II":n===11?"Servicio social":ord(n)+" semestre",k=l.filter(p=>done.has(p)).length,real=l.filter(p=>!isX(p)).length,
+          gs=l.filter(p=>done.has(p)).map(p=>done.get(p)),sa=gs.length?avg(gs):null,full=k>=real,hasNow=l.some(isNow),
+          state=full?"done":hasNow||n===cur?"now":k?"part":"todo",pill=full?"Completo":hasNow||n===cur?"En curso":k?k+" de "+real:"Pendiente";
+        return `<article class="pl-sem ${state}"><header><span class="ps-n">${n}</span><div class="ps-t"><b>${lbl}</b><small>${real} materia${real>1?"s":""}${sa!=null?" · promedio "+f1(sa):""}</small></div><span class="ps-pill">${pill}</span></header>
+          <div class="ps-bar"><i style="width:${Math.min(100,k/real*100)}%"></i></div>
+          <ul>${l.map(p=>{const g=done.get(p),st2=g?"done":(isNow(p)?"now":"todo");
+          return `<li class="${st2}">${ICO[st2]}<span>${p.o?`${esc(p.o)}<small>${esc(p.n)}</small>`:esc(p.n)}</span>${g?`<b style="--c:${color(g.cal)}">${f1(g.cal)}</b>`:st2==="now"?`<em class="nw">cursando</em>`:`<em>${p.u} u</em>`}</li>`}).join("")}</ul></article>`}).join("")}</div>
+      <p class="gr-help pl-foot">${nowL.length?"Llevas "+nowL.length+" materias este semestre. ":""}Te faltan ${left} materias del plan.</p>`;
   }
   function need(){
     const items=st.items,box=$g("#grNeed");if(!items.length){box.innerHTML="";return}
@@ -2006,6 +2080,7 @@ const Grades=(()=>{
   $g("#grSems").addEventListener("click",ev=>{const d=ev.target.closest("[data-gdel]");if(!d)return;
     if(!d.classList.contains("warn")){d.classList.add("warn");d.textContent="¿Seguro?";setTimeout(()=>{if(d.isConnected){d.classList.remove("warn");d.textContent="Borrar"}},3500);return}
     load();st.items=st.items.filter(x=>x.id!==d.dataset.gdel);save()});
+  $g("#grSems").addEventListener("toggle",ev=>{const d=ev.target.closest("details[data-sem]");if(d){const n=+d.dataset.sem;d.open?openSems.add(n):openSems.delete(n)}},true);
   $g("#grWhat").addEventListener("input",ev=>{if(ev.target.id==="grLeft")ev.target.dataset.touched="1";need()});
   $g("#grMin").addEventListener("change",ev=>{load();st.min=+ev.target.value;save()});
   let lastY=0;

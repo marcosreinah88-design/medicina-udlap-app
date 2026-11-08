@@ -479,6 +479,9 @@ main{padding-block:52px 40px}
 .stile .go{margin-left:auto;align-self:center;display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:.85rem;color:var(--go);text-transform:uppercase;letter-spacing:.06em;font-stretch:90%}
 .stile .go svg{width:20px;height:20px;fill:none;stroke:var(--orange);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
 .stile:hover .go svg{transform:translateX(5px)}
+.stile.empty{cursor:default}.stile.empty:hover{transform:none;box-shadow:var(--shadow)}.stile.empty:hover .scene .ecg{animation:none}
+.stile.empty .top{background:linear-gradient(160deg,#4f6e63,#2f4a40)!important}.stile.empty .strip{background:var(--line)}
+.stile.empty .meta b{color:var(--muted)}.stile .go.soon{color:var(--muted)}
 
 footer{padding-block:20px 40px}
 footer .in{border-top:1px solid var(--line);padding-top:20px;display:flex;gap:16px;align-items:center;color:var(--muted);font-size:.84rem}
@@ -868,7 +871,15 @@ function semScene(n){
   <text x="306" y="150" text-anchor="end" class="ghost">${String(n).padStart(2,"0")}</text>
   <path class="ecg" d="M-4 44 H196 L203 44 L207 35 L212 54 L218 22 L224 50 L228 44 H304" fill="none" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
 </svg>`}
-$("#sems").innerHTML=semsWith.map(s=>{
+const SEMNOM={1:"Primer semestre",2:"Segundo semestre"};
+/* 1ro y 2do se muestran aunque aún no tengan guías; en cuanto tengan, se vuelven tarjetas normales */
+$("#sems").innerHTML=SEMS.filter(s=>semsWith.includes(s)||s.n===1||s.n===2).map(s=>{
+  if(!semsWith.includes(s)){const st=stOf(s);
+    return `<div class="stile ${st} empty" aria-label="${esc(SEMNOM[s.n]||ord(s.n)+" semestre")} · aún sin guías">
+    <span class="top">${semScene(s.n)}<span class="num">${s.n}<sup>${ord(s.n).replace(/\d+/,"")}</sup></span><span class="tt"><span class="kind">Semestre</span><span class="st">${ST[st][1]}${ST[st][0]}</span></span></span>
+    <span class="strip"></span>
+    <span class="body"><p class="note">Aún no hay guías de este semestre. Cuando agreguemos su material, aparecerá aquí.</p>
+    <span class="meta"><span class="m"><b>0</b><span>materias</span></span><span class="m"><b>0</b><span>guías</span></span><span class="m"><b>0</b><span>temas</span></span><span class="go soon">Pronto</span></span></span></div>`}
   const gs=G.filter(g=>g.sem===s.n),st=stOf(s),areas=gs.filter((g,i)=>gs.findIndex(x=>x.area===g.area)===i),t=gs.reduce((a,g)=>a+(g.temas||0),0);
   return `<button class="stile ${st}" type="button" data-sem="${s.n}" aria-label="Entrar a ${esc(s.name)}">
     <span class="top">${semScene(s.n)}<span class="num">${s.n}<sup>${ord(s.n).replace(/\d+/,"")}</sup></span><span class="tt"><span class="kind">Semestre</span><span class="st">${ST[st][1]}${ST[st][0]}</span></span></span>
@@ -2025,3 +2036,5 @@ if(location.hash==="#cto")CtoLib.open();
 if(location.hash==="#otros")OtrosLib.open();
 if(location.hash.startsWith("#mat-"))OtrosLib.openDoc(decodeURIComponent(location.hash.slice(5)));
 </script>
+
+<script src="sync.js"></script>

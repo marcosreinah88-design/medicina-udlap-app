@@ -437,12 +437,14 @@ html{transition:background-color .3s}
 .urow b{font-weight:700;font-size:.92rem;line-height:1.25}.urow small{color:var(--muted);font-size:.78rem}
 .usrc{margin:14px 0 0;font-size:.74rem;color:var(--muted)}.usrc a{color:var(--go)}
 #calUdCard[hidden]{display:none}
-.udet summary{list-style:none;display:flex;align-items:center;gap:10px;cursor:pointer}
-.udet summary::-webkit-details-marker{display:none}
-.udet summary h3{flex:1;margin:0}
-.udet summary svg{flex:none;width:20px;height:20px;fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
-.udet[open] summary svg{transform:rotate(180deg)}
-.udet[open] summary{margin-bottom:6px}
+.udet>summary{list-style:none;display:flex;align-items:center;gap:10px;cursor:pointer}
+.udet>summary::-webkit-details-marker{display:none}
+.udet>summary h3{flex:1;margin:0}
+.udet>summary svg{flex:none;width:20px;height:20px;fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.udet[open]>summary svg{transform:rotate(180deg)}
+.udet[open]>summary{margin-bottom:6px}
+.fold[open]>summary{margin-bottom:12px}.fold>summary small{font-weight:500}
+.cal-grid details.ccard+section.ccard,.cal-grid details.ccard+details.ccard,.cal-grid section.ccard+details.ccard{margin-top:18px}
 
 /* ===== material extra ===== */
 .extra{padding-block:10px 50px}
@@ -829,7 +831,7 @@ footer p{margin:0;max-width:70ch}
   <div class="cal-body gut"><div class="in cal-grid">
     <div class="cal-main">
       <section class="ccard today" id="calToday"></section>
-      <section class="ccard" id="calPend"><h3>Pendientes del semestre <small id="pnSub"></small></h3>
+      <details class="ccard udet fold" id="calPend" data-fold="pend" open><summary><h3>Pendientes del semestre <small id="pnSub"></small></h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
         <details class="padd" id="pnBox"><summary><span class="plus">+</span><span id="pnSumTx">Agregar pendiente</span></summary>
         <form class="cform pform" id="pnForm" autocomplete="off">
           <input id="pnTitle" maxlength="140" placeholder="¿Qué tienes que hacer? Ej. Caso clínico de colecistitis" aria-label="Pendiente">
@@ -842,8 +844,8 @@ footer p{margin:0;max-width:70ch}
           <input id="pnNotes" maxlength="400" placeholder="Notas (opcional): equipo, formato, profesor…" aria-label="Notas">
           <div class="btns"><button class="cbtn" type="submit" id="pnSubmit">Agregar</button><button class="cbtn ghost" type="button" id="pnCancel">Cancelar</button></div>
         </form></details>
-        <div class="pfilt" id="pnFilt"></div><div id="pnList"></div></section>
-      <section class="ccard"><h3>Plan de estudio <small id="calPlanSub"></small></h3><div id="calPlan"></div></section>
+        <div class="pfilt" id="pnFilt"></div><div id="pnList"></div></details>
+      <details class="ccard udet fold" data-fold="plan"><summary><h3>Plan de estudio <small id="calPlanSub"></small></h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div id="calPlan"></div></details>
     </div>
     <div class="cal-side">
       <section class="ccard"><h3>Mis exámenes <small id="calCount"></small></h3>
@@ -856,8 +858,7 @@ footer p{margin:0;max-width:70ch}
         <div id="calList"></div></section>
       <details class="ccard udet" id="calUdCard"><summary><h3>Fechas UDLAP <small id="calUdSub">calendario escolar</small></h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div id="calUdlap"></div><p class="usrc">Del calendario escolar semestral oficial (sujeto a cambios). Consulta <a href="https://www.udlap.mx/web/comunidad/calendario-escolar/" target="_blank" rel="noopener">udlap.mx/calendario</a>.</p></details>
       <details class="ccard udet" id="calFbCard"><summary><h3>Aztecas UDLAP <small id="calFbSub">futbol americano</small></h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><div id="calFba"></div><p class="usrc">Temporada 2026, liga mayor ONEFA. Las fechas de playoffs son tentativas. Consulta <a href="https://www.udlap.mx/fba/calendario/" target="_blank" rel="noopener">udlap.mx/fba</a>.</p></details>
-      <section class="ccard">
-        <h3 id="calFormTtl">Agregar examen</h3>
+      <details class="ccard udet fold" id="calFormCard" data-fold="exam"><summary><h3 id="calFormTtl">Agregar examen</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
         <form class="cform" id="calForm" autocomplete="off">
           <div class="row2">
             <label>Materia <span class="h" id="cfSemLbl">5º semestre</span><select id="cfName" required><option value="" disabled selected>Elige la materia</option></select></label>
@@ -874,7 +875,7 @@ footer p{margin:0;max-width:70ch}
           <div class="btns"><button class="cbtn" type="submit" id="cfSubmit">Agregar al calendario</button><button class="cbtn ghost" type="button" id="cfCancel" hidden>Cancelar</button></div>
         </form>
         <p class="csync" id="calSync"><i></i><span>Guardando en este navegador</span></p>
-      </section>
+      </details>
     </div>
   </div></div>
 </div>
@@ -1856,7 +1857,7 @@ const Cal=(()=>{
        fName.value=m?m.n:e.name;fWhat.value=m&&e.name.length>m.n.length?e.name.slice(m.n.length+3):""}
       fDate.value=e.date;fDate.min="";fLead.value=String(e.lead);if(![...fLead.options].some(o=>o.value===String(e.lead)))fLead.add(new Option(e.lead+" días antes",String(e.lead),true,true));
       fGuide.value=e.guide||"";fTopics.value=e.topics.join("\n");fFill.hidden=!guideFor(fGuide.value);fErr.hidden=true;
-      $("#calFormTtl").textContent="Editar examen";$("#cfSubmit").textContent="Guardar cambios";$("#cfCancel").hidden=false;f.scrollIntoView({block:"center",behavior:"smooth"});fName.focus({preventScroll:true})}
+      $("#calFormCard").open=true;$("#calFormTtl").textContent="Editar examen";$("#cfSubmit").textContent="Guardar cambios";$("#cfCancel").hidden=false;f.scrollIntoView({block:"center",behavior:"smooth"});fName.focus({preventScroll:true})}
     if(dl){
       if(!dl.classList.contains("warn")){dl.classList.add("warn");dl.textContent="¿Seguro?";setTimeout(()=>{if(dl.isConnected){dl.classList.remove("warn");dl.textContent="Borrar"}},3500);return}
       const id=dl.dataset.del;state.exams=state.exams.filter(e=>e.id!==id);if(editing===id)resetForm();save();
@@ -1894,7 +1895,7 @@ const Cal=(()=>{
     const ft=ev.target.closest("[data-pf]");if(ft){pFilter=ft.dataset.pf;render();return}
     if(ed){const p=state.tasks.find(x=>x.id===ed.dataset.pedit);if(!p)return;pEditing=p.id;pTitle.value=p.title;pType.value=p.type;
       if(p.mat&&![...pMat.options].some(o=>o.value===p.mat))pMat.add(new Option(p.mat,p.mat));pMat.value=p.mat;pDue.value=p.due;pNotes.value=p.notes;pf.querySelectorAll("input[name=pnFlag]").forEach(r=>r.checked=r.value===(p.flag||""));
-      $("#pnSubmit").textContent="Guardar";$("#pnCancel").hidden=false;$("#pnSumTx").textContent="Editar pendiente";pBox.open=true;pf.scrollIntoView({block:"center",behavior:"smooth"});pTitle.focus({preventScroll:true})}
+      $("#pnSubmit").textContent="Guardar";$("#pnCancel").hidden=false;$("#pnSumTx").textContent="Editar pendiente";$("#calPend").open=true;pBox.open=true;pf.scrollIntoView({block:"center",behavior:"smooth"});pTitle.focus({preventScroll:true})}
     if(dl){
       if(!dl.classList.contains("warn")){dl.classList.add("warn");dl.textContent="¿Seguro?";setTimeout(()=>{if(dl.isConnected){dl.classList.remove("warn");dl.textContent="Borrar"}},3500);return}
       state.tasks=state.tasks.filter(p=>p.id!==dl.dataset.pdel);if(pEditing===dl.dataset.pdel)pReset();save();
@@ -1929,6 +1930,10 @@ const Cal=(()=>{
 window.Cal=Cal;
 if(window.medApp)setInterval(()=>{try{Cal.refresh()}catch(e){}},3*36e5);
 if(location.hash==="#calendario")Cal.open();
+</script>
+<script>
+/* secciones desplegables del calendario: recuerdan si las dejaste abiertas */
+document.querySelectorAll("#cal details.fold").forEach(d=>{const k="carrera-fold-"+d.dataset.fold,v=store.get(k);if(v!=null)d.open=v==="1";d.addEventListener("toggle",()=>store.set(k,d.open?"1":"0"))});
 </script>
 <script>
 /* ===== Calificaciones finales: promedio por semestre y general, aprobadas, mejor y peor, distribución y "¿qué necesito?" ===== */

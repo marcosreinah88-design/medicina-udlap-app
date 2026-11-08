@@ -20,7 +20,7 @@
 .aibox .chip b{cursor:pointer;font-weight:800;padding:0 4px}.aibox ol{margin:6px 0;padding-left:20px;font-size:.86rem}.aibox a{color:var(--orange,#f26b21);font-weight:700}
 .aibox .err{color:#c0392b;font-weight:600}.aiitem{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border:1px solid var(--line);border-left:4px solid var(--c);border-radius:10px;margin-top:7px;background:var(--paper)}
 .aiitem input{margin-top:3px;width:18px;height:18px;accent-color:var(--orange,#f26b21);flex:none}.aiitem b{display:block;font-size:.92rem}.aiitem small{color:var(--muted);font-size:.78rem}
-.aispin{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:aisp .8s linear infinite;vertical-align:-2px}@keyframes aisp{to{transform:rotate(360deg)}}`;
+.aib2{margin:0 0 14px}.aispin{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:aisp .8s linear infinite;vertical-align:-2px}@keyframes aisp{to{transform:rotate(360deg)}}`;
   const STAR='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9zM19 14l.9 2.6 2.6.9-2.6.9L19 21l-.9-2.6-2.6-.9 2.6-.9z"/></svg>';
 
   function mount(){
@@ -32,11 +32,15 @@
     box.style.display="inline-block";box.addEventListener("toggle",()=>{box.style.display=box.open?"block":"inline-block"});
     b.onclick=()=>{panel.hidden=!panel.hidden;if(!panel.hidden){draw();const t=panel.querySelector("textarea,input");if(t)t.focus()}};
     panel.addEventListener("click",onClick);panel.addEventListener("change",onChange);
+    const fc=document.getElementById("calForm");
+    if(fc&&!document.getElementById("aiBtnEx")){const b2=document.createElement("button");b2.type="button";b2.id="aiBtnEx";b2.className="aib aib2";b2.innerHTML=STAR+"Usar el asistente (foto, PDF o texto)";
+      fc.insertAdjacentElement("beforebegin",b2);
+      b2.onclick=()=>{const pd=document.getElementById("calPend");if(pd)pd.open=true;panel.hidden=false;draw();panel.scrollIntoView({block:"center",behavior:"smooth"});const t=panel.querySelector("textarea,input");if(t)t.focus({preventScroll:true})}}
   }
   function draw(msg){
     const p=document.getElementById("aiBox");if(!p)return;
     if(!get(KEY)){
-      p.innerHTML=`<h4>${STAR}Asistente de pendientes</h4><p>Mándale una foto o PDF del calendario de una materia, o escríbele lo que tienes que hacer, y te propone los pendientes y exámenes con su fecha. Usa Gemini de Google con una clave gratis (se hace una vez):</p>
+      p.innerHTML=`<h4>${STAR}Asistente de exámenes y pendientes</h4><p>Mándale una foto o PDF del calendario de una materia, o escríbele lo que tienes que hacer, y te propone los pendientes y exámenes con su fecha. Usa Gemini de Google con una clave gratis (se hace una vez):</p>
 <ol><li>Abre <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> y entra con tu cuenta de Google.</li><li>Presiona <b>Create API key</b> (si te pide proyecto, elige el que te ofrece) y copia la clave completa (empieza con <b>AIza</b> o <b>AQ.</b>).</li><li>Pégala aquí. Se guarda solo en este aparato; en tu otro aparato la pegas otra vez.</li></ol>
 <p class="mut">Es gratis con un límite diario de sobra para esto. No pongas tarjeta ni actives facturación.</p>
 <input type="password" id="aiKey" placeholder="Pega tu clave aquí" autocomplete="off"><p class="err" id="aiErr" hidden></p><div class="row"><button type="button" data-ai="key">Guardar clave</button></div>`;
@@ -50,7 +54,7 @@
         `<p class="mut">No encontré nada para agregar.</p><div class="row"><button type="button" class="sec" data-ai="back">Volver</button></div>`);
       return;
     }
-    p.innerHTML=`<h4>${STAR}Asistente de pendientes</h4><p class="mut">Ej. "El viernes entrego el caso clínico de cirugía, es urgente" o adjunta la foto del calendario de la materia.</p>
+    p.innerHTML=`<h4>${STAR}Asistente de exámenes y pendientes</h4><p class="mut">Ej. "El 20 de noviembre es el 2º parcial de Gastro, entran los temas 5 a 9" o "El viernes entrego el caso clínico de cirugía". También puedes adjuntar la foto o el PDF del calendario de la materia y saco los exámenes y pendientes.</p>
 <textarea id="aiTxt" placeholder="¿Qué quieres agregar?">${esc(window.__aiDraft||"")}</textarea>
 <div class="row" id="aiFiles">${files.map((f,i)=>`<span class="chip">${esc(f.name)}<b data-rm="${i}" title="Quitar">×</b></span>`).join("")}</div>
 ${msg?`<p class="err">${esc(msg)}</p>`:""}

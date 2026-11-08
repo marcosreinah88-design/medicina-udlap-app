@@ -248,6 +248,20 @@ html{transition:background-color .3s}
 .task.pend.late{border-color:color-mix(in srgb,#c0392b 45%,var(--line));background:color-mix(in srgb,#c0392b 6%,transparent)}
 .task.pend.late .tx small{color:#c0392b;font-weight:600}.task.pend.soon .tx small{color:var(--orange);font-weight:600}
 .task.pend.done .tx b{text-decoration:line-through;opacity:.6}
+.pflags{display:flex;flex-wrap:wrap;gap:6px}
+.pfopt{display:inline-flex!important;cursor:pointer}.pfopt input{position:absolute;opacity:0;pointer-events:none}
+.pfopt span{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border:1.5px solid var(--line);border-radius:999px;font:600 .8rem var(--f-display);color:var(--ink)}
+.pfopt svg,.pfilt svg,.pflag svg{width:15px;height:15px;color:var(--muted)}
+.pfopt input:checked+span{border-color:var(--f,var(--ink));background:color-mix(in srgb,var(--f,var(--ink)) 13%,transparent)}
+.pfopt input:focus-visible+span{outline:2px solid var(--orange)}
+.pfilt{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.pfilt:empty{display:none}
+.pfilt button{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:4px 10px;font:600 .76rem var(--f-display);cursor:pointer}
+.pfilt button small{color:var(--muted)}.pfilt button.on{border-color:var(--f,var(--ink));background:color-mix(in srgb,var(--f,var(--ink)) 14%,transparent)}
+.pflag{flex:none;border:0;background:transparent;padding:2px;margin:0 -4px 0 -2px;cursor:pointer;display:inline-grid;place-items:center;border-radius:6px;opacity:.45}
+.pflag.on{opacity:1}button.pflag:hover{opacity:1;background:var(--line)}span.pflag{cursor:default}
+.ptag{display:inline-block;font-style:normal;font:700 .62rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--f);border:1px solid var(--f);border-radius:5px;padding:1px 5px;margin-left:7px;vertical-align:2px}
+.today .ptag{color:#fff;border-color:rgba(255,255,255,.5)}
+.task.pend.elim .tx b{opacity:.55}
 .task .tx small.pnote{font-style:italic;color:var(--muted)!important;font-weight:400!important}
 .pdone{margin-top:12px}.pdone summary{cursor:pointer;font-weight:700;font-size:.85rem;color:var(--muted)}.pdone .mini{margin-top:10px}
 .today .task.pend.late{background:rgba(192,57,43,.25)}.today .task.pend.late .tx small,.today .task.pend.soon .tx small{color:#ffd2b8}
@@ -719,10 +733,11 @@ footer p{margin:0;max-width:70ch}
             <label>Materia<select id="pnMat"></select></label>
             <label>Entrega<input id="pnDue" type="date" aria-label="Fecha de entrega (opcional)"></label>
           </div>
+          <div class="pflags" id="pnFlags" role="radiogroup" aria-label="Bandera"></div>
           <input id="pnNotes" maxlength="400" placeholder="Notas (opcional): equipo, formato, profesor…" aria-label="Notas">
           <div class="btns"><button class="cbtn" type="submit" id="pnSubmit">Agregar</button><button class="cbtn ghost" type="button" id="pnCancel" hidden>Cancelar</button></div>
         </form>
-        <div id="pnList"></div></section>
+        <div class="pfilt" id="pnFilt"></div><div id="pnList"></div></section>
       <section class="ccard"><h3>Plan de estudio <small id="calPlanSub"></small></h3><div id="calPlan"></div></section>
     </div>
     <div class="cal-side">
@@ -1421,6 +1436,9 @@ const UDLAP=[
 const Cal=(()=>{
   const LS="carrera-calendario";
   /* pendientes del semestre: tareas, proyectos, etc. (aparte de los exámenes) */
+  const PF={urgente:{l:"Urgente",c:"#d23b2a"},necesario:{l:"Necesario",c:"#e08a00"},delegar:{l:"Delegar",c:"#2f6fc1"},eliminar:{l:"Eliminar",c:"#7a8580"}};
+  const FLAG=c=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M5 4h11l-2.5 4L16 12H5z" fill="${c}" stroke="${c==="none"?"currentColor":c}" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
+  let pFilter="";
   const PT={tarea:{l:"Tarea",c:"#1c6b66"},proyecto:{l:"Proyecto",c:"#4a3a91"},presentacion:{l:"Presentación",c:"#b8325a"},lectura:{l:"Lectura",c:"#c9a24a"},practica:{l:"Práctica / guardia",c:"#0b7a62"},tramite:{l:"Trámite",c:"#7a8580"},otro:{l:"Otro",c:"#a8323e"}};
   const COLORS=["#00543c","#f26b21","#4a3a91","#b8325a","#1c6b66","#c9a24a","#0b7a62","#a8323e"];
   const DIAS=["dom","lun","mar","mié","jue","vie","sáb"],MESES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
@@ -1461,7 +1479,7 @@ const Cal=(()=>{
     const done={};if(x&&x.done&&typeof x.done==="object")for(const k in x.done)if(typeof x.done[k]==="string")done[k]=x.done[k];
     const tasks=Array.isArray(x&&x.tasks)?x.tasks.filter(p=>p&&p.id&&p.title).map(p=>({id:String(p.id).slice(0,40),title:String(p.title).slice(0,140),
       type:PT[p.type]?p.type:"otro",mat:String(p.mat||"").slice(0,60),due:/^\d{4}-\d{2}-\d{2}$/.test(p.due||"")?p.due:"",notes:String(p.notes||"").slice(0,400),
-      done:typeof p.done==="string"?p.done:"",at:+p.at||0})).slice(0,300):[];
+      done:typeof p.done==="string"?p.done:"",at:+p.at||0,flag:PF[p.flag]?p.flag:""})).slice(0,300):[];
     return {exams,done,tasks};
   }
   function saveLocal(){store.set(LS,JSON.stringify(state))}
@@ -1564,11 +1582,11 @@ const Cal=(()=>{
       const n7=ymd(add(parse(e.date),-7)),n1=ymd(add(parse(e.date),-1));
       add1("ex7:"+e.id+":"+e.date,at(n7,20),"Examen de "+e.name+" en 7 días",longDate(e.date));
       add1("ex1:"+e.id+":"+e.date,at(n1,20),"Mañana es tu examen de "+e.name,"Duerme bien. Repaso general hoy y a descansar.");}
-    for(const p of state.tasks){if(p.done||!p.due||p.due<t)continue;
+    for(const p of state.tasks){if(p.done||!p.due||p.due<t||p.flag==="eliminar")continue;
       const what=PT[p.type].l+(p.mat?" · "+p.mat:"");
       if(p.type==="proyecto"||p.type==="presentacion")add1("pn3:"+p.id+":"+p.due,at(ymd(add(parse(p.due),-3)),19),"En 3 días: "+p.title,what+" · "+longDate(p.due));
       add1("pn1:"+p.id+":"+p.due,at(ymd(add(parse(p.due),-1)),20),"Mañana se entrega: "+p.title,what);
-      add1("pn0:"+p.id+":"+p.due,at(p.due,7,30),"Hoy se entrega: "+p.title,what);}
+      add1("pn0:"+p.id+":"+p.due,at(p.due,7,30),(p.flag==="urgente"?"🚩 Urgente · hoy se entrega: ":"Hoy se entrega: ")+p.title,what);}
     for(const ev of UDLAP){if(ev.s<t||!(UDLAP_KIND[ev.k].bar||ev.k==="inscripciones"))continue;
       add1("ud:"+ev.s+":"+ev.k,at(ymd(add(parse(ev.s),-1)),19),"Mañana: "+ev.t,ev.e?uRange(ev):longDate(ev.s));}
     for(const g of FBA){if((g.e||g.s)<t)continue;
@@ -1583,7 +1601,9 @@ const Cal=(()=>{
   function pendHTML(p,t,full){
     const n=p.due?diff(t,p.due):99,cls=p.done?" done":n<0?" late":n<=2?" soon":"";
     const meta=[PT[p.type].l,p.mat,p.done?"hecho "+nice(p.done):dueTxt(p,t)].filter(Boolean).join(" · ");
-    return `<div class="task pend${cls}" style="--c:${PT[p.type].c}"><input type="checkbox" data-pk="${esc(p.id)}"${p.done?" checked":""} aria-label="Marcar como hecho"><span class="tx"><b>${esc(p.title)}</b><small>${esc(meta)}</small>${full&&p.notes?`<small class="pnote">${esc(p.notes)}</small>`:""}</span>${full?`<span class="pacts"><button class="mini" type="button" data-pedit="${esc(p.id)}">Editar</button><button class="mini" type="button" data-pdel="${esc(p.id)}">Borrar</button></span>`:""}</div>`;
+    const fl=p.flag?PF[p.flag]:null;
+    const flag=full?`<button type="button" class="pflag${fl?" on":""}" data-pflag="${esc(p.id)}" style="--f:${fl?fl.c:"var(--muted)"}" title="${fl?fl.l+" · toca para cambiar":"Ponerle bandera"}" aria-label="Bandera: ${fl?fl.l:"ninguna"}">${FLAG(fl?fl.c:"none")}</button>`:(fl?`<span class="pflag on" style="--f:${fl.c}">${FLAG(fl.c)}</span>`:"");
+    return `<div class="task pend${cls}${p.flag==="eliminar"?" elim":""}" style="--c:${PT[p.type].c}"><input type="checkbox" data-pk="${esc(p.id)}"${p.done?" checked":""} aria-label="Marcar como hecho">${flag}<span class="tx"><b>${esc(p.title)}</b>${fl?`<em class="ptag" style="--f:${fl.c}">${fl.l}</em>`:""}<small>${esc(meta)}</small>${full&&p.notes?`<small class="pnote">${esc(p.notes)}</small>`:""}</span>${full?`<span class="pacts"><button class="mini" type="button" data-pedit="${esc(p.id)}">Editar</button><button class="mini" type="button" data-pdel="${esc(p.id)}">Borrar</button></span>`:""}</div>`;
   }
   function taskHTML(it){
     if(it.kind==="pend")return pendHTML(it.p,today(),false);
@@ -1636,9 +1656,14 @@ const Cal=(()=>{
   }
 
   function renderPend(t){
-    const open=state.tasks.filter(p=>!p.done).sort((a,b)=>(a.due||"9999").localeCompare(b.due||"9999")||a.at-b.at),hechos=state.tasks.filter(p=>p.done).sort((a,b)=>b.done.localeCompare(a.done));
-    const late=open.filter(p=>p.due&&p.due<t).length;
-    $("#pnSub").textContent=open.length?open.length+(open.length>1?" por hacer":" por hacer")+(late?" · "+late+" atrasado"+(late>1?"s":""):""):"";
+    const FR={urgente:0,necesario:1,"":2,delegar:3,eliminar:4};
+    const allOpen=state.tasks.filter(p=>!p.done).sort((a,b)=>FR[a.flag]-FR[b.flag]||(a.due||"9999").localeCompare(b.due||"9999")||a.at-b.at);
+    const open=pFilter?allOpen.filter(p=>p.flag===pFilter):allOpen,hechos=state.tasks.filter(p=>p.done).sort((a,b)=>b.done.localeCompare(a.done));
+    const late=allOpen.filter(p=>p.due&&p.due<t).length;
+    $("#pnSub").textContent=allOpen.length?allOpen.length+" por hacer"+(late?" · "+late+" atrasado"+(late>1?"s":""):""):"";
+    const cnt=k=>allOpen.filter(p=>p.flag===k).length;
+    $("#pnFilt").innerHTML=allOpen.some(p=>p.flag)?`<button type="button" data-pf=""${pFilter?"":' class="on"'}>Todos <small>${allOpen.length}</small></button>`+Object.entries(PF).filter(([k])=>cnt(k)).map(([k,v])=>`<button type="button" data-pf="${k}" style="--f:${v.c}"${pFilter===k?' class="on"':""}>${FLAG(v.c)}${v.l} <small>${cnt(k)}</small></button>`).join(""):"";
+    if(pFilter&&!cnt(pFilter)){pFilter="";return renderPend(t)}
     $("#pnList").innerHTML=(open.length?open.map(p=>pendHTML(p,t,true)).join(""):`<p class="empty-msg">${hechos.length?"No tienes pendientes. ¡Todo listo!":"Anota aquí tus tareas, proyectos, lecturas y trámites del semestre."}</p>`)+
       (hechos.length?`<details class="pdone"><summary>Hechos (${hechos.length})</summary>${hechos.map(p=>pendHTML(p,t,true)).join("")}<button class="mini" type="button" id="pnClear">Quitar los hechos</button></details>`:"");
   }
@@ -1740,12 +1765,13 @@ const Cal=(()=>{
 
   /* ---------- pendientes ---------- */
   const pf=$("#pnForm"),pTitle=$("#pnTitle"),pType=$("#pnType"),pMat=$("#pnMat"),pDue=$("#pnDue"),pNotes=$("#pnNotes");let pEditing=null;
+  $("#pnFlags").innerHTML=`<label class="pfopt"><input type="radio" name="pnFlag" value="" checked><span>Sin bandera</span></label>`+Object.entries(PF).map(([k,v])=>`<label class="pfopt" style="--f:${v.c}"><input type="radio" name="pnFlag" value="${k}"><span>${FLAG(v.c)}${v.l}</span></label>`).join("");
   pType.innerHTML=Object.entries(PT).map(([k,v])=>`<option value="${k}">${esc(v.l)}</option>`).join("");
   pMat.innerHTML='<option value="">General</option>'+CURSO.materias.map(m=>`<option>${esc(m.n)}</option>`).join("");
   function pReset(){pEditing=null;pf.reset();$("#pnSubmit").textContent="Agregar";$("#pnCancel").hidden=true}
   pf.addEventListener("submit",ev=>{
     ev.preventDefault();const title=pTitle.value.trim();if(!title){pTitle.focus();return}
-    const data={title,type:pType.value,mat:pMat.value,due:pDue.value,notes:pNotes.value.trim()};
+    const data={title,type:pType.value,mat:pMat.value,due:pDue.value,notes:pNotes.value.trim(),flag:(pf.querySelector("input[name=pnFlag]:checked")||{}).value||""};
     if(pEditing){const p=state.tasks.find(x=>x.id===pEditing);if(p)Object.assign(p,data)}
     else state.tasks.push(Object.assign({id:"p"+Date.now().toString(36)+Math.random().toString(36).slice(2,6),done:"",at:Date.now()},data));
     pReset();save();
@@ -1754,8 +1780,10 @@ const Cal=(()=>{
   $("#calPend").addEventListener("click",ev=>{
     const ed=ev.target.closest("[data-pedit]"),dl=ev.target.closest("[data-pdel]");
     if(ev.target.closest("#pnClear")){state.tasks=state.tasks.filter(p=>!p.done);save();return}
+    const fb=ev.target.closest("[data-pflag]");if(fb){const p=state.tasks.find(x=>x.id===fb.dataset.pflag);if(p){const ks=["",...Object.keys(PF)];p.flag=ks[(ks.indexOf(p.flag||"")+1)%ks.length];save()}return}
+    const ft=ev.target.closest("[data-pf]");if(ft){pFilter=ft.dataset.pf;render();return}
     if(ed){const p=state.tasks.find(x=>x.id===ed.dataset.pedit);if(!p)return;pEditing=p.id;pTitle.value=p.title;pType.value=p.type;
-      if(p.mat&&![...pMat.options].some(o=>o.value===p.mat))pMat.add(new Option(p.mat,p.mat));pMat.value=p.mat;pDue.value=p.due;pNotes.value=p.notes;
+      if(p.mat&&![...pMat.options].some(o=>o.value===p.mat))pMat.add(new Option(p.mat,p.mat));pMat.value=p.mat;pDue.value=p.due;pNotes.value=p.notes;pf.querySelectorAll("input[name=pnFlag]").forEach(r=>r.checked=r.value===(p.flag||""));
       $("#pnSubmit").textContent="Guardar";$("#pnCancel").hidden=false;pf.scrollIntoView({block:"center",behavior:"smooth"});pTitle.focus({preventScroll:true})}
     if(dl){
       if(!dl.classList.contains("warn")){dl.classList.add("warn");dl.textContent="¿Seguro?";setTimeout(()=>{if(dl.isConnected){dl.classList.remove("warn");dl.textContent="Borrar"}},3500);return}

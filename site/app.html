@@ -240,6 +240,18 @@ html{transition:background-color .3s}
 .mini.warn{background:#c62828;border-color:#c62828;color:#fff}
 .xrow.past{opacity:.55}
 .cform{display:grid;gap:12px}
+.pform{margin:4px 0 6px}.pform .row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:640px){.pform .row3{grid-template-columns:1fr 1fr}.pform .row3 label:last-child{grid-column:1/-1}}
+.pform .btns{margin-top:-2px}
+#pnList{margin-top:6px}
+.task.pend{align-items:center}.task.pend .pacts{display:flex;gap:6px;flex:none}
+.task.pend.late{border-color:color-mix(in srgb,#c0392b 45%,var(--line));background:color-mix(in srgb,#c0392b 6%,transparent)}
+.task.pend.late .tx small{color:#c0392b;font-weight:600}.task.pend.soon .tx small{color:var(--orange);font-weight:600}
+.task.pend.done .tx b{text-decoration:line-through;opacity:.6}
+.task .tx small.pnote{font-style:italic;color:var(--muted)!important;font-weight:400!important}
+.pdone{margin-top:12px}.pdone summary{cursor:pointer;font-weight:700;font-size:.85rem;color:var(--muted)}.pdone .mini{margin-top:10px}
+.today .task.pend.late{background:rgba(192,57,43,.25)}.today .task.pend.late .tx small,.today .task.pend.soon .tx small{color:#ffd2b8}
+@media (max-width:520px){.task.pend{flex-wrap:wrap}.task.pend .pacts{width:100%;justify-content:flex-end}}
 .cform label{display:grid;gap:5px;font-weight:700;font-size:.84rem}
 .cform label span.h{font-weight:500;color:var(--muted);font-size:.76rem}
 .cform input,.cform textarea,.cform select{width:100%;min-width:0;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px 12px;font:500 .95rem var(--f-display)}
@@ -694,11 +706,23 @@ footer p{margin:0;max-width:70ch}
 <div class="cal" id="cal" hidden role="dialog" aria-modal="true" aria-labelledby="calTtl">
   <div class="vbar gut">
     <a class="vbtn" href="#" id="calBack"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="lbl">Inicio</span></a>
-    <div class="ttl" id="calTtl"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Calendario de exámenes</div>
+    <div class="ttl" id="calTtl"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Calendario y pendientes</div>
   </div>
   <div class="cal-body gut"><div class="in cal-grid">
     <div class="cal-main">
       <section class="ccard today" id="calToday"></section>
+      <section class="ccard" id="calPend"><h3>Pendientes del semestre <small id="pnSub"></small></h3>
+        <form class="cform pform" id="pnForm" autocomplete="off">
+          <input id="pnTitle" maxlength="140" placeholder="¿Qué tienes que hacer? Ej. Caso clínico de colecistitis" aria-label="Pendiente">
+          <div class="row3">
+            <label>Tipo<select id="pnType"></select></label>
+            <label>Materia<select id="pnMat"></select></label>
+            <label>Entrega<input id="pnDue" type="date" aria-label="Fecha de entrega (opcional)"></label>
+          </div>
+          <input id="pnNotes" maxlength="400" placeholder="Notas (opcional): equipo, formato, profesor…" aria-label="Notas">
+          <div class="btns"><button class="cbtn" type="submit" id="pnSubmit">Agregar</button><button class="cbtn ghost" type="button" id="pnCancel" hidden>Cancelar</button></div>
+        </form>
+        <div id="pnList"></div></section>
       <section class="ccard"><h3>Plan de estudio <small id="calPlanSub"></small></h3><div id="calPlan"></div></section>
     </div>
     <div class="cal-side">
@@ -1396,6 +1420,8 @@ const UDLAP=[
   {s:"2028-01-10",k:"clases",t:"Primer día de clases · Primavera 2028"}];
 const Cal=(()=>{
   const LS="carrera-calendario";
+  /* pendientes del semestre: tareas, proyectos, etc. (aparte de los exámenes) */
+  const PT={tarea:{l:"Tarea",c:"#1c6b66"},proyecto:{l:"Proyecto",c:"#4a3a91"},presentacion:{l:"Presentación",c:"#b8325a"},lectura:{l:"Lectura",c:"#c9a24a"},practica:{l:"Práctica / guardia",c:"#0b7a62"},tramite:{l:"Trámite",c:"#7a8580"},otro:{l:"Otro",c:"#a8323e"}};
   const COLORS=["#00543c","#f26b21","#4a3a91","#b8325a","#1c6b66","#c9a24a","#0b7a62","#a8323e"];
   const DIAS=["dom","lun","mar","mié","jue","vie","sáb"],MESES=["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
   const DIAS_L=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"],MESES_L=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
@@ -1415,7 +1441,7 @@ const Cal=(()=>{
   function ymdF(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
   const uRange=ev=>ev.e?`${nice(ev.s)} – ${nice(ev.e)}`:nice(ev.s);
   const uRow=(ev,day)=>`<div class="uinfo" style="--u:${UDLAP_KIND[ev.k].c}"><i></i><span><b>${esc(ev.t)}</b>${ev.e?`<small>${esc(uRange(ev))}${day&&day!==ev.s?" · día "+(diff(ev.s,day)+1):""}</small>`:""}</span></div>`;
-  let state={exams:[],done:{}},editing=null,ref=null,saving=false,pending=false,mode="local",ready=false;
+  let state={exams:[],done:{},tasks:[]},editing=null,ref=null,saving=false,pending=false,mode="local",ready=false;
 
   /* fechas en hora local */
   const ymd=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
@@ -1433,7 +1459,10 @@ const Cal=(()=>{
       id:String(e.id).slice(0,40),name:String(e.name||"Examen").slice(0,80),date:e.date,lead:Math.max(1,Math.min(60,+e.lead||7)),
       guide:typeof e.guide==="string"?e.guide:"",topics:Array.isArray(e.topics)?e.topics.map(t=>String(t).slice(0,160)).filter(Boolean).slice(0,80):[],color:typeof e.color==="string"?e.color:COLORS[0]})):[];
     const done={};if(x&&x.done&&typeof x.done==="object")for(const k in x.done)if(typeof x.done[k]==="string")done[k]=x.done[k];
-    return {exams,done};
+    const tasks=Array.isArray(x&&x.tasks)?x.tasks.filter(p=>p&&p.id&&p.title).map(p=>({id:String(p.id).slice(0,40),title:String(p.title).slice(0,140),
+      type:PT[p.type]?p.type:"otro",mat:String(p.mat||"").slice(0,60),due:/^\d{4}-\d{2}-\d{2}$/.test(p.due||"")?p.due:"",notes:String(p.notes||"").slice(0,400),
+      done:typeof p.done==="string"?p.done:"",at:+p.at||0})).slice(0,300):[];
+    return {exams,done,tasks};
   }
   function saveLocal(){store.set(LS,JSON.stringify(state))}
   function loadLocal(){try{const v=store.get(LS);if(v)state=clean(JSON.parse(v))}catch(e){}}
@@ -1442,13 +1471,14 @@ const Cal=(()=>{
     const lim=ymd(add(new Date(),-30)),keep=new Set();
     state.exams=state.exams.filter(e=>e.date>=lim);state.exams.forEach(e=>keep.add(e.id));
     for(const k in state.done)if(!keep.has(k.split(":")[0]))delete state.done[k];
+    state.tasks=state.tasks.filter(p=>!p.done||p.done>=lim);
   }
   async function save(){
     prune();saveLocal();render();
     if(mode!=="cloud"||!ref)return;
     if(saving){pending=true;return}
     saving=true;
-    try{await ref.set({exams:state.exams,done:state.done,v:1})}
+    try{await ref.set({exams:state.exams,done:state.done,tasks:state.tasks,v:1})}
     catch(e){setSync(false,"No pude guardar en tu cuenta; quedó guardado en este navegador")}
     saving=false;
     if(pending){pending=false;save()}
@@ -1472,8 +1502,9 @@ const Cal=(()=>{
           if(snap.exists){state=clean(snap.data());
             /* si en este navegador había exámenes que la cuenta no tiene, se juntan */
             const have=new Set(state.exams.map(e=>e.id));const extra=local.exams.filter(e=>!have.has(e.id));
-            if(extra.length){state.exams=state.exams.concat(extra);Object.assign(state.done,local.done);save()}else{saveLocal();render()}
-          }else if(local.exams.length){save()}
+            const hp=new Set(state.tasks.map(p=>p.id)),extraP=local.tasks.filter(p=>!hp.has(p.id));
+            if(extra.length||extraP.length){state.exams=state.exams.concat(extra);state.tasks=state.tasks.concat(extraP);Object.assign(state.done,local.done);save()}else{saveLocal();render()}
+          }else if(local.exams.length||local.tasks.length){save()}
           setSync(true,"Guardado en tu cuenta · se ve igual en tu celular y tu compu");
           return;
         }
@@ -1509,7 +1540,9 @@ const Cal=(()=>{
       }
       if(review){const d=ymd(add(parse(e.date),-1));push(d,{e,kind:"review",text:"Repaso general de "+e.name,sub:"Todos los temas + un simulacro o quiz",key:e.id+":r"})}
     }
-    const order={exam:0,review:1,topic:2,study:3};
+    for(const p of state.tasks){if(p.done||!p.due)continue;
+      push(p.due<t?t:p.due,{kind:"pend",p,e:{date:p.due,color:PT[p.type].c},text:p.title,key:null});}
+    const order={exam:0,pend:1,review:2,topic:3,study:4};
     for(const d in days)days[d].sort((a,b)=>a.e.date.localeCompare(b.e.date)||order[a.kind]-order[b.kind]);
     return days;
   }
@@ -1519,7 +1552,7 @@ const Cal=(()=>{
     const at=(d,h,m)=>{const x=parse(d);x.setHours(h,m||0,0,0);return x.getTime()};
     const add1=(id,when,title,body,route)=>{if(when>now-5*6e4&&when<now+45*864e5)out.push({id,at:when,title,body,route:route||"calendario"})};
     for(let k=0;k<21;k++){const d=ymd(add(parse(t),k)),its=days[d]||[];
-      const ex=its.filter(x=>x.kind==="exam"),tasks=its.filter(x=>x.kind!=="exam");
+      const ex=its.filter(x=>x.kind==="exam"),tasks=its.filter(x=>x.kind!=="exam"&&x.kind!=="pend");
       ex.forEach(x=>add1("exhoy:"+x.e.id,at(d,7),"Hoy es tu examen de "+x.e.name,"¡Mucho éxito, Marcos!"));
       if(tasks.length){
         const list=tasks.slice(0,3).map(x=>"• "+x.text).join("\n")+(tasks.length>3?"\n+ "+(tasks.length-3)+" más":"");
@@ -1531,6 +1564,11 @@ const Cal=(()=>{
       const n7=ymd(add(parse(e.date),-7)),n1=ymd(add(parse(e.date),-1));
       add1("ex7:"+e.id+":"+e.date,at(n7,20),"Examen de "+e.name+" en 7 días",longDate(e.date));
       add1("ex1:"+e.id+":"+e.date,at(n1,20),"Mañana es tu examen de "+e.name,"Duerme bien. Repaso general hoy y a descansar.");}
+    for(const p of state.tasks){if(p.done||!p.due||p.due<t)continue;
+      const what=PT[p.type].l+(p.mat?" · "+p.mat:"");
+      if(p.type==="proyecto"||p.type==="presentacion")add1("pn3:"+p.id+":"+p.due,at(ymd(add(parse(p.due),-3)),19),"En 3 días: "+p.title,what+" · "+longDate(p.due));
+      add1("pn1:"+p.id+":"+p.due,at(ymd(add(parse(p.due),-1)),20),"Mañana se entrega: "+p.title,what);
+      add1("pn0:"+p.id+":"+p.due,at(p.due,7,30),"Hoy se entrega: "+p.title,what);}
     for(const ev of UDLAP){if(ev.s<t||!(UDLAP_KIND[ev.k].bar||ev.k==="inscripciones"))continue;
       add1("ud:"+ev.s+":"+ev.k,at(ymd(add(parse(ev.s),-1)),19),"Mañana: "+ev.t,ev.e?uRange(ev):longDate(ev.s));}
     for(const g of FBA){if((g.e||g.s)<t)continue;
@@ -1541,7 +1579,14 @@ const Cal=(()=>{
     if(window.medApp&&window.medApp.schedule)window.medApp.schedule(out);
     if(location.protocol==="app:"||/github\.io$/.test(location.hostname)||location.hostname==="localhost")try{const v=JSON.stringify(out.slice(0,300));if(localStorage.getItem("medicina-avisos")!==v)localStorage.setItem("medicina-avisos",v)}catch(e){}
   }
+  function dueTxt(p,t){if(!p.due)return "sin fecha";const n=diff(t,p.due);return n<0?"venció hace "+(-n)+(n===-1?" día":" días"):n===0?"se entrega hoy":n===1?"se entrega mañana":"se entrega "+nice(p.due)+" · en "+n+" días"}
+  function pendHTML(p,t,full){
+    const n=p.due?diff(t,p.due):99,cls=p.done?" done":n<0?" late":n<=2?" soon":"";
+    const meta=[PT[p.type].l,p.mat,p.done?"hecho "+nice(p.done):dueTxt(p,t)].filter(Boolean).join(" · ");
+    return `<div class="task pend${cls}" style="--c:${PT[p.type].c}"><input type="checkbox" data-pk="${esc(p.id)}"${p.done?" checked":""} aria-label="Marcar como hecho"><span class="tx"><b>${esc(p.title)}</b><small>${esc(meta)}</small>${full&&p.notes?`<small class="pnote">${esc(p.notes)}</small>`:""}</span>${full?`<span class="pacts"><button class="mini" type="button" data-pedit="${esc(p.id)}">Editar</button><button class="mini" type="button" data-pdel="${esc(p.id)}">Borrar</button></span>`:""}</div>`;
+  }
   function taskHTML(it){
+    if(it.kind==="pend")return pendHTML(it.p,today(),false);
     if(it.kind==="exam")return `<div class="task exam" style="--c:${it.e.color}"><div class="tx"><b>${esc(it.text)}</b><small>¡Mucho éxito!</small></div></div>`;
     const done=!!state.done[it.key];
     const g=it.e.guide&&G.find(x=>x.id===it.e.guide);
@@ -1555,7 +1600,7 @@ const Cal=(()=>{
     /* hoy */
     const td=days[t]||[],pend=td.filter(x=>x.kind!=="exam"&&!state.done[x.key]).length;
     $("#calToday").innerHTML=`<h3>Hoy toca <small>${td.length?(pend?pend+" pendiente"+(pend>1?"s":""):"todo listo ✓"):""}</small></h3><p class="tdate">${esc(longDate(t))}</p>`+(showU&&UD[t]?UD[t].map(ev=>uRow(ev,t)).join(""):"")+fDay(t)+
-      (td.length?td.map(taskHTML).join(""):`<p class="empty-msg">${up.length?"Hoy no tienes nada asignado. Descansa o adelanta algo de tu próximo examen.":"Agrega tu primer examen y aquí te diré qué estudiar cada día."}</p>`);
+      (td.length?td.map(taskHTML).join(""):`<p class="empty-msg">${state.tasks.some(p=>!p.done)&&!up.length?"Hoy no se entrega nada. Revisa tus pendientes abajo.":up.length?"Hoy no tienes nada asignado. Descansa o adelanta algo de tu próximo examen.":"Agrega tu primer examen y aquí te diré qué estudiar cada día."}</p>`);
     /* plan de los próximos días */
     const lastTask=dates.length?dates[dates.length-1]:t;
     const uStarts=showU?UDLAP.filter(ev=>ev.s>t&&ev.s<=lastTask&&UDLAP_KIND[ev.k].bar).map(ev=>ev.s):[];
@@ -1577,6 +1622,7 @@ const Cal=(()=>{
         <div class="meta">${esc(nice(e.date))}${g?" · "+esc(g.title):""}${tot?` · ${dn}/${tot} temas`:""}</div>
         ${tot?`<div class="prog"><i style="width:${Math.round(dn/tot*100)}%"></i></div>`:""}
       </div>`}).join(""):`<p class="empty-msg">Aún no agregas exámenes.</p>`;
+    renderPend(t);
     renderMonth(days);
     try{notify(days)}catch(e){}
     const upU=UDLAP.filter(ev=>(ev.e||ev.s)>=t&&ev.k!=="colegios"&&ev.k!=="verano").slice(0,8);
@@ -1589,6 +1635,13 @@ const Cal=(()=>{
     const b=$("#calBadge");if(pend){b.textContent=pend;b.hidden=false;$("#calBtn").title=pend+" pendientes hoy"}else b.hidden=true;
   }
 
+  function renderPend(t){
+    const open=state.tasks.filter(p=>!p.done).sort((a,b)=>(a.due||"9999").localeCompare(b.due||"9999")||a.at-b.at),hechos=state.tasks.filter(p=>p.done).sort((a,b)=>b.done.localeCompare(a.done));
+    const late=open.filter(p=>p.due&&p.due<t).length;
+    $("#pnSub").textContent=open.length?open.length+(open.length>1?" por hacer":" por hacer")+(late?" · "+late+" atrasado"+(late>1?"s":""):""):"";
+    $("#pnList").innerHTML=(open.length?open.map(p=>pendHTML(p,t,true)).join(""):`<p class="empty-msg">${hechos.length?"No tienes pendientes. ¡Todo listo!":"Anota aquí tus tareas, proyectos, lecturas y trámites del semestre."}</p>`)+
+      (hechos.length?`<details class="pdone"><summary>Hechos (${hechos.length})</summary>${hechos.map(p=>pendHTML(p,t,true)).join("")}<button class="mini" type="button" id="pnClear">Quitar los hechos</button></details>`:"");
+  }
   /* ---------- calendario mensual ---------- */
   const MES_L=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
   function renderMonth(days){
@@ -1605,7 +1658,7 @@ const Cal=(()=>{
       let style="";const cls=["md"];if(d.getMonth()!==m)cls.push("out");if(k<t)cls.push("past");if(k===t)cls.push("today");if(k===selDay)cls.push("sel");
       if(ex.length){cls.push("ex");style+=`--c:${ex[0].color};`;if(ex.length>1){cls.push("multi");style+=`--c2:${ex[1].color};`}}
       const ue=showU?(UD[k]||[]).filter(ev=>UDLAP_KIND[ev.k].bar):[];
-      const title=[...ex.map(e=>"Examen: "+e.name),...ue.map(ev=>ev.t),...(showF?(FB[k]||[]):[]).map(fTitle)].join(", ")||(st.length?"Día de estudio":"");
+      const title=[...ex.map(e=>"Examen: "+e.name),...(days[k]||[]).filter(x=>x.kind==="pend"&&x.p.due===k).map(x=>"Entrega: "+x.text),...ue.map(ev=>ev.t),...(showF?(FB[k]||[]):[]).map(fTitle)].join(", ")||(st.length?"Día de estudio":"");
       if(ue.length){style+=`--u:${UDLAP_KIND[ue[0].k].c};`;cls.push("ud");if(ue.some(ev=>ev.k==="asueto"||ev.k==="vacaciones"))cls.push("off")}
       const fg=showF?(FB[k]||[]):[];if(fg.length){cls.push("fb");if(fg[0].tent)cls.push("fbt")}
       h+=`<button type="button" class="${cls.join(" ")}" style="${style}" data-day="${k}"${title?` title="${esc(title)}"`:""} aria-label="${esc(nice(k)+(title?": "+title:""))}">${d.getDate()}<span class="dots">${(ex.length?[]:st).map(c=>`<i style="--c:${c}"></i>`).join("")}</span></button>`;
@@ -1678,14 +1731,41 @@ const Cal=(()=>{
   });
   $("#cal").addEventListener("click",ev=>{if(ev.target.closest("a.open"))window.__fromCal=true});
   $("#cal").addEventListener("change",ev=>{
+    const pk=ev.target.closest("input[data-pk]");
+    if(pk){const p=state.tasks.find(x=>x.id===pk.dataset.pk);if(p){p.done=pk.checked?today():"";save()}return}
     const c=ev.target.closest("input[data-key]");if(!c)return;
     if(c.checked)state.done[c.dataset.key]=today();else delete state.done[c.dataset.key];
     save();
   });
 
+  /* ---------- pendientes ---------- */
+  const pf=$("#pnForm"),pTitle=$("#pnTitle"),pType=$("#pnType"),pMat=$("#pnMat"),pDue=$("#pnDue"),pNotes=$("#pnNotes");let pEditing=null;
+  pType.innerHTML=Object.entries(PT).map(([k,v])=>`<option value="${k}">${esc(v.l)}</option>`).join("");
+  pMat.innerHTML='<option value="">General</option>'+CURSO.materias.map(m=>`<option>${esc(m.n)}</option>`).join("");
+  function pReset(){pEditing=null;pf.reset();$("#pnSubmit").textContent="Agregar";$("#pnCancel").hidden=true}
+  pf.addEventListener("submit",ev=>{
+    ev.preventDefault();const title=pTitle.value.trim();if(!title){pTitle.focus();return}
+    const data={title,type:pType.value,mat:pMat.value,due:pDue.value,notes:pNotes.value.trim()};
+    if(pEditing){const p=state.tasks.find(x=>x.id===pEditing);if(p)Object.assign(p,data)}
+    else state.tasks.push(Object.assign({id:"p"+Date.now().toString(36)+Math.random().toString(36).slice(2,6),done:"",at:Date.now()},data));
+    pReset();save();
+  });
+  $("#pnCancel").addEventListener("click",pReset);
+  $("#calPend").addEventListener("click",ev=>{
+    const ed=ev.target.closest("[data-pedit]"),dl=ev.target.closest("[data-pdel]");
+    if(ev.target.closest("#pnClear")){state.tasks=state.tasks.filter(p=>!p.done);save();return}
+    if(ed){const p=state.tasks.find(x=>x.id===ed.dataset.pedit);if(!p)return;pEditing=p.id;pTitle.value=p.title;pType.value=p.type;
+      if(p.mat&&![...pMat.options].some(o=>o.value===p.mat))pMat.add(new Option(p.mat,p.mat));pMat.value=p.mat;pDue.value=p.due;pNotes.value=p.notes;
+      $("#pnSubmit").textContent="Guardar";$("#pnCancel").hidden=false;pf.scrollIntoView({block:"center",behavior:"smooth"});pTitle.focus({preventScroll:true})}
+    if(dl){
+      if(!dl.classList.contains("warn")){dl.classList.add("warn");dl.textContent="¿Seguro?";setTimeout(()=>{if(dl.isConnected){dl.classList.remove("warn");dl.textContent="Borrar"}},3500);return}
+      state.tasks=state.tasks.filter(p=>p.id!==dl.dataset.pdel);if(pEditing===dl.dataset.pdel)pReset();save();
+    }
+  });
+
   /* ---------- abrir / cerrar ---------- */
   let lastY=0;
-  function open(){if(!$("#cal").hidden)return;lastY=window.scrollY;month=null;selDay=null;resetForm();render();$("#cal").hidden=false;document.documentElement.style.overflow="hidden";document.title="Calendario de exámenes · Carrera de Medicina"}
+  function open(){if(!$("#cal").hidden)return;lastY=window.scrollY;month=null;selDay=null;resetForm();render();$("#cal").hidden=false;document.documentElement.style.overflow="hidden";document.title="Calendario y pendientes · Carrera de Medicina"}
   function close(){if($("#cal").hidden)return;$("#cal").hidden=true;document.documentElement.style.overflow="";document.title="Carrera de Medicina";requestAnimationFrame(()=>window.scrollTo(0,lastY))}
   $("#calBack").addEventListener("click",ev=>{ev.preventDefault();go("")});
   document.addEventListener("keydown",ev=>{if(ev.key==="Escape"&&!$("#cal").hidden&&!/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName))go("")});

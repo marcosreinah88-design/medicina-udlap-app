@@ -38,7 +38,7 @@
       const a=JSON.parse(l),b=JSON.parse(r);
       const byId=(x,y)=>{const m=new Map();y.forEach(e=>e&&e.id!=null&&m.set(e.id,e));x.forEach(e=>e&&e.id!=null&&m.set(e.id,e));return [...m.values()]};
       if(Array.isArray(a)&&Array.isArray(b)&&a.concat(b).every(e=>e&&typeof e==="object"&&"id" in e))return JSON.stringify(byId(a,b));
-      if(a&&b&&Array.isArray(a.exams)&&Array.isArray(b.exams))return JSON.stringify(Object.assign({},b,a,{exams:byId(a.exams,b.exams),done:Object.assign({},b.done,a.done)}));
+      if(a&&b&&Array.isArray(a.exams)&&Array.isArray(b.exams))return JSON.stringify(Object.assign({},b,a,{exams:byId(a.exams,b.exams),done:Object.assign({},b.done,a.done),tasks:byId(a.tasks||[],b.tasks||[])}));
     }catch(e){}
     return first?r:l;
   }

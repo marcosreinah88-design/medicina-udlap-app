@@ -101,7 +101,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .calbtn svg{stroke-width:2.2}
 .cbadge{position:absolute;top:-6px;right:-6px;min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:#fff;color:var(--orange-2);font:800 .7rem/19px var(--f-mono);text-align:center;box-shadow:0 0 0 2px var(--orange)}
 .cbadge[hidden]{display:none}
-@media (max-width:560px){#themeBtn span,#grBtn span,#bbBtn span{display:none}#themeBtn,#grBtn,#bbBtn{padding:7px}.calbtn span{font-size:.72rem}}
+@media (max-width:560px){#themeBtn span,#grBtn span,#bbBtn span{display:none}#themeBtn,#grBtn,#bbBtn,#cfgBtn{padding:7px}.calbtn span{font-size:.72rem}}
 @media (max-width:380px){.calbtn span{display:none}.calbtn{padding:7px}}
 @media (max-width:560px){.hero>.in{padding-top:46px}}
 html{transition:background-color .3s}
@@ -228,6 +228,28 @@ html{transition:background-color .3s}
 .mini.warn{background:#c62828;border-color:#c62828;color:#fff}
 .xrow.past{opacity:.55}
 .cform{display:grid;gap:12px}
+/* configuración */
+.aj-hero{border-radius:22px;padding:24px 26px;margin-bottom:20px;color:#fff;background:radial-gradient(120% 140% at 0% 0%,#0a7a55 0%,var(--green) 40%,var(--green-2) 100%);box-shadow:var(--shadow)}
+.aj-hero h2{margin:0;font:900 clamp(1.7rem,3.4vw,2.4rem)/1.05 var(--f-display);font-stretch:85%;text-transform:uppercase}.aj-hero p:last-child{margin:8px 0 0;color:var(--on-green-mut);max-width:62ch;font-size:.9rem;line-height:1.5}
+.aj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px;align-items:start}.aj-grid .ccard+.ccard{margin-top:0}
+.aj h3{display:flex;align-items:center;justify-content:flex-start;gap:10px;margin:0 0 14px}
+.aj-ic{width:32px;height:32px;flex:none;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,var(--green-3) 14%,transparent);color:var(--go)}.aj-ic svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.aj-seg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;border-radius:14px;background:color-mix(in srgb,var(--line) 55%,transparent)}
+.aj-seg button{border:0;background:transparent;color:var(--ink);font:700 .86rem var(--f-display);padding:9px 6px;border-radius:10px;cursor:pointer}.aj-seg button.on{background:var(--paper);box-shadow:0 1px 3px rgba(0,0,0,.15);color:var(--go)}
+.aj-help{color:var(--muted);font-size:.8rem;line-height:1.45;margin:10px 0 0}.aj-help a{color:var(--orange);font-weight:700}
+.aj-sw,.aj-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 0;border-top:1px solid var(--line)}.aj h3+.aj-sw,.aj h3+.aj-row{border-top:0;padding-top:0}
+.aj-sw span,.aj-row span{min-width:0}.aj-sw b,.aj-row b{display:block;font-size:.9rem}.aj-sw small,.aj-row small{display:block;color:var(--muted);font-size:.76rem;line-height:1.35;margin-top:2px}
+.aj-sw{cursor:pointer}.aj-sw input{position:absolute;opacity:0;pointer-events:none}.aj-sw i{flex:none;width:44px;height:26px;border-radius:99px;background:var(--line);position:relative;transition:background .2s}
+.aj-sw i::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
+.aj-sw input:checked+i{background:var(--green-3)}.aj-sw input:checked+i::after{transform:translateX(18px)}.aj-sw input:focus-visible+i{outline:2px solid var(--orange);outline-offset:2px}
+.aj-row select{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:7px 10px;font:700 .9rem var(--f-display)}
+.aj-btn{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:99px;padding:8px 16px;background:var(--orange);color:#fff;font:700 .84rem var(--f-display);cursor:pointer;text-decoration:none}
+.aj-btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}.aj-btn.warn{background:#c0392b;color:#fff;border-color:#c0392b}
+.aj-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.aj-links{display:grid;gap:8px}.aj-links a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px;border-radius:12px;border:1px solid var(--line);color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}
+.aj-links a:hover{border-color:var(--orange);transform:translateX(2px)}.aj-links b{font-size:.9rem}.aj-links small{color:var(--muted);font:600 .72rem var(--f-mono)}
+.aj-msg{margin:10px 0 0;font-size:.84rem;font-weight:600}.aj-msg.ok{color:var(--go)}.aj-msg.err{color:#c0392b}
+@media (max-width:560px){.aj-grid{grid-template-columns:minmax(0,1fr)}.aj-hero{padding:20px 18px}}
 /* mi horario */
 .hr-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:12px}.hr-head h3{margin:0}.hr-sub{margin:4px 0 0;color:var(--muted);font-size:.82rem}
 .hn{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;padding:6px 12px;border-radius:99px;background:color-mix(in srgb,var(--c,#0b7a62) 12%,transparent);border:1.5px solid color-mix(in srgb,var(--c,#0b7a62) 40%,transparent);max-width:100%}
@@ -670,6 +692,7 @@ footer p{margin:0;max-width:70ch}
   <div class="topbtns">
   <a class="theme calbtn" id="calBtn" href="#calendario"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Calendario</span><b class="cbadge" id="calBadge" hidden></b></a>
   <a class="theme" id="bbBtn" href="https://click.udlap.mx/" target="_blank" rel="noopener" title="Abrir Blackboard UDLAP"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M7 10v5c0 1.5 2.2 3 5 3s5-1.5 5-3v-5M21 8v6"/></svg><span>Blackboard</span></a>
+  <a class="theme" id="cfgBtn" href="#ajustes" aria-label="Configuración" title="Configuración"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></a>
   <a class="theme" id="grBtn" href="#calificaciones"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Calificaciones</span></a>
   <button class="theme" id="themeBtn" type="button"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg><span id="themeLbl">Modo oscuro</span></button>
   </div>
@@ -1235,7 +1258,7 @@ function go(h){
   if(!h){try{history.pushState(null,"",location.pathname+location.search)}catch(e){location.hash=""}route();return}
   if(location.hash.slice(1)===h)route();else location.hash=h}
 function route(){const h=location.hash.slice(1);
-  const W={calendario:window.Cal,calificaciones:window.Grades,cto:window.CtoLib,otros:window.OtrosLib};
+  const W={calendario:window.Cal,calificaciones:window.Grades,ajustes:window.Ajustes,cto:window.CtoLib,otros:window.OtrosLib};
   for(const k in W)if(k!==h&&W[k])W[k].close();
   if(W[h]!==undefined){hideViewer();W[h]&&W[h].open();return}
   if(h.startsWith("mat-")){window.OtrosLib&&OtrosLib.openDoc(decodeURIComponent(h.slice(4)));return}
@@ -1322,7 +1345,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&current!==null&&!do
   const paint=()=>{const d=isDark();btn.classList.toggle("is-dark",d);lbl.textContent=d?"Modo claro":"Modo oscuro";btn.setAttribute("aria-label",d?"Cambiar a modo claro":"Cambiar a modo oscuro");
     const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=d?"#002619":"#00543c"};
   btn.addEventListener("click",()=>{const t=isDark()?"light":"dark";document.documentElement.dataset.theme=t;store.set("carrera-theme",t);paint()});
-  mq.addEventListener&&mq.addEventListener("change",paint);paint();
+  mq.addEventListener&&mq.addEventListener("change",paint);paint();window.__paintTheme=paint;
 })();
 
 /* cielo de Puebla: a la hora real del amanecer y del atardecer la portada cambia (Popocatépetl al poniente) */
@@ -2165,6 +2188,94 @@ const Horario=(()=>{
   render();
   return {render};
 })();
+</script>
+<script>
+/* ===== Configuración: apariencia, calendario, calificaciones, asistente, sincronización, respaldo ===== */
+const Ajustes=(()=>{
+  const GEAR='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>';
+  const ic=d=>`<span class="aj-ic" aria-hidden="true"><svg viewBox="0 0 24 24">${d}</svg></span>`;
+  const I={look:ic('<circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17A8.5 8.5 0 0 0 12 3.5z" fill="currentColor"/>'),cal:ic('<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>'),gr:ic('<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>'),
+    ai:ic('<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>'),sync:ic('<path d="M20 12a8 8 0 0 1-14 5.3M4 12a8 8 0 0 1 14-5.3M18 3v4h-4M6 21v-4h4"/>'),box:ic('<path d="M4 7l8-4 8 4v10l-8 4-8-4z"/><path d="M4 7l8 4 8-4M12 11v10"/>'),
+    link:ic('<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>'),info:ic('<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/>')};
+  const sw=(id,label,help)=>`<label class="aj-sw"><span><b>${label}</b>${help?`<small>${help}</small>`:""}</span><input type="checkbox" id="${id}"><i></i></label>`;
+  const html=`<div class="cal" id="ajustes" hidden role="dialog" aria-modal="true" aria-labelledby="ajTtl">
+  <div class="vbar gut"><a class="vbtn" href="#" id="ajBack"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="lbl">Inicio</span></a>
+    <div class="ttl" id="ajTtl">${GEAR}Configuración</div></div>
+  <div class="cal-body gut"><div class="in">
+    <div class="aj-hero"><p class="gh-kick">Repositorio de Marcos David Reinah Guzmán</p><h2>Configuración</h2><p>Ajusta cómo se ve y cómo funciona tu repositorio. Lo que cambies aquí se guarda en este aparato y, si tienes la sincronización activa, también en el otro.</p></div>
+    <div class="aj-grid">
+      <section class="ccard aj"><h3>${I.look}Apariencia</h3>
+        <div class="aj-seg" role="radiogroup" aria-label="Tema">${[["auto","Automático"],["light","Claro"],["dark","Oscuro"]].map(([v,l])=>`<button type="button" role="radio" data-theme-set="${v}">${l}</button>`).join("")}</div>
+        <p class="aj-help">Automático sigue el modo claro u oscuro de tu Mac o cel.</p></section>
+      <section class="ccard aj"><h3>${I.cal}Calendario</h3>
+        ${sw("ajUd","Fechas UDLAP","Clases, parciales, finales, vacaciones y días sin clases.")}
+        ${sw("ajFb","Partidos de los Aztecas","Temporada de futbol americano.")}
+        <div class="aj-row"><span><b>Calendario de exámenes y pendientes</b><small>Ahí también editas tu horario.</small></span><a class="aj-btn" href="#calendario">Abrir</a></div></section>
+      <section class="ccard aj"><h3>${I.gr}Calificaciones</h3>
+        <div class="aj-row"><span><b>Calificación mínima aprobatoria</b><small>En la UDLAP es 7.5.</small></span><select id="ajMin"><option>6</option><option>7</option><option>7.5</option><option>8</option></select></div>
+        <div class="aj-row"><span><b>Tu promedio y plan de estudios</b><small id="ajGrInfo"></small></span><a class="aj-btn" href="#calificaciones">Abrir</a></div></section>
+      <section class="ccard aj"><h3>${I.ai}Asistente</h3>
+        <div class="aj-row"><span><b>Clave de Gemini</b><small id="ajKey"></small></span><button type="button" class="aj-btn ghost" id="ajKeyDel">Quitar clave</button></div>
+        <p class="aj-help">Es gratis. Si la quitas, el asistente te la vuelve a pedir. <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Conseguir una clave</a></p></section>
+      <section class="ccard aj"><h3>${I.sync}Sincronización y avisos</h3>
+        <div class="aj-row"><span><b>Mac y cel</b><small id="ajSync"></small></span><button type="button" class="aj-btn" id="ajSyncOpen">Abrir</button></div>
+        <p class="aj-help">Desde ahí sincronizas, activas los avisos en el cel y pruebas que lleguen.</p></section>
+      <section class="ccard aj"><h3>${I.link}Accesos directos</h3>
+        <div class="aj-links"><a href="https://click.udlap.mx/" target="_blank" rel="noopener"><b>Blackboard UDLAP</b><small>click.udlap.mx</small></a><a href="#cto"><b>Manuales CTO</b><small>tu biblioteca</small></a><a href="#otros"><b>Otros materiales</b><small>por materia</small></a></div></section>
+      <section class="ccard aj"><h3>${I.box}Respaldo</h3>
+        <p class="aj-help">Descarga un archivo con tus exámenes, pendientes, horario, calificaciones y ajustes. Sirve por si cambias de aparato. No incluye tus claves.</p>
+        <div class="aj-btns"><button type="button" class="aj-btn" id="ajExport">Descargar respaldo</button><label class="aj-btn ghost">Restaurar respaldo<input type="file" id="ajImport" accept="application/json,.json" hidden></label></div>
+        <p class="aj-help" id="ajNoApp" hidden>El respaldo se descarga desde la app de la Mac o del cel.</p><p class="aj-msg" id="ajMsg" hidden></p></section>
+      <section class="ccard aj"><h3>${I.info}Acerca de</h3>
+        <div class="aj-row"><span><b>Versión</b><small id="ajVer">esta página</small></span></div>
+        <p class="aj-help">Para buscar cambios nuevos: en la Mac, menú <b>Ver → Buscar actualizaciones</b>. En el cel, cierra la app y vuelve a abrirla.</p></section>
+    </div>
+  </div></div></div>`;
+  document.body.insertAdjacentHTML("beforeend",html);
+  const $a=s=>document.querySelector(s);
+  const SECRET=/^__medsync_/;
+  function paintTheme(){const t=store.get("carrera-theme");const v=t==="dark"||t==="light"?t:"auto";
+    document.querySelectorAll("[data-theme-set]").forEach(b=>{const on=b.dataset.themeSet===v;b.classList.toggle("on",on);b.setAttribute("aria-checked",on)})}
+  function render(){
+    paintTheme();
+    {const inApp=location.protocol==="app:"||/github\.io$|^localhost$|^127\./.test(location.hostname)||location.protocol==="file:";("#ajExport").hidden=!inApp;("#ajExport").nextElementSibling.hidden=!inApp;("#ajNoApp").hidden=inApp}
+    $a("#ajUd").checked=store.get("carrera-cal-udlap")!=="0";$a("#ajFb").checked=store.get("carrera-cal-fba")!=="0";
+    let g=null;try{g=JSON.parse(store.get("carrera-calificaciones")||"null")}catch(e){}
+    $a("#ajMin").value=String(g&&g.min||7.5);
+    const n=g&&Array.isArray(g.items)?g.items.length:0;$a("#ajGrInfo").textContent=n?n+" materias registradas":"Aún no hay calificaciones";
+    const k=store.get("__medsync_gemkey");$a("#ajKey").textContent=k?"Guardada en este aparato ("+k.slice(0,4)+"…)":"No hay clave en este aparato";$a("#ajKeyDel").hidden=!k;
+    const sb=document.getElementById("syncBtn");
+    $a("#ajSync").textContent=!sb?"Disponible en la app de la Mac y del cel":store.get("__medsync_token")?"Activa en este aparato":"Todavía no está activa en este aparato";
+    $a("#ajSyncOpen").hidden=!sb;
+    fetch("manifest.json",{cache:"no-store"}).then(r=>r.ok?r.json():null).then(m=>{if(m&&m.version){const d=new Date(m.version*1000);$a("#ajVer").textContent="Actualizada el "+d.toLocaleDateString("es-MX",{day:"numeric",month:"long"})+" a las "+d.toLocaleTimeString("es-MX",{hour:"2-digit",minute:"2-digit"})}}).catch(()=>{});
+  }
+  document.addEventListener("click",ev=>{
+    const t=ev.target.closest("[data-theme-set]");if(t&&t.closest("#ajustes")){const v=t.dataset.themeSet;
+      if(v==="auto"){delete document.documentElement.dataset.theme;store.set("carrera-theme","")}else{document.documentElement.dataset.theme=v;store.set("carrera-theme",v)}
+      window.__paintTheme&&window.__paintTheme();paintTheme()}});
+  const flip=(cb,id)=>$a(cb).addEventListener("change",ev=>{const m=document.getElementById(id);if(m&&m.checked!==ev.target.checked){m.checked=ev.target.checked;m.dispatchEvent(new Event("change"))}});
+  flip("#ajUd","mUd");flip("#ajFb","mFb");
+  $a("#ajMin").addEventListener("change",ev=>{let g={items:[]};try{g=JSON.parse(store.get("carrera-calificaciones")||"null")||g}catch(e){}g.min=+ev.target.value;store.set("carrera-calificaciones",JSON.stringify(g))});
+  $a("#ajKeyDel").addEventListener("click",ev=>{const b=ev.currentTarget;if(!b.classList.contains("warn")){b.classList.add("warn");b.textContent="¿Seguro?";setTimeout(()=>{if(b.isConnected){b.classList.remove("warn");b.textContent="Quitar clave"}},3500);return}
+    try{localStorage.removeItem("__medsync_gemkey")}catch(e){}b.classList.remove("warn");b.textContent="Quitar clave";render()});
+  $a("#ajSyncOpen").addEventListener("click",()=>{const sb=document.getElementById("syncBtn");if(sb)sb.click()});
+  const msg=(t,ok)=>{const m=$a("#ajMsg");m.textContent=t;m.className="aj-msg"+(ok?" ok":" err");m.hidden=false};
+  $a("#ajExport").addEventListener("click",()=>{const data={};try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(!SECRET.test(k)&&/^(carrera-|medicina-)/.test(k)&&!/^medicina-push/.test(k))data[k]=localStorage.getItem(k)}}catch(e){}
+    const blob=new Blob([JSON.stringify({app:"carrera-medicina",v:1,saved:new Date().toISOString(),data},null,1)],{type:"application/json"});
+    const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="respaldo-medicina-"+new Date().toISOString().slice(0,10)+".json";document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500);
+    msg("Listo: se descargó tu respaldo ("+Object.keys(data).length+" apartados).",true)});
+  $a("#ajImport").addEventListener("change",ev=>{const f=ev.target.files&&ev.target.files[0];ev.target.value="";if(!f)return;
+    f.text().then(t=>{const j=JSON.parse(t);if(!j||j.app!=="carrera-medicina"||!j.data)throw 0;let n=0;
+      for(const [k,v] of Object.entries(j.data))if(/^(carrera-|medicina-)/.test(k)&&!SECRET.test(k)&&typeof v==="string"){store.set(k,v);n++}
+      msg("Restauré "+n+" apartados. Recargando…",true);setTimeout(()=>location.reload(),1200)}).catch(()=>msg("Ese archivo no es un respaldo de esta app.",false))});
+  let lastY=0;
+  function open(){if(!$a("#ajustes").hidden)return;lastY=window.scrollY;render();$a("#ajustes").hidden=false;document.documentElement.style.overflow="hidden";document.title="Configuración · Carrera de Medicina"}
+  function close(){if($a("#ajustes").hidden)return;$a("#ajustes").hidden=true;document.documentElement.style.overflow="";document.title="Carrera de Medicina";requestAnimationFrame(()=>window.scrollTo(0,lastY))}
+  $a("#ajBack").addEventListener("click",ev=>{ev.preventDefault();go("")});
+  document.addEventListener("keydown",ev=>{if(ev.key==="Escape"&&!$a("#ajustes").hidden&&!/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName))go("")});
+  return {open,close};
+})();
+window.Ajustes=Ajustes;
 </script>
 <script>
 /* ===== Biblioteca CTO: página con portadas por especialidad ===== */

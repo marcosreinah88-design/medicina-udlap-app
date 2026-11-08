@@ -99,7 +99,7 @@ Tu trabajo: leer lo que Marcos escribe o adjunta (fotos o PDF de calendarios de 
 - "examenes": exámenes, parciales, finales, quizzes con fecha. name = "Materia · qué examen" (ej. "Cirugía · 2º parcial"). Si hay temas, ponlos en topics (uno por elemento). guide = id de guía de la materia si existe.
 - "pendientes": todo lo demás que hay que hacer o entregar (tareas, proyectos, presentaciones, lecturas, prácticas o guardias, trámites).
   type: tarea | proyecto | presentacion | lectura | practica | tramite | otro.
-  flag (opcional): urgente (vence pronto o lo pide así) | necesario | delegar | eliminar. Si no queda claro, déjalo vacío.
+  flag (opcional): urgente (vence pronto o lo pide así) | necesario | delegar | eliminar. Si no queda claro, pon "ninguna".
   due: fecha de entrega YYYY-MM-DD o vacío si no tiene.
 - mat: usa exactamente uno de estos nombres de materia si corresponde; si no, vacío:
 ${mats}
@@ -112,7 +112,7 @@ Responde solo con el JSON pedido.`;
   const SCHEMA=S("OBJECT",{properties:{
     mensaje:S("STRING"),
     examenes:S("ARRAY",{items:S("OBJECT",{properties:{name:S("STRING"),date:S("STRING",{description:"YYYY-MM-DD"}),topics:S("ARRAY",{items:S("STRING")}),guide:S("STRING")},required:["name","date"]})}),
-    pendientes:S("ARRAY",{items:S("OBJECT",{properties:{title:S("STRING"),type:S("STRING",{enum:["tarea","proyecto","presentacion","lectura","practica","tramite","otro"]}),mat:S("STRING"),due:S("STRING",{description:"YYYY-MM-DD o vacío"}),flag:S("STRING",{enum:["","urgente","necesario","delegar","eliminar"]}),notes:S("STRING")},required:["title","type"]})})},
+    pendientes:S("ARRAY",{items:S("OBJECT",{properties:{title:S("STRING"),type:S("STRING",{enum:["tarea","proyecto","presentacion","lectura","practica","tramite","otro"]}),mat:S("STRING"),due:S("STRING",{description:"YYYY-MM-DD o vacío"}),flag:S("STRING",{enum:["ninguna","urgente","necesario","delegar","eliminar"]}),notes:S("STRING")},required:["title","type"]})})},
     required:["mensaje","examenes","pendientes"]});
   async function ask(txt){
     const key=get(KEY);if(!key)throw new Error("Falta la clave.");
@@ -133,7 +133,7 @@ Responde solo con el JSON pedido.`;
     const c=j.candidates&&j.candidates[0],t=c&&c.content&&c.content.parts?c.content.parts.map(x=>x.text||"").join(""):"";
     if(!t)throw new Error(c&&c.finishReason==="SAFETY"?"Gemini no quiso leer eso; intenta con otra foto o escríbelo.":"No entendí la respuesta; intenta otra vez.");
     let x;try{x=JSON.parse(t.replace(/^```(json)?|```$/g,"").trim())}catch(e){throw new Error("No entendí la respuesta; intenta otra vez.")}
-    return {msg:String(x.mensaje||""),exams:Array.isArray(x.examenes)?x.examenes:[],tasks:Array.isArray(x.pendientes)?x.pendientes:[]};
+    return {msg:String(x.mensaje||""),exams:Array.isArray(x.examenes)?x.examenes:[],tasks:Array.isArray(x.pendientes)?x.pendientes.map(t=>Object.assign({},t,{flag:t&&t.flag&&t.flag!=="ninguna"?t.flag:""})):[]};
   }
   if(document.readyState==="loading")addEventListener("DOMContentLoaded",mount);else mount();
 })();

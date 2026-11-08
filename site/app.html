@@ -1978,7 +1978,7 @@ const Grades=(()=>{
       <section class="ccard gr-edit" id="grEdit"><h3>Tus calificaciones <small>abre un semestre para corregir</small></h3><div id="grSems"></div></section>
     </div>
     <div class="cal-side">
-      <section class="ccard"><h3>Agregar calificación</h3>
+      <details class="ccard udet fold" data-fold="gr-add"><summary><h3>Agregar calificación</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
         <form class="cform" id="grForm" autocomplete="off">
           <div class="row2"><label>Semestre<select id="grSem">${[1,2,3,4,5,6,7,8,9,10].map(n=>`<option value="${n}">${SEMN(n)}</option>`).join("")}</select></label>
             <label>Calificación final<input id="grCal" type="number" min="0" max="10" step="0.01" inputmode="decimal" placeholder="Ej. 9.4" required></label></div>
@@ -1986,19 +1986,19 @@ const Grades=(()=>{
           <label>Créditos <span class="h">opcional: si todas tienen créditos, el promedio se pondera</span><input id="grCred" type="number" min="0" max="30" step="1" inputmode="numeric"></label>
           <p class="cerr" id="grErr" hidden></p>
           <div class="btns"><button class="cbtn" type="submit">Agregar</button></div>
-        </form></section>
-      <section class="ccard"><h3>Pegar varias <small>de tu boleta o kárdex</small></h3>
+        </form></details>
+      <details class="ccard udet fold" data-fold="gr-paste"><summary><h3>Pegar varias <small>de tu boleta o kárdex</small></h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
         <p class="gr-help">Un renglón por materia. Pon el semestre como título y debajo <b>materia: calificación</b> (créditos opcional al final).</p>
         <textarea class="gr-paste" id="grPaste" placeholder="3er semestre&#10;Farmacología General: 9.5&#10;Anatomía: 8.7&#10;&#10;4to semestre&#10;Hematología: 9.2 (8 créditos)"></textarea>
         <p class="cerr" id="grPErr" hidden></p>
-        <div class="btns"><button class="cbtn" type="button" id="grImport">Agregar todas</button></div></section>
-      <section class="ccard"><h3>¿Qué necesito?</h3>
+        <div class="btns"><button class="cbtn" type="button" id="grImport">Agregar todas</button></div></details>
+      <details class="ccard udet fold" data-fold="gr-need"><summary><h3>¿Qué necesito?</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
         <form class="cform" id="grWhat" autocomplete="off"><div class="row2">
           <label>Promedio que quieres<input id="grGoal" type="number" min="0" max="10" step="0.1" value="9.5" inputmode="decimal"></label>
           <label>Materias que te faltan<input id="grLeft" type="number" min="1" max="200" step="1" inputmode="numeric"></label></div></form>
-        <div id="grNeed"></div></section>
-      <section class="ccard"><h3>Ajustes</h3>
-        <label class="gr-min">Calificación mínima aprobatoria <select id="grMin"><option>6</option><option>7</option><option>7.5</option><option>8</option></select></label></section>
+        <div id="grNeed"></div></details>
+      <details class="ccard udet fold" data-fold="gr-set"><summary><h3>Ajustes</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <label class="gr-min">Calificación mínima aprobatoria <select id="grMin"><option>6</option><option>7</option><option>7.5</option><option>8</option></select></label></details>
     </div>
   </div></div></div></div>`;
   document.body.insertAdjacentHTML("beforeend",html);
@@ -2107,6 +2107,7 @@ const Grades=(()=>{
   $g("#grSems").addEventListener("toggle",ev=>{const d=ev.target.closest("details[data-sem]");if(d){const n=+d.dataset.sem;d.open?openSems.add(n):openSems.delete(n)}},true);
   $g("#grWhat").addEventListener("input",ev=>{if(ev.target.id==="grLeft")ev.target.dataset.touched="1";need()});
   $g("#grMin").addEventListener("change",ev=>{load();st.min=+ev.target.value;save()});
+  document.querySelectorAll("#grades details.fold").forEach(d=>{const k="carrera-fold-"+d.dataset.fold,v=store.get(k);if(v!=null)d.open=v==="1";d.addEventListener("toggle",()=>store.set(k,d.open?"1":"0"))});
   let lastY=0;
   function open(){if(!$g("#grades").hidden)return;lastY=window.scrollY;$g("#grSem").value=String(typeof CURSO!=="undefined"?CURSO.sem:5);render();$g("#grades").hidden=false;document.documentElement.style.overflow="hidden";document.title="Calificaciones · Carrera de Medicina"}
   function close(){if($g("#grades").hidden)return;$g("#grades").hidden=true;document.documentElement.style.overflow="";document.title="Carrera de Medicina";requestAnimationFrame(()=>window.scrollTo(0,lastY))}

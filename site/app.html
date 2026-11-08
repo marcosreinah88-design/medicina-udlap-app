@@ -240,6 +240,26 @@ html{transition:background-color .3s}
 .mini.warn{background:#c62828;border-color:#c62828;color:#fff}
 .xrow.past{opacity:.55}
 .cform{display:grid;gap:12px}
+/* mi horario */
+.hr-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:12px}.hr-head h3{margin:0}.hr-sub{margin:4px 0 0;color:var(--muted);font-size:.82rem}
+.hn{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;padding:6px 12px;border-radius:99px;background:color-mix(in srgb,var(--c,#0b7a62) 12%,transparent);border:1.5px solid color-mix(in srgb,var(--c,#0b7a62) 40%,transparent);max-width:100%}
+.hn b{color:var(--c)}.hn.off{--c:var(--muted);color:var(--muted)}.hn i{width:8px;height:8px;border-radius:50%;background:var(--c);box-shadow:0 0 0 0 var(--c);animation:hrPulse 1.6s infinite}
+@keyframes hrPulse{70%{box-shadow:0 0 0 7px transparent}}
+.hr-tabs{display:none;gap:6px;margin-bottom:10px;overflow-x:auto}
+.hr-tabs button{flex:1;min-width:48px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:6px 4px;font:700 .8rem var(--f-display);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:1px}
+.hr-tabs button small{font:600 .66rem var(--f-mono);color:var(--muted)}.hr-tabs button.td{border-color:var(--orange)}.hr-tabs button.on{background:var(--green);border-color:var(--green);color:#fff}.hr-tabs button.on small{color:var(--on-green-mut)}
+.hr-week{display:grid;grid-template-columns:repeat(var(--n,6),minmax(0,1fr));gap:8px}.hr-day.empty{display:none}
+.hr-day{border-radius:14px;padding:8px;background:color-mix(in srgb,var(--bg) 70%,var(--paper));min-width:0}
+.hr-day.td{background:color-mix(in srgb,var(--orange) 8%,var(--paper));box-shadow:inset 0 0 0 2px var(--orange)}
+.hr-day h4{margin:0 2px 8px;font:800 .78rem var(--f-display);text-transform:uppercase;letter-spacing:.04em;display:flex;justify-content:space-between;align-items:center}.hr-day h4 em{font:700 .58rem var(--f-mono);font-style:normal;background:var(--orange);color:#fff;padding:2px 6px;border-radius:99px}
+.hr-cls{display:flex;flex-direction:column;gap:4px;padding:8px 9px;border-radius:11px;margin-bottom:6px;background:var(--paper);border-left:4px solid var(--c);box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.hr-cls .ht{font:700 .74rem var(--f-mono);color:var(--c)}.hr-cls .ht small{font-size:.66rem;color:var(--muted);margin-left:4px}.hr-cls .ht small::before{content:"– "}
+.hr-cls .hb b{display:block;font:800 .84rem/1.2 var(--f-display);hyphens:auto;-webkit-hyphens:auto}.hr-cls .hb small{display:block;font-size:.7rem;color:var(--muted);line-height:1.3}.hr-cls .hp{text-transform:capitalize}
+.hr-cls.live{background:color-mix(in srgb,var(--c) 14%,var(--paper));box-shadow:0 0 0 2px var(--c)}.hr-cls.past{opacity:.5}
+.hr-free{margin:6px 2px;color:var(--muted);font-size:.78rem;font-style:italic}
+.hr-extra{margin:10px 0 4px;font-size:.8rem;color:var(--muted)}.hr-extra:empty{display:none}
+.hr-edit{margin-top:10px}.hr-edit[open]>summary{margin-bottom:8px}
+@media (max-width:1100px){.hr-tabs{display:flex}.hr-week{grid-template-columns:minmax(0,1fr)}.hr-day{display:none}.hr-day.sel{display:block}.hr-day.empty.sel{display:block}.hr-cls{flex-direction:row;align-items:flex-start;gap:12px}.hr-cls .ht{flex:none;width:52px;display:flex;flex-direction:column}.hr-cls .ht small{margin:0}.hr-cls .ht small::before{content:""}}
 /* calificaciones: hero */
 .gr-hero{position:relative;overflow:hidden;border-radius:22px;padding:26px 28px 24px;margin-bottom:22px;color:#fff;background:radial-gradient(120% 140% at 0% 0%,#0a7a55 0%,var(--green) 38%,var(--green-2) 100%);box-shadow:var(--shadow)}
 .gr-hero::before{content:"";position:absolute;inset:auto -60px -90px auto;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(242,107,33,.35),transparent 65%);pointer-events:none}
@@ -2093,6 +2113,64 @@ const Grades=(()=>{
 })();
 window.Grades=Grades;
 if(location.hash==="#calificaciones")Grades.open();
+</script>
+<script>
+/* ===== Mi horario: semana de clases dentro del Calendario (datos en localStorage, se sincronizan) ===== */
+const Horario=(()=>{
+  const LS="carrera-horario",DN=["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"],DS=["L","Ma","Mi","J","V","S"];
+  const PAL=["#0b7a62","#f26b21","#2f6fc1","#8e44ad","#c9a24a","#d23b2a","#1c8c9c","#6b8e23"];
+  let items=[],sel=null;
+  const load=()=>{try{const v=JSON.parse(store.get(LS)||"null");items=v&&Array.isArray(v.items)?v.items.filter(x=>x&&x.mat):[]}catch(e){items=[]}};
+  const save=()=>{store.set(LS,JSON.stringify({items}));render()};
+  const mins=t=>{const m=/^(\d{1,2}):(\d{2})$/.exec(t||"");return m?+m[1]*60+ +m[2]:null};
+  const mats=()=>[...new Set(items.map(x=>x.mat))];
+  const col=m=>PAL[mats().indexOf(m)%PAL.length];
+  const dayIdx=tok=>{const t=tok.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+    return t==="l"||t.startsWith("lu")?0:t==="ma"||t.startsWith("mar")?1:t==="mi"||t.startsWith("mie")?2:t==="j"||t.startsWith("ju")?3:t==="v"||t.startsWith("vi")?4:t==="s"||t.startsWith("sa")?5:-1};
+  function toText(){return items.map(x=>[x.mat,x.days.length?x.days.map(d=>DS[d]).join(" "):"sin horario",x.start&&x.end?x.start+"-"+x.end:"",x.room||"",x.prof||"",x.kind||""].join(" | ").replace(/( \| )+$/,"")).join("\n")}
+  function parse(txt){const out=[],bad=[];
+    for(let line of txt.split(/\n/)){line=line.trim();if(!line)continue;const p=line.split("|").map(s=>s.trim());
+      if(!p[0]){bad.push(line);continue}
+      const days=(p[1]||"").split(/[\s,y]+/).map(dayIdx).filter(d=>d>=0);
+      const tm=/(\d{1,2}:\d{2})\s*[-–a]\s*(\d{1,2}:\d{2})/.exec(p[2]||"");
+      const pad=t=>t.replace(/^(\d):/,"0$1:");
+      out.push({id:"h"+out.length+Date.now().toString(36),mat:p[0].slice(0,60),days:[...new Set(days)].sort(),start:tm?pad(tm[1]):"",end:tm?pad(tm[2]):"",room:(p[3]||"").slice(0,30),prof:(p[4]||"").slice(0,60),kind:(p[5]||"").slice(0,30)})}
+    return {out,bad}}
+  const html=`<section class="ccard hr-card" id="calHor" lang="es"><div class="hr-head"><div><h3>Mi horario</h3><p class="hr-sub" id="hrSub"></p></div><div class="hr-now" id="hrNow"></div></div>
+    <div class="hr-tabs" id="hrTabs" role="tablist"></div><div class="hr-week" id="hrWeek"></div><p class="hr-extra" id="hrExtra"></p>
+    <details class="padd hr-edit" id="hrEdit"><summary><span class="plus">✎</span>Editar horario</summary>
+      <p class="gr-help">Un renglón por clase: <b>materia | días | hora | salón | profesor | tipo</b>. Días: L, Ma, Mi, J, V, S. Si la materia tiene laboratorio aparte, ponlo en otro renglón.</p>
+      <textarea class="gr-paste" id="hrText" placeholder="Psiquiatría | Ma J | 09:00-10:15 | CN-235 | Nombre del profesor | Teoría&#10;Oftalmología | J | 07:00-08:40 | HU-213 | Nombre del profesor | Laboratorio"></textarea>
+      <p class="cerr" id="hrErr" hidden></p><div class="btns"><button class="cbtn" type="button" id="hrSave">Guardar horario</button></div></details></section>`;
+  const today=document.getElementById("calToday");if(today)today.insertAdjacentHTML("afterend",html);
+  const $h=s=>document.querySelector(s);
+  function render(){load();if(!$h("#calHor"))return;
+    const now=new Date(),wd=(now.getDay()+6)%7,nm=now.getHours()*60+now.getMinutes();
+    if(sel==null)sel=wd<6?wd:0;
+    const slot=items.filter(x=>x.days.length&&x.start),none=items.filter(x=>!x.days.length||!x.start);
+    const hrs=slot.reduce((a,x)=>a+x.days.length*Math.max(0,(mins(x.end)-mins(x.start))/60),0);
+    $h("#hrSub").textContent=items.length?`${mats().length} materias · ${String(Number(hrs.toFixed(1)))} h de clase a la semana`:"Agrega tus clases y aquí verás tu semana.";
+    const todays=wd<6?slot.filter(x=>x.days.includes(wd)).sort((a,b)=>mins(a.start)-mins(b.start)):[];
+    const cur=todays.find(x=>mins(x.start)<=nm&&nm<mins(x.end)),next=todays.find(x=>mins(x.start)>nm);
+    $h("#hrNow").innerHTML=cur?`<span class="hn live" style="--c:${col(cur.mat)}"><i></i>Ahora: <b>${esc(cur.mat)}</b> · ${esc(cur.room||"")} hasta ${cur.end}</span>`:next?`<span class="hn" style="--c:${col(next.mat)}">Siguiente: <b>${esc(next.mat)}</b> · ${next.start}${next.room?" · "+esc(next.room):""}</span>`:items.length?`<span class="hn off">${wd<6&&todays.length?"Ya terminaste las clases de hoy":"Hoy no tienes clases"}</span>`:"";
+    $h("#hrTabs").innerHTML=items.length?DS.map((d,i)=>`<button type="button" role="tab" class="${i===sel?"on":""}${i===wd?" td":""}" data-hd="${i}" aria-selected="${i===sel}">${DN[i].slice(0,3)}<small>${slot.filter(x=>x.days.includes(i)).length||"–"}</small></button>`).join(""):"";
+    $h("#hrWeek").innerHTML=items.length?DS.map((d,i)=>{const list=slot.filter(x=>x.days.includes(i)).sort((a,b)=>mins(a.start)-mins(b.start));
+      return `<div class="hr-day${i===wd?" td":""}${i===sel?" sel":""}${list.length?"":" empty"}"><h4>${DN[i]}${i===wd?"<em>hoy</em>":""}</h4>${list.length?list.map(x=>{const live=i===wd&&mins(x.start)<=nm&&nm<mins(x.end),done=i===wd&&nm>=mins(x.end);
+        return `<div class="hr-cls${live?" live":""}${done?" past":""}" style="--c:${col(x.mat)}"><span class="ht">${x.start}<small>${x.end}</small></span><span class="hb"><b>${esc(x.mat)}</b><small>${[x.room,x.kind&&!/^teor/i.test(x.kind)?x.kind:""].filter(Boolean).map(esc).join(" · ")}</small>${x.prof?`<small class="hp">${esc(x.prof)}</small>`:""}</span></div>`}).join(""):`<p class="hr-free">Libre</p>`}</div>`}).join(""):`<p class="empty-msg">Abre "Editar horario" y pega tus clases.</p>`;
+    const free=DS.map((d,i)=>i).filter(i=>!slot.some(x=>x.days.includes(i))).map(i=>DN[i].toLowerCase());
+    $h("#hrWeek").style.setProperty("--n",String(6-free.length||1));
+    $h("#hrExtra").innerHTML=[free.length&&items.length?`<span class="hr-fr">Días libres: <b>${free.join(", ").replace(/, ([^,]*)$/," y $1")}</b></span>`:"",none.length?"Sin horario fijo: "+none.map(x=>`<b>${esc(x.mat)}</b>${x.prof?" ("+esc(x.prof)+")":""}`).join(", ")+".":""].filter(Boolean).join(" · ");
+    const ta=$h("#hrText");if(document.activeElement!==ta)ta.value=toText();
+  }
+  document.addEventListener("click",ev=>{const b=ev.target.closest("[data-hd]");if(b){sel=+b.dataset.hd;render()}});
+  $h("#hrSave")&&$h("#hrSave").addEventListener("click",()=>{const {out,bad}=parse($h("#hrText").value),e=$h("#hrErr");
+    if(bad.length){e.textContent="No entendí: "+bad.slice(0,3).join(" · ");e.hidden=false;return}e.hidden=true;items=out;$h("#hrText").blur();save();$h("#hrEdit").open=false});
+  addEventListener("storage",ev=>{if(ev.key===LS)render()});
+  const cal=document.getElementById("cal");if(cal)new MutationObserver(()=>{if(!cal.hidden)render()}).observe(cal,{attributes:true,attributeFilter:["hidden"]});
+  setInterval(()=>{if(cal&&!cal.hidden)render()},60000);
+  render();
+  return {render};
+})();
 </script>
 <script>
 /* ===== Biblioteca CTO: página con portadas por especialidad ===== */

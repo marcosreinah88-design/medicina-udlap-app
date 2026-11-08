@@ -113,7 +113,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .calbtn svg{stroke-width:2.2}
 .cbadge{position:absolute;top:-6px;right:-6px;min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:#fff;color:var(--orange-2);font:800 .7rem/19px var(--f-mono);text-align:center;box-shadow:0 0 0 2px var(--orange)}
 .cbadge[hidden]{display:none}
-@media (max-width:560px){#themeBtn span{display:none}#themeBtn{padding:7px}.calbtn span{font-size:.72rem}}
+@media (max-width:560px){#themeBtn span,#grBtn span{display:none}#themeBtn,#grBtn{padding:7px}.calbtn span{font-size:.72rem}}
 @media (max-width:380px){.calbtn span{display:none}.calbtn{padding:7px}}
 @media (max-width:560px){.hero>.in{padding-top:46px}}
 html{transition:background-color .3s}
@@ -240,6 +240,20 @@ html{transition:background-color .3s}
 .mini.warn{background:#c62828;border-color:#c62828;color:#fff}
 .xrow.past{opacity:.55}
 .cform{display:grid;gap:12px}
+.gr-big{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:6px 0 10px}.gr-big b{font:900 3.6rem/1 var(--f-display);font-stretch:80%;color:#fff}.gr-big span{color:var(--on-green-mut);font-size:.86rem}
+.gr-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:14px}.gr-stats div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:8px 10px;min-width:0}
+.gr-stats b{display:block;font:800 1.25rem var(--f-display);color:#fff}.gr-stats small{display:block;color:var(--on-green-mut);font-size:.74rem;line-height:1.3;overflow-wrap:anywhere}
+.gr-chart{display:flex;align-items:flex-end;gap:10px;height:130px;padding:6px 2px 0;border-bottom:1px solid rgba(255,255,255,.18)}
+.gr-chart .gc{flex:1;max-width:70px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;position:relative}
+.gr-chart i{display:block;width:100%;border-radius:6px 6px 0 0;background:var(--c)}.gr-chart .gv{font:700 .78rem var(--f-mono);color:#fff}.gr-chart small{position:absolute;bottom:-20px;font:600 .7rem var(--f-mono);color:var(--on-green-mut)}
+.gr-dist{margin-top:30px;display:grid;gap:6px}.gr-dist div{display:grid;grid-template-columns:86px minmax(0,1fr) 26px;gap:8px;align-items:center}.gr-dist small{color:var(--on-green-mut);font-size:.74rem}
+.gr-dist span{height:8px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}.gr-dist span i{display:block;height:100%;background:var(--orange);border-radius:99px}.gr-dist b{color:#fff;font-size:.82rem;text-align:right}
+.gr-row{display:grid;grid-template-columns:minmax(0,1fr) 78px auto;gap:10px;align-items:center;padding:8px 0 8px 12px;border-top:1px solid var(--line);border-left:4px solid var(--c);margin-top:6px;border-radius:4px}
+.gr-row .gm{font-weight:650;min-width:0;overflow-wrap:anywhere}.gr-row .gm small{display:block;color:var(--muted);font-size:.74rem;font-weight:500}
+.gr-row .gcal{width:100%;box-sizing:border-box;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:6px 8px;font:800 1rem var(--f-display);text-align:center}
+.gr-paste{width:100%;box-sizing:border-box;min-height:130px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:10px 12px;font:500 .9rem var(--f-display);resize:vertical;margin:6px 0 10px}
+.gr-help{color:var(--muted);font-size:.82rem;line-height:1.45;margin:4px 0}.gr-need{font-size:.95rem;margin:10px 0 4px}.gr-need b{color:var(--orange);font-size:1.15rem}
+.gr-min{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.88rem}.gr-min select{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:6px 10px;font:700 .9rem var(--f-display)}
 .pform{margin:4px 0 6px}.pform .row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 @media (max-width:640px){.pform .row3{grid-template-columns:1fr 1fr}.pform .row3 label:last-child{grid-column:1/-1}}
 .pform .btns{margin-top:-2px}
@@ -579,7 +593,8 @@ footer p{margin:0;max-width:70ch}
 <header class="hero gut">
   <div class="sky" aria-hidden="true"><i class="sky-dawn"></i><i class="sky-dusk"></i></div>
   <div class="topbtns">
-  <a class="theme calbtn" id="calBtn" href="#calendario"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Calendario de exámenes</span><b class="cbadge" id="calBadge" hidden></b></a>
+  <a class="theme calbtn" id="calBtn" href="#calendario"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span>Calendario</span><b class="cbadge" id="calBadge" hidden></b></a>
+  <a class="theme" id="grBtn" href="#calificaciones"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Calificaciones</span></a>
   <button class="theme" id="themeBtn" type="button"><svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg><span id="themeLbl">Modo oscuro</span></button>
   </div>
   <div class="in">
@@ -1145,7 +1160,7 @@ function go(h){
   if(!h){try{history.pushState(null,"",location.pathname+location.search)}catch(e){location.hash=""}route();return}
   if(location.hash.slice(1)===h)route();else location.hash=h}
 function route(){const h=location.hash.slice(1);
-  const W={calendario:window.Cal,cto:window.CtoLib,otros:window.OtrosLib};
+  const W={calendario:window.Cal,calificaciones:window.Grades,cto:window.CtoLib,otros:window.OtrosLib};
   for(const k in W)if(k!==h&&W[k])W[k].close();
   if(W[h]!==undefined){hideViewer();W[h]&&W[h].open();return}
   if(h.startsWith("mat-")){window.OtrosLib&&OtrosLib.openDoc(decodeURIComponent(h.slice(4)));return}
@@ -1829,6 +1844,136 @@ const Cal=(()=>{
 window.Cal=Cal;
 if(window.medApp)setInterval(()=>{try{Cal.refresh()}catch(e){}},3*36e5);
 if(location.hash==="#calendario")Cal.open();
+</script>
+<script>
+/* ===== Calificaciones finales: promedio por semestre y general, aprobadas, mejor y peor, distribución y "¿qué necesito?" ===== */
+const Grades=(()=>{
+  const LS="carrera-calificaciones";
+  const SEMN=n=>ord(n)+" semestre";
+  let st={min:6,items:[]},editingSem=null;
+  function load(){try{const v=JSON.parse(store.get(LS)||"null");if(v&&Array.isArray(v.items))st={min:[6,7,8].includes(+v.min)?+v.min:6,items:v.items.filter(x=>x&&x.id&&x.mat&&isFinite(+x.cal)).map(x=>({id:String(x.id),sem:Math.max(1,Math.min(10,+x.sem||1)),mat:String(x.mat).slice(0,80),cal:Math.max(0,Math.min(10,+x.cal)),cred:+x.cred>0?+x.cred:0}))}}catch(e){}}
+  function save(){store.set(LS,JSON.stringify(st));render()}
+  const f1=n=>String(Number((+n).toFixed(2)));
+  const avg=list=>{if(!list.length)return null;const w=list.every(x=>x.cred>0);const tw=w?list.reduce((a,x)=>a+x.cred,0):list.length;return list.reduce((a,x)=>a+x.cal*(w?x.cred:1),0)/tw};
+  const light=c=>c>=9.5?"#5fe0a0":c>=9?"#a8e6c4":c>=8?"#ffd27a":c>=st.min?"#ffad66":"#ff7a6b";
+  const color=c=>c>=9.5?"#0b7a62":c>=9?"#1c6b66":c>=8?"#c9a24a":c>=st.min?"#e08a00":"#c0392b";
+  /* materias conocidas para sugerir nombres */
+  const known=()=>[...new Set([...G.map(g=>g.area),...(typeof CURSO!=="undefined"?CURSO.materias.map(m=>m.n):[]),...st.items.map(x=>x.mat)])].sort((a,b)=>a.localeCompare(b,"es"));
+  const html=`<div class="cal" id="grades" hidden role="dialog" aria-modal="true" aria-labelledby="grTtl">
+  <div class="vbar gut"><a class="vbtn" href="#" id="grBack"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="lbl">Inicio</span></a>
+    <div class="ttl" id="grTtl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Calificaciones</div></div>
+  <div class="cal-body gut"><div class="in cal-grid">
+    <div class="cal-main">
+      <section class="ccard today" id="grSum"></section>
+      <div id="grSems"></div>
+    </div>
+    <div class="cal-side">
+      <section class="ccard"><h3>Agregar calificación</h3>
+        <form class="cform" id="grForm" autocomplete="off">
+          <div class="row2"><label>Semestre<select id="grSem">${[1,2,3,4,5,6,7,8,9,10].map(n=>`<option value="${n}">${SEMN(n)}</option>`).join("")}</select></label>
+            <label>Calificación final<input id="grCal" type="number" min="0" max="10" step="0.01" inputmode="decimal" placeholder="Ej. 9.4" required></label></div>
+          <label>Materia<input id="grMat" list="grMats" maxlength="80" placeholder="Ej. Farmacología" required><datalist id="grMats"></datalist></label>
+          <label>Créditos <span class="h">opcional: si todas tienen créditos, el promedio se pondera</span><input id="grCred" type="number" min="0" max="30" step="1" inputmode="numeric"></label>
+          <p class="cerr" id="grErr" hidden></p>
+          <div class="btns"><button class="cbtn" type="submit">Agregar</button></div>
+        </form></section>
+      <section class="ccard"><h3>Pegar varias <small>de tu boleta o kárdex</small></h3>
+        <p class="gr-help">Un renglón por materia. Pon el semestre como título y debajo <b>materia: calificación</b> (créditos opcional al final).</p>
+        <textarea class="gr-paste" id="grPaste" placeholder="3er semestre&#10;Farmacología General: 9.5&#10;Anatomía: 8.7&#10;&#10;4to semestre&#10;Hematología: 9.2 (8 créditos)"></textarea>
+        <p class="cerr" id="grPErr" hidden></p>
+        <div class="btns"><button class="cbtn" type="button" id="grImport">Agregar todas</button></div></section>
+      <section class="ccard"><h3>¿Qué necesito?</h3>
+        <form class="cform" id="grWhat" autocomplete="off"><div class="row2">
+          <label>Promedio que quieres<input id="grGoal" type="number" min="0" max="10" step="0.1" value="9.5" inputmode="decimal"></label>
+          <label>Materias que te faltan<input id="grLeft" type="number" min="1" max="200" step="1" inputmode="numeric"></label></div></form>
+        <div id="grNeed"></div></section>
+      <section class="ccard"><h3>Ajustes</h3>
+        <label class="gr-min">Calificación mínima aprobatoria <select id="grMin"><option>6</option><option>7</option><option>8</option></select></label></section>
+    </div>
+  </div></div></div>`;
+  document.body.insertAdjacentHTML("beforeend",html);
+  const $g=s=>document.querySelector(s);
+  function render(){
+    load();
+    const items=st.items,all=avg(items),sems=[...new Set(items.map(x=>x.sem))].sort((a,b)=>a-b);
+    $g("#grMats").innerHTML=known().map(m=>`<option value="${esc(m)}">`).join("");
+    $g("#grMin").value=String(st.min);
+    if(!items.length){
+      $g("#grSum").innerHTML=`<h3>Tu promedio</h3><p class="tdate">Todavía no hay calificaciones.</p><p class="empty-msg">Agrégalas una por una o pégalas todas juntas a la derecha (abajo en el cel). Aquí verás tu promedio general, el de cada semestre y qué necesitas para tu meta.</p>`;
+      $g("#grSems").innerHTML="";$g("#grNeed").innerHTML="";return;
+    }
+    const pass=items.filter(x=>x.cal>=st.min).length,fail=items.length-pass,cred=items.reduce((a,x)=>a+x.cred,0);
+    const sorted=items.slice().sort((a,b)=>b.cal-a.cal),best=sorted[0],worst=sorted[sorted.length-1];
+    const bySem=sems.map(n=>({n,a:avg(items.filter(x=>x.sem===n)),k:items.filter(x=>x.sem===n).length}));
+    const bestSem=bySem.slice().sort((a,b)=>b.a-a.a)[0];
+    const trend=bySem.length>1?bySem[bySem.length-1].a-bySem[bySem.length-2].a:null;
+    const bins=[["10",x=>x.cal>=10],["9 – 9.9",x=>x.cal>=9&&x.cal<10],["8 – 8.9",x=>x.cal>=8&&x.cal<9],[st.min+" – "+(8-.1),x=>x.cal>=st.min&&x.cal<8],["Reprobadas",x=>x.cal<st.min]].filter(([l],i)=>i<4||fail);
+    const mx=Math.max(...bins.map(([,f])=>items.filter(f).length),1);
+    const lo=Math.max(0,Math.floor(Math.min(...bySem.map(s=>s.a))-1));
+    $g("#grSum").innerHTML=`<h3>Tu promedio <small>${items.every(x=>x.cred>0)?"ponderado por créditos":"simple"}</small></h3>
+      <div class="gr-big"><b>${f1(all)}</b><span>promedio general · ${items.length} materia${items.length>1?"s":""}${cred?" · "+cred+" créditos":""}</span></div>
+      <div class="gr-stats">
+        <div><b>${pass}</b><small>aprobada${pass===1?"":"s"}</small></div>
+        <div><b>${fail}</b><small>reprobada${fail===1?"":"s"}</small></div>
+        <div><b>${f1(best.cal)}</b><small>mejor: ${esc(best.mat)}</small></div>
+        <div><b>${f1(worst.cal)}</b><small>más baja: ${esc(worst.mat)}</small></div>
+        ${bySem.length>1?`<div><b>${ord(bestSem.n)}</b><small>mejor semestre (${f1(bestSem.a)})</small></div><div><b>${trend>=0?"▲":"▼"} ${f1(Math.abs(trend))}</b><small>vs. semestre anterior</small></div>`:""}
+      </div>
+      <div class="gr-chart" aria-label="Promedio por semestre">${bySem.map(s=>`<div class="gc"><span class="gv">${f1(s.a)}</span><i style="height:${Math.max(6,(s.a-lo)/(10-lo)*100)}%;--c:${light(s.a)}"></i><small>${ord(s.n)}</small></div>`).join("")}</div>
+      <div class="gr-dist">${bins.map(([l,f])=>{const n=items.filter(f).length;return `<div><small>${l}</small><span><i style="width:${n/mx*100}%"></i></span><b>${n}</b></div>`}).join("")}</div>`;
+    $g("#grSems").innerHTML=sems.slice().reverse().map(n=>{const list=items.filter(x=>x.sem===n).sort((a,b)=>b.cal-a.cal),a=avg(list);
+      return `<section class="ccard gr-sem"><h3>${SEMN(n)} <small>promedio ${f1(a)} · ${list.length} materia${list.length>1?"s":""}</small></h3>
+        ${list.map(x=>`<div class="gr-row" style="--c:${color(x.cal)}"><span class="gm">${esc(x.mat)}${x.cred?`<small>${x.cred} créditos</small>`:""}</span>
+          <input class="gcal" type="number" min="0" max="10" step="0.01" value="${x.cal}" data-gid="${esc(x.id)}" aria-label="Calificación de ${esc(x.mat)}">
+          <button class="mini" type="button" data-gdel="${esc(x.id)}">Borrar</button></div>`).join("")}</section>`}).join("");
+    need();
+  }
+  function need(){
+    const items=st.items,box=$g("#grNeed");if(!items.length){box.innerHTML="";return}
+    const goal=+$g("#grGoal").value,k=+$g("#grLeft").value;
+    if(!(goal>0)||!(k>0)){box.innerHTML=`<p class="empty-msg">Pon cuántas materias te faltan en la carrera y te digo qué promedio necesitas en ellas.</p>`;return}
+    const n=items.length,sum=items.reduce((a,x)=>a+x.cal,0),req=(goal*(n+k)-sum)/k,cur=sum/n;
+    const msg=req>10?`Ni con 10 en todas llegas a ${f1(goal)}: lo máximo posible es ${f1((sum+10*k)/(n+k))}.`:req<=st.min?`Ya lo tienes casi asegurado: con solo aprobar (${st.min}) terminarías en ${f1((sum+st.min*k)/(n+k))}.`:`Necesitas promediar <b>${f1(req)}</b> en las ${k} materias que faltan.`;
+    box.innerHTML=`<p class="gr-need">${msg}</p><p class="gr-help">Si mantienes tu promedio actual (${f1(cur)}) terminarías con ${f1(cur)}. Con 9 en todo lo que falta: ${f1((sum+9*k)/(n+k))} · con 10: ${f1((sum+10*k)/(n+k))}.</p>`;
+  }
+  const uid=()=>"g"+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  $g("#grForm").addEventListener("submit",ev=>{ev.preventDefault();load();
+    const mat=$g("#grMat").value.trim(),cal=parseFloat(String($g("#grCal").value).replace(",",".")),sem=+$g("#grSem").value,cred=+$g("#grCred").value||0,e=$g("#grErr");
+    if(!mat||!(cal>=0&&cal<=10)){e.textContent="Escribe la materia y una calificación de 0 a 10.";e.hidden=false;return}e.hidden=true;
+    const old=st.items.find(x=>x.sem===sem&&x.mat.toLowerCase()===mat.toLowerCase());
+    if(old)Object.assign(old,{cal,cred:cred||old.cred});else st.items.push({id:uid(),sem,mat,cal,cred});
+    $g("#grMat").value="";$g("#grCal").value="";$g("#grCred").value="";save();$g("#grMat").focus()});
+  /* "3er semestre" / "Semestre 3" / "3" como título; "Materia: 9.5 (8 créditos)" o "Materia 9.5" */
+  function parse(txt){
+    let sem=+$g("#grSem").value||1;const out=[],bad=[];
+    for(let line of txt.split(/\n/)){line=line.trim();if(!line)continue;
+      const h=line.match(/^(?:semestre\s*)?(\d{1,2})\s*(?:º|°|o|er|ero|do|to|vo|mo|no)?\s*(?:semestre)?\s*:?$/i);
+      if(h&&+h[1]>=1&&+h[1]<=10){sem=+h[1];continue}
+      const m=line.match(/^[\-•*\s]*(.+?)\s*[:=\-–|\t]?\s*(\d{1,2}(?:[.,]\d{1,2})?)\s*(?:\(?\s*(\d{1,2})\s*cr[eé]d\w*\s*\)?)?\s*$/i);
+      if(m&&+m[2].replace(",",".")<=10)out.push({sem,mat:m[1].replace(/[:\-–|]+$/,"").trim(),cal:+m[2].replace(",","."),cred:m[3]?+m[3]:0});else bad.push(line)}
+    return {out,bad};
+  }
+  $g("#grImport").addEventListener("click",()=>{load();const {out,bad}=parse($g("#grPaste").value),e=$g("#grPErr");
+    if(!out.length){e.textContent="No encontré calificaciones. Usa el formato del ejemplo.";e.hidden=false;return}
+    for(const x of out){const old=st.items.find(y=>y.sem===x.sem&&y.mat.toLowerCase()===x.mat.toLowerCase());if(old)Object.assign(old,{cal:x.cal,cred:x.cred||old.cred});else st.items.push(Object.assign({id:uid()},x))}
+    e.hidden=!bad.length;e.textContent=bad.length?"Agregué "+out.length+". No entendí: "+bad.slice(0,3).join(" · "):"";
+    if(!bad.length)$g("#grPaste").value="";save()});
+  $g("#grSems").addEventListener("change",ev=>{const i=ev.target.closest("[data-gid]");if(!i)return;load();const x=st.items.find(y=>y.id===i.dataset.gid),v=parseFloat(i.value);if(x&&v>=0&&v<=10){x.cal=v;save()}});
+  $g("#grSems").addEventListener("click",ev=>{const d=ev.target.closest("[data-gdel]");if(!d)return;
+    if(!d.classList.contains("warn")){d.classList.add("warn");d.textContent="¿Seguro?";setTimeout(()=>{if(d.isConnected){d.classList.remove("warn");d.textContent="Borrar"}},3500);return}
+    load();st.items=st.items.filter(x=>x.id!==d.dataset.gdel);save()});
+  $g("#grWhat").addEventListener("input",need);
+  $g("#grMin").addEventListener("change",ev=>{load();st.min=+ev.target.value;save()});
+  let lastY=0;
+  function open(){if(!$g("#grades").hidden)return;lastY=window.scrollY;$g("#grSem").value=String(typeof CURSO!=="undefined"?CURSO.sem:5);render();$g("#grades").hidden=false;document.documentElement.style.overflow="hidden";document.title="Calificaciones · Carrera de Medicina"}
+  function close(){if($g("#grades").hidden)return;$g("#grades").hidden=true;document.documentElement.style.overflow="";document.title="Carrera de Medicina";requestAnimationFrame(()=>window.scrollTo(0,lastY))}
+  $g("#grBack").addEventListener("click",ev=>{ev.preventDefault();go("")});
+  document.addEventListener("keydown",ev=>{if(ev.key==="Escape"&&!$g("#grades").hidden&&!/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName))go("")});
+  addEventListener("storage",ev=>{if(ev.key===LS&&!$g("#grades").hidden)render()});
+  return {open,close};
+})();
+window.Grades=Grades;
+if(location.hash==="#calificaciones")Grades.open();
 </script>
 <script>
 /* ===== Biblioteca CTO: página con portadas por especialidad ===== */

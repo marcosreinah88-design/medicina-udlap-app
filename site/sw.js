@@ -1,5 +1,5 @@
 /* Medicina UDLAP · funciona sin internet: guarda todo el repositorio en el cel y lo renueva cuando hay versión nueva */
-const V=1794176069,C="med-"+V;
+const V=1794178950,C="med-"+V;
 self.addEventListener("install",ev=>ev.waitUntil((async()=>{
   const man=await (await fetch("manifest.json?v="+V,{cache:"no-store"})).json();
   const cache=await caches.open(C);

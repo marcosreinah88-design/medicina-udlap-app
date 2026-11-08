@@ -5,33 +5,61 @@
   if(window.__medSync)return;window.__medSync=1;
   const okHost=location.protocol==="app:"||/github\.io$/.test(location.hostname)||/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
   if(!okHost)return;
-  const API=window.__MEDSYNC_API||"https://api.github.com",P="__medsync_",DESC="Medicina UDLAP · sincronización (no borrar)",FILE="medicina-udlap.json";
+  const API=window.__MEDSYNC_API||"https://api.github.com",P="__medsync_",FILE="medicina-udlap.json",SENT="avisos-enviados.json";
+  /* v2: el archivo va cifrado (AES-256-GCM) con una llave que sale de tu clave; GitHub solo guarda datos ilegibles.
+     DESC_OLD es la copia vieja sin cifrar: si aparece, se junta con lo de este aparato y se borra. */
+  const DESC="Medicina UDLAP · sincronización cifrada (no borrar)",DESC_OLD="Medicina UDLAP · sincronización (no borrar)";
+  const GID=P+"gist2",BASE=P+"base2",LCHK=P+"lchk";
   const SKIP=new Set(["carrera-theme"]);
   const get=k=>{try{return localStorage.getItem(k)}catch(e){return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del=k=>{try{localStorage.removeItem(k)}catch(e){}};
   const T0=Date.now();let flash=0,busy=false,again=false,lastOk=+get(P+"ok")||0,lastErr="";
   const token=()=>get(P+"token");
   function snap(){const o={};try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&!k.startsWith(P)&&!SKIP.has(k))o[k]=localStorage.getItem(k)}}catch(e){}return o}
-  const base=()=>{try{return JSON.parse(get(P+"base")||"{}")}catch(e){return {}}};
+  const base=()=>{try{return JSON.parse(get(BASE)||"{}")}catch(e){return {}}};
+  /* ===== cifrado ===== */
+  const te=new TextEncoder(),td=new TextDecoder();
+  const toB64=u=>{let s="";const a=new Uint8Array(u);for(let i=0;i<a.length;i+=0x8000)s+=String.fromCharCode.apply(null,a.subarray(i,i+0x8000));return btoa(s)};
+  const fromB64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+  let kc=null,kfor=null;
+  async function aesKey(){
+    const t=token();if(kc&&kfor===t)return kc;
+    const ikm=await crypto.subtle.importKey("raw",te.encode(t),"HKDF",false,["deriveKey"]);
+    kc=await crypto.subtle.deriveKey({name:"HKDF",hash:"SHA-256",salt:te.encode("medicina-udlap/sync/v2"),info:te.encode("datos")},ikm,{name:"AES-GCM",length:256},false,["encrypt","decrypt"]);
+    kfor=t;return kc;
+  }
+  const AAD=te.encode(FILE);
+  async function seal(data){
+    const iv=crypto.getRandomValues(new Uint8Array(12));
+    const ct=await crypto.subtle.encrypt({name:"AES-GCM",iv,additionalData:AAD},await aesKey(),te.encode(JSON.stringify({data})));
+    return JSON.stringify({v:2,alg:"A256GCM",saved:new Date().toISOString(),iv:toB64(iv),ct:toB64(ct)});
+  }
+  async function unseal(txt){
+    let j;try{j=JSON.parse(txt)}catch(e){return {}}
+    if(!j||j.v!==2)return j&&j.data&&typeof j.data==="object"?j.data:{};
+    let pt;try{pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:fromB64(j.iv),additionalData:AAD},await aesKey(),fromB64(j.ct))}
+    catch(e){throw Object.assign(new Error("llave"),{nokey:true})}
+    const d=JSON.parse(td.decode(pt)).data;return d&&typeof d==="object"?d:{};
+  }
   async function gh(path,opt={}){
     const r=await fetch(API+path,Object.assign({cache:"no-store"},opt,{headers:Object.assign({Authorization:"Bearer "+token(),Accept:"application/vnd.github+json"},opt.body?{"Content-Type":"application/json"}:{})}));
     if(r.status===401||r.status===403)throw Object.assign(new Error("clave"),{auth:true});
     if(!r.ok)throw new Error("GitHub "+r.status);
-    return r.json();
+    return r.status===204?{}:r.json();
   }
-  async function findGist(){
+  async function findGists(){
+    const out={enc:null,old:[]};
     for(let page=1;page<=5;page++){
       const l=await gh("/gists?per_page=100&page="+page);
-      const g=l.find(x=>x.description===DESC&&x.files&&x.files[FILE]);if(g)return g.id;
+      for(const x of l){if(!x||!x.files||!x.files[FILE])continue;if(x.description===DESC&&!out.enc)out.enc=x.id;else if(x.description===DESC_OLD)out.old.push(x.id)}
       if(l.length<100)break;
     }
-    return null;
+    return out;
   }
+  async function fileText(f){if(!f)return null;if(!f.truncated)return f.content;const r=await fetch(f.raw_url,{cache:"no-store"});return r.text()}
   async function readRemote(id){
-    const g=await gh("/gists/"+id),f=g.files&&g.files[FILE];if(!f)return {};
-    let txt=f.content;if(f.truncated){const r=await fetch(f.raw_url,{cache:"no-store"});txt=await r.text()}
-    try{const j=JSON.parse(txt);return j&&j.data&&typeof j.data==="object"?j.data:{}}catch(e){return {}}
+    const g=await gh("/gists/"+id),txt=await fileText(g.files&&g.files[FILE]);
+    return txt==null?{}:unseal(txt);
   }
-  const body=data=>JSON.stringify({files:{[FILE]:{content:JSON.stringify({v:1,saved:new Date().toISOString(),data})}}});
   /* conflicto (los dos aparatos cambiaron lo mismo): listas con id se juntan; el calendario junta exámenes y palomitas */
   function both(k,l,r,first){
     try{
@@ -49,33 +77,61 @@
       if(k.startsWith(P)||SKIP.has(k))continue;
       const b=B[k],l=L[k],r=R[k];let v;
       if(l===r)v=l;else if(l===b)v=r;else if(r===b)v=l;else if(l===undefined||r===undefined)v=l===undefined?r:l;else v=both(k,l,r,first);
-      if(v!==undefined)out[k]=v;
+      if(typeof v==="string")out[k]=v;
     }
     return out;
   }
   const same=(a,b)=>{const ka=Object.keys(a),kb=Object.keys(b);return ka.length===kb.length&&ka.every(k=>a[k]===b[k])};
+  /* copia vieja sin cifrar: se junta con lo de este aparato (sin borrar nada de aquí) */
+  async function absorbOld(ids){
+    let changed=false,sent=null;
+    for(const oid of ids){
+      const g=await gh("/gists/"+oid),txt=await fileText(g.files&&g.files[FILE]);
+      if(g.files&&g.files[SENT])sent=await fileText(g.files[SENT]);
+      let R0={};try{const j=JSON.parse(txt||"{}");R0=j&&j.data&&typeof j.data==="object"?j.data:{}}catch(e){}
+      const L=snap();
+      for(const k in R0){
+        const v=R0[k];if(k.startsWith(P)||SKIP.has(k)||typeof v!=="string")continue;
+        const m=k in L?both(k,L[k],v,false):v;
+        if(m!==L[k]){set(k,m);changed=true}
+      }
+    }
+    return {changed,sent};
+  }
   async function sync(manual){
     if(!token())return;
     if(busy){again=true;return}
     busy=true;paint("…");
     try{
-      let id=get(P+"gist"),first=!get(P+"base");
-      if(!id){id=await findGist();if(id)set(P+"gist",id)}
+      let id=get(GID),first=!get(BASE),old=[],changed=false,warn="";
+      const now=Date.now();
+      if(!id||now-(+get(LCHK)||0)>10*60e3){const f=await findGists();if(!id&&f.enc){id=f.enc;set(GID,id)}old=f.old;set(LCHK,String(now))}
+      let sentOld=null;
+      if(old.length){const a=await absorbOld(old);changed=a.changed;sentOld=a.sent}
       const L=snap();
       if(!id){
-        const g=await gh("/gists",{method:"POST",body:JSON.stringify(Object.assign(JSON.parse(body(L)),{description:DESC,public:false}))});
-        set(P+"gist",g.id);set(P+"base",JSON.stringify(L));
+        const files={[FILE]:{content:await seal(L)}};if(sentOld)files[SENT]={content:sentOld};
+        const g=await gh("/gists",{method:"POST",body:JSON.stringify({description:DESC,public:false,files})});
+        set(GID,g.id);set(BASE,JSON.stringify(L));
       }else{
-        let R;try{R=await readRemote(id)}catch(e){if(/ 404$/.test(e.message)){del(P+"gist");busy=false;return sync(manual)}throw e}
-        const out=merge(base(),L,R,first);
-        let changed=false;
+        let R;
+        try{R=await readRemote(id)}
+        catch(e){
+          if(/ 404$/.test(e.message)){del(GID);del(BASE);del(LCHK);busy=false;return sync(manual)}
+          if(!e.nokey)throw e;
+          R=null;warn="Tu otro aparato usa una clave distinta: pon la misma clave en los dos";
+        }
+        const out=R?merge(base(),L,R,first):L;
         for(const k of Object.keys(L))if(!(k in out)){del(k);changed=true}
         for(const k in out)if(L[k]!==out[k]){set(k,out[k]);changed=true}
-        if(!same(out,R))await gh("/gists/"+id,{method:"PATCH",body:body(out)});
-        set(P+"base",JSON.stringify(out));
-        if(changed)arrived();
+        if(!R||!same(out,R))await gh("/gists/"+id,{method:"PATCH",body:JSON.stringify({files:{[FILE]:{content:await seal(out)}}})});
+        set(BASE,JSON.stringify(out));
       }
-      lastOk=Date.now();set(P+"ok",String(lastOk));lastErr="";
+      /* ya quedó la copia cifrada: se borran las copias viejas sin cifrar */
+      for(const oid of old){try{await gh("/gists/"+oid,{method:"DELETE"})}catch(e){}}
+      del(P+"gist");del(P+"base");
+      if(changed)arrived();
+      lastOk=Date.now();set(P+"ok",String(lastOk));lastErr=warn;
     }catch(e){lastErr=e.auth?"La clave no sirve o ya no tiene permiso":navigator.onLine===false?"Sin internet: se sincroniza al volver":"No pude sincronizar ahora"}
     busy=false;paint();
     if(again){again=false;sync()}
@@ -126,7 +182,7 @@
 ${pushHTML()}
 <p class="st" style="margin-top:16px">¿Cambiaste de clave? <a href="#" data-a="off">Desconectar este aparato</a></p>`;
     }else{
-      c.innerHTML=`<h3>Sincronizar Mac y cel</h3><p>Tus exámenes, plan, material y avances se guardan en un archivo privado de tu cuenta de GitHub, y tus aparatos lo comparten. Se hace una sola vez:</p>
+      c.innerHTML=`<h3>Sincronizar Mac y cel</h3><p>Tus exámenes, plan, material y avances se guardan cifrados en un archivo privado de tu cuenta de GitHub, y tus aparatos lo comparten. Se hace una sola vez:</p>
 <ol><li><a href="https://github.com/settings/tokens/new?scopes=gist&description=Medicina%20UDLAP" target="_blank" rel="noopener">Abre esta página de GitHub</a> (ya trae todo marcado).</li><li>En <b>Expiration</b> elige <b>No expiration</b>, baja hasta el final y presiona <b>Generate token</b>.</li><li>Copia la clave que empieza con <b>ghp_</b> y pégala aquí. Usa la misma en tu Mac y en tu cel.</li></ol>
 <input placeholder="ghp_…" autocomplete="off" autocapitalize="off" spellcheck="false"><p class="st bad" hidden></p>
 <div class="row"><button data-a="go">Conectar</button><button class="sec" data-a="close">Cerrar</button></div>`;
@@ -181,7 +237,7 @@ ${pushHTML()}
       const k=a.dataset.a;
       if(k==="close")d.remove();
       else if(k==="now"){a.disabled=true;a.textContent="Sincronizando…";await sync(true);flash=Date.now();render(d);setTimeout(()=>{const x=document.getElementById("syncDlg");if(x)render(x)},5200)}
-      else if(k==="off"){ev.preventDefault();[P+"token",P+"gist",P+"base",P+"ok",P+"secret"].forEach(del);lastOk=0;lastErr="";paint()}
+      else if(k==="off"){ev.preventDefault();[P+"token",GID,BASE,LCHK,P+"gist",P+"base",P+"ok",P+"secret"].forEach(del);kc=null;lastOk=0;lastErr="";paint()}
       else if(k==="push"){a.disabled=true;a.textContent="Activando…";try{await pushEnable()}catch(er){render(d);const e=d.querySelector("#pushErr");if(e){e.hidden=false;e.textContent=er.message&&/[áéíóú]|Sin/.test(er.message)?er.message:"No se pudo activar: "+(er.message||er)}return}render(d)}
       else if(k==="secret"){set(P+"secret","1");render(d)}
       else if(k==="poff"){await pushOff();render(d)}
@@ -189,7 +245,7 @@ ${pushHTML()}
       else if(k==="go"){
         const v=d.querySelector("input").value.trim(),e=d.querySelector(".bad");
         if(!/^(ghp_|github_pat_)[A-Za-z0-9_]{20,}$/.test(v)){e.hidden=false;e.textContent="Esa no parece una clave de GitHub (empieza con ghp_).";return}
-        a.disabled=true;a.textContent="Conectando…";set(P+"token",v);del(P+"base");del(P+"gist");
+        a.disabled=true;a.textContent="Conectando…";set(P+"token",v);[GID,BASE,LCHK,P+"base",P+"gist"].forEach(del);
         await sync(true);
         if(lastErr){const er=lastErr;del(P+"token");lastErr="";render(d);const e2=d.querySelector(".bad");e2.hidden=false;e2.textContent=er}
       }

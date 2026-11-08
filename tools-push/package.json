@@ -1,0 +1,8 @@
+{
+  "name": "medicina-udlap-avisos",
+  "private": true,
+  "description": "Manda los avisos del calendario al cel (Web Push)",
+  "dependencies": {
+    "web-push": "3.6.7"
+  }
+}

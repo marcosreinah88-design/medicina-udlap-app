@@ -423,8 +423,8 @@ html{transition:background-color .3s}
 .finfo svg{flex:none;width:16px;height:16px;margin-top:1px;fill:none;stroke:var(--u);stroke-width:2;stroke-linecap:round}
 .today .finfo svg{stroke:#ffcf9e}
 .frow.past{opacity:.5}.frow.tent{border-left-style:dashed}
-.md.fb::after{content:"";position:absolute;top:3px;right:3px;width:9px;height:6px;border-radius:50%;background:#9a5b2a;transform:rotate(-35deg);box-shadow:0 0 0 1.5px var(--paper)}
-.md.fbt::after{background:transparent;border:1.5px dashed #9a5b2a;box-shadow:none}
+.md .fbm{position:absolute;pointer-events:none;top:3px;right:3px;width:9px;height:6px;border-radius:50%;background:#9a5b2a;transform:rotate(-35deg);box-shadow:0 0 0 1.5px var(--paper)}
+.md .fbm.t{background:transparent;border:1.5px dashed #9a5b2a;box-shadow:none}
 .uleg.fleg i.fbl{width:9px!important;height:6px!important;border-radius:50%!important;background:#9a5b2a;transform:rotate(-35deg)}
 .mtoggle{display:inline-flex;align-items:center;gap:7px;margin-top:10px;font-size:.8rem;font-weight:600;cursor:pointer}
 .mtoggle input{width:16px;height:16px;accent-color:var(--orange)}
@@ -1793,8 +1793,8 @@ const Cal=(()=>{
       const ue=showU?(UD[k]||[]).filter(ev=>UDLAP_KIND[ev.k].bar):[];
       const title=[...ex.map(e=>"Examen: "+e.name),...(days[k]||[]).filter(x=>x.kind==="pend"&&x.p.due===k).map(x=>"Entrega: "+x.text),...ue.map(ev=>ev.t),...(showF?(FB[k]||[]):[]).map(fTitle)].join(", ")||(st.length?"Día de estudio":"");
       if(ue.length){style+=`--u:${UDLAP_KIND[ue[0].k].c};`;cls.push("ud");if(ue.some(ev=>ev.k==="asueto"||ev.k==="vacaciones"))cls.push("off")}
-      const fg=showF?(FB[k]||[]):[];if(fg.length){cls.push("fb");if(fg[0].tent)cls.push("fbt")}
-      h+=`<button type="button" class="${cls.join(" ")}" style="${style}" data-day="${k}"${title?` title="${esc(title)}"`:""} aria-label="${esc(nice(k)+(title?": "+title:""))}">${d.getDate()}<span class="dots">${(ex.length?[]:st).map(c=>`<i style="--c:${c}"></i>`).join("")}</span></button>`;
+      const fg=showF?(FB[k]||[]):[];if(fg.length)cls.push("fb");
+      h+=`<button type="button" class="${cls.join(" ")}" style="${style}" data-day="${k}"${title?` title="${esc(title)}"`:""} aria-label="${esc(nice(k)+(title?": "+title:""))}">${d.getDate()}${fg.length?`<span class="fbm${fg[0].tent?" t":""}" aria-hidden="true"></span>`:""}<span class="dots">${(ex.length?[]:st).map(c=>`<i style="--c:${c}"></i>`).join("")}</span></button>`;
     }
     $("#mDays").innerHTML=h;
     const box=$("#mDay");

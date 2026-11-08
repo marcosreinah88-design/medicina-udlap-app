@@ -37,9 +37,9 @@
     const p=document.getElementById("aiBox");if(!p)return;
     if(!get(KEY)){
       p.innerHTML=`<h4>${STAR}Asistente de pendientes</h4><p>Mándale una foto o PDF del calendario de una materia, o escríbele lo que tienes que hacer, y te propone los pendientes y exámenes con su fecha. Usa Gemini de Google con una clave gratis (se hace una vez):</p>
-<ol><li>Abre <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> y entra con tu cuenta de Google.</li><li>Presiona <b>Create API key</b> (si te pide proyecto, elige el que te ofrece) y copia la clave; empieza con <b>AIza</b>.</li><li>Pégala aquí. Se guarda solo en este aparato; en tu otro aparato la pegas otra vez.</li></ol>
+<ol><li>Abre <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a> y entra con tu cuenta de Google.</li><li>Presiona <b>Create API key</b> (si te pide proyecto, elige el que te ofrece) y copia la clave completa (empieza con <b>AIza</b> o <b>AQ.</b>).</li><li>Pégala aquí. Se guarda solo en este aparato; en tu otro aparato la pegas otra vez.</li></ol>
 <p class="mut">Es gratis con un límite diario de sobra para esto. No pongas tarjeta ni actives facturación.</p>
-<input type="password" id="aiKey" placeholder="AIza…" autocomplete="off"><p class="err" id="aiErr" hidden></p><div class="row"><button type="button" data-ai="key">Guardar clave</button></div>`;
+<input type="password" id="aiKey" placeholder="Pega tu clave aquí" autocomplete="off"><p class="err" id="aiErr" hidden></p><div class="row"><button type="button" data-ai="key">Guardar clave</button></div>`;
       return;
     }
     if(props){
@@ -71,7 +71,7 @@ ${msg?`<p class="err">${esc(msg)}</p>`:""}
     const rm=ev.target.closest("[data-rm]");if(rm){saveDraft();files.splice(+rm.dataset.rm,1);draw();return}
     const a=ev.target.closest("[data-ai]");if(!a)return;const k=a.dataset.ai;
     if(k==="key"){const v=document.getElementById("aiKey").value.trim(),e=document.getElementById("aiErr");
-      if(!/^AIza[A-Za-z0-9_\-]{30,}$/.test(v)){e.hidden=false;e.textContent="Esa no parece una clave de Google AI Studio (empieza con AIza).";return}
+      if(!/^(AIza[A-Za-z0-9_\-]{30,}|AQ\.[A-Za-z0-9_.\-]{30,}|[A-Za-z0-9_.\-]{35,})$/.test(v)){e.hidden=false;e.textContent="Esa no parece una clave de Google AI Studio. Cópiala completa, sin espacios.";return}
       set(KEY,v);draw();return}
     if(k==="forget"){ev.preventDefault();del(KEY);draw();return}
     if(k==="close"){props=null;files=[];window.__aiDraft="";document.getElementById("aiBox").hidden=true;return}

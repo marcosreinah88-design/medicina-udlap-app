@@ -1812,7 +1812,19 @@ const Cal=(()=>{
   document.addEventListener("visibilitychange",()=>{if(!document.hidden&&today()!==lastDay){lastDay=today();render()}});
 
   connect();
-  return {open,close,refresh:()=>render()};
+  /* para el asistente: agrega lo que propuso y lo guarda */
+  function addFromAI({tasks=[],exams=[]}){
+    const t=today();let n=0;
+    for(const x of tasks){if(!x||!x.title)continue;
+      state.tasks.push({id:"p"+Date.now().toString(36)+Math.random().toString(36).slice(2,6),title:String(x.title).slice(0,140),type:PT[x.type]?x.type:"tarea",
+        mat:String(x.mat||"").slice(0,60),due:/^\d{4}-\d{2}-\d{2}$/.test(x.due||"")?x.due:"",notes:String(x.notes||"").slice(0,400),done:"",at:Date.now(),flag:PF[x.flag]?x.flag:""});n++}
+    for(const x of exams){if(!x||!x.name||!/^\d{4}-\d{2}-\d{2}$/.test(x.date||"")||x.date<t)continue;
+      const used=new Set(state.exams.filter(e=>e.date>=t).map(e=>e.color));
+      state.exams.push({id:"e"+Date.now().toString(36)+Math.random().toString(36).slice(2,6),name:String(x.name).slice(0,80),date:x.date,lead:Math.max(1,Math.min(60,+x.lead||7)),
+        guide:G.some(g=>g.id===x.guide)?x.guide:"",topics:Array.isArray(x.topics)?x.topics.map(String).filter(Boolean).slice(0,80):[],color:COLORS.find(c=>!used.has(c))||COLORS[state.exams.length%COLORS.length]});n++}
+    if(n)save();return n;
+  }
+  return {open,close,refresh:()=>render(),addFromAI,types:PT,flags:PF};
 })();
 window.Cal=Cal;
 if(window.medApp)setInterval(()=>{try{Cal.refresh()}catch(e){}},3*36e5);
@@ -2170,4 +2182,5 @@ if(location.hash.startsWith("#mat-"))OtrosLib.openDoc(decodeURIComponent(locatio
 
 <script src="sync.js"></script>
 <script src="applinks.js"></script>
+<script src="assistant.js"></script>
 <script src="pwa.js"></script>

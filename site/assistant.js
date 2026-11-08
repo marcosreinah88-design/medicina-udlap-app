@@ -3,7 +3,7 @@
 (()=>{
   const okHost=location.protocol==="app:"||/github\.io$/.test(location.hostname)||/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
   if(!okHost)return;
-  const API=window.__MEDAI_API||"https://generativelanguage.googleapis.com/v1beta/models/",MODELS=["gemini-flash-latest","gemini-2.5-flash","gemini-2.0-flash"],KEY="__medsync_gemkey";
+  const API=window.__MEDAI_API||"https://generativelanguage.googleapis.com/v1beta/models/",MODELS=["gemini-flash-latest","gemini-3.8-flash","gemini-2.5-flash"],KEY="__medsync_gemkey";
   const get=k=>{try{return localStorage.getItem(k)}catch(e){return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del=k=>{try{localStorage.removeItem(k)}catch(e){}};
   const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const ymd=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");

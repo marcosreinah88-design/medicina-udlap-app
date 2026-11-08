@@ -1,0 +1,804 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Repaso de Salud Pública</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/g457e47a285.css">
+<style>
+/* Layout: sticky header (brand + module rail + mode switch) over a tinted module hero; summaries use a side index on wide screens. */
+:root{
+  --bg:#EDF1F0; --dot:#D3DCDA; --surface:#FFFFFF; --surface-2:#E6ECEB; --ink:#13222A; --muted:#55666C; --line:#D2DCDA;
+  --accent:#1E5A86; --accent-ink:#FFFFFF; --mark:#F6DA7A; --mark-ink:#3A2E05;
+  --ok:#23704A; --ok-bg:#DDF0E5; --bad:#A8322A; --bad-bg:#F8E3E0;
+  --m1:#0F6E66; --m2:#1E5A86; --m4:#A0601A; --mix:#5B4A8A;
+  --card-back:#13222A; --card-back-ink:#EEF3F2;
+  --shadow:0 1px 2px rgba(19,34,42,.06),0 8px 24px -12px rgba(19,34,42,.18);
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0D1517; --dot:#1A2629; --surface:#152023; --surface-2:#1D2B2F; --ink:#E4ECEA; --muted:#98AAAE; --line:#283A3E;
+  --accent:#74B3DF; --accent-ink:#0B1A24; --mark:#E2C25A; --mark-ink:#251C00;
+  --ok:#6FCF97; --ok-bg:#15301F; --bad:#F08C80; --bad-bg:#381B18;
+  --m1:#4FC2B5; --m2:#74B3DF; --m4:#E3A55A; --mix:#A895E0;
+  --card-back:#E9F0EE; --card-back-ink:#13222A;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px -14px rgba(0,0,0,.6); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0D1517; --dot:#1A2629; --surface:#152023; --surface-2:#1D2B2F; --ink:#E4ECEA; --muted:#98AAAE; --line:#283A3E;
+  --accent:#74B3DF; --accent-ink:#0B1A24; --mark:#E2C25A; --mark-ink:#251C00;
+  --ok:#6FCF97; --ok-bg:#15301F; --bad:#F08C80; --bad-bg:#381B18;
+  --m1:#4FC2B5; --m2:#74B3DF; --m4:#E3A55A; --mix:#A895E0;
+  --card-back:#E9F0EE; --card-back-ink:#13222A;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px -14px rgba(0,0,0,.6); color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background-color:var(--bg);background-image:radial-gradient(var(--dot) 1px,transparent 1.2px);background-size:22px 22px;color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.12}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+::selection{background:var(--mark);color:var(--mark-ink)}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{padding-block:10px;display:grid;grid-template-columns:auto 1fr auto;gap:10px 18px;align-items:center}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{width:34px;height:34px;flex:none;border-radius:10px;background:var(--ink);display:grid;place-items:center}
+.logo svg{width:20px;height:20px}
+.brand h1{font-size:1.08rem;font-weight:800;letter-spacing:-.01em;white-space:nowrap}
+.brand small{display:block;color:var(--muted);font-size:.74rem;font-family:var(--f-mono);letter-spacing:.02em}
+.mods{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0;padding:2px}
+.mods::-webkit-scrollbar{display:none}
+.mods button{flex:none;border:0;background:transparent;border-radius:999px;padding:7px 13px;font-size:.9rem;display:flex;gap:7px;align-items:center;color:var(--muted);transition:background .15s,color .15s}
+.mods button:hover{background:var(--surface-2);color:var(--ink)}
+.mods button .dot{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.mods button[aria-pressed="true"]{background:color-mix(in srgb,var(--c) 15%,transparent);color:var(--ink);font-weight:700;box-shadow:inset 0 0 0 1.5px var(--c)}
+.modes{display:flex;background:var(--surface-2);border-radius:10px;padding:3px;gap:2px}
+.modes button{border:0;background:transparent;padding:6px 14px;font-size:.88rem;border-radius:8px;color:var(--muted);transition:background .15s}
+.modes button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.modes button:disabled{opacity:.35;cursor:default}
+@media (max-width:820px){
+  header.top .wrap{grid-template-columns:1fr auto}
+  .mods{grid-column:1 / -1;grid-row:2}
+}
+@media (max-width:560px){
+  header.top .wrap{grid-template-columns:minmax(0,1fr);gap:8px}
+  .mods{grid-row:auto}
+  .modes button{flex:1}
+}
+
+main .wrap{padding-block:22px 72px;display:flex;flex-direction:column;gap:22px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-radius:20px;padding:28px 28px 24px;background:linear-gradient(135deg,color-mix(in srgb,var(--mc) 16%,var(--surface)) 0%,var(--surface) 70%);border:1px solid color-mix(in srgb,var(--mc) 28%,var(--line));box-shadow:var(--shadow);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 28px;align-items:end}
+.hero::after{content:attr(data-num);position:absolute;right:-6px;top:-34px;font-family:var(--f-display);font-weight:800;font-size:11rem;line-height:1;color:var(--mc);opacity:.09;pointer-events:none;letter-spacing:-.05em}
+.hero .txt{display:flex;flex-direction:column;gap:8px;min-width:0;position:relative}
+.eyebrow{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mc);font-weight:600}
+.hero h2{font-size:clamp(1.75rem,4.6vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.hero p{margin:0;color:var(--muted);max-width:60ch}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;position:relative;min-width:min(100%,380px)}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.stat b{font-family:var(--f-display);font-size:1.5rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:.74rem;color:var(--muted);line-height:1.2}
+.meter{height:5px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--mc);border-radius:99px}
+@media (max-width:720px){.hero{grid-template-columns:minmax(0,1fr);padding:22px 18px}.hero::after{font-size:8rem;top:-22px}.stats{min-width:0}}
+
+/* resumen */
+.res-layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;align-items:start}
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 80px);display:flex;flex-direction:column;gap:2px;border-left:2px solid var(--line);padding-left:4px}
+.toc span{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 10px 6px}
+.toc a{font-size:.86rem;line-height:1.3;color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:8px;display:flex;gap:8px}
+.toc a i{font-style:normal;font-family:var(--f-mono);font-size:.75rem;color:var(--mc);padding-top:1px}
+.toc a:hover{background:var(--surface);color:var(--ink)}
+.secs{display:flex;flex-direction:column;gap:16px;min-width:0}
+@media (max-width:900px){
+  .res-layout{grid-template-columns:minmax(0,1fr)}
+  .toc{position:static;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:6px;border-left:0;padding:0 0 4px}
+  .toc a{flex:none;white-space:nowrap}
+  .toc span{display:none}
+  .toc a{background:var(--surface);border:1px solid var(--line);padding:5px 10px}
+  .toc a i{display:none}
+}
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px;scroll-margin-top:140px;box-shadow:var(--shadow)}
+.sec h3{font-size:1.22rem;font-weight:700;display:flex;gap:12px;align-items:center;letter-spacing:-.01em}
+.sec h3 .n{flex:none;width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-family:var(--f-mono);font-size:.8rem;font-weight:600;background:color-mix(in srgb,var(--mc) 14%,transparent);color:var(--mc)}
+.sec ul{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px;max-width:74ch}
+.sec li{position:relative;padding-left:20px}
+.sec li::before{content:"";position:absolute;left:3px;top:.62em;width:7px;height:7px;border-radius:2px;background:var(--mc);transform:rotate(45deg)}
+.sec p{margin:0;max-width:74ch}
+.def{position:relative;background:color-mix(in srgb,var(--mc) 7%,var(--surface));border:1px solid color-mix(in srgb,var(--mc) 22%,var(--line));padding:14px 18px 14px 46px;border-radius:12px;font-style:italic;max-width:74ch}
+.def::before{content:"“";position:absolute;left:14px;top:2px;font-family:var(--f-display);font-size:2.8rem;font-style:normal;font-weight:800;color:var(--mc);opacity:.6;line-height:1}
+.def b{font-style:normal}
+mark{background:linear-gradient(transparent 45%,var(--mark) 45%);color:inherit;padding:0 2px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;font-variant-numeric:tabular-nums}
+th,td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:color-mix(in srgb,var(--mc) 10%,var(--surface));font-weight:700;font-size:.84rem}
+tr:nth-child(odd) td{background:color-mix(in srgb,var(--surface-2) 40%,transparent)}
+tr:last-child td{border-bottom:0}
+code,.mono{font-family:var(--f-mono);font-size:.85em;background:var(--surface-2);padding:1px 5px;border-radius:5px}
+.tip{font-size:.9rem;color:var(--muted)}
+
+/* calculadora 2x2 */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start;margin-top:6px;background:var(--surface-2);border-radius:12px;padding:16px}
+@media (max-width:640px){.calc{grid-template-columns:minmax(0,1fr)}}
+.grid2{display:grid;grid-template-columns:auto 1fr 1fr;gap:6px;align-items:center;font-size:.82rem}
+.grid2 span{color:var(--muted)}
+.grid2 input{width:100%;font:inherit;font-family:var(--f-mono);font-size:1rem;padding:9px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);text-align:center}
+.res{display:flex;flex-direction:column;gap:6px;font-size:.9rem}
+.res div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding-bottom:4px}
+.res b{font-family:var(--f-mono)}
+.res p{margin:4px 0 0;font-size:.86rem;color:var(--muted)}
+
+/* botones y chips */
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.chips{display:flex;gap:8px;flex-wrap:wrap;font-size:.84rem}
+.chip{padding:4px 11px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.chip.ok{background:var(--ok-bg);color:var(--ok);border-color:transparent}
+.chip.bad{background:var(--bad-bg);color:var(--bad);border-color:transparent}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 15px;font-size:.9rem;transition:border-color .15s,transform .1s}
+.btn:hover:not(:disabled){border-color:var(--ink)}
+.btn:active:not(:disabled){transform:translateY(1px)}
+.btn.primary{background:var(--mc,var(--accent));border-color:transparent;color:var(--surface);font-weight:700}
+.btn.good{background:var(--ok-bg);border-color:var(--ok);color:var(--ok);font-weight:700}
+.btn.warn{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);font-weight:700}
+.btn:disabled{opacity:.4;cursor:default}
+
+/* tarjetas */
+.card-stage{perspective:1600px;max-width:720px;width:100%;margin:0 auto}
+.flip{position:relative;width:100%;min-height:300px;border:0;background:transparent;padding:0;text-align:left;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.flip.on{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:18px;padding:26px 28px 22px;display:flex;flex-direction:column;gap:14px;overflow:auto;box-shadow:var(--shadow)}
+.front{background:var(--surface);border:1px solid var(--line);border-top:8px solid var(--mc);
+  background-image:repeating-linear-gradient(to bottom,transparent 0 33px,color-mix(in srgb,var(--mc) 9%,transparent) 33px 34px)}
+.front .q{font-family:var(--f-display);font-size:clamp(1.3rem,3.6vw,1.8rem);font-weight:700;line-height:1.25;margin:auto 0;letter-spacing:-.01em}
+.back{background:var(--card-back);color:var(--card-back-ink);transform:rotateY(180deg);border-top:8px solid var(--mc)}
+.back .a{font-size:1.04rem;line-height:1.6;margin:auto 0}
+.back .a ul{margin:0;padding-left:1.1em}
+.face .meta{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7;display:flex;justify-content:space-between;gap:8px}
+.hint{display:inline-flex;align-items:center;gap:6px}
+.card-actions{display:grid;grid-template-columns:auto 1fr 1fr auto;gap:8px;max-width:720px;width:100%;margin:14px auto 0}
+@media (max-width:480px){.card-actions{grid-template-columns:1fr 1fr}.card-actions #prev{order:3}.card-actions #next{order:4}}
+@media (prefers-reduced-motion:reduce){.flip{transition:none}}
+
+/* quiz */
+.qbox{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:16px;box-shadow:var(--shadow);max-width:760px;width:100%;margin:0 auto}
+.prog{height:8px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--mc);border-radius:99px;transition:width .35s}
+.qtext{font-family:var(--f-display);font-size:clamp(1.15rem,3vw,1.4rem);font-weight:700;line-height:1.3;letter-spacing:-.01em}
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:11px 14px;text-align:left;display:flex;gap:12px;align-items:center;line-height:1.4;transition:border-color .15s,background .15s}
+.opt .k{font-family:var(--f-mono);font-weight:600;font-size:.82rem;flex:none;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:var(--surface-2);color:var(--muted)}
+.opt:hover:not(:disabled){border-color:var(--mc);background:color-mix(in srgb,var(--mc) 5%,var(--surface))}
+.opt:hover:not(:disabled) .k{background:var(--mc);color:var(--surface)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--ok-bg)}
+.opt.right .k{background:var(--ok);color:var(--surface)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.opt.wrong .k{background:var(--bad);color:var(--surface)}
+.fb{border-radius:12px;padding:12px 16px;font-size:.95rem;animation:pop .25s ease-out}
+.fb.ok{background:var(--ok-bg);border-left:4px solid var(--ok)}
+.fb.bad{background:var(--bad-bg);border-left:4px solid var(--bad)}
+.fb strong{display:block;margin-bottom:2px}
+@keyframes pop{from{transform:translateY(4px);opacity:.4}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.fb{animation:none}}
+.qnav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+.ring{--p:0;width:118px;height:118px;border-radius:50%;flex:none;display:grid;place-items:center;background:conic-gradient(var(--mc) calc(var(--p)*1%),var(--surface-2) 0)}
+.ring span{width:94px;height:94px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-family:var(--f-display);font-size:1.8rem;font-weight:800}
+.review{display:flex;flex-direction:column;gap:10px}
+.review div{border-left:3px solid var(--bad);padding:4px 0 4px 12px;font-size:.92rem}
+.review div p{margin:2px 0 0;color:var(--muted)}
+.score{font-family:var(--f-display);font-size:3rem;font-weight:800;color:var(--mc);line-height:1}
+.note{font-size:.86rem;color:var(--muted);text-align:center}
+</style>
+
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M7.5 2h5v5.5H18v5h-5.5V18h-5v-5.5H2v-5h5.5z" fill="var(--bg)"/></svg></span><div><h1>Repaso de Salud Pública</h1><small>Primavera I 2026 · Mód. 1, 2 y 4</small></div></div>
+    <div class="mods" id="mods" role="group" aria-label="Módulo"></div>
+    <div class="modes" id="modes" role="group" aria-label="Modo de estudio">
+      <button id="mode-res" data-v="res">Resumen</button>
+      <button id="mode-tar" data-v="tar">Tarjetas</button>
+      <button id="mode-quiz" data-v="quiz">Quiz</button>
+    </div>
+  </div>
+</header>
+<main><div class="wrap" id="app"></div></main>
+
+<script>
+const MODS = {
+m1:{tag:"Módulo 1",name:"Introducción a la salud pública",color:"--m1",
+ intro:"Definición y funciones de la salud pública, salud y enfermedad, determinantes sociales, el sistema de salud mexicano, etnografía y economía de la salud.",
+ sec:[
+ {t:"Origen y definición de la salud pública",h:`
+  <ul><li><b>John Snow (1813–1858)</b>: padre de la epidemiología moderna. Sus estudios de las epidemias de cólera en Londres generaron la hipótesis de transmisión por agua.</li>
+  <li><b>Winslow (1920)</b> da la definición moderna:</li></ul>
+  <div class="def">«La ciencia y el arte de <b>prevenir enfermedades, prolongar la vida y fomentar la buena salud física</b>, por medio de los <b>esfuerzos comunitarios organizados</b> para el saneamiento ambiental, el control de las infecciones, la instrucción en higiene individual, la organización del servicio médico y de enfermería para el diagnóstico temprano y la prevención, y el desarrollo de la maquinaria social que asegure a cada persona un nivel de vida adecuado.»</div>
+  <ul><li>Se consolidó como un estudio <b>multidisciplinario</b> y vehículo para <b>acciones multisectoriales</b>: desde el bienestar social (bien común) hasta la rectoría, equidad y cobertura de servicios.</li>
+  <li>Algunos la ven como un <b>movimiento social</b> que extiende el conocimiento como <b>bien público</b>.</li>
+  <li><b>Misión</b>: maximizar la salud de las colectividades.</li></ul>`},
+ {t:"Ámbito de estudio, disciplinas y acciones",h:`
+  <ul><li><b>Ámbito</b>: determinantes sociales; prevención de epidemias y control de enfermedades; protección contra daños ambientales; prevención de daños; promoción de comportamientos saludables; respuesta organizada a desastres; garantía y accesibilidad a servicios públicos de salud; mitigar el efecto de nuevas tecnologías, la <b>globalización</b> y la <b>migración</b>.</li>
+  <li><b>Disciplinas</b>: ciencias médicas, epidemiología, estadística, economía, administración, política, derecho, veterinaria, psicología, sociología, antropología, ingeniería, bioética, ciencias del comportamiento.</li>
+  <li><b>Acciones</b>: incidir en los determinantes sociales y económicos; promover la equidad; ser participativas, incluyentes e intersectoriales; evaluar y vigilar indicadores; asegurar atención apropiada y costo-eficaz; formular políticas públicas.</li></ul>`},
+ {t:"Funciones Esenciales de la Salud Pública (FESP)",h:`
+  <p>Propuestas por la <b>OPS (1997)</b>. Son <mark>11 funciones</mark>:</p>
+  <div class="tbl"><table><tr><th>#</th><th>Función</th><th>Ejemplo de lo que incluye</th></tr>
+  <tr><td>1</td><td>Monitoreo y análisis de la situación de salud</td><td>Estadísticas vitales, tendencias, necesidades y riesgos</td></tr>
+  <tr><td>2</td><td>Vigilancia, investigación y control de riesgos y daños</td><td>Brotes, tamizajes, laboratorios, redes internacionales</td></tr>
+  <tr><td>3</td><td>Promoción de la salud</td><td>Programas de reducción de riesgos, empoderar para cambiar estilos de vida</td></tr>
+  <tr><td>4</td><td>Participación social y empoderamiento ciudadano</td><td>Alianzas con sociedad civil, recursos comunitarios</td></tr>
+  <tr><td>5</td><td>Políticas, planes y capacidad de gestión</td><td>Planificación estratégica, decisiones basadas en evidencia</td></tr>
+  <tr><td>6</td><td>Regulación y fiscalización</td><td>Códigos sanitarios, leyes, protección al consumidor</td></tr>
+  <tr><td>7</td><td>Acceso equitativo a servicios de salud</td><td>Vincular grupos vulnerables a servicios</td></tr>
+  <tr><td>8</td><td>Recursos humanos y capacitación</td><td>Formación de profesionales, trabajo interdisciplinario</td></tr>
+  <tr><td>9</td><td>Garantía de calidad de los servicios</td><td>Monitoreo de calidad, evaluación de tecnologías</td></tr>
+  <tr><td>10</td><td>Investigación e innovación</td><td>Investigación aplicada, alianzas con centros</td></tr>
+  <tr><td>11</td><td>Reducción del impacto de emergencias y desastres</td><td>Prevención, mitigación, preparación, respuesta, rehabilitación</td></tr></table></div>`},
+ {t:"Salud y enfermedad",h:`
+  <div class="def"><b>Salud (OMS, 1946)</b>: «el estado completo de bienestar físico, mental y social, y no solamente la ausencia de afecciones o enfermedades».</div>
+  <ul><li><b>Frenk</b>: la salud es un medio para la realización personal y colectiva; indicador del bienestar y la calidad de vida de una comunidad.</li>
+  <li><b>OMS Europa (1985)</b>: «la capacidad de realizar el propio potencial personal y responder de forma positiva a los problemas del ambiente».</li>
+  <li><b>Enfermedad (OMS)</b>: alteración o desviación del estado fisiológico, por causas en general conocidas, con síntomas y signos característicos y evolución más o menos previsible.</li>
+  <li>Salud y enfermedad <b>no son conceptos universales</b>: son una <b>construcción social</b> que cambia según personas, contextos y época (Gavidia y Talavera, 2012). Funcionan como componente ideológico (conceptos hegemónicos).</li></ul>`},
+ {t:"Historia natural de la enfermedad y triada epidemiológica",h:`
+  <div class="def"><b>Historia natural de la enfermedad</b>: estudio de cualquier enfermedad desde su génesis y evolución hasta las últimas consecuencias, <b>sin la intervención humana</b> (Rosales, 2010).</div>
+  <div class="tbl"><table><tr><th>Agente</th><th>Huésped</th><th>Ambiente</th></tr>
+  <tr><td>Bacterias, virus, otros gérmenes. Patogenicidad, virulencia, mecanismos de transmisión.</td><td>Inmunidad, resistencia, nutrición, genética, estrés.</td><td>Factores ambientales, manejo, sistemas de producción y alimentación.</td></tr></table></div>`},
+ {t:"Proceso salud-enfermedad",h:`
+  <ul><li>Es un <b>continuo</b> en el proceso natural humano: enfermedades y daños son frecuentes, recurrentes e inevitables.</li>
+  <li>Es un <b>hecho social</b> que opera estructuralmente, de forma diferenciada, en toda sociedad y en sus conjuntos sociales estratificados (Menéndez, 1994). Incluye cómo se atiende y se resuelve.</li>
+  <li>Secuencia: vida → salud → enfermedad → atención/desatención → cuidado/muerte. Atravesado por relaciones de <b>hegemonía y subalternidad</b>, sistemas ideológicos y determinantes biológicos y sociales.</li></ul>`},
+ {t:"Determinantes sociales vs. determinación social",h:`
+  <ul><li>El rol social en la salud se reconoce desde el s. XVII (Europa) y XVIII (Latinoamérica). La <b>Revolución Industrial (s. XIX)</b> hizo evidente el vínculo salud-sociedad.</li>
+  <li>En el s. XX se formaron dos enfoques:</li></ul>
+  <div class="tbl"><table><tr><th>Determinantes Sociales de la Salud</th><th>Determinación Social de la Salud</th></tr>
+  <tr><td>Deriva de la epidemiología clásica → <b>epidemiología social anglosajona</b>.</td><td>Propuesta alternativa de la <b>medicina social y salud colectiva latinoamericana</b>.</td></tr>
+  <tr><td>Destaca las <b>desigualdades sociales</b> (~1980: estudio Whitehall, Informe Black; Whitehead, Marmot, Diderichsen).</td><td>Busca un desarrollo propio que garantice la <b>soberanía de los pueblos</b> (Juan César García, María Isabel Rodríguez, Asa Cristina Laurell, Edmundo Granda).</td></tr>
+  <tr><td>Referente: <b>Comisión de DSS de la OMS</b> (marco de Solar e Irwin, 2010).</td><td>Salud-enfermedad es <b>dialéctico</b>: lo sanitario se analiza en el contexto social que lo determina.</td></tr></table></div>
+  <ul><li><b>En común</b>: ambos ligan pobreza, trabajo y enfermedad, y sostienen que los procesos sociales macro condicionan los patrones micro. Se potenciaron en los años 70 y 80 con la atención primaria y la promoción de la salud.</li>
+  <li><b>Itinerario de acceso</b> (Levesque, 2013): percibe necesidad → busca atención → recibe atención → desenlace.</li>
+  <li>Ejemplo (Chile, 2007): cuando madre y padre tienen 0–9 años de estudio, la razón de mortalidad infantil es <mark>2.56</mark> frente a 1.00 cuando ambos tienen 13 años o más.</li></ul>`},
+ {t:"Transición demográfica y epidemiológica en México",h:`
+  <ul><li><b>126 millones</b> de habitantes (2020): 48.8% hombres, 51.2% mujeres. Seguirá creciendo hasta mediados del s. XXI (~170 millones).</li>
+  <li>Mortalidad infantil: 105 por mil (1960) → <b>11</b> (2023). Fecundidad: <b>6.8</b> (1970) → <b>1.9</b> (2020).</li>
+  <li>Esperanza de vida 75 años (2018) → 71 (2020–2021) por COVID-19. Población de 65+: 15% en 2030 y 20% en 2050.</li>
+  <li>Urbanización: 43% (1950) → 79% (2020). En lo urbano predominan <b>enfermedades crónicas no transmisibles y lesiones</b>; en zonas rurales y pobres siguen las infecciones y los problemas reproductivos.</li>
+  <li>Diabetes: prevalencia 18.3% en mayores de 20 (14.6 millones), 115 mil muertes en 2022. Las 3 primeras causas suman 47.6% de las muertes.</li>
+  <li>Homicidios: de 8 (2007) a 29 por 100 mil (2018). Depresión en adultos 11.3% (15% mujeres, 7.3% hombres). Suicidio 6.8 por 100 mil, 81% hombres.</li>
+  <li>Riesgos: sobrepeso 38.3% + obesidad 36.9% = <mark>75.2%</mark> de adultos; hipertensión 47.8%; tabaquismo 19.1%; 7 de cada 10 accidentes de tránsito relacionados con alcohol; inactividad física en 68% de adolescentes.</li></ul>`},
+ {t:"El sistema de salud mexicano",h:`
+  <div class="def"><b>Sistema de salud</b>: conjunto de relaciones entre actores, instituciones y recursos que afectan y responden a las necesidades de salud (Castillo, 2013). <b>No es sólo el sistema de atención</b>: incluye salud pública, hogares y comunidades.</div>
+  <ul><li><b>Seguridad social</b>: IMSS, ISSSTE, PEMEX, SEDENA, SEMAR (~54 millones). <b>Otras instituciones públicas</b>: IMSS-Bienestar, SS, SESA. IMSS-Bienestar opera en 23 estados (~53.2 millones).</li>
+  <li>39.09% con carencia de acceso a servicios de salud (54.82% rural, 33.95% urbano). 50.2% sin seguridad social; muchas personas sin seguridad social acuden al sector privado y a consultorios de farmacia.</li>
+  <li><b>Gasto</b>: 5.5% del PIB (AL 8.2%, OCDE 9.2%); 1,081 dólares per cápita; gasto público 53%, privado ~47% con predominio del <b>gasto de bolsillo</b>.</li>
+  <li><b>Gasto catastrófico</b>: supera el 30% de la capacidad de pago del hogar. <b>Gasto empobrecedor</b>: empuja al hogar bajo la línea de pobreza.</li>
+  <li>Camas: 1.1 por mil (OCDE 4.3). Médicos 2.5 y enfermeras 2.9 por mil (OCDE 3.7 y 9.2). Medicamentos: 22.1% del gasto total.</li></ul>`},
+ {t:"Etnografía, observación participante y diario de campo",h:`
+  <ul><li><b>Etnografía</b> = <i>ethnos</i> (pueblo) + <i>grapho</i> (describir): método general de investigación con herramientas como observación participante y no participante, diario de campo, cuaderno de notas, entrevistas y grupos de discusión.</li>
+  <li><b>Observación participante</b>: técnica de producción de datos en la que se observan las prácticas («el hacer») de los agentes sociales en el entorno donde suceden (Jociles-Rubio).</li>
+  <li>Principios: estudiar prácticas sociales; evitar preconcepciones rígidas; ética y naturalidad; <b>no provocar</b> acciones o conversaciones.</li>
+  <li><b>Emic</b>: la perspectiva del «otro». <b>Etic</b>: las características y el discurso propios del investigador.</li>
+  <li><b>Diario de campo</b>: no usar nombres; no describir por describir; definir acrónimos; no es un diario personal. El <b>cuaderno de notas</b> lo apoya.</li></ul>`},
+ {t:"Economía de la salud",h:`
+  <div class="def"><b>Economía de la salud</b>: estudia cómo los recursos escasos se asignan para y dentro del sector salud.</div>
+  <ul><li><b>Ley de la demanda</b>: si el precio sube, la demanda baja. <b>Efecto sustitución</b>: se cambia a otro bien (cigarros con filtro → sin filtro). <b>Efecto ingreso</b>: el aumento reduce el ingreso disponible y baja el consumo de ese y otros bienes.</li>
+  <li><b>Costo de oportunidad</b>: lo que se sacrifica de un bien para producir o consumir otro (equivale al precio relativo).</li>
+  <li>Salubristas: el nivel socioeconómico impacta la salud. Economistas: la salud determina el ingreso (capital humano). Fogel (Nobel 1993): el desarrollo económico mejoró nutrición y esperanza de vida.</li>
+  <li>La <b>demanda de salud</b> es indirecta; la de <b>servicios de salud</b> es directa y <b>derivada</b>: lo que se desea en realidad es buena salud.</li>
+  <li><b>Oferta</b>: tecnología avanzada, medicina curativa, prevención. <b>Función de producción</b>: mano de obra, capital y gerencia. El profesional actúa como <b>agente</b> del paciente.</li>
+  <li><b>Métodos de evaluación económica</b>: minimización de costos, costo-efectividad, costo-utilidad y costo-beneficio. Difieren en cómo miden los efectos en salud.</li></ul>
+  <div class="tbl"><table><tr><th>Concepto</th><th>Significado</th></tr>
+  <tr><td>Eficacia</td><td>Efecto bajo condiciones ideales o experimentales</td></tr>
+  <tr><td>Efectividad</td><td>Efecto en la práctica habitual en una población</td></tr>
+  <tr><td>Eficiencia</td><td>Resultados obtenidos en relación con los recursos usados</td></tr>
+  <tr><td>Utilidad</td><td>Efectos en calidad y esperanza de vida</td></tr></table></div>`}
+ ],
+ cards:[
+ ["¿Quién es el padre de la epidemiología moderna y por qué?","<b>John Snow</b> (1813–1858), por estudiar las epidemias de cólera en Londres y relacionarlas con el agua."],
+ ["Definición de salud pública de Winslow (1920)","La ciencia y el arte de <b>prevenir enfermedades, prolongar la vida y fomentar la salud</b> mediante <b>esfuerzos comunitarios organizados</b>."],
+ ["Misión de la salud pública","Maximizar la salud de las colectividades."],
+ ["¿Cuántas son las FESP y quién las propuso?","<b>11 funciones</b>, propuestas por la <b>OPS en 1997</b>."],
+ ["Menciona las 11 FESP","<ul><li>1 Monitoreo de la situación de salud</li><li>2 Vigilancia y control de riesgos</li><li>3 Promoción de la salud</li><li>4 Participación social</li><li>5 Políticas y gestión</li><li>6 Regulación y fiscalización</li><li>7 Acceso equitativo</li><li>8 Recursos humanos</li><li>9 Calidad de servicios</li><li>10 Investigación e innovación</li><li>11 Emergencias y desastres</li></ul>"],
+ ["Definición de salud de la OMS (1946)","Estado completo de bienestar físico, mental y social, y no solamente la ausencia de afecciones o enfermedades."],
+ ["Definición de salud de la OMS Europa (1985)","La capacidad de realizar el propio potencial personal y responder de forma positiva a los problemas del ambiente."],
+ ["¿Por qué se dice que salud y enfermedad son una construcción social?","Porque cambian según las personas, los contextos y la época, y reflejan valores predominantes (son hegemónicos)."],
+ ["Historia natural de la enfermedad","Estudio de una enfermedad desde su génesis hasta sus últimas consecuencias, <b>sin intervención humana</b> (Rosales, 2010)."],
+ ["Elementos de la triada epidemiológica","<b>Agente</b> (patogenicidad, virulencia, transmisión), <b>huésped</b> (inmunidad, nutrición, genética, estrés) y <b>ambiente</b>."],
+ ["Proceso salud-enfermedad según Menéndez","Un hecho social que opera estructuralmente, de forma diferenciada, en toda sociedad y sus grupos estratificados."],
+ ["Determinantes sociales vs. determinación social: origen de cada uno","DSS: epidemiología social <b>anglosajona</b> (Marmot, Whitehead, Informe Black). Determinación social: <b>medicina social latinoamericana</b> (Laurell, Granda, J. C. García)."],
+ ["Referente institucional de los DSS","La <b>Comisión sobre Determinantes Sociales de la Salud de la OMS</b> (marco conceptual de Solar e Irwin, 2010)."],
+ ["Pasos del itinerario de acceso","Percibe necesidad → busca atención → recibe atención → desenlace."],
+ ["¿Qué es un sistema de salud?","Conjunto de relaciones entre actores, instituciones y recursos que responden a las necesidades de salud. No es sólo el sistema de atención."],
+ ["Gasto catastrófico vs. gasto empobrecedor","<b>Catastrófico</b>: supera el 30% de la capacidad de pago del hogar. <b>Empobrecedor</b>: empuja al hogar bajo la línea de pobreza."],
+ ["Gasto en salud de México (% del PIB)","<b>5.5%</b>, menor que AL (8.2%) y OCDE (9.2%). El gasto privado (~47%) es sobre todo de bolsillo."],
+ ["Emic vs. etic","<b>Emic</b>: perspectiva del otro (sus experiencias). <b>Etic</b>: características y discurso propios del investigador."],
+ ["Observación participante","Técnica en la que se observan las prácticas de los agentes sociales en el entorno donde suceden, participando en distintos grados."],
+ ["Costo de oportunidad","Cantidad de un bien que se sacrifica para producir o consumir otro bien."],
+ ["¿Por qué la demanda de servicios de salud es «derivada»?","Porque lo que la persona realmente desea es <b>buena salud</b>; los servicios son el medio."],
+ ["Cuatro métodos de evaluación económica","Minimización de costos, costo-efectividad, costo-utilidad y costo-beneficio."],
+ ["Eficacia vs. efectividad vs. eficiencia","<b>Eficacia</b>: condiciones ideales. <b>Efectividad</b>: práctica habitual. <b>Eficiencia</b>: resultados en relación con recursos."]
+ ],
+ quiz:[
+ ["¿Quién es considerado el padre de la epidemiología moderna?",["John Snow","Charles Winslow","Marc Lalonde","Rudolf Virchow"],0,"John Snow (1813–1858) estudió las epidemias de cólera en Londres."],
+ ["La definición «la ciencia y el arte de prevenir enfermedades, prolongar la vida y fomentar la salud mediante esfuerzos comunitarios organizados» es de:",["Winslow (1920)","OMS (1946)","Frenk","OMS Europa (1985)"],0,"Es la definición moderna de salud pública de Winslow, 1920."],
+ ["Según la OPS (1997), ¿cuántas Funciones Esenciales de la Salud Pública hay?",["11","8","10","12"],0,"Son 11 FESP."],
+ ["«Desarrollo y fiscalización de códigos sanitarios y protección de los consumidores» corresponde a la FESP:",["6. Regulación y fiscalización","3. Promoción de la salud","9. Garantía de calidad","2. Vigilancia de salud pública"],0,"La FESP 6 trata de regulación y fiscalización en salud pública."],
+ ["La investigación de brotes, los laboratorios para identificar amenazas y la conexión con redes internacionales forman parte de la FESP:",["2. Vigilancia, investigación y control de riesgos","1. Monitoreo de la situación de salud","10. Investigación e innovación","5. Políticas y planes"],0,"Son descripciones de la FESP 2."],
+ ["La definición de salud de la OMS (1946) es:",["Estado completo de bienestar físico, mental y social, y no solamente la ausencia de enfermedad","Ausencia de enfermedad diagnosticada","Capacidad de realizar el propio potencial y responder al ambiente","Equilibrio entre agente, huésped y ambiente"],0,"La opción de «propio potencial» es de la OMS Europa (1985)."],
+ ["La historia natural de la enfermedad estudia la enfermedad:",["Desde su génesis hasta sus últimas consecuencias, sin intervención humana","Sólo desde el diagnóstico hasta la curación","Bajo el efecto de un tratamiento","Únicamente en su etapa clínica"],0,"Rosales (2010): sin la intervención humana."],
+ ["Inmunidad, nutrición, genética y estrés son factores del:",["Huésped","Agente","Ambiente","Vector"],0,"El huésped aporta resistencia e inmunidad; el agente aporta patogenicidad y virulencia."],
+ ["El enfoque de la determinación social de la salud surge de:",["La medicina social y la salud colectiva latinoamericana","La epidemiología social anglosajona","La Comisión de DSS de la OMS","El Informe Lalonde"],0,"Autores: Laurell, Granda, Juan César García. Los DSS vienen de la epidemiología social anglosajona."],
+ ["¿Qué autores se asocian con el enfoque de Determinantes Sociales de la Salud?",["Marmot, Whitehead y Diderichsen","Laurell y Granda","Juan César García y María Isabel Rodríguez","Winslow y Snow"],0,"Los otros autores pertenecen a la determinación social latinoamericana."],
+ ["En Chile (2007), cuando madre y padre tienen 0–9 años de estudio, la razón de mortalidad infantil frente a padres con 13+ años es:",["2.56","1.00","1.21","5.7"],0,"Muestra el peso de la escolaridad parental como determinante social."],
+ ["¿Cuál es el orden correcto del itinerario de acceso?",["Percibe necesidad → busca → recibe atención → desenlace","Busca → percibe necesidad → recibe → desenlace","Recibe atención → percibe necesidad → desenlace","Percibe necesidad → recibe → busca → desenlace"],0,"Marco de Levesque et al. (2013)."],
+ ["La tasa de fecundidad en México pasó de ___ en 1970 a ___ en 2020:",["6.8 a 1.9","4.2 a 2.5","6.8 a 3.1","3.5 a 1.2"],0,"Es parte de la transición demográfica."],
+ ["El gasto en salud de México como porcentaje del PIB es de:",["5.5%","8.2%","9.2%","12%"],0,"8.2% es el promedio de AL y 9.2% el de la OCDE."],
+ ["Un gasto en salud es catastrófico cuando:",["Supera el 30% de la capacidad de pago del hogar","Empuja al hogar bajo la línea de pobreza","Lo cubre un seguro privado","Supera el 5% del PIB"],0,"Empujar al hogar bajo la línea de pobreza define al gasto empobrecedor."],
+ ["Prevalencia combinada de sobrepeso y obesidad en adultos mexicanos:",["75.2%","47.8%","36.9%","18.3%"],0,"38.3% sobrepeso + 36.9% obesidad. 47.8% es hipertensión y 18.3% diabetes."],
+ ["Según Castillo (2013), un sistema de salud es:",["Un conjunto de relaciones entre actores, instituciones y recursos que responden a las necesidades de salud","Sólo los hospitales públicos","El conjunto de seguros médicos","El sistema de atención médica"],0,"El sistema de salud no es sólo el sistema de atención: incluye hogares y comunidades."],
+ ["En etnografía, la perspectiva «emic» se refiere a:",["La perspectiva del «otro» (sus experiencias)","El discurso propio del investigador","Los datos cuantitativos","Las normas del hospital"],0,"Etic son las características y el discurso propios."],
+ ["¿Cuál es una regla del diario de campo?",["No usar nombres de personas","Describir todo el día con detalle","Usar acrónimos sin definir","Escribir como diario personal"],0,"Tampoco se describe por describir y se definen los acrónimos."],
+ ["Si sube el precio de los cigarros con filtro y la gente cambia a cigarros sin filtro, ocurre un:",["Efecto sustitución","Efecto ingreso","Costo de oportunidad","Gasto catastrófico"],0,"Se sustituye un bien por otro cuyo precio no cambió."],
+ ["La demanda de servicios de salud se llama «derivada» porque:",["Lo que se desea en realidad es buena salud","Depende del médico","Deriva del PIB","Sólo existe en el sector privado"],0,"Los servicios son el medio para producir salud."],
+ ["El efecto de una tecnología bajo condiciones ideales o experimentales se llama:",["Eficacia","Efectividad","Eficiencia","Utilidad"],0,"Efectividad es en la práctica habitual; eficiencia es resultados entre recursos."],
+ ["¿Cuál NO es un método de evaluación económica visto en clase?",["Análisis de supervivencia","Minimización de costos","Costo-utilidad","Costo-beneficio"],0,"Los cuatro métodos son minimización de costos, costo-efectividad, costo-utilidad y costo-beneficio."]
+ ]},
+
+m2:{tag:"Módulo 2",name:"Bioestadística y epidemiología",color:"--m2",
+ intro:"Muestreo, escalas de medición, gráficas, medidas de tendencia central, dispersión y forma, probabilidad, distribuciones, pruebas estadísticas y epidemiología con RR y OR.",
+ sec:[
+ {t:"Población, muestra y tipos de encuesta",h:`
+  <ul><li><b>Población</b>: todas las personas que comparten la característica a estudiar. <b>Muestra</b>: subconjunto de la población.</li>
+  <li><b>Censo</b>: se mide a todas las personas. <b>Encuesta</b>: sólo a una fracción.</li>
+  <li><b>Muestreo probabilístico</b>: cada persona tiene una probabilidad conocida de entrar; muestra representativa y resultados generalizables (ENSANUT, ENCODAT).</li>
+  <li><b>No probabilístico</b>: encuestas en puntos de reunión, internet o televisión; se desconoce la probabilidad de selección (fuerte desventaja).</li>
+  <li><b>Parámetro</b>: valor de la población, desconocido. <b>Estimador</b>: su versión calculada con la muestra.</li></ul>`},
+ {t:"Escalas de medición",h:`
+  <div class="tbl"><table><tr><th>Escala</th><th>Qué permite</th><th>Ejemplos</th></tr>
+  <tr><td><b>Nominal</b> (dicotómica o politómica)</td><td>Sólo proporciones; no hay orden. Tablas, barras o pastel.</td><td>Sexo, tabaquismo (sí/no), estado civil, derechohabiencia</td></tr>
+  <tr><td><b>Ordinal</b></td><td>Orden natural, pero sin magnitud entre categorías; no se hacen operaciones aritméticas.</td><td>Bajo peso → obesidad mórbida; gravedad de lesión</td></tr>
+  <tr><td><b>Numérica discreta</b> (conteo)</td><td>Valores enteros; diferencia mínima de 1.</td><td>Visitas al médico, número de hijos, edad en años, IDM</td></tr>
+  <tr><td><b>Numérica continua</b></td><td>Cualquier valor según la precisión del instrumento.</td><td>Peso, estatura, IMC, plomo en sangre</td></tr></table></div>
+  <ul><li>Continua de <b>intervalo</b>: el 0 es arbitrario (temperatura en °C). De <b>razón</b>: el 0 es absoluto (concentración de un fármaco).</li>
+  <li>Ejercicio de derechohabiencia (1 IMSS, 2 ISSSTE… 8 sin servicio): <mark>el promedio no tiene significado</mark> porque la variable es nominal.</li></ul>`},
+ {t:"Gráficas",h:`
+  <ul><li><b>Pastel</b>: proporciones de una variable nominal u ordinal; una rebanada por categoría.</li>
+  <li><b>Barras</b>: igual que el pastel, una barra por categoría (vertical u horizontal).</li>
+  <li><b>Histograma</b>: datos numéricos agrupados en intervalos de clase (de frecuencia o de frecuencia relativa).</li>
+  <li><b>Polígono de frecuencias</b>: une los puntos medios de las barras del histograma; ayuda a ver tendencias.</li>
+  <li>Una buena gráfica se explica sola: título, ejes rotulados con unidades y leyendas.</li></ul>`},
+ {t:"El estudio de plomo: diseño y muestra",h:`
+  <ul><li><b>Ensayo aleatorizado doble ciego</b>: asignación al azar a intervención o control, sin que participantes ni investigadores sepan a qué grupo pertenece cada quien (suplementación con calcio).</li>
+  <li><b>Cohorte</b>: grupo reclutado que comparte características. <b>Cohorte prospectiva</b>: se le da seguimiento hacia el futuro.</li>
+  <li>Estudio 2: se invitaron <b>2,273</b> mujeres, <b>327</b> participaron y <b>216</b> concluyeron. Riesgo principal del seguimiento: <b>pérdida de participantes</b> (información incompleta).</li>
+  <li>Su muestreo es <b>no probabilístico</b> («muestra disponible»), pero se puede extrapolar porque estudia un proceso puramente biológico.</li></ul>`},
+ {t:"Medidas de tendencia central",h:`
+  <ul><li><b>Media</b>: el promedio. Es la más usada pero <b>sensible a valores extremos</b>. Alternativa: media recortada.</li>
+  <li><b>Mediana</b>: deja 50% de los datos de cada lado; <b>no es sensible</b> a extremos.</li>
+  <li><b>Moda</b>: el valor más frecuente; puede haber varias o ninguna.</li></ul>
+  <div class="tbl"><table><tr><th>Distribución</th><th>Orden</th></tr>
+  <tr><td>Simétrica</td><td>media = mediana = moda</td></tr>
+  <tr><td>Asimétrica positiva (cola a la derecha)</td><td>moda &lt; mediana &lt; media</td></tr>
+  <tr><td>Asimétrica negativa (cola a la izquierda)</td><td>media &lt; mediana &lt; moda</td></tr></table></div>
+  <p class="tip">Ejercicio: estancias de 2, 3, 3, 5, 10 días → media 4.6, mediana 3, moda 3. En el IDM (moda 88, mediana 90, media 91.48) la distribución es asimétrica positiva.</p>`},
+ {t:"Medidas de dispersión y de forma",h:`
+  <div class="tbl"><table><tr><th>Medida</th><th>Sensibilidad a atípicos</th><th>Unidades</th><th>Uso</th></tr>
+  <tr><td>Rango (máx − mín)</td><td>Máxima</td><td>Originales</td><td>Descripción rápida</td></tr>
+  <tr><td>Rango intercuartil (Q3 − Q1)</td><td>Mínima</td><td>Originales</td><td>Distribuciones asimétricas</td></tr>
+  <tr><td>Varianza</td><td>Media</td><td>Al cuadrado</td><td>Pruebas como ANOVA</td></tr>
+  <tr><td>Desviación estándar (√varianza)</td><td>Media</td><td>Originales</td><td>Estándar de oro</td></tr></table></div>
+  <ul><li><b>Cuartiles</b>: Q1 (25%), Q2 = mediana, Q3 (75%). La <b>caja y bigotes</b> muestra mínimo, Q1, mediana, Q3 y máximo; 50% de los datos queda dentro de la caja.</li>
+  <li><b>IC 95%</b>: el área entre los percentiles 2.5 y 97.5. <b>Valor p &lt; 0.05</b>: el resultado cae en el 5% exterior y es estadísticamente significativo.</li>
+  <li><b>Asimetría</b>: 0 si es simétrica; negativa con cola izquierda; positiva con cola derecha.</li>
+  <li><b>Curtosis</b>: <b>leptocúrtica</b> (muy picuda), <b>platicúrtica</b> (plana), <b>mesocúrtica</b> (normal).</li></ul>`},
+ {t:"Probabilidad",h:`
+  <ul><li>Va de <b>0</b> (imposible) a <b>1</b> (seguro); se expresa en proporciones. En epidemiología se le llama <b>riesgo</b>.</li>
+  <li><b>Complemento</b>: P(no A) = 1 − P(A).</li>
+  <li><b>Mutuamente excluyentes</b>: P(A o B) = P(A) + P(B). Ejemplo: P(tipo A o B) = 0.43 + 0.11 = <b>0.54</b>.</li>
+  <li><b>No excluyentes</b>: P(A o B) = P(A) + P(B) − P(A y B). Ejemplo: P(mujer o tipo O) = 0.485 + 0.42 − 0.22 = <b>0.685</b>.</li>
+  <li><b>Independientes</b>: P(A y B) = P(A) × P(B). Si la conjunta es igual al producto de las marginales, hay independencia.</li>
+  <li><b>Condicional</b>: P(A|B), la probabilidad de A dado que B ya ocurrió. P(fumar|hombre) = 211/998 = <b>0.21</b>; P(fumar|mujer) = 58/1789 = 0.03 (unas 7 veces menor), así que fumar y sexo <b>no</b> son independientes.</li>
+  <li><b>Dependientes</b>: P(A y B) = P(B) × P(A|B).</li></ul>
+  <div class="tbl"><table><tr><th>Tipo de sangre</th><th>O</th><th>A</th><th>B</th><th>AB</th><th>Total</th></tr>
+  <tr><td>Hombres</td><td>240</td><td>288</td><td>72</td><td>18</td><td>618</td></tr>
+  <tr><td>Mujeres</td><td>264</td><td>228</td><td>60</td><td>30</td><td>582</td></tr>
+  <tr><td>Total</td><td>504</td><td>516</td><td>132</td><td>48</td><td>1200</td></tr></table></div>
+  <p class="tip">P(sangre B) = 132/1200 = 0.11. P(mujer y AB) = 30/1200 = 0.025.</p>`},
+ {t:"Distribuciones de probabilidad",h:`
+  <div class="tbl"><table><tr><th>Distribución</th><th>Tipo de variable</th><th>Parámetros</th><th>Pregunta clave</th></tr>
+  <tr><td><b>Normal</b></td><td>Numérica continua</td><td>μ y σ</td><td>¿Mides algo continuo?</td></tr>
+  <tr><td><b>Binomial</b></td><td>Nominal dicotómica</td><td>n y p</td><td>¿Clasificas en sí/no?</td></tr>
+  <tr><td><b>Poisson</b></td><td>Numérica discreta (conteos)</td><td>λ (tasa promedio)</td><td>¿Cuentas ocurrencias en un intervalo?</td></tr></table></div>
+  <ul><li><b>Regla empírica</b> de la normal: 68% en μ ± 1σ, <b>95% en μ ± 2σ</b>, 99.7% en μ ± 3σ. Presión sistólica 120 ± 10 → 95% entre 100 y 140 mmHg.</li>
+  <li><b>Teorema Central del Límite</b>: aunque los datos sean asimétricos, las medias muestrales se distribuyen normal si n ≥ 30.</li>
+  <li>Poisson aplica a eventos poco frecuentes, en un intervalo fijo e independientes (casos de dengue por mes, ingresos a urgencias por turno).</li></ul>`},
+ {t:"Pruebas estadísticas",h:`
+  <div class="tbl"><table><tr><th>Prueba</th><th>Compara</th><th>Ejemplo</th></tr>
+  <tr><td><b>t de Student</b></td><td>Medias de 1 o 2 grupos (o antes/después), variable continua normal, n &lt; 30 o σ desconocida</td><td>Glucosa con medicamento vs. placebo</td></tr>
+  <tr><td><b>Chi cuadrada (χ²)</b></td><td>Asociación entre variables categóricas (frecuencias); esperadas ≥ 5 por celda</td><td>Sexo vs. hipertensión (sí/no)</td></tr>
+  <tr><td><b>F de Fisher (ANOVA)</b></td><td>Medias de 3 o más grupos; cociente variación entre / dentro</td><td>Hemoglobina en dieta omnívora, vegetariana y vegana</td></tr></table></div>
+  <p class="tip">No se usan varias t en lugar de F porque comparar muchos pares aumenta la probabilidad de encontrar diferencias por azar. Si F ≈ 1, probablemente no hay diferencia real.</p>`},
+ {t:"Epidemiología: definición y objetivos",h:`
+  <div class="def"><b>Epidemiología</b>: ciencia de la salud pública que estudia la <b>distribución</b> de la enfermedad y los <b>determinantes</b> del proceso salud-enfermedad en las poblaciones, para mejorar su salud.</div>
+  <ul><li>Objetivos generales: <b>describir, explicar, predecir y controlar</b>.</li>
+  <li>Objetivos específicos: identificar factores causales; describir la frecuencia; conocer la historia natural y el pronóstico; evaluar prevención, tratamientos y servicios; generar evidencia para políticas; desarrollar métodos analíticos.</li>
+  <li>Variables de <b>tiempo, lugar y persona</b>: ¿cómo cambia?, ¿dónde ocurre?, ¿quién se enferma?</li>
+  <li>Paradigma: <mark>la enfermedad no ocurre al azar</mark>. Triada: huésped, agente, ambiente.</li>
+  <li>Aportes: naturaleza infecciosa de enfermedades, tabaquismo–cáncer de pulmón, obesidad–diabetes tipo 2, vacunas (rotavirus, VPH).</li>
+  <li><b>Predecir</b>: el costo de enfermedades por obesidad subió 61% (2000–2008). <b>Controlar</b>: brote de <i>Rickettsia rickettsii</i> en Mexicali, 2009 (119 probables, 27 confirmados, 10 muertes); se controla con definición de caso, diagnóstico por PCR, tratamiento y control del vector (garrapata del perro).</li></ul>`},
+ {t:"Medidas de frecuencia y prevención",h:`
+  <ul><li><b>Prevención primaria</b>: evitar la enfermedad. <b>Secundaria</b>: detección temprana y tratamiento oportuno. <b>Terciaria</b>: reducir la incapacidad y rehabilitar.</li>
+  <li><b>Tasas estandarizadas</b>: tasas ajustadas (normalmente por edad) para comparar poblaciones.</li>
+  <li>Una <b>tasa</b> incluye tiempo en el denominador; un <b>riesgo</b> no lo necesita.</li>
+  <li><b>Incidencia</b>: casos nuevos en un periodo / población en riesgo. <b>Tasa de ataque</b>: incidencia en brotes delimitados.</li>
+  <li><b>Prevalencia</b>: personas con la enfermedad en un punto o periodo / población. <mark>Prevalencia ≈ incidencia × duración</mark>.</li>
+  <li><b>Morbilidad</b>: presencia de enfermedades en una población; es una categoría, no un número.</li>
+  <li><b>Momio</b> = probabilidad de que ocurra / probabilidad de que no ocurra. Si 1 de 4 enferma: probabilidad 0.25, momio 1/3 = 0.33.</li></ul>`},
+ {t:"Tabla 2×2, RR y OR",calc:true,h:`
+  <div class="tbl"><table><tr><th></th><th>Enfermedad sí</th><th>Enfermedad no</th><th>Total</th></tr>
+  <tr><td><b>Expuesto sí</b></td><td>a</td><td>b</td><td>a + b</td></tr>
+  <tr><td><b>Expuesto no</b></td><td>c</td><td>d</td><td>c + d</td></tr>
+  <tr><td>Total</td><td>a + c</td><td>b + d</td><td>n</td></tr></table></div>
+  <ul><li>Incidencia en expuestos <code>a/(a+b)</code>; en no expuestos <code>c/(c+d)</code>; prevalencia <code>(a+c)/n</code>.</li>
+  <li><b>RR</b> = <code>[a/(a+b)] / [c/(c+d)]</code>. Se usa en <b>cohortes</b>.</li>
+  <li><b>OR</b> = <code>(a/b)/(c/d) = (a×d)/(b×c)</code>. Se usa en <b>casos y controles</b> (también en cohortes). El RR no se puede calcular en casos y controles.</li>
+  <li>Valor <b>= 1</b>: no hay asociación. <b>&gt; 1</b>: posible factor de riesgo. <b>&lt; 1</b>: posible factor protector. <b>OR ≈ RR</b> cuando la enfermedad es rara.</li></ul>
+  <div class="tbl"><table><tr><th>John Snow, Londres</th><th>Familias</th><th>Muertes</th><th>Por 10,000 familias</th><th>Razón de tasas (IC 95%)</th></tr>
+  <tr><td>Southwark and Vauxhall</td><td>40,046</td><td>1,263</td><td>315</td><td>5.7 (5.3 a 6.1)</td></tr>
+  <tr><td>Lambeth</td><td>26,107</td><td>98</td><td>37</td><td>0.7 (0.6 a 0.8)</td></tr>
+  <tr><td>Resto de Londres</td><td>256,423</td><td>1,422</td><td>55</td><td>1.0 (referencia)</td></tr></table></div>`}
+ ],
+ cards:[
+ ["Parámetro vs. estimador","<b>Parámetro</b>: valor de la población, desconocido. <b>Estimador</b>: versión calculada con la muestra."],
+ ["Muestreo probabilístico vs. no probabilístico","<b>Probabilístico</b>: probabilidad de selección conocida, muestra representativa (ENSANUT). <b>No probabilístico</b>: se desconoce (encuestas por internet)."],
+ ["Escala nominal","Categorías con nombre y sin orden (dicotómica o politómica). Se analiza con proporciones; barras o pastel."],
+ ["Escala ordinal","Categorías con orden natural, sin magnitud entre ellas (gravedad de lesión, nivel de peso)."],
+ ["Discreta vs. continua","<b>Discreta</b>: conteos enteros (visitas al médico). <b>Continua</b>: cualquier valor según el instrumento (peso)."],
+ ["Variable de intervalo vs. de razón","<b>Intervalo</b>: 0 arbitrario (°C). <b>Razón</b>: 0 absoluto (concentración de un fármaco)."],
+ ["¿Qué medida de tendencia central no es sensible a valores extremos?","La <b>mediana</b>."],
+ ["Orden de media, mediana y moda en asimetría positiva","Moda &lt; mediana &lt; media (cola a la derecha)."],
+ ["Orden de media, mediana y moda en asimetría negativa","Media &lt; mediana &lt; moda (cola a la izquierda)."],
+ ["Rango intercuartil","Q3 − Q1. Es la medida de dispersión más robusta a valores atípicos; contiene el 50% central de los datos."],
+ ["¿Por qué se usa la desviación estándar y no la varianza para interpretar?","Porque la varianza está en unidades al cuadrado; la DE está en las unidades originales."],
+ ["Leptocúrtica, platicúrtica y mesocúrtica","<b>Lepto</b>: muy picuda. <b>Plati</b>: plana. <b>Meso</b>: altura media (normal)."],
+ ["IC 95% y valor p &lt; 0.05","IC 95%: área entre los percentiles 2.5 y 97.5. p &lt; 0.05: el resultado cae en el 5% exterior y es significativo."],
+ ["Regla de adición (no mutuamente excluyentes)","P(A o B) = P(A) + P(B) − P(A y B)."],
+ ["¿Cómo sabes si dos eventos son independientes?","Si P(A y B) = P(A) × P(B), es decir, la conjunta es igual al producto de las marginales."],
+ ["Probabilidad condicional","P(A|B): probabilidad de A dado que B ya ocurrió. Ej.: P(fumar|hombre) = 211/998 = 0.21."],
+ ["Regla empírica de la distribución normal","68% en μ ± 1σ, 95% en μ ± 2σ, 99.7% en μ ± 3σ."],
+ ["Binomial vs. Poisson","<b>Binomial</b>: éxito/fracaso en n ensayos (n, p). <b>Poisson</b>: cuántas veces ocurre algo en un intervalo (λ)."],
+ ["Teorema Central del Límite","Las medias muestrales se distribuyen normal aunque los datos no lo hagan, si las muestras son grandes (n ≥ 30)."],
+ ["¿Cuándo usar t, χ² y F?","<b>t</b>: medias de 1–2 grupos. <b>χ²</b>: asociación entre categóricas. <b>F/ANOVA</b>: medias de 3+ grupos."],
+ ["Cuatro objetivos de la epidemiología","Describir, explicar, predecir y controlar."],
+ ["Niveles de prevención","<b>Primaria</b>: evitar la enfermedad. <b>Secundaria</b>: detección temprana. <b>Terciaria</b>: rehabilitación."],
+ ["Incidencia vs. prevalencia","<b>Incidencia</b>: casos nuevos en un periodo. <b>Prevalencia</b>: todos los casos en un punto o periodo ≈ incidencia × duración."],
+ ["Probabilidad vs. momio (1 de cada 4 enferma)","Probabilidad = 1/4 = 0.25. Momio = 1/3 = 0.33."],
+ ["Fórmulas de RR y OR","RR = [a/(a+b)] / [c/(c+d)]. OR = (a×d)/(b×c)."],
+ ["¿Cuándo se usa RR y cuándo OR?","RR en <b>cohortes</b>; OR en <b>casos y controles</b> (y cohortes). OR ≈ RR si la enfermedad es rara."],
+ ["Ensayo aleatorizado doble ciego","Asignación al azar a intervención o control sin que participantes ni investigadores sepan el grupo."],
+ ["Resultado de John Snow","Quienes bebían agua de Southwark and Vauxhall tenían una tasa de muerte por cólera <b>5.7 veces</b> mayor."]
+ ],
+ quiz:[
+ ["El valor numérico que describe una característica de la población y suele ser desconocido es un:",["Parámetro","Estimador","Censo","Percentil"],0,"El estimador es su versión calculada con la muestra."],
+ ["La ENSANUT es un ejemplo de:",["Encuesta por muestreo probabilístico","Encuesta no probabilística","Censo","Ensayo clínico"],0,"Cada persona tiene una probabilidad conocida de ser seleccionada."],
+ ["Si codificas la derechohabiencia como 1 = IMSS, 2 = ISSSTE … 8 = sin servicio, el promedio de esos números:",["No tiene significado porque la variable es nominal","Indica la institución más usada","Es la mediana","Indica el nivel de acceso"],0,"Los números sólo nombran categorías; se analiza con proporciones."],
+ ["La gravedad de una lesión (mortal, grave, moderada, leve) es una variable:",["Ordinal","Nominal dicotómica","Numérica continua","Numérica discreta"],0,"Tiene orden natural pero no magnitud entre categorías."],
+ ["El número de visitas al médico en un año es una variable:",["Numérica discreta","Numérica continua","Ordinal","Nominal"],0,"Es un conteo de valores enteros."],
+ ["La temperatura en grados Celsius es una variable continua de:",["Intervalo, porque su 0 es arbitrario","Razón, porque su 0 es absoluto","Conteo","Escala ordinal"],0,"La concentración de un fármaco sí tiene 0 absoluto (razón)."],
+ ["¿Qué gráfica NO es adecuada para una variable nominal?",["Histograma","Gráfica de pastel","Gráfica de barras","Tabla de frecuencias"],0,"El histograma es para datos numéricos agrupados en intervalos."],
+ ["Estancias hospitalarias de 2, 3, 3, 5 y 10 días. Media, mediana y moda son:",["4.6, 3 y 3","3, 3 y 4.6","5, 3 y 3","4.6, 5 y 3"],0,"Suma 23 / 5 = 4.6; el dato central es 3 y el más repetido es 3."],
+ ["En estancias de 1, 2, 2, 3, 4, 15 y 20 días, ¿qué medida se ve más afectada por los pacientes de larga estancia?",["La media","La mediana","La moda","El rango intercuartil"],0,"La media es sensible a valores extremos."],
+ ["En una distribución simétrica perfecta de glucosa con media 95 mg/dL, la moda es:",["95 mg/dL","Mayor que 95","Menor que 95","No se puede saber"],0,"En una distribución simétrica media, mediana y moda coinciden."],
+ ["En el IDM: moda 88, mediana 90, media 91.48. La distribución es:",["Asimétrica positiva","Asimétrica negativa","Simétrica","Platicúrtica"],0,"Moda < mediana < media indica cola a la derecha."],
+ ["La medida de dispersión más robusta ante valores atípicos es:",["Rango intercuartil","Rango","Varianza","Media"],0,"El rango es la más sensible."],
+ ["¿En qué unidades se expresa la varianza?",["Al cuadrado de las unidades originales","En las mismas unidades","En porcentajes","No tiene unidades"],0,"Por eso se interpreta la desviación estándar, su raíz cuadrada."],
+ ["Una distribución muy picuda, con muchos datos concentrados en el centro, es:",["Leptocúrtica","Platicúrtica","Mesocúrtica","Asimétrica negativa"],0,"Platicúrtica es plana y mesocúrtica es la normal."],
+ ["Con la tabla de tipos de sangre (132 personas tipo B de 1,200), P(sangre tipo B) es:",["0.11","0.42","0.13","0.054"],0,"132/1200 = 0.11."],
+ ["P(tipo A) = 0.43 y P(tipo B) = 0.11. Como son mutuamente excluyentes, P(A o B) es:",["0.54","0.047","0.32","0.43"],0,"Se suman: 0.43 + 0.11."],
+ ["P(mujer) = 0.485, P(tipo O) = 0.42 y P(mujer y O) = 0.22. P(mujer o tipo O) es:",["0.685","0.905","0.204","0.22"],0,"No son excluyentes: 0.485 + 0.42 − 0.22."],
+ ["De 998 hombres, 211 fuman. P(fumar | hombre) es:",["0.21","0.07","0.36","0.79"],0,"211/998 ≈ 0.21; en mujeres es 0.03."],
+ ["Dos eventos son independientes si:",["La probabilidad conjunta es igual al producto de las marginales","Sus probabilidades suman 1","No pueden ocurrir juntos","Tienen la misma moda"],0,"P(A y B) = P(A) × P(B)."],
+ ["La presión sistólica se distribuye normal con media 120 y σ = 10 mmHg. ¿Entre qué valores está el 95% de la población sana?",["100 y 140","110 y 130","90 y 150","115 y 125"],0,"95% cae entre μ − 2σ y μ + 2σ."],
+ ["El número de casos de dengue reportados en un municipio por mes sigue una distribución:",["Poisson","Binomial","Normal","t de Student"],0,"Cuenta ocurrencias en un intervalo fijo."],
+ ["Los resultados positivo/negativo de 100 pruebas independientes siguen una distribución:",["Binomial","Poisson","Normal","F"],0,"Es una variable dicotómica en n ensayos."],
+ ["Para comparar la hemoglobina promedio entre dietas omnívora, vegetariana y vegana se usa:",["F de Fisher (ANOVA)","t de Student","Chi cuadrada","Poisson"],0,"Hay tres o más grupos y una variable continua."],
+ ["Para evaluar si hay asociación entre sexo e hipertensión (sí/no) se usa:",["Chi cuadrada (χ²)","t de Student","ANOVA","Regla empírica"],0,"Ambas son variables categóricas."],
+ ["El Teorema Central del Límite dice que:",["Las medias muestrales se distribuyen normal si n ≥ 30, aunque los datos no lo hagan","Toda variable es normal","La mediana es igual a la media","La varianza siempre es 1"],0,"Por eso la normal es la base de la inferencia."],
+ ["El paradigma de la epidemiología es que:",["La enfermedad no ocurre al azar","La enfermedad es sólo biológica","Toda enfermedad es infecciosa","La enfermedad ocurre al azar"],0,"Los factores causales se identifican con diseños de investigación adecuados."],
+ ["La detección temprana y el tratamiento oportuno corresponden a la prevención:",["Secundaria","Primaria","Terciaria","Cuaternaria"],0,"Primaria evita la enfermedad; terciaria rehabilita."],
+ ["En un estudio de casos y controles, la medida de asociación adecuada es:",["Razón de momios (OR)","Riesgo relativo (RR)","Prevalencia","Tasa de ataque"],0,"El RR no se puede calcular en casos y controles."],
+ ["Si 1 de cada 4 personas enferma, el momio de enfermar es:",["0.33","0.25","0.75","4"],0,"1 que enferma por cada 3 que no: 1/3."],
+ ["Un RR de 0.5 para lactancia materna exclusiva e infección gastrointestinal significa que la lactancia es:",["Un factor protector","Un factor de riesgo","Sin asociación","Una variable confusora"],0,"RR < 1: los expuestos tienen menor riesgo."],
+ ["La prevalencia se puede aproximar como:",["Incidencia × duración promedio de la enfermedad","Incidencia / duración","Casos nuevos / casos totales","Mortalidad × incidencia"],0,"Relación vista en clase."],
+ ["Según John Snow, quienes bebían agua de Southwark and Vauxhall tenían una tasa de muerte por cólera:",["5.7 veces mayor que el resto de Londres","Igual a la de Lambeth","0.7 veces la del resto","2 veces mayor"],0,"Razón de tasas 5.7 (IC 95% 5.3 a 6.1)."],
+ ["El estudio 2 de plomo (327 participantes de 2,273 invitadas) usó un muestreo:",["No probabilístico (muestra disponible)","Probabilístico estratificado","Censal","Aleatorio simple"],0,"Se puede extrapolar porque estudia un proceso puramente biológico."]
+ ]},
+
+m4:{tag:"Módulo 4",name:"Salud pública en la práctica",color:"--m4",
+ intro:"Salud ambiental, Una Salud y salud global, políticas públicas y su implementación, atención primaria a la salud y promoción de la salud.",
+ sec:[
+ {t:"Salud ambiental",h:`
+  <ul><li>Los factores ambientales causan entre <mark>25 y 33%</mark> de la carga global de enfermedad; los <b>menores de 5 años</b> son los más afectados.</li>
+  <li>Riesgos: sustancias químicas, contaminación del aire (exterior e interior), calentamiento climático, intoxicación por plaguicidas, contaminación de agua y alimentos.</li>
+  <li>Es un <b>área interdisciplinaria</b> con enfoque ecosistémico integral. Estrategias de investigación: <b>evaluación de riesgos</b> y <b>epidemiología ambiental</b>. Práctica operativa: control, vigilancia y fomento sanitario. Los hallazgos llevan a normatividad.</li></ul>
+  <div class="tbl"><table><tr><th>Nivel del modelo ecosistémico</th><th>Ejemplos</th></tr>
+  <tr><td>Global</td><td>Cambio climático, transporte de contaminantes a larga distancia</td></tr>
+  <tr><td>Regional</td><td>Desechos químicos, calidad de ríos y aire</td></tr>
+  <tr><td>Barrio / colonia</td><td>Aire, saneamiento, seguridad alimentaria, ruido, violencia, seguridad vial</td></tr>
+  <tr><td>Familia (domicilio, escuela)</td><td>Calidad de vivienda, desechos, productos tóxicos</td></tr>
+  <tr><td>Individuo</td><td>Salud, biología, genética</td></tr></table></div>
+  <ul><li>La relación de la persona con estos sistemas está mediada por <b>políticas, valores culturales, creencias y comportamientos</b>.</li>
+  <li>Disciplinas: sociales (antropología, sociología, legislación, comunicación, economía), biomédicas (epidemiología, toxicología, nutrición) y ambientales (geografía, geología, ecología, química ambiental).</li>
+  <li><b>Evaluación de riesgos</b>: información del sitio → participación de la comunidad → contaminantes de interés → rutas de exposición → implicaciones para la salud pública → conclusiones y recomendaciones.</li></ul>`},
+ {t:"Una Salud y salud global",h:`
+  <div class="def"><b>Una Salud (OMS, 2023)</b>: enfoque para optimizar la salud de las personas, los animales y los ecosistemas <b>integrando</b> estos campos en lugar de tratarlos por separado.</div>
+  <ul><li>Cerca del <mark>60%</mark> de las enfermedades infecciosas emergentes vienen de animales. De más de 30 patógenos nuevos en tres décadas, el <b>75%</b> tiene origen animal.</li>
+  <li>Estresores: comercio de animales, agricultura, ganadería, urbanización, industrias extractivas, cambio climático, fragmentación del hábitat, invasión de zonas silvestres.</li>
+  <li><b>Enfoque biomédico y sanitario-ambiental</b>: atribuye la mejora de la salud al agua limpia, saneamiento y vacunación. <b>Socioconductual</b>: incide en aspectos psicosociales y culturales (p. ej., anticonceptivos para prevenir fecundidad adolescente). Limitación: miran la salud de forma acotada geográfica y contextualmente.</li>
+  <li><b>Salud global</b>: estudia la interdependencia económica, política y ambiental entre países por la <b>globalización</b> (acelerada desde la segunda mitad del s. XX). Su origen fue el control de pandemias a través de fronteras.</li></ul>`},
+ {t:"Políticas públicas",h:`
+  <div class="def"><b>Políticas públicas</b>: las acciones de gobierno enfocadas al interés público con la intención de utilidad común (Téllez, 2015).</div>
+  <ul><li>Tienen dos dimensiones: <b>política y técnica</b>. Necesitan aceptación social y acciones planeadas: análisis, diseño, implementación y evaluación.</li>
+  <li><b>Proceso de formulación (PFP)</b>: discusión → aprobación → implementación → evaluación.</li>
+  <li><b>Actores</b>: políticos profesionales (presidentes, legisladores, gobernadores, burócratas, líderes de partido, jueces) y sociedad civil (sindicatos, medios, empresarios, sociedad en general).</li>
+  <li>México ha seguido el <b>incrementalismo</b> (cambios paulatinos): impuestos a tabaco, alcohol y bebidas azucaradas. De 1980 a 2015 el enfoque fue mercantilista; después, gestión por resultados.</li>
+  <li>Se requiere rendición de cuentas, capacidad de respuesta y transparencia. La <b>sociedad civil</b> debe ser independiente del Estado, con cohesión asociativa y resistente a ser cooptada por el Estado y el mercado.</li>
+  <li><b>Política social</b>: subconjunto de las políticas públicas (UNESCO, 2011) orientado al bienestar, la distribución de bienes públicos y la equidad. Busca <b>protección social, no caridad</b>.</li></ul>`},
+ {t:"¿Por qué fallan las políticas?",h:`
+  <p>México tiene impuesto a bebidas azucaradas (desde 2014), etiquetado frontal de advertencia (desde 2020) y restricciones al tabaco, y aun así la obesidad, la diabetes y el tabaquismo persisten. Hudson, Hunter y Peckham (2019) proponen cuatro causas de falla en la implementación:</p>
+  <div class="tbl"><table><tr><th>Causa</th><th>Qué pasa</th></tr>
+  <tr><td>1. Expectativas demasiado optimistas</td><td>Se sobreestiman beneficios y se subestiman costos, tiempo y riesgos; sobre todo en proyectos grandes.</td></tr>
+  <tr><td>2. Gobernanza dispersa</td><td>Una política nacional se implementa distinto en cada estado o municipio; el agente de calle tiene autonomía.</td></tr>
+  <tr><td>3. Falta de colaboración intersectorial</td><td>Se diseñan en silos aunque sus consecuencias crucen sectores.</td></tr>
+  <tr><td>4. Ciclos políticos adversos</td><td>Se da crédito por legislar, no por implementar bien; el interés político decae.</td></tr></table></div>
+  <ul><li><b>Política ingenua</b>: mal diseñada para el contexto (clases por radio donde no hay radios). Remedio: rediseñar.</li>
+  <li><b>Falla en la entrega</b>: la política era adecuada pero no llegó a la gente (Senegal: más del 70% de hogares con radio, menos del 10% recibió educación a distancia). Remedio: mejorar la entrega.</li>
+  <li>No basta con diseñarla ni aprobarla: la brecha entre intención y práctica puede superar <b>60 puntos porcentuales</b>.</li></ul>`},
+ {t:"Atención Primaria a la Salud (APS)",h:`
+  <ul><li><b>1978</b>: Declaración de <b>Alma-Ata</b> (Kazajistán). <b>1981</b>: Estrategia «Salud para Todos en el año 2000». <b>2015</b>: ODS, Meta 3 «asegurar vidas saludables y promover el bienestar para todos en todas las edades» (2030). <b>2018</b>: Declaración de <b>Astana</b>.</li></ul>
+  <div class="def"><b>APS (OMS y UNICEF)</b>: enfoque de toda la sociedad para garantizar el mayor nivel posible de salud y bienestar y su distribución equitativa, con atención centrada en las necesidades de las personas, desde la promoción y prevención hasta el tratamiento, rehabilitación y cuidados paliativos, lo más cerca posible de su entorno cotidiano.</div>
+  <ul><li><b>Tres componentes</b>: (1) cubrir las necesidades con cuidados integrales a lo largo de la vida; (2) atender sistemáticamente los determinantes de la salud con políticas basadas en evidencia; (3) empoderar a personas, familias y comunidades.</li>
+  <li><b>Bases</b>: justicia social, equidad y participación; la salud como derecho fundamental; responsabilidad de los gobiernos. Es la estrategia <b>más equitativa, efectiva y eficiente</b>.</li>
+  <li>Desafíos en AL (Giraldo-Osorio y Vélez-Álvarez, 2013): equidad, talento humano, fragmentación, sostenibilidad financiera, gobernanza, calidad, sistemas de información, cobertura, envejecimiento y capacidad resolutiva.</li>
+  <li>México: <b>Modelo de Salud para el Bienestar (2020)</b>. El Programa Sectorial 2025–2030 reconoce que la formación ha estado <b>centrada en el hospital</b> y pide integrar salud pública, APS y atención comunitaria.</li></ul>`},
+ {t:"Promoción de la salud y Carta de Ottawa",h:`
+  <ul><li><b>Informe Lalonde (1974)</b>: el «campo de la salud» se determina por <b>biología humana, estilos de vida, ambiente y organización de la atención</b>. La atención centrada en la cura es «lamentablemente insuficiente».</li>
+  <li><b>Modelo socioecológico</b>: dimensiones e interacciones que influyen en los comportamientos.</li>
+  <li><b>Carta de Ottawa (1986)</b>: primera Conferencia Internacional de Promoción de la Salud; operacionaliza los principios de Alma-Ata.</li></ul>
+  <div class="def"><b>Promoción de la salud</b>: el proceso para proporcionar a los pueblos los medios necesarios para mejorar su salud y ejercer un mayor control sobre la misma.</div>
+  <ul><li>Principio clave: la salud es <b>un recurso para la vida diaria, no el objetivo de la vida</b>.</li>
+  <li><b>Prerrequisitos</b>: paz, educación, vivienda, alimentación, ingreso, ecosistema estable, justicia social y equidad.</li>
+  <li><b>Estrategias</b>: <mark>abogar, habilitar y mediar</mark>.</li>
+  <li><b>Cinco campos de acción</b>: construir políticas públicas saludables; crear ambientes favorables; fortalecer la acción comunitaria; desarrollar habilidades personales (educación para la salud); reorientar los servicios de salud.</li>
+  <li>En México, la Ley General de Salud y el Programa Sectorial 2025–2030 ponen a la promoción y la prevención como pilar.</li></ul>`}
+ ],
+ cards:[
+ ["¿Qué porcentaje de la carga global de enfermedad se debe a factores ambientales?","Entre <b>25 y 33%</b>. Los menores de 5 años son los más afectados."],
+ ["Estrategias de investigación en salud ambiental","Evaluación de riesgos y epidemiología ambiental."],
+ ["Niveles del modelo ecosistémico","Global → regional → barrio/colonia → familia (domicilio, escuela) → individuo."],
+ ["¿Qué media la relación de la persona con los sistemas ambientales?","Políticas, valores culturales, creencias y comportamientos."],
+ ["Pasos de la evaluación de riesgos ambientales","Información del sitio, participación comunitaria, contaminantes de interés, rutas de exposición, implicaciones para la salud pública, conclusiones y recomendaciones."],
+ ["Definición de Una Salud","Enfoque que optimiza la salud de personas, animales y ecosistemas integrándolos en lugar de tratarlos por separado (OMS, 2023)."],
+ ["Datos clave de Una Salud","~60% de las enfermedades infecciosas emergentes vienen de animales; de más de 30 patógenos nuevos, 75% tienen origen animal."],
+ ["¿Qué estudia la salud global?","La interdependencia económica, política y ambiental entre países por la globalización."],
+ ["Definición de política pública","Acciones de gobierno enfocadas al interés público con la intención de utilidad común. Dimensiones: política y técnica."],
+ ["Fases del proceso de formulación de políticas","Discusión → aprobación → implementación → evaluación."],
+ ["Política social","Subconjunto de las políticas públicas orientado al bienestar, bienes públicos y equidad. Busca protección social, no caridad."],
+ ["¿Qué es el incrementalismo?","Cambios paulatinos en las políticas. En México: impuestos graduales a tabaco, alcohol y bebidas azucaradas."],
+ ["Cuatro causas de falla en la implementación","Expectativas demasiado optimistas, gobernanza dispersa, falta de colaboración intersectorial y ciclos políticos adversos."],
+ ["Política ingenua vs. falla en la entrega","<b>Ingenua</b>: mal diseñada para el contexto → rediseñar. <b>Falla en la entrega</b>: buena política que no llegó → mejorar la entrega."],
+ ["Línea de tiempo de la APS","1978 Alma-Ata · 1981 Salud para Todos en el 2000 · 2015 ODS Meta 3 · 2018 Astana."],
+ ["Tres componentes de la APS","Cuidados integrales a lo largo de la vida; atender los determinantes; empoderar a personas, familias y comunidades."],
+ ["Bases de la APS","Justicia social, equidad y participación; salud como derecho; responsabilidad de los gobiernos."],
+ ["Cuatro elementos del campo de la salud (Lalonde, 1974)","Biología humana, estilos de vida, ambiente y organización de la atención a la salud."],
+ ["Definición de promoción de la salud (Ottawa, 1986)","Proceso para proporcionar a los pueblos los medios para mejorar su salud y ejercer mayor control sobre ella."],
+ ["Estrategias de la Carta de Ottawa","Abogar, habilitar y mediar."],
+ ["Cinco campos de acción de Ottawa","Políticas públicas saludables, ambientes favorables, acción comunitaria, habilidades personales y reorientar los servicios de salud."],
+ ["Prerrequisitos para la salud","Paz, educación, vivienda, alimentación, ingreso, ecosistema estable, justicia social y equidad."]
+ ],
+ quiz:[
+ ["Los factores ambientales son responsables de qué parte de la carga global de enfermedad:",["Entre 25 y 33%","Entre 5 y 10%","Más del 60%","Menos del 1%"],0,"Los menores de 5 años son la población más afectada."],
+ ["¿Qué porcentaje de las enfermedades infecciosas emergentes proviene de animales?",["Alrededor del 60%","Alrededor del 10%","Alrededor del 30%","Más del 90%"],0,"Además, 75% de los patógenos nuevos de las últimas tres décadas tienen origen animal."],
+ ["El enfoque «Una Salud» propone:",["Integrar la salud humana, animal y de los ecosistemas","Atender sólo enfermedades zoonóticas en hospitales","Separar la veterinaria de la medicina","Priorizar la salud global sobre la local"],0,"Exige colaboración y coordinación entre sectores."],
+ ["Calidad del aire, saneamiento, ruido, violencia y seguridad vial pertenecen al nivel ecosistémico:",["Barrio / colonia","Global","Individuo","Familia"],0,"El nivel global incluye cambio climático; el familiar, calidad de la vivienda."],
+ ["Las dos estrategias de investigación de la salud ambiental son:",["Evaluación de riesgos y epidemiología ambiental","Ensayos clínicos y censos","Etnografía y economía","Vigilancia y fiscalización"],0,"Control, vigilancia y fomento sanitario forman la práctica operativa."],
+ ["Promover métodos anticonceptivos para prevenir la fecundidad adolescente es un ejemplo del enfoque:",["Socioconductual","Biomédico","Sanitario-ambiental","Ecosistémico"],0,"Incide en aspectos psicosociales y culturales."],
+ ["La salud global estudia sobre todo:",["La interdependencia entre países por la globalización","Sólo enfermedades tropicales","La salud de un municipio","La economía de un hospital"],0,"Se originó en el control de pandemias a través de fronteras."],
+ ["Las dos dimensiones de las políticas públicas son:",["Política y técnica","Pública y privada","Federal y estatal","Curativa y preventiva"],0,"Según Téllez (2015)."],
+ ["El orden del proceso de formulación de políticas es:",["Discusión → aprobación → implementación → evaluación","Implementación → discusión → evaluación → aprobación","Evaluación → discusión → aprobación → implementación","Aprobación → discusión → implementación → evaluación"],0,"Es un ciclo que termina en la evaluación."],
+ ["En salud, México ha seguido una línea de:",["Cambios paulatinos (incrementalismo)","Cambios radicales","Privatización total","Ninguna política"],0,"Ej.: aumentos graduales a impuestos de tabaco, alcohol y bebidas azucaradas."],
+ ["La política social, idealmente, busca:",["Protección social, no caridad","Caridad a los pobres","Beneficios para el mercado","Reducir el gasto público"],0,"Es un subconjunto de las políticas públicas (UNESCO, 2011)."],
+ ["El impuesto a bebidas azucaradas y el etiquetado frontal en México están vigentes desde:",["2014 y 2020","2010 y 2014","2020 y 2024","2008 y 2018"],0,"Aun así, obesidad y diabetes no se han resuelto."],
+ ["«Las políticas se diseñan en silos sectoriales aunque sus consecuencias crucen sectores» describe la causa:",["Falta de colaboración intersectorial","Gobernanza dispersa","Ciclos políticos adversos","Expectativas optimistas"],0,"Una de las cuatro causas de Hudson, Hunter y Peckham (2019)."],
+ ["«Los políticos reciben crédito por legislar, no por implementar bien» describe:",["Ciclos políticos adversos","Gobernanza dispersa","Política ingenua","Falla en la entrega"],0,"El interés político decae cuando la política más necesita apoyo."],
+ ["En Senegal, más del 70% de hogares tenía radio pero menos del 10% recibió educación a distancia. Es un caso de:",["Falla en la entrega","Política ingenua","Gobernanza dispersa","Incrementalismo"],0,"La política era adecuada, pero no llegó; el remedio es mejorar la entrega."],
+ ["Implementar clases por radio donde los hogares no tienen radio es un ejemplo de:",["Política ingenua","Falla en la entrega","Ciclo político adverso","Política social"],0,"Fue mal diseñada para el contexto; el remedio es rediseñarla."],
+ ["La Atención Primaria a la Salud surge con la Declaración de:",["Alma-Ata, 1978","Astana, 2018","Ottawa, 1986","Lalonde, 1974"],0,"Astana (2018) conmemoró los 40 años de Alma-Ata."],
+ ["¿Cuál NO es uno de los tres componentes de la APS?",["Priorizar hospitales de alta especialidad","Cuidados integrales a lo largo de la vida","Atender los determinantes de la salud","Empoderar a personas, familias y comunidades"],0,"La APS acerca la atención al entorno cotidiano de las personas."],
+ ["El reto de la formación en APS que señala el Programa Sectorial de Salud 2025–2030 es:",["La formación históricamente centrada en el hospital","El exceso de médicos comunitarios","La falta de hospitales privados","La sobrevaloración de la salud pública"],0,"Propone integrar salud pública, APS y atención comunitaria en los planes de estudio."],
+ ["El Informe Lalonde (1974) dice que la salud está determinada por:",["Biología humana, estilos de vida, ambiente y organización de la atención","Agente, huésped y ambiente","Paz, educación y vivienda","Abogar, habilitar y mediar"],0,"Es el modelo del «campo de la salud»."],
+ ["La Carta de Ottawa para la Promoción de la Salud es de:",["1986","1978","1974","2018"],0,"Fue la primera Conferencia Internacional sobre Promoción de la Salud."],
+ ["Las tres estrategias de la Carta de Ottawa son:",["Abogar, habilitar y mediar","Prevenir, curar y rehabilitar","Diseñar, aprobar y evaluar","Describir, explicar y controlar"],0,"Los campos de acción son cinco."],
+ ["El campo de acción de Ottawa que se asocia con la «educación para la salud» es:",["Desarrollar habilidades personales","Reorientar los servicios de salud","Crear ambientes favorables","Construir políticas públicas saludables"],0,"Para tomar decisiones saludables, el ambiente debe ofrecer opciones saludables."],
+ ["¿Cuál NO es un campo de acción de la Carta de Ottawa?",["Aumentar hospitales de especialidad","Fortalecer la acción comunitaria","Crear ambientes que favorezcan la salud","Reorientar los servicios de salud"],0,"Los cinco campos son políticas saludables, ambientes, acción comunitaria, habilidades personales y reorientar servicios."],
+ ["Según la Carta de Ottawa, la salud es:",["Un recurso para la vida diaria, no el objetivo de la vida","El objetivo principal de la vida","Sólo la ausencia de enfermedad","Responsabilidad exclusiva del médico"],0,"Es un concepto positivo que refuerza recursos sociales y personales."]
+ ]}
+};
+
+/* ---------- estado ---------- */
+const ORDER=["m1","m2","m4","mix"];
+const MODEL={m1:"Módulo 1",m2:"Módulo 2",m4:"Módulo 4",mix:"Examen mixto"};
+let S={mod:"m1",view:"res"};
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let known=store.get("sp-known",{});
+let best=store.get("sp-best",{});
+const app=document.getElementById("app");
+const $=(s,r=document)=>r.querySelector(s);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const colorOf=m=>m==="mix"?"--mix":MODS[m].color;
+
+function buildNav(){
+  const mods=$("#mods");
+  mods.innerHTML=ORDER.map(m=>`<button id="mod-${m}" data-m="${m}" style="--c:var(${colorOf(m)})"><span class="dot"></span>${MODEL[m]}</button>`).join("");
+  mods.onclick=e=>{const b=e.target.closest("button");if(!b)return;S.mod=b.dataset.m;if(S.mod==="mix"&&S.view!=="quiz"&&S.view!=="tar")S.view="quiz";go()};
+  $("#modes").onclick=e=>{const b=e.target.closest("button");if(!b)return;S.view=b.dataset.v;go()};
+}
+function go(){
+  location.hash=S.mod+"-"+S.view;
+}
+function fromHash(){
+  const h=(location.hash||"").slice(1).split("-");
+  if(ORDER.includes(h[0]))S.mod=h[0];
+  if(["res","tar","quiz"].includes(h[1]))S.view=h[1];
+  if(S.mod==="mix"&&S.view==="res")S.view="quiz";
+  render();
+}
+function render(){
+  document.querySelectorAll("#mods button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.m===S.mod));
+  document.querySelectorAll("#modes button").forEach(b=>{b.setAttribute("aria-pressed",b.dataset.v===S.view);b.disabled=(S.mod==="mix"&&b.dataset.v==="res")});
+  app.style.setProperty("--mc",`var(${colorOf(S.mod)})`);
+  const cardsAll=allCards(S.mod),k=cardsAll.filter(c=>known[c.id]).length,pk=Math.round(k/cardsAll.length*100);
+  const nQ=poolFor(S.mod).length,bs=best[S.mod];
+  const isMix=S.mod==="mix";
+  const head=`<section class="hero" data-num="${isMix?"∑":S.mod.slice(1).padStart(2,"0")}"><div class="txt">
+     <span class="eyebrow">${isMix?"Todos los módulos":MODS[S.mod].tag}</span>
+     <h2>${isMix?"Examen mixto":MODS[S.mod].name}</h2>
+     <p>${isMix?"25 preguntas al azar de los módulos 1, 2 y 4, como en un examen real. También puedes repasar todas las tarjetas juntas.":MODS[S.mod].intro}</p></div>
+   <div class="stats">
+     <div class="stat"><b>${isMix?3:MODS[S.mod].sec.length}</b><span>${isMix?"módulos":"temas"}</span></div>
+     <div class="stat"><b>${k}<small style="font-size:.55em;color:var(--muted)">/${cardsAll.length}</small></b><span>tarjetas dominadas</span><div class="meter"><i style="width:${pk}%"></i></div></div>
+     <div class="stat"><b>${bs!==undefined?bs+"%":"—"}</b><span>mejor quiz (${isMix?25:nQ} preg.)</span></div>
+   </div></section>`;
+  app.innerHTML=head+'<div id="body" style="display:flex;flex-direction:column;gap:18px"></div>';
+  const body=$("#body");
+  if(S.view==="res")renderRes(body);else if(S.view==="tar")renderCards(body);else renderQuiz(body);
+  window.scrollTo({top:0});
+}
+
+/* ---------- resumen ---------- */
+function renderRes(body){
+  const M=MODS[S.mod];
+  body.innerHTML=`<div class="res-layout"><nav class="toc" aria-label="Temas"><span>Temas</span>${M.sec.map((s,i)=>`<a href="#" data-i="${i}"><i>${String(i+1).padStart(2,"0")}</i>${s.t}</a>`).join("")}</nav><div class="secs">`+
+   M.sec.map((s,i)=>`<section class="sec" id="sec-${i}"><h3><span class="n">${String(i+1).padStart(2,"0")}</span>${s.t}</h3>${s.h}${s.calc?calcHTML():""}</section>`).join("")+
+   `<p class="note">Al terminar un tema, pasa a <b>Tarjetas</b> para memorizar y a <b>Quiz</b> para comprobar.</p></div></div>`;
+  $(".toc",body).onclick=e=>{const a=e.target.closest("a");if(!a)return;e.preventDefault();document.getElementById("sec-"+a.dataset.i).scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})};
+  if(M.sec.some(s=>s.calc))wireCalc();
+}
+function calcHTML(){return `<div class="calc">
+  <div style="display:flex;flex-direction:column;gap:8px"><b>Practica: calcula con tu propia tabla</b>
+   <div class="grid2"><span></span><span>Enf. sí</span><span>Enf. no</span>
+    <span>Exp. sí</span><input id="ca" type="number" min="0" value="30" aria-label="a"><input id="cb" type="number" min="0" value="70" aria-label="b">
+    <span>Exp. no</span><input id="cc" type="number" min="0" value="10" aria-label="c"><input id="cd" type="number" min="0" value="90" aria-label="d"></div>
+   <span class="tip">Valores de ejemplo: 100 expuestos y 100 no expuestos.</span></div>
+  <div class="res" id="cres"></div></div>`}
+function wireCalc(){
+  const ids=["ca","cb","cc","cd"],f=x=>isFinite(x)?(Math.round(x*1000)/1000).toString():"—";
+  const run=()=>{const [a,b,c,d]=ids.map(i=>Math.max(0,parseFloat(document.getElementById(i).value)||0));const n=a+b+c+d;
+   const ie=a/(a+b),ine=c/(c+d),rr=ie/ine,or=(a*d)/(b*c),pv=(a+c)/n;
+   const lab=v=>!isFinite(v)?"No se puede calcular (hay un cero en el denominador).":Math.abs(v-1)<0.005?"= 1: no hay asociación.":v>1?"> 1: la exposición se asocia con más enfermedad (posible factor de riesgo).":"< 1: la exposición se asocia con menos enfermedad (posible factor protector).";
+   document.getElementById("cres").innerHTML=`<div><span>Incidencia en expuestos a/(a+b)</span><b>${f(ie)}</b></div><div><span>Incidencia en no expuestos c/(c+d)</span><b>${f(ine)}</b></div><div><span>Prevalencia (a+c)/n</span><b>${f(pv)}</b></div><div><span>Riesgo relativo</span><b>${f(rr)}</b></div><div><span>Razón de momios (a×d)/(b×c)</span><b>${f(or)}</b></div><p><b>RR</b> ${lab(rr)}<br><b>OR</b> ${lab(or)}</p>`};
+  ids.forEach(i=>document.getElementById(i).addEventListener("input",run));run();
+}
+
+/* ---------- tarjetas ---------- */
+let deck=[],di=0,onlyPending=false;
+function allCards(mod){
+  const list=mod==="mix"?["m1","m2","m4"]:[mod];
+  return list.flatMap(m=>MODS[m].cards.map((c,i)=>({id:m+"-"+i,m,f:c[0],b:c[1]})));
+}
+function renderCards(body){
+  const base=allCards(S.mod);
+  deck=onlyPending?base.filter(c=>!known[c.id]):base.slice();
+  if(S.mod==="mix")deck=shuffle(deck);
+  di=0;
+  body.innerHTML=`<div class="bar"><div class="chips" id="chips"></div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="shuf">Barajar</button><button class="btn" id="pend" aria-pressed="${onlyPending}">${onlyPending?"Ver todas":"Sólo pendientes"}</button><button class="btn" id="reset">Reiniciar</button></div></div>
+   <div id="cardzone"></div>`;
+  $("#shuf").onclick=()=>{deck=shuffle(deck);di=0;drawCard()};
+  $("#pend").onclick=()=>{onlyPending=!onlyPending;renderCards(body)};
+  $("#reset").onclick=()=>{base.forEach(c=>delete known[c.id]);store.set("sp-known",known);onlyPending=false;renderCards(body)};
+  drawCard();
+}
+function chips(){
+  const base=allCards(S.mod),k=base.filter(c=>known[c.id]).length;
+  $("#chips").innerHTML=`<span class="chip">${base.length} tarjetas</span><span class="chip ok">${k} las sé</span><span class="chip bad">${base.length-k} por repasar</span>`;
+}
+function drawCard(){
+  chips();
+  const z=$("#cardzone");
+  if(!deck.length){z.innerHTML=`<div class="qbox" style="text-align:center;align-items:center"><span class="score">✓</span><p style="margin:0">No quedan tarjetas pendientes en este módulo.</p><button class="btn primary" id="again">Ver todas otra vez</button></div>`;$("#again").onclick=()=>{onlyPending=false;renderCards($("#body"))};return}
+  const c=deck[di];
+  z.innerHTML=`<div class="card-stage"><button class="flip" id="flip" aria-label="Voltear tarjeta">
+     <div class="face front"><div class="meta"><span>${MODEL[c.m]}</span><span>${di+1} / ${deck.length}</span></div><div class="q">${c.f}</div><div class="meta"><span>Toca o pulsa espacio para ver la respuesta</span></div></div>
+     <div class="face back"><div class="meta"><span>Respuesta</span><span>${known[c.id]?"La sé":""}</span></div><div class="a">${c.b}</div></div></button></div>
+   <div class="card-actions" style="margin-top:14px"><button class="btn" id="prev" ${di===0?"disabled":""}>← Anterior</button><button class="btn warn" id="no">Repasar</button><button class="btn good" id="yes">La sé</button><button class="btn" id="next" ${di>=deck.length-1?"disabled":""}>Siguiente →</button></div>`;
+  const flip=$("#flip");
+  const fit=()=>{const f=flip.querySelectorAll(".face");let h=290;f.forEach(x=>{x.style.position="relative";h=Math.max(h,x.scrollHeight);x.style.position=""});flip.style.minHeight=h+"px"};fit();
+  flip.onclick=()=>flip.classList.toggle("on");
+  $("#prev").onclick=()=>{if(di>0){di--;drawCard()}};
+  $("#next").onclick=()=>{if(di<deck.length-1){di++;drawCard()}};
+  const mark=v=>{if(v)known[c.id]=1;else delete known[c.id];store.set("sp-known",known);if(di<deck.length-1)di++;drawCard()};
+  $("#yes").onclick=()=>mark(true);$("#no").onclick=()=>mark(false);
+}
+document.addEventListener("keydown",e=>{
+  if(S.view!=="tar"||!$("#flip")||e.target.tagName==="INPUT")return;
+  if(e.key===" "&&e.target.id!=="flip"&&e.target.tagName!=="BUTTON"){e.preventDefault();$("#flip").classList.toggle("on")}
+  if(e.key==="ArrowRight")$("#next")?.click();
+  if(e.key==="ArrowLeft")$("#prev")?.click();
+});
+
+/* ---------- quiz ---------- */
+let Q=null;
+function poolFor(mod){
+  const list=mod==="mix"?["m1","m2","m4"]:[mod];
+  return list.flatMap(m=>MODS[m].quiz.map((q,i)=>({id:m+"-"+i,m,q:q[0],o:q[1],a:q[2],e:q[3]})));
+}
+function startQuiz(items){
+  Q={items:items.map(it=>{const idx=shuffle(it.o.map((_,i)=>i));return {...it,opts:idx.map(i=>it.o[i]),right:idx.indexOf(it.a)}}),i:0,ans:[]};
+}
+function renderQuiz(body){
+  if(!Q||Q.mod!==S.mod){const p=poolFor(S.mod);startQuiz(S.mod==="mix"?shuffle(p).slice(0,25):shuffle(p));Q.mod=S.mod}
+  drawQ(body);
+}
+function drawQ(body){
+  body=body||$("#body");
+  const n=Q.items.length;
+  if(Q.i>=n)return drawEnd(body);
+  const it=Q.items[Q.i],done=Q.ans[Q.i]!==undefined;
+  body.innerHTML=`<div class="qbox">
+   <div class="qnav"><span class="tip">${S.mod==="mix"?MODEL[it.m]+" · ":""}Pregunta ${Q.i+1} de ${n}</span><span class="tip">Aciertos: ${Q.ans.filter((a,i)=>a===Q.items[i].right).length}</span></div>
+   <div class="prog"><i style="width:${(Q.i/n)*100}%"></i></div>
+   <div class="qtext">${it.q}</div>
+   <div class="opts">${it.opts.map((o,k)=>`<button class="opt" data-k="${k}"><span class="k">${"ABCD"[k]}</span><span>${o}</span></button>`).join("")}</div>
+   <div id="fb"></div>
+   <div class="qnav"><button class="btn" id="qback" ${Q.i===0?"disabled":""}>← Anterior</button><button class="btn primary" id="qnext" ${done?"":"disabled"}>${Q.i===n-1?"Ver resultado":"Siguiente →"}</button></div></div>`;
+  const paint=()=>{const a=Q.ans[Q.i];if(a===undefined)return;
+    body.querySelectorAll(".opt").forEach(b=>{const k=+b.dataset.k;b.disabled=true;if(k===it.right)b.classList.add("right");else if(k===a)b.classList.add("wrong")});
+    const ok=a===it.right;$("#fb").innerHTML=`<div class="fb ${ok?"ok":"bad"}"><strong>${ok?"¡Correcto!":"Incorrecto. La respuesta es: "+it.opts[it.right]}</strong>${it.e}</div>`;$("#qnext").disabled=false};
+  body.querySelector(".opts").onclick=e=>{const b=e.target.closest(".opt");if(!b||Q.ans[Q.i]!==undefined)return;Q.ans[Q.i]=+b.dataset.k;paint();$("#qnext").focus()};
+  $("#qnext").onclick=()=>{Q.i++;drawQ(body)};
+  $("#qback").onclick=()=>{if(Q.i>0){Q.i--;drawQ(body)}};
+  paint();
+}
+function drawEnd(body){
+  const n=Q.items.length,ok=Q.items.filter((it,i)=>Q.ans[i]===it.right).length,pct=Math.round(ok/n*100);
+  const wrong=Q.items.filter((it,i)=>Q.ans[i]!==it.right);
+  const prev=best[S.mod]||0;if(pct>prev){best[S.mod]=pct;store.set("sp-best",best)}
+  const msg=pct>=90?"Excelente, dominas este tema.":pct>=70?"Bien. Repasa las que fallaste.":"Vuelve al resumen de los temas que fallaste y repite.";
+  body.innerHTML=`<div class="qbox"><div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><div class="ring" style="--p:${pct}"><span>${pct}%</span></div><div><b>${ok} de ${n} correctas</b><div class="tip">${msg} Mejor puntaje: ${Math.max(pct,prev)}%</div></div></div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap">${wrong.length?'<button class="btn primary" id="rw">Repetir sólo las falladas ('+wrong.length+')</button>':""}<button class="btn" id="rn">Nuevo intento</button></div>
+   ${wrong.length?`<div class="review"><b>Para repasar</b>${wrong.map(it=>`<div>${it.q}<p>Respuesta: <b>${it.opts[it.right]}</b>. ${it.e}</p></div>`).join("")}</div>`:""}</div>`;
+  $("#rn").onclick=()=>{Q=null;renderQuiz(body)};
+  if(wrong.length)$("#rw").onclick=()=>{const keep=S.mod;startQuiz(shuffle(wrong));Q.mod=keep;drawQ(body)};
+}
+
+buildNav();
+window.addEventListener("hashchange",fromHash);
+fromHash();
+</script>
+
+</body></html>

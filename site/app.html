@@ -10,6 +10,8 @@
 <meta name="apple-mobile-web-app-title" content="Medicina UDLAP">
 <link rel="apple-touch-icon" href="icon-180.png">
 <meta name="theme-color" content="#00543c">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' data: blob:; connect-src 'self' https://api.github.com https://gist.githubusercontent.com https://generativelanguage.googleapis.com; frame-src 'self' blob: data:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
 <title>Carrera de Medicina</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="fonts/g44f3a7c64a.css">
@@ -1611,8 +1613,8 @@ const Cal=(()=>{
   function clean(x){
     const exams=Array.isArray(x&&x.exams)?x.exams.filter(e=>e&&typeof e.id==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(e.date)).map(e=>({
       id:String(e.id).slice(0,40),name:String(e.name||"Examen").slice(0,80),date:e.date,lead:Math.max(1,Math.min(60,+e.lead||7)),
-      guide:typeof e.guide==="string"?e.guide:"",topics:Array.isArray(e.topics)?e.topics.map(t=>String(t).slice(0,160)).filter(Boolean).slice(0,80):[],color:typeof e.color==="string"?e.color:COLORS[0]})):[];
-    const done={};if(x&&x.done&&typeof x.done==="object")for(const k in x.done)if(typeof x.done[k]==="string")done[k]=x.done[k];
+      guide:typeof e.guide==="string"&&/^[a-z0-9-]{1,60}$/.test(e.guide)?e.guide:"",topics:Array.isArray(e.topics)?e.topics.map(t=>String(t).slice(0,160)).filter(Boolean).slice(0,80):[],color:typeof e.color==="string"&&/^#[0-9a-fA-F]{3,8}$/.test(e.color)?e.color:COLORS[0]})):[];
+    const done={};if(x&&x.done&&typeof x.done==="object")for(const k in x.done)if(typeof x.done[k]==="string"&&k.length<200)done[k]=x.done[k].slice(0,40);
     const tasks=Array.isArray(x&&x.tasks)?x.tasks.filter(p=>p&&p.id&&p.title).map(p=>({id:String(p.id).slice(0,40),title:String(p.title).slice(0,140),
       type:PT[p.type]?p.type:"otro",mat:String(p.mat||"").slice(0,60),due:/^\d{4}-\d{2}-\d{2}$/.test(p.due||"")?p.due:"",notes:String(p.notes||"").slice(0,400),
       done:typeof p.done==="string"?p.done:"",at:+p.at||0,flag:PF[p.flag]?p.flag:""})).slice(0,300):[];
@@ -2155,7 +2157,7 @@ const Horario=(()=>{
   const LS="carrera-horario",DN=["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"],DS=["L","Ma","Mi","J","V","S"];
   const PAL=["#0b7a62","#f26b21","#2f6fc1","#8e44ad","#c9a24a","#d23b2a","#1c8c9c","#6b8e23"];
   let items=[],sel=null;
-  const load=()=>{try{const v=JSON.parse(store.get(LS)||"null");items=v&&Array.isArray(v.items)?v.items.filter(x=>x&&x.mat):[]}catch(e){items=[]}};
+  const load=()=>{try{const v=JSON.parse(store.get(LS)||"null");const hm=t=>/^\d{1,2}:\d{2}$/.test(t||"")?t:"",tx=(s,n)=>String(s==null?"":s).slice(0,n);items=v&&Array.isArray(v.items)?v.items.filter(x=>x&&x.mat).slice(0,80).map(x=>({id:tx(x.id,40),mat:tx(x.mat,80),days:Array.isArray(x.days)?x.days.map(Number).filter(d=>Number.isInteger(d)&&d>=0&&d<=5):[],start:hm(x.start),end:hm(x.end),room:tx(x.room,60),prof:tx(x.prof,80),kind:tx(x.kind,40)})):[]}catch(e){items=[]}};
   const save=()=>{store.set(LS,JSON.stringify({items}));render()};
   const mins=t=>{const m=/^(\d{1,2}):(\d{2})$/.exec(t||"");return m?+m[1]*60+ +m[2]:null};
   const mats=()=>[...new Set(items.map(x=>x.mat))];

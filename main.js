@@ -133,6 +133,7 @@ ipcMain.on("med:schedule", (e, items) => {
 // la corona abre la app de Plan de Volumen si está instalada; si no, su página
 const PLAN_APPS = ["/Applications/Plan de Volumen.app", path.join(require("os").homedir(), "Applications", "Plan de Volumen.app")];
 function openOut(url) {
+  if (!/^(https?:|mailto:)/i.test(url)) return;
   if (/marcosreinah88-design\.github\.io\/plan-volumen|claude\.ai\/artifact\/Rk2qXH6zwGc8jRwbc142mK/.test(url)) {
     const appPath = PLAN_APPS.find((p) => fs.existsSync(p));
     if (appPath) { shell.openPath(appPath).then((err) => { if (err) shell.openExternal(url); }); return; }

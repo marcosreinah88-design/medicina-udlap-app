@@ -2256,7 +2256,7 @@ const Ajustes=(()=>{
     document.querySelectorAll("[data-theme-set]").forEach(b=>{const on=b.dataset.themeSet===v;b.classList.toggle("on",on);b.setAttribute("aria-checked",on)})}
   function render(){
     paintTheme();
-    {const inApp=location.protocol==="app:"||/github\.io$|^localhost$|^127\./.test(location.hostname)||location.protocol==="file:";("#ajExport").hidden=!inApp;("#ajExport").nextElementSibling.hidden=!inApp;("#ajNoApp").hidden=inApp}
+    {const inApp=location.protocol==="app:"||/github\.io$|^localhost$|^127\./.test(location.hostname)||location.protocol==="file:";$a("#ajExport").hidden=!inApp;$a("#ajExport").nextElementSibling.hidden=!inApp;$a("#ajNoApp").hidden=inApp}
     $a("#ajUd").checked=store.get("carrera-cal-udlap")!=="0";$a("#ajFb").checked=store.get("carrera-cal-fba")!=="0";
     let g=null;try{g=JSON.parse(store.get("carrera-calificaciones")||"null")}catch(e){}
     $a("#ajMin").value=String(g&&g.min||7.5);

@@ -728,6 +728,42 @@ main{padding-block:52px 40px}
 .stile.empty .top{background:linear-gradient(160deg,#4f6e63,#2f4a40)!important}.stile.empty .strip{background:var(--line)}
 .stile.empty .meta b{color:var(--muted)}.stile .go.soon{color:var(--muted)}
 
+/* ===== portada v2 (nov 2026): "Tu día", semestres vacíos compactos, material extra en el cel ===== */
+.hday{position:relative;background:var(--paper);border-radius:20px;box-shadow:var(--shadow);padding:16px 18px 18px;margin-bottom:40px;overflow:hidden}
+.hday::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--orange),var(--green-3))}
+.hd-h{display:flex;align-items:baseline;gap:6px 12px;flex-wrap:wrap;margin-bottom:12px}
+.hd-h .mono{color:var(--orange-2);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase}
+.hd-h b{font:900 1.25rem var(--f-display);font-stretch:85%;text-transform:uppercase}
+.hd-go{margin-left:auto;display:inline-flex;align-items:center;gap:6px;color:var(--go);font-weight:800;font-size:.85rem;text-decoration:none;text-transform:uppercase;letter-spacing:.05em;font-stretch:90%}
+.hd-go svg{width:18px;height:18px;fill:none;stroke:var(--orange);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}.hd-go:hover svg{transform:translateX(4px)}
+.hd-k{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.hday .ch-k{text-decoration:none;color:var(--ink);background:color-mix(in srgb,var(--green-3) 5%,var(--paper));border:1px solid var(--line)}
+.hday .ch-k:hover{background:color-mix(in srgb,var(--orange) 7%,var(--paper));border-color:color-mix(in srgb,var(--orange) 45%,var(--line))}
+.hday .ch-k>b{background:linear-gradient(150deg,var(--green-3),var(--green-2));color:#fff}
+.hday .ch-k.hot>b{background:linear-gradient(150deg,#ff9a57,var(--orange-2))}
+.hday .ch-k.ok>b{background:color-mix(in srgb,var(--green-3) 16%,transparent);color:var(--go)}
+.hday .ch-k small{color:var(--muted)}
+.hday .ch-k:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.stile.empty{background:color-mix(in srgb,var(--paper) 72%,transparent);box-shadow:none;outline:1.5px dashed var(--line);outline-offset:-1.5px}
+.stile.empty:hover{box-shadow:none}
+.stile.empty{align-self:start}
+.stile.empty .top{min-height:104px;padding-block:14px}
+.stile.empty .num{font-size:3.6rem}
+.stile.empty .body{gap:10px;padding:14px 18px}
+.stile.empty .note{font-size:.8rem}
+.stile.empty .go.soon{margin-left:0;align-self:flex-start;font:700 .62rem var(--f-mono);letter-spacing:.1em;padding:4px 9px;border-radius:99px;border:1px solid var(--line)}
+@media (max-width:900px){.hd-k{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){
+  .hday{padding:14px 12px 14px 16px;margin-bottom:32px;border-radius:18px}
+  .hd-h .mono{display:none}.hd-h b{font-size:1.05rem}.hd-go{font-size:.75rem}
+  .hd-k{gap:8px}.hday .ch-k{padding:9px;gap:9px;border-radius:14px}.hday .ch-k>b{min-width:38px;height:38px;font-size:1.2rem;border-radius:10px}.hday .ch-k em{font-size:.8rem}.hday .ch-k small{font-size:.56rem;letter-spacing:.05em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sems{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .stile:not(.empty){grid-column:1/-1}
+  .stile.empty .top{min-height:82px;padding:12px;gap:8px}.stile.empty .num{font-size:2.7rem}.stile.empty .kind{display:none}.stile.empty .scene .ghost{display:none}
+  .stile.empty .body{padding:10px 12px 12px}.stile.empty .note{font-size:.74rem;line-height:1.35}
+  .xh{flex-wrap:wrap}.xh>div{flex-basis:calc(100% - 70px)}.xadd{margin-left:60px}
+  .ctoEntry{gap:12px;padding:14px 12px}.otrEntry{flex-wrap:wrap}.otrEntry .ce-books{flex-basis:100%;padding-left:10px}}
+
 footer{padding-block:20px 40px}
 footer .in{border-top:1px solid var(--line);padding-top:20px;display:flex;gap:16px;align-items:center;color:var(--muted);font-size:.84rem}
 footer img{width:44px;height:44px;border-radius:50%;flex:none;background:#fff;box-shadow:0 0 0 2px var(--orange)}
@@ -834,6 +870,7 @@ footer p{margin:0;max-width:70ch}
 <section class="band gut" aria-label="Resumen"><div class="in" id="totals"></div></section>
 
 <main class="gut"><div class="in">
+  <section class="hday" id="homeToday" aria-label="Tu día"><div class="hd-h"><span class="mono">Tu día</span><b id="hdDate"></b><a class="hd-go" href="#calendario">Calendario <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div><div class="hd-k"><a class="ch-k" id="hmK1" href="#calendario"></a><a class="ch-k" id="hmK2" href="#calendario"></a><a class="ch-k" id="hmK3" href="#calendario"></a><a class="ch-k" id="hmK4" href="#calendario"><b>–</b><span><small>Clases hoy</small><em>Agrega tu horario</em></span></a></div></section>
   <div class="search" role="search">
     <label class="mono" for="q">Buscar en toda la carrera</label>
     <div class="sbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" placeholder="Tema, materia o palabra clave…" autocomplete="off" spellcheck="false"><kbd id="qk" aria-hidden="true">/</kbd><button class="clr" id="qc" type="button" hidden aria-label="Borrar búsqueda">Esc ✕</button></div>
@@ -1146,8 +1183,7 @@ $("#sems").innerHTML=SEMS.filter(s=>semsWith.includes(s)||[1,2,7,8].includes(s.n
     return `<div class="stile ${st} empty" aria-label="${esc(SEMNOM[s.n]||ord(s.n)+" semestre")} · aún sin guías">
     <span class="top">${semScene(s.n)}<span class="num">${s.n}<sup>${ord(s.n).replace(/\d+/,"")}</sup></span><span class="tt"><span class="kind">Semestre</span><span class="st">${ST[st][1]}${ST[st][0]}</span></span></span>
     <span class="strip"></span>
-    <span class="body"><p class="note">Aún no hay guías de este semestre. Cuando agreguemos su material, aparecerá aquí.</p>
-    <span class="meta"><span class="m"><b>0</b><span>materias</span></span><span class="m"><b>0</b><span>guías</span></span><span class="m"><b>0</b><span>temas</span></span><span class="go soon">Pronto</span></span></span></div>`}
+    <span class="body"><p class="note">${st==="done"?"Ya lo cursaste. Sus guías aparecerán aquí cuando las agregues.":"Sus guías aparecerán aquí cuando lo empieces."}</p><span class="go soon">${st==="done"?"Sin guías":"Pronto"}</span></span></div>`}
   const gs=G.filter(g=>g.sem===s.n),st=stOf(s),areas=gs.filter((g,i)=>gs.findIndex(x=>x.area===g.area)===i),t=gs.reduce((a,g)=>a+(g.temas||0),0);
   return `<button class="stile ${st}" type="button" data-sem="${s.n}" aria-label="Entrar a ${esc(s.name)}">
     <span class="top">${semScene(s.n)}<span class="num">${s.n}<sup>${ord(s.n).replace(/\d+/,"")}</sup></span><span class="tt"><span class="kind">Semestre</span><span class="st">${ST[st][1]}${ST[st][0]}</span></span></span>
@@ -1907,6 +1943,7 @@ const Cal=(()=>{
       const tip=[...ex.map(e=>"Examen: "+e.name),...ent.map(x=>"Entrega: "+x.text),...(stu.length?[stu.length+" por estudiar"]:[]),...(off?["Sin clases"]:[])].join(", ");
       w+=`<button type="button" class="cw${i===0?" td":""}${ex.length?" ex":""}${off?" off":""}" data-wk="${k}"${tip?` title="${esc(tip)}"`:""} aria-label="${esc(longDate(k)+(tip?": "+tip:""))}"><small>${i===0?"Hoy":DIAS[d.getDay()]}</small><b>${d.getDate()}</b><span class="cwd">${dots}</span><span class="cwt">${lbl?esc(lbl):"&nbsp;"}</span></button>`}
     $("#chWeek").innerHTML=w;
+    {const hd=document.getElementById("hdDate");if(hd)hd.textContent=$("#chDate").textContent;for(const i of [1,2,3]){const h=document.getElementById("hmK"+i);if(h){h.className=$("#chK"+i).className;h.innerHTML=$("#chK"+i).innerHTML}}}
   }
   function renderPend(t){
     const FR={urgente:0,necesario:1,"":2,delegar:3,eliminar:4};
@@ -2312,7 +2349,7 @@ const Horario=(()=>{
     const todays=wd<6?slot.filter(x=>x.days.includes(wd)).sort((a,b)=>mins(a.start)-mins(b.start)):[];
     const cur=todays.find(x=>mins(x.start)<=nm&&nm<mins(x.end)),next=todays.find(x=>mins(x.start)>nm);
     $h("#hrNow").innerHTML=cur?`<span class="hn live" style="--c:${col(cur.mat)}"><i></i>Ahora: <b>${esc(cur.mat)}</b> · ${esc(cur.room||"")} hasta ${cur.end}</span>`:next?`<span class="hn" style="--c:${col(next.mat)}">Siguiente: <b>${esc(next.mat)}</b> · ${next.start}${next.room?" · "+esc(next.room):""}</span>`:items.length?`<span class="hn off">${wd<6&&todays.length?"Ya terminaste las clases de hoy":"Hoy no tienes clases"}</span>`:"";
-    {const k4=$h("#chK4");if(k4)k4.innerHTML=`<b>${todays.length}</b><span><small>${todays.length===1?"Clase hoy":"Clases hoy"}</small><em>${cur?"Ahora: "+esc(cur.mat):next?"Sigue: "+esc(next.mat)+" · "+next.start:items.length?(todays.length?"Ya terminaste":"Día sin clases"):"Agrega tu horario"}</em></span>`}
+    {const k4=$h("#chK4"),h4=$h("#hmK4");if(k4)k4.innerHTML=`<b>${todays.length}</b><span><small>${todays.length===1?"Clase hoy":"Clases hoy"}</small><em>${cur?"Ahora: "+esc(cur.mat):next?"Sigue: "+esc(next.mat)+" · "+next.start:items.length?(todays.length?"Ya terminaste":"Día sin clases"):"Agrega tu horario"}</em></span>`;if(h4&&k4)h4.innerHTML=k4.innerHTML}
     $h("#hrTabs").innerHTML=items.length?DS.map((d,i)=>`<button type="button" role="tab" class="${i===sel?"on":""}${i===wd?" td":""}" data-hd="${i}" aria-selected="${i===sel}">${DN[i].slice(0,3)}<small>${slot.filter(x=>x.days.includes(i)).length||"–"}</small></button>`).join(""):"";
     $h("#hrWeek").innerHTML=items.length?DS.map((d,i)=>{const list=slot.filter(x=>x.days.includes(i)).sort((a,b)=>mins(a.start)-mins(b.start));
       return `<div class="hr-day${i===wd?" td":""}${i===sel?" sel":""}${list.length?"":" empty"}"><h4>${DN[i]}${i===wd?"<em>hoy</em>":""}</h4>${list.length?list.map(x=>{const live=i===wd&&mins(x.start)<=nm&&nm<mins(x.end),done=i===wd&&nm>=mins(x.end);
@@ -2327,7 +2364,7 @@ const Horario=(()=>{
     if(bad.length){e.textContent="No entendí: "+bad.slice(0,3).join(" · ");e.hidden=false;return}e.hidden=true;items=out;$h("#hrText").blur();save();$h("#hrEdit").open=false});
   addEventListener("storage",ev=>{if(ev.key===LS)render()});
   const cal=document.getElementById("cal");if(cal)new MutationObserver(()=>{if(!cal.hidden)render()}).observe(cal,{attributes:true,attributeFilter:["hidden"]});
-  setInterval(()=>{if(cal&&!cal.hidden)render()},60000);
+  setInterval(render,60000);
   render();
   return {render};
 })();

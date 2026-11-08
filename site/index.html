@@ -236,6 +236,10 @@ html{transition:background-color .3s}
 .task.pend.late{border-color:color-mix(in srgb,#c0392b 45%,var(--line));background:color-mix(in srgb,#c0392b 6%,transparent)}
 .task.pend.late .tx small{color:#c0392b;font-weight:600}.task.pend.soon .tx small{color:var(--orange);font-weight:600}
 .task.pend.done .tx b{text-decoration:line-through;opacity:.6}
+.padd{margin:2px 0 6px}.padd>summary{list-style:none;display:inline-flex;align-items:center;gap:8px;cursor:pointer;font:700 .9rem var(--f-display);color:var(--ink);border:1.5px dashed var(--line);border-radius:999px;padding:7px 14px 7px 8px}
+.padd>summary::-webkit-details-marker{display:none}.padd>summary:hover{border-color:var(--orange)}
+.padd .plus{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--orange);color:#fff;font-weight:800;line-height:1;transition:transform .2s}
+.padd[open]>summary .plus{transform:rotate(45deg)}.padd[open]>summary{margin-bottom:10px}
 .pflags{display:flex;flex-wrap:wrap;gap:6px}
 .pfopt{display:inline-flex!important;cursor:pointer}.pfopt input{position:absolute;opacity:0;pointer-events:none}
 .pfopt span{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border:1.5px solid var(--line);border-radius:999px;font:600 .8rem var(--f-display);color:var(--ink)}
@@ -714,6 +718,7 @@ footer p{margin:0;max-width:70ch}
     <div class="cal-main">
       <section class="ccard today" id="calToday"></section>
       <section class="ccard" id="calPend"><h3>Pendientes del semestre <small id="pnSub"></small></h3>
+        <details class="padd" id="pnBox"><summary><span class="plus">+</span><span id="pnSumTx">Agregar pendiente</span></summary>
         <form class="cform pform" id="pnForm" autocomplete="off">
           <input id="pnTitle" maxlength="140" placeholder="¿Qué tienes que hacer? Ej. Caso clínico de colecistitis" aria-label="Pendiente">
           <div class="row3">
@@ -723,8 +728,8 @@ footer p{margin:0;max-width:70ch}
           </div>
           <div class="pflags" id="pnFlags" role="radiogroup" aria-label="Bandera"></div>
           <input id="pnNotes" maxlength="400" placeholder="Notas (opcional): equipo, formato, profesor…" aria-label="Notas">
-          <div class="btns"><button class="cbtn" type="submit" id="pnSubmit">Agregar</button><button class="cbtn ghost" type="button" id="pnCancel" hidden>Cancelar</button></div>
-        </form>
+          <div class="btns"><button class="cbtn" type="submit" id="pnSubmit">Agregar</button><button class="cbtn ghost" type="button" id="pnCancel">Cancelar</button></div>
+        </form></details>
         <div class="pfilt" id="pnFilt"></div><div id="pnList"></div></section>
       <section class="ccard"><h3>Plan de estudio <small id="calPlanSub"></small></h3><div id="calPlan"></div></section>
     </div>
@@ -1610,12 +1615,15 @@ const Cal=(()=>{
     $("#calToday").innerHTML=`<h3>Hoy toca <small>${td.length?(pend?pend+" pendiente"+(pend>1?"s":""):"todo listo ✓"):""}</small></h3><p class="tdate">${esc(longDate(t))}</p>`+(showU&&UD[t]?UD[t].map(ev=>uRow(ev,t)).join(""):"")+fDay(t)+
       (td.length?td.map(taskHTML).join(""):`<p class="empty-msg">${state.tasks.some(p=>!p.done)&&!up.length?"Hoy no se entrega nada. Revisa tus pendientes abajo.":up.length?"Hoy no tienes nada asignado. Descansa o adelanta algo de tu próximo examen.":"Agrega tu primer examen y aquí te diré qué estudiar cada día."}</p>`);
     /* plan de los próximos días */
-    const lastTask=dates.length?dates[dates.length-1]:t;
+    /* el plan de estudio no repite los pendientes (ya tienen su sección) */
+    const pdays={};for(const d of dates){const x=days[d].filter(i=>i.kind!=="pend");if(x.length)pdays[d]=x}
+    const pdates=Object.keys(pdays).sort();
+    const lastTask=pdates.length?pdates[pdates.length-1]:t;
     const uStarts=showU?UDLAP.filter(ev=>ev.s>t&&ev.s<=lastTask&&UDLAP_KIND[ev.k].bar).map(ev=>ev.s):[];
-    const next=[...new Set(dates.filter(d=>d>t).concat(uStarts))].sort();
-    $("#calPlanSub").textContent=dates.some(d=>d>t)?"próximos días con tareas":"";
-    $("#calPlan").innerHTML=dates.some(d=>d>t)?next.slice(0,40).map(d=>`<div class="dayh">${esc(nice(d))} <small>${rel(diff(t,d))}</small></div>`+
-      (showU?UDLAP.filter(ev=>ev.s===d&&UDLAP_KIND[ev.k].bar).map(ev=>uRow(ev)).join(""):"")+fDay(d)+(days[d]||[]).map(taskHTML).join("")).join(""):
+    const next=[...new Set(pdates.filter(d=>d>t).concat(uStarts))].sort();
+    $("#calPlanSub").textContent=pdates.some(d=>d>t)?"próximos días con tareas":"";
+    $("#calPlan").innerHTML=pdates.some(d=>d>t)?next.slice(0,40).map(d=>`<div class="dayh">${esc(nice(d))} <small>${rel(diff(t,d))}</small></div>`+
+      (showU?UDLAP.filter(ev=>ev.s===d&&UDLAP_KIND[ev.k].bar).map(ev=>uRow(ev)).join(""):"")+fDay(d)+(pdays[d]||[]).map(taskHTML).join("")).join(""):
       `<p class="empty-msg">${up.length?"No hay más días de estudio programados.":"Todavía no hay exámenes."}</p>`;
     /* lista de exámenes */
     const all=state.exams.slice().sort((a,b)=>(a.date<t)-(b.date<t)||(a.date<t?b.date.localeCompare(a.date):a.date.localeCompare(b.date)));
@@ -1756,7 +1764,9 @@ const Cal=(()=>{
   $("#pnFlags").innerHTML=`<label class="pfopt"><input type="radio" name="pnFlag" value="" checked><span>Sin bandera</span></label>`+Object.entries(PF).map(([k,v])=>`<label class="pfopt" style="--f:${v.c}"><input type="radio" name="pnFlag" value="${k}"><span>${FLAG(v.c)}${v.l}</span></label>`).join("");
   pType.innerHTML=Object.entries(PT).map(([k,v])=>`<option value="${k}">${esc(v.l)}</option>`).join("");
   pMat.innerHTML='<option value="">General</option>'+CURSO.materias.map(m=>`<option>${esc(m.n)}</option>`).join("");
-  function pReset(){pEditing=null;pf.reset();$("#pnSubmit").textContent="Agregar";$("#pnCancel").hidden=true}
+  const pBox=$("#pnBox");
+  function pReset(){pEditing=null;pf.reset();$("#pnSubmit").textContent="Agregar";$("#pnCancel").hidden=false;$("#pnSumTx").textContent="Agregar pendiente";pBox.open=false}
+  pBox.addEventListener("toggle",()=>{if(pBox.open&&!pEditing)setTimeout(()=>pTitle.focus(),50)});
   pf.addEventListener("submit",ev=>{
     ev.preventDefault();const title=pTitle.value.trim();if(!title){pTitle.focus();return}
     const data={title,type:pType.value,mat:pMat.value,due:pDue.value,notes:pNotes.value.trim(),flag:(pf.querySelector("input[name=pnFlag]:checked")||{}).value||""};
@@ -1772,7 +1782,7 @@ const Cal=(()=>{
     const ft=ev.target.closest("[data-pf]");if(ft){pFilter=ft.dataset.pf;render();return}
     if(ed){const p=state.tasks.find(x=>x.id===ed.dataset.pedit);if(!p)return;pEditing=p.id;pTitle.value=p.title;pType.value=p.type;
       if(p.mat&&![...pMat.options].some(o=>o.value===p.mat))pMat.add(new Option(p.mat,p.mat));pMat.value=p.mat;pDue.value=p.due;pNotes.value=p.notes;pf.querySelectorAll("input[name=pnFlag]").forEach(r=>r.checked=r.value===(p.flag||""));
-      $("#pnSubmit").textContent="Guardar";$("#pnCancel").hidden=false;pf.scrollIntoView({block:"center",behavior:"smooth"});pTitle.focus({preventScroll:true})}
+      $("#pnSubmit").textContent="Guardar";$("#pnCancel").hidden=false;$("#pnSumTx").textContent="Editar pendiente";pBox.open=true;pf.scrollIntoView({block:"center",behavior:"smooth"});pTitle.focus({preventScroll:true})}
     if(dl){
       if(!dl.classList.contains("warn")){dl.classList.add("warn");dl.textContent="¿Seguro?";setTimeout(()=>{if(dl.isConnected){dl.classList.remove("warn");dl.textContent="Borrar"}},3500);return}
       state.tasks=state.tasks.filter(p=>p.id!==dl.dataset.pdel);if(pEditing===dl.dataset.pdel)pReset();save();

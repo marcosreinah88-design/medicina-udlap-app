@@ -1,9 +1,12 @@
-# Cada 10 minutos revisa los avisos de Marcos (en su gist de sincronización) y los manda a su cel como notificación
+# Revisa los avisos de Marcos (en su gist de sincronización) y los manda a su cel como notificación.
+# Disparador principal: cron-job.org llama cada pocos minutos a workflow_dispatch (ver docs/avisos-cron-job.md),
+# porque el cron de GitHub se retrasa o se salta corridas. El schedule de abajo queda solo de respaldo.
+# No hay avisos duplicados: avisos.js anota cada aviso enviado y la concurrencia evita dos corridas a la vez.
 name: Avisos al cel
 on:
-  schedule:
-    - cron: "*/10 * * * *"
   workflow_dispatch:
+  schedule:
+    - cron: "7,37 * * * *"
 permissions:
   contents: read
 concurrency:

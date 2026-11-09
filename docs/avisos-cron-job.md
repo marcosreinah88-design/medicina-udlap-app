@@ -1,7 +1,7 @@
 # Avisos al cel con cron-job.org
 
 El cron de GitHub Actions es poco confiable (se retrasa 10 a 30 min o se salta corridas). Por eso los avisos
-los dispara **cron-job.org** (gratis): cada 3 minutos llama a la API de GitHub para correr el workflow
+los dispara **cron-job.org** (gratis): cada 5 minutos llama a la API de GitHub para correr el workflow
 `Avisos al cel` (`.github/workflows/avisos.yml`). El cron de GitHub se queda como respaldo, dos veces por hora.
 Nunca llegan avisos repetidos: `tools-push/avisos.js` anota en el gist cada aviso ya enviado.
 
@@ -22,7 +22,7 @@ Esta clave solo puede correr workflows de este repo; no puede leer tu gist ni tu
 1. Crea cuenta gratis en https://cron-job.org y entra a **Dashboard → Cronjobs → Create cronjob**.
 2. **Title:** `Avisos medicina`.
 3. **URL:** `https://api.github.com/repos/marcosreinah88-design/medicina-udlap-app/actions/workflows/avisos.yml/dispatches`
-4. **Execution schedule:** *Every 3 minutes* (o *Custom* → `*/3 * * * *`).
+4. **Execution schedule:** *Every 5 minutes* (o *Custom* → `*/5 * * * *`).
 5. Pestaña **Advanced**:
    - **Request method:** `POST`
    - **Headers** (agrega uno por uno):

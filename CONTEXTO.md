@@ -20,7 +20,7 @@ Resumen corto del proyecto para no re-explorar el repo en cada pedido. Autor de 
 | `build_site.py` | `hub/` → `site/`, tipografías locales, manifest y firma. |
 | `pack.py` | Arma los zips con el instalador `.command`. |
 | `.github/workflows/pages.yml` | Publica `site/` en GitHub Pages (cel) al cambiar `site/**` en `main`. |
-| `.github/workflows/avisos.yml` + `tools-push/` | Avisos push al cel cada ~10 min (secreto `MED_SYNC`). |
+| `.github/workflows/avisos.yml` + `tools-push/` | Avisos push al cel (secreto `MED_SYNC`). Los dispara cron-job.org cada 5 min vía workflow_dispatch; el cron de GitHub (2 veces por hora) es solo respaldo. Guía: `docs/avisos-cron-job.md`. |
 
 ## Flujo de un cambio en la página
 1. Editar y republicar el artefacto hub (las fuentes del hub se concatenan: head.html, data.js, ft.js, tail.js, cal.js, grades.js, horario.js, ajustes.js, ctolib.js, otroslib.js, material.js).

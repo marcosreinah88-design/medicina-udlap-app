@@ -13,6 +13,7 @@ Resumen corto del proyecto para no re-explorar el repo en cada pedido. Autor de 
 | `site/app.html` | Mismo hub para el cel (PWA, `pwa.js`, `sw.js`, `app.webmanifest`). |
 | `site/s3` `s4` `s5` `s6` | Semestres: 3º archivero (anatomía, farmacología), 4º carpeta (`apps/`), 5º estante (cirugía, duelo, esófago, gastro, hepatobiliar, imagenología, oftalmo, otorrino, psiquiatría, quiz-hepatico), 6º anaquel (`artefactos/infectologia`, `salud-publica`). |
 | `site/x/` | "Otros materiales" incrustados: geb, signos, svb, triage, triage-clase. |
+| `pwa/sw.js`, `pwa/pwa.js` | Fuente del uso sin internet del cel. `build_site.py` los copia a `site/` (reemplazan los del hub). El sw guarda primero lo básico (portada, fonts, scripts) y luego el resto, reanudable; la versión la saca de `manifest.json`, así que no hay que cambiar nada al publicar. |
 | `site/sync.js` | Sincronización Mac↔cel por gist cifrado (AES-256-GCM, llave HKDF de la clave de GitHub). |
 | `site/assistant.js` | Asistente de exámenes/pendientes con Gemini (gratis). |
 | `site/manifest.json` + `manifest.sig` | Lista sha256 de archivos + firma Ed25519. La app rechaza todo lo que no esté firmado. |

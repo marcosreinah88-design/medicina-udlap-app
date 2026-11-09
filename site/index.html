@@ -812,6 +812,7 @@ footer p{margin:0;max-width:70ch}
   .horizon .peak{font-size:.56rem;letter-spacing:.06em}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.horizon .trace{stroke-dashoffset:0}.horizon .trace.word{stroke-dashoffset:0}.horizon .dot{opacity:1}}
+.gr-row.gx .gm{opacity:.75}.gx-tag{font-style:normal;font-size:.72em;font-weight:600;padding:1px 7px;border-radius:999px;background:rgba(242,107,33,.14);color:#f26b21;margin-left:6px;white-space:nowrap}.gx-b{opacity:.55;text-decoration:line-through dotted}
 </style>
 
 <script>try{var t=localStorage.getItem("carrera-theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}</script>
@@ -2134,9 +2135,9 @@ const Grades=(()=>{
   let st={min:7.5,items:[]},editingSem=null;const openSems=new Set();
   /* Plan de estudios oficial de Médico Cirujano UDLAP (438 unidades). o = nombre de la optativa que cursó */
   const PLAN=[
-    [["Lengua Extranjera I",6,"Alemán I"],["Tecnologías de la Información en la Construcción del Conocimiento",6],["Optativa de Ciencias Naturales",6,"Anatomía Dental"],["Optativa de Matemáticas",6,"Matemáticas para Pensar"],["Histología",6],["Bioquímica Clínica",6],["Anatomofisiología",6],["Embriología y Genética",6],["Laboratorio de Simulación I",3]],
+    [["Lengua Extranjera I",6,"Alemán I"],["Tecnologías de la Información en la Construcción del Conocimiento",6],["Optativa extra",6,"Anatomía Dental"],["Optativa de Matemáticas",6,"Matemáticas para Pensar"],["Histología",6],["Bioquímica Clínica",6],["Anatomofisiología",6],["Embriología y Genética",6],["Laboratorio de Simulación I",3]],
     [["Lengua Extranjera II",6,"Alemán II"],["Argumentación Académica",6],["Optativa de Ciencias del Comportamiento",6,"Alimentación y Vida"],["Optativa de Artes",6,"Arte, Historia y Cultura"],["Fisiología",6],["Biología Celular y Molecular",6],["Anatomía Humana I",6],["Laboratorio de Simulación II",3]],
-    [["Lengua Extranjera III",6,"Italiano I"],["Escritura Académica",6],["Optativa de Humanidades",6,"Ética, Sociedad y Medio Ambiente"],["Optativa extra",6,"Ecosofía"],["Microbiología y Parasitología",6],["Farmacología General",6],["Propedéutica en Ciencias de la Salud",6],["Anatomía Humana II",6],["Laboratorio de Simulación III",3],["Fisiología Clínica",6]],
+    [["Lengua Extranjera III",6,"Italiano I"],["Escritura Académica",6],["Optativa de Humanidades",6,"Ética, Sociedad y Medio Ambiente"],["Optativa de Ciencias Naturales",6,"Ecosofía"],["Microbiología y Parasitología",6],["Farmacología General",6],["Propedéutica en Ciencias de la Salud",6],["Anatomía Humana II",6],["Laboratorio de Simulación III",3],["Fisiología Clínica",6]],
     [["Nutrición y Metabolismo",6],["Inmunología Clínica",6],["Medicina Familiar y Comunitaria",6],["Principios de Cirugía",6],["Farmacología Médica",6],["Hematología Clínica",6],["Examen de Conocimientos Básicos",3],["Laboratorio de Simulación IV",3]],
     [["Bioética en Ciencias de la Salud",6],["Psiquiatría",6],["Gastroenterología",6],["Cirugía",6],["Oftalmología",6],["Otorrinolaringología",6],["Campos Clínicos I",3],["Casos Clínicos I",3],["Temas Selectos I",6]],
     [["Salud Pública y Epidemiología en Ciencias de la Salud",6],["Temas Selectos II",6],["Neurología",6],["Gastrocirugía",6],["Obstetricia",6],["Dermatología",6],["Nefrología",6],["Campos Clínicos II",3],["Casos Clínicos II",3]],
@@ -2150,9 +2151,10 @@ const Grades=(()=>{
   const PLANALL=PLAN.flat(),isX=p=>p.n==="Optativa extra",PLANU=PLANALL.filter(p=>!isX(p)).reduce((a,x)=>a+x.u,0);
   const norm=t=>String(t).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
   const planOf=mat=>{const k=norm(mat);return PLANALL.find(x=>norm(x.mat)===k||norm(x.n)===k)};
-  function load(){try{const v=JSON.parse(store.get(LS)||"null");if(v&&Array.isArray(v.items))st={min:[6,7,7.5,8].includes(+v.min)?+v.min:7.5,items:v.items.filter(x=>x&&x.id&&x.mat&&isFinite(+x.cal)).map(x=>({id:String(x.id),sem:Math.max(1,Math.min(10,+x.sem||1)),mat:String(x.mat).slice(0,80),cal:Math.max(0,Math.min(10,+x.cal)),cred:+x.cred>0?+x.cred:0}))}}catch(e){}}
+  function load(){try{const v=JSON.parse(store.get(LS)||"null");if(v&&Array.isArray(v.items))st={min:[6,7,7.5,8].includes(+v.min)?+v.min:7.5,items:v.items.filter(x=>x&&x.id&&x.mat&&isFinite(+x.cal)).map(x=>({id:String(x.id),sem:Math.max(1,Math.min(10,+x.sem||1)),mat:String(x.mat).slice(0,80),cal:Math.max(0,Math.min(10,+x.cal)),cred:+x.cred>0?+x.cred:0,...(typeof x.extra==="boolean"?{extra:x.extra}:{})}))}}catch(e){}}
   function save(){store.set(LS,JSON.stringify(st));render()}
   const f1=n=>String(Number((+n).toFixed(2)));
+  const isExtra=x=>typeof x.extra==="boolean"?x.extra:!!(planOf(x.mat)&&isX(planOf(x.mat)));
   const avg=list=>{if(!list.length)return null;const w=list.every(x=>x.cred>0);const tw=w?list.reduce((a,x)=>a+x.cred,0):list.length;return list.reduce((a,x)=>a+x.cal*(w?x.cred:1),0)/tw};
   const light=c=>c>=9.5?"#5fe0a0":c>=9?"#a8e6c4":c>=8?"#ffd27a":c>=st.min?"#ffad66":"#ff7a6b";
   const color=c=>c>=9.5?"#0b7a62":c>=9?"#1c6b66":c>=8?"#c9a24a":c>=st.min?"#e08a00":"#c0392b";
@@ -2197,16 +2199,16 @@ const Grades=(()=>{
   function render(){
     load();
     renderPlan();
-    const items=st.items,all=avg(items),sems=[...new Set(items.map(x=>x.sem))].sort((a,b)=>a-b);
+    const allItems=st.items,items=allItems.filter(x=>!isExtra(x)),nX=allItems.length-items.length,all=avg(items),sems=[...new Set(allItems.map(x=>x.sem))].sort((a,b)=>a-b);
     $g("#grMats").innerHTML=known().map(m=>`<option value="${esc(m)}">`).join("");
     $g("#grMin").value=String(st.min);
-    if(!items.length){
+    if(!allItems.length){
       $g("#grSum").innerHTML=`<div class="gh-empty"><p class="gh-kick">Médico Cirujano · UDLAP</p><h2>Tu promedio</h2><p class="gh-sub">Todavía no hay calificaciones.</p><p class="empty-msg">Agrégalas una por una o pégalas todas juntas a la derecha (abajo en el cel). Aquí verás tu promedio general, el de cada semestre y qué necesitas para tu meta.</p></div>`;
       $g("#grSems").innerHTML="";$g("#grNeed").innerHTML="";return;
     }
     const pass=items.filter(x=>x.cal>=st.min).length,fail=items.length-pass,cred=items.reduce((a,x)=>a+x.cred,0);
     const sorted=items.slice().sort((a,b)=>b.cal-a.cal),best=sorted[0],worst=sorted[sorted.length-1];
-    const bySem=sems.map(n=>({n,a:avg(items.filter(x=>x.sem===n)),k:items.filter(x=>x.sem===n).length}));
+    const bySem=sems.map(n=>({n,a:avg(items.filter(x=>x.sem===n)),k:items.filter(x=>x.sem===n).length})).filter(s=>s.k);
     const bestSem=bySem.slice().sort((a,b)=>b.a-a.a)[0];
     const trend=bySem.length>1?bySem[bySem.length-1].a-bySem[bySem.length-2].a:null;
     const bins=[["10",x=>x.cal>=10],["9 – 9.9",x=>x.cal>=9&&x.cal<10],["8 – 8.9",x=>x.cal>=8&&x.cal<9],[st.min+" – 7.9",x=>x.cal>=st.min&&x.cal<8],["Reprobadas",x=>x.cal<st.min]].filter(([l],i)=>i<4||fail);
@@ -2221,7 +2223,7 @@ const Grades=(()=>{
         <div><b>${f1(all)}</b><small>de 10</small></div></div>
       <div class="gh-info"><p class="gh-kick">Médico Cirujano · UDLAP</p>
         <h2>Promedio general</h2>
-        <p class="gh-sub">${items.every(x=>x.cred>0)?"Ponderado por créditos":"Promedio simple"} · ${items.length} materia${items.length>1?"s":""}${cred?" · "+cred+" unidades":""}</p>
+        <p class="gh-sub">${items.every(x=>x.cred>0)?"Ponderado por créditos":"Promedio simple"} · ${items.length} materia${items.length>1?"s":""}${cred?" · "+cred+" unidades":""}${nX?` · ${nX} extra sin contar`:""}</p>
         <div class="gh-kpis">
           <div><b>${pass}</b><small>aprobada${pass===1?"":"s"}${fail?" · "+fail+" reprobada"+(fail>1?"s":""):""}</small></div>
           <div><b>${tens}</b><small>diece${tens===1?"":"s"} perfecto${tens===1?"":"s"}</small></div>
@@ -2235,11 +2237,11 @@ const Grades=(()=>{
           <ul class="gh-leg">${mix.map(([l,n,c])=>`<li style="--c:${c}"><b>${n}</b> ${l}</li>`).join("")}</ul>
           <div class="gh-bw"><div><small>Mejor</small><b>${f1(best.cal)}</b><span>${esc(best.mat)}</span></div><div><small>Más baja</small><b>${f1(worst.cal)}</b><span>${esc(worst.mat)}</span></div></div></div>
       </div>`;
-    $g("#grSems").innerHTML=sems.slice().reverse().map(n=>{const ord2=x=>{const p=planOf(x.mat);return p&&p.sem===x.sem?p.i:99},list=items.filter(x=>x.sem===n).sort((a,b)=>ord2(a)-ord2(b)||a.mat.localeCompare(b.mat,"es")),a=avg(list);
-      return `<details class="gr-sem" data-sem="${n}"${openSems.has(n)?" open":""}><summary><span class="gs-n">${n}</span><span class="gs-t">${SEMN(n)}<small>${list.length} materia${list.length>1?"s":""}</small></span><span class="gs-a" style="--c:${color(a)}">${f1(a)}</span></summary>
-        ${list.map(x=>`<div class="gr-row" style="--c:${color(x.cal)}"><span class="gm">${esc(x.mat)}${x.cred?`<small>${x.cred} unidades</small>`:""}</span>
+    $g("#grSems").innerHTML=sems.slice().reverse().map(n=>{const ord2=x=>{const p=planOf(x.mat);return p&&p.sem===x.sem?p.i:99},list=allItems.filter(x=>x.sem===n).sort((a,b)=>ord2(a)-ord2(b)||a.mat.localeCompare(b.mat,"es")),cnt=list.filter(x=>!isExtra(x)),a=cnt.length?avg(cnt):null;
+      return `<details class="gr-sem" data-sem="${n}"${openSems.has(n)?" open":""}><summary><span class="gs-n">${n}</span><span class="gs-t">${SEMN(n)}<small>${cnt.length} materia${cnt.length===1?"":"s"}${list.length>cnt.length?" + "+(list.length-cnt.length)+" extra":""}</small></span><span class="gs-a" style="--c:${a==null?"#8a8f98":color(a)}">${a==null?"—":f1(a)}</span></summary>
+        ${list.map(x=>`<div class="gr-row${isExtra(x)?" gx":""}" style="--c:${color(x.cal)}"><span class="gm">${esc(x.mat)}${isExtra(x)?` <em class="gx-tag">Extra · no cuenta</em>`:""}${x.cred?`<small>${x.cred} unidades</small>`:""}</span>
           <input class="gcal" type="number" min="0" max="10" step="0.01" value="${x.cal}" data-gid="${esc(x.id)}" aria-label="Calificación de ${esc(x.mat)}">
-          <button class="mini" type="button" data-gdel="${esc(x.id)}">Borrar</button></div>`).join("")}</details>`}).join("");
+          <button class="mini" type="button" data-gx="${esc(x.id)}" title="${isExtra(x)?"Contarla en el promedio":"Marcarla como extra: no cuenta en el promedio"}">${isExtra(x)?"Contar":"Extra"}</button><button class="mini" type="button" data-gdel="${esc(x.id)}">Borrar</button></div>`).join("")}</details>`}).join("");
     need();
   }
   function renderPlan(){
@@ -2253,16 +2255,16 @@ const Grades=(()=>{
       <div class="pl-prog"><span><i style="width:${du/PLANU*100}%"></i></span><b>${du} / ${PLANU} unidades</b></div>
       <p class="pl-key"><span class="pl-k done">${ICO.done}Cursada</span><span class="pl-k now">${ICO.now}Cursando ahora</span><span class="pl-k todo">${ICO.todo}Por cursar</span></p>
       <div class="pl-grid">${PLAN.map((l,i)=>{const n=i+1,lbl=n===9?"Internado de pregrado":n===10?"Servicio social":ord(n)+" semestre",k=l.filter(p=>done.has(p)).length,real=l.filter(p=>!isX(p)).length,
-          gs=l.filter(p=>done.has(p)).map(p=>done.get(p)),sa=gs.length?avg(gs):null,full=k>=real,hasNow=l.some(isNow),
+          gs=l.filter(p=>done.has(p)).map(p=>done.get(p)).filter(x=>!isExtra(x)),sa=gs.length?avg(gs):null,full=k>=real,hasNow=l.some(isNow),
           state=full?"done":hasNow||n===cur?"now":k?"part":"todo",pill=full?"Completo":hasNow||n===cur?"En curso":k?k+" de "+real:"Pendiente";
         return `<article class="pl-sem ${state}"><header><span class="ps-n${n>8?" sm":""}">${n===9?"MIP":n===10?"SS":n}</span><div class="ps-t"><b>${lbl}</b><small>${real} materia${real>1?"s":""}${sa!=null?" · promedio "+f1(sa):""}</small></div><span class="ps-pill">${pill}</span></header>
           <div class="ps-bar"><i style="width:${Math.min(100,k/real*100)}%"></i></div>
           <ul>${l.map(p=>{const g=done.get(p),st2=g?"done":(isNow(p)?"now":"todo");
-          return `<li class="${st2}">${ICO[st2]}<span>${p.o?`${esc(p.o)}<small>${esc(p.n)}</small>`:esc(p.n)}</span>${g?`<b style="--c:${color(g.cal)}">${f1(g.cal)}</b>`:st2==="now"?`<em class="nw">cursando</em>`:`<em>${p.u} u</em>`}</li>`}).join("")}</ul></article>`}).join("")}</div>
+          return `<li class="${st2}">${ICO[st2]}<span>${p.o?`${esc(p.o)}<small>${esc(p.n)}</small>`:esc(p.n)}</span>${g?`<b style="--c:${color(g.cal)}"${isExtra(g)?' class="gx-b" title="Extra: no cuenta en el promedio"':""}>${f1(g.cal)}</b>`:st2==="now"?`<em class="nw">cursando</em>`:`<em>${p.u} u</em>`}</li>`}).join("")}</ul></article>`}).join("")}</div>
       <p class="gr-help pl-foot">${nowL.length?"Llevas "+nowL.length+" materias este semestre. ":""}Te faltan ${left} materias del plan.</p>`;
   }
   function need(){
-    const items=st.items,box=$g("#grNeed");if(!items.length){box.innerHTML="";return}
+    const items=st.items.filter(x=>!isExtra(x)),box=$g("#grNeed");if(!items.length){box.innerHTML="";return}
     const goal=+$g("#grGoal").value,k=+$g("#grLeft").value;
     if(!(goal>0)||!(k>0)){box.innerHTML=`<p class="empty-msg">Pon cuántas materias te faltan en la carrera y te digo qué promedio necesitas en ellas.</p>`;return}
     const n=items.length,sum=items.reduce((a,x)=>a+x.cal,0),req=(goal*(n+k)-sum)/k,cur=sum/n;
@@ -2292,6 +2294,7 @@ const Grades=(()=>{
     e.hidden=!bad.length;e.textContent=bad.length?"Agregué "+out.length+". No entendí: "+bad.slice(0,3).join(" · "):"";
     if(!bad.length)$g("#grPaste").value="";save()});
   $g("#grSems").addEventListener("change",ev=>{const i=ev.target.closest("[data-gid]");if(!i)return;load();const x=st.items.find(y=>y.id===i.dataset.gid),v=parseFloat(i.value);if(x&&v>=0&&v<=10){x.cal=v;save()}});
+  $g("#grSems").addEventListener("click",ev=>{const t=ev.target.closest("[data-gx]");if(t){load();const x=st.items.find(y=>y.id===t.dataset.gx);if(x){const was=isExtra(x);x.extra=!was;const def=!!(planOf(x.mat)&&isX(planOf(x.mat)));if(x.extra===def)delete x.extra;save()}return}});
   $g("#grSems").addEventListener("click",ev=>{const d=ev.target.closest("[data-gdel]");if(!d)return;
     if(!d.classList.contains("warn")){d.classList.add("warn");d.textContent="¿Seguro?";setTimeout(()=>{if(d.isConnected){d.classList.remove("warn");d.textContent="Borrar"}},3500);return}
     load();st.items=st.items.filter(x=>x.id!==d.dataset.gdel);save()});

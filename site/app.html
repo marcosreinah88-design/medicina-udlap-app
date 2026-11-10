@@ -1406,7 +1406,7 @@ function go(h){
   if(!h){try{history.pushState(null,"",location.pathname+location.search)}catch(e){location.hash=""}route();return}
   if(location.hash.slice(1)===h)route();else location.hash=h}
 function route(){const h=location.hash.slice(1);
-  const W={calendario:window.Cal,calificaciones:window.Grades,ajustes:window.Ajustes,cto:window.CtoLib,otros:window.OtrosLib};
+  const W={calendario:window.Cal,calificaciones:window.Grades,estudio:window.Estudio,ajustes:window.Ajustes,cto:window.CtoLib,otros:window.OtrosLib};
   for(const k in W)if(k!==h&&W[k])W[k].close();
   if(W[h]!==undefined){hideViewer();W[h]&&W[h].open();return}
   if(h.startsWith("mat-")){window.OtrosLib&&OtrosLib.openDoc(decodeURIComponent(h.slice(4)));return}
@@ -1848,7 +1848,8 @@ const Cal=(()=>{
     for(const e of state.exams){if(e.date<t)continue;
       const n7=ymd(add(parse(e.date),-7)),n1=ymd(add(parse(e.date),-1));
       add1("ex7:"+e.id+":"+e.date,at(n7,20),"Examen de "+e.name+" en 7 días",longDate(e.date));
-      add1("ex1:"+e.id+":"+e.date,at(n1,20),"Mañana es tu examen de "+e.name,"Duerme bien. Repaso general hoy y a descansar.");}
+      add1("ex1:"+e.id+":"+e.date,at(n1,20),"Mañana es tu examen de "+e.name,"Duerme bien. Repaso general hoy y a descansar.");
+      for(const k of [5,3,2]){const mt=window.Estudio&&Estudio.examMat?Estudio.examMat(e):"";add1("rep"+k+":"+e.id+":"+e.date,at(ymd(add(parse(e.date),-k)),19),"Repasa hoy: "+e.name+" en "+k+" días","Haz tus tarjetas pendientes"+(mt?" de "+mt:"")+" y un examen de práctica de 10 preguntas en Estudio.","estudio")}}
     for(const p of state.tasks){if(p.done||!p.due||p.due<t||p.flag==="eliminar")continue;
       const what=PT[p.type].l+(p.mat?" · "+p.mat:"");
       if(p.type==="proyecto"||p.type==="presentacion")add1("pn3:"+p.id+":"+p.due,at(ymd(add(parse(p.due),-3)),19),"En 3 días: "+p.title,what+" · "+longDate(p.due));
@@ -2822,6 +2823,7 @@ if(location.hash==="#otros")OtrosLib.open();
 if(location.hash.startsWith("#mat-"))OtrosLib.openDoc(decodeURIComponent(location.hash.slice(5)));
 </script>
 
+<script src="estudio.js"></script>
 <script src="sync.js"></script>
 <script src="applinks.js"></script>
 <script src="assistant.js"></script>

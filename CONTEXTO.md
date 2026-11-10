@@ -14,6 +14,8 @@ Resumen corto del proyecto para no re-explorar el repo en cada pedido. Autor de 
 | `site/s3` `s4` `s5` `s6` | Semestres: 3º archivero (anatomía, farmacología), 4º carpeta (`apps/`), 5º estante (cirugía, duelo, esófago, gastro, hepatobiliar, imagenología, oftalmo, otorrino, psiquiatría, quiz-hepatico), 6º anaquel (`artefactos/infectologia`, `salud-publica`). |
 | `site/x/` | "Otros materiales" incrustados: geb, signos, svb, triage, triage-clase. |
 | `site/sync.js` | Sincronización Mac↔cel por gist cifrado (AES-256-GCM, llave HKDF de la clave de GitHub). |
+| `site/estudio.js` | Sección **Estudio** (`#estudio`, botón junto a Calificaciones): tarjetas con repetición espaciada, modo examen con cronómetro y % de aciertos, contador Pomodoro por materia, notas rápidas por clase (botón "Mandar a Obsidian" → bóveda CASA, `Medicina/Notas de clase/<materia>`). También mete en Calificaciones la calculadora "¿Cuánto necesito sacar?" (pesos por parcial). Datos en `carrera-tarjetas`, `carrera-repaso`, `carrera-preguntas(-prog)`, `carrera-simulacros`, `carrera-estudio-tiempo`, `carrera-notas`, `carrera-parciales` (se sincronizan). |
+| `site/estudio-banco.json` + `tools-estudio/` | Tarjetas y preguntas sacadas de las guías (`node tools-estudio/banco.js`; correrlo al agregar o cambiar una guía). `tools-estudio/patch_estudio.py` conecta estudio.js al hub (ruta, script y avisos "Repasa hoy" 5, 3 y 2 días antes de cada examen); re-aplicarlo si se rearma el hub. |
 | `site/assistant.js` | Asistente de exámenes/pendientes con Gemini (gratis). |
 | `site/manifest.json` + `manifest.sig` | Lista sha256 de archivos + firma Ed25519. La app rechaza todo lo que no esté firmado. |
 | `main.js`, `preload.js` | App de Mac (Electron, v1.4). Cambiarlos requiere zip nuevo. |

@@ -37,10 +37,10 @@ const reduced=()=>matchMedia("(prefers-reduced-motion: reduce)").matches;
 const once=(el,cls,ms)=>{el.classList.remove(cls);void el.offsetWidth;el.classList.add(cls);clearTimeout(el.__anT);el.__anT=setTimeout(()=>el.classList.remove(cls),ms)};
 
 /* 1. Portada: aparición suave al hacer scroll */
+const HOME_SEL=["main .hday","main .search","main .sec-h","main .track",".sems .stile",".extra .sec-h",".extra .xcard","body>footer .in"];
 function reveal(){
   if(reduced()||!("IntersectionObserver" in window))return;
-  const sel=["main .hday","main .search","main .sec-h","main .track",".sems .stile",".extra .sec-h",".extra .xcard","body>footer .in"];
-  const els=[...document.querySelectorAll(sel.join(","))].filter(e=>!e.closest(".cal,.viewer"));
+  const els=[...document.querySelectorAll(HOME_SEL.join(","))].filter(e=>!e.closest(".cal,.viewer"));
   const done=e=>{e.classList.remove("an-r","an-v");e.style.removeProperty("--an-d")};
   const io=new IntersectionObserver(es=>{
     let k=0;
@@ -77,7 +77,18 @@ function opened(el){
   cs.forEach((c,i)=>{c.style.setProperty("--an-i",i);once(c,"an-k",1200)});
 }
 /* al cerrar: el atributo hidden ya está puesto (la lógica de la página no cambia); solo se sigue viendo 260 ms mientras se desvanece */
-function closed(el){if(!reduced()&&el.matches(".cal,.viewer"))once(el,"an-x",300)}
+function closed(el){
+  if(reduced()||!el.matches(".cal,.viewer"))return;
+  once(el,"an-x",300);
+  /* de regreso en la portada: lo que se ve vuelve a entrar suave, en cascada, mientras la sección se desvanece */
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    if([...document.querySelectorAll(".cal,.viewer")].some(o=>!o.hidden))return;
+    const H=innerHeight,HOME=".hero .inst,.hero .kicker,.hero h1,.hero .motto,.hero .resume,.hero .seal,.band .in>div,"+HOME_SEL.join(",");
+    const vis=[...document.querySelectorAll(HOME)].filter(e=>{if(e.closest(".cal,.viewer")||e.classList.contains("an-r")||e.hidden)return false;const r=e.getBoundingClientRect();return r.height>0&&r.bottom>0&&r.top<H});
+    vis.slice(0,14).forEach((e,i)=>{e.style.setProperty("--an-i",i);once(e,"an-k",1300)});
+    if(vis.some(e=>e.closest(".band")))countUp();
+  }));
+}
 new MutationObserver(ms=>{for(const m of ms){const t=m.target;if(m.oldValue!==null&&!t.hidden)opened(t);else if(m.oldValue===null&&t.hidden)closed(t)}})
   .observe(document.body,{subtree:true,attributes:true,attributeFilter:["hidden"],attributeOldValue:true});
 

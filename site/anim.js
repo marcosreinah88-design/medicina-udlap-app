@@ -2,9 +2,12 @@
    - Al abrir un semestre, una guía o una sección (Calendario, Calificaciones, Estudio, CTO...) entra con un fundido corto
      y sus tarjetas suben un poco, una tras otra.
    - En la portada las tarjetas aparecen suavemente al bajar con el scroll y los números de la franja naranja cuentan hasta su valor.
+   - Al salir (regresar a la portada o cerrar una sección) se desvanece en lugar de cortarse de golpe.
+   - Dentro de cada semestre, guía y material, sus tarjetas y temas aparecen suavemente al bajar y al cambiar de pestaña,
+     y los desplegables abren suave. Solo se agrega movimiento: no se cambia ningún color, letra ni acomodo de esas páginas.
    - Botones con respuesta sutil al pasar el mouse y al tocarlos.
    Solo usa opacidad y desplazamiento (no cambia colores, así que el modo oscuro queda igual) y se apaga por completo
-   si el sistema tiene activado "Reducir movimiento". No toca las páginas originales de cada semestre ni de las guías. */
+   si el sistema tiene activado "Reducir movimiento". */
 (function(){
 "use strict";
 if(window.__carreraAnim)return;window.__carreraAnim=true;
@@ -16,6 +19,8 @@ const css=`
 .an-r{opacity:0;transform:translateY(18px)}
 .an-r.an-v{opacity:1;transform:none;transition:opacity .6s ${EASE} var(--an-d,0s),transform .6s ${EASE} var(--an-d,0s)}
 .an-o>:not(.vbar){animation:anFade .3s ease-out both}
+@keyframes anOut{to{opacity:0;transform:translateY(10px)}}
+.cal.an-x[hidden],.viewer.an-x[hidden]{display:flex!important;pointer-events:none;animation:anOut .26s ease-in both}
 .an-k{animation:anRise .45s ${EASE} both;animation-delay:calc(var(--an-i,0) * 45ms + 60ms)}
 .frames iframe.an-f{animation:anFade .35s ease-out both}
 .an-d>:not(summary){animation:anRise .3s ${EASE} both}
@@ -66,15 +71,67 @@ function opened(el){
   if(reduced())return;
   if(el.tagName==="IFRAME"){if(el.parentElement&&el.parentElement.id==="frames")once(el,"an-f",500);return}
   if(!el.matches(".cal,.viewer"))return;
+  el.classList.remove("an-x");
   once(el,"an-o",400);
   const cs=[...el.querySelectorAll(CARDS)].filter(c=>!c.parentElement.closest(CARDS)).slice(0,10);
   cs.forEach((c,i)=>{c.style.setProperty("--an-i",i);once(c,"an-k",1200)});
 }
-new MutationObserver(ms=>{for(const m of ms){const t=m.target;if(m.oldValue!==null&&!t.hidden)opened(t)}})
+/* al cerrar: el atributo hidden ya está puesto (la lógica de la página no cambia); solo se sigue viendo 260 ms mientras se desvanece */
+function closed(el){if(!reduced()&&el.matches(".cal,.viewer"))once(el,"an-x",300)}
+new MutationObserver(ms=>{for(const m of ms){const t=m.target;if(m.oldValue!==null&&!t.hidden)opened(t);else if(m.oldValue===null&&t.hidden)closed(t)}})
   .observe(document.body,{subtree:true,attributes:true,attributeFilter:["hidden"],attributeOldValue:true});
 
 /* 4. Desplegables (<details>): el contenido entra suave al abrir */
 document.addEventListener("toggle",e=>{const d=e.target;if(d.tagName==="DETAILS"&&d.open&&!reduced())once(d,"an-d",500)},true);
+
+/* 5. Dentro de semestres, guías y materiales (iframes de la misma página): aparición suave de sus tarjetas.
+   Se detectan solas (sombra o esquinas redondeadas con fondo/borde) para no tocar el código de cada guía. */
+const ICSS=`@media (prefers-reduced-motion:no-preference){
+.an-ir{opacity:0!important}
+.an-ir.an-it{transform:translateY(14px)!important}
+.an-ir.an-iv{opacity:1!important;transform:none!important;transition:opacity .5s ${EASE} var(--an-d,0s),transform .5s ${EASE} var(--an-d,0s)!important}
+@keyframes anRiseI{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.an-id>:not(summary){animation:anRiseI .3s ${EASE} both}}`;
+function inner(f){
+  let w,d;try{w=f.contentWindow;d=f.contentDocument}catch(e){return}
+  if(!w||!d||!d.body||w.__carreraAnim||reduced())return;w.__carreraAnim=true;
+  const st=d.createElement("style");st.textContent=ICSS;(d.head||d.body).appendChild(st);
+  const seen=new WeakSet(),SKIP="input,textarea,select,label,option,nav,[role=tablist],[role=dialog],dialog,iframe,video,canvas";
+  const typing=()=>{const a=d.activeElement;return a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)};
+  const inSeen=e=>{for(let p=e;p&&p!==d.body;p=p.parentElement)if(seen.has(p))return true;return false};
+  let k=0,kt=0;
+  const io=new w.IntersectionObserver(es=>{
+    const now=w.performance.now();if(now-kt>250)k=0;kt=now;
+    for(const x of es){if(!x.isIntersecting)continue;const e=x.target;io.unobserve(e);
+      e.style.setProperty("--an-d",Math.min(k++,8)*0.05+"s");
+      w.requestAnimationFrame(()=>e.classList.add("an-iv"));
+      w.setTimeout(()=>{e.classList.remove("an-ir","an-it","an-iv");e.style.removeProperty("--an-d")},1000)}
+  },{rootMargin:"0px 0px -4% 0px",threshold:0.05});
+  function scan(root,animate){
+    const H=w.innerHeight,list=root===d.body?d.body.querySelectorAll("*"):[root,...root.querySelectorAll("*")];let n=0;
+    for(const e of list){
+      if(seen.has(e)||n>400)continue;
+      if(e.matches(SKIP)||e.closest(SKIP))continue;
+      const cs=w.getComputedStyle(e);if(cs.display==="none"||cs.display==="contents"||cs.position!=="static"&&cs.position!=="relative")continue;
+      const r=e.getBoundingClientRect();if(r.width<120||r.height<40||r.height>H*1.4)continue;
+      const card=cs.boxShadow!=="none"||(parseFloat(cs.borderTopLeftRadius)>=6&&(cs.backgroundColor!=="rgba(0, 0, 0, 0)"||parseFloat(cs.borderTopWidth)>0));
+      if(!card||inSeen(e))continue;
+      seen.add(e);n++;
+      if(!animate||cs.animationName!=="none")continue;
+      e.classList.add("an-ir");if(cs.transform==="none")e.classList.add("an-it");io.observe(e);
+    }
+  }
+  scan(d.body,true);
+  /* pestañas, buscadores y temas que aparecen después: se revisa solo lo que cambió, antes de pintar */
+  new w.MutationObserver(ms=>{
+    if(reduced())return;const quiet=typing(),roots=new Set();
+    for(const m of ms){const t=m.target;if(m.type==="attributes"&&seen.has(t))continue;if(t&&t.nodeType===1)roots.add(t)}
+    for(const r of roots)if(r.isConnected&&![...roots].some(o=>o!==r&&o.contains(r)))scan(r,!quiet)
+  }).observe(d.body,{subtree:true,childList:true,attributes:true,attributeFilter:["class","hidden","open","style"]});
+  d.addEventListener("toggle",e=>{const x=e.target;if(x.tagName==="DETAILS"&&x.open&&!reduced())once(x,"an-id",500)},true);
+}
+document.addEventListener("load",e=>{const f=e.target;if(f&&f.tagName==="IFRAME"&&f.closest(".viewer"))inner(f)},true);
+document.querySelectorAll(".viewer iframe").forEach(f=>{try{if(f.contentDocument&&f.contentDocument.readyState==="complete")inner(f)}catch(e){}});
 
 const start=()=>{reveal();countUp()};
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();

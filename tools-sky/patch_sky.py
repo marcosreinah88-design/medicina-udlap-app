@@ -11,7 +11,7 @@ LUNA=('<div class="luna" id="luna"><svg viewBox="-50 -50 100 100"><defs><clipPat
       '<circle class="dark" r="40"/><path class="lit" d=""/><g clip-path="url(#lunaClip)">'
       '<circle class="cr" cx="-12" cy="-14" r="7"/><circle class="cr" cx="14" cy="6" r="9"/><circle class="cr" cx="-6" cy="18" r="5"/>'
       '<circle class="cr" cx="20" cy="-18" r="4"/><circle class="cr" cx="-22" cy="6" r="4.5"/></g></svg></div>')
-LBL='<button type="button" class="skylbl" id="skyLbl" tabindex="-1" hidden></button>'
+LBL='<span class="skylbl" id="skyLbl" hidden></span>'
 def sub1(s,pat,rep,f,what):
     n=len(re.findall(pat,s,flags=re.S))
     if n!=1: sys.exit(f"{f}: no encontré {what} ({n})")

@@ -82,16 +82,19 @@
     const icon=top==="night"?"☾":"☀",name={dawn:"Amanecer",dusk:"Atardecer",night:moonName(m.p),day:"Día"}[top];
     const extra=top==="night"?`<span class="lg">&nbsp;· ${Math.round(m.f*100)}% iluminada</span>`:"";
     const rise=+t.rise<=real?"amaneció":"amanece",set=+t.set<=real?"atardeció":"atardece";
-    lbl.innerHTML=`<b>${icon} ${name}</b>${extra}<span class="lg">&nbsp;· Puebla hoy ${rise} ${hm(t.rise)} y ${set} ${hm(t.set)}</span><span class="sm">&nbsp;· ↑${hm(t.rise)} ↓${hm(t.set)}</span>${manual?'<em>manual</em>':""}`;
-    lbl.title=manual?"Escena elegida a mano: toca para cambiar (vuelve sola al recargar)":"Cambia sola con la hora; toca para elegir otra escena";
+    lbl.innerHTML=`<b>${icon} ${name}</b>${extra}<span class="lg">&nbsp;· Puebla hoy ${rise} ${hm(t.rise)} y ${set} ${hm(t.set)}</span><span class="sm">&nbsp;· ↑${hm(t.rise)} ↓${hm(t.set)}</span>`;
     lbl.hidden=false;
   }
-  /* cambio manual: tocar el escudo o la etiqueta pasa por amanecer, atardecer, noche, día y de vuelta a automático */
-  const seal=$("#seal"),ORDER=[null,"dawn","dusk","night","day"];
-  function cycle(){manual=ORDER[(ORDER.indexOf(manual)+1)%ORDER.length];tick();
+  /* cambio manual (botón escondido del escudo): cada toque pasa a la escena siguiente a la que se ve
+     (amanecer → atardecer → noche → día); al dar la vuelta completa regresa a automático */
+  const seal=$("#seal"),ORDER=["dawn","dusk","night","day"];let start=null;
+  const shown=()=>hero.classList.contains("night")?"night":hero.classList.contains("dawn")?"dawn":hero.classList.contains("dusk")?"dusk":"day";
+  function cycle(){
+    const cur=manual||shown();if(!manual)start=cur;
+    const next=ORDER[(ORDER.indexOf(cur)+1)%ORDER.length];
+    manual=next===start?null:next;tick();
     if(seal){seal.classList.remove("spin");void seal.offsetWidth;seal.classList.add("spin");setTimeout(()=>seal.classList.remove("spin"),600)}}
   if(seal){seal.addEventListener("click",cycle);seal.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();cycle()}})}
-  lbl.addEventListener("click",cycle);
   tick();setInterval(tick,60000);
   addEventListener("resize",()=>{if(hero.classList.contains("dusk")||hero.classList.contains("dawn"))tick()});
   document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});

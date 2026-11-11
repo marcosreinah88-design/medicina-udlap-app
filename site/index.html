@@ -136,10 +136,8 @@ html{transition:background-color .3s}
 .hero.dusk .horizon .smoke path,.hero.dawn .horizon .smoke path{stroke:#ffe1cf}
 .hero.night .horizon .smoke path{stroke:#b9c6dc}
 .hero.night .horizon .crater{stroke:#0a1120}
-.skylbl{position:absolute;z-index:1;left:0;top:0;display:inline-flex;align-items:center;gap:0;font:600 .72rem var(--f-mono);letter-spacing:.04em;color:#fff;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 11px;backdrop-filter:blur(4px);cursor:pointer;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
-.skylbl:hover{border-color:var(--orange)}
+.skylbl{position:absolute;z-index:1;left:0;top:0;display:inline-flex;align-items:center;gap:0;font:600 .72rem var(--f-mono);letter-spacing:.04em;color:#fff;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 11px;backdrop-filter:blur(4px);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .skylbl b{font-weight:700;margin-right:5px}
-.skylbl em{font-style:normal;margin-left:8px;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;background:var(--orange);color:#fff;border-radius:99px;padding:1px 6px}
 .skylbl[hidden]{display:none}
 .skylbl .sm{display:none}
 @media (max-width:560px){.skylbl{font-size:.62rem;padding:4px 9px}.skylbl .lg{display:none}.skylbl .sm{display:inline}}
@@ -879,7 +877,7 @@ footer p{margin:0;max-width:70ch}
       <path class="trace word" transform="translate(-188.8 0) translate(230 150) scale(1.8) translate(-230 -150)" d="M212 143 L212 147.5 Q212 150 214.5 150 Q217 150 217 147.5 L217 143 M219.5 143 L219.5 150 Q226 150 226 146.5 Q226 143 219.5 143 M228.5 143 L228.5 150 L232.5 150 M234 150 L237 143 L240 150 M235.2 147.3 L238.8 147.3 M242 147.4 Q247.5 147.4 247.5 145.2 Q247.5 143 242 143 L242 150"/>
       <circle class="dot" cx="1192" cy="150" r="4.5"/>
     </svg>
-    <button type="button" class="skylbl" id="skyLbl" tabindex="-1" hidden></button>
+    <span class="skylbl" id="skyLbl" hidden></span>
     <span class="peak" style="left:56.5%">Popocatépetl<small>5,393 m</small></span>
     <span class="peak" style="left:85%">Iztaccíhuatl<small>5,230 m</small></span>
   </div>
@@ -1585,16 +1583,19 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&current!==null&&!do
     const icon=top==="night"?"☾":"☀",name={dawn:"Amanecer",dusk:"Atardecer",night:moonName(m.p),day:"Día"}[top];
     const extra=top==="night"?`<span class="lg">&nbsp;· ${Math.round(m.f*100)}% iluminada</span>`:"";
     const rise=+t.rise<=real?"amaneció":"amanece",set=+t.set<=real?"atardeció":"atardece";
-    lbl.innerHTML=`<b>${icon} ${name}</b>${extra}<span class="lg">&nbsp;· Puebla hoy ${rise} ${hm(t.rise)} y ${set} ${hm(t.set)}</span><span class="sm">&nbsp;· ↑${hm(t.rise)} ↓${hm(t.set)}</span>${manual?'<em>manual</em>':""}`;
-    lbl.title=manual?"Escena elegida a mano: toca para cambiar (vuelve sola al recargar)":"Cambia sola con la hora; toca para elegir otra escena";
+    lbl.innerHTML=`<b>${icon} ${name}</b>${extra}<span class="lg">&nbsp;· Puebla hoy ${rise} ${hm(t.rise)} y ${set} ${hm(t.set)}</span><span class="sm">&nbsp;· ↑${hm(t.rise)} ↓${hm(t.set)}</span>`;
     lbl.hidden=false;
   }
-  /* cambio manual: tocar el escudo o la etiqueta pasa por amanecer, atardecer, noche, día y de vuelta a automático */
-  const seal=$("#seal"),ORDER=[null,"dawn","dusk","night","day"];
-  function cycle(){manual=ORDER[(ORDER.indexOf(manual)+1)%ORDER.length];tick();
+  /* cambio manual (botón escondido del escudo): cada toque pasa a la escena siguiente a la que se ve
+     (amanecer → atardecer → noche → día); al dar la vuelta completa regresa a automático */
+  const seal=$("#seal"),ORDER=["dawn","dusk","night","day"];let start=null;
+  const shown=()=>hero.classList.contains("night")?"night":hero.classList.contains("dawn")?"dawn":hero.classList.contains("dusk")?"dusk":"day";
+  function cycle(){
+    const cur=manual||shown();if(!manual)start=cur;
+    const next=ORDER[(ORDER.indexOf(cur)+1)%ORDER.length];
+    manual=next===start?null:next;tick();
     if(seal){seal.classList.remove("spin");void seal.offsetWidth;seal.classList.add("spin");setTimeout(()=>seal.classList.remove("spin"),600)}}
   if(seal){seal.addEventListener("click",cycle);seal.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();cycle()}})}
-  lbl.addEventListener("click",cycle);
   tick();setInterval(tick,60000);
   addEventListener("resize",()=>{if(hero.classList.contains("dusk")||hero.classList.contains("dawn"))tick()});
   document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});

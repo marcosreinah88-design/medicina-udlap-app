@@ -5,6 +5,7 @@
    - Al salir (regresar a la portada o cerrar una sección) se desvanece en lugar de cortarse de golpe.
    - Dentro de cada semestre, guía y material, sus tarjetas y temas aparecen suavemente al bajar y al cambiar de pestaña,
      y los desplegables abren suave. Solo se agrega movimiento: no se cambia ningún color, letra ni acomodo de esas páginas.
+   - Dentro de cada semestre, abrir y cerrar una guía también entra y sale suave.
    - Botones con respuesta sutil al pasar el mouse y al tocarlos.
    Solo usa opacidad y desplazamiento (no cambia colores, así que el modo oscuro queda igual) y se apaga por completo
    si el sistema tiene activado "Reducir movimiento". */
@@ -89,8 +90,10 @@ function closed(el){
     if(vis.some(e=>e.closest(".band")))countUp();
   }));
 }
-new MutationObserver(ms=>{for(const m of ms){const t=m.target;if(m.oldValue!==null&&!t.hidden)opened(t);else if(m.oldValue===null&&t.hidden)closed(t)}})
-  .observe(document.body,{subtree:true,attributes:true,attributeFilter:["hidden"],attributeOldValue:true});
+new MutationObserver(ms=>{for(const m of ms){const t=m.target;
+    if(m.type==="childList"){for(const n of m.addedNodes)if(n.tagName==="IFRAME"&&!n.hidden)opened(n);continue}
+    if(m.oldValue!==null&&!t.hidden)opened(t);else if(m.oldValue===null&&t.hidden)closed(t)}})
+  .observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:["hidden"],attributeOldValue:true});
 
 /* 4. Desplegables (<details>): el contenido entra suave al abrir */
 document.addEventListener("toggle",e=>{const d=e.target;if(d.tagName==="DETAILS"&&d.open&&!reduced())once(d,"an-d",500)},true);
@@ -102,7 +105,11 @@ const ICSS=`@media (prefers-reduced-motion:no-preference){
 .an-ir.an-it{transform:translateY(14px)!important}
 .an-ir.an-iv{opacity:1!important;transform:none!important;transition:opacity .5s ${EASE} var(--an-d,0s),transform .5s ${EASE} var(--an-d,0s)!important}
 @keyframes anRiseI{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.an-id>:not(summary){animation:anRiseI .3s ${EASE} both}}`;
+.an-id>:not(summary){animation:anRiseI .3s ${EASE} both}
+@keyframes anVIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes anVOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(12px)}}
+#viewer.an-vi{animation:anVIn .32s ${EASE} both}
+#viewer.an-vx[hidden]{display:var(--an-disp,block)!important;pointer-events:none;animation:anVOut .26s ease-in both}}`;
 function inner(f){
   let w,d;try{w=f.contentWindow;d=f.contentDocument}catch(e){return}
   if(!w||!d||!d.body||w.__carreraAnim||reduced())return;w.__carreraAnim=true;
@@ -140,6 +147,17 @@ function inner(f){
     for(const r of roots)if(r.isConnected&&![...roots].some(o=>o!==r&&o.contains(r)))scan(r,!quiet)
   }).observe(d.body,{subtree:true,childList:true,attributes:true,attributeFilter:["class","hidden","open","style"]});
   d.addEventListener("toggle",e=>{const x=e.target;if(x.tagName==="DETAILS"&&x.open&&!reduced())once(x,"an-id",500)},true);
+  /* cada página de semestre abre sus guías en su propio #viewer: entra y sale suave */
+  const v=d.getElementById("viewer");
+  if(v){
+    if(!v.hidden)v.style.setProperty("--an-disp",w.getComputedStyle(v).display);
+    new w.MutationObserver(()=>{if(reduced())return;
+      if(!v.hidden){v.classList.remove("an-vx");v.style.setProperty("--an-disp",w.getComputedStyle(v).display);once(v,"an-vi",450)}
+      else if(v.style.getPropertyValue("--an-disp")){v.classList.remove("an-vi");once(v,"an-vx",300)}
+    }).observe(v,{attributes:true,attributeFilter:["hidden"]});
+  }
+  d.addEventListener("load",e=>{const x=e.target;if(x&&x.tagName==="IFRAME")inner(x)},true);
+  d.querySelectorAll("iframe").forEach(x=>{try{if(x.contentDocument&&x.contentDocument.readyState==="complete"&&x.contentDocument.body&&x.contentDocument.body.childElementCount)inner(x)}catch(e){}});
 }
 document.addEventListener("load",e=>{const f=e.target;if(f&&f.tagName==="IFRAME"&&f.closest(".viewer"))inner(f)},true);
 document.querySelectorAll(".viewer iframe").forEach(f=>{try{if(f.contentDocument&&f.contentDocument.readyState==="complete")inner(f)}catch(e){}});

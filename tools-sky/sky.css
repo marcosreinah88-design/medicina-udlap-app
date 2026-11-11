@@ -1,0 +1,35 @@
+/* ===== cielo: sigue la hora real en Puebla (amanecer, día, atardecer, noche con luna) ===== */
+.sky{position:absolute;inset:0;pointer-events:none}
+.sky i{position:absolute;inset:0;transition:opacity 2.5s ease}
+.sky-dusk{opacity:var(--wk,0);background:linear-gradient(180deg,rgba(24,28,72,.62) 0%,rgba(92,52,118,.5) 38%,rgba(214,88,112,.72) 66%,rgba(255,140,70,.9) 86%,rgba(255,196,110,.95) 100%)}
+.sky-dawn{opacity:var(--wd,0);background:linear-gradient(180deg,rgba(40,74,128,.5) 0%,rgba(132,124,180,.4) 40%,rgba(246,160,170,.65) 70%,rgba(255,196,140,.88) 88%,rgba(255,226,170,.95) 100%)}
+.sky-night{opacity:var(--wn,0);background:radial-gradient(60% 70% at 30% 85%,rgba(60,84,140,.35),transparent 70%),linear-gradient(180deg,rgba(4,8,26,.94) 0%,rgba(10,20,52,.9) 55%,rgba(20,38,72,.86) 100%)}
+.sky-stars{position:absolute;inset:0;width:100%;height:100%;opacity:var(--wn,0);transition:opacity 2.5s ease}
+.sky-stars circle{fill:#fff;opacity:.85}
+.sky-stars circle.tw{animation:twinkle 5s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.9}50%{opacity:.25}}
+.luna{position:absolute;left:30%;top:36px;width:66px;height:66px;opacity:var(--wn,0);transition:opacity 2.5s ease;pointer-events:none;filter:drop-shadow(0 0 14px rgba(220,230,255,.45))}
+.luna svg{position:static;width:100%;height:100%;overflow:visible}
+.luna .dark{fill:#1d2944;stroke:rgba(220,230,255,.22);stroke-width:1.2}
+.luna .lit{fill:#f4f1e2}
+.luna .cr{fill:#d8d3bd;opacity:.7}
+@media (max-width:560px){.luna{width:44px;height:44px;left:20%;top:32px}}
+.horizon .sun{opacity:var(--ws,0);transition:opacity 2.5s ease}
+.horizon .sun .disk{fill:#ffe6a6;filter:drop-shadow(0 0 10px #ffb347)}
+.horizon .mtn stop{transition:stop-color 2.5s}
+.hero.dusk #mtnG stop:first-child{stop-color:#3b2d4f}.hero.dusk #mtnG stop:last-child{stop-color:#1c1530}
+.hero.dawn #mtnG stop:first-child{stop-color:#4f6a7c}.hero.dawn #mtnG stop:last-child{stop-color:#24384a}
+.hero.night #mtnG stop:first-child{stop-color:#22314a}.hero.night #mtnG stop:last-child{stop-color:#0a1120}
+.hero.dusk #snowG stop:first-child{stop-color:#ffc9a8}.hero.dusk #snowG stop:last-child{stop-color:#e58aa0}
+.hero.dawn #snowG stop:first-child{stop-color:#ffd9e2}.hero.dawn #snowG stop:last-child{stop-color:#f6a8b8}
+.hero.night #snowG stop:first-child{stop-color:#e4ebf7}.hero.night #snowG stop:last-child{stop-color:#93a5c4}
+.hero.dusk .horizon .smoke path,.hero.dawn .horizon .smoke path{stroke:#ffe1cf}
+.hero.night .horizon .smoke path{stroke:#b9c6dc}
+.hero.night .horizon .crater{stroke:#0a1120}
+.skylbl{position:absolute;z-index:1;left:0;top:0;display:inline-flex;align-items:center;gap:0;font:600 .72rem var(--f-mono);letter-spacing:.04em;color:#fff;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 11px;backdrop-filter:blur(4px);cursor:pointer;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.skylbl:hover{border-color:var(--orange)}
+.skylbl b{font-weight:700;margin-right:5px}
+.skylbl em{font-style:normal;margin-left:8px;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;background:var(--orange);color:#fff;border-radius:99px;padding:1px 6px}
+.skylbl[hidden]{display:none}
+.skylbl .sm{display:none}
+@media (max-width:560px){.skylbl{font-size:.62rem;padding:4px 9px}.skylbl .lg{display:none}.skylbl .sm{display:inline}}

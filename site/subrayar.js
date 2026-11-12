@@ -21,6 +21,9 @@ background:#1f2a26;box-shadow:0 6px 22px rgba(0,0,0,.28),0 0 0 1px rgba(255,255,
 color:#fff;-webkit-user-select:none;user-select:none;touch-action:manipulation;animation:sbxIn .14s ease-out}
 @keyframes sbxIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .sbx-bar[hidden]{display:none}
+.sbx-all{left:max(12px,env(safe-area-inset-left,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));padding:5px;opacity:.92}
+.sbx-all .sbx-l{padding-left:8px}
+.sbx-bar button.x.warn{background:#c0392b}
 .sbx-bar .sbx-l{padding:0 4px 0 2px;opacity:.85;white-space:nowrap}
 .sbx-bar button{all:unset;box-sizing:border-box;width:28px;height:28px;border-radius:50%;cursor:pointer;display:grid;place-items:center;flex:none}
 .sbx-bar button.c{border:2px solid rgba(255,255,255,.85)}
@@ -105,8 +108,8 @@ function attach(w){
   /* barra flotante */
   const bar=d.createElement("div");bar.className="sbx-bar";bar.hidden=true;bar.setAttribute("role","toolbar");bar.setAttribute("aria-label","Subrayar");
   d.body.appendChild(bar);
-  let pending=null,current=null;
-  function hide(){bar.hidden=true;pending=null;if(current)d.querySelectorAll("mark.sbx.sbx-on").forEach(m=>m.classList.remove("sbx-on"));current=null}
+  let pending=null,current=null,overlap=new Set();
+  function hide(){bar.hidden=true;pending=null;overlap=new Set();if(current)d.querySelectorAll("mark.sbx.sbx-on").forEach(m=>m.classList.remove("sbx-on"));current=null}
   function place(r){
     bar.hidden=false;
     const vw=w.innerWidth,vh=w.innerHeight,bw=bar.offsetWidth,bh=bar.offsetHeight;
@@ -117,7 +120,7 @@ function attach(w){
   function render(sel){
     bar.innerHTML='<span class="sbx-l">'+(current?"Subrayado":"Subrayar")+'</span>'+
       COLORS.map(c=>'<button type="button" class="c'+(sel===c[0]?" sel":"")+'" data-c="'+c[0]+'" style="background:'+SOLID[c[0]]+'" aria-label="'+c[1]+'" title="'+c[1]+'"></button>').join("")+
-      (current?'<button type="button" class="x" data-x="1" aria-label="Quitar subrayado">'+TRASH+'Quitar</button>':"");
+      (current||overlap.size?'<button type="button" class="x" data-x="1" aria-label="Quitar subrayado">'+TRASH+'Quitar</button>':"");
   }
   const keep=e=>{e.preventDefault()};
   bar.addEventListener("mousedown",keep);bar.addEventListener("touchstart",e=>{if(e.target.closest("button"))keep(e)},{passive:false});
@@ -126,10 +129,11 @@ function attach(w){
     const all=load(),arr=(all[key]||[]).filter(clean);
     if(current){
       const h=arr.find(x=>x.id===current);
-      if(b.dataset.x){all[key]=arr.filter(x=>x.id!==current);save(all);unwrap(current)}
+      if(b.dataset.x){all[key]=arr.filter(x=>x.id!==current);save(all);unwrap(current);count()}
       else if(h&&b.dataset.c){h.c=b.dataset.c;all[key]=arr;save(all);d.querySelectorAll('mark.sbx[data-sb="'+h.id+'"]').forEach(m=>m.style.setProperty("--sbx",CMAP[h.c]))}
       hide();return;
     }
+    if(pending&&b.dataset.x){all[key]=arr.filter(x=>!overlap.has(x.id));save(all);overlap.forEach(unwrap);try{w.getSelection().removeAllRanges()}catch(e){}hide();count();return}
     if(!pending||!b.dataset.c)return hide();
     const map=textMap(),a=pointOff(map,pending.startContainer,pending.startOffset),z=pointOff(map,pending.endContainer,pending.endOffset);
     if(!(z>a)){hide();return}
@@ -144,7 +148,7 @@ function attach(w){
     wrap(m2,i<0?A:i,(i<0?A:i)+h.t.length,h);
     all[key]=arr.filter(x=>!over.has(x.id)).concat(h);save(all);
     try{w.getSelection().removeAllRanges()}catch(e){}
-    hide();
+    hide();count();
   });
 
   let t=0;
@@ -159,13 +163,15 @@ function attach(w){
       if(anc&&anc.closest&&anc.closest("input,textarea,[contenteditable=''],[contenteditable=true]"))return;
       if(!s.toString().trim())return;
       if(current){d.querySelectorAll("mark.sbx.sbx-on").forEach(m=>m.classList.remove("sbx-on"));current=null}
-      pending=r.cloneRange();render(null);
+      pending=r.cloneRange();overlap=new Set();
+      d.querySelectorAll("mark.sbx").forEach(m=>{try{if(r.intersectsNode(m))overlap.add(m.dataset.sb)}catch(e){}});
+      render(null);
       const rects=r.getClientRects();const rr=rects.length?rects[rects.length-1]:r.getBoundingClientRect();
       place(rr);
     },/Mobi|iPhone|iPad|Android/.test(w.navigator.userAgent)?350:120);
   });
   d.addEventListener("click",e=>{
-    if(bar.contains(e.target))return;
+    if(bar.contains(e.target)||pill.contains(e.target))return;
     const m=e.target.closest&&e.target.closest("mark.sbx");
     const s=w.getSelection();
     if(m&&(!s||s.isCollapsed)){
@@ -180,12 +186,31 @@ function attach(w){
   w.addEventListener("scroll",()=>{if(!bar.hidden&&current)hide()},{passive:true});
   d.addEventListener("keydown",e=>{if(e.key==="Escape"&&!bar.hidden)hide()});
 
-  applyAll();
+  /* esquina: cuántos subrayados hay en esta página y "Quitar todos" (pide confirmar con un segundo toque) */
+  const pill=d.createElement("div");pill.className="sbx-bar sbx-all";pill.hidden=true;d.body.appendChild(pill);
+  let sure=false,sureT=0;
+  function count(){
+    const n=(load()[key]||[]).filter(clean).length;
+    if(!n){pill.hidden=true;sure=false;return}
+    pill.hidden=false;
+    pill.innerHTML=sure
+      ?'<span class="sbx-l">\u00bfQuitar los '+n+'?</span><button type="button" class="x warn" data-all="go">'+TRASH+'S\u00ed, quitar</button><button type="button" class="x" data-all="no">No</button>'
+      :'<button type="button" class="x" data-all="ask" aria-label="Quitar todos los subrayados de esta p\u00e1gina">'+TRASH+'Quitar subrayados ('+n+')</button>';
+  }
+  pill.addEventListener("mousedown",keep);
+  pill.addEventListener("click",e=>{
+    const b=e.target.closest("button");if(!b)return;e.preventDefault();e.stopPropagation();clearTimeout(sureT);
+    if(b.dataset.all==="ask"){sure=true;sureT=setTimeout(()=>{sure=false;count()},6000)}
+    else if(b.dataset.all==="go"){const all=load();(all[key]||[]).forEach(h=>unwrap(h.id));delete all[key];save(all);d.querySelectorAll("mark.sbx").forEach(m=>unwrap(m.dataset.sb));sure=false;hide()}
+    else sure=false;
+    count();
+  });
+  applyAll();count();
   /* pestañas o secciones que se dibujan después, y cambios que llegan del otro aparato */
   let mt=0;
-  new w.MutationObserver(ms=>{if(busy)return;if(ms.every(m=>bar.contains(m.target)||m.target===bar))return;clearTimeout(mt);mt=setTimeout(applyAll,300)})
+  new w.MutationObserver(ms=>{if(busy)return;if(ms.every(m=>bar.contains(m.target)||pill.contains(m.target)))return;clearTimeout(mt);mt=setTimeout(applyAll,300)})
     .observe(d.body,{subtree:true,childList:true});
-  w.addEventListener("storage",e=>{if(e.key===KEY)applyAll()});
+  w.addEventListener("storage",e=>{if(e.key===KEY){applyAll();count()}});
 
   /* guías dentro de la página del semestre */
   d.addEventListener("load",e=>{const x=e.target;if(x&&x.tagName==="IFRAME")hook(x)},true);

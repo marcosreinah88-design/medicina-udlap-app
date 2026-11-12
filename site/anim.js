@@ -5,7 +5,7 @@
    - Al salir (regresar a la portada o cerrar una sección) se desvanece en lugar de cortarse de golpe.
    - Dentro de cada semestre, guía y material, sus tarjetas y temas aparecen suavemente al bajar y al cambiar de pestaña,
      y los desplegables abren suave. Solo se agrega movimiento: no se cambia ningún color, letra ni acomodo de esas páginas.
-   - Dentro de cada semestre, abrir y cerrar una guía también entra y sale suave.
+   - Dentro de cada semestre, abrir y cerrar una guía también entra y sale suave, y al volver al semestre sus tarjetas entran otra vez.
    - Botones con respuesta sutil al pasar el mouse y al tocarlos.
    Solo usa opacidad y desplazamiento (no cambia colores, así que el modo oscuro queda igual) y se apaga por completo
    si el sistema tiene activado "Reducir movimiento". */
@@ -70,7 +70,7 @@ function countUp(){
 const CARDS=".calhero,.gr-hero,.ccard,.cshelf,.es-card,.ctoEntry,.otile";
 function opened(el){
   if(reduced())return;
-  if(el.tagName==="IFRAME"){if(el.parentElement&&el.parentElement.id==="frames")once(el,"an-f",500);return}
+  if(el.tagName==="IFRAME"){if(el.parentElement&&el.parentElement.id==="frames"){once(el,"an-f",500);try{el.contentWindow.__anReenter&&el.contentWindow.__anReenter()}catch(e){}}return}
   if(!el.matches(".cal,.viewer"))return;
   el.classList.remove("an-x");
   once(el,"an-o",400);
@@ -109,12 +109,13 @@ const ICSS=`@media (prefers-reduced-motion:no-preference){
 @keyframes anVIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes anVOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(12px)}}
 #viewer.an-vi{animation:anVIn .32s ${EASE} both}
+.an-ik{animation:anRiseI .42s ${EASE} both;animation-delay:calc(var(--an-i,0) * 45ms + 60ms)}
 #viewer.an-vx[hidden]{display:var(--an-disp,block)!important;pointer-events:none;animation:anVOut .26s ease-in both}}`;
 function inner(f){
   let w,d;try{w=f.contentWindow;d=f.contentDocument}catch(e){return}
   if(!w||!d||!d.body||w.__carreraAnim||reduced())return;w.__carreraAnim=true;
   const st=d.createElement("style");st.textContent=ICSS;(d.head||d.body).appendChild(st);
-  const seen=new WeakSet(),SKIP="input,textarea,select,label,option,nav,[role=tablist],[role=dialog],dialog,iframe,video,canvas";
+  const cards=[],seen=new WeakSet(),SKIP="input,textarea,select,label,option,nav,[role=tablist],[role=dialog],dialog,iframe,video,canvas";
   const typing=()=>{const a=d.activeElement;return a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)};
   const inSeen=e=>{for(let p=e;p&&p!==d.body;p=p.parentElement)if(seen.has(p))return true;return false};
   let k=0,kt=0;
@@ -136,6 +137,7 @@ function inner(f){
       if(!card||inSeen(e))continue;
       seen.add(e);n++;
       if(!animate||cs.animationName!=="none")continue;
+      cards.push(e);
       e.classList.add("an-ir");if(cs.transform==="none")e.classList.add("an-it");io.observe(e);
     }
   }
@@ -147,13 +149,21 @@ function inner(f){
     for(const r of roots)if(r.isConnected&&![...roots].some(o=>o!==r&&o.contains(r)))scan(r,!quiet)
   }).observe(d.body,{subtree:true,childList:true,attributes:true,attributeFilter:["class","hidden","open","style"]});
   d.addEventListener("toggle",e=>{const x=e.target;if(x.tagName==="DETAILS"&&x.open&&!reduced())once(x,"an-id",500)},true);
+  /* al volver a esta página (cerrar una guía o regresar desde otra), lo que se ve entra otra vez en cascada */
+  w.__anReenter=()=>{
+    if(reduced())return;const H=w.innerHeight;let i=0;
+    for(const e of cards){if(i>=12)break;
+      if(!e.isConnected||e.classList.contains("an-ir")||e.closest("#viewer"))continue;
+      const r=e.getBoundingClientRect();if(!r.height||r.bottom<=0||r.top>=H)continue;
+      e.style.setProperty("--an-i",i++);once(e,"an-ik",1300)}
+  };
   /* cada página de semestre abre sus guías en su propio #viewer: entra y sale suave */
   const v=d.getElementById("viewer");
   if(v){
     if(!v.hidden)v.style.setProperty("--an-disp",w.getComputedStyle(v).display);
     new w.MutationObserver(()=>{if(reduced())return;
       if(!v.hidden){v.classList.remove("an-vx");v.style.setProperty("--an-disp",w.getComputedStyle(v).display);once(v,"an-vi",450)}
-      else if(v.style.getPropertyValue("--an-disp")){v.classList.remove("an-vi");once(v,"an-vx",300)}
+      else if(v.style.getPropertyValue("--an-disp")){v.classList.remove("an-vi");once(v,"an-vx",300);w.requestAnimationFrame(()=>w.__anReenter())}
     }).observe(v,{attributes:true,attributeFilter:["hidden"]});
   }
   d.addEventListener("load",e=>{const x=e.target;if(x&&x.tagName==="IFRAME")inner(x)},true);

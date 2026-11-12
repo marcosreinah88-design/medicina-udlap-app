@@ -1211,6 +1211,24 @@ figure.fig{background:var(--surface);border-radius:14px}
     <div class="key"><b>Tratamiento</b> Midriáticos (tropicamida 0.5–1%, con fenilefrina 2.5–10%), ciclopléjicos, corticoides (<b>medir antes la PIO</b>), inmunosupresores sistémicos, y tratar la causa.</div>
     <div class="note"><b>Ojo con tus apuntes</b> "Renitis" es <b>retinitis</b>. La uveítis puede causar glaucoma secundario, por eso se mide la PIO antes de dar esteroides.</div>
   </div></details>
+  <details class="topic"><summary>Retinopatía diabética <span class="tag">nuevo</span></summary><div class="body">
+    <div class="key"><b>Definición</b> Microangiopatía <b>progresiva</b> que produce hipoxia de la retina en pacientes diabéticos: los vasos se dañan, se ocluyen y deja de pasar sangre. Según tus apuntes, es la principal causa de ceguera no reversible.</div>
+    <ul>
+      <li>Irrigación: la arteria oftálmica entra con el nervio óptico y da la <b>arteria central de la retina</b>. La retina consume mucho oxígeno por la fototransducción.</li>
+      <li>Los vasos de la retina no tienen adventicia; tienen <b>endotelio y pericitos</b>.</li>
+      <li>Epidemiología: más del <span class="num">21%</span> de los diabéticos no insulinodependientes la tienen; es más frecuente en insulinodependientes, y con 10–20 años de evolución llega a <span class="num">71–90%</span>. El diabético tiene <b>25 veces</b> más riesgo de ceguera; 1 de cada 3 diabéticos tiene retinopatía.</li>
+    </ul>
+    <div class="flow"><span>Hiperglucemia</span><span>Vía de la aldosa reductasa</span><span>Sorbitol dentro de la célula</span><span>Entra agua</span><span>Pérdida de pericitos y daño de membrana basal</span><span>Más permeabilidad capilar</span></div>
+    <ul>
+      <li>El mismo sorbitol separa las fibras del cristalino: por eso los diabéticos también hacen <b>cataratas</b>.</li>
+      <li>Daño endotelial → adhesión plaquetaria, tromboxano A2 → más agregación → <b>oclusión capilar e isquemia</b>.</li>
+      <li>La isquemia libera <mark>VEGF</mark> (factor de crecimiento endotelial vascular) → <b>neovasos</b>.</li>
+      <li>Alteraciones de la sangre: más viscosidad, más agregación de eritrocitos y eritrocitos menos deformables.</li>
+      <li>Clínica: puede ser asintomática o dar baja visual progresiva o súbita; suele ser <b>simétrica</b>.</li>
+      <li>Diagnóstico: exploración oftalmológica completa, empezando por el <b>fondo de ojo</b>.</li>
+    </ul>
+    <div class="note"><b>Ojo con tus apuntes</b> Dice "endometrio"; es <b>endotelio</b>. La parte de diagnóstico se corta a la mitad ("estudio de gabinete como la…"); cuando la completes, la agrego.</div>
+  </div></details>
 </section>
 
 <!-- ========== 06 ========== -->
@@ -1513,7 +1531,11 @@ const CARDS=[
 ["b5","Signos del glaucoma congénito:","Lagrimeo, fotofobia, blefaroespasmo, buftalmos, megalocórnea, edema corneal, estrías de Haab."],
 ["b5","Clasificación de la uveítis por localización:","Anterior (iris y cuerpo ciliar), intermedia (pars plana y vítreo), posterior (retina y coroides), panuveítis."],
 ["b5","Signos de uveítis anterior:","Inyección circuncorneal violácea, precipitados corneales, células y turbidez en humor acuoso, nódulos de Koeppe."],
-["b5","Tratamiento de la uveítis:","Midriáticos, ciclopléjicos, corticoides (medir PIO antes), inmunosupresores y tratar la causa."]
+["b5","Tratamiento de la uveítis:","Midriáticos, ciclopléjicos, corticoides (medir PIO antes), inmunosupresores y tratar la causa."],
+["b5","Retinopatía diabética: definición","Microangiopatía progresiva que produce hipoxia de la retina; los vasos se ocluyen."],
+["b5","¿Qué vía metabólica explica el daño en retinopatía diabética y catarata?","Aldosa reductasa: el sorbitol se acumula, jala agua; en retina se pierden pericitos y en el cristalino se separan las fibras."],
+["b5","¿Qué factor produce los neovasos en la retinopatía diabética?","VEGF, liberado por la isquemia."],
+["b5","¿Cuánto aumenta el riesgo de ceguera en un diabético?","25 veces; 1 de cada 3 diabéticos tiene retinopatía."]
 ];
 const QUIZ=[
 ["b1","¿Qué nervio inerva el recto lateral?",["III","IV","VI","V1"],2,"LR6: el abducens (VI)."],
@@ -1572,7 +1594,10 @@ const QUIZ=[
 ["b5","Defecto campimétrico típico del glaucoma:",["Hemianopsia bitemporal","Escalón nasal","Escotoma central","Cuadrantanopsia homónima"],1,"También el escotoma arqueado; respetan el meridiano horizontal."],
 ["b5","Las estrías de Haab son roturas de Descemet típicas de:",["Queratocono","Glaucoma congénito","Uveítis","Catarata congénita"],1,"Junto con buftalmos y megalocórnea."],
 ["b5","La uveítis intermedia afecta:",["Iris","Pars plana y vítreo","Retina y coroides","Córnea"],1,"Da miodesopsias y edema macular cistoide."],
-["b5","Antes de dar corticoides en uveítis hay que:",["Medir la PIO","Hacer topografía","Dilatar con atropina siempre","Hacer Ishihara"],0,"Los esteroides pueden subir la presión."]
+["b5","Antes de dar corticoides en uveítis hay que:",["Medir la PIO","Hacer topografía","Dilatar con atropina siempre","Hacer Ishihara"],0,"Los esteroides pueden subir la presión."],
+["b5","Las células de los capilares retinianos que se pierden en la retinopatía diabética son:",["Fibroblastos","Pericitos","Conos","Células de Müller"],1,"Por acumulación de sorbitol; aumenta la permeabilidad capilar."],
+["b5","En retinopatía diabética, los neovasos aparecen por:",["Aldosa reductasa","VEGF liberado por isquemia","Tromboxano A2","Hipertensión ocular"],1,"La isquemia estimula el factor de crecimiento endotelial vascular."],
+["b5","Con 10–20 años de diabetes, la frecuencia de retinopatía es de:",["5–10%","21%","71–90%","100%"],2,"Según tus apuntes, 71–90%."]
 ];
 
 /* ---- tabs ---- */

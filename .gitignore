@@ -3,3 +3,9 @@ dist/
 fonts_cache/
 tools/
 seed-cto.json
+# claves y datos privados: nunca al repo público
+*.pem
+*.key
+*.p12
+.env
+.env.*

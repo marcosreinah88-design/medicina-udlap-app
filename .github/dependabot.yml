@@ -1,0 +1,16 @@
+# Avisa (con un PR) cuando salga una versión con arreglos de seguridad de lo que usan los workflows y los avisos push.
+# Es gratis. Nada se instala solo: cada PR se revisa y se aprueba a mano.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
+  - package-ecosystem: npm
+    directory: /tools-push
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 3

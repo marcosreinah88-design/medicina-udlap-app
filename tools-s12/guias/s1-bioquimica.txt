@@ -1,0 +1,226 @@
+@id bioquimica
+@sem 1
+@orden 2
+@title Bioquímica Clínica
+@materia Bioquímica Clínica
+@codigo BQ
+@color #b0680a
+@icon bioq
+@sub pH · Proteínas y enzimas · Carbohidratos · Krebs y cadena respiratoria · Lípidos · Aminoácidos · Vitaminas · Integración
+@desc Metabolismo de principio a fin con las enzimas limitantes, sus reguladores y las enfermedades que salen en examen, más la lectura de una química sanguínea.
+@kw bioquimica ph amortiguador henderson hasselbalch gasometria aminoacidos proteinas hemoglobina enzimas michaelis km vmax glucolisis gluconeogenesis glucogeno krebs cadena respiratoria atp lipidos colesterol lipoproteinas cetonas urea fenilcetonuria vitaminas insulina glucagon quimica sanguinea
+
+# Agua, pH y amortiguadores
+> El pH de la sangre se mantiene entre 7.35 y 7.45; el bicarbonato es el amortiguador principal del líquido extracelular.
+- pH = −log[H⁺]. Ácido = donador de H⁺ (Brønsted); base = aceptor. pKa = pH al que el ácido está 50 % disociado.
+- **Henderson-Hasselbalch**: pH = pKa + log([A⁻]/[HA]). Para la sangre: **pH = 6.1 + log(HCO₃⁻ / 0.03 × PaCO₂)**.
+- Un amortiguador funciona mejor a pH = pKa ± 1. Sistemas: **bicarbonato/ácido carbónico** (extracelular, abierto: el pulmón elimina CO₂ y el riñón regula HCO₃⁻), **fosfatos** (intracelular y orina), **proteínas y hemoglobina** (histidina, intracelular).
+- **Anhidrasa carbónica** (zinc): CO₂ + H₂O ⇄ H₂CO₃ ⇄ H⁺ + HCO₃⁻.
+- Valores normales de gasometría arterial: pH 7.35–7.45, **PaCO₂ 35–45 mmHg**, **HCO₃⁻ 22–26 mEq/L**.
+| Trastorno ¦ Primario ¦ Compensación
+| Acidosis metabólica ¦ ↓ HCO₃⁻ ¦ Hiperventilación (↓ PaCO₂)
+| Alcalosis metabólica ¦ ↑ HCO₃⁻ ¦ Hipoventilación (↑ PaCO₂)
+| Acidosis respiratoria ¦ ↑ PaCO₂ ¦ Riñón retiene HCO₃⁻
+| Alcalosis respiratoria ¦ ↓ PaCO₂ ¦ Riñón elimina HCO₃⁻
+! Brecha aniónica = Na⁺ − (Cl⁻ + HCO₃⁻), normal ≈ 8–12. Acidosis con brecha elevada: cetoacidosis, acidosis láctica, insuficiencia renal, metanol, etilenglicol, salicilatos.
+! Si el pH y la PaCO₂ se mueven en direcciones opuestas → origen respiratorio; en la misma dirección → metabólico.
++ **Cetoacidosis diabética**: acidosis metabólica con brecha aniónica elevada y respiración de Kussmaul (compensación respiratoria).
++ Vómito persistente → pérdida de HCl → **alcalosis metabólica** hipoclorémica e hipopotasémica.
+? Ecuación de Henderson-Hasselbalch para la sangre :: pH = 6.1 + log(HCO₃⁻ / 0.03 × PaCO₂).
+? Amortiguador principal del líquido extracelular :: Bicarbonato/ácido carbónico.
+? Fórmula de la brecha aniónica :: Na⁺ − (Cl⁻ + HCO₃⁻); normal ≈ 8–12 mEq/L.
+? Compensación de una acidosis metabólica :: Hiperventilación que baja la PaCO₂ (respiración de Kussmaul).
+? Metal de la anhidrasa carbónica :: Zinc.
+Q Gasometría: pH 7.28, PaCO₂ 28 mmHg, HCO₃⁻ 13 mEq/L. ¿Qué trastorno es? :: *Acidosis metabólica con compensación respiratoria :: Acidosis respiratoria compensada :: Alcalosis respiratoria :: Alcalosis metabólica || pH bajo y HCO₃⁻ bajo (misma dirección) = metabólico; la PaCO₂ baja es la compensación.
+Q ¿Cuál causa acidosis metabólica con brecha aniónica elevada? :: *Intoxicación por metanol :: Diarrea :: Acidosis tubular renal :: Vómito || Metanol forma ácido fórmico (anión no medido). La diarrea da acidosis hiperclorémica con brecha normal.
+Q Un amortiguador es más eficaz cuando: :: *pH ≈ pKa :: pH = 7.0 siempre :: pH muy por arriba del pKa :: No hay base conjugada || Con pH = pKa hay la misma cantidad de ácido y base conjugada.
+
+# Aminoácidos, proteínas y hemoglobina
+> 20 aminoácidos forman proteínas; su estructura define la función.
+- Aminoácidos **esenciales** (no se sintetizan): **PVT TIM HaLL** → fenilalanina, valina, treonina, triptófano, isoleucina, metionina, histidina, leucina, lisina (arginina condicional en el crecimiento).
+- Básicos: lisina, arginina, histidina (la histidina amortigua a pH fisiológico). Ácidos: aspartato y glutamato.
+- Niveles de estructura: **primaria** (secuencia, enlace peptídico), **secundaria** (hélice α y lámina β, puentes de hidrógeno), **terciaria** (plegamiento 3D, puentes disulfuro, interacciones hidrofóbicas), **cuaternaria** (varias subunidades: hemoglobina).
+- **Hemoglobina A**: α₂β₂, 4 grupos hemo con Fe²⁺. Curva de disociación **sigmoidea** (cooperatividad); mioglobina: hiperbólica (un solo hemo, mayor afinidad).
+- Desplazamiento a la **derecha** (↓ afinidad, libera O₂ en tejidos): ↑ CO₂, ↑ H⁺ (efecto Bohr), ↑ temperatura, ↑ 2,3-BPG, ejercicio. A la izquierda: HbF, CO, ↓ temperatura, alcalosis.
+- Proteínas plasmáticas: albúmina (presión oncótica, transporte), globulinas (α, β, γ = inmunoglobulinas), fibrinógeno.
+! Mnemotecnia de la curva a la derecha: "**CADET, face Right**" → CO₂, Ácido, 2,3-DPG, Ejercicio, Temperatura.
+! **HbF** (α₂γ₂) une menos 2,3-BPG → mayor afinidad por O₂ → toma oxígeno de la sangre materna.
++ **Anemia de células falciformes**: Glu→Val en la posición 6 de la cadena β (HbS); polimeriza en desoxigenación → crisis vasooclusivas.
++ **Intoxicación por CO**: el CO une al hemo con afinidad ~200 veces mayor y desplaza la curva a la izquierda; la saturación por oxímetro de pulso sale falsamente normal.
++ **Hipoalbuminemia** (cirrosis, síndrome nefrótico, desnutrición) → edema por baja presión oncótica.
+? Aminoácidos esenciales (mnemotecnia) :: PVT TIM HaLL: fenilalanina, valina, treonina, triptófano, isoleucina, metionina, histidina, leucina, lisina.
+? Mutación de la HbS :: Ácido glutámico → valina en la posición 6 de la cadena β.
+? Efecto Bohr :: ↑ H⁺ y CO₂ disminuyen la afinidad de la Hb por O₂ (curva a la derecha) para liberar O₂ en tejidos.
+? Composición de la HbF :: α₂γ₂; menor unión a 2,3-BPG y mayor afinidad por O₂.
+? Enlace que estabiliza la estructura secundaria :: Puentes de hidrógeno del esqueleto peptídico.
+Q ¿Qué desplaza la curva de disociación de la Hb a la izquierda? :: *Monóxido de carbono :: Fiebre :: Acidosis :: Aumento de 2,3-BPG || El CO aumenta la afinidad de los hemos restantes y dificulta la entrega de O₂ (curva a la izquierda).
+Q ¿Por qué la curva de la hemoglobina es sigmoidea? :: *Por cooperatividad entre sus cuatro subunidades :: Porque tiene un solo grupo hemo :: Por su hierro en estado férrico :: Porque no une CO₂ || La unión de O₂ a un hemo facilita la unión a los demás (estado T → R).
+Q ¿Qué aminoácido amortigua a pH fisiológico por su grupo imidazol? :: *Histidina :: Lisina :: Glicina :: Leucina || El imidazol de la histidina tiene pKa ≈ 6, útil para amortiguar en proteínas y Hb.
+
+# Enzimas y cinética
+> Las enzimas bajan la energía de activación; no cambian el equilibrio ni la ΔG de la reacción.
+- **Michaelis-Menten**: v = Vmax[S] / (Km + [S]). **Km** = [S] a la que v = ½ Vmax; Km bajo = alta afinidad.
+- **Lineweaver-Burk** (dobles recíprocos): intersección en Y = 1/Vmax; en X = −1/Km.
+- Inhibición **competitiva**: compite por el sitio activo, se vence con más sustrato → **↑ Km, Vmax igual**. **No competitiva**: se une a otro sitio → **Km igual, ↓ Vmax**. **Irreversible**: unión covalente (aspirina sobre COX, organofosforados sobre acetilcolinesterasa).
+- Enzimas **alostéricas**: curva sigmoidea, controlan pasos limitantes (fosfofructocinasa-1, etc.).
+- Cofactores: iones metálicos; coenzimas derivadas de vitaminas (NAD⁺ de B3, FAD de B2, TPP de B1, PLP de B6, CoA de B5).
+- Isoenzimas y enzimas clínicas: **troponinas** (miocardio), **CK-MB**, **ALT** (más específica de hígado), **AST**, **fosfatasa alcalina** (vía biliar, hueso), **GGT** (vía biliar, alcohol), **amilasa y lipasa** (páncreas; lipasa más específica), **LDH** (hemólisis, lisis tumoral).
+| Inhibición ¦ Km ¦ Vmax ¦ ¿Se revierte con más sustrato?
+| Competitiva ¦ ↑ ¦ = ¦ Sí
+| No competitiva ¦ = ¦ ↓ ¦ No
+| Acompetitiva ¦ ↓ ¦ ↓ ¦ No
+! Competitivo: "Comparten sitio, Km cambia". No competitivo: "baja el techo (Vmax)".
+! Las enzimas no modifican la constante de equilibrio ni la ΔG; solo aceleran el alcance del equilibrio.
++ Metanol y etilenglicol: el **fomepizol** (o etanol) inhibe competitivamente a la alcohol deshidrogenasa.
++ Relación AST/ALT > 2 sugiere hepatopatía alcohólica; ALT > AST en hepatitis viral.
++ Lipasa > 3 veces el límite superior apoya pancreatitis aguda.
+? Definición de Km :: Concentración de sustrato a la que la velocidad es la mitad de la Vmax; inversa a la afinidad.
+? Efecto de un inhibidor competitivo :: ↑ Km aparente, Vmax sin cambio.
+? Efecto de un inhibidor no competitivo :: Km igual, ↓ Vmax.
+? Aminotransferasa más específica del hígado :: ALT.
+? Enzima pancreática más específica :: Lipasa.
+? Coenzima derivada de la tiamina :: Pirofosfato de tiamina (TPP).
+Q En una gráfica de Lineweaver-Burk, un inhibidor desplaza la intersección en X hacia el origen sin cambiar la de Y. Es: :: *Competitivo :: No competitivo :: Acompetitivo :: Irreversible || Misma Vmax (misma 1/Vmax en Y) con mayor Km (−1/Km más cerca de cero).
+Q ¿Por qué se usa fomepizol en la intoxicación por metanol? :: *Inhibe competitivamente la alcohol deshidrogenasa :: Aumenta la eliminación renal de formato :: Es un quelante :: Activa la aldehído deshidrogenasa || Evita la formación de formaldehído y ácido fórmico.
+Q Una enzima con Km de 1 mM comparada con otra de Km 10 mM para el mismo sustrato: :: *Tiene mayor afinidad :: Tiene mayor Vmax :: Tiene menor afinidad :: No se puede saturar || Km bajo = se alcanza ½ Vmax con poco sustrato = alta afinidad.
+
+# Carbohidratos: glucólisis, gluconeogénesis y glucógeno
+> La glucosa es el combustible universal; el hígado mantiene la glucemia en ayuno.
+- **Glucólisis** (citosol, todas las células): glucosa → 2 piruvato + **2 ATP netos** + 2 NADH. Enzima limitante: **fosfofructocinasa-1 (PFK-1)**; activa: AMP, fructosa-2,6-bifosfato; inhibe: ATP, citrato.
+- Hexocinasa (tejidos, Km bajo, inhibida por G6P) vs **glucocinasa** (hígado y célula β, Km alto, inducida por insulina = sensor de glucosa).
+- Destino del piruvato: aerobio → acetil-CoA (**piruvato deshidrogenasa**: B1, B2, B3, B5, ácido lipoico); anaerobio → **lactato** (LDH, regenera NAD⁺; único destino en eritrocitos).
+- **Gluconeogénesis** (hígado > riñón): a partir de lactato, alanina, glicerol. Enzimas propias: **piruvato carboxilasa** (mitocondria, requiere biotina), PEPCK, **fructosa-1,6-bisfosfatasa** (limitante), glucosa-6-fosfatasa. Los ácidos grasos de cadena par **no** forman glucosa.
+- Glucógeno: síntesis por **glucógeno sintasa** (insulina), degradación por **glucógeno fosforilasa** (glucagón, adrenalina). El glucógeno hepático mantiene la glucemia; el muscular solo sirve al músculo (no tiene glucosa-6-fosfatasa).
+- Vía de las pentosas: produce **NADPH** (glutatión reducido, síntesis de lípidos) y ribosa-5-P; enzima limitante **glucosa-6-fosfato deshidrogenasa (G6PD)**.
+| Enfermedad ¦ Enzima ¦ Dato clave
+| Von Gierke (I) ¦ Glucosa-6-fosfatasa ¦ Hipoglucemia grave, acidosis láctica, hepatomegalia
+| Pompe (II) ¦ α-1,4-glucosidasa lisosomal ¦ Cardiomegalia en lactantes
+| Cori (III) ¦ Enzima desramificante ¦ Como Von Gierke, más leve, lactato normal
+| McArdle (V) ¦ Fosforilasa muscular ¦ Calambres y mioglobinuria con ejercicio
+! Enzimas limitantes: glucólisis = PFK-1; gluconeogénesis = fructosa-1,6-bisfosfatasa; glucogénesis = glucógeno sintasa; glucogenólisis = glucógeno fosforilasa; pentosas = G6PD.
+! El eritrocito depende solo de la glucólisis anaerobia (no tiene mitocondrias).
++ **Deficiencia de G6PD**: sin NADPH no se regenera glutatión → hemólisis con oxidantes (primaquina, sulfas, habas); cuerpos de Heinz y células mordidas.
++ **Deficiencia de tiamina** (alcoholismo): falla la piruvato deshidrogenasa → acidosis láctica y encefalopatía de Wernicke; dar tiamina antes que glucosa.
++ Galactosemia (galactosa-1-fosfato uridiltransferasa): cataratas, hepatomegalia, ictericia y sepsis por E. coli en el lactante.
+? Enzima limitante de la glucólisis :: Fosfofructocinasa-1 (PFK-1).
+? Vitamina que necesita la piruvato carboxilasa :: Biotina (B7).
+? ¿Por qué el músculo no libera glucosa a la sangre? :: No tiene glucosa-6-fosfatasa.
+? Producto principal de la vía de las pentosas :: NADPH (y ribosa-5-fosfato).
+? Enfermedad de Pompe :: Déficit de α-1,4-glucosidasa lisosomal; cardiomegalia en el lactante.
+? Rendimiento neto de ATP de la glucólisis :: 2 ATP por glucosa (más 2 NADH).
+Q Lactante con hipoglucemia grave en ayuno, hepatomegalia, acidosis láctica e hiperuricemia. Enzima deficiente: :: *Glucosa-6-fosfatasa :: Glucógeno fosforilasa muscular :: Enzima desramificante :: α-1,4-glucosidasa lisosomal || Enfermedad de Von Gierke: el hígado no libera glucosa ni desde glucógeno ni desde gluconeogénesis.
+Q Paciente con hemólisis tras recibir primaquina. ¿Qué vía está afectada? :: *Vía de las pentosas fosfato (G6PD) :: Glucólisis (piruvato cinasa) :: Gluconeogénesis :: Ciclo de la urea || Sin NADPH no hay glutatión reducido para neutralizar oxidantes.
+Q ¿Qué sustrato NO puede convertirse en glucosa? :: *Ácidos grasos de cadena par :: Lactato :: Alanina :: Glicerol || Producen acetil-CoA, que no puede convertirse en piruvato (la piruvato deshidrogenasa es irreversible).
+
+# Ciclo de Krebs, cadena respiratoria y fosforilación oxidativa
+> En la mitocondria el acetil-CoA se oxida a CO₂ y la energía de NADH y FADH₂ produce ATP.
+- **Ciclo de Krebs** (matriz mitocondrial): acetil-CoA + oxalacetato → citrato... Por vuelta: **3 NADH, 1 FADH₂, 1 GTP, 2 CO₂**. Enzima limitante: **isocitrato deshidrogenasa** (inhibida por ATP y NADH).
+- α-cetoglutarato deshidrogenasa: mismos cofactores que la piruvato deshidrogenasa (B1, B2, B3, B5, lipoato).
+- **Cadena de transporte de electrones** (membrana interna): complejos I (NADH), II (succinato deshidrogenasa, FADH₂), coenzima Q, III, citocromo c, IV (citocromo c oxidasa → O₂ a H₂O). El gradiente de protones mueve la **ATP sintasa** (complejo V).
+- Rendimiento: NADH ≈ 2.5 ATP, FADH₂ ≈ 1.5 ATP; glucosa completa ≈ **30–32 ATP**.
+- **Inhibidores**: rotenona (I), antimicina A (III), **cianuro, CO y azida** (IV), oligomicina (ATP sintasa). **Desacopladores**: 2,4-dinitrofenol, termogenina (UCP-1), salicilatos en dosis altas → calor sin ATP.
+! El cianuro bloquea el complejo IV: los tejidos no usan O₂ → acidosis láctica, sangre venosa "arterializada" (rojo brillante), olor a almendras amargas.
+! Desacopladores: ↑ consumo de O₂, ↓ ATP, ↑ temperatura.
++ **Intoxicación por cianuro** (humo de incendios, nitroprusiato): tratamiento con hidroxocobalamina.
++ Miopatías mitocondriales (herencia materna): fibras rojas rasgadas en la biopsia muscular (MELAS, MERRF).
+? Productos de una vuelta del ciclo de Krebs :: 3 NADH, 1 FADH₂, 1 GTP y 2 CO₂.
+? Enzima limitante del ciclo de Krebs :: Isocitrato deshidrogenasa.
+? Complejo inhibido por el cianuro :: Complejo IV (citocromo c oxidasa).
+? Qué hace un desacoplador :: Disipa el gradiente de H⁺: más consumo de O₂ y calor, menos ATP.
+? Complejo que es también enzima del ciclo de Krebs :: Complejo II (succinato deshidrogenasa).
+Q Bombero rescatado de un incendio con acidosis láctica grave y saturación venosa de O₂ alta. Sospecha: :: *Intoxicación por cianuro :: Hipoventilación :: Anemia aguda :: Deficiencia de tiamina || El cianuro impide usar el O₂ (complejo IV): la sangre venosa conserva O₂ y se produce lactato.
+Q El 2,4-dinitrofenol produce pérdida de peso e hipertermia porque: :: *Desacopla la cadena respiratoria de la síntesis de ATP :: Inhibe el complejo I :: Bloquea la ATP sintasa :: Inhibe la glucólisis || La energía del gradiente se libera como calor.
+Q ¿Cuántos ATP rinde aproximadamente la oxidación completa de una glucosa? :: *30–32 :: 2 :: 12 :: 129 || 2 de glucólisis + 2 GTP de Krebs + los obtenidos de 10 NADH y 2 FADH₂ en la cadena respiratoria.
+
+# Lípidos: oxidación, cetonas, colesterol y lipoproteínas
+> Los ácidos grasos son la mayor reserva de energía; el colesterol forma membranas, hormonas y bilis.
+- **Síntesis de ácidos grasos** (citosol, hígado): acetil-CoA → malonil-CoA por **acetil-CoA carboxilasa** (limitante; requiere biotina; insulina la activa). Necesita NADPH.
+- **β-oxidación** (mitocondria): los ácidos grasos de cadena larga entran con la **carnitina** (carnitina palmitoiltransferasa I, inhibida por malonil-CoA). Cada vuelta: 1 FADH₂, 1 NADH, 1 acetil-CoA.
+- **Cuerpos cetónicos** (hígado, ayuno prolongado/diabetes): acetoacetato y β-hidroxibutirato; los usan cerebro (en ayuno) y músculo; el hígado no los usa.
+- Colesterol: enzima limitante **HMG-CoA reductasa** (inhibida por estatinas). Derivados: hormonas esteroideas, ácidos biliares, vitamina D.
+- Lipoproteínas: **quilomicrones** (lípidos de la dieta, apoB-48, apoC-II), **VLDL** (triglicéridos del hígado, apoB-100), **LDL** (colesterol a tejidos, apoB-100 → receptor LDL), **HDL** (transporte inverso de colesterol, apoA-I). **Lipoproteína lipasa** (endotelio, activada por apoC-II) hidroliza triglicéridos.
+| Lipoproteína ¦ Lleva ¦ Apo clave
+| Quilomicrón ¦ Triglicéridos de la dieta ¦ B-48, C-II, E
+| VLDL ¦ Triglicéridos hepáticos ¦ B-100, C-II, E
+| LDL ¦ Colesterol a tejidos ¦ B-100
+| HDL ¦ Colesterol de vuelta al hígado ¦ A-I
+! Malonil-CoA (síntesis) inhibe la carnitina palmitoiltransferasa I (oxidación): no se sintetiza y oxida a la vez.
+! Hipercolesterolemia familiar: defecto del receptor de LDL (autosómica dominante) → xantomas tendinosos e infarto temprano.
++ **Estatinas**: inhiben la HMG-CoA reductasa; efectos adversos: miopatía (CK elevada) y elevación de transaminasas.
++ **Cetoacidosis diabética**: sin insulina, la lipólisis libera ácidos grasos que el hígado convierte en cetonas → acidosis con aliento afrutado.
++ Deficiencia de carnitina o de MCAD: hipoglucemia **hipocetósica** en ayuno.
+? Enzima limitante de la síntesis de colesterol :: HMG-CoA reductasa (blanco de las estatinas).
+? Enzima limitante de la síntesis de ácidos grasos :: Acetil-CoA carboxilasa (biotina).
+? Transportador de ácidos grasos a la mitocondria :: Carnitina (CPT-I, inhibida por malonil-CoA).
+? Órgano que produce cetonas pero no las usa :: Hígado.
+? Apolipoproteína que activa la lipoproteína lipasa :: ApoC-II.
+? Apolipoproteína de la HDL :: ApoA-I.
+Q Niño con hipoglucemia en ayuno sin cetonas en orina tras una gastroenteritis. Sospecha: :: *Defecto de la oxidación de ácidos grasos (MCAD/carnitina) :: Diabetes tipo 1 :: Exceso de glucagón :: Enfermedad de McArdle || Si no se oxidan ácidos grasos, no hay acetil-CoA para cetonas ni energía para la gluconeogénesis.
+Q Paciente con xantomas en el tendón de Aquiles y LDL de 320 mg/dL. Defecto más probable: :: *Receptor de LDL :: Lipoproteína lipasa :: ApoC-II :: ApoA-I || Hipercolesterolemia familiar: el LDL no se capta en el hígado.
+Q ¿Qué transporta los triglicéridos de la dieta desde el intestino? :: *Quilomicrones :: VLDL :: LDL :: HDL || Se forman en el enterocito con apoB-48 y viajan por la linfa.
+
+# Aminoácidos y ciclo de la urea
+> El nitrógeno se elimina como urea en el hígado; los esqueletos de carbono dan energía o glucosa.
+- **Transaminación**: el amino pasa al α-cetoglutarato → glutamato (ALT, AST; requieren **piridoxal fosfato, B6**).
+- **Ciclo de la urea** (hígado; mitocondria + citosol): enzima limitante **carbamoil fosfato sintetasa I** (activada por N-acetilglutamato). Urea = 1 N del amonio + 1 N del aspartato.
+- Amoniaco tóxico para el cerebro: se transporta como glutamina (tejidos) y alanina (músculo, ciclo glucosa-alanina).
+- Aminoácidos **glucogénicos** vs **cetogénicos** (solo cetogénicos: **leucina y lisina**).
+- Derivados: tirosina → dopamina, noradrenalina, adrenalina, melanina, tiroxina; triptófano → serotonina, melatonina, niacina; histidina → histamina; glicina → hemo (con succinil-CoA); arginina → óxido nítrico.
+| Enfermedad ¦ Defecto ¦ Clave
+| Fenilcetonuria ¦ Fenilalanina hidroxilasa (o BH4) ¦ Discapacidad intelectual, olor a ratón, piel clara
+| Alcaptonuria ¦ Homogentisato oxidasa ¦ Orina negra al reposar, ocronosis
+| Jarabe de arce ¦ α-cetoácido deshidrogenasa de cadena ramificada ¦ Orina con olor a azúcar quemado
+| Homocistinuria ¦ Cistationina β-sintasa ¦ Luxación del cristalino hacia abajo, trombosis
+! En la fenilcetonuria la tirosina se vuelve esencial; se detecta con el **tamiz neonatal** y se trata con dieta sin fenilalanina (evitar aspartame).
+! Hiperamonemia: asterixis, vómito, encefalopatía, edema cerebral. Deficiencia de ornitina transcarbamilasa (ligada al X) eleva el **ácido orótico** sin anemia megaloblástica.
++ **Encefalopatía hepática**: el hígado cirrótico no forma urea; se trata con lactulosa (atrapa NH₄⁺ en el colon) y rifaximina.
++ BUN bajo en hepatopatía grave; BUN alto en insuficiencia renal o sangrado digestivo alto (proteína digerida).
+? Enzima limitante del ciclo de la urea :: Carbamoil fosfato sintetasa I (activada por N-acetilglutamato).
+? Vitamina de las transaminasas :: Piridoxina (B6) como piridoxal fosfato.
+? Aminoácidos solo cetogénicos :: Leucina y lisina.
+? Precursores del grupo hemo :: Glicina + succinil-CoA (enzima ALA sintasa, requiere B6).
+? Neurotransmisor derivado del triptófano :: Serotonina (también melatonina y niacina).
+Q Recién nacido con olor a ratón en la orina, piel y cabello claros y retraso del desarrollo. Enzima deficiente: :: *Fenilalanina hidroxilasa :: Homogentisato oxidasa :: Cistationina β-sintasa :: Tirosinasa || Fenilcetonuria: se acumulan fenilcetonas; la tirosina (precursor de melanina) disminuye.
+Q ¿Cómo viaja el amoniaco desde el músculo al hígado? :: *Como alanina (ciclo glucosa-alanina) :: Como urea :: Como amoniaco libre unido a albúmina :: Como creatinina || El músculo transamina piruvato a alanina; el hígado regresa el nitrógeno a la urea y el carbono a glucosa.
+Q Paciente cirrótico con confusión y asterixis. ¿Qué sustancia se acumula? :: *Amoniaco :: Urea :: Ácido úrico :: Creatinina || El hígado no detoxifica el amonio por el ciclo de la urea.
+
+# Vitaminas y coenzimas
+> Hidrosolubles (complejo B y C) se eliminan en orina; liposolubles (A, D, E, K) se almacenan.
+- **B1 tiamina** (TPP): piruvato DH, α-cetoglutarato DH, transcetolasa. Déficit: beriberi, **Wernicke-Korsakoff**.
+- **B2 riboflavina** (FAD, FMN): queilosis, estomatitis angular. **B3 niacina** (NAD⁺): **pelagra** (dermatitis, diarrea, demencia). **B5** (CoA). **B6** (PLP): transaminación, síntesis de neurotransmisores y hemo; déficit con isoniazida (neuropatía, anemia sideroblástica).
+- **B9 folato** y **B12 cobalamina**: síntesis de ADN → anemia **megaloblástica**. B12 da además daño neurológico (degeneración combinada subaguda) y ↑ ácido metilmalónico; el folato no.
+- **Vitamina C**: hidroxilación de colágeno, absorción de hierro → escorbuto.
+- **A**: visión (rodopsina), epitelios → ceguera nocturna, xeroftalmia. **D**: absorción de Ca²⁺ → raquitismo/osteomalacia. **E**: antioxidante → anemia hemolítica, neuropatía. **K**: carboxilación de factores **II, VII, IX, X**, proteína C y S → sangrado (recién nacido).
+! B12 vs folato: ambos dan anemia megaloblástica con ↑ homocisteína; **solo B12** eleva el ácido metilmalónico y da síntomas neurológicos.
+! Al recién nacido se le aplica vitamina K porque su intestino es estéril y la leche materna tiene poca.
++ **Ácido fólico preconcepcional** (0.4 mg/día) reduce defectos del tubo neural.
++ Anemia perniciosa: anticuerpos contra factor intrínseco/células parietales → déficit de B12.
++ La warfarina antagoniza la vitamina K (inhibe la epóxido reductasa).
+? Vitamina deficiente en Wernicke :: Tiamina (B1).
+? Tríada de la pelagra :: Dermatitis, diarrea y demencia (déficit de niacina, B3).
+? Factores que dependen de la vitamina K :: II, VII, IX y X, más proteínas C y S.
+? Diferencia de laboratorio entre déficit de B12 y de folato :: El ácido metilmalónico solo se eleva en el déficit de B12.
+? Vitamina que se agota con isoniazida :: Piridoxina (B6).
+Q Alcohólico con confusión, oftalmoplejía y ataxia. ¿Qué das primero? :: *Tiamina intravenosa :: Glucosa al 50 % :: Ácido fólico :: Vitamina B12 || Encefalopatía de Wernicke: dar tiamina antes que glucosa evita empeorarla.
+Q Paciente con anemia megaloblástica, parestesias y pérdida de la sensibilidad vibratoria. Déficit de: :: *Vitamina B12 :: Ácido fólico :: Hierro :: Vitamina B6 || La B12 se requiere para la mielina (metilmalonil-CoA mutasa); el folato no da síntomas neurológicos.
+Q La ceguera nocturna es el signo temprano del déficit de: :: *Vitamina A :: Vitamina D :: Vitamina E :: Vitamina K || El retinal forma la rodopsina de los bastones.
+
+# Integración metabólica y química sanguínea
+> Insulina (alimentado) y glucagón (ayuno) deciden qué vías se encienden.
+- **Estado alimentado** (insulina): glucólisis, glucogénesis, síntesis de ácidos grasos y proteínas; entrada de glucosa por **GLUT4** a músculo y tejido adiposo.
+- **Ayuno temprano** (glucagón, adrenalina): glucogenólisis hepática (reservas para ~24 h). **Ayuno prolongado**: gluconeogénesis (lactato, alanina, glicerol), lipólisis y cetogénesis; el cerebro adapta su uso de cetonas.
+- Transportadores: GLUT1 (eritrocito, BHE), GLUT2 (hígado, célula β, riñón, intestino; bidireccional), GLUT3 (neuronas), GLUT4 (músculo y adiposo, dependiente de insulina).
+- Valores de referencia (adulto, aproximados): **glucosa en ayuno 70–99 mg/dL**; **urea/BUN 7–20 mg/dL**; **creatinina 0.6–1.2 mg/dL**; **ácido úrico 3.5–7 mg/dL**; **colesterol total < 200 mg/dL**; **triglicéridos < 150 mg/dL**; **HbA1c < 5.7 %**.
+- Diagnóstico de diabetes (ADA): glucosa en ayuno **≥ 126 mg/dL**, HbA1c **≥ 6.5 %**, glucosa 2 h poscarga de 75 g **≥ 200 mg/dL** o glucosa al azar ≥ 200 con síntomas. Prediabetes: ayuno 100–125, HbA1c 5.7–6.4 %.
+! La insulina es la única hormona hipoglucemiante; glucagón, adrenalina, cortisol y GH son contrarreguladoras.
+! GLUT4 es el único transportador que depende de insulina.
++ HbA1c refleja la glucemia promedio de ~3 meses (vida del eritrocito); falla en anemias hemolíticas.
++ Gota: hiperuricemia por exceso de producción o baja excreción; cristales de urato monosódico con birrefringencia negativa.
+? Transportador de glucosa dependiente de insulina :: GLUT4 (músculo y tejido adiposo).
+? Criterio de diabetes por glucosa en ayuno :: ≥ 126 mg/dL (en dos ocasiones).
+? HbA1c diagnóstica de diabetes :: ≥ 6.5 %.
+? Fuente de glucosa en las primeras 24 h de ayuno :: Glucogenólisis hepática.
+? Hormonas contrarreguladoras de la insulina :: Glucagón, adrenalina, cortisol y hormona de crecimiento.
+Q Paciente con glucosa en ayuno de 112 mg/dL y HbA1c de 6.0 %. Clasificación: :: *Prediabetes :: Diabetes mellitus :: Normal :: Diabetes gestacional || Ayuno 100–125 mg/dL y HbA1c 5.7–6.4 % definen prediabetes.
+Q En el ayuno de 3 días, ¿cuál es la principal fuente de glucosa? :: *Gluconeogénesis hepática :: Glucógeno muscular :: Glucógeno hepático :: Ácidos grasos de cadena par || El glucógeno hepático se agota en ~24 h; después domina la gluconeogénesis.
+Q ¿En qué paciente la HbA1c puede salir falsamente baja? :: *Anemia hemolítica :: Anemia ferropénica sin tratamiento :: Esplenectomía reciente :: Insuficiencia renal crónica con eritrocitos longevos || Eritrocitos de vida corta tienen menos tiempo para glucosilarse.

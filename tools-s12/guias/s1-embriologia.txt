@@ -1,0 +1,187 @@
+@id embriologia-genetica
+@sem 1
+@orden 4
+@title Embriología y Genética
+@materia Embriología y Genética
+@codigo EG
+@color #3d63b3
+@icon embrio
+@sub Gametogénesis · Semanas 1 a 8 · Periodo fetal y placenta · Teratología · Herencia · Cromosomas
+@desc Del gameto al feto semana por semana, los derivados de cada capa germinal, los teratógenos y la genética clínica: patrones de herencia y cromosomopatías.
+@kw embriologia genetica gametogenesis meiosis fecundacion implantacion blastocisto gastrulacion notocorda neurulacion somitas ectodermo mesodermo endodermo placenta teratogenos herencia autosomica dominante recesiva ligada x cromosomas trisomia down turner klinefelter cariotipo
+
+# Gametogénesis y fecundación
+> La meiosis reduce los cromosomas a 23 y mezcla la información genética.
+- **Meiosis I** (reduccional: separa homólogos; entrecruzamiento en profase I) y **meiosis II** (ecuacional: separa cromátidas).
+- **Espermatogénesis**: inicia en la pubertad, ~64–74 días; 1 espermatocito primario → **4 espermatozoides**. Capacitación en el tracto femenino; reacción acrosómica al contactar la zona pelúcida.
+- **Ovogénesis**: los ovocitos primarios se forman antes del nacimiento y quedan detenidos en **profase I** hasta la pubertad; en cada ciclo uno completa la meiosis I (ovocito secundario + 1.er cuerpo polar) y se detiene en **metafase II** hasta la fecundación. Resultado: 1 óvulo + cuerpos polares.
+- **Fecundación** en la **ampolla** de la trompa: paso de la corona radiada → zona pelúcida (ZP3) → fusión de membranas → **reacción cortical** (bloqueo de la polispermia) → el ovocito termina la meiosis II → pronúcleos → cigoto (2n).
+! Ovocito detenido en **profase I** desde la vida fetal hasta la ovulación, y en **metafase II** hasta la fecundación.
+! La no disyunción materna en meiosis I aumenta con la edad (mayoría de los casos de trisomía 21).
++ Edad materna avanzada (≥ 35 años) → más riesgo de aneuploidías; se ofrece tamizaje prenatal.
++ La fecundación in vitro con ICSI se usa en infertilidad masculina grave.
+? Fase en que se detiene el ovocito primario :: Profase I (diploteno) hasta la pubertad.
+? Fase en que se detiene el ovocito secundario :: Metafase II hasta la fecundación.
+? Sitio habitual de fecundación :: Ampolla de la trompa uterina.
+? Evento que impide la polispermia :: Reacción cortical (y de zona).
+? Duración aproximada de la espermatogénesis :: 64–74 días.
+Q ¿Cuántos gametos funcionales produce un ovocito primario? :: *Uno :: Dos :: Cuatro :: Ocho || Las divisiones son asimétricas: un óvulo y cuerpos polares.
+Q La mayoría de las trisomías 21 se deben a: :: *No disyunción materna en meiosis I :: No disyunción paterna en meiosis II :: Translocación robertsoniana :: Mosaicismo || El riesgo aumenta con la edad materna.
+
+# Primera y segunda semanas: segmentación, implantación y disco bilaminar
+> Semana 1: del cigoto al blastocisto. Semana 2: "semana de los dos".
+- **Segmentación**: blastómeras → **mórula** (16 células, día 3) → **blastocisto** (día 4–5): **embrioblasto** (masa celular interna → embrión) y **trofoblasto** (→ placenta).
+- **Implantación** inicia el día **6–7** en la pared posterior/superior del útero (endometrio en fase secretora).
+- Semana 2 ("regla de los dos"): trofoblasto → **citotrofoblasto** y **sincitiotrofoblasto** (invade y produce **hCG**); embrioblasto → **epiblasto** e **hipoblasto** (disco bilaminar); 2 cavidades: **amniótica** y saco vitelino; mesodermo extraembrionario.
+- La **hCG** mantiene el cuerpo lúteo (progesterona) hasta que la placenta toma el relevo (~semana 10–12); se detecta en sangre ~día 8–10 tras la fecundación.
+! Sincitiotrofoblasto = hCG; la prueba de embarazo detecta su subunidad β.
+! El epiblasto da origen a las tres capas germinales del embrión.
++ **Embarazo ectópico**: implantación fuera del útero (95 % en trompa, sobre todo ampolla); dolor, sangrado y hCG que no se duplica.
++ **Enfermedad trofoblástica (mola)**: proliferación del trofoblasto con hCG muy elevada.
+? Día de la implantación :: Día 6–7 tras la fecundación.
+? Capa que produce hCG :: Sincitiotrofoblasto.
+? Componentes del disco bilaminar :: Epiblasto e hipoblasto.
+? Función de la hCG :: Mantener el cuerpo lúteo y su producción de progesterona.
+Q Mujer con amenorrea de 7 semanas, dolor abdominal y sangrado; útero vacío en ultrasonido y hCG positiva. Diagnóstico más probable: :: *Embarazo ectópico :: Aborto completo :: Mola hidatiforme :: Embarazo normal temprano || Con hCG suficientemente alta y útero vacío hay que descartar ectópico (sitio más común: ampolla).
+Q ¿Qué estructura del blastocisto forma al embrión? :: *Embrioblasto (masa celular interna) :: Trofoblasto :: Zona pelúcida :: Sincitiotrofoblasto || El trofoblasto forma la parte fetal de la placenta.
+
+# Tercera semana: gastrulación y neurulación
+> Semana 3: "semana de los tres" → tres capas germinales.
+- **Línea primitiva** (día 15) en el epiblasto: las células migran y forman **endodermo**, **mesodermo** y el resto queda como **ectodermo** (gastrulación).
+- **Notocorda** (del nodo primitivo): induce la placa neural y da el **núcleo pulposo** del disco intervertebral.
+- **Neurulación**: placa neural → pliegues → **tubo neural** (cierre del neuroporo craneal ~día 25 y caudal ~día 27–28). **Crestas neurales** migran y forman múltiples derivados.
+- Mesodermo: paraxial (**somitas**: esclerotomo → vértebras; miotomo → músculo; dermatomo → dermis), intermedio (aparato urogenital) y lateral (somático y esplácnico: serosas, corazón, vasos).
+| Capa ¦ Derivados principales
+| Ectodermo superficial ¦ Epidermis, pelo, uñas, cristalino, esmalte dental, adenohipófisis
+| Neuroectodermo ¦ Encéfalo, médula, retina, neurohipófisis
+| Cresta neural ¦ Melanocitos, médula suprarrenal, ganglios, células de Schwann, odontoblastos, huesos de la cara
+| Mesodermo ¦ Músculo, hueso, cartílago, corazón, vasos, sangre, riñón, gónadas, corteza suprarrenal
+| Endodermo ¦ Epitelio del tubo digestivo y respiratorio, hígado, páncreas, tiroides, vejiga
+! **Defectos del tubo neural** por falta de cierre: espina bífida, anencefalia; **α-fetoproteína elevada** en líquido amniótico y suero materno. Prevención: **ácido fólico**.
+! La notocorda persiste como el **núcleo pulposo**.
++ **Teratoma sacrococcígeo**: restos de la línea primitiva.
++ **Enfermedad de Hirschsprung**: falla de migración de la cresta neural al colon distal (sin ganglios) → megacolon y retraso en la expulsión del meconio.
+? Evento que define la semana 3 :: Gastrulación (formación de las tres capas germinales a partir del epiblasto).
+? Derivado adulto de la notocorda :: Núcleo pulposo del disco intervertebral.
+? Capa que forma la médula suprarrenal :: Cresta neural.
+? Capa que forma el epitelio del tubo digestivo :: Endodermo.
+? Marcador elevado en defectos del tubo neural :: α-fetoproteína.
+? Componentes de la somita :: Esclerotomo (vértebras), miotomo (músculo) y dermatomo (dermis).
+Q ¿Qué estructura deriva de la cresta neural? :: *Melanocitos :: Cristalino :: Retina :: Adenohipófisis || Melanocitos, médula suprarrenal, ganglios periféricos, células de Schwann y huesos faciales vienen de la cresta neural.
+Q Recién nacido sin expulsión de meconio a las 48 h; biopsia rectal sin células ganglionares. Mecanismo: :: *Falla de migración de la cresta neural :: Defecto del cierre del tubo neural :: Persistencia de la notocorda :: Atresia del endodermo || Enfermedad de Hirschsprung (aganglionosis).
+
+# Semanas 4 a 8: periodo embrionario
+> Organogénesis: el periodo de mayor susceptibilidad a teratógenos.
+- **Plegamiento** cefalocaudal y lateral: el embrión toma forma cilíndrica; se forman intestino anterior, medio y posterior.
+- Semana 4: el **corazón late** (~día 22); arcos faríngeos; esbozos de extremidades superiores. Semana 5–6: extremidades inferiores; formación de la cara. Semana 8: rasgos humanos reconocibles.
+- **Arcos faríngeos** (1, 2, 3, 4, 6) con cartílago, músculo, nervio y arteria: 1.º trigémino (V, músculos de la masticación, martillo y yunque), 2.º facial (VII, músculos de la expresión, estribo), 3.º glosofaríngeo (IX), 4.º y 6.º vago (X, laringe).
+- Bolsas faríngeas: 1.ª oído medio; 2.ª amígdala palatina; 3.ª **timo y paratiroides inferiores**; 4.ª paratiroides superiores y células C.
+- Circulación fetal: el oxígeno llega por la **vena umbilical** → conducto venoso → VCI → AD → **foramen oval** → AI; y de la arteria pulmonar por el **conducto arterioso** a la aorta.
+! Periodo embrionario (semanas 3–8) = organogénesis = máxima sensibilidad a teratógenos.
+! El **síndrome de DiGeorge** (deleción 22q11) afecta la 3.ª y 4.ª bolsa: sin timo (inmunodeficiencia T) ni paratiroides (hipocalcemia) más cardiopatía.
++ **Labio y paladar hendido**: falla de fusión de procesos faciales.
++ **Persistencia del conducto arterioso**: soplo continuo en "maquinaria"; se cierra con indometacina; se mantiene abierto con prostaglandina E1.
+? Día en que empieza a latir el corazón :: ≈ día 22 (semana 4).
+? Nervio del 1.er arco faríngeo :: Trigémino (V).
+? Derivados de la 3.ª bolsa faríngea :: Timo y paratiroides inferiores.
+? Fármaco para cerrar el conducto arterioso :: Indometacina (o ibuprofeno).
+? Derivado adulto del conducto arterioso :: Ligamento arterioso.
+Q Lactante con hipocalcemia, infecciones recurrentes y tronco arterioso. Estructuras afectadas: :: *3.ª y 4.ª bolsas faríngeas :: 1.er y 2.º arcos :: Notocorda :: Cresta neural del tronco || Síndrome de DiGeorge (22q11.2).
+Q ¿Por dónde pasa la sangre de la aurícula derecha a la izquierda en el feto? :: *Foramen oval :: Conducto venoso :: Conducto arterioso :: Arterias umbilicales || Se cierra funcionalmente al nacer por el aumento de la presión en la aurícula izquierda.
+
+# Periodo fetal, placenta y anexos
+> De la semana 9 al nacimiento: crecimiento y maduración.
+- Periodo fetal: crecimiento rápido; movimientos fetales percibidos ~semanas 16–20; surfactante desde ~24–28 semanas; viabilidad ~22–24 semanas.
+- **Placenta**: parte fetal (corion frondoso) + parte materna (**decidua basal**). Barrera: sincitiotrofoblasto, citotrofoblasto (disminuye), tejido conjuntivo y endotelio fetal.
+- Funciones: intercambio de gases y nutrientes, hormonas (**hCG, lactógeno placentario, progesterona, estrógenos**), paso de **IgG** materna (inmunidad pasiva).
+- **Cordón umbilical**: **2 arterias** (sangre desoxigenada hacia la placenta) y **1 vena** (sangre oxigenada al feto), en gelatina de Wharton.
+- **Líquido amniótico**: protección y desarrollo pulmonar; se recicla por deglución fetal y orina fetal.
+! Arteria umbilical única se asocia a malformaciones renales y cardiacas.
+! **Oligohidramnios** → problema renal fetal (agenesia renal, secuencia de Potter); **polihidramnios** → el feto no deglute (atresia esofágica, anencefalia).
++ La IgG cruza la placenta: protege al recién nacido, pero también causa enfermedad hemolítica (anti-D) o lupus neonatal.
++ **Placenta previa** (sangrado indoloro) vs **desprendimiento de placenta** (sangrado doloroso con útero hipertónico).
+? Vasos del cordón umbilical :: 2 arterias y 1 vena.
+? Inmunoglobulina que cruza la placenta :: IgG.
+? Causa clásica de oligohidramnios :: Agenesia renal bilateral (secuencia de Potter).
+? Causa clásica de polihidramnios :: Atresia esofágica o anencefalia (el feto no deglute).
+? Componente materno de la placenta :: Decidua basal.
+Q ¿Qué vaso lleva sangre oxigenada al feto? :: *Vena umbilical :: Arterias umbilicales :: Arteria pulmonar :: Vena cava superior || La vena umbilical va de la placenta al feto (al hígado y conducto venoso).
+Q Ultrasonido con polihidramnios en el 3.er trimestre. Malformación a buscar: :: *Atresia esofágica :: Agenesia renal :: Valvas uretrales posteriores :: Hipoplasia pulmonar || Si el feto no deglute, el líquido amniótico se acumula.
+
+# Teratología
+> Agentes que alteran el desarrollo; el momento de exposición define el efecto.
+- Semanas 1–2: "todo o nada" (muerte o recuperación completa). Semanas **3–8**: malformaciones mayores. Periodo fetal: alteraciones funcionales y de crecimiento.
+- Infecciones **TORCH**: toxoplasma, otros (sífilis, varicela, parvovirus, zika), rubéola, citomegalovirus, herpes.
+| Teratógeno ¦ Efecto
+| Alcohol ¦ Síndrome alcohólico fetal: filtrum liso, labio superior delgado, microcefalia, discapacidad intelectual
+| Isotretinoína (vitamina A) ¦ Malformaciones craneofaciales, cardiacas y del SNC
+| Talidomida ¦ Focomelia
+| Valproato ¦ Defectos del tubo neural
+| Warfarina ¦ Hipoplasia nasal, epífisis punteadas
+| IECA ¦ Lesión renal fetal, oligohidramnios
+| Tetraciclinas ¦ Tinción de dientes, alteración ósea
+| Litio ¦ Anomalía de Ebstein
+| Rubéola ¦ Cataratas, sordera, persistencia del conducto arterioso
+| Citomegalovirus ¦ Calcificaciones periventriculares, sordera (infección congénita más común)
+| Toxoplasma ¦ Hidrocefalia, calcificaciones difusas, coriorretinitis
+! El alcohol es la principal causa prevenible de discapacidad intelectual.
+! En embarazo, cambiar warfarina por heparina; los IECA están contraindicados.
++ Antes de prescribir isotretinoína se exige prueba de embarazo negativa y anticoncepción.
++ El **citomegalovirus** congénito es la causa infecciosa más común de sordera neurosensorial.
+? Teratógeno que causa focomelia :: Talidomida.
+? Teratógeno que causa anomalía de Ebstein :: Litio.
+? Infección congénita más común :: Citomegalovirus.
+? Periodo de "todo o nada" :: Semanas 1–2 tras la fecundación.
+? Rasgos faciales del síndrome alcohólico fetal :: Filtrum liso, labio superior delgado, fisuras palpebrales cortas, microcefalia.
+Q Recién nacido con cataratas, sordera y soplo continuo. Infección materna más probable: :: *Rubéola :: Toxoplasmosis :: Citomegalovirus :: Sífilis || Tríada de rubéola congénita: cataratas, sordera y cardiopatía (conducto arterioso).
+Q Mujer epiléptica que desea embarazarse. ¿Qué fármaco aumenta el riesgo de espina bífida? :: *Ácido valproico :: Levetiracetam :: Lamotrigina :: Fenobarbital en dosis bajas || El valproato es el antiepiléptico más teratógeno (tubo neural); se da ácido fólico en dosis altas.
+
+# Herencia mendeliana y patrones
+> Cómo se transmite un rasgo según el gen esté en un autosoma o en el cromosoma X.
+- Conceptos: **gen**, **alelo**, **locus**, **genotipo** vs **fenotipo**, homocigoto/heterocigoto, **penetrancia** (proporción de portadores que expresan), **expresividad variable** (grado de expresión), **pleiotropía** (un gen, muchos efectos), **anticipación** (más grave en cada generación: expansión de tripletes).
+- **Autosómica dominante**: afecta a ambos sexos, aparece en todas las generaciones, 50 % de riesgo para cada hijo de un afectado. Suelen ser defectos de proteínas estructurales.
+- **Autosómica recesiva**: padres portadores sanos, 25 % de riesgo; consanguinidad; suelen ser defectos enzimáticos.
+- **Recesiva ligada al X**: casi solo varones; no hay transmisión de padre a hijo; las hijas de un varón afectado son portadoras.
+- **Dominante ligada al X**: un padre afectado transmite a todas sus hijas y a ningún hijo (raquitismo hipofosfatémico).
+- **Mitocondrial**: solo la madre transmite; heteroplasmia.
+- **Imprinting**: deleción 15q11-13 paterna = Prader-Willi; materna = Angelman.
+| Patrón ¦ Ejemplos
+| Autosómico dominante ¦ Marfan, acondroplasia, neurofibromatosis, Huntington, hipercolesterolemia familiar, poliquistosis renal del adulto
+| Autosómico recesivo ¦ Fibrosis quística, anemia falciforme, fenilcetonuria, hemocromatosis, enfermedad de Wilson
+| Recesivo ligado al X ¦ Hemofilia A y B, Duchenne, deficiencia de G6PD, daltonismo
+| Mitocondrial ¦ Neuropatía óptica de Leber, MELAS, MERRF
+! Expansión de tripletes con anticipación: **Huntington (CAG)**, distrofia miotónica (CTG), X frágil (CGG), ataxia de Friedreich (GAA, sin anticipación por ser recesiva).
+! Fibrosis quística: gen **CFTR** (cromosoma 7), mutación más común **ΔF508**; prueba de cloruro en sudor.
++ El **asesoramiento genético** calcula riesgos: dos portadores de una AR tienen 25 % de hijos afectados y 2/3 de probabilidad de portador en un hijo sano.
++ **Tamiz neonatal** en México detecta fenilcetonuria, hipotiroidismo congénito, galactosemia, hiperplasia suprarrenal congénita, fibrosis quística, entre otras.
+? Herencia de la fibrosis quística :: Autosómica recesiva (gen CFTR, cromosoma 7, ΔF508).
+? Herencia de la hemofilia A :: Recesiva ligada al X (factor VIII).
+? Definición de penetrancia incompleta :: No todos los portadores del genotipo expresan el fenotipo.
+? Herencia mitocondrial: quién transmite :: Solo la madre a todos sus hijos.
+? Prader-Willi vs Angelman :: Deleción 15q11-13 paterna = Prader-Willi; materna = Angelman (imprinting).
+? Enfermedad por expansión CAG con anticipación :: Huntington.
+Q Un varón con hemofilia A y una mujer no portadora tienen hijos. ¿Qué esperas? :: *Todas las hijas portadoras y ningún hijo afectado :: 50 % de hijos afectados :: Todos los hijos afectados :: 25 % de hijos de ambos sexos afectados || El padre da su X a las hijas y su Y a los hijos.
+Q Dos padres sanos tienen un hijo con fibrosis quística. Riesgo para el siguiente embarazo: :: *25 % :: 50 % :: 100 % :: 0 % || Ambos son portadores heterocigotos: ¼ afectado, ½ portador, ¼ sano.
+Q Un rasgo afecta a varias generaciones, a ambos sexos y hay transmisión de padre a hijo varón. Patrón: :: *Autosómico dominante :: Recesivo ligado al X :: Mitocondrial :: Autosómico recesivo || La transmisión varón-varón descarta herencia ligada al X.
+
+# Cromosomas y alteraciones cromosómicas
+> El cariotipo humano normal es 46,XX o 46,XY.
+- **Cariotipo**: análisis de cromosomas en metafase (bandeo G). **FISH** para deleciones pequeñas; **microarreglos** para variantes de número de copias.
+- Alteraciones numéricas (**aneuploidías**) por **no disyunción**; estructurales: deleciones, duplicaciones, inversiones, translocaciones (recíprocas y **robertsonianas**, entre acrocéntricos 13, 14, 15, 21, 22).
+- **Trisomía 21 (Down)**: la más frecuente compatible con la vida; discapacidad intelectual, fisuras palpebrales oblicuas, pliegue palmar único, **defecto del canal auriculoventricular**, atresia duodenal, leucemia, Alzheimer temprano. Tamiz del 1.er trimestre: ↑ translucencia nucal, ↑ β-hCG, ↓ PAPP-A.
+- **Trisomía 18 (Edwards)**: puños cerrados con dedos superpuestos, pies en mecedora, micrognatia. **Trisomía 13 (Patau)**: labio/paladar hendido, polidactilia, holoprosencefalia, microftalmia.
+- **Turner (45,X)**: talla baja, cuello alado, linfedema neonatal, **coartación aórtica**, válvula aórtica bicúspide, disgenesia gonadal (amenorrea primaria), riñón en herradura.
+- **Klinefelter (47,XXY)**: varón alto, testículos pequeños, ginecomastia, infertilidad (azoospermia), hipogonadismo hipergonadotrópico.
+! Translocación robertsoniana 14;21 en un padre → riesgo de Down familiar, independiente de la edad materna.
+! **Corpúsculo de Barr** = X inactivo: hay uno en Klinefelter (XXY) y ninguno en Turner (45,X).
++ Síndrome de **X frágil**: causa hereditaria más común de discapacidad intelectual; macroorquidismo, orejas grandes, mandíbula prominente.
++ **Cri du chat** (deleción 5p): llanto como de gato, microcefalia y discapacidad intelectual.
+? Cariotipo del síndrome de Turner :: 45,X.
+? Cardiopatía típica del síndrome de Down :: Defecto del canal auriculoventricular (tabique AV).
+? Cardiopatía típica del síndrome de Turner :: Coartación de la aorta (y aorta bicúspide).
+? Tamiz del 1.er trimestre en Down :: ↑ translucencia nucal, ↑ β-hCG libre, ↓ PAPP-A.
+? Causa hereditaria más común de discapacidad intelectual :: Síndrome de X frágil.
+? Cromosomas que participan en translocaciones robertsonianas :: Acrocéntricos: 13, 14, 15, 21 y 22.
+Q Recién nacida con linfedema de manos y pies y cuello alado. Prueba diagnóstica: :: *Cariotipo :: Prueba de sudor :: Tamiz metabólico :: Electroforesis de hemoglobina || Sospecha de Turner (45,X); se confirma con cariotipo.
+Q Recién nacido con puños cerrados con dedos superpuestos, pies en mecedora y micrognatia. Diagnóstico probable: :: *Trisomía 18 :: Trisomía 13 :: Trisomía 21 :: Monosomía X || Edwards: puños cerrados con dedos superpuestos y pies en mecedora.
+Q Varón de 17 años, alto, con ginecomastia y testículos pequeños. FSH y LH altas. Cariotipo esperado: :: *47,XXY :: 45,X :: 46,XY con deleción del Y :: 47,XYY || Klinefelter: hipogonadismo hipergonadotrópico.

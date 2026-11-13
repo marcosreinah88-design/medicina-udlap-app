@@ -1,0 +1,220 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Biología Celular y Molecular</title>
+<link rel="stylesheet" href="../../fonts/g973afc81ad.css">
+<style>
+/* Guía de estudio de 1º/2º semestre: resumen por tema (temario, alto rendimiento, correlación clínica), tarjetas y examen. */
+:root{
+  --bg:#f5f3ee; --paper:#fff; --sunk:#ece8df; --ink:#17201c; --muted:#5d6762; --line:#ddd7cb;
+  --c:#2e7d4f; --c-soft:color-mix(in srgb,var(--c) 11%,var(--paper)); --c-ink:color-mix(in srgb,var(--c) 82%,#000);
+  --hy:#f26b21; --hy-soft:#fff1e8; --cl:#00573c; --cl-soft:#e6f2ec; --ok:#1d7a4c; --bad:#b3261e;
+  --f-d:"Newsreader",Georgia,serif; --f-b:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --f-m:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1412; --paper:#171e1b; --sunk:#1f2824; --ink:#e7eeea; --muted:#9daba4; --line:#2b3732;
+  --c-soft:color-mix(in srgb,var(--c) 22%,var(--paper)); --c-ink:color-mix(in srgb,var(--c) 45%,#fff);
+  --hy-soft:#3a2418; --cl:#7fd3a8; --cl-soft:#16302a; --ok:#6fd39c; --bad:#ff8a80; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1412; --paper:#171e1b; --sunk:#1f2824; --ink:#e7eeea; --muted:#9daba4; --line:#2b3732;
+  --c-soft:color-mix(in srgb,var(--c) 22%,var(--paper)); --c-ink:color-mix(in srgb,var(--c) 45%,#fff);
+  --hy-soft:#3a2418; --cl:#7fd3a8; --cl-soft:#16302a; --ok:#6fd39c; --bad:#ff8a80; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--f-b);-webkit-font-smoothing:antialiased}
+button,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--hy);outline-offset:2px}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.in{max-width:1120px;margin:0 auto}
+b,strong{font-weight:700}
+/* encabezado */
+header.hero{background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 60%,#000));color:#fff;padding-top:calc(40px + env(safe-area-inset-top,0px));padding-bottom:26px;position:relative;overflow:hidden}
+header.hero::after{content:attr(data-code);position:absolute;right:-6px;bottom:-34px;font:800 9rem/1 var(--f-d);opacity:.12;letter-spacing:-.04em;pointer-events:none}
+.kick{font:500 .74rem var(--f-m);letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin:0 0 10px}
+h1{font:700 clamp(2rem,5.4vw,3.2rem)/1.05 var(--f-d);margin:0;letter-spacing:-.015em;text-wrap:balance}
+.lede{margin:12px 0 0;max-width:62ch;opacity:.9}
+.stats{display:flex;flex-wrap:wrap;gap:6px 26px;margin-top:20px;font-size:.88rem;opacity:.92}
+.stats b{font:600 1.15rem var(--f-m);margin-right:6px}
+.nota{margin:18px 0 0;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:9px 13px;font-size:.88rem;max-width:80ch}
+/* pestañas */
+nav.tabs{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+nav.tabs .in{display:flex;gap:4px;overflow-x:auto}
+nav.tabs button{border:0;background:none;padding:13px 14px 11px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--c)}
+/* estudiar */
+.study{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;padding-block:26px 80px}
+.toc{position:sticky;top:64px;align-self:start;max-height:calc(100vh - 80px);overflow:auto;font-size:.9rem}
+.toc p{font:600 .72rem var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.toc a{display:flex;gap:8px;padding:6px 8px;border-radius:8px;color:var(--ink);text-decoration:none;line-height:1.3}
+.toc a span{font:500 .75rem var(--f-m);color:var(--c-ink);min-width:1.6em}
+.toc a:hover,.toc a.on{background:var(--c-soft)}
+.tema{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:22px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.tema .num{font:500 .74rem var(--f-m);letter-spacing:.1em;color:var(--c-ink);text-transform:uppercase}
+.tema h2{font:700 1.6rem/1.15 var(--f-d);margin:4px 0 6px;text-wrap:balance}
+.tema .intro{color:var(--muted);margin:0 0 12px}
+.tema h3{font:700 .78rem var(--f-b);letter-spacing:.09em;text-transform:uppercase;margin:18px 0 8px;color:var(--muted)}
+.tema ul{margin:0;padding-left:1.15em}
+.tema li{margin:4px 0}
+.tema li::marker{color:var(--c)}
+.box{border-radius:12px;padding:12px 16px 12px 16px;margin-top:14px;border-left:4px solid}
+.box h3{margin-top:0!important}
+.box.hy{background:var(--hy-soft);border-color:var(--hy)}
+.box.hy h3{color:var(--hy)}
+.box.cl{background:var(--cl-soft);border-color:var(--cl)}
+.box.cl h3{color:var(--cl)}
+.tbl{overflow-x:auto;margin-top:12px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:420px}
+th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--c-soft);font-weight:700}
+.tmeta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.tmeta button{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:5px 12px;font-size:.85rem;font-weight:600;cursor:pointer}
+.tmeta button:hover{border-color:var(--c)}
+.dag{color:var(--hy);font-weight:700}
+/* tarjetas */
+.pane{padding-block:26px 80px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.bar select{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 10px;max-width:100%}
+.btn{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 14px;font-weight:600;cursor:pointer}
+.btn.pri{background:var(--c);border-color:var(--c);color:#fff}
+.btn:hover{border-color:var(--c)}
+.count{margin-left:auto;font:500 .85rem var(--f-m);color:var(--muted)}
+.card{perspective:1200px;max-width:720px;margin:0 auto;cursor:pointer}
+.card .face{min-height:260px;border-radius:18px;background:var(--paper);border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 10px 30px -18px rgba(0,0,0,.35)}
+.card .lbl{font:500 .72rem var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink);margin-bottom:10px}
+.card .txt{font:600 1.3rem/1.35 var(--f-d)}
+.card .back{border-top:5px solid var(--c)}
+.card .back .txt{font:400 1.05rem/1.55 var(--f-b)}
+.cnav{display:flex;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.btn.ok{border-color:var(--ok);color:var(--ok)}.btn.no{border-color:var(--bad);color:var(--bad)}
+.hint{text-align:center;color:var(--muted);font-size:.85rem;margin-top:10px}
+/* examen */
+.qbox{max-width:760px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px}
+.qtop{display:flex;justify-content:space-between;gap:10px;font:500 .8rem var(--f-m);color:var(--muted);margin-bottom:8px}
+.prog{height:5px;background:var(--sunk);border-radius:9px;overflow:hidden;margin-bottom:18px}.prog i{display:block;height:100%;background:var(--c);width:0}
+.qtxt{font:600 1.2rem/1.4 var(--f-d);margin:0 0 16px}
+.opts{display:grid;gap:9px}
+.opt{border:1.5px solid var(--line);background:var(--bg);border-radius:12px;padding:11px 14px;text-align:left;cursor:pointer;display:flex;gap:10px}
+.opt span{font:600 .85rem var(--f-m);color:var(--c-ink)}
+.opt:hover:not(:disabled){border-color:var(--c)}
+.opt.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--paper))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--paper))}
+.opt:disabled{cursor:default}
+.exp{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--cl-soft);font-size:.95rem}
+.res{text-align:center}
+.res .big{font:700 3.4rem/1 var(--f-d);color:var(--c-ink)}
+.res ul{text-align:left;margin:16px auto 0;max-width:620px}
+footer{color:var(--muted);font-size:.82rem;padding-block:0 40px}
+@media (max-width:820px){.study{grid-template-columns:1fr}.toc{position:static;max-height:none;border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--paper)}
+  .toc .lst{display:grid;grid-template-columns:1fr 1fr;gap:2px}.tema{padding:18px 16px}}
+@media (max-width:480px){.toc .lst{grid-template-columns:1fr}.card .face{min-height:220px;padding:20px}.card .txt{font-size:1.15rem}}
+@media (prefers-reduced-motion:no-preference){.opt,.btn,.toc a{transition:background .15s,border-color .15s}}
+</style></head><body>
+<header class="hero gut" data-code="BCM"><div class="in">
+  <p class="kick" id="kick"></p>
+  <h1 id="ttl"></h1>
+  <p class="lede" id="lede"></p>
+  <div class="stats" id="stats"></div>
+  <p class="nota" id="nota" hidden></p>
+</div></header>
+<nav class="tabs gut" role="tablist" aria-label="Modos"><div class="in">
+  <button role="tab" id="tab-estudiar" aria-controls="panel-estudiar" aria-selected="true">Estudiar</button>
+  <button role="tab" id="tab-tarjetas" aria-controls="panel-tarjetas" aria-selected="false">Tarjetas</button>
+  <button role="tab" id="tab-examen" aria-controls="panel-examen" aria-selected="false">Examen</button>
+</div></nav>
+<main class="gut"><div class="in">
+  <section id="panel-estudiar" role="tabpanel" class="study">
+    <aside class="toc"><p>Temario</p><div class="lst" id="toc"></div></aside>
+    <div id="temas"></div>
+  </section>
+  <section id="panel-tarjetas" role="tabpanel" class="pane" hidden>
+    <div class="bar"><select id="cSel" aria-label="Tema de las tarjetas"></select><button class="btn" id="cMix" type="button">Revolver</button><button class="btn" id="cRep" type="button">Solo las de repasar</button><span class="count" id="cCount"></span></div>
+    <div class="card" id="card" role="button" tabindex="0" aria-label="Voltear tarjeta">
+      <div class="face front" id="cFront"><div class="lbl" id="cLbl"></div><div class="txt" id="cF"></div></div>
+      <div class="face back" id="cBack" hidden><div class="lbl">Respuesta</div><div class="txt" id="cB"></div></div>
+    </div>
+    <p class="hint">Toca la tarjeta o la barra espaciadora para voltearla.</p>
+    <div class="cnav"><button class="btn" id="cPrev" type="button">← Anterior</button><button class="btn no" id="cNo" type="button">Repasar</button><button class="btn ok" id="cOk" type="button">Me la sé</button><button class="btn" id="cNext" type="button">Siguiente →</button></div>
+  </section>
+  <section id="panel-examen" role="tabpanel" class="pane" hidden>
+    <div id="qStart" class="qbox">
+      <p class="qtxt">Examen de práctica</p>
+      <div class="bar"><select id="qSel" aria-label="Tema del examen"></select><select id="qN" aria-label="Número de preguntas"><option value="10">10 preguntas</option><option value="20">20 preguntas</option><option value="0">Todas</option></select><button class="btn pri" id="qGo" type="button">Comenzar</button></div>
+      <p class="hint" style="text-align:left">Opción múltiple con explicación de cada respuesta. Las preguntas y opciones salen en otro orden cada vez.</p>
+    </div>
+    <div id="qRun" class="qbox" hidden>
+      <div class="qtop"><span id="qPos"></span><span id="qTema"></span></div><div class="prog"><i id="qBar"></i></div>
+      <p class="qtxt" id="qQ"></p><div class="opts" id="qO"></div><div class="exp" id="qE" hidden></div>
+      <div class="cnav"><button class="btn pri" id="qNext" type="button" hidden>Siguiente →</button></div>
+    </div>
+    <div id="qEnd" class="qbox res" hidden></div>
+  </section>
+</div></main>
+<footer class="gut"><div class="in" id="foot"></div></footer>
+<script>
+const GUIA={"id":"biologia-celular","title":"Biología Celular y Molecular","kicker":"Segundo semestre · Biología Celular y Molecular","desc":"De la membrana al genoma: organelos, flujo de la información genética, ciclo celular, señales y muerte celular, con las enfermedades y técnicas de laboratorio que salen en examen.","nota":"","temas":[{"t":"Membrana plasmática y organelos","res":["<b>Membrana<\/b>: bicapa de fosfolípidos con colesterol (regula fluidez), proteínas integrales y periféricas, glucocálix. <b>Modelo de mosaico fluido<\/b>.","<b>Núcleo<\/b>: envoltura doble con poros; nucléolo (síntesis de ARN ribosomal).","<b>RER<\/b>: síntesis de proteínas de secreción, membrana y lisosomas; <b>N-glucosilación<\/b>. Abundante en células plasmáticas y acinares del páncreas.","<b>REL<\/b>: síntesis de lípidos y esteroides, detoxificación (citocromo P450), almacén de Ca²⁺ (retículo sarcoplásmico). Abundante en hígado, células de Leydig, corteza suprarrenal.","<b>Aparato de Golgi<\/b>: modifica (O-glucosilación), clasifica y empaca. Marca las enzimas lisosomales con <b>manosa-6-fosfato<\/b>.","<b>Lisosomas<\/b>: hidrolasas ácidas (pH ~5); digestión, autofagia. <b>Peroxisomas<\/b>: β-oxidación de ácidos grasos de cadena muy larga, catalasa (H₂O₂), síntesis de plasmalógenos.","<b>Mitocondria<\/b>: doble membrana, ADN circular propio (herencia materna), fosforilación oxidativa, β-oxidación, ciclo de Krebs; libera citocromo c en la apoptosis.","<b>Proteasoma<\/b>: degrada proteínas marcadas con <b>ubiquitina<\/b>."],"hy":["Golgi + manosa-6-fosfato = dirección lisosomal; sin ella (enfermedad de células I) las enzimas se secretan.","Gaucher es la enfermedad lisosomal más frecuente; Tay-Sachs es más común en judíos asquenazíes."],"cl":["La <b>inducción del citocromo P450<\/b> (rifampicina, carbamazepina, fenitoína) acelera el metabolismo de otros fármacos (p. ej., anticonceptivos orales).","Fármacos que actúan sobre el proteasoma (<b>bortezomib<\/b>) se usan en mieloma múltiple."],"tabla":["Enfermedad¦Defecto¦Clave","Enfermedad de células I¦Falta de manosa-6-fosfato (Golgi)¦Enzimas lisosomales salen al plasma; facies tosca","Tay-Sachs¦Hexosaminidasa A (lisosoma)¦Mancha rojo cereza, sin hepatoesplenomegalia","Gaucher¦Glucocerebrosidasa (lisosoma)¦Células en \"papel arrugado\", hepatoesplenomegalia, dolor óseo","Zellweger / adrenoleucodistrofia¦Peroxisoma¦Acúmulo de ácidos grasos de cadena muy larga"],"cards":[{"f":"Organelo que añade manosa-6-fosfato","b":"Aparato de Golgi."},{"f":"Organelo de la β-oxidación de ácidos grasos de cadena muy larga","b":"Peroxisoma."},{"f":"Organelo abundante en células productoras de esteroides","b":"Retículo endoplásmico liso."},{"f":"Marca para degradar proteínas en el proteasoma","b":"Ubiquitina."},{"f":"Enzima deficiente en Gaucher","b":"Glucocerebrosidasa (β-glucosidasa)."},{"f":"Componente que regula la fluidez de la membrana","b":"Colesterol."}],"quiz":[{"q":"Lactante con facies tosca, rigidez articular y enzimas lisosomales muy altas en plasma. Defecto:","o":["Catalasa peroxisomal","Fosforilación de manosa en el Golgi","Ubiquitina ligasa","Hexosaminidasa A"],"a":1,"e":"Enfermedad de células I: sin manosa-6-fosfato las hidrolasas no llegan al lisosoma."},{"q":"¿Qué organelo predomina en la célula de Leydig?","o":["Retículo endoplásmico liso","Retículo endoplásmico rugoso","Peroxisomas","Lisosomas"],"a":0,"e":"La síntesis de testosterona (esteroides) ocurre en el REL y la mitocondria."}],"intro":"Compartimentos con funciones especializadas."},{"t":"Citoesqueleto y motores moleculares","res":["<b>Microfilamentos (actina, 7 nm)<\/b>: microvellosidades, contracción muscular, anillo contráctil de la citocinesis, migración celular.","<b>Filamentos intermedios (10 nm)<\/b>: resistencia mecánica; marcadores del tipo celular: <b>citoqueratina<\/b> (epitelios), <b>vimentina<\/b> (mesénquima), <b>desmina<\/b> (músculo), <b>GFAP<\/b> (astrocitos), <b>neurofilamentos<\/b> (neuronas), láminas nucleares.","<b>Microtúbulos (25 nm)<\/b>: tubulina α/β; huso mitótico, cilios y flagelos, transporte axonal. Motores: <b>cinesina<\/b> (hacia el extremo +, anterógrado) y <b>dineína<\/b> (hacia el extremo −, retrógrado).","Centrosoma con 2 centriolos (9 tripletes) organiza los microtúbulos."],"hy":["Los filamentos intermedios permiten saber el origen de un tumor con inmunohistoquímica (carcinoma = citoqueratina; sarcoma = vimentina).","Cinesina = anterógrado (hacia la terminal); dineína = retrógrado (hacia el soma): así suben al SNC la rabia, el herpes y la toxina tetánica."],"cl":["La <b>vincristina<\/b> causa neuropatía periférica por alterar el transporte axonal.","La <b>colchicina<\/b> impide la migración de neutrófilos (sin microtúbulos) en la gota aguda."],"tabla":["Fármaco¦Blanco¦Uso","Colchicina¦Polimerización de microtúbulos¦Gota","Vincristina, vinblastina¦Polimerización de microtúbulos¦Quimioterapia","Paclitaxel (taxanos)¦Estabiliza microtúbulos (no se despolimerizan)¦Quimioterapia","Mebendazol, albendazol¦Tubulina del helminto¦Antiparasitario"],"cards":[{"f":"Filamento intermedio de los epitelios","b":"Citoqueratina."},{"f":"Filamento intermedio del músculo","b":"Desmina."},{"f":"Motor del transporte retrógrado","b":"Dineína."},{"f":"Fármaco que estabiliza microtúbulos","b":"Paclitaxel (taxanos)."},{"f":"Diámetro de microfilamentos, intermedios y microtúbulos","b":"≈ 7 nm, 10 nm y 25 nm."}],"quiz":[{"q":"Un tumor es positivo para vimentina y negativo para citoqueratina. Origen probable:","o":["Epitelial (carcinoma)","Mesenquimal (sarcoma)","Muscular liso exclusivo","Glial"],"a":1,"e":"La vimentina es el filamento intermedio del tejido conjuntivo."},{"q":"¿Cómo llega el virus de la rabia de la mordida al SNC?","o":["Por el torrente sanguíneo","Por transporte axonal retrógrado con dineína","Por el LCR","Por transporte anterógrado con cinesina"],"a":1,"e":"Viaja desde la terminal nerviosa hacia el soma."}],"intro":"Tres redes de filamentos que dan forma, movimiento y transporte."},{"t":"ADN, replicación y reparación","res":["Estructura: doble hélice antiparalela; <b>purinas<\/b> (A, G) y <b>pirimidinas<\/b> (C, T, U); A=T (2 puentes de H), <b>G≡C (3 puentes, más estable)<\/b>.","Cromatina: ADN enrollado en <b>nucleosomas<\/b> (octámero de histonas H2A, H2B, H3, H4; H1 une los nucleosomas). <b>Heterocromatina<\/b> (condensada, inactiva) vs <b>eucromatina<\/b> (laxa, activa). Acetilación de histonas → activa la transcripción; metilación del ADN (CpG) → la silencia.","<b>Replicación<\/b> (fase S): <b>helicasa<\/b> abre, <b>topoisomerasa<\/b> relaja superenrollamiento, <b>primasa<\/b> pone cebador de ARN, <b>ADN polimerasa III<\/b> (procariotas; δ y ε en eucariotas) sintetiza <b>5'→3'<\/b>, cadena <b>adelantada<\/b> continua y <b>retrasada<\/b> en fragmentos de <b>Okazaki<\/b>, <b>ADN ligasa<\/b> sella. <b>Telomerasa<\/b> (transcriptasa inversa) mantiene los extremos.","<b>Reparación<\/b>: de <b>apareamientos erróneos<\/b> (mismatch: MLH1, MSH2 → síndrome de Lynch), <b>escisión de nucleótidos<\/b> (dímeros de timina por luz UV → xeroderma pigmentoso), <b>escisión de bases<\/b>, recombinación homóloga para roturas de doble cadena (<b>BRCA1/2<\/b>)."],"hy":["Fluoroquinolonas inhiben la topoisomerasa II (girasa) bacteriana; etopósido e irinotecán inhiben topoisomerasas humanas.","Xeroderma pigmentoso = falla de escisión de nucleótidos → cáncer de piel muy temprano con el sol."],"cl":["<b>Síndrome de Lynch<\/b> (cáncer colorrectal hereditario no polipósico): defecto de reparación de apareamientos erróneos → inestabilidad de microsatélites.","<b>BRCA1/2<\/b>: cáncer de mama y ovario hereditario; sensibles a inhibidores de PARP."],"cards":[{"f":"Puentes de hidrógeno entre G y C","b":"Tres (más estable que A=T, con dos)."},{"f":"Dirección de síntesis del ADN","b":"5' → 3'."},{"f":"Enzima que sella los fragmentos de Okazaki","b":"ADN ligasa."},{"f":"Defecto en xeroderma pigmentoso","b":"Reparación por escisión de nucleótidos (dímeros de timina por UV)."},{"f":"Defecto en síndrome de Lynch","b":"Reparación de apareamientos erróneos (mismatch: MLH1, MSH2)."},{"f":"Efecto de la acetilación de histonas","b":"Relaja la cromatina y activa la transcripción."}],"quiz":[{"q":"Niño con quemaduras solares graves, pecas y carcinomas cutáneos antes de los 10 años. Mecanismo:","o":["Mutación de BRCA1","Falla en la reparación de apareamientos erróneos","Falla en la reparación por escisión de nucleótidos","Telomerasa hiperactiva"],"a":2,"e":"Xeroderma pigmentoso: no se reparan dímeros de pirimidina."},{"q":"La ciprofloxacina mata bacterias porque inhibe:","o":["La subunidad 30S","La ADN girasa (topoisomerasa II bacteriana)","La ARN polimerasa","La síntesis de pared"],"a":1,"e":"Sin relajar el superenrollamiento no hay replicación."}],"intro":"El ADN se replica de forma semiconservativa antes de cada división."},{"t":"Transcripción y procesamiento del ARN","res":["<b>ARN polimerasas<\/b> eucariotas: <b>I<\/b> (ARNr), <b>II (ARNm)<\/b>, III (ARNt y ARNr 5S). El orden es el de la traducción: \"rmt\".","<b>Promotor<\/b>: caja <b>TATA<\/b> (~−25) y caja CAAT; <b>factores de transcripción<\/b>; <b>potenciadores<\/b> (enhancers) y silenciadores a distancia.","Procesamiento del pre-ARNm en el núcleo: <b>caperuza 5'<\/b> (7-metilguanosina), <b>cola de poli-A 3'<\/b> (señal AAUAAA), <b>splicing<\/b> (el <b>espliceosoma<\/b> con snRNP quita <b>intrones<\/b> y une <b>exones<\/b>). El <b>splicing alternativo<\/b> produce varias proteínas de un gen.","Tipos de ARN: ARNm (mensaje), ARNt (adaptador, anticodón), ARNr (ribosoma), <b>microARN<\/b> (silencian ARNm).","<b>α-amanitina<\/b> (hongo Amanita) inhibe la ARN polimerasa II; <b>rifampicina<\/b> inhibe la ARN polimerasa bacteriana; <b>actinomicina D<\/b> se intercala en el ADN."],"hy":["Anticuerpos <b>anti-Smith<\/b> (contra snRNP del espliceosoma) son muy específicos de <b>lupus eritematoso sistémico<\/b>.","Algunas β-talasemias se deben a mutaciones en sitios de splicing."],"cl":["<b>Intoxicación por Amanita phalloides<\/b>: falla hepática aguda por inhibición de la ARN polimerasa II.","La <b>rifampicina<\/b> colorea de naranja la orina, lágrimas y sudor."],"cards":[{"f":"ARN polimerasa que sintetiza ARNm","b":"ARN polimerasa II."},{"f":"Modificaciones del pre-ARNm","b":"Caperuza 5' de metilguanosina, cola de poli-A 3' y splicing."},{"f":"Qué se elimina en el splicing","b":"Intrones (se unen los exones)."},{"f":"Toxina de Amanita que inhibe la ARN pol II","b":"α-amanitina."},{"f":"Anticuerpo del espliceosoma específico de lupus","b":"Anti-Smith (anti-snRNP)."}],"quiz":[{"q":"Paciente con hepatitis fulminante tras comer hongos silvestres. Enzima inhibida:","o":["ARN polimerasa II","ADN polimerasa δ","Topoisomerasa I","Peptidil transferasa"],"a":0,"e":"La α-amanitina bloquea la síntesis de ARNm."},{"q":"¿Cómo produce un solo gen varias proteínas distintas?","o":["Por la caperuza 5'","Por el código genético degenerado","Por splicing alternativo","Por replicación semiconservativa"],"a":2,"e":"Diferentes combinaciones de exones generan isoformas."}],"intro":"Del ADN al ARN mensajero maduro."},{"t":"Traducción, código genético y tráfico de proteínas","res":["<b>Código genético<\/b>: tripletes; <b>AUG<\/b> = inicio (metionina); stop: <b>UAA, UAG, UGA<\/b>. Es <b>degenerado<\/b> (varios codones para un aminoácido), universal (casi) y sin superposición.","Ribosomas: eucariotas <b>80S (60S + 40S)<\/b>; procariotas <b>70S (50S + 30S)<\/b> → blanco selectivo de antibióticos.","Etapas: <b>iniciación<\/b> (ARNt-Met + subunidad pequeña busca AUG), <b>elongación<\/b> (sitios A, P, E; <b>peptidil transferasa<\/b> = ARNr, una ribozima), <b>terminación<\/b> (factores de liberación en codón stop).","Activación de aminoácidos: <b>aminoacil-ARNt sintetasa<\/b> une el aminoácido correcto a su ARNt (con ATP).","Proteínas con <b>péptido señal<\/b> → SRP → RER → Golgi → secreción, membrana o lisosoma. Plegamiento asistido por <b>chaperonas<\/b>.","Mutaciones: <b>silenciosa<\/b> (mismo aminoácido), <b>de sentido erróneo<\/b> (missense: HbS), <b>sin sentido<\/b> (nonsense: codón stop prematuro), <b>corrimiento del marco<\/b> (inserción/deleción no múltiplo de 3: Duchenne)."],"hy":["Antibióticos que inhiben la síntesis proteica: 30S = aminoglucósidos y tetraciclinas; 50S = cloranfenicol, clindamicina, macrólidos (eritromicina), linezolid.","Duchenne: deleción con corrimiento del marco (sin distrofina); Becker: deleción que conserva el marco (distrofina parcial, más leve)."],"cl":["<b>Toxina diftérica<\/b> inactiva el factor de elongación eEF-2 (ADP-ribosilación).","La HbS es una mutación de sentido erróneo (Glu → Val)."],"tabla":["Antibiótico¦Subunidad¦Recuerda","Aminoglucósidos, tetraciclinas¦30S¦\"Compra AT (aminoglucósidos, tetraciclinas) a 30\"","Macrólidos, clindamicina, cloranfenicol, linezolid¦50S¦\"y CCEL (cloranfenicol, clindamicina, eritromicina, linezolid) a 50\""],"cards":[{"f":"Codón de inicio","b":"AUG (metionina)."},{"f":"Codones de terminación","b":"UAA, UAG y UGA."},{"f":"Ribosoma eucariota y procariota","b":"Eucariota 80S (60S + 40S); procariota 70S (50S + 30S)."},{"f":"Enzima que asegura que cada ARNt lleve el aminoácido correcto","b":"Aminoacil-ARNt sintetasa."},{"f":"Mutación sin sentido (nonsense)","b":"Cambia un codón por uno de terminación prematuro."},{"f":"Blanco de la toxina diftérica","b":"Factor de elongación 2 (eEF-2)."}],"quiz":[{"q":"¿Por qué Becker es más leve que Duchenne?","o":["Afecta otro gen","Su deleción conserva el marco de lectura","Solo afecta a mujeres","Es autosómica dominante"],"a":1,"e":"Se produce una distrofina truncada pero parcialmente funcional."},{"q":"¿Qué antibiótico actúa sobre la subunidad 30S?","o":["Gentamicina","Clindamicina","Cloranfenicol","Azitromicina"],"a":0,"e":"Los aminoglucósidos y tetraciclinas se unen a la 30S."}],"intro":"El ribosoma lee codones del ARNm y une aminoácidos."},{"t":"Ciclo celular y cáncer","res":["Fases: <b>G1<\/b> (crecimiento; duración variable), <b>S<\/b> (replicación del ADN), <b>G2<\/b> (preparación), <b>M<\/b> (mitosis: profase, metafase, anafase, telofase + citocinesis). <b>G0<\/b>: reposo (células permanentes).","Motores: <b>ciclinas + cinasas dependientes de ciclina (CDK)<\/b>. Inhibidores: p21, p27, p16.","<b>Puntos de control<\/b>: G1/S (el más importante), G2/M y del huso (metafase/anafase).","<b>Rb<\/b>: en reposo secuestra a <b>E2F<\/b>; al fosforilarse (ciclina D-CDK4/6) libera E2F → entrada a fase S. <b>p53<\/b> (\"guardián del genoma\"): ante daño del ADN induce p21 (frena el ciclo), reparación o <b>apoptosis<\/b>.","Células: <b>lábiles<\/b> (siempre en ciclo: médula ósea, epitelios, piel), <b>estables<\/b> (en G0, pueden volver: hígado, riñón), <b>permanentes<\/b> (no se dividen: neuronas, cardiomiocitos, músculo esquelético).","<b>Oncogenes<\/b> (ganancia de función, basta un alelo): RAS, MYC, HER2, BCR-ABL. <b>Genes supresores<\/b> (pérdida de función, se necesitan dos \"golpes\" — hipótesis de Knudson): RB, TP53, APC, BRCA1/2."],"hy":["p53 mutado es la alteración más común en cáncer humano; síndrome de <b>Li-Fraumeni<\/b> = p53 germinal.","Retinoblastoma hereditario: un alelo RB mutado heredado + un golpe somático → tumores bilaterales y osteosarcoma."],"cl":["El <b>VPH<\/b> produce E6 (degrada p53) y E7 (inactiva Rb) → cáncer cervicouterino.","<b>Imatinib<\/b> inhibe la tirosina cinasa BCR-ABL en la leucemia mieloide crónica (cromosoma Filadelfia t(9;22))."],"cards":[{"f":"Fase donde se replica el ADN","b":"Fase S."},{"f":"Función de Rb","b":"Retiene a E2F e impide pasar de G1 a S hasta que se fosforila."},{"f":"Función de p53","b":"Detener el ciclo (vía p21), reparar o inducir apoptosis ante daño del ADN."},{"f":"Ejemplos de células permanentes","b":"Neuronas, cardiomiocitos y músculo esquelético."},{"f":"Proteínas del VPH que inactivan supresores","b":"E6 (p53) y E7 (Rb)."},{"f":"Diferencia oncogén vs gen supresor","b":"Oncogén: ganancia de función, basta un alelo. Supresor: pérdida de función, se necesitan los dos alelos."}],"quiz":[{"q":"Niño con retinoblastoma bilateral y luego osteosarcoma. Gen afectado:","o":["RAS","TP53 somático","RB1 (germinal)","MYC"],"a":2,"e":"Retinoblastoma hereditario: mutación germinal de RB1."},{"q":"¿Qué tipo de célula no vuelve a dividirse tras un infarto?","o":["Cardiomiocito (permanente)","Fibroblasto","Hepatocito (estable)","Célula basal epidérmica (lábil)"],"a":0,"e":"Por eso el miocardio necrosado se reemplaza por cicatriz."}],"intro":"G1 → S → G2 → M, vigilado por puntos de control."},{"t":"Señalización celular","res":["Tipos de señal: endocrina, paracrina, autocrina, yuxtacrina.","<b>Receptores acoplados a proteína G (7 dominios transmembrana)<\/b>: <b>Gs<\/b> (↑ adenilato ciclasa → ↑ AMPc → PKA; β1, β2, D1, H2, V2), <b>Gi<\/b> (↓ AMPc; α2, M2, D2), <b>Gq<\/b> (fosfolipasa C → IP₃ ↑ Ca²⁺ y DAG → PKC; α1, M1, M3, H1, V1).","<b>Receptores con actividad tirosina cinasa<\/b>: insulina, factores de crecimiento (EGF, PDGF) → vía <b>RAS-MAPK<\/b> y PI3K/Akt. <b>JAK-STAT<\/b>: citocinas, GH, prolactina, EPO.","<b>Receptores intracelulares<\/b>: esteroides, hormonas tiroideas, vitamina D, ácido retinoico.","<b>Canales iónicos dependientes de ligando<\/b>: receptor nicotínico, GABA-A, NMDA.","<b>GMPc<\/b>: NO (guanilato ciclasa soluble) y péptido natriurético (guanilato ciclasa de membrana) → relajación."],"hy":["Mnemotecnia de receptores Gq: \"<b>HAVe 1 M&amp;M<\/b>\" → H1, α1, V1, M1, M3.","Toxina del cólera activa Gs (↑ AMPc → diarrea); toxina pertussis inhibe Gi."],"cl":["<b>Toxina colérica<\/b>: ↑ AMPc en el enterocito → secreción de Cl⁻ y agua, diarrea en \"agua de arroz\".","Mutaciones de <b>RAS<\/b> (activación constante) son frecuentes en cáncer de páncreas, colon y pulmón."],"cards":[{"f":"Segundo mensajero de los receptores Gs","b":"AMPc (activa PKA)."},{"f":"Cascada de los receptores Gq","b":"Fosfolipasa C → IP₃ (Ca²⁺) y DAG (PKC)."},{"f":"Vía de señalización de la EPO y las citocinas","b":"JAK-STAT."},{"f":"Receptores Gq (mnemotecnia)","b":"HAVe 1 M&amp;M: H1, α1, V1, M1, M3."},{"f":"Mecanismo de la toxina del cólera","b":"Activa permanentemente Gs → ↑ AMPc."}],"quiz":[{"q":"El receptor β2 de bronquio activado por salbutamol actúa por:","o":["Gq → ↑ IP₃","Gs → ↑ AMPc","Tirosina cinasa","Gi → ↓ AMPc"],"a":1,"e":"El AMPc relaja el músculo liso bronquial."},{"q":"La insulina señaliza principalmente mediante:","o":["Canal iónico","Receptor Gq","Receptor intracelular","Receptor con actividad tirosina cinasa"],"a":3,"e":"Su receptor se autofosforila y activa IRS → PI3K → GLUT4."}],"intro":"Ligandos que se unen a receptores y activan cascadas intracelulares."},{"t":"Apoptosis, necrosis y adaptación celular","res":["<b>Apoptosis<\/b>: ATP dependiente; contracción celular, <b>condensación de cromatina (picnosis)<\/b>, fragmentación (cariorrexis), <b>cuerpos apoptóticos<\/b> fagocitados; <b>sin inflamación<\/b>.","Vía <b>intrínseca (mitocondrial)<\/b>: daño del ADN, falta de factores de crecimiento → proteínas <b>Bax/Bak<\/b> (proapoptóticas) vencen a <b>Bcl-2<\/b> (antiapoptótica) → salida de <b>citocromo c<\/b> → apoptosoma → <b>caspasa 9<\/b> → caspasas efectoras 3/7.","Vía <b>extrínseca<\/b>: ligando <b>Fas/FasL<\/b> o TNF → <b>caspasa 8<\/b>. Linfocitos T citotóxicos usan perforina/granzima.","<b>Necrosis<\/b>: pérdida de integridad de membrana, inflamación. Tipos: <b>coagulativa<\/b> (isquemia de órganos sólidos: corazón, riñón), <b>licuefactiva<\/b> (cerebro, abscesos), <b>caseosa<\/b> (tuberculosis), <b>grasa<\/b> (pancreatitis: saponificación), <b>fibrinoide<\/b> (vasculitis), gangrenosa.","Adaptaciones: <b>hipertrofia<\/b> (↑ tamaño), <b>hiperplasia<\/b> (↑ número), <b>atrofia<\/b>, <b>metaplasia<\/b> (reversible). La <b>displasia<\/b> es precursora de cáncer."],"hy":["<b>Bcl-2<\/b> sobreexpresado por t(14;18) → linfoma folicular (las células no mueren).","Infarto cerebral = necrosis licuefactiva; infarto de miocardio = coagulativa."],"cl":["<b>Infarto agudo de miocardio<\/b>: necrosis coagulativa; la troponina se libera por pérdida de la membrana.","La <b>quimioterapia<\/b> y la radiación matan células tumorales principalmente induciendo apoptosis vía p53."],"cards":[{"f":"Proteína antiapoptótica de la mitocondria","b":"Bcl-2."},{"f":"Molécula liberada por la mitocondria en la apoptosis","b":"Citocromo c (activa la caspasa 9)."},{"f":"Caspasa iniciadora de la vía extrínseca","b":"Caspasa 8 (Fas/TNF)."},{"f":"Necrosis del infarto cerebral","b":"Licuefactiva."},{"f":"Necrosis de la tuberculosis","b":"Caseosa."},{"f":"Translocación que sobreexpresa Bcl-2","b":"t(14;18), linfoma folicular."}],"quiz":[{"q":"¿Qué distingue a la apoptosis de la necrosis?","o":["La apoptosis no necesita ATP","La necrosis es programada","La necrosis forma cuerpos apoptóticos","La apoptosis no produce inflamación"],"a":3,"e":"La membrana se conserva y los cuerpos apoptóticos se fagocitan sin liberar contenido."},{"q":"Paciente con pancreatitis aguda y depósitos blanquecinos en el mesenterio. Tipo de necrosis:","o":["Caseosa","Fibrinoide","Coagulativa","Grasa (saponificación)"],"a":3,"e":"Las lipasas liberan ácidos grasos que se unen al calcio."}],"intro":"Muerte programada (ordenada, sin inflamación) vs accidental (con inflamación)."},{"t":"Técnicas de biología molecular","res":["<b>PCR<\/b>: amplifica un fragmento de ADN con cebadores, desoxinucleótidos y <b>ADN polimerasa termoestable (Taq)<\/b>; ciclos de desnaturalización (~95 °C), alineamiento (~55 °C) y extensión (~72 °C). <b>RT-PCR<\/b>: convierte ARN en ADNc (transcriptasa inversa) → carga viral, COVID-19. <b>PCR en tiempo real (qPCR)<\/b>: cuantifica.","<b>Blots<\/b> (\"<b>SNoW DRoP<\/b>\"): <b>Southern = DNA<\/b>, <b>Northern = RNA<\/b>, <b>Western = Proteína<\/b>.","<b>ELISA<\/b>: detecta antígeno o anticuerpo con enzima que cambia de color; tamizaje (alta sensibilidad). <b>Electroforesis<\/b> separa por tamaño/carga.","<b>Secuenciación<\/b>: Sanger (un gen) y de nueva generación (exoma, genoma).","<b>Citometría de flujo<\/b>: marcadores de superficie (CD4 en VIH, inmunofenotipo de leucemias). <b>FISH<\/b>: sondas fluorescentes para deleciones/translocaciones. <b>Microarreglos<\/b>: variantes de número de copias.","<b>CRISPR-Cas9<\/b>: edición dirigida del genoma (ARN guía + nucleasa Cas9)."],"hy":["Southern-ADN, Northern-ARN, Western-proteína (\"SNoW DRoP\").","Tamizaje con prueba sensible (ELISA) → confirmación con prueba específica."],"cl":["<b>VIH<\/b>: tamizaje con inmunoensayo de 4.ª generación (anticuerpos + antígeno p24) y seguimiento con carga viral (RT-PCR) y CD4 (citometría de flujo).","<b>COVID-19<\/b>: RT-PCR de exudado nasofaríngeo como prueba de referencia."],"cards":[{"f":"Técnica que detecta ARN","b":"Northern blot (o RT-PCR)."},{"f":"Técnica que detecta proteínas por tamaño con anticuerpos","b":"Western blot."},{"f":"Enzima clave de la PCR","b":"ADN polimerasa termoestable (Taq)."},{"f":"Pasos de un ciclo de PCR","b":"Desnaturalización, alineamiento de cebadores y extensión."},{"f":"Técnica para contar linfocitos CD4","b":"Citometría de flujo."}],"quiz":[{"q":"Para medir la carga viral del VIH se usa:","o":["ELISA de anticuerpos","Southern blot","RT-PCR cuantitativa","Western blot"],"a":2,"e":"El VIH tiene genoma de ARN; se retrotranscribe y se cuantifica por PCR en tiempo real."},{"q":"¿Qué técnica detecta una translocación t(9;22) en metafase o interfase con sondas marcadas?","o":["Electroforesis de proteínas","FISH","ELISA","Western blot"],"a":1,"e":"La hibridación fluorescente in situ localiza secuencias específicas en los cromosomas."}],"intro":"Herramientas para estudiar ADN, ARN y proteínas en el diagnóstico."}]};
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const T=GUIA.temas,LS="s12-repasar-"+GUIA.id;
+const allC=[],allQ=[];T.forEach((t,i)=>{(t.cards||[]).forEach(c=>allC.push({...c,ti:i}));(t.quiz||[]).forEach(q=>allQ.push({...q,ti:i}))});
+document.title=GUIA.title;
+$("#kick").textContent=GUIA.kicker;$("#ttl").textContent=GUIA.title;$("#lede").textContent=GUIA.desc;
+$("#stats").innerHTML=[[T.length,"temas"],[allC.length,"tarjetas"],[allQ.length,"preguntas"]].map(([n,l])=>`<span><b>${n}</b>${l}</span>`).join("");
+if(GUIA.nota){$("#nota").hidden=false;$("#nota").innerHTML=GUIA.nota}
+$("#foot").innerHTML=`Repositorio de Marcos David Reinah Guzmán · Médico Cirujano UDLAP · ${esc(GUIA.kicker)}. <span class="dag">†</span> = dato agregado para completar el tema.`;
+/* estudiar */
+$("#toc").innerHTML=T.map((t,i)=>`<a href="#t${i+1}" data-i="${i}"><span>${String(i+1).padStart(2,"0")}</span>${esc(t.t)}</a>`).join("");
+const list=(a)=>a&&a.length?`<ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>`:"";
+const tbl=t=>{if(!t||!t.length)return"";const rows=t.map(r=>r.split("¦"));return `<div class="tbl"><table><thead><tr>${rows[0].map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>${rows.slice(1).map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`};
+$("#temas").innerHTML=T.map((t,i)=>`<article class="tema" id="t${i+1}">
+  <span class="num">Tema ${i+1} de ${T.length}</span><h2>${esc(t.t)}</h2>${t.intro?`<p class="intro">${t.intro}</p>`:""}
+  ${t.res&&t.res.length?`<h3>Temario y conceptos</h3>${list(t.res)}`:""}${tbl(t.tabla)}
+  ${t.hy&&t.hy.length?`<div class="box hy"><h3>Alto rendimiento para examen</h3>${list(t.hy)}</div>`:""}
+  ${t.cl&&t.cl.length?`<div class="box cl"><h3>Correlación clínica</h3>${list(t.cl)}</div>`:""}
+  <div class="tmeta">${(t.cards||[]).length?`<button type="button" data-c="${i}">${t.cards.length} tarjetas de este tema</button>`:""}${(t.quiz||[]).length?`<button type="button" data-q="${i}">${t.quiz.length} preguntas de este tema</button>`:""}</div>
+</article>`).join("");
+const io=("IntersectionObserver" in window)?new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){document.querySelectorAll(".toc a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}})},{rootMargin:"-30% 0px -60% 0px"}):null;
+if(io)document.querySelectorAll(".tema").forEach(a=>io.observe(a));
+/* pestañas */
+function tab(id){document.querySelectorAll("nav.tabs button").forEach(b=>{const on=b.id==="tab-"+id;b.setAttribute("aria-selected",on);$("#"+b.getAttribute("aria-controls")).hidden=!on});window.scrollTo(0,0)}
+document.querySelectorAll("nav.tabs button").forEach(b=>b.addEventListener("click",()=>tab(b.id.slice(4))));
+$("#temas").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.c){$("#cSel").value=b.dataset.c;tab("tarjetas");deck()}else if(b.dataset.q){$("#qSel").value=b.dataset.q;tab("examen")}});
+const opts='<option value="all">Todos los temas</option>'+T.map((t,i)=>`<option value="${i}">${i+1}. ${esc(t.t)}</option>`).join("");
+$("#cSel").innerHTML=opts;$("#qSel").innerHTML=opts;
+/* tarjetas */
+let rep=new Set();try{rep=new Set(JSON.parse(localStorage.getItem(LS)||"[]"))}catch(e){}
+const key=c=>c.f.slice(0,60);
+const save=()=>{try{localStorage.setItem(LS,JSON.stringify([...rep]))}catch(e){}};
+let D=[],ci=0,onlyRep=false;
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function deck(mix){const v=$("#cSel").value;D=allC.filter(c=>(v==="all"||c.ti==+v)&&(!onlyRep||rep.has(key(c))));if(mix)D=shuf(D);ci=0;showC()}
+function showC(){const c=D[ci];$("#cBack").hidden=true;$("#cFront").hidden=false;
+  if(!c){$("#cLbl").textContent="";$("#cF").textContent=onlyRep?"No hay tarjetas marcadas para repasar.":"Sin tarjetas.";$("#cCount").textContent="0 / 0";return}
+  $("#cLbl").textContent=T[c.ti].t+(rep.has(key(c))?" · repasar":"");$("#cF").innerHTML=c.f;$("#cB").innerHTML=c.b;$("#cCount").textContent=(ci+1)+" / "+D.length}
+function flip(){if(!D[ci])return;const b=$("#cBack").hidden;$("#cBack").hidden=!b;$("#cFront").hidden=b}
+$("#card").addEventListener("click",flip);
+$("#card").addEventListener("keydown",e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip()}});
+$("#cSel").addEventListener("change",()=>deck());
+$("#cMix").addEventListener("click",()=>deck(true));
+$("#cRep").addEventListener("click",()=>{onlyRep=!onlyRep;$("#cRep").classList.toggle("pri",onlyRep);deck()});
+$("#cPrev").addEventListener("click",()=>{if(D.length){ci=(ci-1+D.length)%D.length;showC()}});
+$("#cNext").addEventListener("click",()=>{if(D.length){ci=(ci+1)%D.length;showC()}});
+$("#cOk").addEventListener("click",()=>{const c=D[ci];if(!c)return;rep.delete(key(c));save();if(onlyRep){deck()}else{ci=(ci+1)%D.length;showC()}});
+$("#cNo").addEventListener("click",()=>{const c=D[ci];if(!c)return;rep.add(key(c));save();ci=(ci+1)%D.length;showC()});
+document.addEventListener("keydown",e=>{if($("#panel-tarjetas").hidden||e.target.closest("select"))return;if(e.key==="ArrowRight")$("#cNext").click();if(e.key==="ArrowLeft")$("#cPrev").click()});
+deck();
+/* examen */
+let Q=[],qi=0,good=0,miss=[];
+$("#qGo").addEventListener("click",()=>{const v=$("#qSel").value,n=+$("#qN").value;Q=shuf(allQ.filter(q=>v==="all"||q.ti==+v));if(n)Q=Q.slice(0,n);qi=0;good=0;miss=[];if(!Q.length)return;$("#qStart").hidden=true;$("#qEnd").hidden=true;$("#qRun").hidden=false;showQ()});
+function showQ(){const q=Q[qi];$("#qPos").textContent=`Pregunta ${qi+1} de ${Q.length}`;$("#qTema").textContent=T[q.ti].t;$("#qBar").style.width=(qi/Q.length*100)+"%";
+  $("#qQ").innerHTML=q.q;$("#qE").hidden=true;$("#qNext").hidden=true;
+  const ord=shuf(q.o.map((t,i)=>({t,i})));$("#qO").innerHTML=ord.map((o,k)=>`<button class="opt" type="button" data-i="${o.i}"><span>${"ABCDE"[k]}</span><div>${o.t}</div></button>`).join("")}
+$("#qO").addEventListener("click",e=>{const b=e.target.closest(".opt");if(!b||b.disabled)return;const q=Q[qi],ok=+b.dataset.i===q.a;
+  document.querySelectorAll("#qO .opt").forEach(x=>{x.disabled=true;if(+x.dataset.i===q.a)x.classList.add("good")});if(!ok){b.classList.add("wrong");miss.push(q)}else good++;
+  $("#qE").hidden=false;$("#qE").innerHTML=(ok?"<b>Correcto.</b> ":"<b>Incorrecto.</b> ")+(q.e||"");$("#qNext").hidden=false;$("#qNext").textContent=qi+1<Q.length?"Siguiente →":"Ver resultado";$("#qNext").focus()});
+$("#qNext").addEventListener("click",()=>{qi++;if(qi<Q.length)return showQ();$("#qRun").hidden=true;const p=Math.round(good/Q.length*100);
+  $("#qEnd").hidden=false;$("#qEnd").innerHTML=`<div class="big">${p}%</div><p>${good} de ${Q.length} correctas · ${p>=75?"aprobado con la mínima UDLAP (7.5)":"aún por debajo de 7.5: repasa los temas de abajo"}</p>${miss.length?`<h3 style="font-family:var(--f-d)">Para repasar</h3><ul>${miss.map(q=>`<li><b>${esc(T[q.ti].t)}:</b> ${q.q}<br><small>Respuesta: ${q.o[q.a]}</small></li>`).join("")}</ul>`:""}<div class="cnav"><button class="btn pri" type="button" id="qAgain">Otro examen</button></div>`;
+  $("#qAgain").addEventListener("click",()=>{$("#qEnd").hidden=true;$("#qStart").hidden=false})});
+})();
+</script>
+</body></html>

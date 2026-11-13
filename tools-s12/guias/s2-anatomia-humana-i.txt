@@ -1,0 +1,165 @@
+@id anatomia-humana-i
+@sem 2
+@orden 3
+@title Anatomía Humana I
+@materia Anatomía Humana I
+@codigo AH I
+@color #a8323e
+@icon anat
+@sub Generalidades · Dorso · Miembro superior · Miembro inferior · Tórax
+@desc Aparato locomotor y tórax: huesos, articulaciones, músculos, plexos y vasos, con las lesiones nerviosas y fracturas que más se preguntan en el práctico y en el teórico.
+@nota No se encontró el programa publicado de Anatomía Humana I de UDLAP; esta guía cubre el bloque habitual de una primera anatomía (dorso, miembros y tórax). Anatomía II, en 3er semestre, sigue con el aparato digestivo.
+@kw anatomia columna vertebra dorso miembro superior hombro brazo antebrazo mano plexo braquial nervio mediano cubital radial axilar musculocutaneo tunel carpiano miembro inferior cadera rodilla pie plexo lumbosacro nervio ciatico femoral obturador peroneo tibial triangulo femoral torax costillas pulmon corazon mediastino
+
+# Generalidades y terminología anatómica
+> El lenguaje común de la anatomía.
+- Posición anatómica y planos (sagital, coronal, transversal). Movimientos: **flexión/extensión** (sagital), **abducción/aducción** (coronal), **rotación medial/lateral**, pronación/supinación (antebrazo), inversión/eversión (pie), dorsiflexión/flexión plantar.
+- **Dermatoma**: área de piel inervada por una raíz espinal. **Miotoma**: músculos inervados por una raíz.
+- Dermatomas clave: **C6** pulgar, **C7** dedo medio, **C8** meñique, **T4** pezón, **T10** ombligo, **L1** ingle, **L4** rodilla y maléolo medial, **L5** dorso del pie y primer dedo, **S1** borde lateral del pie y planta.
+- Reflejos osteotendinosos: **bicipital C5–C6**, braquiorradial C6, **tricipital C7**, **rotuliano L3–L4**, **aquíleo S1**. "**1-2 tobillo, 3-4 rodilla, 5-6 bíceps, 7-8 tríceps**".
+- Fascias y compartimentos: los músculos se agrupan en compartimentos con su propio nervio y vasos.
+! Mnemotecnia de reflejos: S1-S2 Aquiles, L3-L4 rotuliano, C5-C6 bíceps, C7-C8 tríceps.
+! T4 = pezón, T10 = ombligo (dolor periumbilical en apendicitis temprana).
++ **Síndrome compartimental**: aumento de presión en un compartimento (fractura de tibia, aplastamiento) → dolor desproporcionado al estirar el músculo; tratamiento con fasciotomía.
++ **Herpes zóster** sigue un dermatoma.
+? Dermatoma del ombligo :: T10.
+? Dermatoma del dedo medio :: C7.
+? Raíz del reflejo rotuliano :: L3–L4 (principalmente L4).
+? Raíz del reflejo aquíleo :: S1.
+? Signo temprano del síndrome compartimental :: Dolor desproporcionado que aumenta al estirar pasivamente los músculos.
+Q Paciente con hernia discal y reflejo aquíleo ausente con dolor en la planta del pie. Raíz afectada: :: *S1 :: L4 :: L5 :: L3 || S1 da el reflejo aquíleo y la sensibilidad del borde lateral y planta.
+Q El dermatoma del pulgar corresponde a: :: *C6 :: C5 :: C7 :: C8 || C6 = pulgar ("haz un 6 con el pulgar y el índice").
+
+# Columna vertebral y dorso
+> 33 vértebras: 7 cervicales, 12 torácicas, 5 lumbares, 5 sacras (sacro) y 4 coccígeas.
+- Vértebra típica: cuerpo, arco (pedículos y láminas), apófisis espinosa, transversas y articulares; agujero vertebral.
+- Cervicales: **agujero transverso** (pasa la arteria vertebral). **C1 atlas** (sin cuerpo), **C2 axis** (apófisis odontoides). **C7** prominente. Torácicas: carillas costales. Lumbares: cuerpos grandes.
+- Curvaturas: lordosis cervical y lumbar; cifosis torácica y sacra. Alteraciones: hiperlordosis, hipercifosis, **escoliosis** (lateral).
+- **Disco intervertebral**: anillo fibroso (fibrocartílago) + núcleo pulposo (notocorda). Ligamentos: longitudinal anterior, **longitudinal posterior** (más débil lateralmente), amarillo, interespinoso, supraespinoso.
+- Músculos del dorso: superficiales (trapecio — NC XI; dorsal ancho — toracodorsal; romboides — dorsal de la escápula; elevador de la escápula) y profundos (**erector de la columna**: iliocostal, longísimo, espinoso).
+! Las hernias discales suelen ser **posterolaterales** (donde el ligamento longitudinal posterior es débil) y comprimen la raíz **del nivel inferior** en la columna lumbar (hernia L4–L5 → raíz L5).
+! La punción lumbar atraviesa piel, supraespinoso, interespinoso, ligamento amarillo, espacio epidural, duramadre y aracnoides.
++ **Lumbociática** por hernia L5–S1 (raíz S1): dolor que baja por la cara posterior de la pierna, signo de Lasègue positivo.
++ **Fractura del ahorcado**: de los pedículos de C2. **Fractura de Jefferson**: estallido de C1.
+? Número de vértebras por región :: 7 cervicales, 12 torácicas, 5 lumbares, 5 sacras y 4 coccígeas.
+? Rasgo exclusivo de las vértebras cervicales :: Agujero transverso (arteria vertebral).
+? Hernia L4–L5 posterolateral comprime la raíz :: L5.
+? Nervio del trapecio :: Accesorio (NC XI).
+? Músculo principal que extiende la columna :: Erector de la columna.
+Q Una hernia posterolateral del disco L5–S1 comprime típicamente la raíz: :: *S1 :: L5 :: L4 :: S2 || En la región lumbar la raíz que sale por debajo del nivel ya pasó; la afectada es la que desciende.
+Q La vértebra sin cuerpo vertebral es: :: *C1 (atlas) :: C2 (axis) :: C7 :: L5 || El atlas es un anillo; su "cuerpo" se fusionó al axis como odontoides.
+
+# Miembro superior: hombro, brazo y plexo braquial
+> El plexo braquial (C5–T1) inerva todo el miembro superior.
+- Plexo: **R**aíces → **T**roncos → **D**ivisiones → **C**ordones (fascículos) → **R**amas ("**Randy Travis Drinks Cold Beer**"). Ramas terminales: **musculocutáneo, axilar, radial, mediano, cubital (ulnar)**.
+- **Manguito rotador** (**SITS**): supraespinoso (abducción 0–15°; el que más se lesiona), infraespinoso y redondo menor (rotación lateral), subescapular (rotación medial). Nervio supraescapular (supra e infraespinoso), axilar (redondo menor y deltoides), subescapulares.
+- **Deltoides** (axilar): abducción 15–90°. Por encima de 90°, trapecio y serrato anterior (nervio torácico largo) rotan la escápula.
+- Compartimento anterior del brazo (**musculocutáneo**): bíceps, braquial, coracobraquial → flexión del codo y supinación. Posterior (**radial**): tríceps → extensión.
+- Arteria axilar → **braquial** (en el brazo, junto al nervio mediano) → radial y cubital en el codo.
+| Lesión ¦ Raíces/nervio ¦ Signo
+| Erb-Duchenne ¦ C5–C6 (tronco superior) ¦ "Propina de mesero": brazo en aducción, rotación medial, codo extendido
+| Klumpke ¦ C8–T1 (tronco inferior) ¦ Mano en garra total ± Horner
+| Torácico largo ¦ C5–C7 ¦ Escápula alada (serrato anterior)
+| Axilar ¦ Cuello quirúrgico del húmero / luxación ¦ Pérdida de abducción, deltoides atrófico, anestesia en "parche"
+| Radial ¦ Diáfisis del húmero (surco radial) ¦ Mano caída (sin extensión de muñeca)
+! Fractura del **cuello quirúrgico** del húmero o luxación anterior de hombro → nervio **axilar** y arteria circunfleja humeral posterior.
+! Fractura de la **diáfisis** humeral → nervio **radial** y arteria braquial profunda → mano caída.
++ **Parálisis de Erb** en el recién nacido por tracción del cuello durante el parto (distocia de hombros).
++ **Escápula alada** tras mastectomía radical con disección axilar (nervio torácico largo).
+? Componentes del manguito rotador :: SITS: supraespinoso, infraespinoso, redondo menor y subescapular.
+? Músculo que inicia la abducción del hombro :: Supraespinoso (0–15°).
+? Nervio lesionado en fractura de la diáfisis del húmero :: Radial (mano caída).
+? Lesión del nervio torácico largo :: Escápula alada (serrato anterior).
+? Raíces de la parálisis de Erb :: C5–C6 (tronco superior).
+? Nervio del compartimento anterior del brazo :: Musculocutáneo.
+Q Tras una luxación anterior de hombro el paciente no puede abducir el brazo y tiene anestesia sobre el deltoides. Nervio: :: *Axilar :: Radial :: Musculocutáneo :: Supraescapular || El axilar rodea el cuello quirúrgico y se estira en la luxación anterior.
+Q Recién nacido con brazo en aducción, rotación medial y antebrazo pronado tras parto con distocia de hombros. Lesión: :: *C5–C6 (Erb-Duchenne) :: C8–T1 (Klumpke) :: Nervio radial :: Nervio cubital || "Propina de mesero" por lesión del tronco superior.
+
+# Miembro superior: antebrazo, mano y lesiones nerviosas
+> Mediano, cubital y radial definen la función de la mano.
+- **Fosa cubital** (de lateral a medial): tendón del bíceps, **arteria braquial**, **nervio mediano** ("TAN": tendón, arteria, nervio).
+- Antebrazo anterior: flexores y pronadores, casi todos por el **mediano** (excepto flexor cubital del carpo y la mitad medial del flexor profundo → **cubital**). Antebrazo posterior: extensores por el **radial** (rama profunda/interósea posterior).
+- **Túnel carpiano**: bajo el retináculo flexor pasan el **nervio mediano** y 9 tendones flexores (4 superficiales, 4 profundos, flexor largo del pulgar). Huesos del carpo: escafoides, semilunar, piramidal, pisiforme / trapecio, trapezoide, grande, ganchoso.
+- Mano: **mediano** → músculos tenares (oposición del pulgar) y lumbricales 1–2; **cubital** → hipotenares, interóseos (abducción/aducción de dedos), lumbricales 3–4, aductor del pulgar.
+- **Tabaquera anatómica**: escafoides en el piso, arteria radial.
+| Nervio ¦ Lesión típica ¦ Signo
+| Mediano (muñeca) ¦ Túnel carpiano ¦ Parestesias en pulgar a mitad del anular, atrofia tenar, Tinel y Phalen
+| Mediano (codo/supracondílea) ¦ Fractura supracondílea del húmero ¦ "Mano del predicador" al intentar cerrar el puño
+| Cubital ¦ Epicóndilo medial (codo), gancho del ganchoso ¦ Mano en garra (4.º y 5.º dedos), signo de Froment
+| Radial ¦ Surco radial del húmero ¦ Mano caída
+! **Fractura del escafoides**: dolor en la tabaquera anatómica tras caída sobre la mano extendida; riesgo de **necrosis avascular** (irrigación retrógrada) aunque la radiografía inicial sea normal.
+! El semilunar es el hueso del carpo que más se luxa (hacia anterior; puede comprimir el mediano).
++ **Síndrome del túnel carpiano**: embarazo, hipotiroidismo, diabetes, artritis reumatoide, trabajo repetitivo; prueba de Phalen y Tinel; estudio de conducción nerviosa.
++ **Fractura supracondílea** en niños: vigilar arteria braquial y nervio mediano (interóseo anterior); riesgo de contractura isquémica de Volkmann.
+? Contenido de la fosa cubital de lateral a medial :: Tendón del bíceps, arteria braquial y nervio mediano (TAN).
+? Contenido del túnel carpiano :: Nervio mediano y 9 tendones flexores.
+? Nervio de los interóseos de la mano :: Cubital (ulnar).
+? Hueso del carpo con riesgo de necrosis avascular :: Escafoides.
+? Signo de Froment :: Flexión del pulgar al sujetar un papel por debilidad del aductor del pulgar (nervio cubital).
+? Distribución sensitiva del mediano en la mano :: Palma del pulgar, índice, medio y mitad lateral del anular.
+Q Mujer embarazada con parestesias nocturnas en pulgar, índice y medio, que empeoran al flexionar la muñeca. Nervio: :: *Mediano en el túnel carpiano :: Cubital en el canal de Guyon :: Radial superficial :: Musculocutáneo || Síndrome del túnel carpiano: Phalen positivo.
+Q Joven con caída sobre la mano extendida, dolor en la tabaquera anatómica y radiografía normal. Conducta: :: *Inmovilizar con férula para escafoides y repetir imagen :: Alta sin tratamiento :: Vendaje compresivo y ejercicio :: Solo antiinflamatorio || Las fracturas de escafoides pueden no verse al inicio y tienen riesgo de necrosis avascular.
+Q Mano en garra de los dedos 4.º y 5.º con pérdida de abducción de los dedos. Nervio: :: *Cubital :: Mediano :: Radial :: Axilar || El cubital inerva interóseos y lumbricales 3–4.
+
+# Miembro inferior: cadera, muslo y plexo lumbosacro
+> Plexo lumbar (L1–L4) y sacro (L4–S4).
+- Plexo lumbar: **femoral (L2–L4)** → cuádriceps (extensión de la rodilla), sensibilidad anterior del muslo y medial de la pierna (safeno). **Obturador (L2–L4)** → aductores del muslo.
+- Plexo sacro: **ciático (L4–S3)** → isquiotibiales; se divide en **tibial** y **peroneo común**. **Glúteo superior** (L4–S1) → glúteo medio y menor (abducción, estabilizan la pelvis). **Glúteo inferior** → glúteo mayor (extensión de la cadera).
+- **Triángulo femoral** (ligamento inguinal, sartorio, aductor largo): de lateral a medial **N**ervio, **A**rteria, **V**ena, (**E**spacio vacío), **L**infáticos ("**NAVEL**").
+- Articulación de la cadera: esferoidea muy estable; ligamento iliofemoral (el más fuerte). Irrigación de la cabeza femoral: **arterias circunflejas femorales**, sobre todo la **medial**.
+! **Signo de Trendelenburg**: lesión del nervio glúteo superior → al apoyarse en ese pie, la pelvis cae del lado contrario.
+! Fractura del cuello femoral desplazada → lesión de la circunfleja femoral medial → **necrosis avascular** de la cabeza.
++ **Inyección intramuscular glútea**: en el cuadrante superoexterno para no lesionar el ciático.
++ Fractura de cadera en adulto mayor: miembro acortado y en rotación externa.
++ **Acceso venoso femoral** y punción arterial usan el triángulo femoral (vena medial a la arteria).
+? Contenido del triángulo femoral de lateral a medial :: Nervio, arteria, vena, espacio vacío y linfáticos (NAVEL).
+? Nervio del cuádriceps :: Femoral (L2–L4).
+? Nervio de los aductores del muslo :: Obturador.
+? Lesión que produce el signo de Trendelenburg :: Nervio glúteo superior (glúteo medio y menor).
+? Arteria principal de la cabeza femoral :: Circunfleja femoral medial.
+? Sitio seguro de inyección glútea :: Cuadrante superoexterno.
+Q Al caminar, la pelvis del paciente cae hacia la izquierda cuando apoya el pie derecho. Nervio lesionado: :: *Glúteo superior derecho :: Glúteo superior izquierdo :: Glúteo inferior derecho :: Femoral derecho || Los abductores del lado de apoyo (derecho) no sostienen la pelvis y cae el lado contrario.
+Q Adulta mayor con caída, miembro inferior acortado y en rotación externa. Complicación temida de la fractura de cuello femoral desplazada: :: *Necrosis avascular de la cabeza femoral :: Lesión del nervio obturador :: Síndrome compartimental del muslo :: Trombosis arterial femoral || La circunfleja femoral medial se interrumpe.
+
+# Miembro inferior: rodilla, pierna y pie
+> La rodilla soporta peso con ayuda de ligamentos y meniscos.
+- Rodilla: **ligamento cruzado anterior** (impide desplazamiento anterior de la tibia; prueba de **cajón anterior** y **Lachman**), **cruzado posterior** (cajón posterior), **colateral medial** (valgo) y **lateral** (varo); meniscos medial (unido al colateral medial, se lesiona más) y lateral.
+- **Tríada infeliz** (O'Donoghue): LCA + ligamento colateral medial + menisco (medial clásico; lateral en estudios recientes) por golpe lateral en valgo.
+- **Fosa poplítea**: arteria poplítea (la más profunda), vena, nervios tibial y peroneo común.
+- Pierna: compartimento **anterior** (dorsiflexión, extensión de dedos; **peroneo profundo**), **lateral** (eversión; **peroneo superficial**), **posterior** (flexión plantar, inversión; **tibial**).
+- **Nervio peroneo común**: rodea el **cuello del peroné** → vulnerable a fracturas, yesos y cruzar las piernas → **pie caído** (steppage) y pérdida de eversión.
+- Pulsos: **pedio** (dorso del pie, lateral al extensor largo del dedo gordo) y **tibial posterior** (detrás del maléolo medial).
+- Esguince de tobillo más común: inversión → **ligamento talofibular anterior**.
+! Pie caído = peroneo común (cuello del peroné). Lesión del tibial = no puede pararse de puntas, pérdida de flexión plantar.
+! Esguince de tobillo en inversión → ligamento talofibular anterior.
++ **Rotura del tendón de Aquiles**: chasquido al impulsarse, prueba de **Thompson** positiva (al apretar la pantorrilla no hay flexión plantar).
++ **Insuficiencia arterial periférica**: pulsos pedio y tibial posterior disminuidos, claudicación; índice tobillo-brazo < 0.9.
+? Prueba más sensible para lesión del LCA :: Lachman (también cajón anterior).
+? Componentes de la tríada infeliz :: LCA, ligamento colateral medial y menisco.
+? Nervio vulnerable en el cuello del peroné :: Peroneo común (pie caído).
+? Ligamento del esguince de tobillo en inversión :: Talofibular anterior.
+? Dónde palpas el pulso tibial posterior :: Detrás del maléolo medial.
+? Prueba de Thompson positiva :: Rotura del tendón de Aquiles.
+Q Futbolista con trauma en valgo de la rodilla y cajón anterior positivo. Ligamento seguro lesionado: :: *Cruzado anterior :: Cruzado posterior :: Colateral lateral :: Patelar || El cajón anterior evalúa el desplazamiento anterior de la tibia (LCA).
+Q Paciente con yeso largo de pierna que ahora arrastra la punta del pie y no puede evertirlo. Nervio comprimido: :: *Peroneo común :: Tibial :: Femoral :: Safeno || El yeso comprime el nervio en el cuello del peroné.
+Q ¿Qué compartimento de la pierna dorsiflexiona el pie? :: *Anterior (peroneo profundo) :: Lateral (peroneo superficial) :: Posterior superficial (tibial) :: Posterior profundo (tibial) || Tibial anterior, extensores largos y peroneo tercero.
+
+# Tórax: pared, pulmones y mediastino
+> Caja ósea que protege corazón y pulmones y participa en la respiración.
+- Pared: 12 pares de costillas (1–7 **verdaderas**; 8–10 falsas; 11–12 flotantes), esternón (manubrio, cuerpo, xifoides). **Ángulo esternal (de Louis)** = 2.ª costilla, T4–T5: bifurcación traqueal, arco aórtico, límite mediastino superior/inferior.
+- **Paquete neurovascular intercostal** en el surco costal, en el borde **inferior** de cada costilla: **VAN** (vena, arteria, nervio) de superior a inferior.
+- Pleuras: parietal (sensible al dolor) y visceral; recesos costodiafragmáticos (donde se acumula el derrame).
+- Mediastino: **superior** (timo, grandes vasos, tráquea, esófago, conducto torácico) e **inferior**: anterior (timo), **medio** (corazón y pericardio), **posterior** (aorta descendente, esófago, conducto torácico, ácigos, vagos).
+- Proyección de los pulmones: línea medioclavicular 6.ª costilla, axilar media 8.ª, paravertebral 10.ª; las pleuras dos costillas más abajo.
+- Diafragma: aberturas de la **vena cava (T8)**, **esófago (T10)**, **aorta (T12)**: "**I 8 10 eggs AT 12**".
+! Toracocentesis o tubo de tórax: por el **borde superior de la costilla inferior** para no dañar el paquete intercostal; 4.º–5.º espacio, línea axilar media (triángulo de seguridad).
+! Descompresión de neumotórax a tensión: 2.º espacio intercostal en la línea medioclavicular (o 4.º–5.º axilar media en adultos según ATLS 10).
++ **Masas del mediastino anterior**: las 4 T → timoma, teratoma, tiroides (bocio retroesternal) y "terrible" linfoma.
++ El conducto torácico drena la linfa al ángulo venoso yugulosubclavio izquierdo; su lesión produce quilotórax.
+? Nivel del ángulo esternal :: 2.ª costilla anterior y disco T4–T5.
+? Orden del paquete intercostal de arriba abajo :: Vena, arteria y nervio (VAN), en el borde inferior de la costilla.
+? Niveles de las aberturas del diafragma :: Vena cava T8, esófago T10, aorta T12.
+? Contenido del mediastino medio :: Corazón y pericardio (con los grandes vasos en su origen).
+? Masas del mediastino anterior (4 T) :: Timoma, teratoma, tiroides y linfoma.
+Q ¿Por dónde introduces la aguja en una toracocentesis? :: *Por el borde superior de la costilla inferior del espacio :: Por el borde inferior de la costilla superior :: En el centro exacto del espacio sin importar el borde :: A través de la costilla || Evitas el paquete vasculonervioso que corre por el borde inferior de cada costilla.
+Q La vena cava inferior cruza el diafragma a nivel de: :: *T8 :: T10 :: T12 :: L1 || T8 vena cava, T10 esófago y vagos, T12 aorta, ácigos y conducto torácico.

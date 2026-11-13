@@ -40,3 +40,8 @@ Resumen corto del proyecto para no re-explorar el repo en cada pedido. Autor de 
 - CSP: connect-src solo self, api.github.com, gist.githubusercontent.com, generativelanguage.googleapis.com. Un dominio nuevo va en `build_site.py` y `main.js`.
 - Nunca subir la clave privada de firma, PDFs de CTO ni `seed-cto.json`.
 - Mínima aprobatoria UDLAP 7.5; la carrera son 8 semestres + Internado + Servicio social (no hay 9º ni 10º).
+
+## Seguridad (resumen)
+- Firma Ed25519 del manifiesto, sync cifrado AES-256-GCM, CSP y fusibles de Electron: ver arriba y `main.js`.
+- `app.html` e `index.html` se ponen en blanco si otra página los mete en un marco (anti-clickjacking; GitHub Pages no deja mandar `frame-ancestors`).
+- `.github/workflows/revisar-secretos.yml` falla si se sube algo que parece clave (PEM, ghp_/github_pat_, AIza) o archivos `.pem/.key/.env/seed-cto.json`. `.github/dependabot.yml` propone actualizaciones de seguridad de Actions y `tools-push` (se aprueban a mano).

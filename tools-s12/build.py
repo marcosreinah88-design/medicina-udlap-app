@@ -13,8 +13,11 @@
 #   | col ¦ col ¦ col          (tabla; la primera fila es el encabezado)
 #   ? frente :: reverso        (tarjeta)
 #   Q pregunta :: *correcta :: distractor :: distractor || explicación
+#   ^ archivo.webp :: pie de foto :: crédito y licencia   (imagen de tools-s12/img/<id>/, se mete en la página como data URI;
+#                                                          varias seguidas = galería; toca para ampliar)
+#   ^^ x,y :: etiqueta         (marcador numerado en la imagen anterior; x,y en % del ancho/alto; activa "Ponme a prueba")
 #   **negritas**; † marca lo que se agregó para completar el tema.
-import os, re, json, glob, html, random, unicodedata
+import os, re, json, glob, html, random, unicodedata, base64
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SITE = os.path.join(HERE, '..', 'site')
@@ -22,6 +25,15 @@ SITE = os.path.join(HERE, '..', 'site')
 def inline(s):
     s = html.escape(s.strip(), quote=False)
     return re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', s)
+
+MIME = {'webp': 'image/webp', 'jpg': 'image/jpeg', 'jpeg': 'image/jpeg', 'png': 'image/png', 'svg': 'image/svg+xml'}
+
+def datauri(gid, name, where):
+    f = os.path.join(HERE, 'img', gid, name)
+    if not os.path.isfile(f):
+        raise SystemExit(f'{where}: no existe la imagen {os.path.relpath(f, HERE)}')
+    ext = name.rsplit('.', 1)[-1].lower()
+    return f"data:{MIME[ext]};base64,{base64.b64encode(open(f, 'rb').read()).decode()}"
 
 def parse(path):
     g = {'temas': [], 'modos': 'Estudiar,Tarjetas,Examen'}
@@ -44,6 +56,14 @@ def parse(path):
                 raise SystemExit(f'{path}:{n}: subtema fuera de un tema')
             sub = {'t': inline(line[2:]), 'b': []}
             t['subs'].append(sub)
+            continue
+        if line.startswith('^^'):
+            # marcador sobre la última imagen: "^^ x,y :: etiqueta"
+            pos, _, lab = line[2:].partition('::')
+            if not (sub and sub['b'] and sub['b'][-1]['k'] == 'im') or not lab.strip():
+                raise SystemExit(f'{path}:{n}: el marcador va justo después de una imagen y necesita "x,y :: etiqueta"')
+            x, y = (float(v) for v in pos.split(','))
+            sub['b'][-1]['x'][-1]['p'].append({'x': x, 'y': y, 'l': inline(lab)})
             continue
         k, rest = line[0], line[1:].strip()
         if k == '@':
@@ -87,6 +107,11 @@ def parse(path):
         elif k == '&':
             m, _, d = rest.partition('::')
             block('mn').append({'m': inline(m), 's': inline(d)})
+        elif k == '^':
+            parts = [p.strip() for p in rest.split('::')]
+            if len(parts) < 3:
+                raise SystemExit(f'{path}:{n}: la imagen necesita "archivo :: pie :: crédito"')
+            block('im').append({'src': datauri(g['id'], parts[0], f'{path}:{n}'), 'c': inline(parts[1]), 'a': inline(parts[2]), 'p': []})
         elif k == '?':
             f, _, b = rest.partition('::')
             if not b:
@@ -113,6 +138,9 @@ def parse(path):
     g['orden'] = int(g.get('orden', 50))
     return g
 
+def nimgs(g):
+    return sum(len(b['x']) for t in g['temas'] for sb in t['subs'] for b in sb['b'] if b['k'] == 'im')
+
 def nsubs(g):
     return sum(sum(1 for s in t['subs'] if s['t']) for t in g['temas'])
 
@@ -129,7 +157,10 @@ def words(g):
             txt += [sb['t'], sb.get('i', '')]
             for b in sb['b']:
                 for x in b['x']:
-                    txt += list(x.values()) if isinstance(x, dict) else [x]
+                    if b['k'] == 'im':  # sin el data URI, para no inflar el buscador
+                        txt += [x['c'], x['a']] + [q['l'] for q in x['p']]
+                    else:
+                        txt += list(x.values()) if isinstance(x, dict) else [x]
         for c in t.get('cards', []):
             txt += [c['f'], c['b']]
         for q in t.get('quiz', []):
@@ -167,7 +198,8 @@ def main():
         nc = sum(len(t.get('cards', [])) for t in g['temas'])
         nq = sum(len(t.get('quiz', [])) for t in g['temas'])
         g['_n'] = (len(g['temas']), nc, nq)
-        print(f"s{sem}/guias/{g['id']}.html  temas {len(g['temas']):3}  subtemas {nsubs(g):3}  tarjetas {nc:4}  preguntas {nq:4}")
+        print(f"s{sem}/guias/{g['id']}.html  temas {len(g['temas']):3}  subtemas {nsubs(g):3}  tarjetas {nc:4}  preguntas {nq:4}"
+              + (f"  imágenes {nimgs(g):3}  ({len(out) // 1024} KB)" if nimgs(g) else ''))
         hub['G'].append({'id': g['id'], 'sem': sem, 'icon': g.get('icon', 'anat'), 'color': g['color'], 'area': g['materia'],
                          'title': g['title'], 'sub': g.get('sub', ''), 'desc': g.get('desc', ''),
                          'stats': [[str(len(g['temas'])), 'temas'], [str(nsubs(g)), 'subtemas'], [str(nq), 'preguntas']], 'temas': len(g['temas']),

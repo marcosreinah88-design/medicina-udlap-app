@@ -97,6 +97,8 @@ for m,(f,title,color,frase,cod) in NEW.items():
     if d['s']: e['fromSem']=d['s']
     e.update(src)
     blk.append('    '+re.sub(r'"(\w+)":',r'\1:',js(e))+',')
+# mazo AnKing (traducido y cifrado; ver anking_build.py), separado de las tarjetas propias
+blk.append('    {id: "anking", title: "AnKing en español · tarjetas", kind: "artifact", subject: "AnKing"},')
 for h in hubs:
     if os.path.exists(h): ins(h,'    /*anki:mat*/','    /*/anki:mat*/','    /* material extra que ya vive en la página de un semestre',"\n".join(blk))
 print('listo')

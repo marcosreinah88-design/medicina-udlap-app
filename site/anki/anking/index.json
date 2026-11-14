@@ -1,0 +1,62 @@
+[
+{
+"id": "microbiologia",
+"n": "Microbiología",
+"c": 3881
+},
+{
+"id": "gastroenterologia",
+"n": "Gastroenterología",
+"c": 2816
+},
+{
+"id": "endocrinologia",
+"n": "Endocrinología",
+"c": 2294
+},
+{
+"id": "neumologia",
+"n": "Neumología",
+"c": 2147
+},
+{
+"id": "ginecologia-y-obstetricia",
+"n": "Ginecología y obstetricia",
+"c": 1978
+},
+{
+"id": "bioquimica",
+"n": "Bioquímica",
+"c": 1802
+},
+{
+"id": "cardiologia",
+"n": "Cardiología",
+"c": 1327
+},
+{
+"id": "musculoesqueletico-y-reumatologia",
+"n": "Musculoesquelético y reumatología",
+"c": 1139
+},
+{
+"id": "psiquiatria",
+"n": "Psiquiatría",
+"c": 937
+},
+{
+"id": "pediatria",
+"n": "Pediatría",
+"c": 793
+},
+{
+"id": "neurologia",
+"n": "Neurología",
+"c": 654
+},
+{
+"id": "infectologia",
+"n": "Infectología",
+"c": 343
+}
+]

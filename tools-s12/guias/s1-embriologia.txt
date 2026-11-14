@@ -19,6 +19,8 @@
 | Evento clave ¦ Entrecruzamiento en profase I ¦ Como una mitosis
 | Resultado ¦ 2 células haploides (n, 2 cromátidas) ¦ 4 células haploides (n)
 ! La **no disyunción** (falla al separar) produce gametos con un cromosoma de más o de menos → aneuploidías.
+^ meiosis-vs-mitosis.webp :: Meiosis vs mitosis. Arriba la meiosis: dos divisiones (Meiosis I y II) que dejan 4 células haploides (haploid cells) distintas; abajo la mitosis: una división que deja 2 células diploides idénticas. La tabla compara síntesis de ADN, sinapsis (synapsis), entrecruzamiento (crossover) y separación de homólogos. :: OpenStax, Biology 2e · CC BY 4.0
+^ entrecruzamiento.webp :: Entrecruzamiento en profase I: los cromosomas homólogos alineados (homologous chromosomes aligned) intercambian segmentos entre cromátidas no hermanas y quedan cromátidas recombinantes (recombinant chromatids). :: OpenStax, Biology 2e · CC BY 4.0
 ## Espermatogénesis vs ovogénesis
 | ¦ Espermatogénesis ¦ Ovogénesis
 | Inicio ¦ Pubertad, continua ¦ Antes del nacimiento
@@ -26,10 +28,14 @@
 | Productos ¦ 4 espermatozoides ¦ 1 óvulo + cuerpos polares
 | Detenciones ¦ Ninguna ¦ Profase I (hasta la pubertad) y metafase II (hasta la fecundación)
 ! Ovocito detenido en **profase I** desde la vida fetal hasta la ovulación, y en **metafase II** hasta la fecundación.
+^ espermatogenesis.webp :: Espermatogénesis en el túbulo seminífero: espermatogonia (2n) → espermatocito primario (2n) → meiosis I → espermatocitos secundarios (n) → meiosis II → espermátidas → espermatozoides. A la derecha, corte del túbulo con células de Sertoli (sustentaculares), de Leydig (intersticiales) y la luz. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
+^ ovogenesis.webp :: Ovogénesis: ovogonia → ovocito primario, que se detiene en profase I antes del nacimiento (meiosis arrests in prophase I); en la pubertad reanuda, da el ovocito secundario y el 1.er cuerpo polar y se detiene en metafase II; solo termina la meiosis II si entra un espermatozoide (2.º cuerpo polar). :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
+^ espermatozoide.webp :: Espermatozoide: cabeza (head) con núcleo y acrosoma, pieza media (mid-piece) con mitocondrias y cola (tail) con el flagelo. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
 ## Fecundación
 = Fecundación (ampolla de la trompa) :: Capacitación del espermatozoide → Atraviesa la corona radiada → Se une a la zona pelúcida (ZP3) y hace la reacción acrosómica → Fusión de membranas → Reacción cortical (bloquea la polispermia) → El ovocito termina la meiosis II → Pronúcleos → Cigoto (2n)
 + **Edad materna avanzada** (≥ 35 años) → más no disyunción en meiosis I → más aneuploidías; se ofrece tamizaje prenatal.
 + La fecundación in vitro con ICSI se usa en infertilidad masculina grave.
+^ fecundacion.webp :: Fecundación: (1) cientos de espermatozoides capacitados llegan a la corona radiada; (2) al tocar la zona pelúcida hacen la reacción acrosómica; (3) uno atraviesa, su membrana se fusiona con la del ovocito y su núcleo entra al citoplasma. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
 ? Fase en que se detiene el ovocito primario :: Profase I (diploteno) hasta la pubertad.
 ? Fase en que se detiene el ovocito secundario :: Metafase II hasta la fecundación.
 ? Sitio habitual de fecundación :: Ampolla de la trompa uterina.
@@ -45,6 +51,9 @@ Q La mayoría de las trisomías 21 se deben a: :: *No disyunción materna en mei
 ~ Embrioblasto :: Masa celular interna; forma al embrión.
 ~ Trofoblasto :: Capa externa del blastocisto; forma la parte fetal de la placenta.
 - La implantación ocurre en la pared **posterior y superior** del útero, con el endometrio en fase **secretora**.
+^ semana1-trayecto.webp :: Semana 1 en el aparato reproductor: ovocito no fecundado → fecundado en la ampolla → 2 células → 4 → 8 → mórula (16 células) → blastocisto (70–100 células) → eclosión de la zona pelúcida e implantación en la pared posterior del útero. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
+^ segmentacion.webp :: Segmentación: las divisiones aumentan el número de células sin aumentar el volumen. En rojo lo que ocurre en la trompa (2, 4 y 8 células); en azul lo que ocurre en el útero (mórula y blastocisto con blastocele, trofoblasto y masa celular interna). :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
+^ blastocisto.webp :: Blastocisto: trofoblasto (capa externa, futura placenta), masa celular interna o embrioblasto (inner cell mass, futuro embrión) y blastocele (cavidad). :: OpenStax, Biology 2e · CC BY 4.0
 ## Semana 2: la regla de los dos
 | Estructura ¦ Se divide en
 | Trofoblasto ¦ Citotrofoblasto y sincitiotrofoblasto
@@ -55,6 +64,8 @@ Q La mayoría de las trisomías 21 se deben a: :: *No disyunción materna en mei
 ! El **epiblasto** origina las tres capas germinales del embrión.
 + **Embarazo ectópico**: implantación fuera del útero (95 % en la trompa, sobre todo la ampolla); dolor, sangrado y hCG que no se duplica.
 + **Enfermedad trofoblástica (mola)**: proliferación del trofoblasto con hCG muy elevada.
+^ implantacion.webp :: Implantación: (1) el blastocisto digiere la mucosa uterina; (2) el endometrio crece y lo cubre por completo; (3) el embrión implantado sigue creciendo dentro del endometrio. Abajo a la derecha: sitio más común, pared posterior y superior del útero. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
+^ disco-bilaminar.webp :: Disco bilaminar (semana 2): epiblasto (epiblast) e hipoblasto (hypoblast) entre la cavidad amniótica (amniotic cavity) y la cavidad del blastocisto, que será el saco vitelino; el trofoblasto ya se dividió en citotrofoblasto y sincitiotrofoblasto. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
 ? Día de la implantación :: Día 6–7 tras la fecundación.
 ? Capa que produce hCG :: Sincitiotrofoblasto.
 ? Componentes del disco bilaminar :: Epiblasto e hipoblasto.
@@ -68,11 +79,14 @@ Q ¿Qué estructura del blastocisto forma al embrión? :: *Embrioblasto (masa ce
 = Gastrulación :: Aparece la línea primitiva en el epiblasto (día 15) → Las células migran por la línea → Forman el endodermo → Forman el mesodermo → Las que quedan son el ectodermo
 - **Notocorda** (del nodo primitivo): induce la placa neural y persiste como el **núcleo pulposo**.
 + **Teratoma sacrococcígeo**: restos de la línea primitiva.
+^ gastrulacion.webp :: Gastrulación: arriba el disco bilaminar (epiblasto e hipoblasto); abajo las células del epiblasto migran por la línea primitiva (primitive streak) y forman el endodermo y el mesodermo; lo que queda del epiblasto es el ectodermo. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
 ## Neurulación y cresta neural
 = Neurulación :: La notocorda induce la placa neural → Pliegues neurales → Tubo neural → Cierre del neuroporo craneal (~día 25) → Cierre del neuroporo caudal (~días 27–28)
 - Las **crestas neurales** se desprenden de los pliegues y migran por todo el cuerpo.
 ! **Defectos del tubo neural** (espina bífida, anencefalia): **α-fetoproteína elevada** en líquido amniótico y suero materno. Prevención: **ácido fólico**.
 + **Enfermedad de Hirschsprung**: falla de migración de la cresta neural al colon distal (sin ganglios) → megacolon y retraso en la expulsión del meconio.
+^ neurulacion.webp :: Neurulación: (1) la notocorda induce la placa neural; (2) la placa se pliega y los pliegues convergen; (3) se cierra el tubo neural (neural tube) y se desprenden las células de la cresta neural (neural crest); (4) la notocorda queda como núcleo pulposo y el mesodermo forma las somitas (somites). :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
+^ tubo-neural.webp :: Del surco al tubo neural: pliegue neural (neural fold) y surco neural (neural groove) → convergencia → tubo neural bajo el ectodermo, con la cresta neural a los lados. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
 ## Mesodermo
 | Mesodermo ¦ Forma
 | Paraxial (somitas) ¦ Esclerotomo → vértebras y costillas; miotomo → músculo; dermatomo → dermis
@@ -85,6 +99,7 @@ Q ¿Qué estructura del blastocisto forma al embrión? :: *Embrioblasto (masa ce
 | Cresta neural ¦ Melanocitos, médula suprarrenal, ganglios, células de Schwann, odontoblastos, huesos de la cara
 | Mesodermo ¦ Músculo, hueso, cartílago, corazón, vasos, sangre, riñón, gónadas, corteza suprarrenal
 | Endodermo ¦ Epitelio del tubo digestivo y respiratorio, hígado, páncreas, tiroides, vejiga
+^ derivados-capas.webp :: Capas germinales tras la gastrulación. Endodermo (amarillo): aparato digestivo, hígado, páncreas, epitelio pulmonar. Mesodermo (rojo): sistema circulatorio, esqueleto, músculo. Ectodermo (azul): piel, pelo, uñas y sistema nervioso. También se ven saco vitelino, amnios, corion y alantoides. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
 ? Evento que define la semana 3 :: Gastrulación (formación de las tres capas germinales a partir del epiblasto).
 ? Derivado adulto de la notocorda :: Núcleo pulposo del disco intervertebral.
 ? Capa que forma la médula suprarrenal :: Cresta neural.
@@ -100,6 +115,8 @@ Q Recién nacido sin expulsión de meconio a las 48 h; biopsia rectal sin célul
 - **Plegamiento** cefalocaudal y lateral: el embrión toma forma cilíndrica; se forman intestino anterior, medio y posterior.
 = Hitos :: Semana 4: el corazón late (~día 22), arcos faríngeos, esbozos de brazos → Semanas 5–6: esbozos de piernas y formación de la cara → Semana 7: separación de los dedos → Semana 8: rasgos humanos reconocibles
 ! Periodo embrionario (semanas 3–8) = organogénesis = máxima sensibilidad a teratógenos.
+^ plegamiento.webp :: Plegamiento: cortes sagitales y transversales que muestran cómo el disco plano (ectodermo azul, mesodermo rojo, endodermo amarillo) se enrolla en un cilindro y el endodermo queda dentro como intestino primitivo (gut), separado del saco vitelino (yolk sac). :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
+^ embrion-7-semanas.webp :: Embrión humano al final de la semana 7 (≈10 mm): ya se ven los ojos, los esbozos de las extremidades y la cola. Proviene de un embarazo ectópico. :: Ed Uthman, en OpenStax Anatomy and Physiology 2e · CC BY 4.0
 ## Arcos faríngeos
 | Arco ¦ Nervio ¦ Músculos ¦ Cartílago / hueso
 | 1.º ¦ Trigémino (V3) ¦ Masticación ¦ Martillo y yunque (cartílago de Meckel)
@@ -124,6 +141,8 @@ Q Recién nacido sin expulsión de meconio a las 48 h; biopsia rectal sin célul
 | Vena umbilical ¦ Ligamento redondo del hígado
 | Arterias umbilicales ¦ Ligamentos umbilicales mediales
 + **Persistencia del conducto arterioso**: soplo continuo en "maquinaria"; se cierra con indometacina; se mantiene abierto con prostaglandina E1.
+^ circulacion-fetal.webp :: Circulación fetal: (1) la sangre oxigenada llega de la placenta por la vena umbilical; (2) el conducto venoso (ductus venosus) la desvía del hígado a la cava inferior; (3) el foramen oval la pasa de la aurícula derecha a la izquierda; (4) el conducto arterioso (ductus arteriosus) lleva la de la arteria pulmonar a la aorta. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
+^ circulacion-neonatal.webp :: Al nacer: el conducto arterioso se cierra (ligamento arterioso), el foramen oval se cierra (fosa oval) y el conducto venoso se vuelve ligamento venoso; las arterias umbilicales quedan como ligamentos umbilicales. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
 ? Día en que empieza a latir el corazón :: ≈ día 22 (semana 4).
 ? Nervio del 1.er arco faríngeo :: Trigémino (V).
 ? Derivados de la 3.ª bolsa faríngea :: Timo y paratiroides inferiores.
@@ -139,6 +158,7 @@ Q ¿Por dónde pasa la sangre de la aurícula derecha a la izquierda en el feto?
 % Semanas 16–20 :: la madre percibe los movimientos fetales
 % Semanas 24–28 :: inicia la producción de surfactante
 % Semanas 22–24 :: límite de viabilidad
+^ utero-trimestres.webp :: Altura del útero al final de cada trimestre (end of 1st, 2nd, 3rd trimester): al final del 1.º apenas sale de la pelvis; al final del 3.º llega cerca de las costillas. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
 ## Placenta
 - Parte fetal (**corion frondoso**) + parte materna (**decidua basal**).
 - Barrera: sincitiotrofoblasto, citotrofoblasto (disminuye), conjuntivo y endotelio fetal.
@@ -148,6 +168,8 @@ Q ¿Por dónde pasa la sangre de la aurícula derecha a la izquierda en el feto?
 ~ IgG materna :: Única inmunoglobulina que cruza la placenta: inmunidad pasiva del recién nacido.
 + La IgG que cruza también causa enfermedad hemolítica (anti-D) o lupus neonatal.
 + **Placenta previa** (sangrado indoloro) vs **desprendimiento de placenta** (sangrado doloroso con útero hipertónico).
+^ placenta.webp :: Placenta: vellosidades coriónicas (chorionic villi, parte fetal) bañadas por la sangre materna en el espacio intervelloso; las sangres nunca se mezclan. Se ven cordón umbilical, amnios, corion y decidua. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
+^ placenta-previa.webp :: Placenta normal (izquierda, el cérvix queda libre) vs placenta previa (derecha, cubre el orificio cervical interno): sangrado indoloro en el 3.er trimestre. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
 ## Cordón umbilical y líquido amniótico
 - **Cordón**: **2 arterias** (sangre desoxigenada hacia la placenta) y **1 vena** (oxigenada al feto), en gelatina de Wharton.
 - **Líquido amniótico**: protege y permite el desarrollo pulmonar; se recicla por **deglución** y **orina** fetal.
@@ -155,6 +177,7 @@ Q ¿Por dónde pasa la sangre de la aurícula derecha a la izquierda en el feto?
 | Oligohidramnios ¦ El feto no orina: agenesia renal (secuencia de Potter), valvas uretrales
 | Polihidramnios ¦ El feto no deglute: atresia esofágica, anencefalia; también diabetes materna
 ! Arteria umbilical única se asocia a malformaciones renales y cardiacas.
+^ placenta-cordon-foto.webp :: Placenta y cordón umbilical (blanco) después del alumbramiento, vistos por la cara fetal. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
 ? Vasos del cordón umbilical :: 2 arterias y 1 vena.
 ? Inmunoglobulina que cruza la placenta :: IgG.
 ? Causa clásica de oligohidramnios :: Agenesia renal bilateral (secuencia de Potter).
@@ -204,6 +227,7 @@ Q Mujer epiléptica que desea embarazarse. ¿Qué fármaco aumenta el riesgo de 
 ~ Pleiotropía :: Un gen con efectos en muchos órganos (Marfan).
 ~ Anticipación :: La enfermedad aparece antes o más grave en cada generación (expansión de tripletes).
 ~ Imprinting :: Expresión de un gen según provenga del padre o de la madre.
+^ punnett.webp :: Cuadro de Punnett: cruza AA × aa → 100 % Aa (dominante); cruza Aa × Aa → 75 % con el rasgo dominante (AA o Aa) y 25 % aa recesivo (proporción 3:1). :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
 ## Patrones de herencia
 | Patrón ¦ Rasgo clave ¦ Riesgo típico
 | Autosómico dominante ¦ Todas las generaciones, ambos sexos, transmisión varón-varón ¦ 50 % por hijo de un afectado
@@ -217,6 +241,10 @@ Q Mujer epiléptica que desea embarazarse. ¿Qué fármaco aumenta el riesgo de 
 | Recesivo ligado al X ¦ Hemofilia A y B, Duchenne, deficiencia de G6PD, daltonismo
 | Mitocondrial ¦ Neuropatía óptica de Leber, MELAS, MERRF
 ! Fibrosis quística: gen **CFTR** (cromosoma 7), mutación más común **ΔF508**; prueba de cloruro en sudor.
+^ herencia-ad.webp :: Autosómico dominante (neurofibromatosis): padre afectado Nn × madre nn → 50 % de los hijos Nn afectados. :: OpenStax, Anatomy and Physiology 2e · CC BY 4.0
+^ herencia-ar.webp :: Autosómico recesivo (fibrosis quística): dos padres portadores (carrier) → 25 % afectados, 50 % portadores, 25 % sanos. :: U.S. National Library of Medicine, en OpenStax Anatomy and Physiology 2e · Dominio público / CC BY 4.0
+^ herencia-xr.webp :: Recesivo ligado al X: padre sano × madre portadora → 50 % de los hijos varones afectados y 50 % de las hijas portadoras; ninguna hija afectada. :: U.S. National Library of Medicine, en OpenStax Anatomy and Physiology 2e · Dominio público / CC BY 4.0
+^ herencia-xd.webp :: Dominante ligado al X: (a) padre afectado → todas las hijas afectadas, ningún hijo; (b) madre afectada → 50 % de hijos e hijas afectados. :: U.S. National Library of Medicine, en OpenStax Anatomy and Physiology 2e · Dominio público / CC BY 4.0
 ## Tripletes e imprinting
 | Enfermedad ¦ Triplete ¦ Herencia
 | Huntington ¦ CAG ¦ Dominante, con anticipación
@@ -244,12 +272,16 @@ Q Un rasgo afecta a varias generaciones, a ambos sexos y hay transmisión de pad
 ~ Microarreglos :: Detectan ganancias y pérdidas de material (variantes de número de copias).
 - Alteraciones **numéricas** (aneuploidías) por no disyunción; **estructurales**: deleciones, duplicaciones, inversiones y translocaciones (recíprocas y **robertsonianas**, entre acrocéntricos 13, 14, 15, 21 y 22).
 ! Translocación robertsoniana 14;21 en un padre → riesgo de Down familiar, independiente de la edad materna.
+^ cariotipo-46xy.webp :: Cariotipo masculino normal 46,XY: 22 pares de autosomas ordenados por tamaño y posición del centrómero, más el par sexual X/Y. :: National Human Genome Research Institute, en OpenStax Anatomy and Physiology 2e · CC BY 4.0
+^ cariotipo-46xx.webp :: Cariotipo femenino 46,XX teñido con fluorescencia (cariotipo espectral): los homólogos tienen el mismo tamaño, centrómero y bandeo. :: Andreas Bolzer et al., en OpenStax Biology 2e · CC BY 4.0
 ## Trisomías autosómicas
 | Trisomía ¦ Rasgos clave
 | 21 (Down) ¦ Discapacidad intelectual, fisuras oblicuas, pliegue palmar único, canal AV, atresia duodenal, leucemia, Alzheimer temprano
 | 18 (Edwards) ¦ Puños cerrados con dedos superpuestos, pies en mecedora, micrognatia
 | 13 (Patau) ¦ Labio y paladar hendido, polidactilia, holoprosencefalia, microftalmia
 - **Tamiz del 1.er trimestre para Down**: ↑ translucencia nucal, ↑ β-hCG libre, ↓ PAPP-A.
+^ no-disyuncion.webp :: No disyunción: si falla en la meiosis I todos los gametos quedan anormales (n+1, n+1, n−1, n−1); si falla en la meiosis II, la mitad son normales (n) y la otra mitad n+1 y n−1. :: OpenStax, Biology 2e · CC BY 4.0
+^ down-edad-materna.webp :: Riesgo de síndrome de Down por edad materna (% de nacidos vivos): 0.1 % a los 20–25 años, 0.5 % a los 35, 0.8 % a los 40 y 3.6 % a los 45. :: OpenStax, Biology 2e · CC BY 4.0
 ## Cromosomas sexuales
 | Síndrome ¦ Cariotipo ¦ Rasgos
 | Turner ¦ 45,X ¦ Talla baja, cuello alado, linfedema neonatal, coartación aórtica, aorta bicúspide, amenorrea primaria, riñón en herradura

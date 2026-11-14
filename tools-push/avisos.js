@@ -45,19 +45,37 @@ async function unseal(s) {
   try { data = await unseal(await txt(g.files[FILE])); }
   catch (e) { console.log("No pude abrir el gist cifrado: MED_SYNC debe ser la misma clave que usan la Mac y el cel."); process.exit(1); }
   const vapid = J(data["medicina-push-vapid"], null), subs = J(data["medicina-push-subs"], []), avisos = J(data["medicina-avisos"], []);
-  if (!vapid || !Array.isArray(subs) || !subs.length || !Array.isArray(avisos)) { console.log("No hay cel con avisos activados."); return; }
+  // Bark (app gratis de iPhone que sí deja poner sonido propio). Opcional: secreto MED_BARK = la clave de Bark del cel.
+  const BARK = (process.env.MED_BARK || "").trim(), SONIDO = (process.env.MED_BARK_SONIDO || "aviso-medicina").trim();
+  const BARK_URL = process.env.MED_BARK_URL || "https://api.day.app";
+  const okSubs = Array.isArray(subs) && subs.length;
+  if ((!okSubs && !BARK) || !Array.isArray(avisos) || (okSubs && !vapid)) { console.log("No hay cel con avisos activados."); return; }
   const sent = g.files[SENT] ? J(await txt(g.files[SENT]), {}) : {};
   const now = Date.now();
   const due = avisos.filter((a) => a && a.id && a.at <= now + 2 * 60e3 && a.at > now - 3 * 3600e3 && !sent[a.id]).sort((a, b) => a.at - b.at);
-  console.log(`${avisos.length} avisos programados, ${due.length} por mandar, ${subs.length} cel(es).`);
+  console.log(`${avisos.length} avisos programados, ${due.length} por mandar, ${okSubs ? subs.length : 0} cel(es)${BARK ? " + Bark" : ""}.`);
   if (!due.length) return;
-  webpush.setVapidDetails("https://marcosreinah88-design.github.io/medicina-udlap-app/", vapid.publicKey, vapid.privateKey);
+  if (okSubs) webpush.setVapidDetails("https://marcosreinah88-design.github.io/medicina-udlap-app/", vapid.publicKey, vapid.privateKey);
   for (const a of due) {
-    for (const s of subs) {
+    const title = String(a.title || "").slice(0, 120), body = String(a.body || "").slice(0, 400), route = String(a.route || "calendario").slice(0, 80);
+    let barkOk = false;
+    if (BARK) {
+      try {
+        const r = await fetch(BARK_URL + "/push", { method: "POST", headers: { "Content-Type": "application/json; charset=utf-8" },
+          body: JSON.stringify({ device_key: BARK, title: title || "Medicina UDLAP", body, sound: SONIDO, group: "Medicina UDLAP", level: "timeSensitive",
+            icon: "https://marcosreinah88-design.github.io/medicina-udlap-app/icon-192.png",
+            url: "https://marcosreinah88-design.github.io/medicina-udlap-app/app.html#" + encodeURIComponent(route) }) });
+        barkOk = r.ok;
+        if (!r.ok) console.log("Bark no aceptó el aviso:", r.status);
+      } catch (e) { console.log("No se pudo mandar a Bark."); }
+    }
+    for (const s of okSubs ? subs : []) {
       // solo servicios de avisos conocidos (Apple, Google, Mozilla, Microsoft)
       const ep = s && s.sub && String(s.sub.endpoint || "");
       if (!/^https:\/\/([a-z0-9.-]+\.)?(push\.apple\.com|fcm\.googleapis\.com|push\.services\.mozilla\.com|notify\.windows\.com)\//.test(ep)) continue;
-      try { await webpush.sendNotification(s.sub, JSON.stringify({ id: String(a.id).slice(0, 120), title: String(a.title || "").slice(0, 120), body: String(a.body || "").slice(0, 400), route: String(a.route || "calendario").slice(0, 80) }), { TTL: 3 * 3600, urgency: "high" }); }
+      // si el iPhone ya lo recibió por Bark (con su sonido), no se repite por la app web
+      if (barkOk && /push\.apple\.com\//.test(ep)) continue;
+      try { await webpush.sendNotification(s.sub, JSON.stringify({ id: String(a.id).slice(0, 120), title, body, route }), { TTL: 3 * 3600, urgency: "high" }); }
       catch (e) { console.log("No se pudo mandar a un cel:", e.statusCode || "error"); }
     }
     sent[a.id] = now;

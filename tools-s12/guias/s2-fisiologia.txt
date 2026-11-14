@@ -7,20 +7,37 @@
 @color #c2410c
 @icon fisio
 @sub Membrana · Potencial de acción · Músculo · Corazón · Hemodinamia · Respiración · Riñón · Ácido-base · Endocrino · Digestivo
-@desc Los mecanismos que más se preguntan: potenciales, ciclo cardiaco, Frank-Starling, ventilación-perfusión, filtración glomerular y ejes hormonales, siempre con su traducción clínica.
-@kw fisiologia membrana transporte potencial de reposo potencial de accion sinapsis contraccion muscular ciclo cardiaco frank starling gasto cardiaco presion arterial barorreceptores ventilacion perfusion espirometria filtracion glomerular depuracion adh aldosterona acido base hormonas hipofisis tiroides cortisol digestion
+@desc Los mecanismos que más se preguntan, divididos en subtemas y con diagramas paso a paso: potenciales, ciclo cardiaco, Frank-Starling, ventilación-perfusión, filtración glomerular, ácido-base y ejes hormonales, siempre con su traducción clínica.
+@kw fisiologia membrana transporte potencial de reposo nernst potencial de accion sinapsis contraccion muscular ciclo cardiaco electrocardiograma frank starling gasto cardiaco presion arterial poiseuille barorreceptores starling edema ventilacion perfusion espirometria filtracion glomerular depuracion adh aldosterona diureticos acido base winter hormonas hipofisis tiroides cortisol digestion
 
 # Membrana, transporte y potencial de reposo
 > El potencial de reposo depende sobre todo del K⁺ y lo mantiene la bomba Na⁺/K⁺-ATPasa.
-- Transporte **pasivo**: difusión simple (O₂, CO₂, lípidos), difusión facilitada por canales o transportadores (GLUT), ósmosis (acuaporinas). **Activo primario**: usa ATP (Na⁺/K⁺-ATPasa, Ca²⁺-ATPasa, H⁺/K⁺-ATPasa). **Activo secundario**: usa el gradiente de Na⁺ (SGLT, intercambiador Na⁺/Ca²⁺).
-- **Na⁺/K⁺-ATPasa**: saca 3 Na⁺ y mete 2 K⁺ por ATP (electrogénica); la inhibe la **digoxina**.
-- Concentraciones: K⁺ intracelular ~140 mM / extracelular ~4 mM; Na⁺ intracelular ~12 mM / extracelular ~140 mM; Ca²⁺ intracelular ~0.0001 mM.
-- **Ecuación de Nernst**: potencial de equilibrio de un ion (E_K ≈ −90 mV; E_Na ≈ +65 mV; E_Ca ≈ +120 mV). **Goldman-Hodgkin-Katz**: potencial de membrana según la permeabilidad de todos los iones.
-- Potencial de reposo neuronal ≈ **−70 mV** (muscular ≈ −90 mV), cercano a E_K porque en reposo la membrana es más permeable al K⁺.
-! **Hiperpotasemia** despolariza el potencial de reposo (lo acerca a 0) → inactiva canales de Na⁺ → arritmias; **hipopotasemia** lo hiperpolariza.
-! Ósmosis: el agua va hacia donde hay más osmolalidad; osmolalidad plasmática ≈ 2 Na⁺ + glucosa/18 + BUN/2.8 ≈ 285–295 mOsm/kg.
-+ La **digoxina** inhibe la Na⁺/K⁺-ATPasa → ↑ Na⁺ intracelular → menos salida de Ca²⁺ por el intercambiador → ↑ contractilidad; la hipopotasemia aumenta su toxicidad.
+## Tipos de transporte
+| Tipo ¦ Energía ¦ Ejemplo
+| Difusión simple ¦ Gradiente ¦ O₂, CO₂, lípidos
+| Difusión facilitada ¦ Gradiente, con canal o transportador ¦ GLUT, canales iónicos
+| Ósmosis ¦ Gradiente de agua ¦ Acuaporinas
+| Activo primario ¦ ATP ¦ Na⁺/K⁺-ATPasa, Ca²⁺-ATPasa, H⁺/K⁺-ATPasa
+| Activo secundario ¦ Gradiente de Na⁺ ¦ SGLT (Na⁺-glucosa), intercambiador Na⁺/Ca²⁺
+- **Na⁺/K⁺-ATPasa**: saca **3 Na⁺** y mete **2 K⁺** por ATP (electrogénica); la inhibe la **digoxina**.
++ La **digoxina** inhibe la bomba → ↑ Na⁺ intracelular → menos salida de Ca²⁺ por el intercambiador → ↑ contractilidad; la hipopotasemia aumenta su toxicidad.
+## Concentraciones y potenciales de equilibrio
+| Ion ¦ Intracelular ¦ Extracelular ¦ Potencial de equilibrio
+| K⁺ ¦ ~140 mM ¦ ~4 mM ¦ ≈ −90 mV
+| Na⁺ ¦ ~12 mM ¦ ~140 mM ¦ ≈ +65 mV
+| Ca²⁺ ¦ ~0.0001 mM ¦ ~2.5 mM ¦ ≈ +120 mV
+~ Ecuación de Nernst :: Calcula el potencial de equilibrio de un solo ion según su gradiente de concentración.
+~ Goldman-Hodgkin-Katz :: Calcula el potencial de membrana según la permeabilidad a todos los iones.
+% ≈ −70 mV :: potencial de reposo neuronal
+% ≈ −90 mV :: potencial de reposo del músculo
+! En reposo la membrana es más permeable al K⁺: por eso el potencial de reposo queda cerca del de equilibrio del K⁺.
+## Potasio y excitabilidad
+- **Hiperpotasemia** despolariza el potencial de reposo (lo acerca a 0) → inactiva canales de Na⁺ → arritmias. **Hipopotasemia** lo hiperpolariza.
 + En hiperpotasemia se da **gluconato de calcio** para estabilizar la membrana, y luego insulina con glucosa para meter K⁺ a la célula.
+## Osmolalidad
+- El agua va hacia donde hay más osmolalidad.
+% 285–295 mOsm/kg :: osmolalidad plasmática normal
+% 2 Na⁺ + glucosa/18 + BUN/2.8 :: osmolalidad calculada
 ? Estequiometría de la Na⁺/K⁺-ATPasa :: Saca 3 Na⁺ y mete 2 K⁺ por cada ATP.
 ? Ion que determina principalmente el potencial de reposo :: Potasio (K⁺).
 ? Potencial de equilibrio del K⁺ :: ≈ −90 mV.
@@ -32,15 +49,21 @@ Q Paciente con Na⁺ 140, glucosa 180 mg/dL y BUN 28 mg/dL. Osmolalidad calculad
 
 # Potencial de acción y sinapsis
 > Señal todo o nada: entrada de Na⁺ (despolarización) y salida de K⁺ (repolarización).
-- Fases: estímulo → **umbral (~−55 mV)** → apertura de canales de **Na⁺ dependientes de voltaje** (despolarización, pico ~+30 mV) → inactivación de Na⁺ + apertura de **K⁺** (repolarización) → **hiperpolarización** posterior → reposo.
-- **Periodo refractario absoluto** (canales de Na⁺ inactivados: no hay nuevo PA) y **relativo** (se necesita estímulo mayor).
-- Velocidad de conducción aumenta con **mielina** y **mayor diámetro** del axón.
-- **Sinapsis química**: PA en la terminal → apertura de canales de **Ca²⁺** → exocitosis de neurotransmisor (SNARE) → receptores postsinápticos: **ionotrópicos** (rápidos) o **metabotrópicos** (proteína G).
-- Potencial postsináptico **excitador** (PEPS; glutamato, entrada de Na⁺) e **inhibidor** (PIPS; GABA y glicina, entrada de Cl⁻). Sumación temporal y espacial.
+## Fases del potencial de acción
+= Potencial de acción neuronal :: Estímulo → Umbral (~−55 mV) → Se abren canales de Na⁺ dependientes de voltaje: despolarización hasta ~+30 mV → Se inactivan los de Na⁺ y se abren los de K⁺: repolarización → Hiperpolarización posterior → Reposo (−70 mV)
+~ Periodo refractario absoluto :: Los canales de Na⁺ están inactivados: ningún estímulo genera otro potencial.
+~ Periodo refractario relativo :: Se puede generar otro potencial, pero con un estímulo mayor.
+- La velocidad de conducción aumenta con **mielina** y **mayor diámetro** del axón.
 ! Tetrodotoxina (pez globo) y anestésicos locales (lidocaína) bloquean los canales de Na⁺ → no hay potencial de acción.
-! La liberación del neurotransmisor depende de la entrada de **Ca²⁺** en la terminal presináptica.
-+ **Anestésicos locales**: bloquean primero las fibras delgadas (dolor y temperatura), después tacto y al final motoras.
-+ **Benzodiacepinas** potencian al receptor GABA-A (más frecuencia de apertura del canal de Cl⁻); los barbitúricos aumentan la duración.
++ **Anestésicos locales**: bloquean primero las fibras delgadas (dolor y temperatura), después tacto y al final las motoras.
+## Sinapsis química
+= Transmisión sináptica :: Potencial de acción llega a la terminal → Se abren canales de Ca²⁺ → Exocitosis del neurotransmisor (SNARE) → Se une a receptores postsinápticos → Potencial postsináptico → Se elimina el neurotransmisor (recaptura o degradación)
+- Receptores **ionotrópicos** (canales, rápidos) o **metabotrópicos** (proteína G, lentos).
+| Potencial postsináptico ¦ Neurotransmisor ¦ Ion
+| Excitador (PEPS) ¦ Glutamato ¦ Entrada de Na⁺
+| Inhibidor (PIPS) ¦ GABA, glicina ¦ Entrada de Cl⁻
+- **Sumación temporal** (varios estímulos seguidos) y **espacial** (de varias sinapsis a la vez).
++ **Benzodiacepinas** aumentan la frecuencia de apertura del canal de Cl⁻ del receptor GABA-A; los barbitúricos aumentan su duración.
 ? Ion responsable de la despolarización :: Entrada de Na⁺ por canales dependientes de voltaje.
 ? Ion que dispara la liberación del neurotransmisor :: Ca²⁺ que entra a la terminal presináptica.
 ? Neurotransmisor inhibidor principal del cerebro :: GABA (en la médula también glicina).
@@ -51,15 +74,19 @@ Q ¿Qué se pierde primero con un anestésico local? :: *Dolor y temperatura :: 
 
 # Fisiología muscular
 > Acoplamiento excitación-contracción: el Ca²⁺ conecta el potencial de acción con los puentes cruzados.
-- **Esquelético**: PA → túbulo T → receptor de dihidropiridina (sensor) → **receptor de rianodina** libera Ca²⁺ del retículo sarcoplásmico → Ca²⁺ se une a **troponina C** → tropomiosina se desplaza → miosina une actina (puente cruzado). El **ATP** se requiere para **soltar** la miosina de la actina y para recaptar Ca²⁺ (SERCA).
-- **Cardiaco**: el Ca²⁺ que entra por canales tipo L dispara la liberación de Ca²⁺ del retículo ("liberación de Ca²⁺ inducida por Ca²⁺").
-- **Liso**: Ca²⁺ + **calmodulina** → activa la **cinasa de la cadena ligera de miosina (MLCK)** → contracción; la fosfatasa de miosina relaja. El NO (vía GMPc) relaja.
-- Relación **longitud-tensión**: hay una longitud óptima de sarcómero con máxima superposición útil de filamentos.
-- Sumación y **tetania** en el esquelético (no ocurre en el cardiaco por su periodo refractario largo).
+## Músculo esquelético
+= Acoplamiento excitación-contracción :: Potencial de acción → Túbulo T → Receptor de dihidropiridina (sensor de voltaje) → Receptor de rianodina libera Ca²⁺ del retículo → Ca²⁺ se une a troponina C → La tropomiosina se desplaza → Puente cruzado actina-miosina → ATP suelta la miosina → SERCA recapta el Ca²⁺ y el músculo se relaja
 ! **Rigor mortis**: sin ATP la miosina queda unida a la actina.
-! El miocardio no puede tetanizarse: su periodo refractario dura casi toda la contracción.
-+ **Nitratos** y sildenafil aumentan GMPc en el músculo liso vascular → vasodilatación (combinados causan hipotensión grave).
-+ **Bloqueadores de canales de Ca²⁺** (amlodipino, verapamilo) relajan el músculo liso vascular y reducen la contractilidad cardiaca (los no dihidropiridínicos).
+- Relación **longitud-tensión**: hay una longitud óptima del sarcómero con la máxima superposición útil de filamentos.
+- Sumación y **tetania**: posibles en el esquelético.
+## Músculo cardiaco y liso
+| ¦ Cardiaco ¦ Liso
+| Disparo del Ca²⁺ ¦ Entra por canales L y libera más del retículo (liberación inducida por Ca²⁺) ¦ Entra del exterior y del retículo
+| Proteína que une Ca²⁺ ¦ Troponina C ¦ Calmodulina → activa la MLCK
+| Relajación ¦ SERCA, intercambiador Na⁺/Ca²⁺ ¦ Fosfatasa de miosina; NO (GMPc)
+| ¿Tetaniza? ¦ No (periodo refractario largo) ¦ Contracción tónica sostenida
++ **Nitratos** y sildenafil aumentan el GMPc del músculo liso vascular → vasodilatación (combinados causan hipotensión grave).
++ **Bloqueadores de canales de Ca²⁺**: relajan el músculo liso vascular; los no dihidropiridínicos (verapamilo, diltiazem) también reducen la contractilidad y la FC.
 ? Proteína que une Ca²⁺ en el músculo esquelético :: Troponina C.
 ? Proteína que une Ca²⁺ en el músculo liso :: Calmodulina (activa MLCK).
 ? Para qué se necesita ATP en la contracción :: Para separar la miosina de la actina y para recaptar Ca²⁺ (SERCA).
@@ -70,16 +97,33 @@ Q La nitroglicerina relaja el músculo liso vascular a través de: :: *Aumento d
 
 # Fisiología cardiaca
 > El corazón como bomba eléctrica y mecánica.
-- **Potencial de acción ventricular**: fase 0 (entrada rápida de Na⁺), 1 (salida transitoria de K⁺), **2 meseta (entrada de Ca²⁺ por canales L)**, 3 (salida de K⁺), 4 (reposo).
-- **Células marcapaso** (nodo SA): fase 4 con despolarización espontánea por **corriente funny (If, Na⁺)**; fase 0 por **Ca²⁺**. El simpático aumenta la pendiente de fase 4; el vago la disminuye.
-- ECG: **P** despolarización auricular; **PR** (0.12–0.20 s) conducción AV; **QRS** (< 0.12 s) despolarización ventricular; **T** repolarización ventricular; **QT** sístole eléctrica.
-- **Ciclo cardiaco**: contracción isovolumétrica (todas las válvulas cerradas) → eyección → relajación isovolumétrica → llenado (rápido, lento, sístole auricular). R1 al cerrar AV; R2 al cerrar semilunares.
-- **Gasto cardiaco** = FC × VS. **Volumen sistólico** depende de **precarga**, **poscarga** y **contractilidad**. Fracción de eyección normal **≥ 55 %**.
-- **Ley de Frank-Starling**: a mayor llenado (volumen telediastólico), mayor fuerza de contracción y volumen sistólico.
-! Precarga ≈ volumen telediastólico; poscarga ≈ presión aórtica/resistencia contra la que eyecta; contractilidad = inotropismo (sube con simpático y digoxina).
+## Potenciales de acción cardiacos
+| Fase ¦ Ventrículo (respuesta rápida) ¦ Nodo SA (marcapaso)
+| 0 ¦ Entrada rápida de Na⁺ ¦ Entrada de Ca²⁺
+| 1 ¦ Salida transitoria de K⁺ ¦ —
+| 2 ¦ Meseta: entrada de Ca²⁺ (canales L) ¦ —
+| 3 ¦ Salida de K⁺ ¦ Salida de K⁺
+| 4 ¦ Reposo estable ¦ Despolarización espontánea (corriente funny If, Na⁺)
+- El **simpático** aumenta la pendiente de la fase 4 (↑ FC); el **vago** la disminuye.
+## Electrocardiograma
+| Onda o intervalo ¦ Representa ¦ Normal
+| P ¦ Despolarización auricular ¦ —
+| PR ¦ Conducción auricular y retraso en el nodo AV ¦ 0.12–0.20 s
+| QRS ¦ Despolarización ventricular ¦ < 0.12 s
+| T ¦ Repolarización ventricular ¦ —
+| QT ¦ Sístole eléctrica ventricular ¦ Depende de la FC
 ! QT largo predispone a **torsades de pointes** (hipopotasemia, hipomagnesemia, macrólidos, antipsicóticos, ondansetrón).
+## Ciclo cardiaco
+= Ciclo cardiaco :: Contracción isovolumétrica (todas las válvulas cerradas; R1 al cerrar las AV) → Eyección → Relajación isovolumétrica (R2 al cerrar las semilunares) → Llenado rápido → Llenado lento → Sístole auricular
++ **S3**: llenado rápido en un ventrículo dilatado (insuficiencia cardiaca). **S4**: contracción auricular contra un ventrículo rígido (hipertrofia).
+## Gasto cardiaco y Frank-Starling
+% FC × VS :: gasto cardiaco
+% ≥ 55 % :: fracción de eyección normal (VS / volumen telediastólico)
+~ Precarga :: Volumen telediastólico: cuánto se estira el ventrículo antes de contraerse.
+~ Poscarga :: Presión aórtica o resistencia contra la que el ventrículo eyecta.
+~ Contractilidad (inotropismo) :: Fuerza intrínseca de contracción; la aumentan el simpático y la digoxina.
+~ Ley de Frank-Starling :: A mayor llenado (volumen telediastólico), mayor fuerza de contracción y volumen sistólico, hasta un límite.
 + **Insuficiencia cardiaca con FE reducida** (< 40 %): curva de Frank-Starling aplanada; congestión y bajo gasto.
-+ Tercer ruido (S3): llenado rápido en ventrículo dilatado (insuficiencia cardiaca); cuarto ruido (S4): contracción auricular contra ventrículo rígido (hipertrofia).
 ? Ion de la meseta del PA ventricular :: Ca²⁺ por canales tipo L.
 ? Corriente responsable del automatismo del nodo SA :: Corriente funny (If), de Na⁺.
 ? Ley de Frank-Starling :: A mayor volumen telediastólico, mayor volumen sistólico (hasta un límite).
@@ -88,20 +132,30 @@ Q La nitroglicerina relaja el músculo liso vascular a través de: :: *Aumento d
 ? Significado de S3 en el adulto :: Sobrecarga de volumen o insuficiencia cardiaca.
 Q ¿En qué fase del ciclo cardiaco todas las válvulas están cerradas y la presión ventricular sube? :: *Contracción isovolumétrica :: Eyección rápida :: Llenado rápido :: Sístole auricular || Tras el cierre de las AV y antes de abrirse las semilunares.
 Q Volumen telediastólico 120 mL y telesistólico 50 mL. Fracción de eyección: :: *≈ 58 % :: ≈ 42 % :: ≈ 70 % :: ≈ 24 % || VS = 70 mL; FE = 70/120 ≈ 0.58.
-Q La estimulación vagal reduce la frecuencia cardiaca porque: :: *Disminuye la pendiente de la fase 4 del nodo SA :: Prolonga la meseta ventricular :: Bloquea canales de Na⁺ rápidos :: Aumenta la entrada de Ca²⁺ || La acetilcolina abre canales de K⁺ y reduce If: la despolarización espontánea tarda más.
+Q La estimulación vagal reduce la frecuencia cardiaca porque: :: *Disminuye la pendiente de la fase 4 del nodo SA :: Prolonga la meseta ventricular :: Bloquea canales de Na⁺ rápidos :: Aumenta la entrada de Ca²⁺ || La acetilcolina abre canales de K⁺ y reduce If.
 
 # Hemodinamia y control de la presión arterial
 > PA media = gasto cardiaco × resistencia periférica total.
-- **Presión arterial media** ≈ diastólica + ⅓ (sistólica − diastólica). Presión de pulso = sistólica − diastólica.
-- **Ley de Poiseuille**: la resistencia es proporcional a la viscosidad y longitud e **inversamente proporcional a r⁴** → pequeños cambios de radio cambian mucho el flujo.
-- Flujo = ΔP / R. Resistencias en serie se suman; en paralelo se reducen (por eso la resistencia sistémica total es baja comparada con cada órgano).
-- **Barorreceptores** (seno carotídeo → IX; arco aórtico → X): ↑ PA → ↑ disparo → ↓ simpático y ↑ vago → baja FC y resistencia (control rápido).
-- Control a largo plazo: **riñón** (volumen) y **SRAA**; ADH; péptido natriurético auricular (↑ natriuresis).
-- **Fuerzas de Starling** en el capilar: presión hidrostática capilar y oncótica intersticial sacan líquido; oncótica plasmática (albúmina) e hidrostática intersticial lo retienen.
-! Disminuir el radio a la mitad aumenta la resistencia 16 veces (r⁴).
+## Presiones, flujo y resistencia
+% PAD + ⅓ (PAS − PAD) :: presión arterial media
+% PAS − PAD :: presión de pulso
+% Flujo = ΔP / R :: relación básica
+- **Ley de Poiseuille**: la resistencia es proporcional a la viscosidad y la longitud, e **inversamente proporcional a r⁴**.
+- Resistencias en serie se suman; en paralelo se reducen (por eso la resistencia sistémica total es baja comparada con la de cada órgano).
+! Reducir el radio a la mitad aumenta la resistencia **16 veces** (r⁴).
+## Reflejo barorreceptor (control rápido)
+= Caída de la presión arterial :: ↓ Estiramiento del seno carotídeo (IX) y del arco aórtico (X) → ↓ Disparo hacia el bulbo → ↑ Simpático y ↓ vago → Taquicardia, ↑ contractilidad y vasoconstricción → La presión se recupera
++ **Masaje del seno carotídeo**: activa los barorreceptores → reflejo vagal que puede terminar una taquicardia supraventricular.
++ **Hipotensión ortostática**: al ponerse de pie baja el retorno venoso; si falla el reflejo (disautonomía, diabetes, fármacos), la presión cae.
+## Control a largo plazo
+- **Riñón** (volumen) y **SRAA**; **ADH**; **péptido natriurético auricular** (↑ natriuresis y vasodilatación).
+## Fuerzas de Starling y edema
+| Fuerza ¦ Efecto sobre el líquido
+| Presión hidrostática capilar ¦ Lo saca del vaso
+| Presión oncótica intersticial ¦ Lo saca del vaso
+| Presión oncótica plasmática (albúmina) ¦ Lo retiene
+| Presión hidrostática intersticial ¦ Lo retiene
 ! Edema por: ↑ presión hidrostática (insuficiencia cardiaca), ↓ presión oncótica (hipoalbuminemia), ↑ permeabilidad (sepsis, quemaduras) u obstrucción linfática.
-+ **Masaje del seno carotídeo**: activa barorreceptores → reflejo vagal que puede terminar una taquicardia supraventricular.
-+ **Ortostatismo**: al ponerse de pie baja el retorno venoso; si falla el reflejo barorreceptor (disautonomía, diabetes, fármacos) hay hipotensión ortostática.
 ? Fórmula de la presión arterial media :: PAM ≈ PAD + ⅓ (PAS − PAD).
 ? Variable con mayor efecto sobre la resistencia vascular :: Radio del vaso (a la cuarta potencia).
 ? Nervio aferente del seno carotídeo :: Glosofaríngeo (IX).
@@ -113,43 +167,71 @@ Q Si el radio de una arteriola se duplica, la resistencia: :: *Disminuye 16 vece
 
 # Fisiología respiratoria
 > Ventilación, difusión, perfusión y transporte de gases.
-- Volúmenes: volumen corriente ~500 mL; **capacidad residual funcional** (VRE + VR); **capacidad vital** (VRI + VC + VRE); **capacidad pulmonar total**. El **volumen residual** no se mide con espirometría.
-- **Espirometría**: **obstructivo** (asma, EPOC) → ↓ FEV1/FVC (< 0.70); **restrictivo** (fibrosis, obesidad, enfermedad neuromuscular) → FEV1/FVC normal o ↑ con ↓ capacidad pulmonar total.
-- Ventilación alveolar = (VC − espacio muerto) × FR. Espacio muerto anatómico ~150 mL.
-- **Distensibilidad** (compliance) ↓ en fibrosis, ↑ en enfisema. El surfactante reduce la tensión superficial (ley de Laplace: P = 2T/r).
-- **Ventilación/perfusión**: ápice con V/Q alto, base con V/Q bajo. V/Q = 0 → **cortocircuito** (shunt: no corrige con O₂ al 100 %); V/Q = ∞ → **espacio muerto** (tromboembolia pulmonar).
-- **Vasoconstricción pulmonar hipóxica**: la hipoxia alveolar contrae arteriolas pulmonares (al revés que en la circulación sistémica).
-- Control: quimiorreceptores **centrales** (bulbo; responden al ↑ CO₂/H⁺ del LCR) y **periféricos** (cuerpos carotídeos y aórticos; responden a PaO₂ < 60 mmHg).
-! El estímulo principal para respirar es la **PaCO₂** (vía H⁺ en LCR); en hipoxemia grave (PaO₂ < 60) actúan los periféricos.
-! Gradiente A-a normal (5–15 mmHg) en hipoventilación; elevado en V/Q, shunt y difusión.
-+ **Asma/EPOC**: patrón obstructivo; en asma mejora el FEV1 ≥ 12 % y 200 mL con broncodilatador.
+## Volúmenes y capacidades
+% ~500 mL :: volumen corriente
+% ~150 mL :: espacio muerto anatómico
+~ Capacidad residual funcional :: Volumen de reserva espiratoria + volumen residual; lo que queda al final de una espiración normal.
+~ Capacidad vital :: Volumen de reserva inspiratoria + corriente + reserva espiratoria.
+~ Volumen residual :: Lo que queda tras una espiración máxima; no se mide con espirometría.
+- **Ventilación alveolar** = (VC − espacio muerto) × FR.
+## Espirometría
+| Patrón ¦ FEV1/FVC ¦ Volúmenes ¦ Ejemplos
+| Obstructivo ¦ < 0.70 ¦ CPT normal o ↑ (atrapamiento) ¦ Asma, EPOC
+| Restrictivo ¦ Normal o ↑ ¦ CPT ↓ ¦ Fibrosis, obesidad, enfermedad neuromuscular
++ **Asma**: el FEV1 mejora ≥ 12 % y 200 mL con broncodilatador.
+## Mecánica
+- **Distensibilidad** (compliance): ↓ en fibrosis, ↑ en enfisema.
+- El **surfactante** reduce la tensión superficial (ley de Laplace: P = 2T/r) y evita el colapso de los alvéolos pequeños.
+## Ventilación/perfusión
+| Situación ¦ V/Q ¦ Ejemplo
+| Ápice pulmonar (de pie) ¦ Alto ¦ Normal
+| Base pulmonar (de pie) ¦ Bajo ¦ Normal
+| Cortocircuito (shunt) ¦ 0 ¦ Neumonía, atelectasia; no corrige con O₂ al 100 %
+| Espacio muerto ¦ ∞ ¦ Tromboembolia pulmonar
+- **Vasoconstricción pulmonar hipóxica**: la hipoxia alveolar contrae las arteriolas pulmonares (al revés que en la circulación sistémica) y desvía el flujo a zonas ventiladas.
+! Gradiente A-a normal (5–15 mmHg) en la hipoventilación; elevado en V/Q, shunt y trastornos de difusión.
 + **Tromboembolia pulmonar**: espacio muerto, taquipnea, hipoxemia con gradiente A-a aumentado.
+## Control de la respiración
+- Quimiorreceptores **centrales** (bulbo): responden al ↑ CO₂/H⁺ del LCR. **Periféricos** (cuerpos carotídeos y aórticos): responden a PaO₂ < 60 mmHg.
+! El estímulo principal para respirar es la **PaCO₂**; en hipoxemia grave actúan los periféricos.
 ? Volumen que no mide la espirometría :: Volumen residual (y por eso tampoco CRF ni CPT).
 ? Índice de obstrucción :: FEV1/FVC < 0.70.
 ? Qué es un cortocircuito (shunt) :: Perfusión sin ventilación (V/Q = 0); no corrige con O₂ al 100 %.
 ? Estímulo principal de la ventilación :: PaCO₂ elevada (H⁺ en el LCR, quimiorreceptores centrales).
 ? Respuesta vascular pulmonar a la hipoxia alveolar :: Vasoconstricción (desvía flujo a zonas ventiladas).
 Q Espirometría con FEV1/FVC de 0.88 y capacidad pulmonar total disminuida. Patrón: :: *Restrictivo :: Obstructivo :: Normal :: Mixto obstructivo predominante || Relación conservada o alta con volúmenes pequeños = restricción.
-Q Paciente cuya hipoxemia no mejora con oxígeno al 100 %. Mecanismo: :: *Cortocircuito (shunt) :: Hipoventilación :: Altitud :: Desequilibrio V/Q leve || La sangre que pasa por alvéolos no ventilados no entra en contacto con el O₂ suplementario.
+Q Paciente cuya hipoxemia no mejora con oxígeno al 100 %. Mecanismo: :: *Cortocircuito (shunt) :: Hipoventilación :: Altitud :: Desequilibrio V/Q leve || La sangre que pasa por alvéolos no ventilados no toca el O₂ suplementario.
 Q En la base del pulmón de pie, la relación V/Q es: :: *Baja (más perfusión que ventilación) :: Alta :: Infinita :: Igual a cero || La gravedad aumenta más la perfusión que la ventilación en las bases.
 
 # Fisiología renal
 > Filtración, reabsorción y secreción para mantener volumen, osmolalidad y electrolitos.
-- **Tasa de filtración glomerular (TFG)** ≈ 120 mL/min; depende de las fuerzas de Starling en el glomérulo. **Fracción de filtración** = TFG / flujo plasmático renal ≈ 20 %.
-- **Depuración (clearance)** = (U × V) / P. **Inulina** = TFG exacta; **creatinina** = estimación (sobreestima un poco porque se secreta); **PAH** = flujo plasmático renal efectivo.
-- Arteriola **aferente** dilatada (prostaglandinas) y **eferente** contraída (angiotensina II) ↑ TFG. AINE (contraen aferente) e IECA/ARA II (dilatan eferente) ↓ TFG.
+## Filtración glomerular
+% ≈ 120 mL/min :: tasa de filtración glomerular
+% ≈ 20 % :: fracción de filtración (TFG / flujo plasmático renal)
+| Cambio ¦ Efecto en la TFG ¦ Ejemplo
+| Dilatar la aferente ¦ ↑ ¦ Prostaglandinas
+| Contraer la aferente ¦ ↓ ¦ AINE
+| Contraer la eferente ¦ ↑ ¦ Angiotensina II
+| Dilatar la eferente ¦ ↓ ¦ IECA y ARA II
 - **Autorregulación**: respuesta miógena y **retroalimentación tubuloglomerular** (mácula densa).
-- **ADH**: inserta **acuaporina 2** en el colector (V2) → orina concentrada. **Aldosterona**: en la célula principal ↑ ENaC y Na⁺/K⁺-ATPasa → reabsorbe Na⁺, secreta K⁺ y H⁺.
-- **Mecanismo contracorriente**: el asa de Henle crea un intersticio medular hiperosmolar (hasta ~1200 mOsm/kg) que permite concentrar la orina.
-| Diurético ¦ Sitio ¦ Efecto clave
-| Acetazolamida ¦ TCP ¦ Inhibe anhidrasa carbónica, acidosis
-| Furosemida ¦ Asa ascendente gruesa (NKCC2) ¦ El más potente, hipopotasemia, hipocalcemia
-| Tiazidas ¦ TCD (NCC) ¦ Hipopotasemia, hipercalcemia
-| Espironolactona ¦ Colector ¦ Antagoniza aldosterona, hiperpotasemia
-! Combinar AINE + IECA + diurético ("triple whammy") en un paciente deshidratado puede causar lesión renal aguda.
-! Glucosa: se reabsorbe por SGLT2 en el TCP; los **inhibidores SGLT2** (dapagliflozina) causan glucosuria.
+! "Triple whammy": AINE + IECA + diurético en un paciente deshidratado puede causar lesión renal aguda.
+## Depuración (clearance)
+- **Depuración = (U × V) / P**.
+~ Inulina :: Se filtra y no se reabsorbe ni secreta: mide exactamente la TFG.
+~ Creatinina :: Estima la TFG; la sobreestima un poco porque se secreta.
+~ PAH :: Se filtra y se secreta casi por completo: mide el flujo plasmático renal efectivo.
+## Concentración de la orina
+= Orina concentrada :: El asa de Henle crea un intersticio medular hiperosmolar (hasta ~1200 mOsm/kg) por contracorriente → ↑ Osmolalidad plasmática → Hipotálamo libera ADH → ADH se une a V2 del túbulo colector → Inserta acuaporina 2 → El agua sale al intersticio → Orina concentrada
+- **Aldosterona**: en la célula principal ↑ ENaC y Na⁺/K⁺-ATPasa → reabsorbe Na⁺ y secreta K⁺; en las células intercaladas α estimula la secreción de H⁺.
 + **Diabetes insípida**: central (falta ADH) o nefrogénica (no responde; litio); orina abundante y diluida.
 + **SIADH**: exceso de ADH → hiponatremia euvolémica con orina concentrada (cáncer pulmonar de células pequeñas, fármacos).
+## Diuréticos
+| Diurético ¦ Sitio ¦ Efecto clave
+| Acetazolamida ¦ TCP ¦ Inhibe la anhidrasa carbónica; acidosis
+| Furosemida ¦ Asa ascendente gruesa (NKCC2) ¦ El más potente; hipopotasemia, hipocalcemia
+| Tiazidas ¦ TCD (NCC) ¦ Hipopotasemia, hipercalcemia
+| Espironolactona ¦ Colector ¦ Antagoniza la aldosterona; hiperpotasemia
+! La glucosa se reabsorbe por **SGLT2** en el TCP; los **inhibidores SGLT2** (dapagliflozina) causan glucosuria.
 ? Fórmula de la depuración :: Concentración urinaria × flujo urinario / concentración plasmática.
 ? Sustancia que mide exactamente la TFG :: Inulina.
 ? Efecto de la angiotensina II sobre las arteriolas glomerulares :: Contrae sobre todo la eferente (mantiene la TFG).
@@ -161,13 +243,20 @@ Q Hiponatremia euvolémica con osmolalidad urinaria alta en un fumador. Sospecha
 Q ¿Qué diurético puede causar hiperpotasemia? :: *Espironolactona :: Furosemida :: Hidroclorotiazida :: Acetazolamida || Al antagonizar la aldosterona disminuye la secreción de K⁺.
 
 # Equilibrio ácido-base
-> Tres defensas: amortiguadores (segundos), pulmón (minutos-horas) y riñón (días).
-- El riñón **reabsorbe** casi todo el HCO₃⁻ filtrado (85 % en TCP) y **genera** HCO₃⁻ nuevo excretando H⁺ como **acidez titulable** (fosfato) y **amonio** (NH₄⁺, el principal y el que más se adapta).
-- Abordaje de la gasometría: 1) pH (acidemia/alcalemia), 2) trastorno primario (PaCO₂ vs HCO₃⁻), 3) compensación esperada, 4) brecha aniónica en acidosis metabólica.
-- **Fórmula de Winter** (acidosis metabólica): PaCO₂ esperada = 1.5 × HCO₃⁻ + 8 ± 2. Si la PaCO₂ real es mayor → hay además acidosis respiratoria.
-- Compensación respiratoria aguda vs crónica: en la acidosis respiratoria el HCO₃⁻ sube 1 mEq/L por cada 10 mmHg de PaCO₂ (aguda) y 3.5 (crónica).
-- Potasio y pH: la **acidosis** saca K⁺ de las células (hiperpotasemia); la **alcalosis** lo mete (hipopotasemia).
-! Winter: PaCO₂ = 1.5 × HCO₃⁻ + 8 (± 2).
+> Tres defensas: amortiguadores (segundos), pulmón (minutos a horas) y riñón (días).
+## El riñón y el bicarbonato
+- **Reabsorbe** casi todo el HCO₃⁻ filtrado (85 % en el TCP).
+- **Genera** HCO₃⁻ nuevo al excretar H⁺ como **acidez titulable** (fosfato) y **amonio** (NH₄⁺, el principal y el que más se adapta).
+## Abordaje de la gasometría
+= Paso a paso :: pH: ¿acidemia o alcalemia? → ¿Trastorno primario: PaCO₂ o HCO₃⁻? → ¿La compensación es la esperada? → En acidosis metabólica: brecha aniónica → Si la brecha está alta: ¿hay otro trastorno metabólico agregado?
+& Fórmula de Winter :: En acidosis metabólica, PaCO₂ esperada = 1.5 × HCO₃⁻ + 8 (± 2). Si la real es mayor, hay además acidosis respiratoria; si es menor, alcalosis respiratoria.
+| Trastorno respiratorio ¦ Compensación del HCO₃⁻ por cada 10 mmHg de PaCO₂
+| Acidosis aguda ¦ ↑ 1 mEq/L
+| Acidosis crónica ¦ ↑ 3.5 mEq/L
+| Alcalosis aguda ¦ ↓ 2 mEq/L
+| Alcalosis crónica ¦ ↓ 4–5 mEq/L
+## Potasio y pH
+- La **acidosis** saca K⁺ de las células (hiperpotasemia); la **alcalosis** lo mete (hipopotasemia).
 ! Acidosis con brecha aniónica normal (hiperclorémica): diarrea y acidosis tubular renal.
 + **EPOC** con retención crónica de CO₂: acidosis respiratoria compensada con HCO₃⁻ alto.
 + **Crisis de ansiedad**: alcalosis respiratoria aguda con parestesias peribucales (↓ calcio ionizado).
@@ -180,39 +269,64 @@ Q Paciente con crisis de ansiedad, hormigueo peribucal y espasmo carpopedal. Gas
 
 # Fisiología endocrina
 > Ejes hipotálamo-hipófisis-glándula con retroalimentación negativa.
-- Hormonas **peptídicas** (receptores de membrana: segundos mensajeros AMPc, IP₃/Ca²⁺) vs **esteroideas y tiroideas** (receptores intracelulares/nucleares que modifican la transcripción).
-- Eje **tiroideo**: TRH → TSH → T4 (mayor cantidad) y T3 (activa; la T4 se convierte en tejidos por desyodasas). Efectos: ↑ metabolismo basal, ↑ receptores β1, termogénesis, desarrollo del SNC.
-- Eje **suprarrenal**: CRH → ACTH → **cortisol** (ritmo circadiano, máximo matutino): gluconeogénesis, ↑ glucosa, antiinflamatorio, inmunosupresor, permisivo para catecolaminas.
-- **Aldosterona**: regulada por angiotensina II y K⁺ sérico (poco por ACTH).
+## Tipos de hormona y receptor
+| Hormona ¦ Receptor ¦ Segundo mensajero o acción
+| Peptídicas (insulina, glucagón, ADH) ¦ Membrana ¦ AMPc, IP₃/Ca²⁺, tirosina cinasa
+| Esteroideas y tiroideas ¦ Intracelular o nuclear ¦ Modifican la transcripción de genes
+## Eje tiroideo
+= Eje tiroideo :: Hipotálamo: TRH → Adenohipófisis: TSH → Tiroides: T4 (mayor cantidad) y T3 → Tejidos convierten T4 en T3 (desyodasas) → T3 y T4 frenan TRH y TSH
+- Efectos: ↑ metabolismo basal, ↑ receptores β1, termogénesis y desarrollo del SNC.
+| Patrón ¦ TSH ¦ T4 libre
+| Hipotiroidismo primario ¦ Alta ¦ Baja
+| Hipotiroidismo central ¦ Baja o normal ¦ Baja
+| Hipertiroidismo primario (Graves) ¦ Suprimida ¦ Alta
++ **Enfermedad de Graves**: anticuerpos que estimulan el receptor de TSH → hipertiroidismo, bocio difuso y oftalmopatía.
+## Eje suprarrenal
+= Eje suprarrenal :: Hipotálamo: CRH → Adenohipófisis: ACTH → Corteza suprarrenal: cortisol (máximo matutino) → El cortisol frena CRH y ACTH
+- **Cortisol**: gluconeogénesis, ↑ glucosa, antiinflamatorio, inmunosupresor, permisivo para las catecolaminas.
+- **Aldosterona**: la regulan sobre todo la angiotensina II y el K⁺ sérico (poco la ACTH).
+! Cushing: la supresión con dexametasona en dosis alta suprime el origen hipofisario, no el ectópico.
++ **Addison** (insuficiencia suprarrenal primaria): hiperpigmentación (↑ ACTH), hiponatremia, hiperpotasemia, hipotensión.
+## GH, prolactina, calcio e insulina
 - **GH**: pulsátil, en el sueño; actúa vía **IGF-1** hepático; la inhibe la somatostatina. **Prolactina**: inhibida por dopamina.
-- **Calcio**: PTH (↑ resorción ósea, ↑ reabsorción renal de Ca²⁺, ↓ reabsorción de fosfato, ↑ 1-α-hidroxilasa) y calcitriol (↑ absorción intestinal de Ca²⁺ y fosfato).
-- **Insulina** (receptor tirosina cinasa; ↑ GLUT4) vs **glucagón** (receptor acoplado a Gs, AMPc).
-! Hipotiroidismo **primario**: TSH alta, T4 libre baja. **Central**: TSH baja o normal con T4 baja.
-! Cushing: la prueba de supresión con dexametasona distingue el origen (hipofisario suprime con dosis alta; ectópico no).
-+ **Enfermedad de Graves**: anticuerpos que estimulan el receptor de TSH → hipertiroidismo con bocio difuso y oftalmopatía; TSH suprimida.
-+ **Insuficiencia suprarrenal primaria (Addison)**: hiperpigmentación (↑ ACTH), hiponatremia, hiperpotasemia, hipotensión.
+- **PTH**: ↑ resorción ósea, ↑ reabsorción renal de Ca²⁺, ↓ reabsorción de fosfato, ↑ 1-α-hidroxilasa. **Calcitriol**: ↑ absorción intestinal de Ca²⁺ y fosfato.
+- **Insulina** (receptor tirosina cinasa; ↑ GLUT4) vs **glucagón** (receptor acoplado a Gs; AMPc).
 ? Hormona tiroidea activa :: T3 (la T4 se convierte en tejidos).
 ? Mediador de los efectos de la GH :: IGF-1 (somatomedina C) del hígado.
 ? Reguladores principales de la aldosterona :: Angiotensina II y potasio sérico.
 ? Acciones de la PTH en el riñón :: ↑ reabsorción de Ca²⁺, ↓ reabsorción de fosfato, ↑ síntesis de calcitriol.
 ? Receptor de la insulina :: Tirosina cinasa.
-? Por qué hay hiperpigmentación en Addison :: El ACTH elevado (y MSH) estimula a los melanocitos.
+? Por qué hay hiperpigmentación en Addison :: El ACTH elevado estimula a los melanocitos (receptor MC1).
 Q TSH 12 mU/L y T4 libre baja. Diagnóstico: :: *Hipotiroidismo primario :: Hipotiroidismo central :: Hipertiroidismo primario :: Eutiroideo enfermo || La tiroides falla y la hipófisis responde elevando la TSH.
 Q Paciente con hiperpigmentación, hipotensión, Na⁺ bajo y K⁺ alto. ¿Qué hormonas faltan? :: *Cortisol y aldosterona :: Solo cortisol por falta de ACTH :: Solo hormonas tiroideas :: Insulina || Addison destruye la corteza: sin aldosterona hay hiperpotasemia; la ACTH alta pigmenta.
 Q Las hormonas esteroideas actúan principalmente: :: *Sobre receptores intracelulares que regulan la transcripción :: A través de AMPc :: Abriendo canales iónicos :: Mediante tirosina cinasas de membrana || Son liposolubles y atraviesan la membrana.
 
 # Fisiología digestiva
 > Motilidad, secreción, digestión y absorción coordinadas por nervios y hormonas.
-- **Sistema nervioso entérico**: plexo mientérico (Auerbach, motilidad) y submucoso (Meissner, secreción). Vago estimula; simpático inhibe.
-- Fases de la secreción gástrica: **cefálica** (vago), **gástrica** (distensión, gastrina) e **intestinal**.
-- **Célula parietal**: secreta HCl por la **H⁺/K⁺-ATPasa** (bomba de protones, blanco del omeprazol); la estimulan acetilcolina (M3), **gastrina** (CCK-B) e **histamina** (H2). Somatostatina la inhibe. Marea alcalina posprandial.
-- Hormonas: **gastrina** (células G del antro; ↑ ácido), **CCK** (células I; vesícula y enzimas pancreáticas, ↓ vaciamiento gástrico), **secretina** (células S; HCO₃⁻ pancreático), **GIP** (incretina; ↑ insulina), **motilina** (complejo motor migratorio en ayuno).
-- Digestión: carbohidratos (amilasa → disacaridasas del borde en cepillo), proteínas (pepsina, tripsina activada por **enterocinasa**), grasas (lipasa pancreática con **sales biliares** que forman micelas).
-- Absorción de glucosa y galactosa por **SGLT1**; fructosa por **GLUT5** (facilitada).
-- **Circulación enterohepática** de sales biliares: se reabsorben en el **íleon terminal** (~95 %).
-! Las tres vías que estimulan el ácido gástrico: acetilcolina, gastrina e histamina; la vía final común es la bomba de protones.
-! La enterocinasa activa la tripsina, que activa el resto de las proenzimas pancreáticas.
+## Control nervioso
+- **Sistema nervioso entérico**: plexo mientérico (Auerbach, motilidad) y submucoso (Meissner, secreción). El vago estimula; el simpático inhibe.
+## Secreción gástrica
+= Fases :: Cefálica (ver, oler, pensar: vago) → Gástrica (distensión y proteínas: gastrina) → Intestinal (el quimo en el duodeno frena la secreción)
+- **Célula parietal**: secreta HCl por la **H⁺/K⁺-ATPasa** (bomba de protones, blanco del omeprazol).
+| Estímulo ¦ Receptor ¦ Fármaco que lo bloquea
+| Acetilcolina ¦ M3 ¦ Anticolinérgicos
+| Gastrina ¦ CCK-B ¦ —
+| Histamina ¦ H2 ¦ Ranitidina, famotidina
+| Vía final común ¦ H⁺/K⁺-ATPasa ¦ Omeprazol y otros IBP
 + **Síndrome de Zollinger-Ellison**: gastrinoma → úlceras múltiples o atípicas y diarrea.
+## Hormonas gastrointestinales
+| Hormona ¦ Célula ¦ Efecto
+| Gastrina ¦ G (antro) ¦ ↑ Ácido
+| CCK ¦ I (duodeno) ¦ Contrae la vesícula, enzimas pancreáticas, ↓ vaciamiento gástrico
+| Secretina ¦ S (duodeno) ¦ Bicarbonato pancreático
+| GIP ¦ K (duodeno) ¦ Incretina: ↑ insulina
+| Motilina ¦ M ¦ Complejo motor migratorio en ayuno
+## Digestión y absorción
+| Nutriente ¦ Digestión ¦ Absorción
+| Carbohidratos ¦ Amilasa → disacaridasas del borde en cepillo ¦ Glucosa y galactosa por SGLT1; fructosa por GLUT5
+| Proteínas ¦ Pepsina, tripsina (la activa la enterocinasa) ¦ Aminoácidos y péptidos pequeños
+| Grasas ¦ Lipasa pancreática + sales biliares (micelas) ¦ Quilomicrones a la linfa
+- **Circulación enterohepática**: ~95 % de las sales biliares se reabsorben en el **íleon terminal**.
 + **Intolerancia a la lactosa**: déficit de lactasa → diarrea osmótica y distensión tras lácteos.
 + La **solución de rehidratación oral** aprovecha el cotransporte Na⁺-glucosa (SGLT1), que se conserva en la diarrea secretora.
 ? Enzima blanco del omeprazol :: H⁺/K⁺-ATPasa de la célula parietal.

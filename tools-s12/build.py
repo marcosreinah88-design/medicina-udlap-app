@@ -4,8 +4,12 @@
 #
 # Formato de cada guía (una línea por dato):
 #   @id, @sem, @title, @materia, @codigo, @color, @sub, @desc, @kw, @nota, @extra, @orden, @modos
-#   # Título del tema          > introducción corta
+#   # Título del tema          > introducción corta (del tema, o del subtema si va después de ##)
+#   ## Subtema
 #   - punto del temario         ! dato de alto rendimiento     + correlación clínica
+#   = Título :: paso → paso    (diagrama de flujo; el título es opcional)
+#   % cifra :: qué significa   (cifras clave)       ~ término :: definición (conceptos para revelar)
+#   & MNEMOTECNIA :: qué significa
 #   | col ¦ col ¦ col          (tabla; la primera fila es el encabezado)
 #   ? frente :: reverso        (tarjeta)
 #   Q pregunta :: *correcta :: distractor :: distractor || explicación
@@ -21,30 +25,68 @@ def inline(s):
 
 def parse(path):
     g = {'temas': [], 'modos': 'Estudiar,Tarjetas,Examen'}
-    t = None
+    t = sub = None
+    def block(k):
+        # agrega al último bloque del subtema si es del mismo tipo; si no, abre uno nuevo
+        nonlocal sub
+        if sub is None:
+            sub = {'t': '', 'b': []}
+            t['subs'].append(sub)
+        if not sub['b'] or sub['b'][-1]['k'] != k or k == 'fl':
+            sub['b'].append({'k': k, 'x': []})
+        return sub['b'][-1]['x']
     for n, raw in enumerate(open(path, encoding='utf-8'), 1):
         line = raw.rstrip('\n')
         if not line.strip() or line.lstrip().startswith('//'):
+            continue
+        if line.startswith('##'):
+            if t is None:
+                raise SystemExit(f'{path}:{n}: subtema fuera de un tema')
+            sub = {'t': inline(line[2:]), 'b': []}
+            t['subs'].append(sub)
             continue
         k, rest = line[0], line[1:].strip()
         if k == '@':
             key, _, val = rest.partition(' ')
             g[key] = val.strip()
         elif k == '#':
-            t = {'t': rest, 'res': [], 'hy': [], 'cl': [], 'tabla': [], 'cards': [], 'quiz': []}
+            t = {'t': rest, 'subs': [], 'cards': [], 'quiz': []}
+            sub = None
             g['temas'].append(t)
         elif t is None:
             raise SystemExit(f'{path}:{n}: línea fuera de un tema')
         elif k == '>':
-            t['intro'] = inline(rest)
+            if sub is None:
+                t['intro'] = inline(rest)
+            else:
+                sub['i'] = inline(rest)
         elif k == '-':
-            t['res'].append(inline(rest))
+            block('ul').append(inline(rest))
         elif k == '!':
-            t['hy'].append(inline(rest))
+            block('hy').append(inline(rest))
         elif k == '+':
-            t['cl'].append(inline(rest))
+            block('cl').append(inline(rest))
         elif k == '|':
-            t['tabla'].append('¦'.join(inline(c) for c in rest.split('¦')))
+            block('tb').append('¦'.join(inline(c) for c in rest.split('¦')))
+        elif k == '=':
+            # diagrama de flujo: "= Título :: paso → paso → paso" (título opcional)
+            ttl, _, steps = rest.rpartition('::')
+            x = block('fl')
+            x.append(inline(ttl) if ttl else '')
+            x += [inline(p) for p in steps.split('→')]
+        elif k == '%':
+            v, _, l = rest.partition('::')
+            if not l:
+                raise SystemExit(f'{path}:{n}: cifra sin "::"')
+            block('st').append({'v': inline(v), 'l': inline(l)})
+        elif k == '~':
+            w, _, d = rest.partition('::')
+            if not d:
+                raise SystemExit(f'{path}:{n}: concepto sin "::"')
+            block('tm').append({'w': inline(w), 'd': inline(d)})
+        elif k == '&':
+            m, _, d = rest.partition('::')
+            block('mn').append({'m': inline(m), 's': inline(d)})
         elif k == '?':
             f, _, b = rest.partition('::')
             if not b:
@@ -64,12 +106,15 @@ def parse(path):
         else:
             raise SystemExit(f'{path}:{n}: no entiendo la línea: {line[:60]}')
     for t in g['temas']:
-        for key in ('res', 'hy', 'cl', 'tabla', 'cards', 'quiz'):
+        for key in ('cards', 'quiz'):
             if not t[key]:
                 del t[key]
     g['sem'] = int(g['sem'])
     g['orden'] = int(g.get('orden', 50))
     return g
+
+def nsubs(g):
+    return sum(sum(1 for s in t['subs'] if s['t']) for t in g['temas'])
 
 def fold(s):
     s = unicodedata.normalize('NFD', s)
@@ -80,8 +125,11 @@ def words(g):
     for t in g['temas']:
         txt.append(t['t'])
         txt += [t.get('intro', '')]
-        for key in ('res', 'hy', 'cl', 'tabla'):
-            txt += t.get(key, [])
+        for sb in t['subs']:
+            txt += [sb['t'], sb.get('i', '')]
+            for b in sb['b']:
+                for x in b['x']:
+                    txt += list(x.values()) if isinstance(x, dict) else [x]
         for c in t.get('cards', []):
             txt += [c['f'], c['b']]
         for q in t.get('quiz', []):
@@ -119,18 +167,18 @@ def main():
         nc = sum(len(t.get('cards', [])) for t in g['temas'])
         nq = sum(len(t.get('quiz', [])) for t in g['temas'])
         g['_n'] = (len(g['temas']), nc, nq)
-        print(f"s{sem}/guias/{g['id']}.html  temas {len(g['temas']):3}  tarjetas {nc:4}  preguntas {nq:4}")
+        print(f"s{sem}/guias/{g['id']}.html  temas {len(g['temas']):3}  subtemas {nsubs(g):3}  tarjetas {nc:4}  preguntas {nq:4}")
         hub['G'].append({'id': g['id'], 'sem': sem, 'icon': g.get('icon', 'anat'), 'color': g['color'], 'area': g['materia'],
                          'title': g['title'], 'sub': g.get('sub', ''), 'desc': g.get('desc', ''),
-                         'stats': [[str(len(g['temas'])), 'temas'], [str(nc), 'tarjetas'], [str(nq), 'preguntas']], 'temas': len(g['temas']),
-                         'feat': ['Temario', 'Alto rendimiento', 'Correlación clínica', 'Tarjetas', 'Examen'],
+                         'stats': [[str(len(g['temas'])), 'temas'], [str(nsubs(g)), 'subtemas'], [str(nq), 'preguntas']], 'temas': len(g['temas']),
+                         'feat': ['Subtemas', 'Diagramas', 'Alto rendimiento', 'Correlación clínica', 'Tarjetas', 'Examen'],
                          'toc': [t['t'] for t in g['temas']], 'kw': g.get('kw', '')})
         hub['FT'][g['id']] = words(g)
     stpl = open(os.path.join(HERE, 'semestre.html'), encoding='utf-8').read()
     for sem, S in SEMS.items():
         arts = [{'id': g['id'], 'titulo': g['title'], 'materia': g['materia'], 'codigo': g['codigo'], 'color': g['color'],
                  'descripcion': g.get('desc', ''), 'temas': [t['t'] for t in g['temas']], 'modos': g['modos'].split(','),
-                 'ntemas': g['_n'][0], 'ntarjetas': g['_n'][1], 'npreguntas': g['_n'][2], 'extra': bool(g.get('extra'))}
+                 'ntemas': g['_n'][0], 'nsubs': nsubs(g), 'ntarjetas': g['_n'][1], 'npreguntas': g['_n'][2], 'extra': bool(g.get('extra'))}
                 for g in guias if g['sem'] == sem]
         out = stpl
         for k, v in {'__LAYOUT__': S['layout'], '__TITLE__': S['title'], '__KICKER__': S['kicker'], '__LEDE__': S['lede'],

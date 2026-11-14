@@ -7,39 +7,66 @@
 @color #0f6f6a
 @icon anat
 @sub Organización · Locomotor · Nervioso · Cardiovascular · Respiratorio · Digestivo · Urinario · Endocrino y reproductor
-@desc Recorrido por los aparatos y sistemas del cuerpo: cómo están hechos y cómo funcionan, con los datos que conectan la estructura con la clínica.
-@kw anatomofisiologia homeostasis planos terminologia esqueleto articulaciones musculo sistema nervioso corazon circulacion pulmon digestivo higado rinon nefrona hormonas reproductor
+@desc Recorrido por los aparatos y sistemas del cuerpo dividido en subtemas: cómo están hechos y cómo funcionan, con diagramas del recorrido de la sangre, el aire, el alimento y la orina, y los datos que conectan la estructura con la clínica.
+@kw anatomofisiologia homeostasis retroalimentacion planos terminologia esqueleto articulaciones musculo union neuromuscular sistema nervioso autonomo corazon circulacion conduccion gasto cardiaco pulmon surfactante digestivo higado pancreas rinon nefrona renina hormonas hipofisis reproductor ciclo menstrual
 
 # Organización del cuerpo y homeostasis
 > Niveles: químico → celular → tisular → órgano → sistema → organismo.
+## Posición anatómica, planos y términos
 - **Posición anatómica**: de pie, mirando al frente, brazos a los lados con las palmas hacia adelante, pies juntos.
-- Planos: **sagital** (derecha/izquierda; el mediosagital divide en mitades iguales), **coronal o frontal** (anterior/posterior), **transversal o axial** (superior/inferior).
+| Plano ¦ Divide en ¦ Ejemplo de imagen
+| Sagital (mediosagital = mitades iguales) ¦ Derecha e izquierda ¦ Corte lateral de una resonancia
+| Coronal (frontal) ¦ Anterior y posterior ¦ Radiografía de tórax PA
+| Transversal (axial) ¦ Superior e inferior ¦ Tomografía (vista desde los pies)
 - Términos: medial/lateral, proximal/distal (extremidades), superficial/profundo, craneal/caudal, ipsilateral/contralateral.
-- Cavidades: dorsal (craneal y vertebral) y ventral (torácica: pleurales y mediastino; abdominopélvica). Abdomen en **9 regiones** o 4 cuadrantes.
-- **Homeostasis**: mantener el medio interno estable. Componentes: receptor → centro integrador → efector. **Retroalimentación negativa** (la mayoría: temperatura, glucemia, presión) vs **positiva** (amplifica: parto con oxitocina, coagulación, pico de LH).
-- Líquidos corporales: agua ≈ 60 % del peso (regla 60-40-20): 40 % intracelular, 20 % extracelular (15 % intersticial, 5 % plasma).
-! Ejemplos de retroalimentación positiva: oxitocina en el parto, cascada de coagulación, pico de LH en la ovulación y lactancia.
-! Regla 60-40-20 del agua corporal total, intracelular y extracelular.
-+ La exploración y la imagen se describen con estos términos: un corte axial de tomografía se ve como si se mirara desde los pies del paciente.
+## Cavidades y regiones
+- Cavidad **dorsal** (craneal y vertebral) y **ventral** (torácica: pleurales y mediastino; abdominopélvica).
+- Abdomen en **9 regiones** (hipocondrios, epigastrio, flancos, mesogastrio, fosas ilíacas, hipogastrio) o **4 cuadrantes**.
 + Dolor en el cuadrante inferior derecho → apéndice; en el hipocondrio derecho → vesícula biliar.
+## Homeostasis
+= Asa de control :: Estímulo (cambio) → Receptor (sensor) → Centro integrador → Efector → Respuesta que corrige el cambio
+~ Retroalimentación negativa :: La respuesta se opone al cambio; es la más común (temperatura, glucemia, presión arterial).
+~ Retroalimentación positiva :: La respuesta amplifica el cambio hasta un desenlace (oxitocina en el parto, coagulación, pico de LH).
+## Líquidos corporales
+% 60 % :: del peso es agua corporal total
+% 40 % :: intracelular
+% 20 % :: extracelular (15 % intersticial + 5 % plasma)
+& Regla 60-40-20 :: Agua total 60 % del peso, intracelular 40 %, extracelular 20 %.
 ? Plano que divide en anterior y posterior :: Coronal (frontal).
 ? Ejemplo clásico de retroalimentación positiva :: Oxitocina durante el parto (también coagulación y pico de LH).
 ? Porcentaje de agua corporal y su distribución :: 60 % del peso: 40 % intracelular y 20 % extracelular.
 ? Componentes de un asa de control homeostático :: Receptor (sensor), centro integrador y efector.
-Q ¿Qué proceso usa retroalimentación positiva? :: *Contracciones uterinas en el parto :: Regulación de la glucemia :: Termorregulación :: Control de la presión arterial por barorreceptores || La oxitocina aumenta la contracción, que a su vez libera más oxitocina hasta la expulsión.
+Q ¿Qué proceso usa retroalimentación positiva? :: *Contracciones uterinas en el parto :: Regulación de la glucemia :: Termorregulación :: Control de la presión arterial por barorreceptores || La oxitocina aumenta la contracción, que libera más oxitocina hasta la expulsión.
 Q Un paciente de 70 kg tiene aproximadamente cuánta agua en el espacio extracelular: :: *14 L :: 28 L :: 42 L :: 3.5 L || 20 % de 70 kg ≈ 14 L (60 % total = 42 L).
 
 # Sistema esquelético y articulaciones
 > 206 huesos en el adulto: esqueleto axial y apendicular.
+## Funciones y clasificación de los huesos
 - Funciones: sostén, protección, movimiento, reserva de calcio y fósforo, hematopoyesis (médula roja).
 - Esqueleto **axial** (cráneo, columna, costillas, esternón) y **apendicular** (cinturas y extremidades).
-- Tipos de hueso: largos (fémur), cortos (carpo), planos (esternón, cráneo), irregulares (vértebras), sesamoideos (rótula).
-- Hueso largo: **diáfisis**, **epífisis**, **metáfisis** con la placa de crecimiento, periostio, cavidad medular.
-- Articulaciones: **fibrosas** (suturas, sindesmosis), **cartilaginosas** (sínfisis del pubis, discos) y **sinoviales** (libre movimiento: cápsula, membrana sinovial, cartílago hialino, líquido sinovial).
-- Sinoviales según forma: esferoidea (hombro, cadera), troclear o bisagra (codo), trocoide o pivote (atlantoaxoidea, radioulnar proximal), condílea (radiocarpiana), en silla de montar (carpometacarpiana del pulgar), plana (intercarpianas).
-! La articulación del hombro es la más móvil y la que más se luxa (generalmente anterior).
-! El calcio sérico se regula por PTH (lo sube), calcitriol (lo sube) y calcitonina (lo baja).
-+ Las fracturas en niños pueden afectar la placa de crecimiento (clasificación de Salter-Harris).
+| Tipo ¦ Ejemplo
+| Largo ¦ Fémur, húmero
+| Corto ¦ Huesos del carpo
+| Plano ¦ Esternón, huesos del cráneo
+| Irregular ¦ Vértebras
+| Sesamoideo ¦ Rótula (dentro del tendón del cuádriceps)
+- Partes del hueso largo: **diáfisis**, **epífisis**, **metáfisis** (con la placa de crecimiento), periostio y cavidad medular.
+## Articulaciones
+| Tipo ¦ Movilidad ¦ Ejemplo
+| Fibrosa ¦ Nula o mínima ¦ Suturas del cráneo, sindesmosis tibioperonea
+| Cartilaginosa ¦ Poca ¦ Sínfisis del pubis, discos intervertebrales
+| Sinovial ¦ Libre ¦ Hombro, rodilla
+- Partes de la sinovial: cápsula, membrana sinovial, líquido sinovial y cartílago articular hialino.
+## Sinoviales según su forma
+~ Esferoidea :: Movimiento en todos los ejes: hombro y cadera.
+~ Troclear (bisagra) :: Un eje (flexión y extensión): codo, interfalángicas.
+~ Trocoide (pivote) :: Rotación: atlantoaxoidea y radioulnar proximal.
+~ Condílea :: Dos ejes: radiocarpiana.
+~ En silla de montar :: Carpometacarpiana del pulgar (oposición).
+~ Plana :: Deslizamiento: intercarpianas.
+! El hombro es la articulación más móvil y la que más se luxa (generalmente hacia anterior).
+! El calcio sérico lo suben la **PTH** y el **calcitriol**; lo baja la **calcitonina**.
++ Fracturas en niños pueden afectar la placa de crecimiento (clasificación de Salter-Harris).
 + **Osteoartrosis**: desgaste del cartílago articular; **artritis reumatoide**: inflamación autoinmune de la sinovial.
 ? Número de huesos del adulto :: 206.
 ? Ejemplo de articulación en silla de montar :: Carpometacarpiana del pulgar.
@@ -50,15 +77,22 @@ Q El hueso sesamoideo más grande del cuerpo es: :: *La rótula :: El pisiforme 
 
 # Sistema muscular
 > Unos 600 músculos esqueléticos producen movimiento, postura y calor.
-- Partes: vientre, tendones; **origen** (inserción fija, proximal) e **inserción** (móvil, distal).
-- Por función: **agonista** (motor principal), **antagonista**, **sinergista**, fijador.
-- **Unión neuromuscular**: la motoneurona libera **acetilcolina** → receptor nicotínico de la placa → potencial de acción muscular → Ca²⁺ → contracción. La **acetilcolinesterasa** termina la señal.
-- **Unidad motora**: una motoneurona + todas las fibras que inerva (pocas en músculos finos como los oculares; muchas en el cuádriceps).
-- Tipos de fibra: **I** (lentas, oxidativas, rojas, resistentes: postura) y **II** (rápidas, glucolíticas, blancas: fuerza).
-- Contracción **isotónica** (cambia la longitud) e **isométrica** (cambia la tensión, longitud igual).
-! **Miastenia gravis**: anticuerpos contra el receptor nicotínico de acetilcolina → debilidad que empeora con el uso, ptosis y diplopía; mejora con anticolinesterásicos.
-! Unidades motoras pequeñas = control fino; grandes = fuerza.
+## Organización y función
+- Partes: vientre y tendones; **origen** (fijo, proximal) e **inserción** (móvil, distal).
+~ Agonista :: Motor principal del movimiento.
+~ Antagonista :: Hace el movimiento contrario y se relaja para permitirlo.
+~ Sinergista :: Ayuda al agonista.
+~ Fijador :: Estabiliza el origen del agonista.
+## Unión neuromuscular
+= De la neurona al músculo :: Potencial de acción en la motoneurona → Entra Ca²⁺ a la terminal → Se libera acetilcolina → Receptor nicotínico de la placa motora → Potencial de acción muscular → Liberación de Ca²⁺ y contracción → La acetilcolinesterasa termina la señal
+- **Unidad motora**: una motoneurona + todas las fibras que inerva (pocas en músculos oculares → control fino; muchas en el cuádriceps → fuerza).
+! **Miastenia gravis**: anticuerpos contra el receptor nicotínico → debilidad que empeora con el uso, ptosis y diplopía; mejora con anticolinesterásicos.
 + **Toxina botulínica**: impide la liberación de acetilcolina → parálisis flácida descendente (y uso terapéutico).
+## Tipos de fibra y de contracción
+| Fibra ¦ Velocidad ¦ Metabolismo ¦ Ejemplo
+| Tipo I (roja) ¦ Lenta ¦ Oxidativo, resistente a la fatiga ¦ Músculos posturales
+| Tipo II (blanca) ¦ Rápida ¦ Glucolítico, se fatiga ¦ Esfuerzos de fuerza y velocidad
+- Contracción **isotónica** (cambia la longitud) e **isométrica** (cambia la tensión con la misma longitud).
 + **Rabdomiólisis**: CK muy elevada y mioglobinuria → riesgo de lesión renal aguda.
 ? Neurotransmisor de la unión neuromuscular :: Acetilcolina sobre receptores nicotínicos.
 ? Fibras musculares de la postura :: Tipo I (lentas, oxidativas, rojas).
@@ -69,16 +103,32 @@ Q La toxina botulínica causa parálisis porque: :: *Impide la liberación de ac
 
 # Sistema nervioso: organización
 > Central (encéfalo y médula) y periférico (nervios craneales y espinales, ganglios).
-- Encéfalo: **cerebro** (lóbulos frontal, parietal, temporal, occipital, ínsula), **diencéfalo** (tálamo, hipotálamo), **tronco** (mesencéfalo, puente, bulbo) y **cerebelo**.
-- Funciones de lóbulos: frontal (motor, área de Broca, juicio), parietal (sensibilidad), temporal (audición, área de Wernicke, memoria), occipital (visión).
-- **Meninges**: duramadre, aracnoides (espacio subaracnoideo con LCR) y piamadre. El LCR se produce en los **plexos coroideos** (~500 mL/día) y se reabsorbe en las granulaciones aracnoideas.
-- Médula espinal: termina en **L1–L2** (cono medular) en el adulto; 31 pares de nervios espinales. Sustancia gris en H (asta anterior motora, posterior sensitiva).
-- **Sistema nervioso autónomo**: **simpático** (toracolumbar T1–L2; "lucha o huida"; noradrenalina en el efector) y **parasimpático** (craneosacro: NC III, VII, IX, X y S2–S4; "reposo y digestión"; acetilcolina).
-- 12 pares craneales: I olfatorio, II óptico, III motor ocular común, IV troclear, V trigémino, VI abducens, VII facial, VIII vestibulococlear, IX glosofaríngeo, X vago, XI accesorio, XII hipogloso.
-! La punción lumbar se hace en **L3–L4 o L4–L5** (debajo del cono medular); la línea que une las crestas ilíacas pasa por L4.
+## Encéfalo
+- **Cerebro** (lóbulos e ínsula), **diencéfalo** (tálamo, hipotálamo), **tronco** (mesencéfalo, puente, bulbo) y **cerebelo** (coordinación).
+| Lóbulo ¦ Función principal
+| Frontal ¦ Motor, área de Broca (expresión), juicio y personalidad
+| Parietal ¦ Sensibilidad, orientación espacial
+| Temporal ¦ Audición, área de Wernicke (comprensión), memoria
+| Occipital ¦ Visión
 ! Afasia de **Broca** (frontal): no fluente, comprensión conservada. **Wernicke** (temporal): fluente sin sentido, comprensión alterada.
-+ **Evento vascular cerebral** de la arteria cerebral media izquierda: hemiparesia derecha de predominio facio-braquial y afasia.
-+ Hidrocefalia: exceso de LCR por obstrucción o mala reabsorción.
++ **EVC de la cerebral media izquierda**: hemiparesia derecha de predominio facio-braquial y afasia.
+## Meninges y líquido cefalorraquídeo
+= Circulación del LCR :: Plexos coroideos (≈ 500 mL/día) → Ventrículos laterales → III ventrículo → Acueducto de Silvio → IV ventrículo → Espacio subaracnoideo → Granulaciones aracnoideas → Senos venosos
+- **Meninges**: duramadre, aracnoides (debajo, el espacio subaracnoideo con LCR) y piamadre.
++ **Hidrocefalia**: exceso de LCR por obstrucción o mala reabsorción.
+## Médula espinal y nervios
+- Termina en **L1–L2** (cono medular) en el adulto; 31 pares de nervios espinales. Sustancia gris en H: asta anterior motora y posterior sensitiva.
+- 12 pares craneales: I olfatorio, II óptico, III motor ocular común, IV troclear, V trigémino, VI abducens, VII facial, VIII vestibulococlear, IX glosofaríngeo, X vago, XI accesorio, XII hipogloso.
+! La punción lumbar se hace en **L3–L4 o L4–L5** (debajo del cono medular); la línea entre las crestas ilíacas pasa por L4.
+## Sistema nervioso autónomo
+| ¦ Simpático ¦ Parasimpático
+| Origen ¦ Toracolumbar (T1–L2) ¦ Craneosacro (NC III, VII, IX, X y S2–S4)
+| Función ¦ Lucha o huida ¦ Reposo y digestión
+| Neurotransmisor en el efector ¦ Noradrenalina (sudoríparas: acetilcolina) ¦ Acetilcolina
+| Pupila ¦ Midriasis ¦ Miosis
+| Corazón ¦ ↑ FC y contractilidad ¦ ↓ FC
+| Bronquios ¦ Broncodilatación ¦ Broncoconstricción
+| Intestino ¦ ↓ Motilidad ¦ ↑ Motilidad y secreción
 ? Dónde termina la médula espinal en el adulto :: L1–L2 (cono medular).
 ? Nivel de la punción lumbar :: L3–L4 o L4–L5 (crestas ilíacas = L4).
 ? Origen del simpático y del parasimpático :: Simpático toracolumbar (T1–L2); parasimpático craneosacro (NC III, VII, IX, X y S2–S4).
@@ -89,35 +139,54 @@ Q ¿Qué par craneal lleva la mayor parte del parasimpático a vísceras toráci
 
 # Sistema cardiovascular
 > Bomba (corazón) + tubos (arterias, capilares, venas) + líquido (sangre).
-- Corazón en el mediastino medio; 4 cavidades. Circulación **pulmonar** (VD → arteria pulmonar → pulmones → venas pulmonares → AI) y **sistémica** (VI → aorta → tejidos → venas cavas → AD).
-- Válvulas: auriculoventriculares (**tricúspide** derecha, **mitral** izquierda) y semilunares (pulmonar, aórtica). R1 = cierre AV; R2 = cierre semilunar.
-- Sistema de conducción: **nodo sinusal** (marcapasos, 60–100 lpm) → aurículas → **nodo AV** (retraso) → haz de His → ramas → fibras de Purkinje.
-- Coronarias: la **coronaria izquierda** (descendente anterior y circunfleja) y la **derecha** (irriga el nodo sinusal y AV en la mayoría).
-- Gasto cardiaco = **frecuencia cardiaca × volumen sistólico** (≈ 5 L/min). Presión arterial = gasto cardiaco × resistencia periférica.
-- Vasos: arterias elásticas (aorta), musculares (distribución), **arteriolas** (resistencia), capilares (intercambio), venas (capacitancia, contienen ~65 % del volumen).
-! La **descendente anterior** es la arteria que más se ocluye en el infarto ("la que hace viudas"); irriga la cara anterior y 2/3 anteriores del tabique.
-! Las arteriolas determinan la resistencia vascular periférica; las venas guardan la mayor parte del volumen sanguíneo.
+## Corazón y circulaciones
+= Recorrido de la sangre :: Venas cavas → Aurícula derecha → Tricúspide → Ventrículo derecho → Válvula pulmonar → Arterias pulmonares → Pulmones (se oxigena) → Venas pulmonares → Aurícula izquierda → Mitral → Ventrículo izquierdo → Válvula aórtica → Aorta → Tejidos
+- Válvulas **auriculoventriculares** (tricúspide derecha, mitral izquierda) y **semilunares** (pulmonar, aórtica). **R1** = cierre AV; **R2** = cierre semilunar.
+## Sistema de conducción
+= Conducción eléctrica :: Nodo sinusal (marcapasos, 60–100 lpm) → Aurículas → Nodo AV (retraso para el llenado) → Haz de His → Ramas derecha e izquierda → Fibras de Purkinje → Ventrículos
+## Coronarias
+- **Coronaria izquierda** → descendente anterior y circunfleja. **Coronaria derecha** → irriga el nodo sinusal y el AV en la mayoría.
+! La **descendente anterior** es la que más se ocluye en el infarto; irriga la cara anterior y 2/3 anteriores del tabique.
 + **Infarto agudo de miocardio**: oclusión coronaria → necrosis; elevación del ST en las derivaciones de la cara afectada.
+## Hemodinámica y vasos
+% ≈ 5 L/min :: gasto cardiaco en reposo
+% FC × VS :: fórmula del gasto cardiaco
+% GC × RVP :: presión arterial media
+% ≈ 65 % :: del volumen sanguíneo está en las venas
+| Vaso ¦ Función
+| Arterias elásticas (aorta) ¦ Amortiguan la presión de cada latido
+| Arterias musculares ¦ Distribuyen
+| Arteriolas ¦ Resistencia (controlan la presión y el flujo)
+| Capilares ¦ Intercambio
+| Venas ¦ Capacitancia (reservorio de volumen)
 + **Hipertensión arterial**: PA ≥ 130/80 (ACC/AHA) o ≥ 140/90 (otras guías); daña corazón, riñón, cerebro y retina.
 ? Fórmula del gasto cardiaco :: Frecuencia cardiaca × volumen sistólico (≈ 5 L/min).
 ? Marcapasos normal del corazón :: Nodo sinoauricular (60–100 lpm).
 ? ¿Qué produce el primer ruido cardiaco? :: Cierre de las válvulas mitral y tricúspide.
 ? Vasos de resistencia :: Arteriolas.
 ? Arteria coronaria más ocluida en el infarto :: Descendente anterior (rama de la coronaria izquierda).
-Q La sangre oxigenada regresa al corazón por: :: *Las venas pulmonares a la aurícula izquierda :: La vena cava superior :: Las arterias pulmonares :: El seno coronario || Las venas pulmonares son las únicas venas (posnatales) con sangre oxigenada.
+Q La sangre oxigenada regresa al corazón por: :: *Las venas pulmonares a la aurícula izquierda :: La vena cava superior :: Las arterias pulmonares :: El seno coronario || Las venas pulmonares llevan sangre oxigenada.
 Q Frecuencia cardiaca 70 lpm y volumen sistólico 80 mL. Gasto cardiaco: :: *5.6 L/min :: 0.875 L/min :: 150 L/min :: 8 L/min || 70 × 80 = 5600 mL/min.
+Q ¿Qué estructura retrasa el impulso para que los ventrículos se llenen? :: *Nodo auriculoventricular :: Nodo sinusal :: Fibras de Purkinje :: Haz de His || El retraso del nodo AV corresponde al segmento PR.
 
 # Sistema respiratorio
 > Conducción (nariz a bronquiolos terminales) e intercambio (bronquiolos respiratorios y alvéolos).
-- Vía aérea superior (nariz, faringe, laringe) e inferior (tráquea, bronquios, bronquiolos). La tráquea se bifurca en la **carina (T4–T5)**.
+## Vía aérea y pulmones
+= Recorrido del aire :: Nariz → Faringe → Laringe → Tráquea → Carina (T4–T5) → Bronquios principales → Lobares → Segmentarios → Bronquiolos terminales → Bronquiolos respiratorios → Alvéolos
 - El **bronquio principal derecho** es más corto, ancho y vertical → los cuerpos extraños aspirados van más a la derecha.
-- Pulmón derecho: 3 lóbulos (2 cisuras); izquierdo: 2 lóbulos y língula (escotadura cardiaca).
-- Alvéolos: **neumocitos I** (intercambio, 95 % de la superficie) y **neumocitos II** (producen **surfactante**, que reduce la tensión superficial; se regeneran).
-- Mecánica: inspiración activa (**diafragma**, nervio frénico C3–C5, e intercostales externos); espiración en reposo pasiva (retroceso elástico).
-- Intercambio por difusión según gradientes de presión parcial (PAO₂ ≈ 100 mmHg; PvO₂ ≈ 40 mmHg). El O₂ viaja 98 % unido a hemoglobina; el CO₂ principalmente como bicarbonato.
-! "**C3, 4, 5 keep the diaphragm alive**": nervio frénico.
+- Pulmón derecho: **3 lóbulos** (2 cisuras); izquierdo: **2 lóbulos** y língula (escotadura cardiaca).
+## Alvéolo y surfactante
+~ Neumocito tipo I :: Célula plana que cubre ~95 % de la superficie alveolar; intercambio de gases.
+~ Neumocito tipo II :: Produce surfactante (reduce la tensión superficial) y regenera el epitelio alveolar.
+~ Macrófago alveolar :: Limpia partículas del alvéolo.
 ! El surfactante aparece hacia la semana 24–28 y madura hacia la 35; su déficit causa el síndrome de dificultad respiratoria del prematuro.
-+ **Aspiración de cuerpo extraño**: más frecuente en el bronquio derecho (lóbulo inferior derecho en bipedestación).
+## Mecánica e intercambio
+- **Inspiración** activa: **diafragma** (nervio frénico C3–C5) e intercostales externos. **Espiración** en reposo: pasiva (retroceso elástico).
+& "C3, 4, 5 mantienen vivo al diafragma" :: El nervio frénico nace de C3, C4 y C5.
+% ≈ 100 mmHg :: PO₂ alveolar
+% ≈ 40 mmHg :: PO₂ de la sangre venosa mixta
+% 98 % :: del O₂ viaja unido a hemoglobina
+- El CO₂ viaja principalmente como **bicarbonato** en el plasma.
 + **Neumotórax**: aire en la pleura → colapso pulmonar; el a tensión se descomprime de urgencia.
 ? Nivel de la carina :: T4–T5 (ángulo esternal).
 ? Células que producen surfactante :: Neumocitos tipo II.
@@ -129,33 +198,54 @@ Q El músculo principal de la inspiración en reposo es: :: *Diafragma :: Estern
 
 # Sistema digestivo
 > Tubo de la boca al ano más glándulas anexas: salivales, hígado, vesícula y páncreas.
-- Pared del tubo: **mucosa, submucosa (plexo de Meissner), muscular externa (plexo de Auerbach), serosa/adventicia**.
-- Boca (digestión mecánica, amilasa salival) → faringe → esófago (25 cm) → **estómago** (HCl y factor intrínseco de células **parietales**; pepsinógeno de células **principales**) → **duodeno** (recibe bilis y jugo pancreático) → yeyuno e íleon (absorción; el **íleon terminal** absorbe **B12 y sales biliares**) → colon (agua y electrolitos) → recto y ano.
-- **Hígado**: metabolismo de nutrientes, síntesis de albúmina y factores de coagulación, detoxificación, producción de bilis; irrigación dual (vena porta ≈ 75 % y arteria hepática ≈ 25 %).
-- **Páncreas** exocrino (enzimas: amilasa, lipasa, proteasas; bicarbonato) y endocrino (islotes: β insulina, α glucagón, δ somatostatina).
-- Hormonas: **gastrina** (secreción ácida), **CCK** (vesícula y enzimas pancreáticas), **secretina** (bicarbonato pancreático).
-! El **hierro** se absorbe en duodeno; el **folato** en yeyuno; la **B12** y sales biliares en el **íleon terminal**.
-! CCK contrae la vesícula (respuesta a grasa); secretina libera bicarbonato (respuesta a ácido).
+## Pared del tubo digestivo
+= Capas, de la luz hacia afuera :: Mucosa → Submucosa (plexo de Meissner: secreción) → Muscular externa (plexo de Auerbach: motilidad) → Serosa o adventicia
+## Recorrido y función de cada segmento
+= Recorrido del alimento :: Boca (masticación, amilasa salival) → Faringe → Esófago (≈ 25 cm) → Estómago (HCl, pepsina) → Duodeno (bilis y jugo pancreático) → Yeyuno e íleon (absorción) → Colon (agua y electrolitos) → Recto y ano
+| Célula gástrica ¦ Produce
+| Parietal ¦ HCl y factor intrínseco
+| Principal ¦ Pepsinógeno
+| G (antro) ¦ Gastrina
+| Mucosa ¦ Moco y bicarbonato
+! El **hierro** se absorbe en el duodeno; el **folato** en el yeyuno; la **B12** y las sales biliares en el **íleon terminal**.
 + Resección ileal o enfermedad de Crohn ileal → déficit de B12 y malabsorción de grasas.
-+ **Cirrosis**: hipoalbuminemia, coagulopatía (↑ INR), hipertensión portal.
 + **Úlcera péptica**: H. pylori y AINE son las causas principales.
+## Hígado y páncreas
+- **Hígado**: metabolismo de nutrientes, síntesis de albúmina y factores de coagulación, detoxificación y bilis. Irrigación dual: **vena porta ≈ 75 %** y arteria hepática ≈ 25 %.
+- **Páncreas** exocrino (amilasa, lipasa, proteasas; bicarbonato) y endocrino (islotes: β insulina, α glucagón, δ somatostatina).
++ **Cirrosis**: hipoalbuminemia, coagulopatía (↑ INR), hipertensión portal.
+## Hormonas gastrointestinales
+| Hormona ¦ Estímulo ¦ Efecto
+| Gastrina ¦ Proteínas, distensión gástrica ¦ ↑ Secreción ácida
+| CCK ¦ Grasas y proteínas en el duodeno ¦ Contrae la vesícula, enzimas pancreáticas
+| Secretina ¦ Ácido en el duodeno ¦ Bicarbonato pancreático
+| Somatostatina ¦ Ácido ¦ Inhibe casi todo
 ? Células gástricas que producen HCl y factor intrínseco :: Células parietales.
 ? Sitio de absorción de la vitamina B12 :: Íleon terminal.
 ? Hormona que contrae la vesícula biliar :: Colecistocinina (CCK).
 ? Plexo nervioso entre las capas musculares :: Mientérico de Auerbach (motilidad).
 ? Proporción de flujo hepático de la vena porta :: ≈ 75 %.
 Q Paciente con resección de íleon terminal. ¿Qué deficiencia es más probable? :: *Vitamina B12 :: Hierro :: Ácido fólico :: Calcio || El complejo B12–factor intrínseco se absorbe en el íleon terminal.
-Q ¿Qué hormona estimula la secreción de bicarbonato pancreático? :: *Secretina :: Gastrina :: Colecistocinina :: Somatostatina || La secretina la liberan las células S del duodeno ante el ácido.
+Q ¿Qué hormona estimula la secreción de bicarbonato pancreático? :: *Secretina :: Gastrina :: Colecistocinina :: Somatostatina || La liberan las células S del duodeno ante el ácido.
 
 # Sistema urinario
 > Riñones que filtran ~180 L de plasma al día y producen 1–2 L de orina.
-- Riñones retroperitoneales (T12–L3; el derecho un poco más bajo por el hígado). Hilio: vena (anterior), arteria, pelvis (posterior).
-- **Nefrona** (≈ 1 millón por riñón): corpúsculo renal (glomérulo + cápsula de Bowman) → túbulo contorneado proximal → asa de Henle → túbulo contorneado distal → túbulo colector.
-- Funciones: filtrar desechos, regular agua y electrolitos, equilibrio ácido-base, **eritropoyetina**, **renina**, activación de vitamina D (1-α-hidroxilasa).
-- **TCP**: reabsorbe ~65 % del Na⁺ y agua, toda la glucosa y aminoácidos. **Asa ascendente gruesa**: NKCC2 (blanco de furosemida), impermeable al agua. **TCD**: NCC (blanco de tiazidas). **Colector**: aldosterona (Na⁺/K⁺) y ADH (acuaporinas).
-- **Tasa de filtración glomerular** normal ≈ 120 mL/min; se estima con la creatinina sérica.
-- Sistema **renina-angiotensina-aldosterona**: ↓ presión de perfusión → renina (aparato yuxtaglomerular) → angiotensina I → (ECA, pulmón) → angiotensina II (vasoconstricción, aldosterona, sed, ADH).
-! La glucosa aparece en orina cuando supera el umbral renal (~180–200 mg/dL).
+## Riñón y nefrona
+- Riñones **retroperitoneales** (T12–L3; el derecho un poco más bajo por el hígado). Hilio de anterior a posterior: vena, arteria, pelvis.
+= Recorrido del filtrado :: Glomérulo y cápsula de Bowman → Túbulo contorneado proximal → Asa de Henle → Túbulo contorneado distal → Túbulo colector → Cálices → Pelvis → Uréter → Vejiga → Uretra
+% ≈ 1 millón :: de nefronas por riñón
+% ≈ 120 mL/min :: filtración glomerular (≈ 180 L/día)
+% 1–2 L/día :: de orina
+## Qué hace cada segmento
+| Segmento ¦ Qué reabsorbe ¦ Fármaco o hormona
+| Túbulo proximal ¦ ~65 % del Na⁺ y agua, toda la glucosa y aminoácidos ¦ Acetazolamida
+| Asa ascendente gruesa ¦ Na⁺, K⁺, 2Cl⁻ (NKCC2); impermeable al agua ¦ Furosemida
+| Túbulo distal ¦ Na⁺ y Cl⁻ (NCC) ¦ Tiazidas
+| Túbulo colector ¦ Na⁺ (y secreta K⁺); agua ¦ Aldosterona, ADH (acuaporinas)
+! La glucosa aparece en la orina cuando supera el umbral renal (~180–200 mg/dL).
+## Otras funciones y sistema renina-angiotensina-aldosterona
+- Funciones: equilibrio ácido-base, **eritropoyetina**, **renina**, activación de vitamina D (1-α-hidroxilasa).
+= SRAA :: ↓ Presión de perfusión renal → Renina (aparato yuxtaglomerular) → Angiotensinógeno a angiotensina I → ECA (pulmón) → Angiotensina II → Vasoconstricción, aldosterona, sed y ADH
 ! Angiotensina II contrae la **arteriola eferente** → mantiene la filtración; por eso los IECA pueden bajarla.
 + **Insuficiencia renal crónica**: anemia (↓ EPO), hiperfosfatemia, hiperpotasemia, acidosis y osteodistrofia (↓ calcitriol).
 + **Litiasis renal**: cólico irradiado a la ingle; la mayoría son de oxalato de calcio.
@@ -165,21 +255,33 @@ Q ¿Qué hormona estimula la secreción de bicarbonato pancreático? :: *Secreti
 ? Hormona renal que estimula la eritropoyesis :: Eritropoyetina.
 ? Dónde se convierte la angiotensina I en II :: Pulmón, por la enzima convertidora (ECA).
 Q ¿En qué segmento se reabsorbe la mayor parte del sodio filtrado? :: *Túbulo contorneado proximal :: Asa descendente :: Túbulo distal :: Túbulo colector || El TCP reabsorbe ~65 % del Na⁺ y del agua filtrados.
-Q Paciente con insuficiencia renal crónica y hemoglobina de 8 g/dL. Causa principal de la anemia: :: *Déficit de eritropoyetina :: Hemólisis :: Déficit de B12 :: Hiperesplenismo || El riñón dañado produce poca EPO; la anemia es normocítica normocrómica.
+Q Paciente con insuficiencia renal crónica y hemoglobina de 8 g/dL. Causa principal de la anemia: :: *Déficit de eritropoyetina :: Hemólisis :: Déficit de B12 :: Hiperesplenismo || El riñón dañado produce poca EPO.
 
 # Sistemas endocrino y reproductor
 > Hormonas que viajan por la sangre a órganos diana; ejes hipotálamo-hipófisis.
-- **Hipotálamo** controla la **adenohipófisis** por hormonas liberadoras (sistema porta) y produce ADH y oxitocina que se guardan en la **neurohipófisis**.
-- Adenohipófisis: **FLAT PiG** → FSH, LH, ACTH, TSH, prolactina, GH. La prolactina está bajo inhibición tónica por **dopamina**.
-- Tiroides: T4 y T3 (metabolismo basal); calcitonina (células C). Paratiroides: PTH (↑ calcio).
-- Suprarrenal: corteza **GFR** → glomerular (aldosterona, sal), fasciculada (cortisol, azúcar), reticular (andrógenos, sexo); médula (adrenalina y noradrenalina). "Sal, azúcar y sexo: cuanto más profundo, más dulce".
-- Páncreas endocrino: insulina (β) y glucagón (α).
-- Reproductor masculino: testículos (espermatogénesis en túbulos seminíferos; **células de Sertoli** = FSH, **células de Leydig** = LH → testosterona), epidídimo, conducto deferente, vesículas seminales, próstata.
-- Reproductor femenino: ovarios, trompas (fecundación en la **ampolla**), útero, vagina. Ciclo de 28 días: fase folicular (estrógenos), **pico de LH** (ovulación ≈ día 14), fase lútea (progesterona del cuerpo lúteo).
-! Leydig = LH = testosterona; Sertoli = FSH = espermatogénesis e inhibina.
-! La ovulación ocurre tras el pico de LH; la fase lútea dura ~14 días constantes.
-+ **Hipotiroidismo**: cansancio, intolerancia al frío, aumento de peso, bradicardia; TSH alta con T4 libre baja (primario).
+## Eje hipotálamo-hipófisis
+= Eje típico :: Hipotálamo libera hormona liberadora → Sistema porta → Adenohipófisis secreta hormona trópica → Glándula diana produce su hormona → Retroalimentación negativa al hipotálamo y la hipófisis
+& FLAT PiG :: Adenohipófisis: FSH, LH, ACTH, TSH, Prolactina, GH.
+- El hipotálamo produce **ADH** y **oxitocina**, que se guardan y liberan en la **neurohipófisis**.
+- La **prolactina** está bajo inhibición tónica por **dopamina**.
 + **Prolactinoma**: galactorrea, amenorrea e infertilidad; se trata con agonistas dopaminérgicos (cabergolina).
+## Tiroides, paratiroides, suprarrenal y páncreas
+- Tiroides: **T4 y T3** (metabolismo basal); **calcitonina** (células C). Paratiroides: **PTH** (↑ calcio).
+| Zona suprarrenal ¦ Hormona ¦ Recuerda
+| Glomerular ¦ Aldosterona ¦ Sal
+| Fasciculada ¦ Cortisol ¦ Azúcar
+| Reticular ¦ Andrógenos ¦ Sexo
+| Médula ¦ Adrenalina y noradrenalina ¦ Simpático
+& GFR :: Glomerular, fasciculada, reticular: "sal, azúcar y sexo; cuanto más profundo, más dulce".
++ **Hipotiroidismo primario**: cansancio, intolerancia al frío, aumento de peso, bradicardia; TSH alta con T4 libre baja.
+## Reproductor masculino
+- Testículos: espermatogénesis en los túbulos seminíferos; epidídimo, conducto deferente, vesículas seminales y próstata.
+~ Célula de Sertoli :: Responde a FSH; sostiene la espermatogénesis y produce inhibina.
+~ Célula de Leydig :: Responde a LH; produce testosterona.
+## Reproductor femenino y ciclo menstrual
+= Ciclo de 28 días :: Días 1–5: menstruación → Fase folicular: FSH madura folículos y suben los estrógenos → Pico de LH (≈ día 14) → Ovulación → Fase lútea (14 días): el cuerpo lúteo produce progesterona → Sin embarazo cae la progesterona y vuelve la menstruación
+- La fecundación ocurre en la **ampolla** de la trompa.
+! La ovulación ocurre tras el pico de LH; la **fase lútea dura ~14 días** constantes.
 + **Embarazo ectópico**: implantación fuera del útero, más frecuente en la ampolla de la trompa.
 ? Hormonas de la adenohipófisis (mnemotecnia) :: FLAT PiG: FSH, LH, ACTH, TSH, prolactina, GH.
 ? Hormonas que libera la neurohipófisis :: ADH (vasopresina) y oxitocina (producidas en el hipotálamo).
@@ -188,3 +290,4 @@ Q Paciente con insuficiencia renal crónica y hemoglobina de 8 g/dL. Causa princ
 ? Sitio habitual de la fecundación :: Ampolla de la trompa uterina.
 Q ¿Qué hormona hipofisaria está bajo inhibición tónica del hipotálamo? :: *Prolactina :: TSH :: ACTH :: LH || La dopamina hipotalámica la inhibe; si se corta el tallo hipofisario, la prolactina sube.
 Q Mujer con ciclos de 28 días. ¿Qué evento dispara la ovulación? :: *Pico de LH :: Caída de FSH :: Pico de progesterona :: Caída de estrógenos || El aumento sostenido de estrógenos produce retroalimentación positiva y el pico de LH.
+Q Mujer con ciclos regulares de 32 días. ¿Qué día ovula aproximadamente? :: *Día 18 :: Día 14 :: Día 16 :: Día 25 || La fase lútea dura ~14 días: 32 − 14 = 18.

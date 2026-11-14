@@ -6,155 +6,298 @@
 @codigo SIM I
 @color #c4142f
 @icon simu
-@sub BLS · Cadena de supervivencia · RCP y DEA · Obstrucción de vía aérea · Atención extrahospitalaria · Trauma y traslado
-@desc Soporte vital básico (BLS) y atención prehospitalaria: seguridad de la escena, evaluación primaria, RCP de alta calidad, DEA, atragantamiento, posición de recuperación, control de hemorragias, inmovilización y traslado.
-@kw simulacion bls soporte vital basico rcp reanimacion cardiopulmonar dea desfibrilador cadena de supervivencia atragantamiento heimlich posicion de recuperacion atencion prehospitalaria extrahospitalaria escena segura triage start xabcde hemorragia torniquete inmovilizacion collarin traslado ambulancia
-@nota Temario según tu programa: BLS y atención extrahospitalaria (algoritmos de la AHA 2020 y PHTLS).
+@sub BLS · Cadena de supervivencia · RCP y DEA · BLS pediátrico · Obstrucción de vía aérea · Atención extrahospitalaria · Trauma y traslado
+@desc Soporte vital básico (BLS) y atención prehospitalaria: seguridad de la escena, evaluación primaria, RCP de alta calidad en adulto, niño y lactante, DEA, atragantamiento, emergencias médicas, control de hemorragias, inmovilización, triage y traslado.
+@kw simulacion bls soporte vital basico rcp reanimacion cardiopulmonar dea desfibrilador cadena de supervivencia atragantamiento heimlich posicion de recuperacion atencion prehospitalaria extrahospitalaria escena segura triage start xabcde sample opqrst hemorragia torniquete inmovilizacion collarin traslado ambulancia pediatrico lactante
+@nota Temario según tu programa: BLS y atención extrahospitalaria. Algoritmos de la AHA (guías 2020, con los cambios de la actualización 2025 marcados) y principios de PHTLS.
 
-# Atención extrahospitalaria: escena y evaluación inicial
+# Atención extrahospitalaria: la escena y el sistema de emergencias
 > Antes de tocar al paciente: que la escena sea segura para ti, tu equipo y el paciente.
-- **Seguridad de la escena**: tráfico, fuego, electricidad, gases, violencia, materiales peligrosos. Si no es segura, no entras: llamas y esperas a los servicios especializados.
-- **Bioseguridad**: guantes y protección ocular; mascarilla de bolsillo para ventilar.
-- **Impresión general** en segundos: ¿responde?, ¿respira?, ¿sangra mucho?, mecanismo de lesión.
-- **Activar el sistema de emergencias**: en México **911** (Cruz Roja 065 en algunas ciudades). Informar: dónde, qué pasó, cuántos pacientes, su estado y qué se está haciendo; no colgar primero.
-- Evaluación primaria **XABCDE** (trauma): **X** hemorragia exanguinante, **A** vía aérea con control de columna cervical, **B** ventilación, **C** circulación y control de sangrado, **D** déficit neurológico (AVDI o Glasgow), **E** exposición y prevención de hipotermia.
-- **AVDI**: Alerta, responde a la Voz, responde al Dolor, Inconsciente.
-- Evaluación secundaria (cuando el paciente está estable): **SAMPLE** → Signos y síntomas, Alergias, Medicamentos, Pasado médico, Última comida (Last meal), Eventos previos.
+## Seguridad de la escena y bioseguridad
+- **Riesgos a buscar**: tráfico, fuego, humo, electricidad, gases, agua, estructuras inestables, violencia y materiales peligrosos.
+- Si la escena **no es segura, no entras**: te alejas, llamas y esperas a los servicios especializados (bomberos, protección civil, policía).
+- **Bioseguridad**: guantes y protección ocular siempre; mascarilla de bolsillo o bolsa-válvula-mascarilla para ventilar.
+- **Impresión general** en segundos: ¿responde?, ¿respira?, ¿sangra mucho?, ¿cuál fue el mecanismo de lesión?, ¿cuántos pacientes hay?
 ! Primero tu seguridad: un rescatista lesionado se convierte en otro paciente.
-! En trauma, la hemorragia exanguinante (X) se controla antes que la vía aérea.
-+ La **hora dorada** del trauma: la atención y traslado oportunos a un hospital adecuado reducen la mortalidad.
-+ Una **llamada temprana al 911** es el primer eslabón para que llegue el desfibrilador y la ambulancia.
+## Activar el sistema de emergencias médicas (SEM)
+- En México el número único de emergencias es el **911**.
+= Qué decir al llamar :: Dónde estás (dirección y referencias) → Qué pasó → Cuántos pacientes y su estado → Qué estás haciendo → No colgar hasta que te lo indiquen
+- El operador puede **guiar la RCP por teléfono** (RCP asistida por el operador): pon el teléfono en altavoz junto al paciente.
++ Una **llamada temprana** es el primer eslabón para que lleguen el desfibrilador y la ambulancia.
+## Signos vitales de referencia en el adulto
+% 60–100 lpm :: frecuencia cardiaca en reposo
+% 12–20 rpm :: frecuencia respiratoria
+% ≥ 94 % :: saturación de oxígeno esperada
+% < 2 s :: llenado capilar normal
+% 36.5–37.5 °C :: temperatura corporal
+% 15 / 15 :: Glasgow de un paciente alerta y orientado
 ? Primer paso al llegar a una emergencia :: Verificar que la escena sea segura.
+? Número de emergencias en México :: 911.
+? Qué informar al 911 :: Ubicación, qué pasó, número y estado de pacientes y lo que se está haciendo; no colgar primero.
+? Llenado capilar normal :: Menor de 2 segundos.
+Q Llegas a un accidente de auto con cables eléctricos caídos sobre el vehículo. ¿Qué haces? :: *No te acercas, llamas al 911 y esperas a que aseguren la escena :: Sacas al paciente rápido :: Revisas el pulso con guantes de látex :: Mueves los cables con una rama seca || Una escena insegura no se aborda; los guantes no protegen de la electricidad.
+Q Al llamar al 911, ¿cuál es el dato más importante para que llegue la ayuda? :: *La ubicación exacta con referencias :: El nombre completo del paciente :: Su tipo de sangre :: Sus antecedentes || Sin ubicación la ambulancia no puede llegar; lo demás se informa después.
+
+# Evaluación del paciente: primaria y secundaria
+> Un orden fijo para no olvidar lo que mata primero.
+## Evaluación primaria XABCDE (trauma)
+= XABCDE :: X · hemorragia exanguinante → A · vía aérea con control de columna cervical → B · ventilación y respiración → C · circulación y control de sangrado → D · déficit neurológico → E · exposición y control de temperatura
+- **X**: controlar primero el sangrado masivo de extremidades (presión directa o torniquete).
+- **A**: ¿habla? Si no, abrir la vía aérea con **tracción mandibular** si hay mecanismo de trauma; alinear manualmente la cabeza.
+- **B**: ver, oír y sentir; frecuencia, simetría del tórax, esfuerzo respiratorio.
+- **C**: pulso (radial, carotídeo), color, temperatura y humedad de la piel, llenado capilar.
+- **D**: nivel de conciencia con **AVDI** o **Glasgow**, pupilas.
+- **E**: exponer para buscar lesiones y luego **cubrir** para evitar la hipotermia.
+! En trauma, la hemorragia exanguinante (X) se controla antes que la vía aérea.
+## Nivel de conciencia
+~ AVDI :: Alerta, responde a la Voz, responde al Dolor, Inconsciente. Escala rápida prehospitalaria.
+~ Escala de Glasgow :: Apertura ocular (1–4), respuesta verbal (1–5) y respuesta motora (1–6); total de 3 a 15.
+~ Glasgow ≤ 8 :: Coma: el paciente no protege su vía aérea; requiere manejo avanzado.
+& "Ocho, intubo" :: Un Glasgow de 8 o menos indica necesidad de asegurar la vía aérea.
+## Evaluación secundaria (paciente estable)
+- Exploración de cabeza a pies y entrevista dirigida.
+& SAMPLE :: Signos y síntomas · Alergias · Medicamentos · Pasado médico · Última comida (Last meal) · Eventos previos.
+& OPQRST (para el dolor) :: Onset (inicio) · Provocación/alivio · Quality (calidad) · Radiación · Severidad (0–10) · Tiempo de evolución.
++ La **hora dorada** del trauma: la atención y el traslado oportunos a un hospital adecuado reducen la mortalidad.
 ? Significado de XABCDE :: Hemorragia exanguinante, vía aérea con control cervical, ventilación, circulación, déficit neurológico y exposición.
 ? Escala AVDI :: Alerta, responde a la voz, responde al dolor, inconsciente.
 ? Mnemotecnia SAMPLE :: Signos y síntomas, alergias, medicamentos, pasado médico, última comida y eventos previos.
-? Número de emergencias en México :: 911.
-Q Llegas a un accidente de auto con cables eléctricos caídos sobre el vehículo. ¿Qué haces? :: *No te acercas, llamas al 911 y esperas a que aseguren la escena :: Sacas al paciente rápido :: Revisas pulso con guantes de látex :: Mueves los cables con una rama seca || Una escena insegura no se aborda; los guantes no protegen de la electricidad.
+? Componentes de la escala de Glasgow :: Ocular (1–4), verbal (1–5) y motora (1–6); de 3 a 15.
+? Maniobra para abrir la vía aérea en trauma :: Tracción mandibular con alineación manual de la cabeza.
 Q Motociclista con sangrado arterial a chorro en el muslo y que habla. ¿Qué atiendes primero? :: *El sangrado (X) :: La vía aérea (A) :: La ventilación (B) :: El Glasgow (D) || En XABCDE la hemorragia exanguinante va antes de la vía aérea.
+Q Paciente que solo abre los ojos y retira la mano al estímulo doloroso. En la escala AVDI es: :: *D (responde al dolor) :: A (alerta) :: V (responde a la voz) :: I (inconsciente) || Solo reacciona al dolor.
+Q ¿Cuál es el puntaje mínimo de la escala de Glasgow? :: *3 :: 0 :: 1 :: 8 || Cada componente vale al menos 1 punto.
 
-# Cadena de supervivencia y reconocimiento del paro
+# Paro cardiaco: reconocimiento y cadena de supervivencia
 > Paro cardiaco = no responde, no respira normalmente (o solo jadea) y no tiene pulso.
-- **Cadena de supervivencia extrahospitalaria (AHA 2020)**: 1) activar el sistema de emergencias, 2) **RCP de alta calidad**, 3) **desfibrilación**, 4) reanimación avanzada, 5) cuidados posparo, 6) **recuperación**.
-- Reconocimiento: tocar los hombros y preguntar en voz alta "¿se encuentra bien?". Si no responde: pedir ayuda, que alguien llame al 911 y traiga un **DEA**.
-- Revisar **respiración y pulso carotídeo a la vez** en **5–10 segundos**. Las **respiraciones agónicas (jadeo/gasping)** NO son respiración normal.
-- Si hay pulso pero no respira normalmente: **ventilación de rescate** 1 cada **6 segundos** (10/min) y revisar pulso cada 2 minutos.
-- El público general sin entrenamiento: RCP **solo con las manos** (compresiones continuas) guiada por el operador del 911.
+## Por qué cada minuto cuenta
+- El paro cardiaco súbito del adulto suele ser de **origen cardiaco**, con ritmo inicial de **fibrilación ventricular (FV)**: el corazón tiembla pero no bombea.
+- Sin flujo, el cerebro empieza a sufrir **daño irreversible a los 4–6 minutos**.
+- Las **compresiones** generan flujo hacia el cerebro y el corazón; la **desfibrilación** es lo que revierte la FV.
+% 4–6 min :: sin perfusión para que empiece el daño cerebral irreversible
+% 7–10 % :: cae la supervivencia por cada minuto sin RCP ni desfibrilación
++ Los **programas de acceso público a la desfibrilación** (DEA en aeropuertos, escuelas, estadios) aumentan la supervivencia del paro extrahospitalario.
+## Reconocimiento y primeros pasos
+= Algoritmo inicial (adulto) :: Escena segura → Tocar los hombros y preguntar fuerte "¿Se encuentra bien?" → Pedir ayuda: que llamen al 911 y traigan un DEA → Revisar respiración y pulso carotídeo a la vez (5–10 s) → Sin pulso: iniciar RCP 30:2
+- Las **respiraciones agónicas (jadeo o gasping)** NO son respiración normal: indican paro.
+- Si **hay pulso pero no respira normalmente**: ventilación de rescate, **1 cada 6 segundos** (10/min), y revisar pulso cada 2 minutos.
+- El público sin entrenamiento hace RCP **solo con las manos** (compresiones continuas) guiada por el operador del 911.
 ! Jadeo (gasping) = paro cardiaco: empezar RCP.
-! Máximo 10 segundos para revisar pulso; ante la duda, comprimir.
-+ La mayoría de los paros extrahospitalarios del adulto son de origen cardiaco con ritmo inicial de **fibrilación ventricular**: la desfibrilación temprana es lo que más salva vidas.
-+ Cada minuto sin RCP ni desfibrilación baja la supervivencia ~7–10 %.
+! Máximo 10 segundos para revisar el pulso; ante la duda, comprimir.
+## Cadena de supervivencia extrahospitalaria (AHA 2020)
+= Eslabones :: Activar el sistema de emergencias → RCP de alta calidad → Desfibrilación → Reanimación avanzada → Cuidados posparo → Recuperación
+- La **cadena intrahospitalaria** empieza antes: vigilancia y **prevención** del paro (equipos de respuesta rápida).
 ? Eslabones de la cadena de supervivencia extrahospitalaria :: Activar emergencias, RCP de alta calidad, desfibrilación, soporte avanzado, cuidados posparo y recuperación.
 ? ¿Las respiraciones agónicas cuentan como respiración? :: No: son un signo de paro cardiaco.
 ? Tiempo para revisar pulso y respiración :: 5 a 10 segundos, al mismo tiempo.
-? Ventilación de rescate (pulso presente, sin respiración) :: 1 ventilación cada 6 segundos (10/min) en el adulto.
+? Ventilación de rescate en el adulto (pulso presente, sin respiración) :: 1 ventilación cada 6 segundos (10/min).
+? Ritmo inicial más frecuente del paro súbito del adulto :: Fibrilación ventricular.
 Q Adulto que no responde, con jadeos ocasionales y sin pulso palpable. Conducta: :: *Iniciar compresiones torácicas :: Esperar a que respire mejor :: Dar solo ventilaciones :: Colocarlo en posición de recuperación || El gasping no es respiración eficaz: es paro.
 Q Paciente sin respiración normal pero con pulso carotídeo claro. ¿Qué haces? :: *Ventilación de rescate: 1 cada 6 segundos y revisar pulso cada 2 min :: Compresiones 30:2 :: Descarga con el DEA :: Nada, tiene pulso || Es un paro respiratorio; si pierde el pulso, inicias RCP.
+Q ¿Qué intervención revierte la fibrilación ventricular? :: *La desfibrilación :: Las ventilaciones :: La posición de recuperación :: El masaje del seno carotídeo || Las compresiones mantienen el flujo; la descarga eléctrica termina la FV.
 
 # RCP de alta calidad en el adulto
 > Compresiones fuertes, rápidas, con descompresión completa y sin pausas.
-- Posición: paciente boca arriba en superficie firme; talón de la mano en la **mitad inferior del esternón** (centro del pecho), la otra mano encima, brazos rectos, hombros sobre las manos.
-- **Frecuencia 100–120/min**, **profundidad 5–6 cm**, permitir la **expansión completa** del tórax, **minimizar interrupciones** (fracción de compresión > 60 %, ideal > 80 %), evitar ventilación excesiva.
-- **30:2** con uno o dos reanimadores en el adulto. Cada ventilación de **1 segundo** que eleve visiblemente el tórax.
-- Abrir la vía aérea: **inclinación de la cabeza y elevación del mentón**; si se sospecha lesión cervical, **tracción mandibular**.
-- Dispositivos: mascarilla de bolsillo; **bolsa-válvula-mascarilla (BVM)** con técnica **C-E** (dos reanimadores es lo ideal).
-- Cambiar al compresor cada **2 minutos** (5 ciclos) o antes si se cansa, en < 5 segundos.
-- Con vía aérea avanzada: compresiones continuas y 1 ventilación cada 6 s.
-| Parámetro ¦ Adulto ¦ Niño (1 año–pubertad) ¦ Lactante (< 1 año)
-| Profundidad ¦ 5–6 cm ¦ ≈ 5 cm (⅓ AP) ¦ ≈ 4 cm (⅓ AP)
-| Relación (1 reanimador) ¦ 30:2 ¦ 30:2 ¦ 30:2
-| Relación (2 reanimadores) ¦ 30:2 ¦ 15:2 ¦ 15:2
-| Técnica ¦ Dos manos ¦ Una o dos manos ¦ Dos pulgares rodeando el tórax (o 2 dedos)
-| Pulso ¦ Carotídeo ¦ Carotídeo o femoral ¦ Braquial
-! 100–120/min, 5–6 cm, expansión completa, mínimas interrupciones: los cuatro pilares de la RCP de alta calidad.
-! En niños y lactantes con dos reanimadores la relación cambia a **15:2**.
-+ Fracturas costales durante la RCP son frecuentes y no son motivo para dejar de comprimir.
-+ La ventilación excesiva aumenta la presión intratorácica y reduce el retorno venoso (y el gasto que generan las compresiones).
+## Técnica de las compresiones
+- Paciente boca arriba en **superficie firme**; tórax descubierto.
+- Talón de la mano en la **mitad inferior del esternón** (centro del pecho), la otra mano encima, brazos rectos y hombros sobre las manos.
+% 100–120 / min :: frecuencia de compresiones
+% 5–6 cm :: profundidad en el adulto
+% > 80 % :: fracción de compresión ideal (mínimo 60 %)
+% < 10 s :: pausa máxima para ventilar o analizar
+- Permitir la **expansión completa** del tórax entre compresiones (no apoyarse).
+- Cambiar al compresor cada **2 minutos** (5 ciclos) o antes si se cansa, en menos de 5 segundos.
+! Los cuatro pilares: 100–120/min, 5–6 cm, expansión completa y mínimas interrupciones; además, evitar ventilar en exceso.
+## Vía aérea y ventilación
+- Sin trauma: **inclinación de la cabeza y elevación del mentón**. Con sospecha de lesión cervical: **tracción mandibular**.
+- Cada ventilación dura **1 segundo** y debe **elevar visiblemente el tórax**.
+- **Bolsa-válvula-mascarilla (BVM)**: sello con la técnica **C-E**; lo ideal es usarla entre dos reanimadores.
+~ Técnica C-E :: Pulgar e índice forman una "C" sobre la mascarilla; los otros tres dedos forman una "E" que levanta la mandíbula.
+~ Relación 30:2 :: 30 compresiones y 2 ventilaciones en el adulto, con uno o dos reanimadores.
+~ Vía aérea avanzada :: Con tubo o dispositivo supraglótico: compresiones continuas y 1 ventilación cada 6 segundos.
++ La **ventilación excesiva** aumenta la presión dentro del tórax, reduce el retorno venoso y el flujo que generan las compresiones; además infla el estómago (vómito y broncoaspiración).
+## Errores frecuentes
+- Comprimir demasiado lento o poco profundo.
+- Apoyarse sobre el tórax (no deja que se expanda).
+- Pausas largas para revisar pulso, ventilar o cambiar de reanimador.
+- Manos en el lugar equivocado (xifoides o costillas).
++ Las **fracturas costales** durante la RCP son frecuentes y no son motivo para dejar de comprimir.
 ? Sitio de las compresiones en el adulto :: Mitad inferior del esternón (centro del pecho).
 ? Frecuencia y profundidad en el adulto :: 100–120/min y 5–6 cm.
-? Relación compresión:ventilación en lactante con dos reanimadores :: 15:2.
-? Maniobra para abrir la vía aérea con sospecha de lesión cervical :: Tracción mandibular.
-? Pulso que se revisa en el lactante :: Braquial.
-? Técnica de la bolsa-válvula-mascarilla :: Sello en C-E (pulgar e índice en "C" sobre la mascarilla; tres dedos en "E" en la mandíbula).
+? Duración de cada ventilación :: 1 segundo, con elevación visible del tórax.
+? Maniobra para abrir la vía aérea sin trauma :: Inclinación de la cabeza y elevación del mentón.
+? Cada cuánto se rota al compresor :: Cada 2 minutos (5 ciclos de 30:2).
+? Técnica de la bolsa-válvula-mascarilla :: Sello en C-E.
 Q ¿Qué error reduce más la eficacia de la RCP? :: *Interrupciones largas de las compresiones :: Comprimir a 110/min :: Comprimir 5.5 cm :: Rotar al compresor cada 2 minutos || Cada pausa hace caer la presión de perfusión coronaria y tarda en recuperarse.
-Q RCP en lactante con dos reanimadores. Relación y técnica: :: *15:2 con dos pulgares rodeando el tórax :: 30:2 con el talón de la mano :: 15:2 con dos manos :: 5:1 con dos dedos || Dos reanimadores en pediatría = 15:2; en lactantes, técnica de dos pulgares.
+Q ¿Por qué se evita ventilar en exceso durante la RCP? :: *Aumenta la presión intratorácica y reduce el retorno venoso :: Porque produce hipoglucemia :: Porque descarga el DEA :: Porque baja la frecuencia de compresiones a 140/min || Menos retorno venoso = menos sangre que las compresiones pueden expulsar.
+Q Paciente con vía aérea avanzada durante la RCP. Ventilación correcta: :: *1 cada 6 segundos con compresiones continuas :: 2 ventilaciones cada 30 compresiones :: 1 cada 2 segundos :: 1 cada 15 compresiones || Con vía aérea avanzada ya no se pausa para ventilar.
 
 # Desfibrilador externo automático (DEA)
-> Analiza el ritmo y descarga si encuentra uno desfibrilable.
-- Usarlo **en cuanto llegue**: encender → colocar parches en el pecho desnudo y seco (**anterolateral**: infraclavicular derecho y lateral izquierdo bajo la axila; o anteroposterior) → conectar → **"nadie toque al paciente"** durante el análisis → si indica, **descarga** con todos alejados → **reanudar RCP de inmediato** por 2 minutos (sin revisar pulso).
-- Ritmos desfibrilables: **fibrilación ventricular** y **taquicardia ventricular sin pulso**. No desfibrilables: **asistolia** y **actividad eléctrica sin pulso** (solo RCP).
-- Situaciones especiales: **pecho mojado** (secar), **mucho vello** (rasurar o retirar un parche para depilar), **marcapasos o desfibrilador implantado** (parche a ≥ 2.5 cm del dispositivo), **parches de medicamento** (retirar y limpiar), agua (sacar al paciente; la nieve o una superficie mojada pequeña no impiden).
-- Niños < 8 años y lactantes: **parches pediátricos** o atenuador; si no hay, usar los de adulto (sin que se toquen, anteroposterior).
-! Tras la descarga: **compresiones de inmediato**, no revisar pulso.
+> Analiza el ritmo y descarga solo si encuentra uno desfibrilable.
+## Cómo se usa
+= Uso del DEA :: Encender → Colocar los parches en el pecho desnudo y seco → Conectar → "¡Nadie toque al paciente!" mientras analiza → Descarga si la indica, con todos alejados → Reanudar RCP de inmediato por 2 minutos
+- Posición **anterolateral**: un parche bajo la clavícula derecha y otro en el costado izquierdo bajo la axila. Alternativa: **anteroposterior**.
+- Usarlo **en cuanto llegue**; mientras tanto, RCP.
+! Tras la descarga: **compresiones de inmediato**, sin revisar pulso.
 ! Durante el análisis y la descarga nadie toca al paciente.
-+ Los **programas de acceso público a la desfibrilación** (DEA en aeropuertos, escuelas, estadios) aumentan la supervivencia del paro extrahospitalario.
+## Ritmos
+| Ritmo ¦ ¿Desfibrilable? ¦ Qué hace el DEA
+| Fibrilación ventricular ¦ Sí ¦ Indica descarga
+| Taquicardia ventricular sin pulso ¦ Sí ¦ Indica descarga
+| Asistolia ¦ No ¦ "Descarga no indicada": continuar RCP
+| Actividad eléctrica sin pulso ¦ No ¦ "Descarga no indicada": continuar RCP
+## Situaciones especiales
+- **Pecho mojado**: secar; sacar al paciente del agua (un piso húmedo o la nieve no lo impiden).
+- **Mucho vello**: rasurar o usar un juego de parches para depilar y luego otro nuevo.
+- **Marcapasos o desfibrilador implantado**: no poner el parche encima; separarlo.
+- **Parches de medicamento** (nitroglicerina, nicotina): retirarlos y limpiar.
+- **Niños menores de 8 años**: parches pediátricos o atenuador; si no hay, usar los de adulto sin que se toquen (anteroposterior).
 ? Ritmos desfibrilables :: Fibrilación ventricular y taquicardia ventricular sin pulso.
 ? Qué hacer inmediatamente después de una descarga :: Reanudar compresiones por 2 minutos sin revisar pulso.
 ? Posición anterolateral de los parches :: Uno bajo la clavícula derecha y otro en el costado izquierdo bajo la axila.
-? DEA en paciente con marcapasos :: Colocar el parche al menos 2.5 cm del dispositivo.
+? DEA en paciente con marcapasos :: No poner el parche sobre el dispositivo.
 ? DEA en lactante sin parches pediátricos :: Usar los de adulto en posición anteroposterior sin que se toquen.
 Q El DEA indica "descarga recomendada". ¿Qué haces justo después de darla? :: *Reiniciar compresiones de inmediato :: Revisar pulso 10 segundos :: Dar 2 ventilaciones y esperar :: Quitar los parches || Reanudar RCP sin demora; el DEA volverá a analizar en 2 minutos.
 Q Paciente rescatado de una alberca con el pecho mojado. Antes de colocar los parches: :: *Sacarlo del agua y secar el pecho :: Colocarlos sin secar :: No usar el DEA :: Solo dar ventilaciones || El agua conduce la corriente y desvía la descarga.
+Q El DEA dice "descarga no indicada" en un paciente sin pulso. ¿Qué ritmo puede tener? :: *Asistolia o actividad eléctrica sin pulso :: Fibrilación ventricular :: Taquicardia ventricular sin pulso :: Ritmo sinusal normal con pulso || Los ritmos no desfibrilables se tratan con RCP (y fármacos en el soporte avanzado).
 
-# Obstrucción de la vía aérea por cuerpo extraño
-> Obstrucción leve: tose y habla. Grave: no puede toser, hablar ni respirar (signo universal de asfixia).
-- **Leve**: animar a toser, no golpear la espalda; vigilar.
-- **Grave en adulto o niño consciente**: **compresiones abdominales (maniobra de Heimlich)**: desde atrás, puño por arriba del ombligo y por debajo del xifoides, empujes hacia adentro y arriba hasta que salga el objeto o pierda la conciencia.
-- **Embarazadas avanzadas u obesos**: **compresiones torácicas** (mitad inferior del esternón).
-- **Lactante consciente**: **5 golpes en la espalda** (entre las escápulas, cabeza más baja que el tronco) alternados con **5 compresiones torácicas**; **nunca** compresiones abdominales.
-- **Si pierde la conciencia**: bajarlo al suelo, llamar al 911, **iniciar RCP** (empezando por compresiones); antes de ventilar, abrir la boca y **retirar el objeto solo si se ve** (no hacer barrido a ciegas).
-! Lactante: golpes en la espalda + compresiones torácicas; Heimlich solo en mayores de 1 año.
+# BLS pediátrico: niño y lactante
+> En los niños el paro suele ser respiratorio: primero falla la ventilación y después el corazón.
+## Diferencias clave con el adulto
+- **Lactante**: menor de 1 año. **Niño**: de 1 año a la pubertad.
+- Causa típica: **hipoxia** (asfixia, ahogamiento, infecciones respiratorias), no la FV.
+- Si la **FC es menor de 60 lpm con signos de mala perfusión** pese a ventilar: **iniciar compresiones**.
+- Ventilación de rescate en niños (con pulso): **1 cada 2–3 segundos** (20–30/min).
+| Parámetro ¦ Adulto ¦ Niño (1 año a pubertad) ¦ Lactante (menor de 1 año)
+| Profundidad ¦ 5–6 cm ¦ ≈ 5 cm (1/3 del tórax) ¦ ≈ 4 cm (1/3 del tórax)
+| Relación con 1 reanimador ¦ 30:2 ¦ 30:2 ¦ 30:2
+| Relación con 2 reanimadores ¦ 30:2 ¦ 15:2 ¦ 15:2
+| Técnica ¦ Dos manos ¦ Una o dos manos ¦ Dos pulgares rodeando el tórax
+| Pulso ¦ Carotídeo ¦ Carotídeo o femoral ¦ Braquial
+! En niños y lactantes con **dos reanimadores** la relación cambia a **15:2**.
+! Actualización AHA 2025: en el lactante ya no se recomienda la técnica de dos dedos; se usa la de **dos pulgares** rodeando el tórax (o el talón de una mano).
+## ¿Llamo primero o hago RCP primero?
+- **Colapso súbito presenciado** (probable causa cardiaca): llamar al 911 y traer el DEA primero.
+- **Colapso no presenciado** y estás solo sin teléfono: **2 minutos de RCP** y luego ir a activar el SEM.
++ El ahogamiento y la asfixia son causas frecuentes de paro pediátrico: la ventilación temprana es esencial.
+? Edad del lactante en BLS :: Menor de 1 año.
+? Relación compresión:ventilación en niño con dos reanimadores :: 15:2.
+? Pulso que se revisa en el lactante :: Braquial.
+? Indicación de compresiones en un niño con pulso :: FC menor de 60 lpm con signos de mala perfusión pese a ventilar.
+? Ventilación de rescate en el niño con pulso :: 1 cada 2–3 segundos (20–30/min).
+Q RCP en lactante con dos reanimadores. Relación y técnica: :: *15:2 con dos pulgares rodeando el tórax :: 30:2 con el talón de la mano :: 15:2 con las dos manos :: 5:1 con dos dedos || Dos reanimadores en pediatría = 15:2; en lactantes, técnica de dos pulgares.
+Q Encuentras sola a una niña de 4 años que no responde ni respira; nadie vio qué pasó y no tienes teléfono. Conducta: :: *2 minutos de RCP y luego activar el SEM :: Ir a llamar primero y regresar :: Solo ventilar 5 minutos :: Esperar a que llegue alguien || En el paro no presenciado del niño la causa suele ser hipóxica: RCP primero.
+Q Lactante con FC de 50 lpm, pálido y sin respuesta pese a ventilaciones adecuadas. Conducta: :: *Iniciar compresiones torácicas :: Seguir solo con ventilaciones :: Colocarlo de lado :: Esperar a que suba la frecuencia || FC < 60 con mala perfusión se trata como paro.
+
+# Obstrucción de la vía aérea por cuerpo extraño (OVACE)
+> Leve: tose y habla. Grave: no puede toser, hablar ni respirar (signo universal de asfixia).
+## Reconocer la gravedad
+| Obstrucción ¦ Signos ¦ Qué hacer
+| Leve ¦ Tose con fuerza, puede hablar o llorar ¦ Animar a toser y vigilar; no golpear
+| Grave ¦ No tose ni habla, estridor, cianosis, manos al cuello ¦ Maniobras de desobstrucción inmediatas
+## Adulto y niño consciente
+- **Compresiones abdominales (maniobra de Heimlich)**: desde atrás, puño por arriba del ombligo y por debajo del xifoides, empujes hacia adentro y arriba hasta que salga el objeto o pierda la conciencia.
+- **Embarazadas avanzadas u obesos**: **compresiones torácicas** en la mitad inferior del esternón.
+! Actualización AHA 2025: en adultos y niños se alternan **5 golpes en la espalda y 5 compresiones abdominales**.
+## Lactante consciente
+= Lactante que se ahoga :: Boca abajo sobre tu antebrazo, cabeza más baja que el tronco → 5 golpes en la espalda entre las escápulas → Voltear boca arriba → 5 compresiones torácicas → Repetir hasta que salga el objeto o pierda la conciencia
+! Lactante: golpes en la espalda + compresiones torácicas; **nunca** compresiones abdominales (riesgo de lesión del hígado).
+## Si pierde la conciencia
+- Bajarlo al suelo, llamar al 911 e **iniciar RCP comenzando por compresiones**.
+- Antes de ventilar, abrir la boca y **retirar el objeto solo si se ve**.
 ! Nada de barrido digital a ciegas: puede empujar el objeto más adentro.
-+ Tras una maniobra de Heimlich exitosa el paciente debe ser valorado médicamente (riesgo de lesiones internas).
-+ Causas típicas: carne en adultos (a menudo con alcohol o prótesis dental), uvas, salchichas, monedas y juguetes pequeños en niños.
++ Tras una desobstrucción exitosa, el paciente debe ser valorado médicamente (posibles lesiones internas).
++ Causas típicas: carne en adultos (a menudo con alcohol o prótesis dental); uvas, salchichas, cacahuates, monedas y juguetes pequeños en niños.
 ? Signo universal de asfixia :: Manos en el cuello sin poder hablar ni toser.
-? Maniobra en adulto consciente con obstrucción grave :: Compresiones abdominales (Heimlich).
+? Maniobra en adulto consciente con obstrucción grave :: Compresiones abdominales (Heimlich); desde 2025 la AHA las alterna con golpes en la espalda.
 ? Maniobra en lactante consciente :: 5 golpes en la espalda alternados con 5 compresiones torácicas.
 ? Maniobra en embarazada avanzada :: Compresiones torácicas.
 ? Si el paciente atragantado pierde la conciencia :: RCP comenzando por compresiones; retirar el objeto solo si se ve.
-Q Adulto en un restaurante que se lleva las manos al cuello, no puede hablar ni toser. Conducta: :: *Compresiones abdominales hasta expulsar el objeto o que pierda la conciencia :: Golpes en la espalda solamente :: Darle agua :: Barrido digital a ciegas || Obstrucción grave en adulto consciente: Heimlich.
-Q Lactante de 8 meses consciente que no puede llorar ni toser tras meterse un objeto. Maniobra: :: *5 golpes en la espalda y 5 compresiones torácicas, alternando :: Compresiones abdominales :: Barrido digital :: Esperar a que tosa || En menores de 1 año no se hacen compresiones abdominales por riesgo de lesión hepática.
+Q Adulto en un restaurante que se lleva las manos al cuello, no puede hablar ni toser. Conducta: :: *Maniobras de desobstrucción (compresiones abdominales) hasta expulsar el objeto o que pierda la conciencia :: Darle agua :: Barrido digital a ciegas :: Esperar a que tosa || Obstrucción grave en adulto consciente: desobstrucción inmediata.
+Q Lactante de 8 meses consciente que no puede llorar ni toser tras meterse un objeto. Maniobra: :: *5 golpes en la espalda y 5 compresiones torácicas, alternando :: Compresiones abdominales :: Barrido digital :: Esperar a que tosa || En menores de 1 año no se hacen compresiones abdominales.
+Q Adulto atragantado que tose con fuerza y puede hablar. Conducta: :: *Animarlo a toser y vigilar :: Compresiones abdominales :: Golpes en la espalda :: Iniciar RCP || Es una obstrucción leve: la tos es el mecanismo más eficaz.
 
-# Posición de recuperación y emergencias médicas frecuentes
-> Paciente inconsciente que respira con pulso: proteger la vía aérea mientras llega la ayuda.
-- **Posición de recuperación (lateral de seguridad)**: de lado, cabeza ligeramente extendida, boca hacia abajo para drenar vómito; vigilar la respiración. No usar si se sospecha lesión de columna (salvo que la vía aérea esté en riesgo).
-- **Síncope**: acostar, elevar las piernas, aflojar ropa; si no recupera pronto la conciencia, evaluar como paro.
-- **Crisis convulsiva**: proteger la cabeza, retirar objetos, **no meter nada en la boca**, no sujetar; cronometrar; al terminar, posición de recuperación. Llamar al 911 si dura > 5 min, se repite o es la primera.
-- **Hipoglucemia** en paciente consciente que puede tragar: **15–20 g de glucosa** oral (jugo, tabletas).
-- **Anafilaxia**: autoinyector de **adrenalina** IM en la cara anterolateral del muslo; repetir en 5–15 min si no mejora.
-- **Sospecha de infarto**: dar **ácido acetilsalicílico** 160–325 mg masticado si no es alérgico ni hay sangrado.
-- **Sospecha de evento vascular cerebral**: reconocer con **FAST** (Face/cara caída, Arm/brazo débil, Speech/habla alterada, Time/hora de inicio) y trasladar rápido.
-- **Sobredosis de opioides**: **naloxona** intranasal o IM si está disponible, además de RCP si no respira.
+# Emergencias médicas frecuentes fuera del hospital
+> Reconocer pronto y actuar con lo que se tiene a la mano.
+## Posición de recuperación
+- Para el paciente **inconsciente que respira y tiene pulso**: de lado, cabeza ligeramente extendida, boca hacia abajo para que drene el vómito; vigilar la respiración.
+- Evitarla si se sospecha lesión de columna, salvo que la vía aérea esté en riesgo.
+## Síncope y convulsiones
+- **Síncope**: acostar, elevar las piernas, aflojar la ropa; si no recupera pronto la conciencia, evaluar como paro.
+- **Crisis convulsiva**: proteger la cabeza, retirar objetos, **no meter nada en la boca**, no sujetar; cronometrar; al terminar, posición de recuperación.
+- Llamar al 911 si dura **más de 5 minutos**, se repite, es la primera o hay lesión o embarazo.
 ! Nunca meter objetos en la boca durante una convulsión.
-! FAST: anotar la **hora** en que se vio al paciente bien por última vez (define el tratamiento trombolítico).
-+ El tiempo es cerebro: el EVC isquémico puede recibir trombólisis dentro de ventanas de pocas horas desde el inicio.
-+ La adrenalina en anafilaxia no se retrasa por dudas: es el tratamiento de primera línea.
+## Hipoglucemia, anafilaxia y opioides
+- **Hipoglucemia** en paciente consciente que puede tragar: **15–20 g de glucosa** oral (tabletas, jugo, refresco regular); si está inconsciente, nada por la boca.
+- **Anafilaxia**: autoinyector de **adrenalina** IM en la cara anterolateral del muslo; si no mejora, una segunda dosis a los 5–15 minutos.
+- **Sobredosis de opioides** (pupilas puntiformes, respiración lenta): **naloxona** intranasal o IM si está disponible, además de ventilar o hacer RCP.
+~ Adrenalina IM :: Tratamiento de primera línea de la anafilaxia; no se retrasa por dudas.
+~ Naloxona :: Antagonista de los opioides; revierte la depresión respiratoria.
+## Infarto y evento vascular cerebral
+- **Sospecha de infarto** (dolor opresivo, sudoración, náusea, irradiado a brazo o mandíbula): reposo, llamar al 911 y dar **ácido acetilsalicílico** masticado si no es alérgico ni hay sangrado.
+- **Sospecha de EVC**: reconocer con **FAST** y anotar la **hora** en que se vio bien por última vez.
+& FAST :: Face (cara caída) · Arm (brazo débil) · Speech (habla alterada) · Time (hora de inicio y llamar ya).
++ El tiempo es cerebro: el EVC isquémico puede recibir trombólisis o trombectomía solo dentro de ventanas de pocas horas.
 ? Posición para paciente inconsciente que respira y tiene pulso :: Posición lateral de seguridad (de recuperación).
 ? Qué no hacer durante una convulsión :: Meter objetos en la boca o sujetar al paciente.
 ? Escala prehospitalaria para EVC :: FAST: cara, brazo, habla y tiempo.
 ? Primer fármaco en anafilaxia :: Adrenalina IM en el muslo anterolateral.
+? Glucosa oral en hipoglucemia (consciente) :: 15–20 g.
 ? Fármaco que se puede dar en sospecha de infarto :: Ácido acetilsalicílico masticado (si no hay contraindicación).
-Q Paciente con crisis convulsiva tónico-clónica de 2 minutos en la calle. ¿Qué haces? :: *Proteger la cabeza, retirar objetos y cronometrar :: Introducir un objeto entre los dientes :: Sujetar brazos y piernas :: Dar agua || Se protege de golpes; la mayoría de las crisis cede sola en < 5 min.
-Q Señor con desviación de la comisura labial, debilidad de un brazo y habla arrastrada desde hace 30 minutos. Dato clave a reportar: :: *La hora de inicio de los síntomas :: Su tipo de sangre :: Su última vacuna :: Su peso exacto || La hora de inicio define si es candidato a trombólisis o trombectomía.
+Q Paciente con crisis convulsiva tónico-clónica de 2 minutos en la calle. ¿Qué haces? :: *Proteger la cabeza, retirar objetos y cronometrar :: Introducir un objeto entre los dientes :: Sujetar brazos y piernas :: Dar agua || Se protege de golpes; la mayoría de las crisis ceden solas en menos de 5 min.
+Q Señor con desviación de la comisura labial, debilidad de un brazo y habla arrastrada. Dato clave a reportar: :: *La hora de inicio de los síntomas :: Su tipo de sangre :: Su última vacuna :: Su peso exacto || La hora de inicio define si es candidato a trombólisis o trombectomía.
+Q Joven con urticaria, sibilancias e hipotensión tras una picadura de abeja. Primer tratamiento: :: *Adrenalina IM en el muslo :: Antihistamínico oral y observar :: Agua con azúcar :: Posición de recuperación sin más || Es anafilaxia: la adrenalina es la primera línea.
 
-# Trauma prehospitalario: hemorragia, inmovilización y traslado
-> Detener el sangrado, proteger la columna cuando está indicado y trasladar al lugar adecuado.
-- **Control de hemorragias** (escalonado): **presión directa** firme → **empaquetamiento** de heridas profundas (unión de extremidad) → **torniquete** en extremidades si la presión no basta: 5–7 cm por arriba de la herida (no sobre articulación), apretar hasta que pare el sangrado y **anotar la hora**; no aflojarlo en campo.
-- **Choque**: piel pálida, fría, sudorosa, taquicardia, llenado capilar > 2 s, ansiedad; acostar, controlar el sangrado, cubrir para evitar **hipotermia**.
-- **Restricción del movimiento de la columna**: indicada en mecanismo de riesgo con dolor cervical, déficit neurológico, alteración de conciencia, intoxicación o lesión distractora; **collarín cervical** y tabla/camilla de cuchara; **alineación manual** mientras tanto.
-- **Fracturas**: inmovilizar la articulación de arriba y la de abajo; revisar **pulso, sensibilidad y movilidad distal** antes y después de inmovilizar. Fractura expuesta: cubrir con gasa estéril húmeda, no reintroducir el hueso.
-- **Quemaduras**: enfriar con agua corriente a temperatura ambiente 20 min (no hielo), retirar anillos, cubrir con plástico limpio; regla de los 9 para la superficie.
-- **Triage de víctimas múltiples (START)**: **verde** (camina), **rojo** (FR > 30, llenado capilar > 2 s o no sigue órdenes), **amarillo** (no camina pero estable), **negro** (no respira tras abrir la vía aérea).
-- **Traslado**: comunicar al hospital receptor (edad, mecanismo, lesiones, signos vitales, tratamiento: formato **MIST** o SBAR) y elegir el hospital con la capacidad que el paciente necesita.
+# Trauma prehospitalario: hemorragia, choque, columna y fracturas
+> Detener el sangrado, proteger la columna cuando está indicado y evitar la hipotermia.
+## Control de hemorragias
+= Control escalonado :: Presión directa firme → Empaquetar heridas profundas (unión de la extremidad, cuello) → Torniquete en extremidades si la presión no basta
+- **Torniquete**: 5–7 cm por arriba de la herida (no sobre una articulación); apretar hasta que **pare el sangrado** y **anotar la hora**; no aflojarlo en campo.
 ! Torniquete: alto y apretado, con la hora escrita; no se afloja en campo.
-! START: si camina → verde; si no respira tras abrir la vía aérea → negro.
-+ Las hemorragias en extremidades son la principal causa de muerte prevenible en trauma: un torniquete a tiempo salva vidas.
-+ La **hipotermia** empeora la coagulopatía del trauma (tríada letal: hipotermia, acidosis y coagulopatía).
++ Las hemorragias de extremidades son la principal causa de muerte prevenible en trauma: un torniquete a tiempo salva vidas.
+## Choque
+- Signos: piel **pálida, fría y sudorosa**, taquicardia, llenado capilar > 2 s, ansiedad o confusión; la hipotensión es un signo **tardío**.
+- Manejo básico: acostar, controlar el sangrado, oxígeno si se tiene, **cubrir para evitar la hipotermia** y trasladar rápido.
+& Tríada letal del trauma :: Hipotermia · Acidosis · Coagulopatía (cada una empeora a las otras).
+## Restricción del movimiento de la columna
+- Indicada con mecanismo de riesgo y: dolor o deformidad cervical, déficit neurológico, alteración de la conciencia, intoxicación o lesión distractora.
+- **Alineación manual** de la cabeza → **collarín cervical** → camilla de cuchara o tabla para mover en bloque.
+## Fracturas y quemaduras
+- **Fracturas**: inmovilizar la articulación de arriba y la de abajo; revisar **pulso, sensibilidad y movilidad distal** antes y después.
+- **Fractura expuesta**: cubrir con gasa estéril húmeda; no reintroducir el hueso.
+- **Quemaduras**: enfriar con **agua corriente a temperatura ambiente unos 20 minutos** (no hielo), retirar anillos y ropa no adherida, cubrir con plástico limpio.
+~ Regla de los 9 (adulto) :: Cabeza 9 %, cada brazo 9 %, tórax y abdomen anterior 18 %, espalda 18 %, cada pierna 18 %, periné 1 %.
+~ Regla de la palma :: La palma del paciente (con los dedos) equivale a cerca del 1 % de su superficie corporal.
 ? Primer paso para controlar una hemorragia externa :: Presión directa firme.
-? Dónde se coloca el torniquete :: 5–7 cm por arriba de la herida, sin ponerlo sobre una articulación, y se anota la hora.
+? Dónde se coloca el torniquete :: 5–7 cm por arriba de la herida, no sobre una articulación, y se anota la hora.
 ? Qué revisar antes y después de inmovilizar una fractura :: Pulso, sensibilidad y movilidad distales.
-? Categoría START de quien camina :: Verde (leve).
 ? Primer manejo de una quemadura térmica :: Enfriar con agua corriente a temperatura ambiente unos 20 minutos.
 ? Tríada letal del trauma :: Hipotermia, acidosis y coagulopatía.
+? Signo tardío del choque :: La hipotensión.
 Q Herida en el antebrazo que sigue sangrando abundantemente pese a presión directa firme. Siguiente paso: :: *Colocar un torniquete por arriba de la herida y anotar la hora :: Elevar el brazo y esperar :: Aplicar hielo :: Retirar la gasa para revisar || En extremidades, si la presión falla, el torniquete es el siguiente escalón.
-Q En un accidente masivo, un paciente no camina, respira 34 veces por minuto. Categoría START: :: *Rojo (inmediato) :: Verde :: Amarillo :: Negro || FR > 30 clasifica como rojo.
 Q ¿Cómo enfrías una quemadura térmica en campo? :: *Agua corriente a temperatura ambiente unos 20 minutos :: Hielo directo :: Pasta dental :: Mantequilla || El hielo produce más daño tisular e hipotermia.
+Q Paciente atropellado, pálido, frío, con FC de 125 y TA aún normal. Interpretación: :: *Choque compensado: la hipotensión aparece tarde :: Paciente estable :: Ansiedad sin importancia :: Hipotermia aislada || La taquicardia y la piel fría aparecen antes que la hipotensión.
+
+# Incidentes con múltiples víctimas y traslado
+> Hacer el mayor bien para el mayor número de pacientes.
+## Triage START
+= START, en este orden :: ¿Camina? Sí: VERDE → ¿Respira tras abrir la vía aérea? No: NEGRO → ¿FR > 30? Sí: ROJO → ¿Sin pulso radial o llenado > 2 s? Sí: ROJO → ¿No obedece órdenes simples? Sí: ROJO → Pasó todo lo anterior: AMARILLO
+| Color ¦ Prioridad ¦ Ejemplo
+| Rojo ¦ Inmediata ¦ FR > 30, llenado capilar > 2 s o no obedece órdenes
+| Amarillo ¦ Diferida ¦ No camina pero respira, perfunde y obedece
+| Verde ¦ Leve ¦ Camina por su propio pie
+| Negro ¦ Fallecido o sin posibilidad ¦ No respira tras abrir la vía aérea
+! START: si camina → verde; si no respira tras abrir la vía aérea → negro.
+## Comunicación y traslado
+- Elegir el hospital con la **capacidad que el paciente necesita** (trauma, hemodinamia, EVC), no siempre el más cercano.
+- Comunicar al hospital receptor de forma estructurada.
+& MIST :: Mecanismo · Injuries (lesiones) · Signos vitales · Tratamiento dado.
+& SBAR :: Situación · Antecedentes (Background) · Evaluación (Assessment) · Recomendación.
++ Una entrega estructurada reduce errores y pérdida de información en el cambio de turno o de equipo.
+? Categoría START de quien camina :: Verde (leve).
+? Categoría START de quien respira 34 por minuto :: Rojo (inmediato).
+? Formato MIST :: Mecanismo, lesiones, signos vitales y tratamiento.
+? Qué significa SBAR :: Situación, antecedentes, evaluación y recomendación.
+Q En un accidente masivo, un paciente no camina y respira 34 veces por minuto. Categoría START: :: *Rojo (inmediato) :: Verde :: Amarillo :: Negro || FR > 30 clasifica como rojo.
+Q Víctima que no camina, respira 18/min, tiene pulso radial y obedece órdenes. Categoría START: :: *Amarillo :: Rojo :: Verde :: Negro || Respira, perfunde y obedece, pero no camina.
+Q Paciente con sospecha de infarto en una ciudad con dos hospitales: uno a 5 minutos sin hemodinamia y otro a 20 minutos con hemodinamia. ¿A dónde lo trasladas? :: *Al que tiene hemodinamia :: Al más cercano siempre :: A casa :: Al que elija el familiar || Se elige el hospital que puede dar el tratamiento definitivo.

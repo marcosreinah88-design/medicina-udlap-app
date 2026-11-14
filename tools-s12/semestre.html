@@ -142,6 +142,7 @@ function stats(){
     `<span><b>${ARTEFACTOS.length}</b>guías</span>` +
     `<span><b>${materias.size}</b>materias</span>` +
     `<span><b>${n("ntemas")}</b>temas</span>` +
+    `<span><b>${n("nsubs")}</b>subtemas</span>` +
     `<span><b>${n("ntarjetas")}</b>tarjetas</span>` +
     `<span><b>${n("npreguntas")}</b>preguntas</span>`;
   $("#others").innerHTML = OTRAS.map(o => `<li>${esc(o[0])}${o[1]?` <small>· ${esc(o[1])}</small>`:""}</li>`).join("");

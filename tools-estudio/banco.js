@@ -10,7 +10,6 @@ const GUIAS=[
   ['anatomofisiologia','s1/guias/anatomofisiologia.html','Anatomofisiología',1],
   ['embriologia-genetica','s1/guias/embriologia-genetica.html','Embriología y Genética',1],
   ['simulacion-i','s1/guias/simulacion-i.html','Simulación',1],
-  ['anatomia-dental','s1/guias/anatomia-dental.html','Anatomía Dental',1],
   ['fisiologia','s2/guias/fisiologia.html','Fisiología',2],
   ['biologia-celular','s2/guias/biologia-celular.html','Biología Celular y Molecular',2],
   ['anatomia-humana-i','s2/guias/anatomia-humana-i.html','Anatomía Humana I',2],

@@ -1,0 +1,121 @@
+@id simulacion-i
+@sem 1
+@orden 5
+@title Laboratorio de Simulación I
+@materia Simulación
+@codigo SIM I
+@color #c4142f
+@icon simu
+@sub Bioseguridad · Higiene de manos · Técnica estéril · Signos vitales · Somatometría · Historia clínica
+@desc Las habilidades básicas que se evalúan en la estación práctica: lavado de manos, guantes estériles, signos vitales, somatometría e historia clínica, con los valores normales y los errores típicos.
+@nota El temario sigue los contenidos habituales de una primera simulación clínica (no se encontró el programa publicado de UDLAP). Ajusta los temas a lo que vea tu profesor.
+@kw simulacion lavado de manos higiene cinco momentos oms bioseguridad rpbi guantes esteriles bata signos vitales presion arterial frecuencia cardiaca respiratoria temperatura saturacion somatometria imc historia clinica
+
+# Bioseguridad y precauciones estándar
+> Todo paciente se considera potencialmente infeccioso.
+- **Precauciones estándar**: higiene de manos, equipo de protección personal según el riesgo, manejo seguro de punzocortantes, limpieza de superficies, higiene respiratoria.
+- Precauciones por mecanismo: **contacto** (bata y guantes: C. difficile, bacterias multirresistentes), **gotas** (cubrebocas quirúrgico a < 1–2 m: influenza, meningococo), **aéreas** (respirador **N95** y cuarto con presión negativa: tuberculosis, sarampión, varicela).
+- Orden para **ponerse** el EPP: bata → cubrebocas/respirador → lentes o careta → guantes. Para **quitárselo**: guantes → lentes → bata → cubrebocas (y higiene de manos al final).
+- **RPBI** (NOM-087-SEMARNAT-SSA1-2002): punzocortantes en contenedor rígido rojo; no anatómicos en bolsa roja; patológicos en bolsa amarilla; sangre líquida en recipiente hermético rojo.
+- Nunca reencapuchar agujas. Exposición: lavar con agua y jabón, reportar y valorar profilaxis (VIH, VHB, VHC).
+! Tuberculosis, sarampión y varicela = precauciones aéreas (N95). Meningococo e influenza = gotas.
+! Los guantes son lo primero que se retira (lo más contaminado).
++ Pinchazo con aguja de paciente VIH positivo: profilaxis antirretroviral idealmente en las primeras 2 horas (máximo 72 h).
++ El virus de hepatitis B es el de mayor riesgo de transmisión por pinchazo; el personal de salud debe estar vacunado.
+? Precauciones para tuberculosis :: Aéreas: respirador N95 y cuarto con presión negativa.
+? Contenedor para agujas usadas :: Recipiente rígido rojo para punzocortantes (RPBI).
+? Orden para retirar el EPP :: Guantes → lentes/careta → bata → cubrebocas, y luego higiene de manos.
+? Bolsa amarilla del RPBI :: Residuos patológicos (tejidos, órganos).
+Q Paciente con sospecha de sarampión. ¿Qué precaución usas? :: *Aérea con respirador N95 :: Gotas con cubrebocas quirúrgico :: Solo contacto :: Ninguna si está vacunado el personal || El sarampión se transmite por núcleos de gotitas que quedan suspendidos.
+Q Tras una venopunción, la aguja debe: :: *Desecharse sin reencapuchar en el contenedor rígido rojo :: Reencapucharse con las dos manos :: Tirarse en bolsa roja :: Doblarse antes de desecharse || Reencapuchar es la causa más común de pinchazos.
+
+# Higiene de manos
+> La medida más eficaz para prevenir infecciones asociadas a la atención de la salud.
+- **5 momentos de la OMS**: 1) antes de tocar al paciente, 2) antes de un procedimiento limpio/aséptico, 3) después del riesgo de exposición a líquidos corporales, 4) después de tocar al paciente, 5) después de tocar el entorno del paciente.
+- **Fricción con alcohol gel**: 20–30 segundos; es la técnica de elección si las manos no están visiblemente sucias.
+- **Lavado con agua y jabón**: 40–60 segundos; obligatorio si hay suciedad visible o tras contacto con **C. difficile** o norovirus (el alcohol no elimina esporas).
+- Pasos: palma con palma, palma derecha sobre dorso izquierdo con dedos entrelazados y viceversa, palmas con dedos entrelazados, dorso de los dedos, pulgares en rotación, yemas en la palma; enjuagar y secar con toalla desechable que se usa para cerrar la llave.
+- **Lavado quirúrgico**: 3–5 minutos con antiséptico (clorhexidina o yodopovidona), de las uñas hacia el codo, manos por arriba de los codos.
+! Alcohol gel 20–30 s; agua y jabón 40–60 s; quirúrgico 3–5 min.
+! Ante diarrea por C. difficile: agua y jabón, no alcohol.
++ Las uñas largas o artificiales y las joyas acumulan bacterias: no se usan en el área clínica.
+? Los 5 momentos de la higiene de manos :: Antes del paciente, antes de un procedimiento aséptico, después de exposición a fluidos, después del paciente y después del entorno del paciente.
+? Duración de la fricción con alcohol :: 20–30 segundos.
+? Duración del lavado con agua y jabón :: 40–60 segundos.
+? ¿Cuándo no sirve el alcohol gel? :: Manos visiblemente sucias y contacto con esporas (C. difficile).
+Q Acabas de tomar la presión a un paciente y vas a tocar a otro. ¿Qué momento de higiene corresponde primero? :: *Después de tocar al paciente :: Antes de un procedimiento aséptico :: Después de exposición a líquidos :: No es necesario si usaste guantes || El momento 4 aplica al salir del primer paciente; luego el 1 antes del siguiente.
+Q En el lavado quirúrgico las manos se mantienen: :: *Por arriba del nivel de los codos :: Por debajo de la cintura :: Al nivel de los hombros apuntando abajo :: En cualquier posición || El agua escurre de lo más limpio (manos) a lo menos limpio (codos).
+
+# Técnica estéril: bata y guantes
+> Mantener el campo estéril: lo estéril solo toca lo estéril.
+- Principios: el frente de la bata es estéril de la cintura a los hombros y las mangas hasta 5 cm arriba del codo; **la espalda no es estéril**; lo que queda por debajo de la cintura o fuera de la vista se considera contaminado.
+- **Calzado de guantes (técnica abierta)**: abrir el paquete sin tocar el interior → tomar el primer guante por el doblez (cara interna) con la mano desnuda → para el segundo, meter los dedos enguantados **bajo el doblez** (cara externa) → nunca tocar la piel con el guante estéril.
+- Técnica cerrada: con la bata puesta, las manos no salen de los puños.
+- Si hay duda de contaminación, se considera contaminado y se cambia.
+! Mano desnuda toca solo la cara interna del guante; mano enguantada solo la cara externa.
+! La espalda de la bata y lo que está debajo de la cintura no son estériles.
++ Las infecciones del sitio quirúrgico se previenen con técnica estéril, antisepsia de la piel y profilaxis antibiótica oportuna.
+? Zona estéril de la bata quirúrgica :: Frente, de la cintura a los hombros, y mangas hasta 5 cm por arriba del codo.
+? Cómo tomas el segundo guante estéril :: Con la mano enguantada por debajo del doblez (cara externa).
+? Regla ante la duda de contaminación :: Se considera contaminado y se cambia.
+Q Durante una cirugía tu mano enguantada toca tu cubrebocas. ¿Qué haces? :: *Cambias el guante :: Continúas porque el cubrebocas es limpio :: Te pones alcohol gel encima :: Lo secas con la bata || El cubrebocas no es estéril; el guante quedó contaminado.
+Q ¿Qué parte del guante puedes tocar con la mano desnuda al calzarte el primero? :: *La cara interna del doblez :: La palma externa :: Los dedos :: Cualquiera si te lavaste || La cara interna quedará contra la piel, por eso puede tocarse.
+
+# Signos vitales
+> Frecuencia cardiaca, frecuencia respiratoria, presión arterial, temperatura y saturación de O₂ (más dolor).
+- **Presión arterial**: paciente sentado 5 min, brazo a la altura del corazón, manguito cuyo globo cubre ≥ 80 % del brazo, 2–3 cm arriba del pliegue del codo. Palpar la radial e inflar 20–30 mmHg sobre su desaparición; desinflar 2–3 mmHg/s. **Korotkoff I** = sistólica; **V** (desaparición) = diastólica.
+- **Frecuencia cardiaca**: pulso radial 30 s × 2 si es regular; 60 s completos si es irregular.
+- **Frecuencia respiratoria**: contar 60 s sin que el paciente lo note (después del pulso).
+- **Temperatura**: axilar normal 36–37.2 °C; fiebre ≥ 38 °C (oral/central). **SpO₂** normal ≥ 94 % (88–92 % en EPOC).
+| Signo ¦ Adulto normal
+| Frecuencia cardiaca ¦ 60–100 lpm
+| Frecuencia respiratoria ¦ 12–20 rpm
+| Presión arterial ¦ < 120/80 mmHg (óptima)
+| Temperatura ¦ 36.0–37.2 °C axilar
+| SpO₂ ¦ ≥ 94 % al aire ambiente
+! Manguito pequeño o brazo por debajo del corazón → **sobreestima** la presión; manguito grande → la subestima.
+! Hipertensión (ACC/AHA 2017): elevada 120–129/< 80; etapa 1 130–139/80–89; etapa 2 ≥ 140/90.
++ **Choque**: taquicardia e hipotensión; índice de choque (FC/PAS) > 1 sugiere hipovolemia importante†.
++ Taquipnea es un signo temprano y sensible de deterioro (sepsis, neumonía, embolia pulmonar).
+? Ruido de Korotkoff que marca la presión sistólica :: Fase I (aparición del primer ruido).
+? Frecuencia respiratoria normal del adulto :: 12–20 respiraciones por minuto.
+? Efecto de un manguito demasiado pequeño :: Sobreestima la presión arterial.
+? Cómo cuentas la frecuencia respiratoria :: 60 segundos, discretamente, sin avisar al paciente.
+? Definición de fiebre :: Temperatura ≥ 38 °C.
+Q Al tomar la presión el brazo del paciente cuelga por debajo del corazón. La lectura será: :: *Falsamente alta :: Falsamente baja :: Correcta :: Imposible de obtener || La columna hidrostática añade presión cuando el brazo está bajo.
+Q Paciente con pulso irregular. ¿Cómo lo cuentas? :: *60 segundos completos :: 15 segundos × 4 :: 30 segundos × 2 :: 10 segundos × 6 || En ritmos irregulares los atajos subestiman o sobrestiman la frecuencia.
+Q Adulto con PA promedio de 134/86 mmHg en varias tomas. Clasificación ACC/AHA: :: *Hipertensión etapa 1 :: Presión elevada :: Normal :: Hipertensión etapa 2 || Etapa 1 = 130–139 o 80–89 mmHg.
+
+# Somatometría y estado nutricional
+> Peso, talla, IMC, perímetros y su interpretación.
+- **IMC** = peso (kg) / talla² (m). OMS: < 18.5 bajo peso; 18.5–24.9 normal; 25–29.9 sobrepeso; **≥ 30 obesidad** (I 30–34.9, II 35–39.9, III ≥ 40).
+- **Circunferencia de cintura** (punto medio entre última costilla y cresta ilíaca): obesidad abdominal ≥ 90 cm en hombres y ≥ 80 cm en mujeres (criterios para población mexicana/latinoamericana, IDF†).
+- Índice cintura/talla > 0.5 = riesgo cardiometabólico.
+- Técnica: peso sin zapatos y con ropa ligera, báscula calibrada; talla con estadímetro, plano de Frankfort horizontal.
+- En niños se usan **percentiles/puntuación Z** (tablas OMS) para peso/edad, talla/edad e IMC/edad; perímetro cefálico hasta los 2–3 años.
+! IMC: 25 sobrepeso, 30 obesidad. El IMC no distingue músculo de grasa.
++ La obesidad abdominal es componente del síndrome metabólico junto a hipertensión, hiperglucemia, triglicéridos altos y HDL bajo.
++ Pérdida de peso involuntaria > 5 % en 6–12 meses requiere estudio (cáncer, diabetes, hipertiroidismo, depresión, VIH).
+? Fórmula del IMC :: Peso (kg) dividido entre talla (m) al cuadrado.
+? IMC de obesidad :: ≥ 30 kg/m².
+? Dónde se mide la cintura :: Punto medio entre el borde costal inferior y la cresta ilíaca.
+? Posición de la cabeza para medir la talla :: Plano de Frankfort horizontal.
+Q Paciente de 85 kg y 1.70 m. Su IMC y clasificación: :: *29.4, sobrepeso :: 24.9, normal :: 31.2, obesidad I :: 50, obesidad III || 85 / (1.70²) = 85 / 2.89 ≈ 29.4.
+Q En un niño de 4 años el crecimiento se evalúa mejor con: :: *Percentiles o puntuación Z en tablas OMS :: IMC de adulto :: Circunferencia de cintura :: Índice cintura/talla del adulto || En pediatría se compara contra curvas de referencia por edad y sexo.
+
+# Historia clínica y comunicación
+> El documento médico-legal base de la atención (NOM-004-SSA3-2012 del expediente clínico).
+- Estructura: **ficha de identificación**, motivo de consulta, **padecimiento actual**, antecedentes heredofamiliares, personales no patológicos, personales patológicos, gineco-obstétricos, interrogatorio por aparatos y sistemas, exploración física, estudios, diagnóstico(s), plan y pronóstico.
+- Semiología del dolor: **ALICIA** → Aparición, Localización, Intensidad (escala 0–10), Carácter, Irradiación, Atenuantes/agravantes (más tiempo de evolución y síntomas acompañantes).
+- Nota de evolución **SOAP**: Subjetivo, Objetivo, Análisis, Plan.
+- Comunicación: presentarse, confirmar identidad, preguntas abiertas al inicio y cerradas después, escucha activa, lenguaje sin tecnicismos, resumir y verificar comprensión; consentimiento informado.
+- Confidencialidad y respeto a la autonomía (principios bioéticos: autonomía, beneficencia, no maleficencia, justicia).
+! Mnemotecnia ALICIA para caracterizar el dolor; SOAP para la nota de evolución.
+! La NOM-004-SSA3-2012 regula el expediente clínico en México.
++ Una buena historia clínica orienta el diagnóstico en la mayoría de los casos antes de pedir estudios.
+? Norma del expediente clínico en México :: NOM-004-SSA3-2012.
+? Mnemotecnia para semiología del dolor :: ALICIA: aparición, localización, intensidad, carácter, irradiación y atenuantes/agravantes.
+? Formato de la nota de evolución :: SOAP: subjetivo, objetivo, análisis y plan.
+? Principios de la bioética clínica :: Autonomía, beneficencia, no maleficencia y justicia.
+Q ¿En qué apartado registras que el padre del paciente tiene diabetes? :: *Antecedentes heredofamiliares :: Antecedentes personales patológicos :: Padecimiento actual :: Interrogatorio por aparatos y sistemas || Las enfermedades de familiares van en heredofamiliares.
+Q Al iniciar la entrevista conviene usar: :: *Preguntas abiertas :: Solo preguntas cerradas de sí o no :: Términos técnicos precisos :: Preguntas dirigidas que sugieran la respuesta || Las abiertas permiten que el paciente cuente su historia; las cerradas precisan después.

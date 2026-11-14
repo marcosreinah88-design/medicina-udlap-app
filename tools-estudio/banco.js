@@ -5,6 +5,16 @@ const fs=require('fs'),path=require('path'),crypto=require('crypto'),extraer=req
 const site=path.join(__dirname,'..','site');
 // guía → archivo y materia (la materia es la del plan UDLAP con que se cruza el calendario)
 const GUIAS=[
+  ['histologia','s1/guias/histologia.html','Histología',1],
+  ['bioquimica','s1/guias/bioquimica.html','Bioquímica Clínica',1],
+  ['anatomofisiologia','s1/guias/anatomofisiologia.html','Anatomofisiología',1],
+  ['embriologia-genetica','s1/guias/embriologia-genetica.html','Embriología y Genética',1],
+  ['simulacion-i','s1/guias/simulacion-i.html','Simulación',1],
+  ['anatomia-dental','s1/guias/anatomia-dental.html','Anatomía Dental',1],
+  ['fisiologia','s2/guias/fisiologia.html','Fisiología',2],
+  ['biologia-celular','s2/guias/biologia-celular.html','Biología Celular y Molecular',2],
+  ['anatomia-humana-i','s2/guias/anatomia-humana-i.html','Anatomía Humana I',2],
+  ['simulacion-ii','s2/guias/simulacion-ii.html','Simulación',2],
   ['farmacologia','s3/farmacologia/index.html','Farmacología',3],
   ['anatomia','s3/anatomia/index.html','Anatomía',3],
   ['hematologia','s4/apps/hematologia.html','Hematología',4],

@@ -3,7 +3,7 @@
 Resumen corto del proyecto para no re-explorar el repo en cada pedido. Autor de todo: **Marcos David Reinah Guzmán** (Medicina, UDLAP). Repo público: aquí NO van claves ni datos personales.
 
 ## Qué es
-- Página "Carrera de Medicina": hub con 1º–8º semestre + MIP + SS (1º, 2º, 7º, 8º = "Pronto"; `SEM_ACTUAL=5`). Cada semestre abre su página original en iframe (`site/sN/index.html`).
+- Página "Carrera de Medicina": hub con 1º–8º semestre + MIP + SS (7º y 8º = "Pronto"; `SEM_ACTUAL=5`). Cada semestre abre su página original en iframe (`site/sN/index.html`).
 - Se publica como artefacto de claude.ai y se copia aquí en `site/` para la app de Mac y la versión del cel.
 
 ## Estructura
@@ -11,6 +11,7 @@ Resumen corto del proyecto para no re-explorar el repo en cada pedido. Autor de 
 |---|---|
 | `site/index.html` | Hub para la app de Mac (todo en un archivo, ~740 KB). |
 | `site/app.html` | Mismo hub para el cel (PWA, `pwa.js`, `sw.js`, `app.webmanifest`). |
+| `site/s1` `s2` + `tools-s12/` | 1º (mesa de laboratorio con portaobjetos) y 2º (libretas de espiral), plan 2014: Histología, Bioquímica Clínica, Anatomofisiología, Embriología y Genética, Simulación I, Anatomía Dental (extra) / Fisiología, Biología Celular y Molecular, Anatomía Humana I, Simulación II. Cada guía (`sN/guias/<id>.html`) tiene temario, alto rendimiento, correlación clínica, tarjetas y examen. **Fuente**: `tools-s12/guias/*.txt` (formato explicado en `build.py`). Para cambiar contenido: editar el .txt → `python3 tools-s12/build.py` → `python3 tools-s12/patch_hub.py` (G, FT, SEMS, guideFile y SEMNAME del hub; idempotente) → `node tools-estudio/banco.js` → firmar. Materias de formación general (idiomas, TIC, optativas) se listan sin guía. |
 | `site/s3` `s4` `s5` `s6` | Semestres: 3º archivero (anatomía, farmacología), 4º carpeta (`apps/`), 5º estante (cirugía, duelo, esófago, gastro, hepatobiliar, imagenología, oftalmo, otorrino, psiquiatría, quiz-hepatico), 6º anaquel (`artefactos/infectologia`, `salud-publica`). |
 | `site/x/` | "Otros materiales" incrustados: geb, signos, svb, triage, triage-clase. |
 | `pwa/sw.js`, `pwa/pwa.js` | Fuente del uso sin internet del cel. `build_site.py` los copia a `site/` (reemplazan los del hub). El sw guarda primero lo básico (portada, fonts, scripts) y luego el resto, reanudable; la versión la saca de `manifest.json`, así que no hay que cambiar nada al publicar. |

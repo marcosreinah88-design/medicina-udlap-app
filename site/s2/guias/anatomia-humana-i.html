@@ -1,0 +1,220 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Anatomía Humana I</title>
+<link rel="stylesheet" href="../../fonts/g973afc81ad.css">
+<style>
+/* Guía de estudio de 1º/2º semestre: resumen por tema (temario, alto rendimiento, correlación clínica), tarjetas y examen. */
+:root{
+  --bg:#f5f3ee; --paper:#fff; --sunk:#ece8df; --ink:#17201c; --muted:#5d6762; --line:#ddd7cb;
+  --c:#a8323e; --c-soft:color-mix(in srgb,var(--c) 11%,var(--paper)); --c-ink:color-mix(in srgb,var(--c) 82%,#000);
+  --hy:#f26b21; --hy-soft:#fff1e8; --cl:#00573c; --cl-soft:#e6f2ec; --ok:#1d7a4c; --bad:#b3261e;
+  --f-d:"Newsreader",Georgia,serif; --f-b:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --f-m:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1412; --paper:#171e1b; --sunk:#1f2824; --ink:#e7eeea; --muted:#9daba4; --line:#2b3732;
+  --c-soft:color-mix(in srgb,var(--c) 22%,var(--paper)); --c-ink:color-mix(in srgb,var(--c) 45%,#fff);
+  --hy-soft:#3a2418; --cl:#7fd3a8; --cl-soft:#16302a; --ok:#6fd39c; --bad:#ff8a80; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1412; --paper:#171e1b; --sunk:#1f2824; --ink:#e7eeea; --muted:#9daba4; --line:#2b3732;
+  --c-soft:color-mix(in srgb,var(--c) 22%,var(--paper)); --c-ink:color-mix(in srgb,var(--c) 45%,#fff);
+  --hy-soft:#3a2418; --cl:#7fd3a8; --cl-soft:#16302a; --ok:#6fd39c; --bad:#ff8a80; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--f-b);-webkit-font-smoothing:antialiased}
+button,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--hy);outline-offset:2px}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.in{max-width:1120px;margin:0 auto}
+b,strong{font-weight:700}
+/* encabezado */
+header.hero{background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 60%,#000));color:#fff;padding-top:calc(40px + env(safe-area-inset-top,0px));padding-bottom:26px;position:relative;overflow:hidden}
+header.hero::after{content:attr(data-code);position:absolute;right:-6px;bottom:-34px;font:800 9rem/1 var(--f-d);opacity:.12;letter-spacing:-.04em;pointer-events:none}
+.kick{font:500 .74rem var(--f-m);letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin:0 0 10px}
+h1{font:700 clamp(2rem,5.4vw,3.2rem)/1.05 var(--f-d);margin:0;letter-spacing:-.015em;text-wrap:balance}
+.lede{margin:12px 0 0;max-width:62ch;opacity:.9}
+.stats{display:flex;flex-wrap:wrap;gap:6px 26px;margin-top:20px;font-size:.88rem;opacity:.92}
+.stats b{font:600 1.15rem var(--f-m);margin-right:6px}
+.nota{margin:18px 0 0;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:9px 13px;font-size:.88rem;max-width:80ch}
+/* pestañas */
+nav.tabs{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+nav.tabs .in{display:flex;gap:4px;overflow-x:auto}
+nav.tabs button{border:0;background:none;padding:13px 14px 11px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--c)}
+/* estudiar */
+.study{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;padding-block:26px 80px}
+.toc{position:sticky;top:64px;align-self:start;max-height:calc(100vh - 80px);overflow:auto;font-size:.9rem}
+.toc p{font:600 .72rem var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.toc a{display:flex;gap:8px;padding:6px 8px;border-radius:8px;color:var(--ink);text-decoration:none;line-height:1.3}
+.toc a span{font:500 .75rem var(--f-m);color:var(--c-ink);min-width:1.6em}
+.toc a:hover,.toc a.on{background:var(--c-soft)}
+.tema{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:22px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.tema .num{font:500 .74rem var(--f-m);letter-spacing:.1em;color:var(--c-ink);text-transform:uppercase}
+.tema h2{font:700 1.6rem/1.15 var(--f-d);margin:4px 0 6px;text-wrap:balance}
+.tema .intro{color:var(--muted);margin:0 0 12px}
+.tema h3{font:700 .78rem var(--f-b);letter-spacing:.09em;text-transform:uppercase;margin:18px 0 8px;color:var(--muted)}
+.tema ul{margin:0;padding-left:1.15em}
+.tema li{margin:4px 0}
+.tema li::marker{color:var(--c)}
+.box{border-radius:12px;padding:12px 16px 12px 16px;margin-top:14px;border-left:4px solid}
+.box h3{margin-top:0!important}
+.box.hy{background:var(--hy-soft);border-color:var(--hy)}
+.box.hy h3{color:var(--hy)}
+.box.cl{background:var(--cl-soft);border-color:var(--cl)}
+.box.cl h3{color:var(--cl)}
+.tbl{overflow-x:auto;margin-top:12px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:420px}
+th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--c-soft);font-weight:700}
+.tmeta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.tmeta button{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:5px 12px;font-size:.85rem;font-weight:600;cursor:pointer}
+.tmeta button:hover{border-color:var(--c)}
+.dag{color:var(--hy);font-weight:700}
+/* tarjetas */
+.pane{padding-block:26px 80px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.bar select{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 10px;max-width:100%}
+.btn{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 14px;font-weight:600;cursor:pointer}
+.btn.pri{background:var(--c);border-color:var(--c);color:#fff}
+.btn:hover{border-color:var(--c)}
+.count{margin-left:auto;font:500 .85rem var(--f-m);color:var(--muted)}
+.card{perspective:1200px;max-width:720px;margin:0 auto;cursor:pointer}
+.card .face{min-height:260px;border-radius:18px;background:var(--paper);border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 10px 30px -18px rgba(0,0,0,.35)}
+.card .lbl{font:500 .72rem var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink);margin-bottom:10px}
+.card .txt{font:600 1.3rem/1.35 var(--f-d)}
+.card .back{border-top:5px solid var(--c)}
+.card .back .txt{font:400 1.05rem/1.55 var(--f-b)}
+.cnav{display:flex;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.btn.ok{border-color:var(--ok);color:var(--ok)}.btn.no{border-color:var(--bad);color:var(--bad)}
+.hint{text-align:center;color:var(--muted);font-size:.85rem;margin-top:10px}
+/* examen */
+.qbox{max-width:760px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px}
+.qtop{display:flex;justify-content:space-between;gap:10px;font:500 .8rem var(--f-m);color:var(--muted);margin-bottom:8px}
+.prog{height:5px;background:var(--sunk);border-radius:9px;overflow:hidden;margin-bottom:18px}.prog i{display:block;height:100%;background:var(--c);width:0}
+.qtxt{font:600 1.2rem/1.4 var(--f-d);margin:0 0 16px}
+.opts{display:grid;gap:9px}
+.opt{border:1.5px solid var(--line);background:var(--bg);border-radius:12px;padding:11px 14px;text-align:left;cursor:pointer;display:flex;gap:10px}
+.opt span{font:600 .85rem var(--f-m);color:var(--c-ink)}
+.opt:hover:not(:disabled){border-color:var(--c)}
+.opt.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--paper))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--paper))}
+.opt:disabled{cursor:default}
+.exp{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--cl-soft);font-size:.95rem}
+.res{text-align:center}
+.res .big{font:700 3.4rem/1 var(--f-d);color:var(--c-ink)}
+.res ul{text-align:left;margin:16px auto 0;max-width:620px}
+footer{color:var(--muted);font-size:.82rem;padding-block:0 40px}
+@media (max-width:820px){.study{grid-template-columns:1fr}.toc{position:static;max-height:none;border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--paper)}
+  .toc .lst{display:grid;grid-template-columns:1fr 1fr;gap:2px}.tema{padding:18px 16px}}
+@media (max-width:480px){.toc .lst{grid-template-columns:1fr}.card .face{min-height:220px;padding:20px}.card .txt{font-size:1.15rem}}
+@media (prefers-reduced-motion:no-preference){.opt,.btn,.toc a{transition:background .15s,border-color .15s}}
+</style></head><body>
+<header class="hero gut" data-code="AH I"><div class="in">
+  <p class="kick" id="kick"></p>
+  <h1 id="ttl"></h1>
+  <p class="lede" id="lede"></p>
+  <div class="stats" id="stats"></div>
+  <p class="nota" id="nota" hidden></p>
+</div></header>
+<nav class="tabs gut" role="tablist" aria-label="Modos"><div class="in">
+  <button role="tab" id="tab-estudiar" aria-controls="panel-estudiar" aria-selected="true">Estudiar</button>
+  <button role="tab" id="tab-tarjetas" aria-controls="panel-tarjetas" aria-selected="false">Tarjetas</button>
+  <button role="tab" id="tab-examen" aria-controls="panel-examen" aria-selected="false">Examen</button>
+</div></nav>
+<main class="gut"><div class="in">
+  <section id="panel-estudiar" role="tabpanel" class="study">
+    <aside class="toc"><p>Temario</p><div class="lst" id="toc"></div></aside>
+    <div id="temas"></div>
+  </section>
+  <section id="panel-tarjetas" role="tabpanel" class="pane" hidden>
+    <div class="bar"><select id="cSel" aria-label="Tema de las tarjetas"></select><button class="btn" id="cMix" type="button">Revolver</button><button class="btn" id="cRep" type="button">Solo las de repasar</button><span class="count" id="cCount"></span></div>
+    <div class="card" id="card" role="button" tabindex="0" aria-label="Voltear tarjeta">
+      <div class="face front" id="cFront"><div class="lbl" id="cLbl"></div><div class="txt" id="cF"></div></div>
+      <div class="face back" id="cBack" hidden><div class="lbl">Respuesta</div><div class="txt" id="cB"></div></div>
+    </div>
+    <p class="hint">Toca la tarjeta o la barra espaciadora para voltearla.</p>
+    <div class="cnav"><button class="btn" id="cPrev" type="button">← Anterior</button><button class="btn no" id="cNo" type="button">Repasar</button><button class="btn ok" id="cOk" type="button">Me la sé</button><button class="btn" id="cNext" type="button">Siguiente →</button></div>
+  </section>
+  <section id="panel-examen" role="tabpanel" class="pane" hidden>
+    <div id="qStart" class="qbox">
+      <p class="qtxt">Examen de práctica</p>
+      <div class="bar"><select id="qSel" aria-label="Tema del examen"></select><select id="qN" aria-label="Número de preguntas"><option value="10">10 preguntas</option><option value="20">20 preguntas</option><option value="0">Todas</option></select><button class="btn pri" id="qGo" type="button">Comenzar</button></div>
+      <p class="hint" style="text-align:left">Opción múltiple con explicación de cada respuesta. Las preguntas y opciones salen en otro orden cada vez.</p>
+    </div>
+    <div id="qRun" class="qbox" hidden>
+      <div class="qtop"><span id="qPos"></span><span id="qTema"></span></div><div class="prog"><i id="qBar"></i></div>
+      <p class="qtxt" id="qQ"></p><div class="opts" id="qO"></div><div class="exp" id="qE" hidden></div>
+      <div class="cnav"><button class="btn pri" id="qNext" type="button" hidden>Siguiente →</button></div>
+    </div>
+    <div id="qEnd" class="qbox res" hidden></div>
+  </section>
+</div></main>
+<footer class="gut"><div class="in" id="foot"></div></footer>
+<script>
+const GUIA={"id":"anatomia-humana-i","title":"Anatomía Humana I","kicker":"Segundo semestre · Anatomía Humana I","desc":"Aparato locomotor y tórax: huesos, articulaciones, músculos, plexos y vasos, con las lesiones nerviosas y fracturas que más se preguntan en el práctico y en el teórico.","nota":"No se encontró el programa publicado de Anatomía Humana I de UDLAP; esta guía cubre el bloque habitual de una primera anatomía (dorso, miembros y tórax). Anatomía II, en 3er semestre, sigue con el aparato digestivo.","temas":[{"t":"Generalidades y terminología anatómica","res":["Posición anatómica y planos (sagital, coronal, transversal). Movimientos: <b>flexión/extensión<\/b> (sagital), <b>abducción/aducción<\/b> (coronal), <b>rotación medial/lateral<\/b>, pronación/supinación (antebrazo), inversión/eversión (pie), dorsiflexión/flexión plantar.","<b>Dermatoma<\/b>: área de piel inervada por una raíz espinal. <b>Miotoma<\/b>: músculos inervados por una raíz.","Dermatomas clave: <b>C6<\/b> pulgar, <b>C7<\/b> dedo medio, <b>C8<\/b> meñique, <b>T4<\/b> pezón, <b>T10<\/b> ombligo, <b>L1<\/b> ingle, <b>L4<\/b> rodilla y maléolo medial, <b>L5<\/b> dorso del pie y primer dedo, <b>S1<\/b> borde lateral del pie y planta.","Reflejos osteotendinosos: <b>bicipital C5–C6<\/b>, braquiorradial C6, <b>tricipital C7<\/b>, <b>rotuliano L3–L4<\/b>, <b>aquíleo S1<\/b>. \"<b>1-2 tobillo, 3-4 rodilla, 5-6 bíceps, 7-8 tríceps<\/b>\".","Fascias y compartimentos: los músculos se agrupan en compartimentos con su propio nervio y vasos."],"hy":["Mnemotecnia de reflejos: S1-S2 Aquiles, L3-L4 rotuliano, C5-C6 bíceps, C7-C8 tríceps.","T4 = pezón, T10 = ombligo (dolor periumbilical en apendicitis temprana)."],"cl":["<b>Síndrome compartimental<\/b>: aumento de presión en un compartimento (fractura de tibia, aplastamiento) → dolor desproporcionado al estirar el músculo; tratamiento con fasciotomía.","<b>Herpes zóster<\/b> sigue un dermatoma."],"cards":[{"f":"Dermatoma del ombligo","b":"T10."},{"f":"Dermatoma del dedo medio","b":"C7."},{"f":"Raíz del reflejo rotuliano","b":"L3–L4 (principalmente L4)."},{"f":"Raíz del reflejo aquíleo","b":"S1."},{"f":"Signo temprano del síndrome compartimental","b":"Dolor desproporcionado que aumenta al estirar pasivamente los músculos."}],"quiz":[{"q":"Paciente con hernia discal y reflejo aquíleo ausente con dolor en la planta del pie. Raíz afectada:","o":["L4","L3","L5","S1"],"a":3,"e":"S1 da el reflejo aquíleo y la sensibilidad del borde lateral y planta."},{"q":"El dermatoma del pulgar corresponde a:","o":["C8","C5","C6","C7"],"a":2,"e":"C6 = pulgar (\"haz un 6 con el pulgar y el índice\")."}],"intro":"El lenguaje común de la anatomía."},{"t":"Columna vertebral y dorso","res":["Vértebra típica: cuerpo, arco (pedículos y láminas), apófisis espinosa, transversas y articulares; agujero vertebral.","Cervicales: <b>agujero transverso<\/b> (pasa la arteria vertebral). <b>C1 atlas<\/b> (sin cuerpo), <b>C2 axis<\/b> (apófisis odontoides). <b>C7<\/b> prominente. Torácicas: carillas costales. Lumbares: cuerpos grandes.","Curvaturas: lordosis cervical y lumbar; cifosis torácica y sacra. Alteraciones: hiperlordosis, hipercifosis, <b>escoliosis<\/b> (lateral).","<b>Disco intervertebral<\/b>: anillo fibroso (fibrocartílago) + núcleo pulposo (notocorda). Ligamentos: longitudinal anterior, <b>longitudinal posterior<\/b> (más débil lateralmente), amarillo, interespinoso, supraespinoso.","Músculos del dorso: superficiales (trapecio — NC XI; dorsal ancho — toracodorsal; romboides — dorsal de la escápula; elevador de la escápula) y profundos (<b>erector de la columna<\/b>: iliocostal, longísimo, espinoso)."],"hy":["Las hernias discales suelen ser <b>posterolaterales<\/b> (donde el ligamento longitudinal posterior es débil) y comprimen la raíz <b>del nivel inferior<\/b> en la columna lumbar (hernia L4–L5 → raíz L5).","La punción lumbar atraviesa piel, supraespinoso, interespinoso, ligamento amarillo, espacio epidural, duramadre y aracnoides."],"cl":["<b>Lumbociática<\/b> por hernia L5–S1 (raíz S1): dolor que baja por la cara posterior de la pierna, signo de Lasègue positivo.","<b>Fractura del ahorcado<\/b>: de los pedículos de C2. <b>Fractura de Jefferson<\/b>: estallido de C1."],"cards":[{"f":"Número de vértebras por región","b":"7 cervicales, 12 torácicas, 5 lumbares, 5 sacras y 4 coccígeas."},{"f":"Rasgo exclusivo de las vértebras cervicales","b":"Agujero transverso (arteria vertebral)."},{"f":"Hernia L4–L5 posterolateral comprime la raíz","b":"L5."},{"f":"Nervio del trapecio","b":"Accesorio (NC XI)."},{"f":"Músculo principal que extiende la columna","b":"Erector de la columna."}],"quiz":[{"q":"Una hernia posterolateral del disco L5–S1 comprime típicamente la raíz:","o":["S2","L5","S1","L4"],"a":2,"e":"En la región lumbar la raíz que sale por debajo del nivel ya pasó; la afectada es la que desciende."},{"q":"La vértebra sin cuerpo vertebral es:","o":["C7","C2 (axis)","C1 (atlas)","L5"],"a":2,"e":"El atlas es un anillo; su \"cuerpo\" se fusionó al axis como odontoides."}],"intro":"33 vértebras: 7 cervicales, 12 torácicas, 5 lumbares, 5 sacras (sacro) y 4 coccígeas."},{"t":"Miembro superior: hombro, brazo y plexo braquial","res":["Plexo: <b>R<\/b>aíces → <b>T<\/b>roncos → <b>D<\/b>ivisiones → <b>C<\/b>ordones (fascículos) → <b>R<\/b>amas (\"<b>Randy Travis Drinks Cold Beer<\/b>\"). Ramas terminales: <b>musculocutáneo, axilar, radial, mediano, cubital (ulnar)<\/b>.","<b>Manguito rotador<\/b> (<b>SITS<\/b>): supraespinoso (abducción 0–15°; el que más se lesiona), infraespinoso y redondo menor (rotación lateral), subescapular (rotación medial). Nervio supraescapular (supra e infraespinoso), axilar (redondo menor y deltoides), subescapulares.","<b>Deltoides<\/b> (axilar): abducción 15–90°. Por encima de 90°, trapecio y serrato anterior (nervio torácico largo) rotan la escápula.","Compartimento anterior del brazo (<b>musculocutáneo<\/b>): bíceps, braquial, coracobraquial → flexión del codo y supinación. Posterior (<b>radial<\/b>): tríceps → extensión.","Arteria axilar → <b>braquial<\/b> (en el brazo, junto al nervio mediano) → radial y cubital en el codo."],"hy":["Fractura del <b>cuello quirúrgico<\/b> del húmero o luxación anterior de hombro → nervio <b>axilar<\/b> y arteria circunfleja humeral posterior.","Fractura de la <b>diáfisis<\/b> humeral → nervio <b>radial<\/b> y arteria braquial profunda → mano caída."],"cl":["<b>Parálisis de Erb<\/b> en el recién nacido por tracción del cuello durante el parto (distocia de hombros).","<b>Escápula alada<\/b> tras mastectomía radical con disección axilar (nervio torácico largo)."],"tabla":["Lesión¦Raíces/nervio¦Signo","Erb-Duchenne¦C5–C6 (tronco superior)¦\"Propina de mesero\": brazo en aducción, rotación medial, codo extendido","Klumpke¦C8–T1 (tronco inferior)¦Mano en garra total ± Horner","Torácico largo¦C5–C7¦Escápula alada (serrato anterior)","Axilar¦Cuello quirúrgico del húmero / luxación¦Pérdida de abducción, deltoides atrófico, anestesia en \"parche\"","Radial¦Diáfisis del húmero (surco radial)¦Mano caída (sin extensión de muñeca)"],"cards":[{"f":"Componentes del manguito rotador","b":"SITS: supraespinoso, infraespinoso, redondo menor y subescapular."},{"f":"Músculo que inicia la abducción del hombro","b":"Supraespinoso (0–15°)."},{"f":"Nervio lesionado en fractura de la diáfisis del húmero","b":"Radial (mano caída)."},{"f":"Lesión del nervio torácico largo","b":"Escápula alada (serrato anterior)."},{"f":"Raíces de la parálisis de Erb","b":"C5–C6 (tronco superior)."},{"f":"Nervio del compartimento anterior del brazo","b":"Musculocutáneo."}],"quiz":[{"q":"Tras una luxación anterior de hombro el paciente no puede abducir el brazo y tiene anestesia sobre el deltoides. Nervio:","o":["Axilar","Musculocutáneo","Supraescapular","Radial"],"a":0,"e":"El axilar rodea el cuello quirúrgico y se estira en la luxación anterior."},{"q":"Recién nacido con brazo en aducción, rotación medial y antebrazo pronado tras parto con distocia de hombros. Lesión:","o":["Nervio cubital","C8–T1 (Klumpke)","C5–C6 (Erb-Duchenne)","Nervio radial"],"a":2,"e":"\"Propina de mesero\" por lesión del tronco superior."}],"intro":"El plexo braquial (C5–T1) inerva todo el miembro superior."},{"t":"Miembro superior: antebrazo, mano y lesiones nerviosas","res":["<b>Fosa cubital<\/b> (de lateral a medial): tendón del bíceps, <b>arteria braquial<\/b>, <b>nervio mediano<\/b> (\"TAN\": tendón, arteria, nervio).","Antebrazo anterior: flexores y pronadores, casi todos por el <b>mediano<\/b> (excepto flexor cubital del carpo y la mitad medial del flexor profundo → <b>cubital<\/b>). Antebrazo posterior: extensores por el <b>radial<\/b> (rama profunda/interósea posterior).","<b>Túnel carpiano<\/b>: bajo el retináculo flexor pasan el <b>nervio mediano<\/b> y 9 tendones flexores (4 superficiales, 4 profundos, flexor largo del pulgar). Huesos del carpo: escafoides, semilunar, piramidal, pisiforme / trapecio, trapezoide, grande, ganchoso.","Mano: <b>mediano<\/b> → músculos tenares (oposición del pulgar) y lumbricales 1–2; <b>cubital<\/b> → hipotenares, interóseos (abducción/aducción de dedos), lumbricales 3–4, aductor del pulgar.","<b>Tabaquera anatómica<\/b>: escafoides en el piso, arteria radial."],"hy":["<b>Fractura del escafoides<\/b>: dolor en la tabaquera anatómica tras caída sobre la mano extendida; riesgo de <b>necrosis avascular<\/b> (irrigación retrógrada) aunque la radiografía inicial sea normal.","El semilunar es el hueso del carpo que más se luxa (hacia anterior; puede comprimir el mediano)."],"cl":["<b>Síndrome del túnel carpiano<\/b>: embarazo, hipotiroidismo, diabetes, artritis reumatoide, trabajo repetitivo; prueba de Phalen y Tinel; estudio de conducción nerviosa.","<b>Fractura supracondílea<\/b> en niños: vigilar arteria braquial y nervio mediano (interóseo anterior); riesgo de contractura isquémica de Volkmann."],"tabla":["Nervio¦Lesión típica¦Signo","Mediano (muñeca)¦Túnel carpiano¦Parestesias en pulgar a mitad del anular, atrofia tenar, Tinel y Phalen","Mediano (codo/supracondílea)¦Fractura supracondílea del húmero¦\"Mano del predicador\" al intentar cerrar el puño","Cubital¦Epicóndilo medial (codo), gancho del ganchoso¦Mano en garra (4.º y 5.º dedos), signo de Froment","Radial¦Surco radial del húmero¦Mano caída"],"cards":[{"f":"Contenido de la fosa cubital de lateral a medial","b":"Tendón del bíceps, arteria braquial y nervio mediano (TAN)."},{"f":"Contenido del túnel carpiano","b":"Nervio mediano y 9 tendones flexores."},{"f":"Nervio de los interóseos de la mano","b":"Cubital (ulnar)."},{"f":"Hueso del carpo con riesgo de necrosis avascular","b":"Escafoides."},{"f":"Signo de Froment","b":"Flexión del pulgar al sujetar un papel por debilidad del aductor del pulgar (nervio cubital)."},{"f":"Distribución sensitiva del mediano en la mano","b":"Palma del pulgar, índice, medio y mitad lateral del anular."}],"quiz":[{"q":"Mujer embarazada con parestesias nocturnas en pulgar, índice y medio, que empeoran al flexionar la muñeca. Nervio:","o":["Musculocutáneo","Radial superficial","Cubital en el canal de Guyon","Mediano en el túnel carpiano"],"a":3,"e":"Síndrome del túnel carpiano: Phalen positivo."},{"q":"Joven con caída sobre la mano extendida, dolor en la tabaquera anatómica y radiografía normal. Conducta:","o":["Solo antiinflamatorio","Alta sin tratamiento","Inmovilizar con férula para escafoides y repetir imagen","Vendaje compresivo y ejercicio"],"a":2,"e":"Las fracturas de escafoides pueden no verse al inicio y tienen riesgo de necrosis avascular."},{"q":"Mano en garra de los dedos 4.º y 5.º con pérdida de abducción de los dedos. Nervio:","o":["Axilar","Cubital","Mediano","Radial"],"a":1,"e":"El cubital inerva interóseos y lumbricales 3–4."}],"intro":"Mediano, cubital y radial definen la función de la mano."},{"t":"Miembro inferior: cadera, muslo y plexo lumbosacro","res":["Plexo lumbar: <b>femoral (L2–L4)<\/b> → cuádriceps (extensión de la rodilla), sensibilidad anterior del muslo y medial de la pierna (safeno). <b>Obturador (L2–L4)<\/b> → aductores del muslo.","Plexo sacro: <b>ciático (L4–S3)<\/b> → isquiotibiales; se divide en <b>tibial<\/b> y <b>peroneo común<\/b>. <b>Glúteo superior<\/b> (L4–S1) → glúteo medio y menor (abducción, estabilizan la pelvis). <b>Glúteo inferior<\/b> → glúteo mayor (extensión de la cadera).","<b>Triángulo femoral<\/b> (ligamento inguinal, sartorio, aductor largo): de lateral a medial <b>N<\/b>ervio, <b>A<\/b>rteria, <b>V<\/b>ena, (<b>E<\/b>spacio vacío), <b>L<\/b>infáticos (\"<b>NAVEL<\/b>\").","Articulación de la cadera: esferoidea muy estable; ligamento iliofemoral (el más fuerte). Irrigación de la cabeza femoral: <b>arterias circunflejas femorales<\/b>, sobre todo la <b>medial<\/b>."],"hy":["<b>Signo de Trendelenburg<\/b>: lesión del nervio glúteo superior → al apoyarse en ese pie, la pelvis cae del lado contrario.","Fractura del cuello femoral desplazada → lesión de la circunfleja femoral medial → <b>necrosis avascular<\/b> de la cabeza."],"cl":["<b>Inyección intramuscular glútea<\/b>: en el cuadrante superoexterno para no lesionar el ciático.","Fractura de cadera en adulto mayor: miembro acortado y en rotación externa.","<b>Acceso venoso femoral<\/b> y punción arterial usan el triángulo femoral (vena medial a la arteria)."],"cards":[{"f":"Contenido del triángulo femoral de lateral a medial","b":"Nervio, arteria, vena, espacio vacío y linfáticos (NAVEL)."},{"f":"Nervio del cuádriceps","b":"Femoral (L2–L4)."},{"f":"Nervio de los aductores del muslo","b":"Obturador."},{"f":"Lesión que produce el signo de Trendelenburg","b":"Nervio glúteo superior (glúteo medio y menor)."},{"f":"Arteria principal de la cabeza femoral","b":"Circunfleja femoral medial."},{"f":"Sitio seguro de inyección glútea","b":"Cuadrante superoexterno."}],"quiz":[{"q":"Al caminar, la pelvis del paciente cae hacia la izquierda cuando apoya el pie derecho. Nervio lesionado:","o":["Glúteo superior derecho","Glúteo inferior derecho","Femoral derecho","Glúteo superior izquierdo"],"a":0,"e":"Los abductores del lado de apoyo (derecho) no sostienen la pelvis y cae el lado contrario."},{"q":"Adulta mayor con caída, miembro inferior acortado y en rotación externa. Complicación temida de la fractura de cuello femoral desplazada:","o":["Lesión del nervio obturador","Trombosis arterial femoral","Síndrome compartimental del muslo","Necrosis avascular de la cabeza femoral"],"a":3,"e":"La circunfleja femoral medial se interrumpe."}],"intro":"Plexo lumbar (L1–L4) y sacro (L4–S4)."},{"t":"Miembro inferior: rodilla, pierna y pie","res":["Rodilla: <b>ligamento cruzado anterior<\/b> (impide desplazamiento anterior de la tibia; prueba de <b>cajón anterior<\/b> y <b>Lachman<\/b>), <b>cruzado posterior<\/b> (cajón posterior), <b>colateral medial<\/b> (valgo) y <b>lateral<\/b> (varo); meniscos medial (unido al colateral medial, se lesiona más) y lateral.","<b>Tríada infeliz<\/b> (O'Donoghue): LCA + ligamento colateral medial + menisco (medial clásico; lateral en estudios recientes) por golpe lateral en valgo.","<b>Fosa poplítea<\/b>: arteria poplítea (la más profunda), vena, nervios tibial y peroneo común.","Pierna: compartimento <b>anterior<\/b> (dorsiflexión, extensión de dedos; <b>peroneo profundo<\/b>), <b>lateral<\/b> (eversión; <b>peroneo superficial<\/b>), <b>posterior<\/b> (flexión plantar, inversión; <b>tibial<\/b>).","<b>Nervio peroneo común<\/b>: rodea el <b>cuello del peroné<\/b> → vulnerable a fracturas, yesos y cruzar las piernas → <b>pie caído<\/b> (steppage) y pérdida de eversión.","Pulsos: <b>pedio<\/b> (dorso del pie, lateral al extensor largo del dedo gordo) y <b>tibial posterior<\/b> (detrás del maléolo medial).","Esguince de tobillo más común: inversión → <b>ligamento talofibular anterior<\/b>."],"hy":["Pie caído = peroneo común (cuello del peroné). Lesión del tibial = no puede pararse de puntas, pérdida de flexión plantar.","Esguince de tobillo en inversión → ligamento talofibular anterior."],"cl":["<b>Rotura del tendón de Aquiles<\/b>: chasquido al impulsarse, prueba de <b>Thompson<\/b> positiva (al apretar la pantorrilla no hay flexión plantar).","<b>Insuficiencia arterial periférica<\/b>: pulsos pedio y tibial posterior disminuidos, claudicación; índice tobillo-brazo &lt; 0.9."],"cards":[{"f":"Prueba más sensible para lesión del LCA","b":"Lachman (también cajón anterior)."},{"f":"Componentes de la tríada infeliz","b":"LCA, ligamento colateral medial y menisco."},{"f":"Nervio vulnerable en el cuello del peroné","b":"Peroneo común (pie caído)."},{"f":"Ligamento del esguince de tobillo en inversión","b":"Talofibular anterior."},{"f":"Dónde palpas el pulso tibial posterior","b":"Detrás del maléolo medial."},{"f":"Prueba de Thompson positiva","b":"Rotura del tendón de Aquiles."}],"quiz":[{"q":"Futbolista con trauma en valgo de la rodilla y cajón anterior positivo. Ligamento seguro lesionado:","o":["Colateral lateral","Cruzado posterior","Cruzado anterior","Patelar"],"a":2,"e":"El cajón anterior evalúa el desplazamiento anterior de la tibia (LCA)."},{"q":"Paciente con yeso largo de pierna que ahora arrastra la punta del pie y no puede evertirlo. Nervio comprimido:","o":["Peroneo común","Tibial","Femoral","Safeno"],"a":0,"e":"El yeso comprime el nervio en el cuello del peroné."},{"q":"¿Qué compartimento de la pierna dorsiflexiona el pie?","o":["Posterior profundo (tibial)","Anterior (peroneo profundo)","Posterior superficial (tibial)","Lateral (peroneo superficial)"],"a":1,"e":"Tibial anterior, extensores largos y peroneo tercero."}],"intro":"La rodilla soporta peso con ayuda de ligamentos y meniscos."},{"t":"Tórax: pared, pulmones y mediastino","res":["Pared: 12 pares de costillas (1–7 <b>verdaderas<\/b>; 8–10 falsas; 11–12 flotantes), esternón (manubrio, cuerpo, xifoides). <b>Ángulo esternal (de Louis)<\/b> = 2.ª costilla, T4–T5: bifurcación traqueal, arco aórtico, límite mediastino superior/inferior.","<b>Paquete neurovascular intercostal<\/b> en el surco costal, en el borde <b>inferior<\/b> de cada costilla: <b>VAN<\/b> (vena, arteria, nervio) de superior a inferior.","Pleuras: parietal (sensible al dolor) y visceral; recesos costodiafragmáticos (donde se acumula el derrame).","Mediastino: <b>superior<\/b> (timo, grandes vasos, tráquea, esófago, conducto torácico) e <b>inferior<\/b>: anterior (timo), <b>medio<\/b> (corazón y pericardio), <b>posterior<\/b> (aorta descendente, esófago, conducto torácico, ácigos, vagos).","Proyección de los pulmones: línea medioclavicular 6.ª costilla, axilar media 8.ª, paravertebral 10.ª; las pleuras dos costillas más abajo.","Diafragma: aberturas de la <b>vena cava (T8)<\/b>, <b>esófago (T10)<\/b>, <b>aorta (T12)<\/b>: \"<b>I 8 10 eggs AT 12<\/b>\"."],"hy":["Toracocentesis o tubo de tórax: por el <b>borde superior de la costilla inferior<\/b> para no dañar el paquete intercostal; 4.º–5.º espacio, línea axilar media (triángulo de seguridad).","Descompresión de neumotórax a tensión: 2.º espacio intercostal en la línea medioclavicular (o 4.º–5.º axilar media en adultos según ATLS 10)."],"cl":["<b>Masas del mediastino anterior<\/b>: las 4 T → timoma, teratoma, tiroides (bocio retroesternal) y \"terrible\" linfoma.","El conducto torácico drena la linfa al ángulo venoso yugulosubclavio izquierdo; su lesión produce quilotórax."],"cards":[{"f":"Nivel del ángulo esternal","b":"2.ª costilla anterior y disco T4–T5."},{"f":"Orden del paquete intercostal de arriba abajo","b":"Vena, arteria y nervio (VAN), en el borde inferior de la costilla."},{"f":"Niveles de las aberturas del diafragma","b":"Vena cava T8, esófago T10, aorta T12."},{"f":"Contenido del mediastino medio","b":"Corazón y pericardio (con los grandes vasos en su origen)."},{"f":"Masas del mediastino anterior (4 T)","b":"Timoma, teratoma, tiroides y linfoma."}],"quiz":[{"q":"¿Por dónde introduces la aguja en una toracocentesis?","o":["A través de la costilla","Por el borde superior de la costilla inferior del espacio","Por el borde inferior de la costilla superior","En el centro exacto del espacio sin importar el borde"],"a":1,"e":"Evitas el paquete vasculonervioso que corre por el borde inferior de cada costilla."},{"q":"La vena cava inferior cruza el diafragma a nivel de:","o":["T8","T12","L1","T10"],"a":0,"e":"T8 vena cava, T10 esófago y vagos, T12 aorta, ácigos y conducto torácico."}],"intro":"Caja ósea que protege corazón y pulmones y participa en la respiración."}]};
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const T=GUIA.temas,LS="s12-repasar-"+GUIA.id;
+const allC=[],allQ=[];T.forEach((t,i)=>{(t.cards||[]).forEach(c=>allC.push({...c,ti:i}));(t.quiz||[]).forEach(q=>allQ.push({...q,ti:i}))});
+document.title=GUIA.title;
+$("#kick").textContent=GUIA.kicker;$("#ttl").textContent=GUIA.title;$("#lede").textContent=GUIA.desc;
+$("#stats").innerHTML=[[T.length,"temas"],[allC.length,"tarjetas"],[allQ.length,"preguntas"]].map(([n,l])=>`<span><b>${n}</b>${l}</span>`).join("");
+if(GUIA.nota){$("#nota").hidden=false;$("#nota").innerHTML=GUIA.nota}
+$("#foot").innerHTML=`Repositorio de Marcos David Reinah Guzmán · Médico Cirujano UDLAP · ${esc(GUIA.kicker)}. <span class="dag">†</span> = dato agregado para completar el tema.`;
+/* estudiar */
+$("#toc").innerHTML=T.map((t,i)=>`<a href="#t${i+1}" data-i="${i}"><span>${String(i+1).padStart(2,"0")}</span>${esc(t.t)}</a>`).join("");
+const list=(a)=>a&&a.length?`<ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>`:"";
+const tbl=t=>{if(!t||!t.length)return"";const rows=t.map(r=>r.split("¦"));return `<div class="tbl"><table><thead><tr>${rows[0].map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>${rows.slice(1).map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`};
+$("#temas").innerHTML=T.map((t,i)=>`<article class="tema" id="t${i+1}">
+  <span class="num">Tema ${i+1} de ${T.length}</span><h2>${esc(t.t)}</h2>${t.intro?`<p class="intro">${t.intro}</p>`:""}
+  ${t.res&&t.res.length?`<h3>Temario y conceptos</h3>${list(t.res)}`:""}${tbl(t.tabla)}
+  ${t.hy&&t.hy.length?`<div class="box hy"><h3>Alto rendimiento para examen</h3>${list(t.hy)}</div>`:""}
+  ${t.cl&&t.cl.length?`<div class="box cl"><h3>Correlación clínica</h3>${list(t.cl)}</div>`:""}
+  <div class="tmeta">${(t.cards||[]).length?`<button type="button" data-c="${i}">${t.cards.length} tarjetas de este tema</button>`:""}${(t.quiz||[]).length?`<button type="button" data-q="${i}">${t.quiz.length} preguntas de este tema</button>`:""}</div>
+</article>`).join("");
+const io=("IntersectionObserver" in window)?new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){document.querySelectorAll(".toc a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}})},{rootMargin:"-30% 0px -60% 0px"}):null;
+if(io)document.querySelectorAll(".tema").forEach(a=>io.observe(a));
+/* pestañas */
+function tab(id){document.querySelectorAll("nav.tabs button").forEach(b=>{const on=b.id==="tab-"+id;b.setAttribute("aria-selected",on);$("#"+b.getAttribute("aria-controls")).hidden=!on});window.scrollTo(0,0)}
+document.querySelectorAll("nav.tabs button").forEach(b=>b.addEventListener("click",()=>tab(b.id.slice(4))));
+$("#temas").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.c){$("#cSel").value=b.dataset.c;tab("tarjetas");deck()}else if(b.dataset.q){$("#qSel").value=b.dataset.q;tab("examen")}});
+const opts='<option value="all">Todos los temas</option>'+T.map((t,i)=>`<option value="${i}">${i+1}. ${esc(t.t)}</option>`).join("");
+$("#cSel").innerHTML=opts;$("#qSel").innerHTML=opts;
+/* tarjetas */
+let rep=new Set();try{rep=new Set(JSON.parse(localStorage.getItem(LS)||"[]"))}catch(e){}
+const key=c=>c.f.slice(0,60);
+const save=()=>{try{localStorage.setItem(LS,JSON.stringify([...rep]))}catch(e){}};
+let D=[],ci=0,onlyRep=false;
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function deck(mix){const v=$("#cSel").value;D=allC.filter(c=>(v==="all"||c.ti==+v)&&(!onlyRep||rep.has(key(c))));if(mix)D=shuf(D);ci=0;showC()}
+function showC(){const c=D[ci];$("#cBack").hidden=true;$("#cFront").hidden=false;
+  if(!c){$("#cLbl").textContent="";$("#cF").textContent=onlyRep?"No hay tarjetas marcadas para repasar.":"Sin tarjetas.";$("#cCount").textContent="0 / 0";return}
+  $("#cLbl").textContent=T[c.ti].t+(rep.has(key(c))?" · repasar":"");$("#cF").innerHTML=c.f;$("#cB").innerHTML=c.b;$("#cCount").textContent=(ci+1)+" / "+D.length}
+function flip(){if(!D[ci])return;const b=$("#cBack").hidden;$("#cBack").hidden=!b;$("#cFront").hidden=b}
+$("#card").addEventListener("click",flip);
+$("#card").addEventListener("keydown",e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip()}});
+$("#cSel").addEventListener("change",()=>deck());
+$("#cMix").addEventListener("click",()=>deck(true));
+$("#cRep").addEventListener("click",()=>{onlyRep=!onlyRep;$("#cRep").classList.toggle("pri",onlyRep);deck()});
+$("#cPrev").addEventListener("click",()=>{if(D.length){ci=(ci-1+D.length)%D.length;showC()}});
+$("#cNext").addEventListener("click",()=>{if(D.length){ci=(ci+1)%D.length;showC()}});
+$("#cOk").addEventListener("click",()=>{const c=D[ci];if(!c)return;rep.delete(key(c));save();if(onlyRep){deck()}else{ci=(ci+1)%D.length;showC()}});
+$("#cNo").addEventListener("click",()=>{const c=D[ci];if(!c)return;rep.add(key(c));save();ci=(ci+1)%D.length;showC()});
+document.addEventListener("keydown",e=>{if($("#panel-tarjetas").hidden||e.target.closest("select"))return;if(e.key==="ArrowRight")$("#cNext").click();if(e.key==="ArrowLeft")$("#cPrev").click()});
+deck();
+/* examen */
+let Q=[],qi=0,good=0,miss=[];
+$("#qGo").addEventListener("click",()=>{const v=$("#qSel").value,n=+$("#qN").value;Q=shuf(allQ.filter(q=>v==="all"||q.ti==+v));if(n)Q=Q.slice(0,n);qi=0;good=0;miss=[];if(!Q.length)return;$("#qStart").hidden=true;$("#qEnd").hidden=true;$("#qRun").hidden=false;showQ()});
+function showQ(){const q=Q[qi];$("#qPos").textContent=`Pregunta ${qi+1} de ${Q.length}`;$("#qTema").textContent=T[q.ti].t;$("#qBar").style.width=(qi/Q.length*100)+"%";
+  $("#qQ").innerHTML=q.q;$("#qE").hidden=true;$("#qNext").hidden=true;
+  const ord=shuf(q.o.map((t,i)=>({t,i})));$("#qO").innerHTML=ord.map((o,k)=>`<button class="opt" type="button" data-i="${o.i}"><span>${"ABCDE"[k]}</span><div>${o.t}</div></button>`).join("")}
+$("#qO").addEventListener("click",e=>{const b=e.target.closest(".opt");if(!b||b.disabled)return;const q=Q[qi],ok=+b.dataset.i===q.a;
+  document.querySelectorAll("#qO .opt").forEach(x=>{x.disabled=true;if(+x.dataset.i===q.a)x.classList.add("good")});if(!ok){b.classList.add("wrong");miss.push(q)}else good++;
+  $("#qE").hidden=false;$("#qE").innerHTML=(ok?"<b>Correcto.</b> ":"<b>Incorrecto.</b> ")+(q.e||"");$("#qNext").hidden=false;$("#qNext").textContent=qi+1<Q.length?"Siguiente →":"Ver resultado";$("#qNext").focus()});
+$("#qNext").addEventListener("click",()=>{qi++;if(qi<Q.length)return showQ();$("#qRun").hidden=true;const p=Math.round(good/Q.length*100);
+  $("#qEnd").hidden=false;$("#qEnd").innerHTML=`<div class="big">${p}%</div><p>${good} de ${Q.length} correctas · ${p>=75?"aprobado con la mínima UDLAP (7.5)":"aún por debajo de 7.5: repasa los temas de abajo"}</p>${miss.length?`<h3 style="font-family:var(--f-d)">Para repasar</h3><ul>${miss.map(q=>`<li><b>${esc(T[q.ti].t)}:</b> ${q.q}<br><small>Respuesta: ${q.o[q.a]}</small></li>`).join("")}</ul>`:""}<div class="cnav"><button class="btn pri" type="button" id="qAgain">Otro examen</button></div>`;
+  $("#qAgain").addEventListener("click",()=>{$("#qEnd").hidden=true;$("#qStart").hidden=false})});
+})();
+</script>
+</body></html>

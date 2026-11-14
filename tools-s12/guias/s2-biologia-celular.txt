@@ -1,0 +1,205 @@
+@id biologia-celular
+@sem 2
+@orden 2
+@title Biología Celular y Molecular
+@materia Biología Celular y Molecular
+@codigo BCM
+@color #2e7d4f
+@icon bcm
+@sub Membrana y organelos · Citoesqueleto · ADN y replicación · Transcripción · Traducción · Ciclo celular · Señalización · Muerte celular · Técnicas
+@desc De la membrana al genoma: organelos, flujo de la información genética, ciclo celular, señales y muerte celular, con las enfermedades y técnicas de laboratorio que salen en examen.
+@kw biologia celular molecular membrana organelos lisosoma peroxisoma mitocondria reticulo golgi citoesqueleto microtubulos adn replicacion reparacion transcripcion arn splicing traduccion ribosoma ciclo celular p53 rb ciclinas oncogenes señalizacion receptores proteina g apoptosis caspasas necrosis pcr western southern northern elisa crispr
+
+# Membrana plasmática y organelos
+> Compartimentos con funciones especializadas.
+- **Membrana**: bicapa de fosfolípidos con colesterol (regula fluidez), proteínas integrales y periféricas, glucocálix. **Modelo de mosaico fluido**.
+- **Núcleo**: envoltura doble con poros; nucléolo (síntesis de ARN ribosomal).
+- **RER**: síntesis de proteínas de secreción, membrana y lisosomas; **N-glucosilación**. Abundante en células plasmáticas y acinares del páncreas.
+- **REL**: síntesis de lípidos y esteroides, detoxificación (citocromo P450), almacén de Ca²⁺ (retículo sarcoplásmico). Abundante en hígado, células de Leydig, corteza suprarrenal.
+- **Aparato de Golgi**: modifica (O-glucosilación), clasifica y empaca. Marca las enzimas lisosomales con **manosa-6-fosfato**.
+- **Lisosomas**: hidrolasas ácidas (pH ~5); digestión, autofagia. **Peroxisomas**: β-oxidación de ácidos grasos de cadena muy larga, catalasa (H₂O₂), síntesis de plasmalógenos.
+- **Mitocondria**: doble membrana, ADN circular propio (herencia materna), fosforilación oxidativa, β-oxidación, ciclo de Krebs; libera citocromo c en la apoptosis.
+- **Proteasoma**: degrada proteínas marcadas con **ubiquitina**.
+| Enfermedad ¦ Defecto ¦ Clave
+| Enfermedad de células I ¦ Falta de manosa-6-fosfato (Golgi) ¦ Enzimas lisosomales salen al plasma; facies tosca
+| Tay-Sachs ¦ Hexosaminidasa A (lisosoma) ¦ Mancha rojo cereza, sin hepatoesplenomegalia
+| Gaucher ¦ Glucocerebrosidasa (lisosoma) ¦ Células en "papel arrugado", hepatoesplenomegalia, dolor óseo
+| Zellweger / adrenoleucodistrofia ¦ Peroxisoma ¦ Acúmulo de ácidos grasos de cadena muy larga
+! Golgi + manosa-6-fosfato = dirección lisosomal; sin ella (enfermedad de células I) las enzimas se secretan.
+! Gaucher es la enfermedad lisosomal más frecuente; Tay-Sachs es más común en judíos asquenazíes.
++ La **inducción del citocromo P450** (rifampicina, carbamazepina, fenitoína) acelera el metabolismo de otros fármacos (p. ej., anticonceptivos orales).
++ Fármacos que actúan sobre el proteasoma (**bortezomib**) se usan en mieloma múltiple.
+? Organelo que añade manosa-6-fosfato :: Aparato de Golgi.
+? Organelo de la β-oxidación de ácidos grasos de cadena muy larga :: Peroxisoma.
+? Organelo abundante en células productoras de esteroides :: Retículo endoplásmico liso.
+? Marca para degradar proteínas en el proteasoma :: Ubiquitina.
+? Enzima deficiente en Gaucher :: Glucocerebrosidasa (β-glucosidasa).
+? Componente que regula la fluidez de la membrana :: Colesterol.
+Q Lactante con facies tosca, rigidez articular y enzimas lisosomales muy altas en plasma. Defecto: :: *Fosforilación de manosa en el Golgi :: Hexosaminidasa A :: Catalasa peroxisomal :: Ubiquitina ligasa || Enfermedad de células I: sin manosa-6-fosfato las hidrolasas no llegan al lisosoma.
+Q ¿Qué organelo predomina en la célula de Leydig? :: *Retículo endoplásmico liso :: Retículo endoplásmico rugoso :: Lisosomas :: Peroxisomas || La síntesis de testosterona (esteroides) ocurre en el REL y la mitocondria.
+
+# Citoesqueleto y motores moleculares
+> Tres redes de filamentos que dan forma, movimiento y transporte.
+- **Microfilamentos (actina, 7 nm)**: microvellosidades, contracción muscular, anillo contráctil de la citocinesis, migración celular.
+- **Filamentos intermedios (10 nm)**: resistencia mecánica; marcadores del tipo celular: **citoqueratina** (epitelios), **vimentina** (mesénquima), **desmina** (músculo), **GFAP** (astrocitos), **neurofilamentos** (neuronas), láminas nucleares.
+- **Microtúbulos (25 nm)**: tubulina α/β; huso mitótico, cilios y flagelos, transporte axonal. Motores: **cinesina** (hacia el extremo +, anterógrado) y **dineína** (hacia el extremo −, retrógrado).
+- Centrosoma con 2 centriolos (9 tripletes) organiza los microtúbulos.
+| Fármaco ¦ Blanco ¦ Uso
+| Colchicina ¦ Polimerización de microtúbulos ¦ Gota
+| Vincristina, vinblastina ¦ Polimerización de microtúbulos ¦ Quimioterapia
+| Paclitaxel (taxanos) ¦ Estabiliza microtúbulos (no se despolimerizan) ¦ Quimioterapia
+| Mebendazol, albendazol ¦ Tubulina del helminto ¦ Antiparasitario
+! Los filamentos intermedios permiten saber el origen de un tumor con inmunohistoquímica (carcinoma = citoqueratina; sarcoma = vimentina).
+! Cinesina = anterógrado (hacia la terminal); dineína = retrógrado (hacia el soma): así suben al SNC la rabia, el herpes y la toxina tetánica.
++ La **vincristina** causa neuropatía periférica por alterar el transporte axonal.
++ La **colchicina** impide la migración de neutrófilos (sin microtúbulos) en la gota aguda.
+? Filamento intermedio de los epitelios :: Citoqueratina.
+? Filamento intermedio del músculo :: Desmina.
+? Motor del transporte retrógrado :: Dineína.
+? Fármaco que estabiliza microtúbulos :: Paclitaxel (taxanos).
+? Diámetro de microfilamentos, intermedios y microtúbulos :: ≈ 7 nm, 10 nm y 25 nm.
+Q Un tumor es positivo para vimentina y negativo para citoqueratina. Origen probable: :: *Mesenquimal (sarcoma) :: Epitelial (carcinoma) :: Glial :: Muscular liso exclusivo || La vimentina es el filamento intermedio del tejido conjuntivo.
+Q ¿Cómo llega el virus de la rabia de la mordida al SNC? :: *Por transporte axonal retrógrado con dineína :: Por transporte anterógrado con cinesina :: Por el torrente sanguíneo :: Por el LCR || Viaja desde la terminal nerviosa hacia el soma.
+
+# ADN, replicación y reparación
+> El ADN se replica de forma semiconservativa antes de cada división.
+- Estructura: doble hélice antiparalela; **purinas** (A, G) y **pirimidinas** (C, T, U); A=T (2 puentes de H), **G≡C (3 puentes, más estable)**.
+- Cromatina: ADN enrollado en **nucleosomas** (octámero de histonas H2A, H2B, H3, H4; H1 une los nucleosomas). **Heterocromatina** (condensada, inactiva) vs **eucromatina** (laxa, activa). Acetilación de histonas → activa la transcripción; metilación del ADN (CpG) → la silencia.
+- **Replicación** (fase S): **helicasa** abre, **topoisomerasa** relaja superenrollamiento, **primasa** pone cebador de ARN, **ADN polimerasa III** (procariotas; δ y ε en eucariotas) sintetiza **5'→3'**, cadena **adelantada** continua y **retrasada** en fragmentos de **Okazaki**, **ADN ligasa** sella. **Telomerasa** (transcriptasa inversa) mantiene los extremos.
+- **Reparación**: de **apareamientos erróneos** (mismatch: MLH1, MSH2 → síndrome de Lynch), **escisión de nucleótidos** (dímeros de timina por luz UV → xeroderma pigmentoso), **escisión de bases**, recombinación homóloga para roturas de doble cadena (**BRCA1/2**).
+! Fluoroquinolonas inhiben la topoisomerasa II (girasa) bacteriana; etopósido e irinotecán inhiben topoisomerasas humanas.
+! Xeroderma pigmentoso = falla de escisión de nucleótidos → cáncer de piel muy temprano con el sol.
++ **Síndrome de Lynch** (cáncer colorrectal hereditario no polipósico): defecto de reparación de apareamientos erróneos → inestabilidad de microsatélites.
++ **BRCA1/2**: cáncer de mama y ovario hereditario; sensibles a inhibidores de PARP.
+? Puentes de hidrógeno entre G y C :: Tres (más estable que A=T, con dos).
+? Dirección de síntesis del ADN :: 5' → 3'.
+? Enzima que sella los fragmentos de Okazaki :: ADN ligasa.
+? Defecto en xeroderma pigmentoso :: Reparación por escisión de nucleótidos (dímeros de timina por UV).
+? Defecto en síndrome de Lynch :: Reparación de apareamientos erróneos (mismatch: MLH1, MSH2).
+? Efecto de la acetilación de histonas :: Relaja la cromatina y activa la transcripción.
+Q Niño con quemaduras solares graves, pecas y carcinomas cutáneos antes de los 10 años. Mecanismo: :: *Falla en la reparación por escisión de nucleótidos :: Falla en la reparación de apareamientos erróneos :: Telomerasa hiperactiva :: Mutación de BRCA1 || Xeroderma pigmentoso: no se reparan dímeros de pirimidina.
+Q La ciprofloxacina mata bacterias porque inhibe: :: *La ADN girasa (topoisomerasa II bacteriana) :: La ARN polimerasa :: La subunidad 30S :: La síntesis de pared || Sin relajar el superenrollamiento no hay replicación.
+
+# Transcripción y procesamiento del ARN
+> Del ADN al ARN mensajero maduro.
+- **ARN polimerasas** eucariotas: **I** (ARNr), **II (ARNm)**, III (ARNt y ARNr 5S). El orden es el de la traducción: "rmt".
+- **Promotor**: caja **TATA** (~−25) y caja CAAT; **factores de transcripción**; **potenciadores** (enhancers) y silenciadores a distancia.
+- Procesamiento del pre-ARNm en el núcleo: **caperuza 5'** (7-metilguanosina), **cola de poli-A 3'** (señal AAUAAA), **splicing** (el **espliceosoma** con snRNP quita **intrones** y une **exones**). El **splicing alternativo** produce varias proteínas de un gen.
+- Tipos de ARN: ARNm (mensaje), ARNt (adaptador, anticodón), ARNr (ribosoma), **microARN** (silencian ARNm).
+- **α-amanitina** (hongo Amanita) inhibe la ARN polimerasa II; **rifampicina** inhibe la ARN polimerasa bacteriana; **actinomicina D** se intercala en el ADN.
+! Anticuerpos **anti-Smith** (contra snRNP del espliceosoma) son muy específicos de **lupus eritematoso sistémico**.
+! Algunas β-talasemias se deben a mutaciones en sitios de splicing.
++ **Intoxicación por Amanita phalloides**: falla hepática aguda por inhibición de la ARN polimerasa II.
++ La **rifampicina** colorea de naranja la orina, lágrimas y sudor.
+? ARN polimerasa que sintetiza ARNm :: ARN polimerasa II.
+? Modificaciones del pre-ARNm :: Caperuza 5' de metilguanosina, cola de poli-A 3' y splicing.
+? Qué se elimina en el splicing :: Intrones (se unen los exones).
+? Toxina de Amanita que inhibe la ARN pol II :: α-amanitina.
+? Anticuerpo del espliceosoma específico de lupus :: Anti-Smith (anti-snRNP).
+Q Paciente con hepatitis fulminante tras comer hongos silvestres. Enzima inhibida: :: *ARN polimerasa II :: ADN polimerasa δ :: Topoisomerasa I :: Peptidil transferasa || La α-amanitina bloquea la síntesis de ARNm.
+Q ¿Cómo produce un solo gen varias proteínas distintas? :: *Por splicing alternativo :: Por replicación semiconservativa :: Por la caperuza 5' :: Por el código genético degenerado || Diferentes combinaciones de exones generan isoformas.
+
+# Traducción, código genético y tráfico de proteínas
+> El ribosoma lee codones del ARNm y une aminoácidos.
+- **Código genético**: tripletes; **AUG** = inicio (metionina); stop: **UAA, UAG, UGA**. Es **degenerado** (varios codones para un aminoácido), universal (casi) y sin superposición.
+- Ribosomas: eucariotas **80S (60S + 40S)**; procariotas **70S (50S + 30S)** → blanco selectivo de antibióticos.
+- Etapas: **iniciación** (ARNt-Met + subunidad pequeña busca AUG), **elongación** (sitios A, P, E; **peptidil transferasa** = ARNr, una ribozima), **terminación** (factores de liberación en codón stop).
+- Activación de aminoácidos: **aminoacil-ARNt sintetasa** une el aminoácido correcto a su ARNt (con ATP).
+- Proteínas con **péptido señal** → SRP → RER → Golgi → secreción, membrana o lisosoma. Plegamiento asistido por **chaperonas**.
+- Mutaciones: **silenciosa** (mismo aminoácido), **de sentido erróneo** (missense: HbS), **sin sentido** (nonsense: codón stop prematuro), **corrimiento del marco** (inserción/deleción no múltiplo de 3: Duchenne).
+| Antibiótico ¦ Subunidad ¦ Recuerda
+| Aminoglucósidos, tetraciclinas ¦ 30S ¦ "Compra AT (aminoglucósidos, tetraciclinas) a 30"
+| Macrólidos, clindamicina, cloranfenicol, linezolid ¦ 50S ¦ "y CCEL (cloranfenicol, clindamicina, eritromicina, linezolid) a 50"
+! Antibióticos que inhiben la síntesis proteica: 30S = aminoglucósidos y tetraciclinas; 50S = cloranfenicol, clindamicina, macrólidos (eritromicina), linezolid.
+! Duchenne: deleción con corrimiento del marco (sin distrofina); Becker: deleción que conserva el marco (distrofina parcial, más leve).
++ **Toxina diftérica** inactiva el factor de elongación eEF-2 (ADP-ribosilación).
++ La HbS es una mutación de sentido erróneo (Glu → Val).
+? Codón de inicio :: AUG (metionina).
+? Codones de terminación :: UAA, UAG y UGA.
+? Ribosoma eucariota y procariota :: Eucariota 80S (60S + 40S); procariota 70S (50S + 30S).
+? Enzima que asegura que cada ARNt lleve el aminoácido correcto :: Aminoacil-ARNt sintetasa.
+? Mutación sin sentido (nonsense) :: Cambia un codón por uno de terminación prematuro.
+? Blanco de la toxina diftérica :: Factor de elongación 2 (eEF-2).
+Q ¿Por qué Becker es más leve que Duchenne? :: *Su deleción conserva el marco de lectura :: Afecta otro gen :: Es autosómica dominante :: Solo afecta a mujeres || Se produce una distrofina truncada pero parcialmente funcional.
+Q ¿Qué antibiótico actúa sobre la subunidad 30S? :: *Gentamicina :: Azitromicina :: Clindamicina :: Cloranfenicol || Los aminoglucósidos y tetraciclinas se unen a la 30S.
+
+# Ciclo celular y cáncer
+> G1 → S → G2 → M, vigilado por puntos de control.
+- Fases: **G1** (crecimiento; duración variable), **S** (replicación del ADN), **G2** (preparación), **M** (mitosis: profase, metafase, anafase, telofase + citocinesis). **G0**: reposo (células permanentes).
+- Motores: **ciclinas + cinasas dependientes de ciclina (CDK)**. Inhibidores: p21, p27, p16.
+- **Puntos de control**: G1/S (el más importante), G2/M y del huso (metafase/anafase).
+- **Rb**: en reposo secuestra a **E2F**; al fosforilarse (ciclina D-CDK4/6) libera E2F → entrada a fase S. **p53** ("guardián del genoma"): ante daño del ADN induce p21 (frena el ciclo), reparación o **apoptosis**.
+- Células: **lábiles** (siempre en ciclo: médula ósea, epitelios, piel), **estables** (en G0, pueden volver: hígado, riñón), **permanentes** (no se dividen: neuronas, cardiomiocitos, músculo esquelético).
+- **Oncogenes** (ganancia de función, basta un alelo): RAS, MYC, HER2, BCR-ABL. **Genes supresores** (pérdida de función, se necesitan dos "golpes" — hipótesis de Knudson): RB, TP53, APC, BRCA1/2.
+! p53 mutado es la alteración más común en cáncer humano; síndrome de **Li-Fraumeni** = p53 germinal.
+! Retinoblastoma hereditario: un alelo RB mutado heredado + un golpe somático → tumores bilaterales y osteosarcoma.
++ El **VPH** produce E6 (degrada p53) y E7 (inactiva Rb) → cáncer cervicouterino.
++ **Imatinib** inhibe la tirosina cinasa BCR-ABL en la leucemia mieloide crónica (cromosoma Filadelfia t(9;22)).
+? Fase donde se replica el ADN :: Fase S.
+? Función de Rb :: Retiene a E2F e impide pasar de G1 a S hasta que se fosforila.
+? Función de p53 :: Detener el ciclo (vía p21), reparar o inducir apoptosis ante daño del ADN.
+? Ejemplos de células permanentes :: Neuronas, cardiomiocitos y músculo esquelético.
+? Proteínas del VPH que inactivan supresores :: E6 (p53) y E7 (Rb).
+? Diferencia oncogén vs gen supresor :: Oncogén: ganancia de función, basta un alelo. Supresor: pérdida de función, se necesitan los dos alelos.
+Q Niño con retinoblastoma bilateral y luego osteosarcoma. Gen afectado: :: *RB1 (germinal) :: TP53 somático :: RAS :: MYC || Retinoblastoma hereditario: mutación germinal de RB1.
+Q ¿Qué tipo de célula no vuelve a dividirse tras un infarto? :: *Cardiomiocito (permanente) :: Hepatocito (estable) :: Célula basal epidérmica (lábil) :: Fibroblasto || Por eso el miocardio necrosado se reemplaza por cicatriz.
+
+# Señalización celular
+> Ligandos que se unen a receptores y activan cascadas intracelulares.
+- Tipos de señal: endocrina, paracrina, autocrina, yuxtacrina.
+- **Receptores acoplados a proteína G (7 dominios transmembrana)**: **Gs** (↑ adenilato ciclasa → ↑ AMPc → PKA; β1, β2, D1, H2, V2), **Gi** (↓ AMPc; α2, M2, D2), **Gq** (fosfolipasa C → IP₃ ↑ Ca²⁺ y DAG → PKC; α1, M1, M3, H1, V1).
+- **Receptores con actividad tirosina cinasa**: insulina, factores de crecimiento (EGF, PDGF) → vía **RAS-MAPK** y PI3K/Akt. **JAK-STAT**: citocinas, GH, prolactina, EPO.
+- **Receptores intracelulares**: esteroides, hormonas tiroideas, vitamina D, ácido retinoico.
+- **Canales iónicos dependientes de ligando**: receptor nicotínico, GABA-A, NMDA.
+- **GMPc**: NO (guanilato ciclasa soluble) y péptido natriurético (guanilato ciclasa de membrana) → relajación.
+! Mnemotecnia de receptores Gq: "**HAVe 1 M&M**" → H1, α1, V1, M1, M3.
+! Toxina del cólera activa Gs (↑ AMPc → diarrea); toxina pertussis inhibe Gi.
++ **Toxina colérica**: ↑ AMPc en el enterocito → secreción de Cl⁻ y agua, diarrea en "agua de arroz".
++ Mutaciones de **RAS** (activación constante) son frecuentes en cáncer de páncreas, colon y pulmón.
+? Segundo mensajero de los receptores Gs :: AMPc (activa PKA).
+? Cascada de los receptores Gq :: Fosfolipasa C → IP₃ (Ca²⁺) y DAG (PKC).
+? Vía de señalización de la EPO y las citocinas :: JAK-STAT.
+? Receptores Gq (mnemotecnia) :: HAVe 1 M&M: H1, α1, V1, M1, M3.
+? Mecanismo de la toxina del cólera :: Activa permanentemente Gs → ↑ AMPc.
+Q El receptor β2 de bronquio activado por salbutamol actúa por: :: *Gs → ↑ AMPc :: Gq → ↑ IP₃ :: Gi → ↓ AMPc :: Tirosina cinasa || El AMPc relaja el músculo liso bronquial.
+Q La insulina señaliza principalmente mediante: :: *Receptor con actividad tirosina cinasa :: Receptor intracelular :: Receptor Gq :: Canal iónico || Su receptor se autofosforila y activa IRS → PI3K → GLUT4.
+
+# Apoptosis, necrosis y adaptación celular
+> Muerte programada (ordenada, sin inflamación) vs accidental (con inflamación).
+- **Apoptosis**: ATP dependiente; contracción celular, **condensación de cromatina (picnosis)**, fragmentación (cariorrexis), **cuerpos apoptóticos** fagocitados; **sin inflamación**.
+- Vía **intrínseca (mitocondrial)**: daño del ADN, falta de factores de crecimiento → proteínas **Bax/Bak** (proapoptóticas) vencen a **Bcl-2** (antiapoptótica) → salida de **citocromo c** → apoptosoma → **caspasa 9** → caspasas efectoras 3/7.
+- Vía **extrínseca**: ligando **Fas/FasL** o TNF → **caspasa 8**. Linfocitos T citotóxicos usan perforina/granzima.
+- **Necrosis**: pérdida de integridad de membrana, inflamación. Tipos: **coagulativa** (isquemia de órganos sólidos: corazón, riñón), **licuefactiva** (cerebro, abscesos), **caseosa** (tuberculosis), **grasa** (pancreatitis: saponificación), **fibrinoide** (vasculitis), gangrenosa.
+- Adaptaciones: **hipertrofia** (↑ tamaño), **hiperplasia** (↑ número), **atrofia**, **metaplasia** (reversible). La **displasia** es precursora de cáncer.
+! **Bcl-2** sobreexpresado por t(14;18) → linfoma folicular (las células no mueren).
+! Infarto cerebral = necrosis licuefactiva; infarto de miocardio = coagulativa.
++ **Infarto agudo de miocardio**: necrosis coagulativa; la troponina se libera por pérdida de la membrana.
++ La **quimioterapia** y la radiación matan células tumorales principalmente induciendo apoptosis vía p53.
+? Proteína antiapoptótica de la mitocondria :: Bcl-2.
+? Molécula liberada por la mitocondria en la apoptosis :: Citocromo c (activa la caspasa 9).
+? Caspasa iniciadora de la vía extrínseca :: Caspasa 8 (Fas/TNF).
+? Necrosis del infarto cerebral :: Licuefactiva.
+? Necrosis de la tuberculosis :: Caseosa.
+? Translocación que sobreexpresa Bcl-2 :: t(14;18), linfoma folicular.
+Q ¿Qué distingue a la apoptosis de la necrosis? :: *La apoptosis no produce inflamación :: La apoptosis no necesita ATP :: La necrosis es programada :: La necrosis forma cuerpos apoptóticos || La membrana se conserva y los cuerpos apoptóticos se fagocitan sin liberar contenido.
+Q Paciente con pancreatitis aguda y depósitos blanquecinos en el mesenterio. Tipo de necrosis: :: *Grasa (saponificación) :: Caseosa :: Coagulativa :: Fibrinoide || Las lipasas liberan ácidos grasos que se unen al calcio.
+
+# Técnicas de biología molecular
+> Herramientas para estudiar ADN, ARN y proteínas en el diagnóstico.
+- **PCR**: amplifica un fragmento de ADN con cebadores, desoxinucleótidos y **ADN polimerasa termoestable (Taq)**; ciclos de desnaturalización (~95 °C), alineamiento (~55 °C) y extensión (~72 °C). **RT-PCR**: convierte ARN en ADNc (transcriptasa inversa) → carga viral, COVID-19. **PCR en tiempo real (qPCR)**: cuantifica.
+- **Blots** ("**SNoW DRoP**"): **Southern = DNA**, **Northern = RNA**, **Western = Proteína**.
+- **ELISA**: detecta antígeno o anticuerpo con enzima que cambia de color; tamizaje (alta sensibilidad). **Electroforesis** separa por tamaño/carga.
+- **Secuenciación**: Sanger (un gen) y de nueva generación (exoma, genoma).
+- **Citometría de flujo**: marcadores de superficie (CD4 en VIH, inmunofenotipo de leucemias). **FISH**: sondas fluorescentes para deleciones/translocaciones. **Microarreglos**: variantes de número de copias.
+- **CRISPR-Cas9**: edición dirigida del genoma (ARN guía + nucleasa Cas9).
+! Southern-ADN, Northern-ARN, Western-proteína ("SNoW DRoP").
+! Tamizaje con prueba sensible (ELISA) → confirmación con prueba específica.
++ **VIH**: tamizaje con inmunoensayo de 4.ª generación (anticuerpos + antígeno p24) y seguimiento con carga viral (RT-PCR) y CD4 (citometría de flujo).
++ **COVID-19**: RT-PCR de exudado nasofaríngeo como prueba de referencia.
+? Técnica que detecta ARN :: Northern blot (o RT-PCR).
+? Técnica que detecta proteínas por tamaño con anticuerpos :: Western blot.
+? Enzima clave de la PCR :: ADN polimerasa termoestable (Taq).
+? Pasos de un ciclo de PCR :: Desnaturalización, alineamiento de cebadores y extensión.
+? Técnica para contar linfocitos CD4 :: Citometría de flujo.
+Q Para medir la carga viral del VIH se usa: :: *RT-PCR cuantitativa :: Western blot :: ELISA de anticuerpos :: Southern blot || El VIH tiene genoma de ARN; se retrotranscribe y se cuantifica por PCR en tiempo real.
+Q ¿Qué técnica detecta una translocación t(9;22) en metafase o interfase con sondas marcadas? :: *FISH :: ELISA :: Western blot :: Electroforesis de proteínas || La hibridación fluorescente in situ localiza secuencias específicas en los cromosomas.

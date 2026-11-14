@@ -14,11 +14,29 @@
       b.onclick=()=>{box.style.display="none";fn&&fn()};box.appendChild(b)}
     clearTimeout(box._t);if(ms)box._t=setTimeout(()=>{box.style.display="none"},ms);
   }
+  /* campanita propia de los avisos (si la app está abierta): tres notas de marimba Mi–Sol#–Si */
+  let ac;
+  function campanita(){
+    try{
+      ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+      if(ac.state==="suspended")ac.resume();
+      const t0=ac.currentTime+.02;
+      [[659.25,0],[830.61,.13],[987.77,.26]].forEach(([f,dt],i)=>{
+        const o=ac.createOscillator(),g=ac.createGain(),t=t0+dt,len=i===2?.9:.35;
+        o.type="sine";o.frequency.value=f;
+        g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.25,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+len);
+        o.connect(g).connect(ac.destination);o.start(t);o.stop(t+len+.05);
+      });
+    }catch(e){}
+  }
+  /* el navegador solo deja sonar audio después de un toque: se "despierta" con el primero */
+  document.addEventListener("pointerdown",()=>{try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();ac.resume()}catch(e){}},{once:true,passive:true});
   const KEY="med-offline-listo";
   const ready=()=>{try{return localStorage.getItem(KEY)==="1"}catch(e){return false}};
   let shownProgress=false;
   sw.addEventListener("message",ev=>{
     const d=ev.data||{};
+    if(d.type==="med-aviso")campanita();
     if(d.type==="med-progress"&&!ready()&&d.total>20){shownProgress=true;toast("Guardando para usar sin internet… "+Math.round(100*d.done/d.total)+"%")}
     if(d.type==="med-synced"){
       if(d.complete&&!ready()){try{localStorage.setItem(KEY,"1")}catch(e){}toast("Listo: ya funciona sin internet","OK",null,6000)}

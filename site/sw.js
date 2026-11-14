@@ -112,9 +112,15 @@ self.addEventListener("fetch",ev=>{
   })());
 });
 /* avisos que manda GitHub (exámenes, plan, fechas UDLAP, partidos) */
+/* sello propio: vibración "ta-ta-taaa" (Android), siempre con sonido, y si la app está abierta suena su campanita (pwa.js) */
+const VIBRA=[90,60,90,60,260];
 self.addEventListener("push",ev=>{
   let d={};try{d=ev.data?ev.data.json():{}}catch(e){d={title:"Medicina UDLAP",body:ev.data?ev.data.text():""}}
-  ev.waitUntil(self.registration.showNotification(d.title||"Aviso",{body:d.body||"",icon:"icon-192.png",badge:"icon-192.png",tag:d.id||undefined,data:{route:d.route||"calendario"}}));
+  ev.waitUntil((async()=>{
+    await self.registration.showNotification(d.title||"Aviso",{body:d.body||"",icon:"icon-192.png",badge:"icon-192.png",tag:d.id||undefined,renotify:!!d.id,silent:false,vibrate:VIBRA,timestamp:Date.now(),data:{route:d.route||"calendario"}});
+    const cs=await self.clients.matchAll({type:"window"});
+    for(const c of cs)c.postMessage({type:"med-aviso"});
+  })());
 });
 self.addEventListener("notificationclick",ev=>{
   ev.notification.close();

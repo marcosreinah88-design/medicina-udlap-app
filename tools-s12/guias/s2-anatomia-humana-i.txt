@@ -6,10 +6,10 @@
 @codigo AH I
 @color #a8323e
 @icon anat
-@sub Generalidades · Dorso · Miembro superior · Miembro inferior · Tórax
-@desc Aparato locomotor y tórax: huesos, articulaciones, músculos, plexos y vasos, con las lesiones nerviosas y fracturas que más se preguntan en el práctico y en el teórico.
-@nota No se encontró el programa publicado de Anatomía Humana I de UDLAP; esta guía cubre el bloque habitual de una primera anatomía (dorso, miembros y tórax). Anatomía II, en 3er semestre, sigue con el aparato digestivo.
-@kw anatomia columna vertebra dorso miembro superior hombro brazo antebrazo mano plexo braquial nervio mediano cubital radial axilar musculocutaneo tunel carpiano miembro inferior cadera rodilla pie plexo lumbosacro nervio ciatico femoral obturador peroneo tibial triangulo femoral torax costillas pulmon corazon mediastino
+@sub Cabeza · Nervios craneales · Cuello · Miembro superior · Miembro inferior
+@desc Cabeza, cuello y extremidades: cráneo, nervios craneales, cara, triángulos y vísceras del cuello, vasos y meninges, y los miembros superior e inferior con las lesiones nerviosas y fracturas que más se preguntan en el práctico y en el teórico.
+@nota Temario según tu programa: cabeza, cuello y extremidades. Anatomía II, en 3er semestre, sigue con las vísceras (aparato digestivo).
+@kw anatomia cabeza craneo suturas fontanelas pterion nervios craneales facial trigemino cara masticacion parotida cuello triangulos esternocleidomastoideo frenico tiroides paratiroides laringe recurrente carotida yugular meninges hematoma epidural subdural miembro superior hombro brazo antebrazo mano plexo braquial mediano cubital radial axilar tunel carpiano miembro inferior cadera rodilla pie plexo lumbosacro ciatico femoral peroneo triangulo femoral
 
 # Generalidades y terminología anatómica
 > El lenguaje común de la anatomía.
@@ -30,24 +30,170 @@
 Q Paciente con hernia discal y reflejo aquíleo ausente con dolor en la planta del pie. Raíz afectada: :: *S1 :: L4 :: L5 :: L3 || S1 da el reflejo aquíleo y la sensibilidad del borde lateral y planta.
 Q El dermatoma del pulgar corresponde a: :: *C6 :: C5 :: C7 :: C8 || C6 = pulgar ("haz un 6 con el pulgar y el índice").
 
-# Columna vertebral y dorso
-> 33 vértebras: 7 cervicales, 12 torácicas, 5 lumbares, 5 sacras (sacro) y 4 coccígeas.
-- Vértebra típica: cuerpo, arco (pedículos y láminas), apófisis espinosa, transversas y articulares; agujero vertebral.
-- Cervicales: **agujero transverso** (pasa la arteria vertebral). **C1 atlas** (sin cuerpo), **C2 axis** (apófisis odontoides). **C7** prominente. Torácicas: carillas costales. Lumbares: cuerpos grandes.
-- Curvaturas: lordosis cervical y lumbar; cifosis torácica y sacra. Alteraciones: hiperlordosis, hipercifosis, **escoliosis** (lateral).
-- **Disco intervertebral**: anillo fibroso (fibrocartílago) + núcleo pulposo (notocorda). Ligamentos: longitudinal anterior, **longitudinal posterior** (más débil lateralmente), amarillo, interespinoso, supraespinoso.
-- Músculos del dorso: superficiales (trapecio — NC XI; dorsal ancho — toracodorsal; romboides — dorsal de la escápula; elevador de la escápula) y profundos (**erector de la columna**: iliocostal, longísimo, espinoso).
-! Las hernias discales suelen ser **posterolaterales** (donde el ligamento longitudinal posterior es débil) y comprimen la raíz **del nivel inferior** en la columna lumbar (hernia L4–L5 → raíz L5).
-! La punción lumbar atraviesa piel, supraespinoso, interespinoso, ligamento amarillo, espacio epidural, duramadre y aracnoides.
-+ **Lumbociática** por hernia L5–S1 (raíz S1): dolor que baja por la cara posterior de la pierna, signo de Lasègue positivo.
-+ **Fractura del ahorcado**: de los pedículos de C2. **Fractura de Jefferson**: estallido de C1.
-? Número de vértebras por región :: 7 cervicales, 12 torácicas, 5 lumbares, 5 sacras y 4 coccígeas.
-? Rasgo exclusivo de las vértebras cervicales :: Agujero transverso (arteria vertebral).
-? Hernia L4–L5 posterolateral comprime la raíz :: L5.
-? Nervio del trapecio :: Accesorio (NC XI).
-? Músculo principal que extiende la columna :: Erector de la columna.
-Q Una hernia posterolateral del disco L5–S1 comprime típicamente la raíz: :: *S1 :: L5 :: L4 :: S2 || En la región lumbar la raíz que sale por debajo del nivel ya pasó; la afectada es la que desciende.
-Q La vértebra sin cuerpo vertebral es: :: *C1 (atlas) :: C2 (axis) :: C7 :: L5 || El atlas es un anillo; su "cuerpo" se fusionó al axis como odontoides.
+# Cráneo: huesos, suturas y base del cráneo
+> Neurocráneo (8 huesos) y viscerocráneo (14 huesos).
+- **Neurocráneo**: frontal, 2 parietales, 2 temporales, occipital, esfenoides y etmoides. **Viscerocráneo**: maxilares, cigomáticos, nasales, lagrimales, palatinos, cornetes inferiores, vómer y **mandíbula** (único hueso móvil).
+- Suturas: **coronal** (frontal–parietales), **sagital** (entre parietales), **lambdoidea** (parietales–occipital), escamosa (temporal–parietal). Puntos: **bregma** (coronal + sagital) y **lambda** (sagital + lambdoidea).
+- Fontanelas: **anterior** (bregmática, romboidal; cierra a los **18–24 meses**) y **posterior** (lambdoidea, triangular; cierra a los **2–3 meses**).
+- **Pterion**: unión de frontal, parietal, temporal y ala mayor del esfenoides; es la zona más delgada y debajo pasa la **arteria meníngea media**.
+- Fosas craneales: **anterior** (lóbulos frontales; lámina cribosa del etmoides → nervio olfatorio), **media** (lóbulos temporales; silla turca con la hipófisis), **posterior** (cerebelo y tronco).
+| Agujero ¦ Fosa ¦ Contenido
+| Lámina cribosa ¦ Anterior ¦ NC I (olfatorio)
+| Canal óptico ¦ Media ¦ NC II y arteria oftálmica
+| Fisura orbitaria superior ¦ Media ¦ NC III, IV, V1 y VI; vena oftálmica superior
+| Redondo ¦ Media ¦ V2 (maxilar)
+| Oval ¦ Media ¦ V3 (mandibular)
+| Espinoso ¦ Media ¦ Arteria meníngea media
+| Conducto auditivo interno ¦ Posterior ¦ NC VII y VIII
+| Yugular ¦ Posterior ¦ NC IX, X y XI; vena yugular interna
+| Conducto del hipogloso ¦ Posterior ¦ NC XII
+| Foramen magno ¦ Posterior ¦ Bulbo, arterias vertebrales y raíces espinales del XI
+! "**Redondo, Oval, Espinoso**": V2, V3 y meníngea media, en ese orden de anterior a posterior.
+! Fractura en el **pterion** → rotura de la **arteria meníngea media** → hematoma **epidural**.
++ **Fontanela anterior abombada** en el lactante sugiere hipertensión intracraneal (meningitis, hidrocefalia); **hundida**, deshidratación.
++ Fractura de la base del cráneo (fosa anterior): **ojos de mapache**, rinorraquia; fosa media: **signo de Battle** (equimosis retroauricular), otorraquia.
++ **Craneosinostosis**: cierre prematuro de una sutura (la sagital da cráneo alargado, escafocefalia).
+? Huesos del neurocráneo :: Frontal, 2 parietales, 2 temporales, occipital, esfenoides y etmoides (8).
+? Cierre de la fontanela anterior :: Entre los 18 y 24 meses.
+? Qué pasa por el agujero espinoso :: Arteria meníngea media.
+? Qué pasa por el agujero oval :: V3, rama mandibular del trigémino.
+? Contenido del agujero yugular :: NC IX, X y XI y vena yugular interna.
+? Huesos que forman el pterion :: Frontal, parietal, temporal y ala mayor del esfenoides.
+? Signo de Battle :: Equimosis retroauricular por fractura de la base del cráneo (fosa media).
+Q Golpe en la sien con pérdida breve del conocimiento, intervalo lúcido y luego deterioro rápido. Vaso lesionado: :: *Arteria meníngea media :: Venas puente :: Seno sagital superior :: Arteria cerebral media || Fractura del pterion → hematoma epidural (lente biconvexa en la TAC).
+Q Lactante de 4 meses con fontanela anterior hundida y mucosas secas. Interpretación: :: *Deshidratación :: Hipertensión intracraneal :: Craneosinostosis :: Normal para la edad || La fontanela anterior sigue abierta y se hunde con la deshidratación.
+
+# Nervios craneales
+> Doce pares; I y II son prolongaciones del sistema nervioso central.
+| Par ¦ Nombre ¦ Tipo ¦ Función clave
+| I ¦ Olfatorio ¦ Sensitivo ¦ Olfato
+| II ¦ Óptico ¦ Sensitivo ¦ Visión; vía aferente del reflejo pupilar
+| III ¦ Motor ocular común (oculomotor) ¦ Motor ¦ Casi todos los músculos del ojo, elevador del párpado, miosis (parasimpático)
+| IV ¦ Troclear ¦ Motor ¦ Oblicuo superior (mirar abajo y adentro)
+| V ¦ Trigémino ¦ Mixto ¦ Sensibilidad de la cara (V1, V2, V3); músculos de la masticación (V3)
+| VI ¦ Motor ocular externo (abducens) ¦ Motor ¦ Recto lateral
+| VII ¦ Facial ¦ Mixto ¦ Expresión facial, gusto 2/3 anteriores, lágrimas y saliva (submandibular y sublingual)
+| VIII ¦ Vestibulococlear ¦ Sensitivo ¦ Audición y equilibrio
+| IX ¦ Glosofaríngeo ¦ Mixto ¦ Gusto 1/3 posterior, parótida, rama aferente del reflejo nauseoso, seno carotídeo
+| X ¦ Vago ¦ Mixto ¦ Faringe, laringe (fonación), vísceras; rama eferente del reflejo nauseoso
+| XI ¦ Accesorio ¦ Motor ¦ Esternocleidomastoideo y trapecio
+| XII ¦ Hipogloso ¦ Motor ¦ Músculos de la lengua
+- Motilidad ocular: **LR6 SO4**, el resto **III** (recto lateral = VI; oblicuo superior = IV; los demás = III).
+- Reflejo corneal: aferente **V1**, eferente **VII**. Reflejo pupilar: aferente **II**, eferente **III**.
+! **Parálisis del III**: ojo "abajo y afuera", ptosis y midriasis (compresión por aneurisma de la comunicante posterior o herniación del uncus).
+! Lengua desviada **hacia el lado de la lesión** en parálisis del XII; úvula desviada **al lado sano** en lesión del X.
++ **Parálisis de Bell** (VII periférico): toda la hemicara paralizada, incluida la frente; un EVC (central) **respeta la frente**.
++ **Neuralgia del trigémino**: dolor lancinante breve en el territorio de V2 o V3.
+? Inervación de los músculos extraoculares :: LR6 SO4, el resto por el III.
+? Nervio del reflejo nauseoso :: Aferente IX y eferente X.
+? Nervios del reflejo corneal :: Aferente V1 y eferente VII.
+? Postura del ojo en parálisis del III :: Abajo y afuera, con ptosis y midriasis.
+? Hacia dónde se desvía la lengua en lesión del XII :: Hacia el lado lesionado.
+? Diferencia entre parálisis facial central y periférica :: La central respeta la frente; la periférica (Bell) afecta toda la hemicara.
+Q Paciente con hemicara derecha paralizada, incluida la frente, sin otro déficit. Diagnóstico más probable: :: *Parálisis facial periférica (Bell) :: EVC de la cápsula interna izquierda :: Lesión del trigémino :: Lesión del hipogloso || La frente tiene inervación cortical bilateral; si está afectada, la lesión es del nervio.
+Q Ptosis, midriasis y ojo desviado hacia abajo y afuera. Nervio afectado: :: *Oculomotor (III) :: Troclear (IV) :: Abducens (VI) :: Óptico (II) || El III mueve casi todos los músculos extraoculares y lleva las fibras parasimpáticas de la pupila.
+
+# Cara: músculos, masticación, ATM y parótida
+> Expresión facial = nervio facial; masticación = trigémino (V3).
+- **Músculos de la expresión facial** (VII): orbicular de los ojos (cerrar el ojo), orbicular de la boca, **buccinador** (mejilla), frontal (occipitofrontal), cigomático mayor (sonrisa), platisma.
+- **Músculos de la masticación** (V3): **masetero**, **temporal**, **pterigoideo medial** (cierran la boca) y **pterigoideo lateral** (el único que **abre** la boca y protruye la mandíbula).
+- **ATM**: sinovial con disco articular; movimientos de bisagra y deslizamiento. Luxación anterior del cóndilo al bostezar.
+- **Parótida**: la mayor glándula salival; dentro pasan el **nervio facial** (se divide en 5 ramas: temporal, cigomática, bucal, marginal mandibular y cervical), la arteria carótida externa y la vena retromandibular. Su conducto (**Stensen**) se abre frente al **2.º molar superior**. Inervación secretora por el **IX**.
+- **Submandibular** (conducto de Wharton) y **sublingual**: secreción por el **VII** (cuerda del tímpano).
+- Sensibilidad de la cara: **V1** frente y dorso de la nariz, **V2** mejilla y labio superior, **V3** labio inferior y mentón (no el ángulo de la mandíbula, que es C2–C3).
+! El pterigoideo lateral es el único músculo masticatorio que abre la boca.
+! Ramas del facial en la parótida: "**Te Comí Bien Mi Comida**" (temporal, cigomática, bucal, marginal mandibular, cervical).
++ La cirugía de la parótida (tumor mixto o adenoma pleomorfo) pone en riesgo el **nervio facial**.
++ **Parotiditis** (paperas): dolor al masticar; puede complicarse con orquitis.
++ Los **cálculos salivales** son más frecuentes en la submandibular (conducto de Wharton, saliva más espesa y trayecto ascendente).
+? Nervio de los músculos de la masticación :: Rama mandibular del trigémino (V3).
+? Músculo que abre la boca :: Pterigoideo lateral.
+? Dónde desemboca el conducto parotídeo :: Frente al segundo molar superior.
+? Nervio que cruza la parótida :: Facial (VII), sin inervarla.
+? Inervación secretora de la parótida :: Glosofaríngeo (IX), vía el ganglio ótico.
+? Glándula salival con más cálculos :: Submandibular.
+Q Tras la extirpación de un tumor de parótida, el paciente no puede cerrar el ojo ni sonreír de ese lado. Nervio lesionado: :: *Facial :: Trigémino V3 :: Glosofaríngeo :: Auriculotemporal || El facial se ramifica dentro de la parótida.
+Q ¿Qué músculo NO cierra la mandíbula? :: *Pterigoideo lateral :: Masetero :: Temporal :: Pterigoideo medial || El pterigoideo lateral abre y protruye.
+
+# Cuello: fascias, triángulos, músculos y plexo cervical
+> El esternocleidomastoideo divide el cuello en triángulo anterior y posterior.
+- **Esternocleidomastoideo** (XI): gira la cabeza al lado contrario y flexiona el cuello. **Trapecio** (XI) forma el borde posterior del triángulo posterior.
+- **Triángulo anterior** (línea media, ECM, mandíbula): subdividido en submentoniano, submandibular, **carotídeo** (bifurcación carotídea, yugular interna, vago) y muscular.
+- **Triángulo posterior** (ECM, trapecio, clavícula): contiene el **nervio accesorio** (superficial y vulnerable), plexo cervical, troncos del plexo braquial, arteria subclavia (3.ª porción) y vena yugular externa.
+- **Músculos infrahioideos** (esternohioideo, omohioideo, esternotiroideo, tirohioideo): inervados por el **asa cervical (C1–C3)**. Suprahioideos: digástrico, milohioideo, estilohioideo, geniohioideo.
+- **Escalenos**: el anterior separa la vena subclavia (por delante) de la arteria subclavia y el plexo braquial (por detrás).
+- **Plexo cervical** (C1–C4): ramas sensitivas en el **punto de Erb** (auricular mayor, occipital menor, cervical transverso, supraclaviculares) y el **nervio frénico (C3–C5)** que baja sobre el escaleno anterior al diafragma.
+- Fascias: capa superficial (envuelve ECM y trapecio), pretraqueal (tiroides, tráquea, esófago), prevertebral, y la **vaina carotídea** (carótida, yugular interna y vago).
+! "**C3, 4 y 5 mantienen vivo al diafragma**": nervio frénico.
+! Contenido de la vaina carotídea: arteria carótida (medial), vena yugular interna (lateral) y vago (posterior, entre ambas).
++ Lesión del **accesorio** en una biopsia de ganglio del triángulo posterior → hombro caído y debilidad para elevar el brazo por encima de 90°.
++ Lesión medular **por arriba de C3**: paro respiratorio por pérdida del frénico.
++ **Dolor referido al hombro** (C4) por irritación del diafragma (sangre en abdomen, absceso subfrénico).
++ **Síndrome del opérculo torácico**: compresión del plexo braquial y la arteria subclavia entre escalenos o por una costilla cervical.
+? Límites del triángulo posterior del cuello :: Esternocleidomastoideo, trapecio y clavícula.
+? Nervio vulnerable en el triángulo posterior :: Accesorio (XI).
+? Raíces del nervio frénico :: C3, C4 y C5.
+? Contenido de la vaina carotídea :: Carótida común/interna, yugular interna y nervio vago.
+? Inervación de los músculos infrahioideos :: Asa cervical (C1–C3).
+? Estructura que pasa por delante del escaleno anterior :: Vena subclavia (y el frénico sobre él).
+Q Después de una biopsia ganglionar en el triángulo posterior del cuello, el paciente no puede encoger el hombro. Nervio: :: *Accesorio (XI) :: Frénico :: Torácico largo :: Supraescapular || El XI inerva trapecio y ECM y es superficial en el triángulo posterior.
+Q Paciente con dolor en el hombro derecho y líquido bajo el diafragma derecho. ¿Por qué duele el hombro? :: *Dolor referido por el nervio frénico (C3–C5) :: Lesión del plexo braquial :: Lesión del accesorio :: Fractura de clavícula || El diafragma y la piel del hombro comparten segmentos (C4).
+
+# Vísceras del cuello: tiroides, paratiroides, laringe y faringe
+> Del hioides a la tráquea: glándulas endocrinas y vía aérea.
+- **Tiroides**: dos lóbulos unidos por el **istmo** (sobre los anillos traqueales 2–4); ± lóbulo piramidal (resto del conducto tirogloso). Envuelta por la fascia pretraqueal: **sube al deglutir**.
+- Irrigación: **arteria tiroidea superior** (1.ª rama de la carótida externa; junto a la **rama externa del laríngeo superior**) e **inferior** (del tronco tirocervical de la subclavia; cruza el **nervio laríngeo recurrente**). Venas tiroideas superior, media e inferior.
+- **Paratiroides**: 4 glándulas en la cara posterior de la tiroides; irrigadas principalmente por la **tiroidea inferior**.
+- **Laringe**: cartílagos tiroides, **cricoides** (único anillo completo), epiglotis, aritenoides. **Membrana cricotiroidea** entre tiroides y cricoides.
+- Nervios: **laríngeo superior** (rama externa → cricotiroideo, tensa las cuerdas; rama interna → sensibilidad supraglótica) y **laríngeo recurrente** (todos los demás músculos intrínsecos; sensibilidad infraglótica). El recurrente izquierdo rodea el **arco aórtico**; el derecho, la **subclavia**.
+- **Faringe**: nasofaringe, orofaringe, laringofaringe; constrictores (X). Esófago inicia en **C6** (cartílago cricoides).
+| Estructura ¦ Nivel vertebral
+| Hioides ¦ C3
+| Cartílago tiroides (prominencia) ¦ C4–C5
+| Bifurcación carotídea ¦ C4 (borde superior del tiroides)
+| Cricoides; inicio de tráquea y esófago ¦ C6
+! **Cricotiroidotomía** de urgencia: a través de la **membrana cricotiroidea**.
+! Lesión **unilateral** del recurrente → **disfonía** (ronquera); **bilateral** → **estridor y dificultad respiratoria**.
++ **Tiroidectomía**: riesgo de lesión del **recurrente** (al ligar la tiroidea inferior), de la **rama externa del laríngeo superior** (pérdida de agudos) y de **hipoparatiroidismo** (hipocalcemia, Chvostek y Trousseau).
++ **Quiste del conducto tirogloso**: masa en la línea media que **sube al sacar la lengua**.
++ Un aneurisma del arco aórtico o un tumor del ápice pulmonar izquierdo pueden comprimir el recurrente izquierdo → ronquera.
+? Único cartílago de la vía aérea que es un anillo completo :: Cricoides.
+? Nivel vertebral del cricoides :: C6.
+? Arteria que cruza el nervio laríngeo recurrente :: Tiroidea inferior.
+? Único músculo de la laringe inervado por el laríngeo superior :: Cricotiroideo (rama externa).
+? Alrededor de qué gira el recurrente izquierdo :: Del arco aórtico.
+? Signo de hipocalcemia tras tiroidectomía :: Chvostek (contracción facial al percutir el facial) o Trousseau (espasmo del carpo con el manguito).
+? Masa de la línea media del cuello que sube al protruir la lengua :: Quiste del conducto tirogloso.
+Q Paciente con ronquera persistente tras tiroidectomía total. Nervio lesionado: :: *Laríngeo recurrente :: Rama interna del laríngeo superior :: Hipogloso :: Frénico || El recurrente inerva casi todos los músculos intrínsecos de la laringe.
+Q En una vía aérea imposible de intubar y ventilar, ¿dónde se hace el acceso quirúrgico de urgencia? :: *Membrana cricotiroidea :: Membrana tirohioidea :: Entre los anillos traqueales 5 y 6 :: Escotadura supraesternal || La cricotiroidotomía es rápida y la membrana es superficial y poco vascular.
+Q Al día siguiente de una tiroidectomía la paciente tiene hormigueo peribucal y espasmo carpopedal. Causa: :: *Hipocalcemia por lesión de las paratiroides :: Lesión del recurrente :: Tormenta tiroidea :: Hematoma cervical || Las paratiroides se lesionan o desvascularizan al quitar la tiroides.
+
+# Irrigación de la cabeza y el cuello y meninges
+> Carótidas y vertebrales llevan la sangre; las yugulares la regresan.
+- **Carótida común**: la derecha nace del tronco braquiocefálico y la izquierda del arco aórtico; se bifurca en **C4** en interna y externa. El **seno carotídeo** (barorreceptor, IX) está en la bifurcación.
+- **Carótida interna**: sin ramas en el cuello; en el cráneo da la **oftálmica**, comunicante posterior, cerebral anterior y media.
+- **Carótida externa**: ramas "**Some Anatomists Like Freaking Out Poor Medical Students**": tiroidea **S**uperior, faríngea **A**scendente, **L**ingual, **F**acial, **O**ccipital, auricular **P**osterior, **M**axilar y temporal **S**uperficial.
+- **Vertebrales** (de la subclavia) suben por los agujeros transversos C6–C1, entran por el foramen magno y forman la **basilar** → **polígono de Willis**.
+- Venas: **yugular interna** (recibe los senos durales; termina con la subclavia en la braquiocefálica) y **yugular externa** (superficial, cruza el ECM).
+- **Meninges**: duramadre, aracnoides y piamadre. Espacios: **epidural** (meníngea media), **subdural** (**venas puente**), **subaracnoideo** (LCR y arterias del polígono).
+- **Triángulo de peligro de la cara** (labio superior y nariz): la vena facial comunica con el **seno cavernoso** vía la oftálmica, sin válvulas.
+| Hematoma ¦ Vaso ¦ Imagen y clínica
+| Epidural ¦ Arteria meníngea media ¦ Lente biconvexa, no cruza suturas; intervalo lúcido
+| Subdural ¦ Venas puente ¦ Semiluna, cruza suturas; adultos mayores, alcohólicos, maltrato infantil
+| Subaracnoideo ¦ Aneurisma del polígono de Willis ¦ "La peor cefalea de mi vida"
+! Primera rama de la carótida externa: **tiroidea superior**. Primera rama intracraneal de la interna: **oftálmica**.
+! Infección del triángulo de peligro de la cara → **trombosis del seno cavernoso** (afecta III, IV, V1, V2 y VI).
++ **Masaje del seno carotídeo**: estimula el barorreflejo y frena el corazón (maniobra vagal en taquicardia supraventricular).
++ **Acceso venoso central** en la yugular interna: en el vértice del triángulo entre las dos cabezas del ECM, lateral a la carótida.
++ **Ingurgitación yugular**: se valora en la yugular interna derecha con el paciente a 45° (insuficiencia cardiaca derecha).
+? Nivel de la bifurcación carotídea :: C4 (borde superior del cartílago tiroides).
+? Primera rama de la carótida externa :: Arteria tiroidea superior.
+? Primera rama intracraneal de la carótida interna :: Arteria oftálmica.
+? Vaso del hematoma subdural :: Venas puente.
+? Por qué es peligroso el triángulo nasolabial :: La vena facial drena al seno cavernoso sin válvulas (riesgo de trombosis séptica).
+? De dónde nacen las arterias vertebrales :: De las subclavias.
+Q Adulto mayor alcohólico con cefalea y confusión progresivas por semanas tras una caída leve; TAC con colección en semiluna que cruza suturas. Vaso: :: *Venas puente (hematoma subdural) :: Meníngea media :: Arteria basilar :: Seno sagital superior roto por fractura || La atrofia cerebral estira las venas puente y se rompen con traumas leves.
+Q Paciente con forúnculo en el labio superior que desarrolla fiebre, edema palpebral y oftalmoplejía. Complicación: :: *Trombosis del seno cavernoso :: Meningitis bacteriana aislada :: Parálisis de Bell :: Absceso parotídeo || Diseminación por la vena facial y la oftálmica al seno cavernoso.
 
 # Miembro superior: hombro, brazo y plexo braquial
 > El plexo braquial (C5–T1) inerva todo el miembro superior.
@@ -143,23 +289,3 @@ Q Adulta mayor con caída, miembro inferior acortado y en rotación externa. Com
 Q Futbolista con trauma en valgo de la rodilla y cajón anterior positivo. Ligamento seguro lesionado: :: *Cruzado anterior :: Cruzado posterior :: Colateral lateral :: Patelar || El cajón anterior evalúa el desplazamiento anterior de la tibia (LCA).
 Q Paciente con yeso largo de pierna que ahora arrastra la punta del pie y no puede evertirlo. Nervio comprimido: :: *Peroneo común :: Tibial :: Femoral :: Safeno || El yeso comprime el nervio en el cuello del peroné.
 Q ¿Qué compartimento de la pierna dorsiflexiona el pie? :: *Anterior (peroneo profundo) :: Lateral (peroneo superficial) :: Posterior superficial (tibial) :: Posterior profundo (tibial) || Tibial anterior, extensores largos y peroneo tercero.
-
-# Tórax: pared, pulmones y mediastino
-> Caja ósea que protege corazón y pulmones y participa en la respiración.
-- Pared: 12 pares de costillas (1–7 **verdaderas**; 8–10 falsas; 11–12 flotantes), esternón (manubrio, cuerpo, xifoides). **Ángulo esternal (de Louis)** = 2.ª costilla, T4–T5: bifurcación traqueal, arco aórtico, límite mediastino superior/inferior.
-- **Paquete neurovascular intercostal** en el surco costal, en el borde **inferior** de cada costilla: **VAN** (vena, arteria, nervio) de superior a inferior.
-- Pleuras: parietal (sensible al dolor) y visceral; recesos costodiafragmáticos (donde se acumula el derrame).
-- Mediastino: **superior** (timo, grandes vasos, tráquea, esófago, conducto torácico) e **inferior**: anterior (timo), **medio** (corazón y pericardio), **posterior** (aorta descendente, esófago, conducto torácico, ácigos, vagos).
-- Proyección de los pulmones: línea medioclavicular 6.ª costilla, axilar media 8.ª, paravertebral 10.ª; las pleuras dos costillas más abajo.
-- Diafragma: aberturas de la **vena cava (T8)**, **esófago (T10)**, **aorta (T12)**: "**I 8 10 eggs AT 12**".
-! Toracocentesis o tubo de tórax: por el **borde superior de la costilla inferior** para no dañar el paquete intercostal; 4.º–5.º espacio, línea axilar media (triángulo de seguridad).
-! Descompresión de neumotórax a tensión: 2.º espacio intercostal en la línea medioclavicular (o 4.º–5.º axilar media en adultos según ATLS 10).
-+ **Masas del mediastino anterior**: las 4 T → timoma, teratoma, tiroides (bocio retroesternal) y "terrible" linfoma.
-+ El conducto torácico drena la linfa al ángulo venoso yugulosubclavio izquierdo; su lesión produce quilotórax.
-? Nivel del ángulo esternal :: 2.ª costilla anterior y disco T4–T5.
-? Orden del paquete intercostal de arriba abajo :: Vena, arteria y nervio (VAN), en el borde inferior de la costilla.
-? Niveles de las aberturas del diafragma :: Vena cava T8, esófago T10, aorta T12.
-? Contenido del mediastino medio :: Corazón y pericardio (con los grandes vasos en su origen).
-? Masas del mediastino anterior (4 T) :: Timoma, teratoma, tiroides y linfoma.
-Q ¿Por dónde introduces la aguja en una toracocentesis? :: *Por el borde superior de la costilla inferior del espacio :: Por el borde inferior de la costilla superior :: En el centro exacto del espacio sin importar el borde :: A través de la costilla || Evitas el paquete vasculonervioso que corre por el borde inferior de cada costilla.
-Q La vena cava inferior cruza el diafragma a nivel de: :: *T8 :: T10 :: T12 :: L1 || T8 vena cava, T10 esófago y vagos, T12 aorta, ácigos y conducto torácico.

@@ -27,7 +27,7 @@
 
   const K={cards:"carrera-tarjetas",prog:"carrera-repaso",qs:"carrera-preguntas",qprog:"carrera-preguntas-prog",sims:"carrera-simulacros",time:"carrera-estudio-tiempo",notes:"carrera-notas",parc:"carrera-parciales",cfg:"carrera-estudio-ajustes",tab:"carrera-fold-estudio-tab"};
   const POMO="__medsync_pomo"; /* contador en marcha: solo en este aparato */
-  const cfg=()=>Object.assign({nuevas:20,foco:25,descanso:5},J(K.cfg,{}));
+  const cfg=()=>Object.assign({nuevas:20,repasos:200,foco:25,descanso:5},J(K.cfg,{}));
 
   /* ===== materias ===== */
   const CUR=()=>typeof CURSO!=="undefined"?CURSO.materias.map(m=>m.n):[];
@@ -63,38 +63,37 @@
   }
   const upcoming=()=>{const t=today();const c=J("carrera-calendario",{});return (Array.isArray(c.exams)?c.exams:[]).filter(e=>e&&e.date>=t&&e.name).sort((a,b)=>a.date.localeCompare(b.date))};
 
-  /* ===== repetición espaciada estilo Anki (SM-2 con pasos de aprendizaje) =====
-     st: 0 nueva/aprendiendo, 1 repaso, 2 reaprendiendo · s: paso · e: facilidad · i: días · d: fecha en que toca.
-     Aprender: 1 min y 10 min (dentro del repaso), luego 1 día; Fácil = 4 días. Repaso: Difícil ×1.2, Bien ×facilidad, Fácil ×facilidad×1.3. */
-  const progMap=()=>{const m=new Map();list(K.prog).forEach(p=>m.set(p.id,p));return m};
-  const LSTEP=[1,10],RSTEP=[10];
-  function schedule(p,g){/* g: 0 otra vez, 1 difícil, 2 bien, 3 fácil */
-    const t=today(),n=p?Object.assign({},p):{e:250,i:0,n:0,l:0,f:t,st:0,s:0};let m=0;
-    if(n.st===undefined){n.st=n.n>0?1:0;n.s=0}
-    if(n.st!==1){
-      const S=n.st===2?RSTEP:LSTEP;let grad=0;n.s=n.s||0;
-      if(g===0){n.s=0;m=S[0]}
-      else if(g===1)m=n.s===0?(S.length>1?Math.round((S[0]+S[1])/2):Math.round(S[0]*1.5)):S[n.s];
-      else if(g===2){if(n.s+1<S.length){n.s++;m=S[n.s]}else grad=n.st===2?Math.max(1,n.i):1}
-      else grad=n.st===2?Math.max(1,n.i)+1:4;
-      if(grad){n.st=1;n.s=0;n.i=grad}
-    }else{
-      const late=Math.max(0,n.d?diffD(n.d,t):0),h=Math.max(n.i+1,Math.round(n.i*1.2)),
-        gd=Math.max(h+1,Math.round((n.i+late/2)*n.e/100)),ez=Math.max(gd+1,Math.round((n.i+late)*n.e/100*1.3));
-      if(g===0){n.l=(n.l||0)+1;n.e=Math.max(130,n.e-20);n.i=1;n.st=2;n.s=0;m=RSTEP[0]}
-      else if(g===1){n.i=h;n.e=Math.max(130,n.e-15)}
-      else if(g===2)n.i=gd;
-      else{n.i=ez;n.e+=15}
-    }
-    n.i=Math.min(n.i,3650);n.n=(n.n||0)+1;n.m=m;n.d=m?t:addD(t,n.i);n.u=Date.now();return n;
+  /* ===== tarjetas: el mismo programador estilo Anki que las guías (anki/srs.js) =====
+     Las tarjetas "de tu Anki" comparten avance con el botón "Tus tarjetas de Anki" de cada guía (carrera-anki-<mazo>);
+     las de tus guías y las tuyas siguen en carrera-repaso. Historial y estadísticas: carrera-srs-log / carrera-srs-dias. */
+  let srsP=null;
+  const loadSRS=()=>window.SRS?Promise.resolve(window.SRS):srsP||(srsP=new Promise(ok=>{const s=document.createElement("script");s.src="anki/srs.js";s.onload=()=>ok(window.SRS||null);s.onerror=()=>ok(null);document.head.appendChild(s)}));
+  let DK=null,DKsig="";
+  function decks(){/* un mazo por materia, como en la pantalla principal de Anki */
+    if(!window.SRS||!BANK)return [];
+    const sig=BANK.c.length+":"+myCards().length+":"+myCards().map(c=>c.id).join(",").length;if(DK&&DKsig===sig)return DK;
+    const R=SRS.repasoStore(),by=new Map(),semOf=new Map(),gname=new Map();
+    BANK.g.forEach(g=>{gname.set(g[0],g[1]);const k=norm(g[1]);semOf.set(k,Math.min(semOf.has(k)?semOf.get(k):99,g[2]||99))});
+    const mine=myCards().map(c=>Object.assign({src:"mia"},c));
+    for(const c of mine.concat(BANK.c)){const key=norm(c.mat)||"sin materia";let d=by.get(key);
+      if(!d){d={id:"m:"+key,name:c.mat||"Sin materia",list:[],ids:new Set()};by.set(key,d)}
+      let x;
+      if(c.src==="anki"&&String(c.gid).startsWith("anki-")){const M=c.gid.slice(5);x={k:SRS.hash(c.f+"|"+c.b),st:SRS.deckStore(M),f:c.f,b:c.b,t:c.t,deck:M,dn:gname.get(c.gid)||c.mat}}
+      else{const id=c.gid?"g-"+c.gid:"mia-"+key.replace(/ /g,"-");x={k:c.id,st:R,f:c.f,b:c.b,t:c.t,deck:id,dn:c.gid?(c.mat+" · guía"):(c.mat+" · tuyas")}}
+      d.ids.add(x.deck);d.list.push(x)}
+    DK=[...by.values()].map(d=>{const sem=semOf.has(norm(d.name))?semOf.get(norm(d.name)):99,ids=[...d.ids];
+      return {id:d.id,name:d.name,sem,group:sem<99?sem+"º semestre":"Tus tarjetas",ids,cards:()=>d.list,total:d.list.length,states:()=>d.list.map(x=>x.st.get(x.k)),
+        newLim:()=>cfg().nuevas,revLim:()=>cfg().repasos||200}})
+      .sort((a,b)=>a.sem-b.sem||a.name.localeCompare(b.name,"es"));
+    DKsig=sig;return DK;
   }
-  const ivTxt=n=>{if(n.m)return n.m<=1?"<1 min":n.m+" min";const i=n.i,f=x=>String(Math.round(x*10)/10).replace(".",",");return i<30?i+(i===1?" día":" días"):i<365?f(i/30)+" m":f(i/365)+" a"};
-  function dueInfo(mat){
-    const t=today(),pm=progMap(),cs=allCards().filter(c=>sameMat(c.mat,mat));
-    let due=0,nw=0,learned=0;
-    for(const c of cs){const p=pm.get(c.id);if(!p)nw++;else{if(p.d<=t)due++;if(p.i>=21)learned++}}
-    const introToday=list(K.prog).filter(p=>p.f===t).length;
-    return {total:cs.length,due,nw,learned,newLeft:Math.max(0,Math.min(nw,cfg().nuevas-introToday))};
+  const deckOf=m=>m?decks().find(d=>norm(d.name)===norm(m)):null;
+  function setLim(o){const c=cfg();if(o.lim!=null)c.nuevas=o.lim;if(o.rlim!=null)c.repasos=o.rlim;set(K.cfg,JSON.stringify(c));const s=$("#esNew");if(s)s.value=String(c.nuevas)}
+  function dueInfo(m){
+    let due=0,nw=0,total=0,learned=0;
+    for(const d of decks()){if(m&&norm(d.name)!==norm(m))continue;const k=SRS.deckCounts(d);due+=k.r+k.l;nw+=k.n;total+=k.total;
+      for(const p of d.states())if(p&&!p.nw&&p.q===1&&p.i>=21)learned++}
+    return {total,due,nw,learned,newLeft:nw};
   }
 
   /* ===== estilos ===== */
@@ -114,6 +113,7 @@
 #estudio .es-next{grid-column:1/-1;margin:4px 0 0;font-size:.92rem;color:#e7f3ec}#estudio .es-next b{color:#ffb98f}
 #estudio .es-pane[hidden]{display:none}
 #estudio .es-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#estudio .es-srsbox{padding:0;overflow:hidden}#estudio .es-srsbox>.srs{min-height:460px}#estudio .es-srsbox>h3,#estudio .es-srsbox>p{padding:0 18px}#estudio .es-srsbox>h3{padding-top:16px}
 #estudio .es-stat{display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 14px}#estudio .es-stat div b{display:block;font:900 1.6rem/1 var(--f-display)}#estudio .es-stat div span{font-size:.78rem;color:var(--muted)}
 #estudio .es-card{border:1.5px solid var(--line);border-radius:16px;padding:22px 20px;min-height:190px;display:flex;flex-direction:column;gap:12px;background:var(--bg)}
 #estudio .es-card .es-meta{font:600 .72rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
@@ -122,7 +122,7 @@
 #estudio .es-grades{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
 #estudio .es-grades button{border:0;border-radius:12px;padding:10px 6px;font:800 .88rem var(--f-display);cursor:pointer;color:#fff}
 #estudio .es-grades small{display:block;font:600 .7rem var(--f-mono);opacity:.85;margin-top:2px}
-#estudio .g0{background:#c0392b}#estudio .g1{background:#c9a24a}#estudio .g2{background:var(--green-3)}#estudio .g3{background:#2f6fc1}
+#estudio .es-grades .g0{background:#c0392b}#estudio .es-grades .g1{background:#c9a24a}#estudio .es-grades .g2{background:var(--green-3)}#estudio .es-grades .g3{background:#2f6fc1}
 #estudio .cbtn.sec{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
 #estudio .cbtn:disabled{opacity:.5;cursor:default}
 #estudio .es-q{font:700 1.08rem/1.45 var(--f-display);margin:6px 0 14px}
@@ -172,10 +172,11 @@
     cards:'<svg viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="14" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/></svg>',
     exam:'<svg viewBox="0 0 24 24"><path d="M9 4h6v3H9z"/><path d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><path d="M8 13l2.5 2.5L16 10"/></svg>',
     timer:'<svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>',
+    stats:'<svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>',
     note:'<svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>'};
 
   /* ===== vista ===== */
-  const TABS=[["tarjetas","Tarjetas",ICO.cards],["examen","Modo examen",ICO.exam],["contador","Contador",ICO.timer],["notas","Notas",ICO.note]];
+  const TABS=[["tarjetas","Tarjetas",ICO.cards],["examen","Modo examen",ICO.exam],["contador","Contador",ICO.timer],["notas","Notas",ICO.note],["stats","Estadísticas",ICO.stats]];
   const html=`<div class="cal" id="estudio" hidden role="dialog" aria-modal="true" aria-labelledby="esTtl">
   <div class="vbar gut"><a class="vbtn" href="#" id="esBack"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span class="lbl">Inicio</span></a>
     <div class="ttl" id="esTtl">${ICO.book}Estudio</div></div>
@@ -184,7 +185,7 @@
     <div class="es-tabs" role="tablist">${TABS.map(([k,l,i])=>`<button class="es-tab" type="button" role="tab" data-tab="${k}" aria-selected="false">${i}<span>${l}</span><b hidden></b></button>`).join("")}</div>
     <div class="es-mats" id="esMats" aria-label="Materia"></div>
     <div class="es-pane" data-pane="tarjetas"><div class="cal-grid"><div class="cal-main">
-      <section class="ccard" id="esCards"></section></div><div class="cal-side">
+      <section class="ccard es-srsbox" id="esCards"></section></div><div class="cal-side">
       <details class="ccard udet fold" data-fold="es-addc"><summary><h3>Agregar tarjeta</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
         <form class="cform" id="esCForm" autocomplete="off">
           <div class="row2"><label>Materia<input class="es-matin" list="esMatList" maxlength="80" required></label><label>Tema <span class="h">opcional</span><input id="esCTema" maxlength="80"></label></div>
@@ -200,7 +201,7 @@
           <div class="row2"><label>Tarjetas<select id="esIANc"><option>0</option><option>10</option><option selected>15</option><option>25</option></select></label><label>Preguntas<select id="esIANq"><option>0</option><option selected>10</option><option>20</option></select></label></div>
           <p class="cerr" id="esIAErr" hidden></p><div class="btns"><button class="cbtn" type="submit">Crear</button></div></form></details>
       <details class="ccard udet fold" data-fold="es-cset"><summary><h3>Ajustes</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
-        <label class="gr-min">Tarjetas nuevas por día <select id="esNew"><option>10</option><option>20</option><option>30</option><option>50</option></select></label></details>
+        <label class="gr-min">Tarjetas nuevas por día (cada materia) <select id="esNew"><option>0</option><option>5</option><option>10</option><option>20</option><option>30</option><option>50</option><option>100</option></select></label></details>
     </div></div></div>
     <div class="es-pane" data-pane="examen" hidden><div class="cal-grid"><div class="cal-main"><section class="ccard" id="esExam"></section></div>
       <div class="cal-side"><section class="ccard" id="esExStats"></section>
@@ -212,6 +213,7 @@
           <label>Explicación <span class="h">opcional</span><textarea id="esQE" rows="2" maxlength="1200"></textarea></label>
           <p class="cerr" id="esQErr" hidden></p><div class="btns"><button class="cbtn" type="submit">Guardar pregunta</button></div></form>
         <div class="es-mine" id="esMineQ"></div></details></div></div></div>
+    <div class="es-pane" data-pane="stats" hidden><section class="ccard es-srsbox" id="esStats"></section></div>
     <div class="es-pane" data-pane="contador" hidden><div class="cal-grid"><div class="cal-main"><section class="ccard" id="esPomo"></section></div>
       <div class="cal-side"><section class="ccard" id="esTime"></section></div></div></div>
     <div class="es-pane" data-pane="notas" hidden><div class="cal-grid"><div class="cal-main"><section class="ccard" id="esNotes"></section></div>
@@ -233,7 +235,7 @@
     $("#esPill").addEventListener("click",()=>{tab="contador";set(K.tab,tab);location.hash="estudio";render()});
     bindCards();bindExam();bindPomo();bindNotes();
     document.addEventListener("keydown",onKey);
-    addEventListener("storage",ev=>{if(ev.key&&ev.key.startsWith("carrera-")&&!$("#estudio").hidden&&!session&&!exam)render()});
+    addEventListener("storage",ev=>{if(ev.key&&ev.key.startsWith("carrera-")&&!$("#estudio").hidden&&!exam){if(window.SRS)SRS.reloadAll();render()}});
     tickPomo();setInterval(tickPomo,1000);
   }
   const goHome=()=>{if(typeof go==="function")go("");else location.hash=""};
@@ -242,7 +244,7 @@
     lastY=window.scrollY;
     if(!mat){const e=upcoming()[0];if(e&&diffD(today(),e.date)<=14)mat=examMat(e)}
     $("#estudio").hidden=false;document.documentElement.style.overflow="hidden";document.title="Estudio · Carrera de Medicina";
-    render();loadBank().then(()=>{if(!mat){const e=upcoming()[0];if(e&&diffD(today(),e.date)<=14)mat=examMat(e)}render()});
+    render();Promise.all([loadBank(),loadSRS()]).then(()=>{if(!mat){const e=upcoming()[0];if(e&&diffD(today(),e.date)<=14)mat=examMat(e)}render()});
   }
   function close(){
     if(!ready||$("#estudio").hidden)return;$("#estudio").hidden=true;document.documentElement.style.overflow="";document.title="Carrera de Medicina";
@@ -250,9 +252,8 @@
   }
   function onKey(ev){
     if($("#estudio").hidden)return;const typing=/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement&&document.activeElement.tagName);
-    if(ev.key==="Escape"&&!typing){goHome();return}
+    if(ev.key==="Escape"&&!typing&&!document.querySelector("#estudio .srs-menu")){goHome();return}
     if(typing)return;
-    if(tab==="tarjetas"&&session){if(ev.key===" "&&!session.show){ev.preventDefault();session.show=true;renderCards()}else if(session.show&&/^[1-4]$/.test(ev.key))grade(+ev.key-1)}
     if(tab==="examen"&&exam&&!exam.done&&/^[1-5a-e]$/i.test(ev.key)){const i=/\d/.test(ev.key)?+ev.key-1:ev.key.toLowerCase().charCodeAt(0)-97;pick(i)}
   }
 
@@ -266,13 +267,13 @@
     $$("#estudio .es-matin").forEach(i=>{if(!i.value&&mat)i.value=mat});
     const di=dueInfo("");const badge=$('#estudio .es-tab[data-tab="tarjetas"] b');badge.hidden=!(di.due+di.newLeft);badge.textContent=di.due+di.newLeft;
     renderHero();
-    if(tab==="tarjetas")renderCards();else if(tab==="examen")renderExam();else if(tab==="contador")renderPomo();else renderNotes();
+    if(tab==="tarjetas")renderCards();else if(tab==="stats")renderStats();else if(tab==="examen")renderExam();else if(tab==="contador")renderPomo();else renderNotes();
   }
   function renderHero(){
     const t=today(),di=dueInfo(mat),sims=list(K.sims).filter(s=>sameMat(s.mat,mat)&&diffD(s.d,t)<=30),ok=sims.reduce((a,s)=>a+s.ok,0),n=sims.reduce((a,s)=>a+s.n,0);
     const tm=list(K.time).filter(s=>sameMat(s.mat,mat)),mToday=tm.filter(s=>s.d===t).reduce((a,s)=>a+s.m,0),mWeek=tm.filter(s=>diffD(s.d,t)<7).reduce((a,s)=>a+s.m,0);
     const ex=upcoming().filter(e=>!mat||sameMat(examMat(e),mat))[0];
-    $("#esHero").innerHTML=`<p class="gh-kick">${mat?esc(mat):"Todas tus materias"}${BANK?"":" · cargando tus guías…"}</p>
+    $("#esHero").innerHTML=`<p class="gh-kick">${mat?esc(mat):"Todas tus materias"}${BANK&&window.SRS?"":" · cargando tus guías…"}</p>
       <div class="es-k"><b>${di.due+di.newLeft}</b><span>tarjetas para hoy</span></div>
       <div class="es-k"><b>${n?pct(ok,n)+"%":"—"}</b><span>aciertos (30 días)</span></div>
       <div class="es-k"><b>${hm(mToday)}</b><span>estudiado hoy</span></div>
@@ -280,55 +281,38 @@
       ${ex?`<p class="es-next">Próximo examen: <b>${esc(ex.name)}</b> · ${diffD(t,ex.date)===0?"hoy":diffD(t,ex.date)===1?"mañana":"en "+diffD(t,ex.date)+" días ("+nice(ex.date)+")"}</p>`:""}`;
   }
 
-  /* ===== Tarjetas ===== */
-  let session=null;
-  function startSession(){
-    const t=today(),pm=progMap(),cs=allCards().filter(c=>sameMat(c.mat,mat));
-    const due=shuffle(cs.filter(c=>{const p=pm.get(c.id);return p&&p.d<=t})).sort((a,b)=>pm.get(a.id).d.localeCompare(pm.get(b.id).d));
-    const nw=cs.filter(c=>!pm.has(c.id));const left=dueInfo(mat).newLeft;
-    /* nuevas: primero las tuyas, luego las de las guías en orden de tema */
-    const fresh=nw.filter(c=>c.src!=="guia").concat(nw.filter(c=>c.src==="guia")).slice(0,left);
-    session={q:due.concat(fresh),i:0,show:false,done:0,again:0};
-  }
+  /* ===== Tarjetas (pantallas de Anki: Mazos → resumen del mazo → repaso) ===== */
+  let rv=null,rvKey=null,stv=null;
   function renderCards(){
     const box=$("#esCards");
-    if(!BANK){box.innerHTML=`<h3>Tarjetas</h3><p class="es-mut">Cargando las tarjetas de tus guías…</p>`;return}
-    if(session&&session.i<session.q.length){
-      const c=session.q[session.i],p=progMap().get(c.id);
-      box.innerHTML=`<h3>Repaso <small>${session.i+1} de ${session.q.length}</small></h3><div class="es-bar"><i style="width:${pct(session.i,session.q.length)}%"></i></div>
-        <div class="es-card"><div class="es-meta">${esc(c.mat)}${c.t?" · "+esc(c.t):""}${c.src==="guia"?" · de tu guía":c.src==="anki"?" · de tu Anki":c.src==="ia"?" · IA":" · tuya"}${!p?" · nueva":""}</div>
-        <div class="es-f">${esc(c.f)}</div>${session.show?`<div class="es-b">${esc(c.b)}</div>`:""}</div>
-        ${session.show?`<div class="es-grades">${["Otra vez","Difícil","Bien","Fácil"].map((l,g)=>`<button type="button" class="g${g}" data-g="${g}">${l}<small>${ivTxt(schedule(p,g))}</small></button>`).join("")}</div>`
-          :`<div class="btns" style="margin-top:12px"><button class="cbtn" type="button" id="esShow">Mostrar respuesta</button> <button class="cbtn sec" type="button" id="esStop">Terminar</button></div>`}
-        <p class="es-help" style="margin-top:12px">Atajos: espacio = mostrar, 1–4 = calificar.</p>`;
-      return;
-    }
-    if(session){const s=session;session=null;
-      box.innerHTML=`<h3>¡Listo por hoy!</h3><p class="es-big">${s.done}</p><p style="text-align:center" class="es-mut">tarjetas repasadas${s.again?" · "+s.again+" las repetiste":""}</p>
-        <div class="btns" style="text-align:center"><button class="cbtn" type="button" id="esAgain">Ver resumen</button></div>`;return}
-    const di=dueInfo(mat),guias=[...new Set(allCards().filter(c=>sameMat(c.mat,mat)&&c.src==="guia").map(c=>c.gid))];
-    box.innerHTML=`<h3>Tarjetas <small>${esc(mat||"todas las materias")}</small></h3>
-      <div class="es-stat"><div><b>${di.due}</b><span>para repasar</span></div><div><b>${di.newLeft}</b><span>nuevas hoy</span></div><div><b>${di.learned}</b><span>ya dominas</span></div><div><b>${di.total}</b><span>en total</span></div></div>
-      ${di.total?`<div class="btns"><button class="cbtn" type="button" id="esStart" ${di.due+di.newLeft?"":"disabled"}>${di.due+di.newLeft?"Empezar repaso ("+(di.due+di.newLeft)+")":"Nada pendiente hoy"}</button></div>`:`<p class="es-mut">Todavía no hay tarjetas de esta materia. Agrega las tuyas o créalas con IA.</p>`}
-      <p class="es-help" style="margin-top:14px">Funciona como Anki: Otra vez la repite en 1 minuto, Difícil en unos 6, Bien la pasa a 10 minutos y luego a 1 día, y Fácil la manda a 4 días. Después cada acierto multiplica el intervalo (curva del olvido). ${guias.length?"Incluye las tarjetas de tus guías: "+guias.map(g=>{const x=GUIDES().find(y=>y.id===g);return esc(x?x.title:g)}).join(", ")+".":""}</p>`;
+    if(!BANK||!window.SRS){if(rv){rv.destroy();rv=null}rvKey=null;box.innerHTML=`<h3>Tarjetas</h3><p class="es-mut">Cargando tus tarjetas…</p>`;return}
+    const d=deckOf(mat),key=(d?d.id:mat?"none:"+mat:"")+"|"+DKsig;
+    if(rvKey===key&&(rv?box.contains(rv.el):box.querySelector(".srs"))){if(rv)rv.refresh();else drawDecks(box);return}
+    if(rv){rv.destroy();rv=null}rvKey=key;box.innerHTML="";
+    if(mat&&!d){box.innerHTML=`<h3>Tarjetas <small>${esc(mat)}</small></h3><p class="es-mut">Todavía no hay tarjetas de esta materia. Agrega las tuyas o créalas con IA.</p>`;return}
+    if(!d){drawDecks(box);return}
+    rv=SRS.reviewer(box,{title:()=>d.name,cards:d.cards,ids:d.ids,newLim:d.newLim,revLim:d.revLim,setLim:o=>{setLim(o);renderHero()},
+      onStats:()=>{tab="stats";set(K.tab,tab);render()},onBack:()=>{mat="";render()},back:"Mazos"});
   }
-  function grade(g){
-    if(!session||!session.show)return;const c=session.q[session.i],pm=progMap(),items=list(K.prog);
-    const n=schedule(pm.get(c.id),g),m=n.m;delete n.m;n.id=c.id;
-    if(!m&&n.i>=3){const f=Math.max(1,Math.round(n.i*.05));n.i=Math.min(3650,n.i+Math.round((Math.random()*2-1)*f));n.d=addD(today(),n.i)}
-    const i=items.findIndex(x=>x.id===c.id);if(i>=0)items[i]=n;else items.push(n);saveList(K.prog,items);
-    /* aprendiendo: vuelve dentro de este repaso (más pronto con Otra vez, más tarde con Bien) */
-    if(m){session.q.splice(Math.min(session.q.length,session.i+1+(m<=1?3:m<=6?6:10)),0,c);if(g===0)session.again++}else session.done++;
-    session.i++;session.show=false;renderCards();renderHero();
+  function drawDecks(box){
+    SRS.css();const ds=decks(),t=SRS.today(null);
+    box.innerHTML=`<div class="srs"${SRS.dark()?" data-dark":""}><div class="srs-top"><b>Mazos</b><button class="srs-tb" type="button" data-es="stats">Estadísticas</button></div>
+      <div style="padding:6px 8px 4px;overflow-x:auto">${ds.length?SRS.deckList(ds):`<p class="es-mut">Todavía no hay tarjetas.</p>`}</div>
+      <p class="srs-k" style="text-align:center;padding:4px 10px 14px">${t.n?`Hoy estudiaste ${t.n} tarjeta${t.n===1?"":"s"} en ${Math.max(1,Math.round(t.ms/6e4))} min.`:"Hoy aún no estudias."} Toca una materia para ver su resumen y estudiar. Funciona igual que Anki y comparte el avance con el botón «Tus tarjetas de Anki» de cada guía.</p></div>`;
+  }
+  function renderStats(){
+    const box=$("#esStats");
+    if(!BANK||!window.SRS){box.innerHTML=`<h3>Estadísticas</h3><p class="es-mut">Cargando…</p>`;return}
+    const d=deckOf(mat),sc=d?d.id:"";
+    if(stv&&box.contains(stv.el)){stv.setScope(sc);return}
+    box.innerHTML="";
+    stv=SRS.stats(box,{decks:()=>decks(),scopes:()=>[["","Todas las materias"]].concat(decks().map(x=>[x.id,x.name])),scope:sc});
   }
   function bindCards(){
     $("#esCards").addEventListener("click",ev=>{
+      const r=ev.target.closest("tr[data-deck]");if(r){const d=decks().find(x=>x.id===r.dataset.deck);if(d){mat=d.name;render()}return}
       const b=ev.target.closest("button");if(!b)return;
-      if(b.id==="esStart"){startSession();renderCards()}
-      else if(b.id==="esShow"){session.show=true;renderCards()}
-      else if(b.id==="esStop"){session=null;render()}
-      else if(b.id==="esAgain")render();
-      else if(b.dataset.g)grade(+b.dataset.g);
+      if(b.dataset.es==="stats"){tab="stats";set(K.tab,tab);render()}
     });
     $("#esCForm").addEventListener("submit",ev=>{ev.preventDefault();const f=ev.target;
       const items=list(K.cards);items.push({id:uid("t"),mat:f.querySelector(".es-matin").value.trim(),t:$("#esCTema").value.trim(),f:$("#esCF").value.trim(),b:$("#esCB").value.trim(),src:"mia"});
@@ -337,7 +321,7 @@
       if(!d.classList.contains("warn")){d.classList.add("warn");d.textContent="¿Seguro?";return}
       saveList(K.cards,list(K.cards).filter(x=>x.id!==d.dataset.del));mineCards();render()});
     $("#esNew").value=String(cfg().nuevas);
-    $("#esNew").addEventListener("change",ev=>{set(K.cfg,JSON.stringify(Object.assign(cfg(),{nuevas:+ev.target.value})));render()});
+    $("#esNew").addEventListener("change",ev=>{setLim({lim:+ev.target.value});if(rv){rv.destroy();rv=null;rvKey=null}render()});
     $("#esIA").addEventListener("submit",ev=>{ev.preventDefault();genIA(ev.target)});
     mineCards();
   }

@@ -29,3 +29,5 @@ jobs:
       - run: node tools-push/avisos.js
         env:
           MED_SYNC: ${{ secrets.MED_SYNC }}
+          # opcional: clave de la app Bark del iPhone, para que los avisos suenen con el sonido propio (docs/avisos-sonido.md)
+          MED_BARK: ${{ secrets.MED_BARK }}

@@ -37,8 +37,8 @@
     if(BANK)return Promise.resolve(BANK);
     if(!bankP)bankP=fetch("estudio-banco.json",{cache:"force-cache"}).then(r=>r.ok?r.json():null).catch(()=>null).then(b=>{
       const g=b&&Array.isArray(b.g)?b.g:[];
-      BANK={g,c:(b&&b.c||[]).map(x=>({id:x[0],mat:(g[x[1]]||[])[1]||"",gid:(g[x[1]]||[])[0]||"",t:x[2],f:x[3],b:x[4],src:"guia"})),
-        q:(b&&b.q||[]).map(x=>({id:x[0],mat:(g[x[1]]||[])[1]||"",gid:(g[x[1]]||[])[0]||"",t:x[2],q:x[3],o:x[4],a:x[5],e:x[6],src:"guia"}))};
+      BANK={g,c:(b&&b.c||[]).map(x=>({id:x[0],mat:(g[x[1]]||[])[1]||"",gid:(g[x[1]]||[])[0]||"",t:x[2],f:x[3],b:x[4],src:x[5]==="a"?"anki":"guia"})),
+        q:(b&&b.q||[]).map(x=>({id:x[0],mat:(g[x[1]]||[])[1]||"",gid:(g[x[1]]||[])[0]||"",t:x[2],q:x[3],o:x[4],a:x[5],e:x[6],src:x[7]==="a"?"anki":"guia"}))};
       /* guías que no traen tarjetas (solo preguntas): sus preguntas también sirven como tarjetas */
       const withCards=new Set(BANK.c.map(c=>c.gid));
       BANK.q.filter(q=>!withCards.has(q.gid)).forEach(q=>BANK.c.push({id:"x"+q.id,mat:q.mat,gid:q.gid,t:q.t,f:q.q,b:q.o[q.a]+(q.e?" · "+q.e:""),src:"guia"}));
@@ -282,7 +282,7 @@
     if(session&&session.i<session.q.length){
       const c=session.q[session.i],p=progMap().get(c.id);
       box.innerHTML=`<h3>Repaso <small>${session.i+1} de ${session.q.length}</small></h3><div class="es-bar"><i style="width:${pct(session.i,session.q.length)}%"></i></div>
-        <div class="es-card"><div class="es-meta">${esc(c.mat)}${c.t?" · "+esc(c.t):""}${c.src==="guia"?" · de tu guía":c.src==="ia"?" · IA":" · tuya"}${!p?" · nueva":""}</div>
+        <div class="es-card"><div class="es-meta">${esc(c.mat)}${c.t?" · "+esc(c.t):""}${c.src==="guia"?" · de tu guía":c.src==="anki"?" · de tu Anki":c.src==="ia"?" · IA":" · tuya"}${!p?" · nueva":""}</div>
         <div class="es-f">${esc(c.f)}</div>${session.show?`<div class="es-b">${esc(c.b)}</div>`:""}</div>
         ${session.show?`<div class="es-grades">${["Otra vez","Difícil","Bien","Fácil"].map((l,g)=>`<button type="button" class="g${g}" data-g="${g}">${l}<small>${ivTxt(schedule(p,g).i)}</small></button>`).join("")}</div>`
           :`<div class="btns" style="margin-top:12px"><button class="cbtn" type="button" id="esShow">Mostrar respuesta</button> <button class="cbtn sec" type="button" id="esStop">Terminar</button></div>`}

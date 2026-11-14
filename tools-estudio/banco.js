@@ -43,5 +43,14 @@ for(const [gid,file,mat,sem] of GUIAS){
   for(const x of r.c){const k='c'+x.f+'|'+x.b;if(seen.has(k)||x.b.length>700)continue;seen.add(k);out.c.push([id('c',k),gi,x.t||'',x.f,x.b]);nc++}
   console.log(gid.padEnd(20),'preguntas',String(nq).padStart(4),'tarjetas',String(nc).padStart(4));
 }
+// tarjetas de Anki de cada materia (site/anki/<id>.json, las arma tools-anki): fuente "a"
+const ak=path.join(site,'anki');
+for(const f of (fs.existsSync(ak)?fs.readdirSync(ak):[]).filter(f=>f.endsWith('.json')).sort()){
+  const d=JSON.parse(fs.readFileSync(path.join(ak,f),'utf8')),gi=out.g.length;let nq=0,nc=0;
+  out.g.push(['anki-'+d.id,d.n,d.s]);
+  for(const x of d.q){const k='q'+x[1]+'|'+x[2].join('|');if(seen.has(k))continue;seen.add(k);out.q.push([id('q',k),gi,x[0],x[1],x[2],x[3],x[4]||'','a']);nq++}
+  for(const x of d.c){const k='c'+x[1]+'|'+x[2];if(seen.has(k)||x[2].length>700)continue;seen.add(k);out.c.push([id('c',k),gi,x[0],x[1],x[2],'a']);nc++}
+  console.log(('anki '+d.id).padEnd(20),'preguntas',String(nq).padStart(4),'tarjetas',String(nc).padStart(4));
+}
 fs.writeFileSync(path.join(site,'estudio-banco.json'),JSON.stringify(out));
 console.log('total',out.q.length,'preguntas,',out.c.length,'tarjetas,',Math.round(fs.statSync(path.join(site,'estudio-banco.json')).size/1024),'KB');

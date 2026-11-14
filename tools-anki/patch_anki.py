@@ -4,7 +4,7 @@
 # Idempotente: correrlo otra vez después de build.py (tools-s12) o de rearmar el hub.
 # Uso: python3 tools-anki/patch_anki.py [ruta/al/index.html del artefacto ...]
 import os,re,json,sys,html
-HERE=os.path.dirname(os.path.abspath(__file__)); SITE=os.path.join(HERE,'..','site')
+HERE=os.path.dirname(os.path.abspath(__file__)); SITE=os.environ.get('SITE') or os.path.join(HERE,'..','site')
 J=lambda m:json.load(open(os.path.join(SITE,'anki',m+'.json'),encoding='utf-8'))
 EXIST={'simulacion-i':'s1/guias/simulacion-i.html','simulacion-ii':'s2/guias/simulacion-ii.html','anatomia-humana-i':'s2/guias/anatomia-humana-i.html',
  'farmacologia':'s3/farmacologia/index.html','anatomia':'s3/anatomia/index.html','hematologia':'s4/apps/hematologia.html','farmacologia-ii':'s4/apps/farmacologia-ii.html',

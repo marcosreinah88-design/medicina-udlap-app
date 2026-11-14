@@ -18,11 +18,20 @@
 - Los solventes del procesamiento **disuelven los lípidos**: por eso el adipocito se ve "vacío" en H&E.
 + Biopsia transoperatoria: corte por **congelación (criostato)** para un diagnóstico rápido mientras el paciente sigue en el quirófano; también conserva los lípidos.
 ## Hematoxilina y eosina (H&E)
+^ goblet.webp :: Epitelio de intestino delgado en H&E (MO ×1600). Los **núcleos** salen morados por la hematoxilina (basófilos) y el **citoplasma** rosa por la eosina (acidófilo). Las flechas señalan **células caliciformes**: su moco casi no se tiñe y se ve pálido. :: OpenStax, Anatomy & Physiology 2e, fig. 4.5 (Goblet Cell) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 64,34 :: Moco de la célula caliciforme (pálido: no capta H&E)
+^^ 49,53 :: Núcleo: basófilo, morado por hematoxilina
+^^ 57,42 :: Citoplasma: acidófilo, rosa por eosina
+^^ 72,80 :: Lámina propia con núcleos de células inmunes
+^^ 14,45 :: Luz intestinal (vacía)
 ~ Basófilo :: Estructura ácida que capta el colorante básico (hematoxilina): núcleo, ADN, ARN, ribosomas, RER. Se ve azul-morado.
 ~ Acidófilo (eosinófilo) :: Estructura básica que capta el colorante ácido (eosina): citoplasma, mitocondrias, colágeno. Se ve rosa.
 ~ Metacromasia :: Cambio de color del colorante (p. ej. azul de toluidina se vuelve morado) en gránulos de mastocitos y matriz de cartílago.
 ! Basófilo = afinidad por colorante **básico** porque la estructura es **ácida** (ADN, ARN). Es la confusión más frecuente.
 ## Tinciones especiales
+^ reticular.webp :: Tejido reticular con **impregnación argéntica** (MO ×1600): las fibras reticulares (colágeno III) se ven **negras** formando una red que sostiene a las células. :: OpenStax, Anatomy & Physiology 2e, fig. 4.10 (Reticular Tissue) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 38,28 :: Fibras reticulares (colágeno III): negras con plata
+^^ 62,62 :: Células atrapadas en las mallas de la red
 | Tinción ¦ Qué demuestra ¦ Color
 | H&E ¦ Núcleo / citoplasma ¦ Azul-morado / rosa
 | PAS ¦ Glucógeno, moco neutro, membrana basal ¦ Magenta
@@ -32,6 +41,10 @@
 | Sudán / aceite rojo O ¦ Lípidos (corte en congelación) ¦ Rojo-naranja
 | Azul de toluidina ¦ Mastocitos, cartílago ¦ Metacromático (morado)
 ## Tipos de microscopía
+^ sem.webp :: **Microscopio electrónico de barrido (MEB)**: da imágenes de superficie en 3D, en blanco y negro. Aquí un eritrocito, una plaqueta y un leucocito. :: OpenStax, Anatomy & Physiology 2e, fig. 18.1 (Blood Cells) · CC BY 4.0
+^^ 25,52 :: Eritrocito: disco bicóncavo, sin núcleo
+^^ 58,68 :: Plaqueta activada (prolongaciones)
+^^ 82,28 :: Leucocito con microvellosidades en la superficie
 % ≈ 0.2 µm :: resolución del microscopio óptico
 % ≈ 1 nm :: resolución del electrónico de transmisión
 - **Electrónico de transmisión**: ultraestructura (organelos, uniones). **De barrido**: superficies en 3D.
@@ -49,6 +62,13 @@ Q La tinción PAS es positiva en: :: *Glucógeno y membranas basales :: Colágen
 # Tejido epitelial
 > Láminas de células unidas con poca matriz, sobre una membrana basal y sin vasos.
 ## Características y clasificación
+^ pseudo.webp :: Epitelio **cilíndrico pseudoestratificado ciliado** de la tráquea (MO ×680): todas las células tocan la membrana basal, pero los núcleos quedan a distintas alturas y parece estratificado. :: OpenStax, Anatomy & Physiology 2e, fig. 22.4 (Pseudostratified Epithelium) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 65,8 :: Cilios en la superficie apical
+^^ 40,24 :: Núcleos a distintas alturas (pseudoestratificado)
+^^ 30,46 :: Membrana basal
+^^ 50,57 :: Lámina propia (tejido conjuntivo laxo)
+^^ 74,73 :: Vaso sanguíneo en la submucosa
+^ vellosidades.webp :: Vellosidades del intestino delgado (MO ×508): cada una está cubierta por **epitelio cilíndrico simple** (una sola capa de células altas con núcleo basal) con células caliciformes intercaladas. :: OpenStax, Anatomy & Physiology 2e, fig. 23.20 (Histology of the Small Intestine) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
 - **Polaridad** (dominios apical, lateral y basal), **avascular** (se nutre por difusión desde el conectivo), apoyado en la **membrana basal** (lámina basal + lámina reticular) y con alta renovación.
 - Se clasifica por **número de capas** (simple, estratificado, seudoestratificado) y **forma de la capa superficial** (plano, cúbico, cilíndrico). El transicional es el **urotelio**.
 | Epitelio ¦ Localización típica
@@ -60,12 +80,19 @@ Q La tinción PAS es positiva en: :: *Glucógeno y membranas basales :: Colágen
 | Plano estratificado queratinizado ¦ Epidermis
 | Transicional (urotelio) ¦ Pelvis renal, uréter, vejiga
 ## Especializaciones apicales
+^ microvellosidades.webp :: **Microvellosidades** del enterocito vistas con microscopio electrónico de transmisión (×196,000): forman el borde en cepillo y aumentan la superficie de absorción. A diferencia de los cilios, no se mueven y su eje es de actina. :: OpenStax, Anatomy & Physiology 2e, fig. 23.20 (Histology of the Small Intestine) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 22,35 :: Microvellosidad (eje de filamentos de actina)
+^^ 50,88 :: Citoplasma apical (red terminal)
 ~ Microvellosidades :: Proyecciones con actina; forman el borde en cepillo o chapa estriada y aumentan la absorción (intestino, túbulo proximal).
 ~ Estereocilios :: Microvellosidades muy largas e inmóviles (epidídimo, células ciliadas del oído).
 ~ Cilios :: Axonema 9+2 de microtúbulos con dineína; se mueven (tráquea, trompa uterina).
 ! Cilios: 9 pares + 2 centrales (9+2) con dineína; el cuerpo basal y el centriolo tienen 9 tripletes (9+0).
 + **Síndrome de Kartagener** (discinesia ciliar primaria): faltan los brazos de dineína → bronquiectasias, sinusitis, infertilidad y situs inversus.
 ## Uniones celulares
+^ discos.webp :: Músculo cardiaco: el **disco intercalar** es la línea escalonada donde se unen dos cardiomiocitos. Ahí se juntan las tres uniones: fascia adherens, desmosomas (anclaje) y uniones gap (paso de iones para contraer en sincronía). :: OpenStax, Anatomy & Physiology 2e, fig. 19.17 (Cardiac Muscle) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 57,60 :: Disco intercalar (desmosomas + uniones gap)
+^^ 50,41 :: Núcleo central del cardiomiocito
+^^ 25,24 :: Estriaciones transversales
 = De apical a basal :: Zónula occludens (unión estrecha) → Zónula adherens → Desmosoma (mácula adherens) → Unión gap (comunicante) → Hemidesmosoma (a la lámina basal)
 | Unión ¦ Proteína ¦ Se ancla a ¦ Función
 | Zónula occludens ¦ Claudinas, ocludinas ¦ Actina ¦ Barrera (sella la vía paracelular)
@@ -75,6 +102,11 @@ Q La tinción PAS es positiva en: :: *Glucógeno y membranas basales :: Colágen
 | Hemidesmosoma ¦ Integrinas ¦ Filamentos intermedios ¦ Anclaje a la membrana basal
 + **Pénfigo vulgar**: anticuerpos contra **desmogleína 3** (desmosomas) → ampollas intraepidérmicas flácidas; **penfigoide ampolloso**: contra hemidesmosomas → ampollas subepidérmicas tensas.
 ## Glándulas
+^ sebacea.webp :: **Glándula sebácea** junto a un folículo piloso (MO ×400): es **holocrina**, sus células se llenan de lípido, mueren y se descaman completas para formar el sebo. :: OpenStax, Anatomy & Physiology 2e, fig. 4.7 (Sebaceous Glands) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 68,30 :: Células sebáceas cargadas de lípido (citoplasma espumoso)
+^^ 35,30 :: Epitelio del folículo piloso
+^^ 47,75 :: Tallo del pelo
+^^ 10,72 :: Dermis (colágeno)
 - **Exocrinas** (con conducto) vs **endocrinas** (secretan a la sangre).
 | Secreción ¦ Cómo ¦ Ejemplo
 | Merocrina ¦ Exocitosis, la célula queda intacta ¦ Páncreas, salivales, sudorípara ecrina
@@ -101,6 +133,10 @@ Q La glándula mamaria secreta lípidos por un mecanismo: :: *Apocrino :: Holocr
 ~ Mastocito :: Célula con gránulos de histamina y heparina; tiene IgE en su membrana y media la alergia inmediata.
 ~ Plasmocito :: Linfocito B diferenciado que secreta anticuerpos; núcleo en "rueda de carreta" y citoplasma basófilo.
 ## Fibras y sustancia fundamental
+^ denso-reg.webp :: **Colágeno** en tejido conjuntivo denso regular, como un tendón (MO ×1000): haces de colágeno tipo I paralelos y entre ellos los núcleos alargados de los fibroblastos (fibrocitos). :: OpenStax, Anatomy & Physiology 2e, fig. 4.11 (Dense Connective Tissue) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 55,58 :: Haces de colágeno tipo I paralelos (acidófilos)
+^^ 25,21 :: Núcleo alargado de fibroblasto
+^^ 67,43 :: Núcleo de fibroblasto entre los haces
 - **Colágeno**: resistencia a la tracción. **Reticulares** (colágeno III): armazón de órganos linfoides, hígado y médula ósea. **Elásticas** (elastina + fibrilina): aorta, pulmón, piel.
 - Sustancia fundamental: glucosaminoglucanos (ácido hialurónico, condroitín sulfato, heparán sulfato), proteoglucanos y glucoproteínas de adhesión (fibronectina, laminina).
 | Colágeno ¦ Dónde ¦ Recuerda
@@ -117,6 +153,12 @@ Q La glándula mamaria secreta lípidos por un mecanismo: :: *Apocrino :: Holocr
 + **Síndrome de Alport**: colágeno IV → nefritis hereditaria, sordera neurosensorial y alteraciones oculares.
 + **Marfan** (fibrilina-1): talla alta, aracnodactilia, subluxación del cristalino hacia arriba, dilatación y disección aórtica.
 ## Tipos de conjuntivo
+^ adiposo.webp :: **Tejido adiposo blanco** (MO ×800): adipocitos grandes que se ven "vacíos" porque el lípido se disuelve al procesar la muestra; el núcleo queda aplastado en la orilla (anillo de sello). :: OpenStax, Anatomy & Physiology 2e, fig. 4.9 (Adipose Tissue) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 52,36 :: Adipocito: gota de lípido disuelta (espacio vacío)
+^^ 13,37 :: Núcleo aplanado en la periferia
+^ denso-irr.webp :: **Conjuntivo denso irregular**, como la dermis reticular (MO ×200): haces de colágeno gruesos en todas direcciones para resistir tracción desde cualquier lado. :: OpenStax, Anatomy & Physiology 2e, fig. 4.11 (Dense Connective Tissue) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 40,50 :: Haces de colágeno en distintas direcciones
+^^ 60,45 :: Núcleos de fibroblastos (morados, alargados)
 | Tipo ¦ Rasgo ¦ Dónde
 | Laxo (areolar) ¦ Pocas fibras, muchas células ¦ Lámina propia, alrededor de vasos
 | Denso irregular ¦ Fibras en todas direcciones ¦ Dermis reticular
@@ -137,6 +179,16 @@ Q Las fibras reticulares que sostienen el bazo están formadas por: :: *Colágen
 # Cartílago y hueso
 > Conectivos especializados de sostén: el cartílago es avascular; el hueso, muy vascularizado y mineralizado.
 ## Cartílago
+^ hialino.webp :: **Cartílago hialino** (MO ×300): matriz homogénea, vidriosa, con condrocitos dentro de lagunas, a veces en **grupos isógenos** (hijas de una misma célula). :: OpenStax, Anatomy & Physiology 2e, fig. 4.12 (Types of Cartilage) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 24,38 :: Condrocito dentro de su laguna
+^^ 14,25 :: Grupo isógeno
+^^ 60,20 :: Matriz homogénea (colágeno II + agrecano)
+^ fibro.webp :: **Fibrocartílago** (MO ×1200): gruesos haces de colágeno tipo I con pocos condrocitos en hileras; resiste compresión (discos intervertebrales, meniscos, sínfisis). :: OpenStax, Anatomy & Physiology 2e, fig. 4.12 (Types of Cartilage) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 60,70 :: Haces de colágeno tipo I
+^^ 52,37 :: Condrocito en hilera entre los haces
+^ elastico.webp :: **Cartílago elástico** (MO ×1016): condrocitos en lagunas rodeados de una red densa de fibras elásticas (pabellón auricular, epiglotis). :: OpenStax, Anatomy & Physiology 2e, fig. 4.12 (Types of Cartilage) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 73,36 :: Condrocito en laguna
+^^ 37,48 :: Red de fibras elásticas en la matriz
 - Condrocitos en **lagunas** (grupos isógenos), matriz de colágeno II + agrecano; se nutre por difusión desde el **pericondrio**.
 | Tipo ¦ Fibras ¦ Pericondrio ¦ Dónde
 | Hialino ¦ Colágeno II ¦ Sí (no en el articular) ¦ Articular, costal, tráquea, placa epifisaria
@@ -144,6 +196,11 @@ Q Las fibras reticulares que sostienen el bazo están formadas por: :: *Colágen
 | Fibrocartílago ¦ Colágeno I ¦ No ¦ Discos intervertebrales, sínfisis del pubis, meniscos
 - Crecimiento **aposicional** (desde el pericondrio) e **intersticial** (división de condrocitos dentro de la matriz).
 ## Células y estructura del hueso
+^ osteona.webp :: **Osteona** (sistema de Havers) en hueso compacto desgastado (MO ×40): conducto central rodeado de laminillas concéntricas; las manchas oscuras son lagunas que alojaban osteocitos. :: OpenStax, Anatomy & Physiology 2e, fig. 6.8 (Compact Bone) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 40,57 :: Conducto de Havers (vasos y nervio)
+^^ 52,30 :: Laminillas concéntricas
+^^ 28,32 :: Lagunas de osteocitos
+^^ 85,60 :: Laminillas intersticiales (osteonas viejas)
 ~ Osteoblasto :: Forma osteoide (colágeno I) y lo mineraliza; tiene fosfatasa alcalina y produce RANKL.
 ~ Osteocito :: Osteoblasto atrapado en una laguna; se comunica con otros por canalículos y detecta la carga mecánica.
 ~ Osteoclasto :: Célula multinucleada de origen monocito-macrófago; reabsorbe hueso con su borde en cepillo en la laguna de Howship; marcador TRAP.
@@ -174,6 +231,15 @@ Q ¿Qué conectan los conductos de Volkmann? :: *Conductos de Havers entre sí y
 # Tejido muscular
 > Células alargadas (fibras) especializadas en contraer gracias a actina y miosina.
 ## Los tres tipos de músculo
+^ esqueletico.webp :: **Músculo esquelético** en corte longitudinal: fibras largas, cilíndricas, con estriaciones y **varios núcleos periféricos**. :: OpenStax, Anatomy & Physiology 2e, fig. 4.14 (Muscle Tissue) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 45,55 :: Estriaciones transversales
+^^ 40,79 :: Núcleos periféricos (fibra multinucleada)
+^ liso.webp :: **Músculo liso**: células fusiformes, sin estriaciones, con **un núcleo central** alargado ("en puro"). :: OpenStax, Anatomy & Physiology 2e, fig. 4.14 (Muscle Tissue) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 46,31 :: Núcleo central alargado
+^^ 75,60 :: Citoplasma sin estriaciones
+^ cardiaco.webp :: **Músculo cardiaco** (MO ×1600): fibras ramificadas y estriadas con **uno o dos núcleos centrales**, unidas por discos intercalares. :: OpenStax, Anatomy & Physiology 2e, fig. 4.15 (Cardiac Muscle Tissue) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 27,18 :: Núcleo central
+^^ 62,45 :: Fibras ramificadas y estriadas
 | ¦ Esquelético ¦ Cardiaco ¦ Liso
 | Núcleos ¦ Muchos, periféricos ¦ 1–2 centrales ¦ 1 central
 | Estrías ¦ Sí ¦ Sí ¦ No
@@ -211,6 +277,11 @@ Q En el músculo esquelético, ¿a qué se une el Ca²⁺ para iniciar la contra
 # Tejido nervioso
 > Neuronas que conducen impulsos y glía que las sostiene, aísla y defiende.
 ## La neurona
+^ nervioso.webp :: **Tejido nervioso** del SNC (MO ×872): somas de neuronas grandes con nucléolo visible y prolongaciones, rodeados de neuropilo (axones, dendritas y glía). :: OpenStax, Anatomy & Physiology 2e, fig. 4.17 (Nervous Tissue) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 32,74 :: Soma de neurona (núcleo grande y nucléolo)
+^^ 28,17 :: Neurona con sus prolongaciones
+^^ 56,50 :: Neuropilo
+^^ 62,40 :: Núcleos pequeños de células gliales
 - Soma con **cuerpos de Nissl** (RER, basófilos), **dendritas** (reciben) y **axón** (conduce; nace del cono axónico, sin Nissl).
 | Tipo ¦ Forma ¦ Ejemplo
 | Multipolar ¦ Muchas dendritas, un axón ¦ Motoneurona, la mayoría del SNC
@@ -227,6 +298,10 @@ Q En el músculo esquelético, ¿a qué se une el Ca²⁺ para iniciar la contra
 ! Esclerosis múltiple daña **oligodendrocitos** (SNC); Guillain-Barré daña **células de Schwann** (SNP).
 ! La microglía es la única glía de origen mesodérmico; en VIH forma células gigantes multinucleadas.
 ## Mielina, nervio y barrera hematoencefálica
+^ tem-mielina.webp :: **Axón mielinizado** de un nervio periférico con microscopio electrónico de transmisión: la vaina de mielina son vueltas de membrana de la célula de Schwann enrolladas alrededor del axón. :: OpenStax, Anatomy & Physiology 2e, fig. 12.11 (Myelinated Neuron) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 70,52 :: Axón (axoplasma con neurofilamentos)
+^^ 32,62 :: Vaina de mielina (capas de membrana)
+^^ 15,88 :: Otra fibra mielinizada vecina
 - La mielina permite la **conducción saltatoria** entre **nodos de Ranvier**, donde se concentran los canales de Na⁺.
 = Envolturas del nervio periférico :: Endoneuro (cada fibra) → Perineuro (fascículo; barrera) → Epineuro (nervio completo)
 - **Barrera hematoencefálica**: uniones estrechas del endotelio + membrana basal + pies de astrocitos.
@@ -245,6 +320,11 @@ Q La conducción saltatoria se debe a: :: *Concentración de canales de Na⁺ en
 # Sangre y hematopoyesis
 > Tejido conjuntivo líquido: plasma + elementos formes.
 ## Plasma y eritrocitos
+^ frotis.webp :: **Frotis de sangre periférica** (MO ×1600): muchos eritrocitos sin núcleo con palidez central y un linfocito. :: OpenStax, Anatomy & Physiology 2e, fig. 4.19 (Blood) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 61,40 :: Linfocito (núcleo redondo que ocupa casi toda la célula)
+^^ 24,20 :: Eritrocito: sin núcleo, palidez central
+^ eritrocitos.webp :: Eritrocitos: **discos bicóncavos** de ~7.5 µm; la forma aumenta la superficie para el intercambio de gases y les deja doblarse en capilares. :: OpenStax, Anatomy & Physiology 2e, fig. 18.6 (Shape of Red Blood Cells) · CC BY 4.0
+^^ 36,26 :: Centro delgado (zona de palidez central)
 % ≈ 55 % :: del volumen sanguíneo es plasma
 % 7.5 µm :: diámetro del eritrocito
 % ≈ 120 días :: vida del eritrocito
@@ -253,6 +333,12 @@ Q La conducción saltatoria se debe a: :: *Concentración de canales de Na⁺ en
 - **Eritrocito**: disco bicóncavo sin núcleo ni organelos; citoesqueleto con **espectrina** y anquirina.
 + **Esferocitosis hereditaria**: defecto de espectrina o anquirina → esferocitos, anemia hemolítica, esplenomegalia.
 ## Leucocitos
+^ leucocitos.webp :: Los cinco leucocitos en frotis teñido (Wright). Tócalos en modo prueba para identificarlos. :: OpenStax, Anatomy & Physiology 2e, fig. 18.9 (Leukocytes) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 4,14 :: Basófilo: gránulos morados que tapan el núcleo
+^^ 26,14 :: Eosinófilo: núcleo bilobulado, gránulos rojo-naranja
+^^ 44,14 :: Neutrófilo: núcleo de 3-5 lóbulos
+^^ 64,14 :: Monocito: el más grande, núcleo en riñón
+^^ 86,14 :: Linfocito: núcleo redondo, poco citoplasma
 | Célula ¦ % ¦ Núcleo ¦ Función
 | Neutrófilo ¦ 50–70 ¦ 3–5 lóbulos ¦ Bacterias (primera línea)
 | Linfocito ¦ 20–40 ¦ Redondo, poco citoplasma ¦ Inmunidad adaptativa (T, B) y NK
@@ -262,6 +348,10 @@ Q La conducción saltatoria se debe a: :: *Concentración de canales de Na⁺ en
 & "Nunca Llames Mal A Bob" :: Neutrófilos > Linfocitos > Monocitos > eosinófilos (Acidófilos) > Basófilos.
 + La neutrofilia con bandas sugiere infección bacteriana; la linfocitosis, infección viral; la **eosinofilia**, helmintos o alergia.
 ## Hematopoyesis
+^ medula.webp :: Cabeza de fémur cortada: **médula ósea roja** (hematopoyética) llenando el hueso esponjoso y una zona de **médula amarilla** (grasa) al centro. Barra blanca = 1 cm. :: OpenStax, Anatomy & Physiology 2e, fig. 21.5 (Bone Marrow) · CC BY 4.0
+^^ 38,30 :: Médula ósea roja (hematopoyesis activa)
+^^ 56,48 :: Médula amarilla (adipocitos)
+^^ 62,74 :: Hueso compacto que la rodea
 = Sitio de hematopoyesis según la edad :: Saco vitelino (semanas 3–8) → Hígado (y bazo) fetal → Médula ósea (desde el final del periodo fetal)
 - Célula madre hematopoyética **CD34+**. **EPO** (riñón) estimula la eritropoyesis; **TPO** (hígado) a los megacariocitos.
 - **Reticulocitos**: eritrocitos jóvenes con ARN residual; ↑ en hemólisis o hemorragia (la médula responde).
@@ -278,6 +368,16 @@ Q Un aumento de reticulocitos en un paciente anémico indica: :: *Que la médula
 # Piel y anexos
 > El órgano más grande: epidermis (epitelio) + dermis (conectivo) + hipodermis.
 ## Epidermis
+^ piel-fina.webp :: **Piel fina** (MO ×40): epidermis delgada de epitelio plano estratificado queratinizado, con crestas que se encajan en la dermis. :: OpenStax, Anatomy & Physiology 2e, fig. 5.4 (Thin Skin versus Thick Skin) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 15,14 :: Epidermis (epitelio plano estratificado queratinizado)
+^^ 71,35 :: Cresta epidérmica
+^^ 45,45 :: Dermis papilar
+^^ 45,85 :: Dermis reticular
+^ meissner.webp :: **Piel gruesa** (MO ×100): estrato córneo muy grueso. La flecha señala un **corpúsculo de Meissner** dentro de una papila dérmica. :: OpenStax, Anatomy & Physiology 2e, fig. 5.12; foto de "Wbensmith"/Wikimedia Commons · CC BY 4.0
+^^ 30,22 :: Estrato córneo (grueso en piel gruesa)
+^^ 66,55 :: Cresta epidérmica (estrato basal en el borde)
+^^ 50,46 :: Corpúsculo de Meissner (tacto fino)
+^^ 85,75 :: Dermis papilar
 = Estratos, de profundo a superficial :: Basal (germinativo) → Espinoso (desmosomas) → Granuloso (queratohialina) → Lúcido (solo piel gruesa) → Córneo
 & "Buenos Estudiantes Ganan Lugares Cómodos" :: Basal · Espinoso · Granuloso · Lúcido · Córneo.
 ~ Queratinocito :: ≈ 90 % de las células; produce queratina y migra de la capa basal a la córnea.
@@ -286,9 +386,17 @@ Q Un aumento de reticulocitos en un paciente anémico indica: :: *Que la médula
 ~ Célula de Merkel :: Mecanorreceptor del tacto fino en la capa basal.
 ! El color de la piel depende de la **cantidad de melanina** producida y transferida, no del número de melanocitos.
 ## Dermis y receptores
+^ dermis.webp :: Las dos capas de la dermis (rotuladas en inglés en la foto original): **papilar** (conjuntivo laxo bajo la epidermis) y **reticular** (conjuntivo denso irregular). :: OpenStax, Anatomy & Physiology 2e, fig. 5.6 (Layers of the Dermis) · micrografía © 2012 Regents of the University of Michigan Medical School · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores en español
+^^ 50,10 :: Epidermis
+^^ 30,30 :: Capa papilar (conjuntivo laxo)
+^^ 40,78 :: Capa reticular (conjuntivo denso irregular)
 - **Dermis papilar**: conectivo laxo, asas capilares, **corpúsculos de Meissner** (tacto fino).
 - **Dermis reticular**: denso irregular; **corpúsculos de Pacini** (vibración y presión profunda) en dermis profunda e hipodermis.
 ## Anexos
+^ foliculo.webp :: **Folículo piloso** con sus glándulas sebáceas (MO ×4): el tallo del pelo sale en diagonal y a su lado están los lobulillos sebáceos pálidos. :: OpenStax, Anatomy & Physiology 2e, fig. 5.11; foto modificada de "kilbad"/Wikimedia Commons · CC BY 4.0
+^^ 33,15 :: Tallo del pelo
+^^ 33,47 :: Lobulillos de glándula sebácea
+^^ 95,60 :: Adipocitos de la hipodermis
 | Anexo ¦ Secreción ¦ Dónde ¦ Función
 | Glándula sebácea ¦ Holocrina ¦ Junto al folículo piloso ¦ Sebo
 | Sudorípara ecrina ¦ Merocrina ¦ Todo el cuerpo ¦ Termorregulación (simpático colinérgico)

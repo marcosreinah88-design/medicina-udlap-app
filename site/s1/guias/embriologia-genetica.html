@@ -297,6 +297,7 @@ details.sub>summary:hover h3{color:color-mix(in srgb,var(--tc) 75%,var(--ink))}
 .pin.on{background:var(--cl);transform:translate(-50%,-50%) scale(1.15)}
 .pin .pl{position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%);white-space:nowrap;background:rgba(0,0,0,.82);color:#fff;font:600 .74rem/1.3 var(--f-b);padding:4px 8px;border-radius:8px;display:none;pointer-events:none}
 .pin.on .pl{display:block}
+.pin.lo .pl{bottom:auto;top:calc(100% + 6px)}.pin.le .pl{left:-4px;transform:none}.pin.ri .pl{left:auto;right:-4px;transform:none}
 .fig.fq .pin .pl{display:none}
 .fig figcaption{padding:10px 13px 12px;font-size:.88rem;line-height:1.45;display:flex;flex-direction:column;gap:6px}
 .fig .cr{color:var(--muted);font-size:.72rem;line-height:1.35}
@@ -308,7 +309,7 @@ details.sub>summary:hover h3{color:color-mix(in srgb,var(--tc) 75%,var(--ink))}
 .fig.fq .leg li:not(.shown) span{filter:blur(5px);opacity:.55;user-select:none}
 .fig.fq .leg li.shown{border-color:var(--ok)}
 body.hidekw .fig b{color:inherit;background:none}
-.lbx{position:fixed;inset:0;z-index:60;background:rgba(8,10,9,.94);display:flex;flex-direction:column;padding:max(10px,env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right,0px)) max(10px,env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px))}
+.lbx{position:fixed;inset:0;z-index:60;background:#0b0d0c;display:flex;flex-direction:column;padding:max(10px,env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right,0px)) max(10px,env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px))}
 .lbx .lt{display:flex;gap:8px;justify-content:flex-end;align-items:center;color:#fff;padding-bottom:8px}
 .lbx .lt .mini{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
 .lbx .lt .x{font-size:1.1rem;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;cursor:pointer}
@@ -413,7 +414,7 @@ const R={
  mn:x=>x.map(o=>`<div class="mn"><div class="mi">M</div><div><b class="mm">${o.m}</b><span>${o.s}</span></div></div>`).join(""),
  im:x=>`<div class="figs${x.length>1?" g2":""}">${x.map(fig).join("")}</div>`
 };
-function fig(o){const p=o.p||[];return `<figure class="fig"><div class="fw"><img src="${o.src}" alt="${esc(o.c.replace(/<[^>]+>/g,""))}" loading="lazy" decoding="async"><button class="fz" type="button" aria-label="Ampliar imagen"></button>${p.map((q,n)=>`<button class="pin" type="button" data-pn="${n}" style="left:${q.x}%;top:${q.y}%" aria-label="Marcador ${n+1}">${n+1}<span class="pl">${q.l}</span></button>`).join("")}</div><figcaption><span>${o.c}</span>${p.length?`<div class="fbar"><button class="mini" type="button" data-fq aria-pressed="false">Ponme a prueba</button></div><ol class="leg">${p.map((q,n)=>`<li data-pn="${n}"><span>${q.l}</span></li>`).join("")}</ol>`:""}<small class="cr">${o.a}</small></figcaption></figure>`}
+function fig(o){const p=o.p||[];return `<figure class="fig"><div class="fw"><img src="${o.src}" alt="${esc(o.c.replace(/<[^>]+>/g,""))}" loading="lazy" decoding="async"><button class="fz" type="button" aria-label="Ampliar imagen"></button>${p.map((q,n)=>`<button class="pin${q.y<22?" lo":""}${q.x<22?" le":q.x>78?" ri":""}" type="button" data-pn="${n}" style="left:${q.x}%;top:${q.y}%" aria-label="Marcador ${n+1}">${n+1}<span class="pl">${q.l}</span></button>`).join("")}</div><figcaption><span>${o.c}</span>${p.length?`<div class="fbar"><button class="mini" type="button" data-fq aria-pressed="false">Ponme a prueba</button></div><ol class="leg">${p.map((q,n)=>`<li data-pn="${n}"><span>${q.l}</span></li>`).join("")}</ol>`:""}<small class="cr">${o.a}</small></figcaption></figure>`}
 const ppQ=(q,i,k)=>`<div class="pq" data-a="${q.a}"><p>${q.q}</p><div class="po">${q.o.map((o,n)=>`<button type="button" data-n="${n}">${o}</button>`).join("")}</div><div class="pe" hidden>${q.e||""}</div></div>`;
 const KD={im:"Imágenes",fl:"Diagrama",tb:"Tabla",tm:"Conceptos",mn:"Mnemotecnia",st:"Cifras"};
 const kinds=s=>[...new Set(s.b.map(b=>b.k))].filter(k=>KD[k]).map(k=>`<i>${KD[k]}</i>`).join("");

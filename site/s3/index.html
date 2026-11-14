@@ -138,10 +138,10 @@ const ITEMS=[
   desc:"Resumen interactivo de las 13 presentaciones del curso, de generalidades a adrenérgicos.",
   feats:["Resumen por unidad","Tarjetas","Quiz","Repaso general","Calculadora de pKa","Regla de tres","Algoritmo de Naranjo"],
   stats:{"unidades":13,"tarjetas":126,"preguntas":73},cover:"farma",keys:"pka naranjo cyp opioides aine colinergicos adrenergicos posologia ram farmacovigilancia"},
- {id:"anatomia",src:"anatomia/index.html",materia:"Anatomía",title:"Anatomía II · Digestivo",
-  desc:"Del tubo digestivo al páncreas, con la irrigación como eje. Para el 2º parcial.",
-  feats:["Resumen por tema","Árbol arterial","Mapa de territorios","Flashcards","Tablas rápidas","Láminas del Gray","Tus dibujos"],
-  stats:{"temas":23,"tarjetas":79,"preguntas":65},cover:"anat",keys:"irrigacion tronco celiaco mesenterica estomago higado pancreas colon recto esofago"} ,/*anki:items*/
+ {id:"anatomia",src:"anatomia/index.html",materia:"Anatomía",title:"Anatomía 2",
+  desc:"Todo el curso con tus notas de Notion: tórax, respiratorio, corazón, digestivo, urinario, reproductor y mama. Completado y corregido.",
+  feats:["Resumen por tema","Árbol arterial","Mapa de territorios","Flashcards","Tablas rápidas","Examen por bloques","Láminas del Gray","Tus dibujos"],
+  stats:{"temas":57,"tarjetas":231,"preguntas":136},cover:"anat",keys:"irrigacion tronco celiaco mesenterica estomago higado pancreas colon recto esofago columna vertebras esternon costillas angulo de louis torax inestable diafragma hiatos pectoral serrato perine nariz cornetes senos paranasales kiesselbach epistaxis faringe adenoides amigdalas laringe cartilagos tiroides cricoides aritenoides cuerdas vocales traquea carina bronquios alveolos surfactante neumocitos pulmones lobulos fisuras lingula hilio segmentos pleura neumotorax mediastino timo acigos conducto toracico corazon pericardio valvulas papilares focos auscultacion coronarias seno coronario nodo sinusal his purkinje riñon rinon gerota nefrona suprarrenal ureter vejiga trigono uretra hernia inguinal hesselbach cordon espermatico testiculo epididimo deferente vesiculas seminales prostata cowper pene ovario trompas utero vagina vulva bartholin mama cooper lactancia mastografia"} ,/*anki:items*/
  {id:"microbiologia",src:"microbiologia/index.html",materia:"Microbiología y Parasitología",title:"Microbiología y Parasitología",desc:"Bacterias, virus, hongos y parásitos. Tus tarjetas de Anki, revisadas y corregidas.",feats:["Repaso con tarjetas","Ver todas","Buscador","Progreso"],stats:{"temas": 3, "tarjetas": 84},cover:"gen",keys:"general gram positivas y negativas parcial 2"},
  {id:"simulacion-iii",src:"simulacion-iii/index.html",materia:"Simulación",title:"Laboratorio de Simulación III",desc:"Choque, heridas, gasometría y cálculo de goteo. Tus tarjetas de Anki, revisadas y corregidas.",feats:["Repaso con tarjetas","Ver todas","Buscador","Progreso"],stats:{"temas": 6, "tarjetas": 143},cover:"gen",keys:"heridas choque gasometría cálculo de goteo parcial 1 parcial 3"},
  {id:"ecosofia",src:"ecosofia/index.html",materia:"Ecosofía",title:"Ecosofía",desc:"Ecología, sociedad y salud. Tus tarjetas de Anki, revisadas y corregidas.",feats:["Repaso con tarjetas","Ver todas","Buscador","Progreso"],stats:{"temas": 1, "tarjetas": 26},cover:"gen",keys:"parcial 1"},
@@ -157,7 +157,7 @@ const fmt=n=>n.toLocaleString("es-MX");
 function cover(it){
   if(it.cover==="farma") return `<div class="cover cv-farma"><span class="tag">Clase 1 – 12 · ℞</span><span class="pills" aria-hidden="true"><i></i><i></i></span><span class="rx" aria-hidden="true">℞</span><span class="big">Farmacología<br>Básica</span></div>`;
   if(it.cover==="anat"){const v=[["T10"],["T11"],["T12",1],["L1",1],["L2"],["L3",1],["L4"],["L5"],["S3"]];
-    return `<div class="cover cv-anat"><span class="tag">MED · Anatomía II</span><span class="spine" aria-hidden="true">${v.map((x,i)=>`<span class="${x[1]?"k":""}" style="left:${4+i*11.5}%"></span>`).join("")}</span><span class="big">Anatomía II <i>·</i> Digestivo</span></div>`;}
+    return `<div class="cover cv-anat"><span class="tag">MED · Anatomía II</span><span class="spine" aria-hidden="true">${v.map((x,i)=>`<span class="${x[1]?"k":""}" style="left:${4+i*11.5}%"></span>`).join("")}</span><span class="big">Anatomía <i>2</i></span></div>`;}
   return `<div class="cover cv-gen"><span class="tag">${esc(it.materia)}</span><span class="big">${esc(it.title)}</span></div>`;
 }
 function cardHTML(it){

@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Anatomía II · Digestivo</title>
+<title>Anatomía 2</title><!--a2-->
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="../../fonts/ge80cf7bfde.css">
 <style>
@@ -251,10 +251,10 @@ td .k{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6
   <div class="top-in">
     <div class="brand">
       <div>
-        <h1>Anatomía II <i>·</i> Digestivo</h1>
-        <p class="sub">Del tubo digestivo al páncreas, con la irrigación como eje. Para el 2º parcial.</p>
+        <h1>Anatomía <i>2</i></h1>
+        <p class="sub">Todo el curso con tus notas de Notion: columna y tórax, respiratorio, mediastino y corazón, tubo digestivo, riñón, aparatos reproductores y mama. Completado y corregido.</p>
       </div>
-      <div class="overlay">MED 5º · ANATOMÍA II<br><b id="ov-n">0</b> temas · <b>9</b> unidades</div>
+      <div class="overlay">MED 3º · ANATOMÍA II<br><b id="ov-n">0</b> temas · <b id="ov-u">0</b> unidades</div>
     </div>
     <div class="spine" id="spine" aria-label="Niveles vertebrales de referencia"></div>
     <nav class="tabs" role="tablist">
@@ -263,6 +263,7 @@ td .k{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6
       <button class="tab" role="tab" aria-selected="false" data-view="fc">Flashcards</button>
       <button class="tab" role="tab" aria-selected="false" data-view="tab">Tablas rápidas</button>
       <button class="tab" role="tab" aria-selected="false" data-view="lam">Láminas</button>
+      <button class="tab" role="tab" aria-selected="false" data-view="ex">Examen</button>
     </nav>
   </div>
 </header>
@@ -273,7 +274,7 @@ td .k{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6
       <aside class="side" id="side"></aside>
       <div style="min-width:0">
         <div class="tools">
-          <input id="q" class="search" type="search" placeholder="Buscar: Riolano, Calot, Auerbach, gastroduodenal…" aria-label="Buscar en el resumen">
+          <input id="q" class="search" type="search" placeholder="Buscar: Kiesselbach, carina, Hesselbach, Calot, Riolano…" aria-label="Buscar en el resumen">
           <button class="btn" id="openAll">Abrir todo</button>
           <button class="btn" id="closeAll">Cerrar todo</button>
         </div>
@@ -352,7 +353,11 @@ td .k{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6
     <div class="plates" id="plates"></div>
   </section>
 
-  <p class="foot">Hecho con tus apuntes de Notion (Medicina › 5to semestre › Anatomia 2, de «Tubo digestivo» a «Pancreas») enfocado en los temas del 2º parcial. Se corrigieron errores de dedo evidentes; lo marcado como «complemento» no venía en tus notas y sale de Moore y Gray para estudiantes. Láminas: Henry Gray, <i>Anatomy of the Human Body</i> (1918), dominio público vía Wikimedia Commons.</p>
+  <section id="v-ex" hidden>
+    <div class="qz" id="qz"></div>
+  </section>
+
+  <p class="foot">Hecho con tus apuntes de Notion (Medicina › Anatomia 2, de «Generalidades» a «mamas»). Lo marcado como «Corrección» estaba mal o incompleto en tus notas y se corrigió con Moore (Anatomía con orientación clínica) y Gray; lo marcado como «complemento» no venía en tus notas. Láminas: Henry Gray, <i>Anatomy of the Human Body</i> (1918), dominio público vía Wikimedia Commons; los esquemas de focos y mediastino son propios.</p>
 </main>
 
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Imagen ampliada">
@@ -363,6 +368,13 @@ td .k{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6
 
 <script>
 const UNITS=[
+ {id:"u0",t:"Generalidades"},
+ {id:"u10",t:"Columna y tórax óseo"},
+ {id:"u11",t:"Músculos del tronco, diafragma y periné"},
+ {id:"u12",t:"Vía respiratoria superior"},
+ {id:"u13",t:"Tráquea, bronquios y pulmones"},
+ {id:"u14",t:"Mediastino"},
+ {id:"u15",t:"Corazón"},
  {id:"u1",t:"Pared del tubo y cavidad oral"},
  {id:"u2",t:"Esófago"},
  {id:"u3",t:"Cavidad abdominal"},
@@ -371,8 +383,19 @@ const UNITS=[
  {id:"u6",t:"Intestino grueso, recto y ano"},
  {id:"u7",t:"Hígado y vía biliar"},
  {id:"u8",t:"Páncreas"},
- {id:"u9",t:"Irrigación integrada"}
+ {id:"u9",t:"Irrigación digestiva integrada"},
+ {id:"u16",t:"Riñón, suprarrenales y vía urinaria"},
+ {id:"u17",t:"Región inguinal y aparato reproductor masculino"},
+ {id:"u18",t:"Aparato reproductor femenino"},
+ {id:"u19",t:"Mama"}
 ];
+/* Bloques para el examen */
+const BLQ={tor:{t:"Tórax, respiratorio y corazón",u:["u0","u10","u11","u12","u13","u14","u15"]},dig:{t:"Digestivo",u:["u1","u2","u3","u4","u5","u6","u7","u8","u9"]},uro:{t:"Urinario, reproductor y mama",u:["u16","u17","u18","u19"]}};
+/* Esquemas propios (SVG) */
+const FIGS={
+ focos:{c:"Focos de auscultación sobre la pared anterior (vista de frente: la derecha del paciente queda a tu izquierda).",svg:`<svg viewBox="0 0 320 290" role="img" aria-label="Focos de auscultación cardíaca" style="width:100%;max-width:420px;display:block;margin:0 auto;color:var(--ink)"><path d="M60 30 Q160 0 260 30 L285 270 L35 270 Z" fill="var(--sunk)" stroke="var(--line)"/><rect x="146" y="30" width="28" height="200" rx="10" fill="var(--panel)" stroke="var(--muted)"/><g stroke="var(--line)" stroke-width="1.5" fill="none"><path d="M60 70 Q110 60 146 66"/><path d="M174 66 Q210 60 260 70"/><path d="M58 100 Q110 92 146 96"/><path d="M174 96 Q210 92 262 100"/><path d="M57 130 Q110 124 146 126"/><path d="M174 126 Q210 124 264 130"/><path d="M56 160 Q110 156 146 156"/><path d="M174 156 Q210 156 266 160"/><path d="M55 190 Q110 188 146 186"/><path d="M174 186 Q210 188 268 190"/></g><line x1="232" y1="40" x2="232" y2="260" stroke="var(--muted)" stroke-dasharray="4 4"/><text x="236" y="252" font-size="10" fill="var(--muted)">LMC</text><g font-size="11" font-family="var(--mono)" fill="var(--muted)"><text x="40" y="88">2º</text><text x="40" y="148">4º</text><text x="40" y="178">5º</text></g><g font-size="12" font-weight="600"><circle cx="134" cy="82" r="8" fill="var(--art)"/><text x="70" y="78" fill="var(--art)">Aórtico</text><circle cx="186" cy="82" r="8" fill="var(--ven)"/><text x="196" y="78" fill="var(--ven)">Pulmonar</text><circle cx="186" cy="112" r="7" fill="var(--ams)"/><text x="196" y="116" fill="var(--ams)">Erb</text><circle cx="186" cy="170" r="8" fill="var(--good)"/><text x="178" y="200" fill="var(--good)">Tricuspídeo</text><circle cx="232" cy="176" r="8" fill="var(--ami)"/><text x="244" y="180" fill="var(--ami)">Mitral</text></g><text x="18" y="285" font-size="10" fill="var(--muted)">Derecha del paciente</text><text x="210" y="285" font-size="10" fill="var(--muted)">Izquierda</text></svg>`},
+ medias:{c:"Corte sagital esquemático: el plano del ángulo de Louis a T4–T5 separa el mediastino superior del inferior (anterior, medio y posterior).",svg:`<svg viewBox="0 0 340 300" role="img" aria-label="Divisiones del mediastino" style="width:100%;max-width:440px;display:block;margin:0 auto"><rect x="30" y="20" width="18" height="250" rx="8" fill="var(--panel)" stroke="var(--muted)"/><text x="10" y="150" font-size="11" fill="var(--muted)" transform="rotate(-90 14 150)">Esternón</text><g fill="var(--panel)" stroke="var(--muted)">${[0,1,2,3,4,5,6,7,8,9].map(i=>`<rect x="282" y="${20+i*25}" width="30" height="20" rx="3"/>`).join("")}</g><text x="318" y="80" font-size="10" fill="var(--muted)">T4</text><text x="318" y="105" font-size="10" fill="var(--muted)">T5</text><line x1="48" y1="70" x2="282" y2="92" stroke="var(--art)" stroke-width="2" stroke-dasharray="6 4"/><text x="58" y="62" font-size="10" fill="var(--art)">Ángulo de Louis</text><text x="120" y="48" font-size="15" font-weight="600" fill="var(--ink)">SUPERIOR</text><path d="M48 272 Q160 300 282 272" fill="none" stroke="var(--muted)"/><text x="140" y="292" font-size="10" fill="var(--muted)">Diafragma</text><ellipse cx="150" cy="185" rx="70" ry="68" fill="var(--art-soft)" stroke="var(--art)"/><text x="122" y="182" font-size="14" font-weight="600" fill="var(--art)">MEDIO</text><text x="112" y="198" font-size="10" fill="var(--art)">pericardio y corazón</text><text x="68" y="235" font-size="11" font-weight="600" fill="var(--ven)" transform="rotate(-90 68 235)">ANTERIOR</text><text x="232" y="150" font-size="12" font-weight="600" fill="var(--ams)" transform="rotate(90 246 170)">POSTERIOR</text></svg>`}
+};
 const SPINE=[
  {v:"T10",l:"Hiato esofágico"},{v:"T11"},{v:"T12",l:"Tronco celíaco",k:1},{v:"L1",l:"AMS · píloro",k:1},{v:"L2",l:"Páncreas"},{v:"L3",l:"AMI",k:1},{v:"L4",l:"Bifurcación aórtica"},{v:"L5"},{v:"S3",l:"Inicio del recto"}
 ];
@@ -473,8 +496,7 @@ s:"Tres pares de glándulas mayores producen cerca de 1 L de saliva en 24 h.",
 k:["<b>Parótida</b>: la más grande; saliva serosa con enzimas. Su conducto es el de <b>Stensen</b>, que se abre frente al 2º molar superior.",
 "<b>Submandibular</b>: produce enzimas y moco (mixta). Conducto de Wharton (complemento).",
 "<b>Sublingual</b>: la más pequeña; saliva y moco.",
-"En tu clase: la parótida aporta el 95% del litro diario y el 5% restante mantiene limpios y cómodos los tejidos orales.",
-"Complemento: en reposo la submandibular produce la mayor parte; al estimular (comer) domina la parótida.",
+"<b>Corrección</b>: en tus notas la parótida aporta el 95% del litro diario; en realidad en reposo la <b>submandibular</b> produce ≈70% y la parótida ≈25%, y al comer la parótida sube a ≈50%. Las sublinguales aportan ≈5%.",
 "La saliva aporta el agua necesaria para la <b>hidrólisis</b>, esencial en la digestión."],
 f:[["¿Cómo se llama el conducto de la parótida?","Conducto de Stensen."],["¿Cuánta saliva se produce al día?","Alrededor de 1 L."]],
 q:[["¿Cuál es la glándula salival más pequeña?",["Parótida","Submandibular","Sublingual"],2,"La sublingual."]]},
@@ -645,7 +667,7 @@ k:["<b>Lóbulos anatómicos</b>: separados por el <b>ligamento falciforme</b>. E
 "<b>Venas hepáticas</b>: derecha, media (central) e izquierda, que desembocan en la cava inferior.",
 "<b>Lobulillo hepático</b>: vena central en el centro; espacios porta (rama de porta, arteria y conducto biliar) en la periferia.",
 "<b>Funciones</b>: desintoxicación (amoníaco → urea), secreción de bilis (sales biliares de colesterol que emulsifican grasas, ≈0.5 L/día), almacenamiento (glucógeno, cobre, hierro, vitaminas A, D, E y K), coagulación (protrombina, heparina) y células de <b>Kupffer</b> (fagocitos).",
-"Bilirrubina <b>directa</b> elevada: obstrucción (lito o tumor en la vía biliar). <b>Indirecta</b>: falla de la «fábrica» (hepatitis)."],
+"Bilirrubina <b>directa</b> elevada: obstrucción (lito o tumor en la vía biliar). <b>Corrección</b>: en la hepatitis suben las dos (patrón mixto) porque falla la «fábrica»; la <b>indirecta</b> predomina cuando hay demasiada producción (hemólisis) o falla la conjugación (Gilbert)."],
 p:"El borde libre del omento menor (ligamento hepatoduodenal) lleva la tríada portal: colédoco (derecha), arteria hepática propia (izquierda) y vena porta (atrás).",
 g:[1085,1087,532],
 f:[["¿Qué separa los lóbulos derecho e izquierdo en la cara diafragmática?","El ligamento falciforme."],["¿Qué es la línea de Cantlie?","La línea vesícula–VCI que divide el hígado funcional en derecho e izquierdo."],["¿Qué porcentaje del flujo hepático aporta la porta?","Alrededor del 75%."],["¿Qué son las células de Kupffer?","Macrófagos (fagocitos) hepáticos."],["¿Bilirrubina directa elevada sugiere…?","Obstrucción de la vía biliar (lito o tumor)."]],
@@ -681,7 +703,7 @@ q:[["¿Qué forma la ampolla de Vater?",["Cístico + hepático común","Colédoc
 s:"Glándula rosa grisácea de 12–15 cm, retroperitoneal (salvo la cola), a la altura de L1–L2. Tiene una parte exocrina enorme y una endocrina pequeña.",
 k:["Partes: <b>cabeza</b> (en la C del duodeno), <b>cuello</b> (delante de los vasos mesentéricos y la porta), <b>cuerpo</b> y <b>cola</b> (hacia el hilio del bazo).",
 "<b>Exocrino, 98%</b>: acinos que segregan enzimas digestivas y drenan por conductillos al conducto principal, que se vacía al duodeno.",
-"<b>Endocrino, 2%</b>: islotes incrustados entre los acinos; su secreción pasa directo a los capilares. Células <b>beta</b> → insulina; células <b>alfa</b> → glucagón.",
+"<b>Endocrino, 2%</b>: islotes incrustados entre los acinos; su secreción pasa directo a los capilares. Células <b>beta</b> → insulina; células <b>alfa</b> → glucagón (saca glucosa del glucógeno del hígado y sube la glucemia).",
 "<b>Conducto de Wirsung</b> (principal) → papila mayor. En un 25% hay un conducto accesorio, el de <b>Santorini</b>, que sale por la papila menor.",
 "El jugo pancreático degrada proteínas: en la <b>pancreatitis</b> se libera dentro de la glándula y la autodigiere."],
 p:"98% exocrino (acinos) / 2% endocrino (islotes con células alfa y beta).",
@@ -744,7 +766,520 @@ k:["<b>Curvatura menor</b>: gástrica izquierda ↔ gástrica derecha.",
 "<b>Anastomosis portocava</b> (se dilatan en hipertensión portal): esofágicas (várices), rectales (hemorroides), paraumbilicales (cabeza de medusa) y retroperitoneales."],
 g:[531,1083],
 f:[["¿Qué venas forman la porta?","Mesentérica superior + esplénica, detrás del cuello del páncreas."],["4 sitios de anastomosis portocava","Esófago, recto, región paraumbilical y retroperitoneo."],["¿Qué anastomosis une celíaco y AMS?","Las arcadas pancreaticoduodenales de la cabeza del páncreas."]],
-q:[["La «cabeza de medusa» es una dilatación de venas…",["Esofágicas","Rectales","Paraumbilicales","Esplénicas"],2,"Paraumbilicales."]]}
+q:[["La «cabeza de medusa» es una dilatación de venas…",["Esofágicas","Rectales","Paraumbilicales","Esplénicas"],2,"Paraumbilicales."]]},
+
+/* ===== Anatomía 2: temas que no eran de digestivo (de tus notas de Notion) ===== */
+/* U0 */
+{id:"gen",u:"u0",t:"Posición anatómica, planos y términos",m:"GENERALIDADES",
+s:"Tu página «Generalidades» quedó vacía, así que este tema es complemento: el vocabulario que se usa en todo el curso para describir dónde está cada estructura.",
+k:["<b>Posición anatómica</b> (complemento): de pie, cabeza y mirada al frente, brazos a los lados con las palmas hacia adelante, pies juntos apuntando al frente. Todo se describe desde esta posición aunque el paciente esté acostado.",
+"<b>Planos</b>: <b>sagital</b> (divide en derecha e izquierda; el sagital medio pasa justo por la línea media), <b>coronal o frontal</b> (anterior y posterior) y <b>transversal o axial</b> (superior e inferior; es el corte de la tomografía).",
+"<b>Términos de relación</b>: anterior (ventral) y posterior (dorsal); superior (craneal) e inferior (caudal); medial (hacia la línea media) y lateral; proximal y distal (en extremidades y conductos); superficial y profundo.",
+"<b>Cavidades del tronco</b>: torácica (2 cavidades pleurales + mediastino), abdominal y pélvica. El diafragma separa tórax de abdomen.",
+"<b>Intraperitoneal vs retroperitoneal</b>: intraperitoneal = cubierto casi por completo de peritoneo visceral y con meso; retroperitoneal = detrás del peritoneo parietal, pegado a la pared posterior (riñones, uréteres, aorta, cava, casi todo el duodeno, páncreas)."],
+p:"Si te piden ubicar algo, piensa siempre desde la posición anatómica: «lateral» en la mano es el lado del pulgar porque la palma ve al frente.",
+f:[["¿Qué plano divide el cuerpo en derecha e izquierda?","El sagital (el sagital medio, por la línea media)."],["¿Qué plano corresponde al corte de una tomografía?","El transversal (axial)."],["¿Qué significa medial?","Más cerca de la línea media."]],
+q:[["¿Qué plano separa una parte anterior de una posterior?",["Sagital","Coronal (frontal)","Transversal","Oblicuo"],1,"El coronal o frontal."]]},
+
+/* U10 */
+{id:"columna",u:"u10",t:"Columna vertebral",m:"COLUMNA",
+s:"Forma el eje longitudinal del cuerpo: sostiene la cabeza, protege la médula y da inserción a costillas y pelvis. Entre las vértebras hay discos que con los años se desgastan.",
+k:["<b>Conteo</b>: 24 vértebras libres (7 cervicales, 12 torácicas, 5 lumbares) + <b>sacro</b> + <b>cóccix</b>. <b>Corrección</b>: el sacro es la fusión de <b>5</b> vértebras (no «4 y 5»); el cóccix, de 3 a 5 (lo habitual, 4).",
+"<b>Discos intervertebrales</b>: no se ven en la radiografía, pero se debe ver un espacio bien definido y simétrico entre cuerpos. Con la edad se deshidratan y se aplanan (el espacio se estrecha).",
+"La columna se articula con la cabeza (occipital–atlas), con las costillas (vértebras torácicas) y con el hueso ilíaco (articulación sacroilíaca). Cada vértebra se articula con la de arriba y la de abajo.",
+"<b>C1 (atlas)</b>: se articula con el cráneo (cóndilos del occipital); no tiene cuerpo. <b>C2 (axis)</b>: su <b>apófisis odontoides</b> hace de pivote dentro del atlas y permite la rotación de la cabeza.",
+"Cada vértebra tiene un <b>proceso espinoso</b> posterior y <b>2 procesos transversos</b> laterales. <b>C7</b> (vértebra prominente) tiene la espinosa más larga y se palpa en la base del cuello.",
+"Mientras más baja la vértebra, más grande y grueso su cuerpo, porque carga más peso (las lumbares son las más grandes).",
+"<b>Médula espinal</b>: termina en <b>L1–L2</b> (cono medular); por debajo solo bajan raíces (cola de caballo). Por eso la punción lumbar se hace en L3–L4 o L4–L5. <b>Corrección</b>: el sacro no está «cerrado»; el conducto sacro sigue abierto y lleva raíces sacras, solo que ya no hay médula.",
+"<b>Curvatura sacra</b>: en la mujer el sacro es más corto, ancho y menos curvo hacia adelante, lo que amplía la pelvis para el parto (complemento: la diferencia es en la pelvis, no que la columna sea «más curva»).",
+"Un nervio comprimido se vuelve <b>isquémico</b> (le llega menos sangre): por eso duele, hormiguea o pierde fuerza.",
+"<b>Corrección</b> del dato del fémur: lo frecuente en el adulto mayor es la fractura del <b>cuello</b> (no de la cabeza) del fémur por una caída en casa, muchas veces al levantarse de noche al baño. La cifra de «70% al hacer pipí» no está respaldada."],
+p:"7-12-5 (cervicales, torácicas, lumbares) + sacro (5 fusionadas) + cóccix (≈4). La médula acaba en L1–L2.",
+f:[["¿Cuántas vértebras libres hay?","24: 7 cervicales, 12 torácicas y 5 lumbares."],["¿Cuántas vértebras forman el sacro?","5 fusionadas."],["¿Qué permite la apófisis odontoides?","La rotación de la cabeza (pivote entre C1 y C2)."],["¿Qué vértebra tiene la espinosa más prominente?","C7."],["¿Dónde termina la médula espinal en el adulto?","En L1–L2 (cono medular)."]],
+q:[["¿Cuál es la vértebra que no tiene cuerpo?",["C1 (atlas)","C2 (axis)","C7","L5"],0,"El atlas es un anillo; su «cuerpo» se fusionó con el axis como odontoides."],
+["La punción lumbar se hace en L3–L4 porque…",["Ahí empieza la médula","Por debajo de L2 ya no hay médula, solo raíces","Es donde el disco es más grueso","Ahí está el cono medular"],1,"La médula termina en L1–L2."],
+["¿Qué vértebras tienen el cuerpo más grande?",["Cervicales","Torácicas","Lumbares","Sacras"],2,"Las lumbares: cargan más peso."]]},
+
+{id:"torax-oseo",u:"u10",t:"Esternón y costillas",m:"TÓRAX",
+s:"La caja torácica (esternón, 12 pares de costillas y vértebras torácicas) crea el microambiente que necesitan pulmones y corazón: protege y permite cambiar la presión para respirar.",
+k:["<b>Esternón</b>: hueso plano en forma de espada. <b>Manubrio</b> (arriba; se articula con las clavículas y el 1er cartílago costal) → <b>cuerpo</b> → <b>apófisis xifoides</b> (cartilaginosa, se osifica con la edad).",
+"<b>Ángulo esternal (de Louis)</b>: unión manubrio–cuerpo. <b>Corrección</b>: está a la altura del <b>2º cartílago costal</b> (no de la 4ª costilla) y marca el plano T4–T5. Sirve para contar costillas en la exploración.",
+"<b>Costillas verdaderas</b>: 1–7, se unen directo al esternón por su cartílago. <b>Falsas</b>: 8–10, se unen al cartílago de la costilla de arriba. <b>Flotantes</b>: 11–12 (también falsas), sin unión anterior.",
+"<b>Articulación con la columna</b>: la cabeza de la costilla se une a los cuerpos vertebrales y el tubérculo (faceta articular) al proceso transverso.",
+"<b>Corrección</b> de cuáles se articulan distinto: las costillas típicas (2–9) se apoyan en dos vértebras (la suya y la de arriba). Las <b>atípicas 1, 10, 11 y 12</b> se articulan solo con el cuerpo de su propia vértebra.",
+"Toda fractura costal obliga a buscar lesión de órganos (neumotórax, hemotórax, hígado o bazo en las costillas bajas).",
+"<b>Tórax inestable (volet costal)</b>. <b>Corrección</b>: no es «más de 3 costillas de ambos lados», sino <b>3 o más costillas consecutivas fracturadas en 2 o más sitios cada una</b>. Ese segmento se mueve al revés del resto al respirar (respiración paradójica)."],
+p:"Ángulo de Louis = 2º cartílago costal = T4–T5 = carina, arco aórtico y límite del mediastino superior. Un solo punto que te da 4 respuestas.",
+f:[["¿A qué costilla corresponde el ángulo de Louis?","Al 2º cartílago costal (plano T4–T5)."],["Costillas verdaderas, falsas y flotantes","Verdaderas 1–7, falsas 8–10, flotantes 11–12."],["¿Qué es el tórax inestable?","3 o más costillas consecutivas fracturadas en 2 o más sitios: segmento con movimiento paradójico."],["¿Qué costillas se articulan solo con una vértebra?","1, 10, 11 y 12."]],
+q:[["La apófisis xifoides en el joven es…",["Hueso compacto","Cartílago que se osifica con la edad","Ligamento","Parte del manubrio"],1,"Es cartilaginosa y se osifica con los años."],
+["El tórax inestable se caracteriza por…",["Una fractura de clavícula","Respiración paradójica de un segmento de pared","Fractura de esternón aislada","Neumotórax a tensión"],1,"El segmento flotante se hunde en la inspiración."]]},
+
+/* U11 */
+{id:"musc-abd",u:"u11",t:"Pared abdominal y tórax: músculos",m:"MÚSCULOS",
+s:"Los músculos del tronco estabilizan, mueven y protegen. En el abdomen se acomodan en 3 capas con fibras en direcciones distintas para sumar fuerza.",
+k:["<b>Pared anterolateral, de superficial a profundo</b>: <b>oblicuo externo</b> (fibras hacia abajo y adentro, «manos en los bolsillos») → <b>oblicuo interno</b> (perpendicular al externo) → <b>transverso del abdomen</b> (horizontal, el más profundo; se extiende hasta la fascia toracolumbar en la espalda).",
+"<b>Recto del abdomen</b>: vertical, a cada lado de la línea media. Sus «cuadritos» son las <b>intersecciones tendinosas</b>, que lo dividen en segmentos y le dan más fuerza. Para tu pregunta pendiente: está dentro de la <b>vaina de los rectos</b>, formada por las aponeurosis de los tres músculos anchos.",
+"<b>Línea alba</b>: rafe de aponeurosis donde convergen recto, oblicuos y transverso en la línea media. <b>Línea semilunar</b>: borde lateral de la vaina del recto, donde se unen las aponeurosis por fuera.",
+"<b>Aponeurosis</b>: tendón ancho y plano que une un músculo con otro, con un hueso o con la línea alba.",
+"<b>Piramidal</b>: pequeño, delante del recto inferior; va del pubis a la línea alba y la tensa. <b>Cremáster</b>: deriva del oblicuo interno y eleva (retrae) los testículos.",
+"<b>Pectoral mayor</b>: origen en clavícula, esternón y cartílagos de las primeras 6 costillas; inserción en el <b>labio lateral del surco intertubercular</b> del húmero. <b>Pectoral menor</b> (lo dejaste en blanco): nace de las costillas <b>3 a 5</b> y se inserta en la <b>apófisis coracoides</b> de la escápula.",
+"<b>Serrato anterior</b>. <b>Corrección</b>: nace de las costillas <b>1 a 8 (a veces 9)</b>, no hasta la 10, y se inserta en el borde medial de la escápula (nervio torácico largo; su lesión da escápula alada).",
+"<b>Espalda</b> (pendiente en tus notas, complemento): superficiales (trapecio, dorsal ancho, romboides, elevador de la escápula) mueven el miembro superior; profundos (erector de la columna: iliocostal, longísimo y espinoso) extienden y estabilizan la columna.",
+"Los músculos del <b>suelo pélvico</b> sostienen las vísceras pélvicas (ver periné)."],
+p:"Superficial a profundo: externo, interno, transverso. El transverso es el «cinturón» más profundo.",
+f:[["Orden de los músculos anchos del abdomen (superficial a profundo)","Oblicuo externo, oblicuo interno, transverso."],["¿Qué son los «cuadritos» del recto?","Intersecciones tendinosas."],["¿Dónde se inserta el pectoral mayor?","Labio lateral del surco intertubercular del húmero."],["Origen e inserción del pectoral menor","Costillas 3–5 → apófisis coracoides."],["¿Qué es la línea alba?","El rafe aponeurótico de la línea media donde convergen los músculos abdominales."]],
+q:[["¿Qué músculo abdominal es el más profundo?",["Oblicuo externo","Oblicuo interno","Transverso del abdomen","Recto"],2,"El transverso."],
+["La lesión del nervio torácico largo paraliza el…",["Pectoral mayor","Serrato anterior","Trapecio","Dorsal ancho"],1,"Serrato anterior: escápula alada."],
+["El músculo cremáster deriva del…",["Oblicuo externo","Oblicuo interno","Recto","Piramidal"],1,"Del oblicuo interno."]]},
+
+{id:"diafragma",u:"u11",t:"Diafragma y músculos de la respiración",m:"MÚSCULOS",
+s:"El diafragma es el principal músculo de la inspiración. Al contraerse baja, aumenta el volumen del tórax y baja la presión, así entra el aire.",
+k:["<b>Forma</b>: dos cúpulas (las «2 palmeras» de tu clase) con un <b>centro tendinoso</b>, la parte más clara, de tejido conectivo. La <b>cúpula derecha es más alta</b> por el hígado.",
+"<b>Pilares</b>. <b>Corrección</b>: el pilar <b>derecho</b> nace de L1–L3 y el <b>izquierdo</b> de L1–L2 (el derecho es el más largo). También nace del xifoides y de las costillas 7–12.",
+"Altura (complemento): en espiración la cúpula derecha llega al 4º–5º espacio intercostal y la izquierda un poco más abajo. En tus notas quedó «de T5 a T10» como rango del músculo.",
+"<b>Orificios</b> (regla 8–10–12): <b>T8</b> agujero de la <b>vena cava inferior</b> (en el centro tendinoso; técnicamente no es hiato); <b>T10</b> hiato <b>esofágico</b> (con los nervios vagos); <b>T12</b> hiato <b>aórtico</b> (con el conducto torácico y la ácigos). <b>Corrección</b>: el orificio es para la <b>cava</b>, no para la vena porta.",
+"Inervación (complemento): <b>nervio frénico (C3–C5)</b>. «C3, 4 y 5 mantienen vivo al diafragma».",
+"<b>Inspiración</b>: baja el diafragma; las costillas se abren como alas y el esternón se levanta (intercostales externos). <b>Espiración tranquila</b>: es pasiva (retroceso elástico). <b>Espiración forzada</b>: intercostales internos y músculos abdominales.",
+"<b>Intercostales</b>: externos (inspiración), internos (espiración forzada) e <b>íntimos</b> (la capa más profunda). <b>Subcostales</b>: en la parte baja y posterior, algunos se saltan una o dos costillas. <b>Transverso del tórax</b>: en la cara interna del esternón, baja los cartílagos costales en la espiración.",
+"<b>Corrección</b>: en tus notas los intercostales internos hacen espiración «normal y forzada»; la espiración normal no necesita músculos, solo la forzada."],
+p:"Cava a T8, esófago a T10, aorta a T12: «I 8 10 eggs at 12» o «8 letras de VENACAVA».",
+f:[["¿A qué nivel pasa la vena cava inferior por el diafragma?","T8."],["¿A qué nivel está el hiato esofágico?","T10."],["¿A qué nivel está el hiato aórtico?","T12."],["¿Qué nervio inerva el diafragma?","El frénico (C3–C5)."],["¿Qué cúpula es más alta y por qué?","La derecha, por el hígado."]],
+q:[["¿Qué estructura NO atraviesa el diafragma por uno de sus 3 orificios principales?",["Vena cava inferior","Esófago","Aorta","Vena porta"],3,"La porta está toda en el abdomen."],
+["La espiración tranquila se debe a…",["Contracción del diafragma","Intercostales externos","Retroceso elástico pasivo","Músculos abdominales"],2,"Es pasiva."],
+["¿Qué pilar del diafragma es más largo?",["El derecho (L1–L3)","El izquierdo (L1–L2)","Son iguales","Ninguno, no tiene pilares"],0,"El derecho."]]},
+
+{id:"perine",u:"u11",t:"Periné y suelo pélvico",m:"PERINÉ",
+s:"El periné es la región en forma de rombo bajo el suelo pélvico, entre los muslos, del pubis al cóccix. Una línea entre las tuberosidades isquiáticas lo divide en dos triángulos.",
+k:["<b>Triángulo urogenital</b> (anterior): genitales externos y músculos perineales. <b>Triángulo anal</b> (posterior): ano y fosas isquioanales.",
+"<b>Corrección</b>: el periné no es solo «las partes genitales»: es toda la región rómbica e incluye ambos triángulos. «Perianal» sí es solo alrededor del ano.",
+"<b>Diafragma pélvico</b>: <b>elevador del ano</b> (pubococcígeo, puborrectal e iliococcígeo) y <b>coccígeo</b>. Sostiene vísceras pélvicas y ayuda a la continencia.",
+"<b>Músculos del periné</b>: isquiocavernoso, bulboesponjoso, transverso superficial y transverso profundo del periné.",
+"<b>Corrección</b> de la diferenciación sexual: no es en la semana 20. La gónada empieza a diferenciarse hacia la <b>semana 7</b> (gen SRY en el varón) y los genitales externos se distinguen hacia la <b>semana 12</b>. En el ultrasonido de la semana 18–20 es cuando suele verse el sexo."],
+f:[["¿Qué dos triángulos forman el periné?","Urogenital (anterior) y anal (posterior)."],["Músculos del diafragma pélvico","Elevador del ano y coccígeo."]],
+q:[["¿Qué línea divide el periné en sus dos triángulos?",["Entre las espinas ilíacas","Entre las tuberosidades isquiáticas","Entre el pubis y el cóccix","Línea pectínea"],1,"Línea bituberosa (entre tuberosidades isquiáticas)."]]},
+
+/* U12 */
+{id:"nariz",u:"u12",t:"Nariz y cavidad nasal",m:"NARIZ",
+s:"La vía respiratoria superior va de la nariz a la laringe y queda fuera del tórax. La inferior empieza en la tráquea, dentro del tórax.",
+k:["<b>Nariz externa</b>: 2 huesos nasales pequeños (se articulan arriba con el frontal) + un marco de cartílago cubierto de piel con glándulas sebáceas.",
+"<b>Cavidad nasal</b>: el piso lo forman el maxilar y el palatino (paladar duro). En la pared lateral hay 3 <b>cornetes (conchas)</b>: superior, medio e inferior, que dejan debajo los <b>meatos</b> superior, medio e inferior.",
+"<b>Mucosa</b>: epitelio <b>cilíndrico pseudoestratificado ciliado</b> con células caliciformes y tejido conectivo debajo. Muy irrigada (calienta y humidifica el aire) y con cilios que mueven el moco hacia la faringe.",
+"En el techo está la <b>mucosa olfatoria</b>, con células nerviosas olfatorias (nervio olfatorio, I par).",
+"Funciones: conducir, filtrar, calentar y humidificar el aire; olfato; caja de resonancia de la voz."],
+f:[["¿Qué epitelio recubre la vía respiratoria?","Cilíndrico pseudoestratificado ciliado (con caliciformes)."],["¿Cuántos cornetes hay y cuáles?","3: superior, medio e inferior."],["¿Dónde termina la vía respiratoria superior?","En la laringe."]],
+q:[["La vía respiratoria inferior empieza en…",["La faringe","La laringe","La tráquea","Los bronquios principales"],2,"En la tráquea."]]},
+
+{id:"senos",u:"u12",t:"Senos paranasales e irrigación nasal",m:"NARIZ",
+s:"Cuatro pares de cavidades con aire, cubiertas de mucosa respiratoria, que se abren y drenan a la cavidad nasal. La nariz recibe sangre de las dos carótidas, y en el tabique anterior se juntan en el plexo de Kiesselbach.",
+k:["<b>Senos</b>: <b>maxilar</b> (el más grande, drena al meato medio), <b>frontal</b> (meato medio), <b>etmoidales</b> (anteriores y medios al meato medio, posteriores al superior) y <b>esfenoidal</b> (receso esfenoetmoidal).",
+"<b>Carótida externa</b>: <b>esfenopalatina</b> (de la maxilar; la principal), <b>palatina mayor</b> (de la maxilar), <b>labial superior</b> y <b>nasal lateral</b> (de la facial).",
+"<b>Carótida interna</b>: <b>etmoidales anterior y posterior</b> (de la oftálmica).",
+"<b>Plexo de Kiesselbach</b> (área de Little), en la parte anterior del tabique: etmoidal anterior + esfenopalatina + labial superior + <b>palatina mayor</b> (esta faltaba en tus notas). Es el sitio del 90% de las epistaxis.",
+"<b>Manejo de la epistaxis anterior</b>. <b>Corrección</b>: lo primero es <b>presión digital</b> sobre las alas nasales 10–15 minutos con la cabeza inclinada hacia adelante (no hacia atrás). Si no para, cauterización o <b>taponamiento</b> (empaquetamiento).",
+"<b>Venas</b>: siguen a las arterias y drenan al plexo pterigoideo, a la vena facial y, por las etmoidales, a la oftálmica y al seno cavernoso. <b>Corrección</b>: la yugular interna no está «formada por los senos paranasales»; recibe al final la sangre de esas venas (vía facial y senos durales).",
+"Por esa conexión con el seno cavernoso, una infección del «triángulo peligroso de la cara» puede llegar al cráneo (complemento)."],
+p:"Kiesselbach: ELAP = Etmoidal anterior, Labial superior, esfenopalatina y Palatina mayor.",
+f:[["¿Cuáles son los 4 senos paranasales?","Maxilar, frontal, etmoidales y esfenoidal."],["¿Qué arterias forman el plexo de Kiesselbach?","Etmoidal anterior, esfenopalatina, labial superior y palatina mayor."],["¿Qué arterias nasales vienen de la carótida interna?","Las etmoidales anterior y posterior (de la oftálmica)."],["Primer paso ante una epistaxis anterior","Presión digital 10–15 min con la cabeza hacia adelante."]],
+q:[["¿Cuál es la principal arteria de la cavidad nasal?",["Etmoidal anterior","Esfenopalatina","Facial","Labial superior"],1,"Esfenopalatina, rama de la maxilar."],
+["¿Dónde ocurre la mayoría de las epistaxis?",["Cornete inferior","Plexo de Kiesselbach","Seno maxilar","Coana"],1,"En el tabique anterior."]]},
+
+{id:"faringe",u:"u12",t:"Faringe",m:"FARINGE",
+s:"Tubo muscular que va de la base del cráneo hasta el esófago (a nivel de C6). Es vía común para el aire y la comida y se divide en 3 partes.",
+k:["<b>Nasofaringe</b>: detrás de la nariz, encima del paladar blando. Tiene la <b>tonsila faríngea</b> (tejido linfático) y los orificios de las trompas auditivas.",
+"<b>Corrección</b>: al revés de tus notas, se llama <b>tonsila faríngea</b> normalmente y <b>adenoides</b> (vegetaciones) cuando está hipertrofiada o inflamada.",
+"<b>Orofaringe</b>: detrás de la boca, del paladar blando a la epiglotis. Tiene las <b>tonsilas palatinas</b> (las «anginas», las que más se operan) y las <b>linguales</b> (en la base de la lengua; casi nunca se quitan).",
+"<b>Laringofaringe</b>. <b>Corrección</b>: va del borde superior de la epiglotis al borde inferior del cricoides (C6), donde sigue el esófago. La descripción de «cartílagos unidos por músculo que forman 2 cuerdas» de tus notas es de la <b>laringe</b>, no de la laringofaringe.",
+"<b>Constrictores</b>: superior, medio (nace del hioides) e inferior (tiroides y cricoides). Empujan el bolo hacia abajo y evitan que se regrese.",
+"El esófago no tiene cartílago y está pegado a la columna, así que al pasar un bocado grande se expande hacia adelante, contra la <b>pared posterior membranosa</b> de la tráquea (por eso los anillos traqueales son incompletos). Un cuerpo extraño grande puede comprimir la vía aérea.",
+"Las tonsilas faríngea, tubáricas, palatinas y lingual forman el <b>anillo de Waldeyer</b> (complemento)."],
+f:[["¿Cuáles son las 3 partes de la faringe?","Nasofaringe, orofaringe y laringofaringe."],["¿Dónde están las tonsilas palatinas?","En la orofaringe."],["¿Cuándo se llama adenoides a la tonsila faríngea?","Cuando está hipertrofiada o inflamada."],["¿A qué nivel la faringe se continúa con el esófago?","C6 (borde inferior del cricoides)."]],
+q:[["¿Qué tonsila está en la nasofaringe?",["Palatina","Lingual","Faríngea","Tubárica únicamente"],2,"La faríngea (adenoides si crece)."],
+["El constrictor medio de la faringe se origina en…",["El cricoides","El hioides","La base del cráneo","El esternón"],1,"El hioides."]]},
+
+{id:"laringe",u:"u12",t:"Laringe",m:"LARINGE",
+s:"Caja de la voz y válvula de la vía aérea, entre la raíz de la lengua y la tráquea (C3–C6). Es un esqueleto de 9 cartílagos unidos por músculos y ligamentos, cubierto por mucosa.",
+k:["<b>Impares</b>: <b>epiglotis</b>, <b>tiroides</b> y <b>cricoides</b>. <b>Pares</b>: <b>aritenoides</b> (sobre el cricoides), <b>corniculados</b> (sobre los aritenoides) y <b>cuneiformes</b> (en los pliegues ariepiglóticos).",
+"<b>Tiroides</b>: el más grande; sus láminas forman un ángulo de ~90° en el hombre (nuez) y ~120° en la mujer. Tiene cuernos superiores e inferiores. <b>Corrección</b>: son los <b>cuernos inferiores del tiroides</b> (no «las pelotitas del hioides») los que se articulan a los lados del cricoides.",
+"<b>Cricoides</b>: el único anillo completo, a nivel de <b>C6</b>; debajo empieza la tráquea. A su altura está la región infraglótica (subglotis).",
+"<b>Epiglotis</b>: cartílago elástico con pequeños agujeros donde se fija la mucosa (y que lo aligeran). Cierra la entrada de la laringe al deglutir.",
+"<b>Pliegues</b>: <b>vestibulares</b> (cuerdas vocales falsas, arriba) y <b>vocales</b> (cuerdas verdaderas, abajo). Las verdaderas van del <b>proceso vocal del aritenoides</b> al tiroides; el espacio entre ellas es la <b>glotis</b>.",
+"El hioides sostiene a la laringe por la membrana tirohioidea. <b>Corrección</b>: esa membrana la perfora la <b>rama interna del nervio laríngeo superior</b> con la arteria laríngea superior; el nervio <b>laríngeo recurrente</b> entra por abajo, detrás de la articulación cricotiroidea.",
+"<b>Músculos intrínsecos</b>: nacen y se insertan en la <b>laringe</b> (no en la faringe) y mueven las cuerdas. Todos los inerva el recurrente, menos el <b>cricotiroideo</b> (laríngeo superior). El único que abre la glotis es el <b>cricoaritenoideo posterior</b>.",
+"<b>Músculos extrínsecos</b>: se insertan en la laringe pero nacen fuera (supra e infrahioideos); suben o bajan la laringe al tragar.",
+"<b>Niveles</b>. <b>Corrección</b>: la laringe ocupa <b>C3–C6</b>; la faringe no «se convierte en laringe» en C4: a ese nivel están juntas (la laringofaringe queda detrás de la laringe).",
+"<b>Corrección</b>: la glándula <b>tiroides</b> no está «entre el 1º y 3º cartílago»: su <b>istmo</b> cubre los anillos traqueales <b>2º a 4º</b>; sus lóbulos abrazan laringe y tráquea.",
+"Funciones: paso del aire, protección de la vía aérea (cierre al deglutir, tos) y fonación."],
+p:"Recurrente = todos los intrínsecos menos el cricotiroideo. Lesión unilateral del recurrente (cirugía de tiroides) = disfonía.",
+f:[["Cartílagos impares de la laringe","Epiglotis, tiroides y cricoides."],["Cartílagos pares de la laringe","Aritenoides, corniculados y cuneiformes."],["¿Cuál es el único anillo cartilaginoso completo de la vía aérea?","El cricoides."],["¿De dónde salen las cuerdas vocales verdaderas?","Del proceso vocal del aritenoides (al tiroides)."],["¿Qué músculo abre la glotis?","El cricoaritenoideo posterior."],["¿Qué nervio perfora la membrana tirohioidea?","La rama interna del laríngeo superior."]],
+q:[["¿Qué músculo intrínseco NO lo inerva el recurrente?",["Cricoaritenoideo posterior","Tiroaritenoideo","Cricotiroideo","Aritenoideo"],2,"El cricotiroideo, por el laríngeo superior (rama externa)."],
+["El istmo de la glándula tiroides cubre los anillos traqueales…",["1º","2º a 4º","5º a 7º","Ninguno, está sobre el cricoides"],1,"2º a 4º."],
+["¿Entre qué estructuras está la glotis?",["Pliegues vestibulares","Pliegues vocales","Pliegues ariepiglóticos","Valléculas"],1,"Entre las cuerdas vocales verdaderas."]]},
+
+/* U13 */
+{id:"traquea",u:"u13",t:"Tráquea y árbol bronquial",m:"TRÁQUEA",
+s:"Al entrar al tórax el aire pasa a un ambiente controlado por la caja torácica y sus músculos. La tráquea va del cricoides (C6) a la carina (T4–T5), donde se divide en los bronquios principales.",
+k:["<b>Pared</b>: adventicia por fuera, <b>16–20 anillos de cartílago en forma de C</b> (incompletos por detrás) unidos por tejido conectivo, músculo liso (<b>traqueal</b>) en la parte posterior y mucosa ciliada por dentro.",
+"Los anillos incompletos dejan una pared posterior membranosa, pegada al esófago, que permite que este se expanda al pasar el bolo.",
+"<b>Longitud</b>: en tus notas 12–14 cm; en Moore ≈10–12 cm en el adulto. Diámetro ~2.5 cm.",
+"<b>Carina</b>: espolón donde se bifurca, a nivel de T4–T5 (ángulo de Louis). Es la zona más sensible al moco y al polvo: dispara el <b>reflejo tusígeno</b>.",
+"<b>Bronquio principal derecho</b>: más <b>corto, ancho y vertical</b>. Por eso los cuerpos extraños aspirados se van más al pulmón derecho. <b>Izquierdo</b>: más largo, angosto y horizontal (pasa bajo el arco aórtico).",
+"Árbol: principales → <b>lobares</b> (3 derechos, 2 izquierdos) → <b>segmentarios</b> → bronquiolos → bronquiolos terminales y respiratorios → conductos alveolares → alvéolos. Son unas <b>23 generaciones</b> de división.",
+"<b>Corrección</b> del dato de la fiebre: no se elimina «el doble de agua por cada grado». Las pérdidas insensibles aumentan ≈10–15% por cada °C arriba de 37 (unos 100–150 ml/día extra en un adulto), lo que basta para deshidratar a un paciente con fiebre varios días."],
+p:"Aspiración: bronquio derecho (más vertical). Paciente acostado boca arriba: segmento superior del lóbulo inferior derecho (S6).",
+f:[["¿Cuántos anillos tiene la tráquea?","16–20, en forma de C."],["¿A qué nivel está la carina?","T4–T5."],["¿Por qué los cuerpos extraños se van al pulmón derecho?","El bronquio derecho es más corto, ancho y vertical."],["¿Cuántos bronquios lobares tiene cada lado?","Derecho 3, izquierdo 2."]],
+q:[["¿Dónde empieza la tráquea?",["C4","C6, debajo del cricoides","T2","T4"],1,"En C6."],
+["¿Qué zona dispara con más fuerza el reflejo de la tos?",["Cornetes","Carina","Bronquiolos","Alvéolos"],1,"La carina."]]},
+
+{id:"alveolo",u:"u13",t:"Alvéolos y surfactante",m:"PULMÓN",
+s:"El alvéolo es donde ocurre el intercambio gaseoso, por difusión a través de la membrana alveolocapilar.",
+k:["<b>Membrana respiratoria</b>: epitelio alveolar + membranas basales fusionadas + endotelio capilar; muy delgada (~0.5 µm).",
+"<b>Neumocitos tipo I</b>: planos, cubren ~95% de la superficie; intercambio. <b>Tipo II</b>: cúbicos, producen <b>surfactante</b> y reparan el epitelio. <b>Macrófagos alveolares</b>: limpian (complemento).",
+"<b>Surfactante</b>. <b>Corrección</b>: no «mantiene» la tensión superficial, la <b>disminuye</b>; así el alvéolo no se colapsa al final de la espiración.",
+"Sin surfactante aparecen <b>atelectasias</b> (alvéolos colapsados): primero <b>hipoxia</b> y con el tiempo retención de CO₂ y <b>acidosis respiratoria</b>.",
+"Ejemplo clínico (complemento): el síndrome de dificultad respiratoria del prematuro, porque el surfactante madura hacia la semana 34–35."],
+f:[["¿Qué célula produce el surfactante?","El neumocito tipo II."],["¿Qué hace el surfactante?","Disminuye la tensión superficial y evita el colapso alveolar."],["¿Qué produce la falta de surfactante?","Atelectasias, hipoxia y luego acidosis respiratoria."]],
+q:[["La mayor parte de la superficie alveolar la cubren…",["Neumocitos tipo I","Neumocitos tipo II","Macrófagos","Células caliciformes"],0,"Tipo I (~95%)."]]},
+
+{id:"pulmones",u:"u13",t:"Pulmones, lóbulos, hilio y segmentos",m:"PULMÓN",
+s:"Órganos en forma de cono, con la base sobre el diafragma y el vértice en la raíz del cuello. El derecho tiene 3 lóbulos y el izquierdo 2.",
+k:["<b>Corrección</b>: el vértice no llega solo a la clavícula, sube <b>2–3 cm por encima</b> de ella (cúpula pleural); por eso una punción en la fosa supraclavicular puede causar neumotórax.",
+"Caras: <b>costal</b> (contra las costillas), <b>mediastínica</b> (medial, con el hilio) y <b>diafragmática</b> (base). Por detrás bajan hasta ~T10; los lóbulos inferiores ocupan casi toda la cara posterior.",
+"<b>Fisuras</b>. Derecho: <b>horizontal</b> (separa superior de medio) y <b>oblicua</b> (separa el inferior de los otros dos). Izquierdo: solo <b>oblicua</b> (superior / inferior).",
+"<b>Língula</b>: prolongación del lóbulo superior izquierdo hacia abajo, con segmentos lingular superior e inferior; es el homólogo del lóbulo medio derecho.",
+"<b>Hilio</b>: por donde entran y salen bronquio, arteria y venas pulmonares, rodeados por la pleura (en forma de raqueta, con el ligamento pulmonar abajo).",
+"<b>Corrección del hilio</b>: <b>derecho</b> = 2 bronquios (el del lóbulo superior, «eparterial», queda arriba), <b>1 arteria pulmonar</b> por delante del bronquio y 2 venas (anterior e inferior). <b>Izquierdo</b> = la <b>arteria arriba</b>, 1 bronquio detrás y debajo de ella, y 2 venas (anterior e inferior). En tus notas quedaron «2 arterias»; cada lado recibe una sola arteria pulmonar.",
+"<b>Segmentos del derecho (10)</b>: superior → 1 apical, 2 posterior, 3 anterior · medio → 4 lateral, 5 medial · inferior → 6 superior, 7 basal medial, 8 basal anterior, 9 basal lateral, 10 basal posterior.",
+"<b>Segmentos del izquierdo (8–10)</b>: superior → 1+2 apicoposterior, 3 anterior, 4 lingular superior, 5 lingular inferior · inferior → 6 superior, 7+8 basal anteromedial, 9 basal lateral, 10 basal posterior. Por eso unos libros dicen 8 y otros 10: algunos se fusionan.",
+"<b>Pleura</b>: <b>parietal</b> (más gruesa, sensible al dolor) y <b>visceral</b> (pegada al pulmón). Entre ambas, un espacio virtual con una capa mínima de líquido. Aire = <b>neumotórax</b>; sangre = <b>hemotórax</b>; linfa = <b>quilotórax</b>.",
+"<b>Linfa</b>: lleva lípidos (quilo) y leucocitos. <b>Corrección</b>: no «siempre» va al conducto torácico: este recoge todo lo de abajo y la mitad izquierda de arriba y desemboca en el ángulo venoso yugulosubclavio <b>izquierdo</b>; el lado derecho de cabeza, cuello, brazo y tórax drena al <b>conducto linfático derecho</b>."],
+p:"Lóbulo medio y língula son homólogos: neumonía en el lóbulo medio borra el borde derecho del corazón; en la língula, el izquierdo (signo de la silueta).",
+f:[["¿Cuántos lóbulos y fisuras tiene el pulmón derecho?","3 lóbulos; fisuras horizontal y oblicua."],["¿Qué es la língula?","Prolongación del lóbulo superior izquierdo, homóloga del lóbulo medio."],["¿Cuántos segmentos tiene el pulmón derecho?","10."],["Hilio izquierdo: ¿qué va más arriba?","La arteria pulmonar."],["¿Qué es un quilotórax?","Linfa (quilo) en el espacio pleural."],["¿Qué pleura es más gruesa y duele?","La parietal."]],
+q:[["La fisura horizontal separa…",["Lóbulo superior e inferior derecho","Lóbulo superior y medio derecho","Lóbulo medio e inferior","Los lóbulos izquierdos"],1,"Superior y medio derecho."],
+["El segmento 6 del lóbulo inferior es el…",["Basal medial","Superior","Lateral","Apical"],1,"Superior (de Fowler)."],
+["¿A dónde desemboca el conducto torácico?",["Vena cava superior","Ángulo yugulosubclavio izquierdo","Ángulo yugulosubclavio derecho","Vena ácigos"],1,"Al ángulo venoso izquierdo."],
+["El vértice del pulmón llega…",["Al borde inferior de la clavícula","2–3 cm por encima de la clavícula","Al ángulo de Louis","A la 2ª costilla"],1,"Sube a la raíz del cuello."]]},
+
+/* U14 */
+{id:"mediastino",u:"u14",t:"Mediastino: límites y divisiones",m:"MEDIASTINO",
+s:"Compartimento central del tórax entre las dos cavidades pleurales: tiene corazón, grandes vasos, tráquea, esófago y más, pero no los pulmones. Va de la abertura torácica superior al diafragma.",
+k:["<b>Dos mediastinos</b>: <b>superior</b> e <b>inferior</b>, separados por el <b>plano transverso del tórax</b>, que va del ángulo de Louis al disco <b>T4–T5</b>.",
+"El <b>inferior</b> se divide en 3: <b>anterior</b>, <b>medio</b> y <b>posterior</b>.",
+"<b>Anterior</b>: entre la cara posterior del esternón y la cara anterior del pericardio.",
+"<b>Medio</b>: el pericardio y su contenido.",
+"<b>Posterior</b>: entre la cara posterior del pericardio (y el diafragma) y los cuerpos vertebrales T5–T12. <b>Corrección</b>: el límite de atrás son los <b>cuerpos de las vértebras torácicas</b>, no «la cara anterior de las costillas posteriores».",
+"«Espacios no reales»: el mediastino no tiene paredes propias, son divisiones descriptivas llenas de tejido conectivo laxo.",
+"Las <b>venas ácigos</b> (tu pregunta pendiente): sistema venoso a los lados de la columna que drena la pared torácica posterior y el esófago; la ácigos sube por la derecha y se arquea sobre el bronquio derecho para desembocar en la <b>vena cava superior</b>. Comunica la cava superior con la inferior."],
+fig:"medias",
+f:[["¿Qué plano divide el mediastino superior del inferior?","El plano del ángulo de Louis al disco T4–T5."],["¿En cuántas partes se divide el mediastino inferior?","3: anterior, medio y posterior."],["¿Dónde desemboca la vena ácigos?","En la vena cava superior."]],
+q:[["¿Qué hay en el mediastino medio?",["Timo","Esófago torácico","Corazón y pericardio","Conducto torácico"],2,"Pericardio y su contenido."],
+["El límite posterior del mediastino posterior es…",["La cara posterior del esternón","Los cuerpos vertebrales T5–T12","El pericardio","Las costillas anteriores"],1,"Los cuerpos vertebrales."]]},
+
+{id:"medias-cont",u:"u14",t:"Contenido del mediastino",m:"MEDIASTINO",
+s:"Cada compartimento tiene su lista típica. Saber el contenido ayuda a pensar qué tumor o lesión aparece en cada zona.",
+k:["<b>Superior</b>: tráquea, esófago (tercio superior), <b>arco aórtico</b> y sus 3 ramas, <b>vena cava superior</b> y venas braquiocefálicas, timo (o su remanente), nervios frénicos y vagos (con el recurrente izquierdo), conducto torácico.",
+"<b>Anterior</b>: grasa, ganglios y vasos linfáticos y la parte inferior del <b>timo</b>. El timo es grande en el niño y <b>involuciona después de la pubertad</b> (en tus notas, de los 14 a los 25 años), quedando como grasa.",
+"<b>Medio</b>: <b>corazón y pericardio</b>, arterias coronarias, raíces de los grandes vasos (aorta ascendente, tronco pulmonar, final de la cava superior), bronquios principales y <b>nervios frénicos</b> (entre pericardio y pleura).",
+"<b>Posterior</b>: <b>esófago torácico</b>, <b>aorta descendente</b>, sistema <b>ácigos</b>, <b>conducto torácico</b>, nervios vagos y cadenas simpáticas.",
+"<b>Correcciones</b>: la <b>tráquea</b> no está en el posterior (termina en T4–T5, en el superior); y la <b>cisterna del quilo</b> está en el <b>abdomen</b> (L1–L2), lo que pasa por el mediastino posterior es su continuación, el conducto torácico.",
+"Del tema de tu clase: el esófago abdominal mide ~5 cm (ver Esófago) y el estómago no tolera el reflujo de bilis porque es alcalino (ver Estómago).",
+"Complemento clínico: masas del mediastino anterior «las 4 T» (timoma, teratoma, tiroides retroesternal y linfoma «terrible»); del posterior, tumores neurogénicos."],
+p:"Las 4 T del mediastino anterior: Timo, Teratoma, Tiroides, «Terrible» linfoma.",
+f:[["¿Qué hay en el mediastino posterior?","Esófago torácico, aorta descendente, ácigos, conducto torácico, vagos y simpáticos."],["¿Cuándo involuciona el timo?","Después de la pubertad."],["¿Dónde está la cisterna del quilo?","En el abdomen, a nivel de L1–L2."]],
+q:[["¿En qué mediastino está el arco aórtico?",["Superior","Anterior","Medio","Posterior"],0,"Superior."],
+["Una masa de mediastino anterior en un adulto joven obliga a pensar en…",["Tumor neurogénico","Timoma, teratoma, tiroides o linfoma","Hernia hiatal","Aneurisma de aorta descendente"],1,"Las 4 T."]]},
+
+/* U15 */
+{id:"corazon",u:"u15",t:"Corazón: ubicación, pericardio y capas",m:"CORAZÓN",
+s:"Está en el mediastino medio, detrás del cuerpo del esternón, entre los cartílagos costales 2 y 6. Dos tercios de su masa quedan a la izquierda de la línea media.",
+k:["Por detrás descansa sobre los cuerpos de <b>T5 a T8</b>. La <b>base</b> (aurículas y grandes vasos) mira hacia atrás y arriba, a nivel de la 2ª costilla; el <b>ápice</b> está en el <b>5º espacio intercostal izquierdo, línea medioclavicular</b>.",
+"<b>Pericardio fibroso</b>: saco duro, inextensible, fijo al diafragma y a los grandes vasos.",
+"<b>Pericardio seroso</b>: hoja <b>parietal</b> (por dentro del fibroso) y hoja <b>visceral</b> o <b>epicardio</b> (pegada al corazón).",
+"<b>Cavidad pericárdica</b>: entre ambas hojas serosas; tiene líquido que evita la fricción. En tus notas 10–15 ml; Moore da 15–50 ml. Si se llena rápido de sangre o líquido aparece el <b>taponamiento</b> porque el fibroso no se estira.",
+"<b>Capas de la pared</b>: <b>epicardio</b> (externa, más delgada que el pericardio), <b>miocardio</b> (músculo) y <b>endocardio</b> (endotelio interno que cubre cámaras y válvulas).",
+"Es normal que tenga grasa epicárdica alrededor (por donde corren las coronarias), pero en exceso es un factor de riesgo cardiovascular.",
+"<b>Cámaras</b>: 2 <b>aurículas</b> (de recepción o carga) arriba y 2 <b>ventrículos</b> (de eyección) abajo, separados en derecho e izquierdo por los <b>tabiques</b> interauricular e interventricular."],
+f:[["¿Dónde se palpa el ápice del corazón?","5º espacio intercostal izquierdo, línea medioclavicular."],["Capas del pericardio","Fibroso y seroso (parietal y visceral = epicardio)."],["Capas de la pared cardíaca","Epicardio, miocardio y endocardio."],["¿Por qué un derrame rápido causa taponamiento?","El pericardio fibroso es inextensible."]],
+q:[["El epicardio es…",["La hoja parietal del pericardio seroso","La hoja visceral del pericardio seroso","El pericardio fibroso","La capa interna del corazón"],1,"Hoja visceral."],
+["¿A qué vértebras se apoya el corazón por detrás?",["T1–T4","T5–T8","T9–T12","L1–L2"],1,"T5–T8."]]},
+
+{id:"valvulas",u:"u15",t:"Válvulas, músculos papilares y focos",m:"CORAZÓN",
+s:"Las válvulas dejan pasar la sangre en un solo sentido. Las auriculoventriculares (tricúspide y mitral) se sujetan con cuerdas tendinosas; las semilunares (pulmonar y aórtica) no.",
+k:["<b>Auriculoventriculares</b>: <b>tricúspide</b> (derecha, 3 valvas) y <b>mitral</b> o bicúspide (izquierda, 2 valvas). <b>Semilunares</b>: <b>pulmonar</b> y <b>aórtica</b>.",
+"<b>Músculos papilares y cuerdas tendinosas</b>. <b>Corrección</b>: no abren las válvulas. Se contraen en la <b>sístole</b> y tensan las cuerdas para que las valvas AV <b>no se volteen hacia la aurícula</b> (prolapso). Las válvulas se abren y cierran por diferencia de presión.",
+"Si se rompe una cuerda o un papilar (p. ej. tras un infarto), la valva queda suelta: <b>insuficiencia mitral aguda</b> con soplo.",
+"<b>Esqueleto fibroso</b>: 4 anillos fibrosos conectados que sostienen las válvulas y <b>aíslan eléctricamente</b> aurículas de ventrículos; el impulso solo pasa por el haz de His.",
+"Las <b>coronarias se llenan en la diástole</b>, justo después del cierre de las semilunares: sus orificios están en los <b>senos aórticos</b> (de Valsalva), detrás de las valvas («nido de golondrina»).",
+"<b>Focos de auscultación</b>: <b>aórtico</b> 2º espacio intercostal derecho, paraesternal · <b>pulmonar</b> 2º espacio izquierdo, paraesternal · <b>tricuspídeo</b> 4º–5º espacio izquierdo, paraesternal (borde esternal inferior) · <b>mitral</b> 5º espacio izquierdo, línea medioclavicular (ápice).",
+"<b>Foco accesorio (de Erb)</b>: 3er espacio intercostal izquierdo paraesternal. <b>Corrección</b>: se le llama aórtico accesorio; sirve sobre todo para el soplo de <b>insuficiencia aórtica</b> (y se oyen bien ambos ruidos), no es «para la pulmonar»."],
+fig:"focos",
+p:"Focos de arriba a abajo y de derecha a izquierda: «Aquí Pongo Todo Mi corazón» = Aórtico, Pulmonar, Tricuspídeo, Mitral.",
+f:[["¿Qué hacen los músculos papilares?","En sístole tensan las cuerdas y evitan que las valvas AV se volteen a la aurícula."],["¿Cuándo se llenan las coronarias?","En la diástole."],["Foco aórtico","2º espacio intercostal derecho paraesternal."],["Foco mitral","5º espacio intercostal izquierdo, línea medioclavicular."],["Foco de Erb","3er espacio intercostal izquierdo; aórtico accesorio."],["¿Qué hace el esqueleto fibroso?","Sostiene las válvulas y aísla eléctricamente aurículas de ventrículos."]],
+q:[["¿Qué válvula tiene 2 valvas?",["Tricúspide","Mitral","Pulmonar","Aórtica"],1,"La mitral (bicúspide)."],
+["La ruptura de un músculo papilar tras un infarto causa…",["Estenosis aórtica","Insuficiencia mitral aguda","Comunicación interauricular","Pericarditis"],1,"La valva se prolapsa: insuficiencia mitral aguda."],
+["¿Dónde se ausculta el foco pulmonar?",["2º EIC derecho","2º EIC izquierdo","4º EIC izquierdo","5º EIC izquierdo LMC"],1,"2º espacio izquierdo paraesternal."]]},
+
+{id:"coronarias",u:"u15",t:"Arterias coronarias y drenaje venoso",m:"CORAZÓN",
+s:"Las coronarias derecha e izquierda son las primeras ramas de la aorta y salen de los senos aórticos. La mayor parte de la sangre va al miocardio del ventrículo izquierdo.",
+k:["<b>Coronaria derecha</b>: corre por el surco AV derecho. Da la <b>rama del nodo sinusal</b> (≈60%), la <b>marginal derecha</b> y, en el corazón dominante derecho, la <b>interventricular posterior</b> (descendente posterior), que da las <b>septales posteriores</b>.",
+"<b>Corrección</b>: «marginal derecha» y «marginal aguda» son la misma arteria (corre por el borde agudo). Y la <b>arteria del nodo AV</b> sale de la coronaria derecha en la cruz del corazón (≈80%), no de la interventricular posterior.",
+"<b>Coronaria izquierda</b>: tronco corto que se divide en <b>interventricular anterior</b> (descendente anterior), que da <b>septales anteriores</b> y diagonales, y <b>circunfleja</b>, que va por el surco AV izquierdo y da la <b>marginal izquierda</b> (obtusa) y ramas ventriculares posteriores.",
+"<b>Dominancia</b>: la da quien origina la interventricular posterior. En tus notas: derecha 50%, izquierda 20%, codominancia 30%. Lo más citado (Moore): derecha ≈2/3 (67%), izquierda ≈15% y codominancia ≈18%.",
+"<b>Anastomosis</b>: existen algunas entre ramas grandes, pero son pequeñas; por eso, ante una oclusión brusca, las coronarias se comportan como <b>terminales funcionales</b>. Con una obstrucción lenta sí se desarrolla circulación colateral.",
+"<b>Drenaje venoso</b>: <b>vena cardíaca magna</b> (con la interventricular anterior, territorio izquierdo), <b>media</b> (con la interventricular posterior) y <b>menor</b> (borde derecho). Todas llegan al <b>seno coronario</b>, en el surco AV posterior, que desemboca en la <b>aurícula derecha</b>.",
+"Las venas cardíacas anteriores y las mínimas (de Tebesio) drenan directo a las cámaras (complemento)."],
+p:"Infarto de cara inferior = coronaria derecha (en dominancia derecha); anterior = descendente anterior; lateral = circunfleja.",
+f:[["Ramas principales de la coronaria izquierda","Interventricular anterior y circunfleja."],["¿Qué define la dominancia coronaria?","Qué arteria da la interventricular posterior."],["¿Qué porcentaje es dominante derecho?","≈2/3 (67%) según Moore; en tus notas 50%."],["¿A dónde drena el seno coronario?","A la aurícula derecha."],["¿Qué vena acompaña a la interventricular anterior?","La cardíaca magna."]],
+q:[["La arteria del nodo AV suele salir de la…",["Circunfleja","Coronaria derecha","Interventricular anterior","Marginal izquierda"],1,"Coronaria derecha, en la cruz (≈80%)."],
+["La vena cardíaca media corre junto a la…",["Interventricular anterior","Interventricular posterior","Marginal derecha","Circunfleja"],1,"Interventricular posterior."]]},
+
+{id:"conduccion",u:"u15",t:"Sistema de conducción",m:"CORAZÓN",
+s:"El impulso nace en el nodo sinusal, pasa por las aurículas al nodo AV, baja por el haz de His y se reparte por las fibras de Purkinje.",
+k:["<b>Nodo sinusal (de Keith y Flack)</b>: en la aurícula derecha, junto a la desembocadura de la cava superior. Marcapasos normal: <b>60–100 lpm</b>.",
+"<b>Nodo auriculoventricular (de Aschoff-Tawara)</b>: en el tabique interauricular, cerca del seno coronario. Retrasa el impulso para que las aurículas terminen de llenar los ventrículos. Si toma el mando, late a <b>40–60 lpm</b> (ese es el «40–60» de tus notas).",
+"<b>Haz de His</b>: cruza el esqueleto fibroso y baja por el tabique interventricular; se divide en <b>ramas derecha e izquierda</b>.",
+"<b>Fibras de Purkinje</b>: reparten el impulso por los ventrículos de la punta hacia la base. Ritmo propio 20–40 lpm.",
+"<b>Eje eléctrico</b>: se desvía a la <b>derecha</b> cuando crece el ventrículo derecho (enfermedad pulmonar, cor pulmonale) y a la <b>izquierda</b> cuando crece el izquierdo (hipertensión, estenosis aórtica, insuficiencia cardíaca)."],
+f:[["Otro nombre del nodo sinusal","Nodo de Keith y Flack."],["Otro nombre del nodo AV","Nodo de Aschoff-Tawara."],["Frecuencia propia del nodo AV","40–60 lpm."],["¿Hacia dónde se desvía el eje con hipertrofia del VD?","A la derecha."]],
+q:[["¿Qué estructura retrasa el impulso entre aurículas y ventrículos?",["Nodo sinusal","Nodo AV","Haz de His","Purkinje"],1,"El nodo AV."]]},
+
+/* U16 */
+{id:"rinon",u:"u16",t:"Riñón: forma, relaciones y estructura",m:"RIÑÓN",
+s:"Órganos retroperitoneales en forma de frijol, de color rojo pardo, a los lados de la columna entre T12 y L3. Filtran unos 180–200 L de plasma al día para formar 1–2 L de orina.",
+k:["<b>Tamaño</b>: en tus notas 12 × 7–8 × 4 cm; Moore da ≈10–12 cm de largo, 5–7 de ancho y 2.5–3 de grosor. Peso ≈130–150 g (un poco más en el hombre).",
+"<b>Funciones</b>: purificar la sangre, regular agua y electrolitos, equilibrio ácido-base, excretar toxinas, formar orina, y además hormonas: <b>eritropoyetina</b>, <b>renina</b> y la activación final de la <b>vitamina D</b> (1α-hidroxilación). <b>Corrección</b>: esa activación de la vitamina D es una función normal y constante, no «último recurso».",
+"<b>Números de tu clase</b>: agua ≈1 ml por kcal al día (1800–2100 ml en un adulto); volemia ≈70 ml/kg. <b>Corrección</b>: lo mínimo que necesita orinar un adulto para eliminar solutos es ≈400–500 ml/día; menos de 400 ml/día se llama <b>oliguria</b>.",
+"<b>Altura</b>: el derecho está un poco más bajo por el hígado. Por detrás se apoyan en el diafragma, el <b>psoas mayor</b>, el cuadrado lumbar y el transverso del abdomen; las costillas 11–12 cruzan su polo superior.",
+"<b>Relaciones anteriores</b>: derecho con hígado, duodeno (D2) y ángulo hepático del colon; izquierdo con estómago, bazo, páncreas (cola), ángulo esplénico y colon descendente en su borde lateral, y yeyuno en su cara medial. Ambos tienen encima la glándula suprarrenal.",
+"<b>Envolturas</b> (de afuera adentro): grasa pararrenal → <b>fascia renal (de Gerota)</b> → <b>cápsula adiposa</b> (grasa perirrenal) → <b>cápsula fibrosa (renal)</b>.",
+"<b>Hilio</b> (de adelante atrás): <b>vena → arteria → pelvis renal (uréter)</b>: «VAU».",
+"<b>Interior</b>: <b>corteza</b> (externa) y <b>médula</b> con <b>8–18 pirámides</b> (8–12 en tus notas). La punta de cada pirámide es la <b>papila</b>, que gotea la orina a un <b>cáliz menor</b>; 2–4 menores forman un <b>cáliz mayor</b>, y 2–3 mayores la <b>pelvis renal</b>. Todo queda en el <b>seno renal</b>.",
+"Nefronas: ≈1 millón por riñón (1–1.2 millones); su parte glomerular está en la corteza y las asas largas bajan a la médula.",
+"<b>Segmentos arteriales</b>: son <b>5</b> en total: superior (apical), anterosuperior, anteroinferior, inferior y posterior. Desde adelante se ven 4 (superior, anterosuperior, anteroinferior, inferior) y desde atrás 3 (superior, posterior, inferior); por eso tus notas cuentan 4 + 3. Son terminales: sin colaterales."],
+p:"Hilio renal de adelante hacia atrás: Vena, Arteria, Uréter (VAU).",
+f:[["¿Entre qué vértebras están los riñones?","T12 a L3."],["¿Qué riñón está más bajo y por qué?","El derecho, por el hígado."],["Orden del hilio renal (anterior a posterior)","Vena, arteria, pelvis/uréter."],["¿Qué es la fascia de Gerota?","La fascia renal."],["¿Cuántos segmentos arteriales tiene el riñón?","5."],["¿Qué es oliguria?","Menos de 400 ml de orina al día."]],
+q:[["¿Qué envoltura está en contacto directo con el riñón?",["Fascia de Gerota","Cápsula adiposa","Cápsula fibrosa","Grasa pararrenal"],2,"La cápsula fibrosa."],
+["¿Qué hormona NO produce o activa el riñón?",["Eritropoyetina","Renina","Calcitriol","Insulina"],3,"La insulina es pancreática."],
+["La orina pasa de la papila a…",["Cáliz mayor","Cáliz menor","Pelvis renal","Uréter"],1,"Primero al cáliz menor."]]},
+
+{id:"suprarrenal",u:"u16",t:"Glándulas suprarrenales",m:"SUPRARRENAL",
+s:"Glándulas endocrinas sobre el polo superior de cada riñón, dentro de la fascia renal. Pesan unos 4–5 g. Tienen corteza (esteroides) y médula (catecolaminas).",
+k:["<b>Derecha</b>: más pequeña, <b>piramidal</b> («picuda»). <b>Izquierda</b>: más grande y alargada, en <b>media luna</b> («gorrito»).",
+"<b>Corteza</b>, de afuera adentro (<b>GFR = sal, azúcar, sexo</b>): <b>glomerulosa</b> → aldosterona · <b>fascicular</b> → cortisol · <b>reticular</b> → andrógenos (que pueden convertirse en testosterona).",
+"<b>Médula</b>: células cromafines que producen <b>adrenalina (epinefrina)</b> y <b>noradrenalina</b>; es simpático modificado.",
+"<b>Arterias</b> (3 por lado): <b>suprarrenales superiores</b> (de la <b>frénica inferior</b>), <b>media</b> (de la <b>aorta</b>) e <b>inferior</b> (de la <b>arteria renal</b>).",
+"<b>Venas</b>: una vena central por glándula. La <b>derecha</b> va directo a la <b>vena cava inferior</b>. <b>Corrección</b>: la <b>izquierda</b> desemboca en la <b>vena renal izquierda</b> (a la que suele unirse también la frénica inferior), no directo a la frénica y luego a la cava.",
+"La aorta queda más cerca de la glándula izquierda y la cava de la derecha."],
+p:"Venas gonadal y suprarrenal: la derecha a la cava, la izquierda a la renal izquierda. Por eso el varicocele es más frecuente del lado izquierdo.",
+f:[["Capas de la corteza suprarrenal y su hormona","Glomerulosa: aldosterona. Fascicular: cortisol. Reticular: andrógenos."],["¿Qué produce la médula suprarrenal?","Adrenalina y noradrenalina."],["¿De dónde salen las suprarrenales superior, media e inferior?","Frénica inferior, aorta y renal."],["¿A dónde drena la vena suprarrenal izquierda?","A la vena renal izquierda."]],
+q:[["¿Qué zona de la corteza produce aldosterona?",["Glomerulosa","Fascicular","Reticular","Médula"],0,"Glomerulosa."],
+["La vena suprarrenal derecha drena a…",["Vena renal derecha","Vena cava inferior","Vena porta","Ácigos"],1,"Directo a la cava."]]},
+
+{id:"irr-renal",u:"u16",t:"Irrigación renal y uréteres",m:"RIÑÓN",irr:1,
+s:"Cada riñón recibe una arteria renal, rama de la aorta a nivel de L1–L2. En el riñón, la sangre que se filtra es la misma que lo oxigena.",
+k:["<b>Ruta arterial</b>: renal → <b>segmentarias</b> → <b>interlobulares (interlobares)</b>, entre las pirámides → <b>arciformes (arcuatas)</b>, que rodean la base de las pirámides → <b>interlobulillares (radiales corticales)</b> → arteriola aferente → glomérulo → arteriola eferente → capilares peritubulares y vasos rectos.",
+"Las venas siguen el mismo camino de regreso hasta la vena renal. La <b>vena renal izquierda</b> es más larga y pasa por delante de la aorta, debajo de la AMS (recibe la gonadal y la suprarrenal izquierdas).",
+"<b>Uréteres</b>: tubos musculares que llevan la orina de los riñones a la vejiga. <b>Corrección</b>: miden <b>25–30 cm</b> (no 20–23); nacen de la pelvis renal y bajan retroperitoneales por delante del psoas mayor.",
+"<b>3 estrecheces</b> (donde se atoran los cálculos): <b>unión ureteropélvica</b>, <b>cruce de los vasos ilíacos</b> y <b>entrada a la vejiga</b> (unión ureterovesical, la más estrecha).",
+"El dolor del uréter es tipo <b>cólico</b> porque tiene peristalsis: el músculo se contrae contra la obstrucción. Su luz es de pocos milímetros (en tus notas, 2 mm).",
+"<b>Irrigación del uréter</b>: porción superior por ramas de las <b>renales</b>; media por la <b>aorta</b>, las <b>gonadales</b> (testicular u ovárica) y las <b>ilíacas comunes</b>; pélvica por ramas de la <b>ilíaca interna</b> (vesicales, uterina). Todas se dividen en ascendentes y descendentes y se anastomosan a lo largo del uréter.",
+"En la mujer, la <b>arteria uterina cruza por encima del uréter</b> («el agua pasa bajo el puente»): riesgo de ligarlo en la histerectomía (complemento)."],
+p:"«El agua pasa bajo el puente»: el uréter (agua) pasa por debajo de la arteria uterina y del conducto deferente (puentes).",
+f:[["Arterias de la ruta renal en orden","Renal, segmentarias, interlobulares, arciformes, interlobulillares, aferente."],["¿Cuánto mide el uréter?","25–30 cm."],["3 estrecheces del uréter","Unión ureteropélvica, cruce de vasos ilíacos y unión ureterovesical."],["¿Por qué el dolor ureteral es cólico?","Por la peristalsis contra la obstrucción."]],
+q:[["¿Qué estructura pasa por encima del uréter en la pelvis femenina?",["Arteria ovárica","Arteria uterina","Vena ilíaca externa","Ligamento redondo"],1,"La arteria uterina."],
+["La vena renal izquierda pasa…",["Detrás de la aorta, siempre","Delante de la aorta, bajo la AMS","Por el hiato aórtico","Por encima del tronco celíaco"],1,"Entre la aorta y la AMS (pinza aortomesentérica)."]]},
+
+{id:"vejiga",u:"u16",t:"Vejiga y uretra",m:"VEJIGA",
+s:"La vejiga es la víscera pélvica más anterior. Vacía queda toda en la pelvis; llena sube al abdomen y se puede palpar sobre el pubis.",
+k:["<b>Capacidad</b> (en tus notas): hombre 500–600 ml, mujer 600–800 ml; con la edad puede aumentar. El deseo de orinar suele aparecer con 150–300 ml (complemento).",
+"<b>Partes</b>: <b>vértice</b> (hacia la parte superior del pubis; de él sale el <b>ligamento umbilical medio</b>, resto del uraco), <b>cuerpo</b>, <b>fondo o base</b> (triángulo invertido, posteroinferior, donde entran los uréteres: <b>trígono vesical</b>) y <b>cuello</b> (rodea el origen de la uretra; la parte más baja y fija).",
+"<b>Corrección</b>: el ligamento umbilical medio sale del <b>vértice</b>, no de la base (en tus notas aparecen las dos cosas).",
+"Las caras inferolaterales se apoyan en los elevadores del ano. Fijación anterior: <b>ligamentos pubovesicales</b> (mujer) y <b>puboprostáticos</b> (hombre).",
+"<b>Trígono</b>: entre los 2 orificios ureterales y el orificio uretral interno; mucosa lisa, muy sensible.",
+"<b>Esfínteres</b>: <b>interno</b> (músculo liso, involuntario; en el hombre antes de la próstata, evita la eyaculación retrógrada) y <b>externo</b> (estriado, voluntario; después de la próstata, en la uretra membranosa).",
+"<b>Uretra</b>: masculina ≈18–20 cm, con 2 curvas en su trayecto; femenina ≈4 cm (por eso la mujer tiene más cistitis).",
+"<b>Patologías de tu clase</b>: litiasis, hidronefrosis (dilatación por obstrucción), cáncer renal, insuficiencia renal, duplicidad renal o ureteral, cistitis y agenesia renal.",
+"<b>Datos curiosos, corregidos</b>: el primer trasplante renal exitoso fue en <b>1954 en Boston</b>, entre gemelos idénticos, por el equipo de <b>Joseph Murray</b> (no «el doctor Smith»; Murray ganó el Nobel en 1990). Las nefronas de ambos riñones estiradas medirían varios kilómetros (en tus notas, 8 km)."],
+f:[["¿Qué es el trígono vesical?","Zona entre los 2 orificios ureterales y el uretral interno."],["¿De dónde sale el ligamento umbilical medio?","Del vértice de la vejiga (resto del uraco)."],["Esfínter interno vs externo","Interno: liso, involuntario. Externo: estriado, voluntario."],["Longitud de la uretra masculina y femenina","≈18–20 cm y ≈4 cm."]],
+q:[["¿Por qué las mujeres tienen más cistitis?",["Vejiga más grande","Uretra corta (≈4 cm)","Más trígono","No tienen esfínter interno"],1,"La uretra corta facilita el ascenso de bacterias."],
+["El ligamento que fija la vejiga al pubis en el hombre es el…",["Pubovesical","Puboprostático","Umbilical medio","Redondo"],1,"Puboprostático."]]},
+
+/* U17 */
+{id:"pared-ing",u:"u17",t:"Pliegues umbilicales y hernias inguinales",m:"INGUINAL",
+s:"La cara interna de la pared anterior del abdomen, bajo el ombligo, tiene 5 pliegues peritoneales que dejan fosas entre ellos. Esas fosas explican por dónde salen las hernias.",
+k:["Pared, de afuera adentro: oblicuo externo → oblicuo interno → transverso → fascia transversal → peritoneo. Se insertan en el pubis y las fosas ilíacas.",
+"<b>Pliegue umbilical medio</b> (1): del vértice de la vejiga al ombligo; cubre el <b>ligamento umbilical medio</b>, resto del <b>uraco</b>.",
+"<b>Pliegues umbilicales mediales</b> (2): cubren los <b>ligamentos umbilicales mediales</b>, las <b>arterias umbilicales</b> obliteradas (ramas de la ilíaca interna).",
+"<b>Pliegues umbilicales laterales</b> (2): cubren los <b>vasos epigástricos inferiores</b> (son los únicos con vasos vivos).",
+"<b>Fosas supravesicales</b>: entre el medio y los mediales; suben o bajan según qué tan llena esté la vejiga.",
+"<b>Fosas inguinales mediales</b> = <b>triángulo de Hesselbach</b> (borde del recto, vasos epigástricos inferiores y ligamento inguinal): sitio de la <b>hernia inguinal directa</b> (adquirida, por debilidad de la pared, más rara).",
+"<b>Fosas inguinales laterales</b>: contienen el <b>anillo inguinal profundo</b>: sitio de la <b>hernia inguinal indirecta</b>, la más frecuente, por un proceso vaginal permeable (congénita).",
+"<b>Corrección</b>: el testículo <b>no</b> baja por el triángulo de Hesselbach. Baja por el <b>conducto inguinal</b>, entrando por el anillo profundo (lateral a los epigástricos) y llevándose las capas de la pared; por eso la indirecta sigue ese camino.",
+"<b>Corrección</b>: tener una hernia de un lado sí aumenta el riesgo del otro lado (sobre todo en niños), pero la cifra de 80% de tus notas es muy alta; se reporta del orden de 10–30%.",
+"<b>Porción supraumbilical</b>: tiene un solo pliegue sagital, el <b>ligamento falciforme</b> (lleva el ligamento redondo del hígado)."],
+p:"Directa = medial a los epigástricos (Hesselbach). Indirecta = lateral, por el anillo profundo. «MD» Medial Directa.",
+f:[["¿Qué cubre el pliegue umbilical medio?","El ligamento umbilical medio (uraco)."],["¿Qué cubren los pliegues umbilicales laterales?","Los vasos epigástricos inferiores."],["¿Dónde sale la hernia inguinal directa?","En el triángulo de Hesselbach (fosa inguinal medial)."],["¿Cuál es la hernia inguinal más frecuente?","La indirecta, por el anillo profundo."],["Límites del triángulo de Hesselbach","Borde lateral del recto, vasos epigástricos inferiores y ligamento inguinal."]],
+q:[["Una hernia que sale lateral a los vasos epigástricos inferiores es…",["Directa","Indirecta","Femoral","Umbilical"],1,"Indirecta (anillo profundo)."],
+["Los ligamentos umbilicales mediales son restos de…",["El uraco","Las arterias umbilicales","La vena umbilical","El conducto venoso"],1,"Arterias umbilicales obliteradas."]]},
+
+{id:"conducto-ing",u:"u17",t:"Conducto inguinal y cordón espermático",m:"INGUINAL",
+s:"La región inguinal va de la espina ilíaca anterosuperior al tubérculo púbico. Es zona de paso entre abdomen y periné, y por eso de hernias. El testículo se forma en el abdomen y baja por aquí.",
+k:["<b>Ligamento inguinal</b> (de Poupart): de la EIAS al tubérculo del pubis; borde inferior de la aponeurosis del oblicuo externo. Por dentro corre el <b>tracto iliopúbico</b>.",
+"<b>Anillo inguinal profundo</b>: entrada, en la fascia transversal, lateral a los epigástricos. <b>Anillo superficial</b>: salida, una hendidura en la aponeurosis del oblicuo externo, sobre el pubis.",
+"Contenido del conducto: en el hombre el <b>cordón espermático</b>, en la mujer el <b>ligamento redondo del útero</b>; en ambos el <b>nervio ilioinguinal (L1)</b> y vasos linfáticos.",
+"<b>Cubiertas del cordón</b>: <b>fascia espermática interna</b> (de la fascia transversal) → <b>fascia cremastérica</b> con el músculo cremáster (del oblicuo interno) → <b>fascia espermática externa</b> (de la aponeurosis del oblicuo externo).",
+"<b>Cremáster</b>: termorregulación y protección; <b>reflejo cremastérico</b> (al rozar la cara interna del muslo sube el testículo; L1–L2). Su ausencia orienta a torsión testicular.",
+"<b>Contenido del cordón</b>: conducto deferente, arteria del conducto deferente, <b>arteria testicular</b>, <b>plexo venoso pampiniforme</b>, arteria y vena cremastéricas, rama genital del nervio genitofemoral, fibras simpáticas y aferentes viscerales, linfáticos y el vestigio del proceso vaginal.",
+"<b>Criptorquidia</b>: el testículo no termina de bajar y se queda en el trayecto (abdomen o conducto inguinal). <b>Orquidopexia</b>: cirugía para bajarlo y fijarlo en el escroto (idealmente antes de los 12–18 meses). Si no se puede bajar, se extirpa por el riesgo de cáncer."],
+f:[["Cubiertas del cordón espermático y su origen","Espermática interna (fascia transversal), cremastérica (oblicuo interno), espermática externa (oblicuo externo)."],["¿Qué pasa por el conducto inguinal en la mujer?","El ligamento redondo del útero (y el nervio ilioinguinal)."],["¿Qué es la criptorquidia?","Testículo que no desciende por completo."],["¿Qué nervio hace la parte eferente del reflejo cremastérico?","La rama genital del genitofemoral."]],
+q:[["¿Qué estructura NO va en el cordón espermático?",["Conducto deferente","Plexo pampiniforme","Arteria testicular","Nervio ilioinguinal dentro de la fascia espermática interna"],3,"El ilioinguinal va en el conducto inguinal pero por fuera del cordón."],
+["La fascia espermática externa deriva del…",["Transverso","Oblicuo interno","Oblicuo externo","Fascia transversal"],2,"Aponeurosis del oblicuo externo."]]},
+
+{id:"testiculo",u:"u17",t:"Escroto, testículo y epidídimo",m:"MASCULINO",
+s:"Los testículos producen espermatozoides y testosterona. Cuelgan en el escroto, fuera del abdomen, porque necesitan 2–3 °C menos que la temperatura corporal.",
+k:["<b>Escroto</b>: saco cutáneo de piel muy pigmentada + <b>túnica dartos</b> (fascia sin grasa con músculo liso, que le da el aspecto rugoso). Un tabique (prolongación del dartos) lo divide en dos; por fuera se ve el <b>rafe escrotal</b>, que sigue con el del pene y el perineal.",
+"El <b>dartos</b> arruga el escroto con el frío: reduce superficie y, junto con el cremáster, acerca los testículos al cuerpo para no perder calor.",
+"El testículo <b>izquierdo suele colgar más bajo</b> que el derecho.",
+"<b>Túnica vaginal</b>: saco peritoneal cerrado (resto del proceso vaginal). Hoja <b>visceral</b> pegada al testículo y hoja <b>parietal</b> junto a la fascia espermática interna, más amplia. Entre ellas, un poco de líquido que deja mover al testículo. Si se acumula: <b>hidrocele</b>.",
+"<b>Corrección</b>: la parte del testículo sin túnica vaginal es su <b>borde posterior</b>, donde se unen el epidídimo y el cordón. El <b>seno del epidídimo</b> es un receso entre testículo y epidídimo, y sí está tapizado por la túnica.",
+"Por debajo está la <b>túnica albugínea</b>, cápsula fibrosa que envía tabiques; dentro, los túbulos seminíferos (espermatozoides) y las células de Leydig (testosterona) (complemento).",
+"<b>Epidídimo</b>, en la cara posterior: <b>cabeza</b> (extremos enrollados de 12–14 <b>conductillos eferentes</b>), <b>cuerpo</b> (el conducto del epidídimo, muy sinuoso, de varios metros) y <b>cola</b> (sigue como conducto deferente). Ahí los espermatozoides se almacenan y maduran.",
+"Del testículo al epidídimo van los conductillos <b>eferentes</b> (no aferentes); del epidídimo hacia afuera, el <b>deferente</b>.",
+"<b>Irrigación del testículo</b> (complemento): <b>arteria testicular</b>, rama de la aorta abdominal (L2). Venas: plexo pampiniforme → vena testicular; la derecha a la cava, la izquierda a la renal izquierda (por eso el <b>varicocele</b> es izquierdo)."],
+f:[["¿Qué es la túnica dartos?","Fascia del escroto sin grasa con músculo liso."],["Partes del epidídimo","Cabeza, cuerpo y cola."],["¿Qué conductos van del testículo al epidídimo?","Los conductillos eferentes."],["¿Qué es un hidrocele?","Líquido acumulado en la túnica vaginal."],["¿Por qué el varicocele es más frecuente a la izquierda?","La vena testicular izquierda drena en ángulo recto a la renal izquierda."]],
+q:[["¿Qué células producen testosterona?",["Sertoli","Leydig","Espermatogonias","Mioides"],1,"Células de Leydig (intersticiales)."],
+["¿De dónde nace la arteria testicular?",["Ilíaca interna","Aorta abdominal","Pudenda interna","Epigástrica inferior"],1,"Aorta, a nivel de L2."]]},
+
+{id:"glandulas-acc",u:"u17",t:"Vías espermáticas, próstata y glándulas",m:"MASCULINO",
+s:"Órganos genitales internos: testículos, epidídimos, conductos deferentes, vesículas seminales, conductos eyaculadores, próstata y glándulas bulbouretrales.",
+k:["<b>Conducto deferente</b>: 35–45 cm, pared muscular gruesa y luz diminuta (se palpa como un cordón duro). Parte principal del cordón; entra por el anillo profundo, corre por debajo del peritoneo, cruza por encima del uréter y da vuelta por arriba y por detrás de la vejiga. Termina en la <b>ampolla</b>.",
+"<b>Vesículas seminales</b>: ≈5 cm, entre el fondo de la vejiga y el recto. Producen la mayor parte del <b>líquido seminal</b> (≈60–70%, rico en fructosa), no espermatozoides.",
+"<b>Conducto eyaculador</b>: ≈2.5 cm, se forma cerca del cuello de la vejiga por la unión del conducto de la vesícula seminal con el deferente; atraviesa la próstata. <b>Corrección</b>: desemboca en el <b>colículo seminal</b>, a cada lado del orificio del utrículo prostático, no dentro del utrículo.",
+"<b>Próstata</b>: ≈3 cm de largo, 4 de ancho y 2 de profundidad; rodea la uretra prostática. 2/3 glandular y 1/3 fibromuscular, con cápsula fibrosa. Lóbulos derecho e izquierdo (no bien diferenciados) unidos por el istmo anterior; por tacto se siente el surco medio.",
+"<b>Zonas</b> (McNeal): <b>periférica</b> (la mayor, posterior; ahí nace el 70% del cáncer y se palpa al tacto rectal), <b>central</b> (rodea los eyaculadores) y <b>de transición</b> (rodea la uretra; ahí crece la <b>hiperplasia prostática benigna</b>). Más el estroma fibromuscular anterior.",
+"<b>Colículo seminal</b> (veru montanum): eminencia en la uretra prostática con el utrículo prostático, los orificios de los eyaculadores y, a los lados, los de las glándulas prostáticas.",
+"<b>Glándulas bulbouretrales (de Cowper)</b>: del tamaño de un guisante, en la uretra membranosa (intermedia); desembocan en la parte proximal de la uretra esponjosa. Su moco lubrica y neutraliza la uretra antes de la eyaculación. Las <b>glándulas de Littré</b> son las uretrales de la esponjosa.",
+"<b>Eyaculado</b>. <b>Corrección</b>: el volumen normal es ≈1.5–5 ml y la concentración normal es <b>≥15–16 millones/ml</b> (OMS); 450 millones/ml es demasiado. En total salen del orden de 200–300 millones por eyaculación.",
+"En tus notas aparece el «ángulo de Dixon» para la continencia; no lo encontré en los textos de referencia, pregúntalo en clase."],
+p:"Hiperplasia benigna = zona de transición (síntomas urinarios). Cáncer = zona periférica (se palpa duro al tacto rectal).",
+f:[["¿Cuánto mide el conducto deferente?","35–45 cm."],["¿Qué producen las vesículas seminales?","La mayor parte del líquido seminal (rico en fructosa)."],["¿Dónde desemboca el conducto eyaculador?","En el colículo seminal de la uretra prostática."],["¿En qué zona prostática nace casi todo el cáncer?","Periférica."],["¿En qué zona crece la hiperplasia prostática benigna?","Transición."],["¿Dónde están las glándulas de Cowper?","En la uretra membranosa (intermedia)."]],
+q:[["El conducto eyaculador se forma por…",["Deferente + uretra","Deferente + conducto de la vesícula seminal","Vesícula seminal + utrículo","Epidídimo + deferente"],1,"Deferente + vesícula seminal."],
+["¿Cuál es el límite inferior normal de concentración espermática (OMS)?",["1 millón/ml","≈15–16 millones/ml","450 millones/ml","1000 millones/ml"],1,"≈15–16 millones/ml."]]},
+
+{id:"pene",u:"u17",t:"Uretra masculina y pene",m:"MASCULINO",
+s:"Los genitales externos masculinos (en el triángulo urogenital) son la uretra distal, el escroto y el pene. La uretra masculina es vía común de orina y semen.",
+k:["<b>Uretra en 4 partes</b>: <b>intramural (preprostática)</b>, en el cuello vesical con el esfínter interno → <b>prostática</b> (colículo seminal) → <b>intermedia (membranosa)</b>, la más corta y estrecha, con el esfínter externo y las glándulas de Cowper → <b>esponjosa</b>, la más larga, dentro del cuerpo esponjoso, termina en la <b>fosa navicular</b> del glande.",
+"<b>Pene</b>: raíz, cuerpo y glande (con corona y cuello). Tejido eréctil: <b>2 cuerpos cavernosos</b> (dorsales) y <b>1 cuerpo esponjoso</b> (ventral, lleva la uretra y forma el glande). Rodeados por la <b>túnica albugínea</b> y la <b>fascia de Buck</b>.",
+"Estructuras dorsales, de la línea media hacia afuera: <b>vena dorsal profunda</b> (impar, bajo la fascia de Buck), <b>arterias dorsales</b> y <b>nervios dorsales</b>. La <b>vena dorsal superficial</b> va por encima de la fascia.",
+"<b>Irrigación</b>: ilíaca interna → <b>pudenda interna</b>, que sale de la pelvis por el agujero ciático mayor, entra al periné por el menor y corre en el <b>conducto pudendo (de Alcock)</b>. Da la <b>arteria del bulbo</b>, la <b>arteria dorsal del pene</b> (piel y glande) y la <b>arteria profunda o cavernosa</b> (llena los cuerpos cavernosos en la erección).",
+"Escroto: <b>escrotales anteriores</b> (de la pudenda externa) y <b>posteriores</b> (de la perineal).",
+"<b>Nervios</b>: <b>pudendo</b> (S2–S4), con el <b>nervio dorsal del pene</b> (vía sensitiva principal y aferente del reflejo de erección) y el <b>nervio perineal</b> (músculos perineales y nervios escrotales posteriores).",
+"Autonómico (complemento): <b>erección = parasimpático</b> (esplácnicos pélvicos S2–S4, «Point»); <b>emisión y eyaculación = simpático</b> (plexo hipogástrico superior → nervios hipogástricos → plexo hipogástrico inferior, «Shoot»).",
+"<b>Fases</b>: <b>erección</b> (llegada de sangre, el bulboesponjoso y el isquiocavernoso comprimen el retorno venoso) → <b>emisión</b> (tus notas dicen «polución»: el semen llega a la uretra prostática por los eyaculadores y la contracción de la próstata) → <b>eyaculación</b> (se cierra el esfínter interno para que no se regrese a la vejiga; contracción del bulboesponjoso) → <b>remisión</b> (flacidez).",
+"<b>Priapismo</b>: erección dolorosa de más de 4 h sin estímulo sexual; urgencia (riesgo de isquemia).",
+"<b>Espermatozoide</b>: célula haploide (23 cromosomas). <b>Oligospermia</b> = baja concentración · <b>astenospermia</b> = mala movilidad · <b>teratospermia</b> = formas anormales."],
+p:"Erección parasimpática (Point), eyaculación simpática (Shoot).",
+f:[["4 partes de la uretra masculina","Intramural, prostática, intermedia (membranosa) y esponjosa."],["Tejido eréctil del pene","2 cuerpos cavernosos y 1 cuerpo esponjoso."],["¿Qué arteria llena los cuerpos cavernosos?","La profunda (cavernosa), rama de la pudenda interna."],["¿Por dónde corre la arteria pudenda interna en el periné?","Por el conducto pudendo (de Alcock)."],["Erección y eyaculación: ¿qué sistema?","Erección parasimpática; emisión y eyaculación simpáticas."],["Oligo, asteno y teratospermia","Baja concentración, mala movilidad y formas anormales."]],
+q:[["¿Qué parte de la uretra masculina es la más estrecha?",["Prostática","Intermedia (membranosa)","Esponjosa","Intramural"],1,"La membranosa."],
+["¿Por qué no se regresa el semen a la vejiga en la eyaculación?",["Se cierra el esfínter externo","Se cierra el esfínter interno","Por el cremáster","Por el dartos"],1,"El esfínter interno (simpático) se cierra."]]},
+
+/* U18 */
+{id:"pelvis-fem",u:"u18",t:"Pelvis femenina y vulva",m:"FEMENINO",
+s:"La cavidad pélvica tiene forma de embudo y contiene el final de los uréteres, la vejiga, el recto, los órganos genitales, vasos y nervios. La vulva son los genitales externos.",
+k:["<b>Suelo pélvico</b>: diafragma pélvico, el <b>elevador del ano</b> (nace del pubis, del arco tendinoso de la fascia obturatriz y de la espina isquiática) y el <b>coccígeo</b>. Músculos del periné: <b>isquiocavernoso</b>, <b>bulboesponjoso</b>, transverso superficial y transverso profundo.",
+"<b>Externos (vulva)</b>: monte de Venus, labios mayores, labios menores, vestíbulo, clítoris y bulbos del vestíbulo. <b>Internos</b>: vagina, útero, tubas uterinas y ovarios. <b>Glándulas auxiliares</b>: vestibulares (Bartholin) y parauretrales (Skene).",
+"<b>Monte de Venus</b>: almohadilla de grasa con piel y vello delante de la sínfisis del pubis; protege.",
+"<b>Labios mayores</b>: 2 pliegues grandes con grasa subcutánea, del monte hacia abajo y atrás; tras la pubertad, piel pigmentada con glándulas sebáceas, sudoríparas y vello. Homólogos del escroto.",
+"<b>Labios menores</b>: dentro de los mayores, sin grasa y sin vello, con tejido conectivo esponjoso muy vascular (elástico). Rodean el vestíbulo; por delante forman el <b>prepucio</b> y el frenillo del clítoris. Por detrás se unen en la <b>horquilla</b>.",
+"<b>Vestíbulo</b>: espacio entre los labios menores con el orificio de la <b>uretra</b>, el de la <b>vagina</b> y los de las glándulas de Bartholin.",
+"<b>Clítoris</b>: órgano eréctil (homólogo del pene) de 2–3 cm visibles; 2 pilares, 2 cuerpos cavernosos y un glande; se fija con el ligamento suspensorio al pubis. Su función principal es el placer.",
+"<b>Bulbos del vestíbulo</b>: 2 masas de tejido eréctil de 3–5 cm a los lados del orificio vaginal, cubiertas por el bulboesponjoso.",
+"<b>Glándulas de Skene</b> (parauretrales): junto a la uretra; lubrican (homólogas de la próstata). <b>Glándulas de Bartholin</b>: laterales y posteriores al orificio vaginal, ~0.5 cm, cubiertas por los bulbos; secretan un moco incoloro durante la excitación (homólogas de las de Cowper).",
+"<b>Bartholinitis o absceso de Bartholino</b>: se confunde con un absceso perianal. El absceso se <b>drena</b> (catéter de Word o marsupialización); los antibióticos se agregan si hay celulitis o una ITS.",
+"Músculos de la vagina: pubovaginal, esfínter externo de la uretra, esfínter uretrovaginal y bulboesponjoso.",
+"<b>Irrigación de la vulva</b>: <b>pudendas externas</b> (de la femoral) y <b>pudenda interna</b> (labiales posteriores, dorsal y profunda del clítoris)."],
+f:[["Órganos genitales femeninos externos","Monte de Venus, labios mayores y menores, vestíbulo, clítoris y bulbos del vestíbulo."],["¿Qué hay en el vestíbulo?","Orificios de uretra, vagina y glándulas de Bartholin."],["¿Dónde están las glándulas de Bartholin?","Laterales y posteriores al orificio vaginal."],["¿Cómo se trata un absceso de Bartholino?","Se drena (catéter de Word o marsupialización)."]],
+q:[["La homóloga femenina de las glándulas de Cowper es…",["Skene","Bartholin","Montgomery","Littré"],1,"Bartholin (vestibulares mayores)."],
+["¿Qué arteria da la dorsal del clítoris?",["Pudenda externa","Pudenda interna","Uterina","Ovárica"],1,"Pudenda interna."]]},
+
+{id:"ovario",u:"u18",t:"Ovarios y tubas uterinas",m:"FEMENINO",
+s:"Los ovarios son las gónadas femeninas, del tamaño de una almendra, a los lados del útero contra la pared pélvica. Las tubas captan el óvulo y lo llevan al útero.",
+k:["El ovario cuelga del <b>mesoovario</b> (parte del ligamento ancho).",
+"<b>Ligamentos del ovario</b>: <b>suspensorio</b> (infundibulopélvico; lleva los vasos ováricos desde la pared pélvica), <b>propio del ovario</b> (uteroovárico: del polo inferior al ángulo del útero, justo debajo de la entrada de la tuba), <b>mesoovario</b> (ligamento ancho) y tuboovárico.",
+"<b>Hormonas</b>: <b>estrógenos</b>, <b>progesterona</b>, <b>inhibina</b> y <b>relaxina</b>. <b>Corrección</b>: en tus notas decía «progesterona de los estrógenos»; son hormonas distintas (la progesterona la produce sobre todo el cuerpo lúteo).",
+"<b>Ciclo menstrual</b>: 21–35 días se considera normal (en tus notas 21–30).",
+"<b>Arterias</b>: <b>ovárica</b>, rama de la <b>aorta abdominal</b> (L1–L2), que da ramas ováricas y tubáricas; y las <b>ramas ascendentes de la uterina</b> (de la ilíaca interna). Se anastomosan.",
+"<b>Venas</b>: plexo pampiniforme → <b>vena ovárica</b>. La derecha va a la cava inferior y la izquierda a la vena renal izquierda (complemento).",
+"<b>Tubas uterinas</b> (trompas de Falopio): ≈10–12 cm. 4 porciones: <b>infundíbulo</b> (embudo con <b>fimbrias</b>; una de ellas, la ovárica, se fija al ovario) → <b>ampolla</b> (la más ancha y larga; aquí ocurre la <b>fecundación</b>) → <b>istmo</b> (estrecho, pared gruesa) → <b>porción uterina</b> (intramural, cruza la pared del útero).",
+"Las fimbrias «barren» la superficie del ovario para captar el óvulo. Pared: <b>mucosa</b> con cilios, <b>muscular</b> y <b>serosa</b>.",
+"Complemento clínico: el embarazo ectópico más frecuente es en la <b>ampolla</b>."],
+f:[["¿Qué ligamento lleva los vasos ováricos?","El suspensorio del ovario (infundibulopélvico)."],["¿De dónde nace la arteria ovárica?","De la aorta abdominal."],["4 porciones de la tuba uterina","Infundíbulo, ampolla, istmo y porción uterina."],["¿Dónde ocurre la fecundación?","En la ampolla."],["Hormonas del ovario","Estrógenos, progesterona, inhibina y relaxina."]],
+q:[["El ligamento propio del ovario lo une a…",["Pared pélvica","Ángulo lateral del útero","Sacro","Vejiga"],1,"Al ángulo del útero."],
+["¿Dónde ocurre la mayoría de los embarazos ectópicos?",["Infundíbulo","Ampolla","Istmo","Ovario"],1,"Ampolla."]]},
+
+{id:"utero",u:"u18",t:"Útero y vagina",m:"FEMENINO",
+s:"Órgano muscular hueco en forma de pera invertida, entre la vejiga y el recto. Sostiene al embrión y feto y lo expulsa en el parto.",
+k:["<b>Tamaño</b>. <b>Corrección</b>: mide ≈<b>7.5 cm</b> de largo (en tus notas «.5 cm»), 5 cm de ancho y 2.5 cm de grosor; pesa ≈50–90 g (más en multíparas).",
+"<b>Partes externas</b>: <b>fondo</b> (parte redondeada por encima de la entrada de las tubas) · <b>cuerpo</b> (2/3 superiores; entre las hojas del ligamento ancho, con cara vesical e intestinal) · <b>istmo</b> (≈1 cm, entre cuerpo y cuello; en el embarazo forma el segmento uterino inferior) · <b>cuello o cérvix</b> (≈2.5 cm, cilíndrico, con porción supravaginal y vaginal, y el orificio externo).",
+"<b>Corrección</b>: en tus notas, lo de «entre las capas del ligamento ancho, con caras vesical e intestinal» quedó en el fondo; eso describe al <b>cuerpo</b>.",
+"<b>Interior</b>: cavidad uterina (≈6 cm desde el orificio externo al fondo, triangular), cuernos uterinos (donde entran las tubas), conducto cervical, <b>orificio anatómico interno</b> y orificio externo.",
+"<b>Borramiento vs dilatación</b> (tu pregunta pendiente): <b>borramiento</b> es el acortamiento y adelgazamiento del cuello (de 0 a 100%); <b>dilatación</b> es la apertura del orificio cervical (de 0 a 10 cm).",
+"<b>Pared</b>: <b>perimetrio</b> (serosa de peritoneo), <b>miometrio</b> (músculo liso, con vasos y nervios; el que se contrae en el parto) y <b>endometrio</b> (mucosa que cambia cada mes y se descama en la menstruación).",
+"<b>Medios de sostén del útero</b>: <b>ligamentos cardinales</b> (transversos del cuello, los más importantes), <b>uterosacros</b>, pubocervicales, <b>ligamento redondo</b> (al conducto inguinal; mantiene la anteversión) y <b>ligamento ancho</b>. <b>Corrección</b>: el ligamento propio del ovario y el suspensorio son del <b>ovario</b>, no sostienen al útero.",
+"<b>Vagina</b>: tubo musculomembranoso de ≈7–9 cm, del cuello uterino al vestíbulo. El <b>fórnix</b> es el surco que rodea la porción vaginal del cérvix (el posterior es el más profundo y está junto al fondo de saco de Douglas).",
+"La mucosa vaginal guarda glucógeno; los <b>lactobacilos</b> lo convierten en ácido láctico y dejan un pH ácido (≈4) que frena bacterias.",
+"Irrigación (complemento): <b>arteria uterina</b> (ilíaca interna), que cruza sobre el uréter a ~2 cm del cuello; y arteria vaginal."],
+f:[["Partes del útero","Fondo, cuerpo, istmo y cuello."],["Capas de la pared uterina","Perimetrio, miometrio y endometrio."],["Borramiento vs dilatación","Borramiento: el cuello se acorta (0–100%). Dilatación: el orificio se abre (0–10 cm)."],["Principales ligamentos de sostén del útero","Cardinales y uterosacros (más redondo y ancho)."],["¿Por qué el pH vaginal es ácido?","Los lactobacilos convierten el glucógeno en ácido láctico."]],
+q:[["¿Qué capa uterina se descama en la menstruación?",["Perimetrio","Miometrio","Endometrio funcional","Serosa"],2,"El endometrio (capa funcional)."],
+["¿Cuánto mide la vagina?",["2–3 cm","7–9 cm","15 cm","25 cm"],1,"≈7–9 cm."]]},
+
+/* U19 */
+{id:"mama",u:"u19",t:"Mama: forma, capas y glándula",m:"MAMA",
+s:"Glándulas en forma de lágrima sobre el pectoral mayor. Crecen en la pubertad y cambian con los estrógenos y la progesterona en cada ciclo.",
+k:["<b>Ubicación</b>. <b>Corrección</b>: verticalmente van de la <b>2ª a la 6ª costilla</b> (en tus notas aparecen «3–7» y «2–6»; la correcta es 2–6); horizontalmente, del borde del esternón a la línea axilar media. La <b>cola axilar (de Spence)</b> sube hacia la axila.",
+"<b>Escala de Tanner</b>: 5 estadios del desarrollo puberal (mama y vello).",
+"<b>Capas</b>: <b>piel</b> → <b>tejido celular subcutáneo</b> (capa preglandular, grasa en lóbulos separados por ligamentos) → <b>glándula mamaria</b> → <b>tejido adiposo retromamario</b> (laxo, sobre la fascia del pectoral mayor; espacio retromamario de Chassaignac).",
+"<b>Ligamentos de Cooper</b> (en tus notas «Kupper»): tabiques fibrosos de la piel a la fascia pectoral que sostienen la mama. Si un tumor los jala, la piel se retrae (piel de naranja, hoyuelo).",
+"<b>Areola</b>: zona pigmentada de ≈15–25 mm (puede ser más) con los <b>tubérculos de Morgagni</b>, que contienen las <b>glándulas de Montgomery</b> (sebáceas): lubrican y dan un olor que guía al bebé. Piel muy delgada.",
+"<b>Músculo areolar</b> (subdérmico): fibras lisas <b>circulares</b> y <b>radiadas</b> que erectan el pezón y vacían los senos lactíferos.",
+"<b>Glándula</b>: <b>15–20 lóbulos</b>, cada uno con lobulillos y alvéolos rodeados de <b>células mioepiteliales</b> (los «pétalos» que se aprietan y sacan la leche). Los conductillos llegan a un <b>conducto galactóforo</b> por lóbulo, que antes del pezón se dilata en un <b>seno galactóforo</b> (lactífero) y luego se abre en el pezón.",
+"<b>Corrección</b>: el pezón tiene del orden de 15–20 orificios (en ecografía se ven 5–9 funcionales), no 2–3. El camino es lóbulos → lobulillos → conductillos → conducto galactóforo → seno → pezón.",
+"El pezón <b>no debe estar retraído</b>: una retracción <b>nueva</b> es signo de alarma de cáncer. Un pezón invertido de nacimiento puede ser normal.",
+"La mama izquierda suele ser un poco más grande; una asimetría ligera es normal.",
+"Fumar daña la elastina de la piel y los ligamentos y sí se relaciona con más ptosis (caída)."],
+f:[["¿Entre qué costillas está la mama?","De la 2ª a la 6ª."],["¿Qué son los ligamentos de Cooper?","Tabiques fibrosos que sostienen la mama de la piel a la fascia pectoral."],["¿Qué glándulas están en los tubérculos de Morgagni?","Las de Montgomery (sebáceas)."],["¿Cuántos lóbulos tiene la glándula mamaria?","15–20."],["¿Qué células expulsan la leche?","Las mioepiteliales (por oxitocina)."]],
+q:[["La retracción de la piel en un cáncer de mama se debe a…",["Ligamentos de Cooper","Músculo areolar","Glándulas de Montgomery","Seno galactóforo"],0,"El tumor tracciona los ligamentos de Cooper."],
+["La dilatación del conducto antes del pezón es el…",["Lobulillo","Alvéolo","Seno galactóforo","Tubérculo de Morgagni"],2,"Seno galactóforo o lactífero."]]},
+
+{id:"mama-irr",u:"u19",t:"Mama: irrigación, nervios y lactancia",m:"MAMA",irr:1,
+s:"La mama recibe sangre por dentro de la torácica interna, por fuera de la axilar y por atrás de las intercostales. Su linfa va sobre todo a la axila.",
+k:["<b>Medial (≈60%)</b>: arco aórtico → tronco braquiocefálico (del lado derecho) → subclavia → <b>torácica interna (mamaria interna)</b> → ramas <b>perforantes</b> de los espacios 2º–4º → <b>ramas mamarias mediales</b>. Del lado izquierdo la subclavia sale directo del arco.",
+"<b>Lateral</b>: subclavia → <b>axilar</b> → <b>torácica lateral</b> → <b>ramas mamarias laterales</b>; y ramas pectorales de la <b>toracoacromial</b>. <b>Corrección</b>: la toracoacromial sale de la <b>axilar</b>, no directo de la subclavia.",
+"<b>Posterior</b>: ramas de las <b>intercostales posteriores</b> de los espacios 2º, 3º y 4º.",
+"<b>Venas</b>: siguen a las arterias (torácica interna, axilar, intercostales). Alrededor de la areola forman la <b>red venosa de Haller</b>, visible en el embarazo.",
+"<b>Linfa</b> (complemento): ≈75% a los ganglios <b>axilares</b>; el resto a los paraesternales (torácica interna). Por eso en el cáncer se revisa la axila.",
+"<b>Nervios</b>: ramos cutáneos anteriores y laterales de los <b>intercostales 4º a 6º</b>: fibras sensitivas a la piel y simpáticas a vasos y músculo liso.",
+"<b>Lactancia</b>: <b>prolactina</b> (adenohipófisis) <b>produce</b> la leche en los alvéolos; en el embarazo los estrógenos y la progesterona la frenan, y al salir la placenta se libera. <b>Oxitocina</b> (hipotálamo → neurohipófisis) contrae las mioepiteliales y <b>expulsa</b> la leche.",
+"La <b>succión</b> estimula el hipotálamo: más oxitocina (eyección) y más prolactina (producción)."],
+p:"Prolactina = Produce. Oxitocina = expulsa (Out).",
+f:[["¿Qué arteria da la mayor parte de la irrigación de la mama?","La torácica interna (ramas perforantes, ≈60%)."],["¿De dónde sale la arteria torácica lateral?","De la axilar."],["¿A dónde drena la mayor parte de la linfa de la mama?","A los ganglios axilares (≈75%)."],["Prolactina vs oxitocina","Prolactina produce la leche; oxitocina la expulsa."],["¿Qué es la red de Haller?","La red venosa alrededor de la areola."]],
+q:[["La arteria toracoacromial es rama de la…",["Subclavia","Axilar","Torácica interna","Aorta"],1,"De la axilar (2ª porción, detrás del pectoral menor)."],
+["¿Qué hormona expulsa la leche?",["Prolactina","Oxitocina","Estrógeno","Progesterona"],1,"Oxitocina."]]},
+
+{id:"mama-clin",u:"u19",t:"Mama: cuadrantes, exploración y patología",m:"MAMA",
+s:"La exploración de la mama se ordena por cuadrantes. El superior externo concentra más tejido glandular y la mayoría de los cánceres.",
+k:["<b>Cuadrantes</b> (frecuencia de cáncer en tus notas): <b>superior externo ≈60%</b> (incluye la cola de Spence; el que más se revisa) · superior interno ≈15% · inferior externo ≈10% · inferior interno ≈5%. El resto, retroareolar o central.",
+"<b>Exploración</b>. <b>Corrección</b>: no es solo acostada. Primero <b>inspección sentada</b> (brazos abajo, arriba y en la cintura: simetría, piel, pezón) y luego <b>palpación acostada</b> con el brazo bajo la cabeza, incluyendo axila y supraclaviculares. Al final se exprime suave el pezón buscando <b>telorrea</b> (leche, sangre o secreción).",
+"<b>Mastografía</b>. <b>Corrección</b>: comprime la mama y toma 2 proyecciones por lado: <b>craneocaudal</b> y <b>mediolateral oblicua</b> (no «superior y lateral»).",
+"<b>Hematoma retromamario</b> (en el espacio de Chassaignac; hematoma de Nélaton): posquirúrgico, postraumático o tras biopsia; rara vez espontáneo.",
+"<b>Ginecomastia</b>: crecimiento de la glándula mamaria en el hombre; simétrica o asimétrica, uni o bilateral.",
+"<b>Cambios benignos</b>: <b>fibrosis</b> (mucho tejido fibroso, el mismo de ligamentos y cicatrices), <b>quistes</b> (sacos de líquido en las glándulas), <b>ectasia ductal</b> (conducto galactóforo dilatado o tapado) y <b>mastitis</b> (inflamación muy dolorosa, típica de la lactancia).",
+"<b>Cáncer de mama</b>: 1 de cada 8 mujeres a lo largo de la vida.",
+"<b>Corrección</b>: <b>polimastia</b> = mamas (glándulas) de más; <b>politelia</b> = pezones de más. Ambas aparecen sobre la <b>línea láctea</b> (de la axila a la ingle), como en otros mamíferos. <b>Amastia</b> = ausencia de mama.",
+"<b>Implantes</b>: de solución salina o gel de silicona; redondos o anatómicos (en gota).",
+"La mastalgia cíclica del síndrome premenstrual es normal y se relaciona con el ciclo hormonal."],
+f:[["¿Qué cuadrante concentra más cánceres?","El superior externo (≈60%)."],["Proyecciones de la mastografía","Craneocaudal y mediolateral oblicua."],["Polimastia vs politelia","Polimastia: mamas de más. Politelia: pezones de más."],["¿Qué es la telorrea?","Salida de secreción por el pezón."],["Riesgo de cáncer de mama a lo largo de la vida","≈1 de cada 8 mujeres."]],
+q:[["Un pezón supernumerario en la línea láctea es…",["Polimastia","Politelia","Amastia","Ginecomastia"],1,"Politelia."],
+["La exploración mamaria completa incluye…",["Solo palpación acostada","Inspección sentada y palpación acostada, con axila","Solo mastografía","Solo inspección"],1,"Inspección sentada + palpación acostada."]]}
 ];
 
 /* Árbol arterial para el explorador. p: padre · tr: tronco · s: nombre corto · n: nombre completo · i: irriga · x: perla · o: órganos */
@@ -826,6 +1361,23 @@ const SEGS=[
 
 /* Tablas rápidas */
 const TABLES=[
+ {t:"Niveles vertebrales del tronco",h:["Nivel","Estructura"],r:[
+  ["C6","Cricoides: fin de laringe y faringe, inicio de tráquea y esófago"],["T4–T5","Ángulo de Louis, carina, arco aórtico, límite del mediastino superior"],["T8","Orificio de la vena cava inferior"],["T10","Hiato esofágico"],["T12","Hiato aórtico, tronco celíaco"],["L1–L2","Fin de la médula espinal, AMS, arterias renales, cisterna del quilo"],["T12–L3","Riñones"]]},
+ {t:"Cartílagos de la laringe",h:["Cartílago","Tipo","Clave"],r:[
+  ["Epiglotis","Impar","Elástico; cierra la laringe al deglutir"],["Tiroides","Impar","El más grande; 90° hombre / 120° mujer"],["Cricoides","Impar","Único anillo completo, C6"],["Aritenoides","Par","Sobre el cricoides; de su proceso vocal salen las cuerdas verdaderas"],["Corniculados","Par","Sobre los aritenoides"],["Cuneiformes","Par","En los pliegues ariepiglóticos"]]},
+ {t:"Pulmón derecho vs izquierdo",h:["","Derecho","Izquierdo"],r:[
+  ["Lóbulos","3","2 (+ língula)"],["Fisuras","Horizontal y oblicua","Oblicua"],["Segmentos","10","8–10"],["Bronquio principal","Corto, ancho, vertical","Largo, angosto, horizontal"],["Hilio, lo más alto","Bronquio del lóbulo superior (eparterial)","Arteria pulmonar"]]},
+ {t:"Contenido del mediastino",h:["Mediastino","Contenido"],r:[
+  ["Superior","Tráquea, esófago, arco aórtico, VCS y braquiocefálicas, timo, frénicos, vagos, conducto torácico"],["Anterior","Grasa, linfáticos, timo (remanente)"],["Medio","Corazón, pericardio, coronarias, raíces de grandes vasos, bronquios principales, frénicos"],["Posterior","Esófago torácico, aorta descendente, ácigos, conducto torácico, vagos, simpáticos"]]},
+ {t:"Focos de auscultación",h:["Foco","Sitio"],r:[
+  ["Aórtico","2º EIC derecho, paraesternal"],["Pulmonar","2º EIC izquierdo, paraesternal"],["Erb (aórtico accesorio)","3er EIC izquierdo, paraesternal"],["Tricuspídeo","4º–5º EIC izquierdo, paraesternal"],["Mitral","5º EIC izquierdo, línea medioclavicular"]]},
+ {t:"Coronarias",h:["Arteria","Ramas","Territorio"],r:[
+  ["Coronaria derecha","Nodo sinusal (≈60%), marginal derecha, nodo AV (≈80%), interventricular posterior (si es dominante)","VD, cara inferior, nodos"],["Interventricular anterior","Septales anteriores, diagonales","Cara anterior, 2/3 anteriores del tabique, ápice"],["Circunfleja","Marginal izquierda (obtusa), ventriculares posteriores","Cara lateral del VI"],["Vena cardíaca magna / media / menor","→ seno coronario → aurícula derecha","Izquierda / posterior / borde derecho"]]},
+ {t:"Corteza suprarrenal",h:["Zona","Hormona","Regla"],r:[["Glomerulosa","Aldosterona","Sal"],["Fascicular","Cortisol","Azúcar"],["Reticular","Andrógenos","Sexo"],["Médula","Adrenalina, noradrenalina","Simpático"]]},
+ {t:"Hernias inguinales",h:["","Directa","Indirecta"],r:[["Sitio","Fosa inguinal medial (Hesselbach)","Fosa inguinal lateral (anillo profundo)"],["Relación con epigástricos","Medial","Lateral"],["Origen","Adquirida, debilidad de la pared","Congénita, proceso vaginal permeable"],["Frecuencia","Menos frecuente","La más frecuente"]]},
+ {t:"Homólogos masculino / femenino",h:["Masculino","Femenino"],r:[["Escroto","Labios mayores"],["Pene (cuerpos cavernosos, glande)","Clítoris"],["Cuerpo esponjoso / bulbo","Bulbos del vestíbulo"],["Glándulas de Cowper","Glándulas de Bartholin"],["Próstata","Glándulas de Skene"],["Gubernáculo testicular","Ligamento propio del ovario y ligamento redondo"]]},
+ {t:"Medidas del tórax, urinario y reproductor",h:["Estructura","Dato"],r:[
+  ["Tráquea","16–20 anillos; ≈10–12 cm"],["Riñón","≈10–12 cm; 130–150 g; ≈1 millón de nefronas"],["Uréter","25–30 cm"],["Uretra","Hombre ≈18–20 cm · mujer ≈4 cm"],["Conducto deferente","35–45 cm"],["Próstata","3 × 4 × 2 cm"],["Útero","7.5 × 5 × 2.5 cm"],["Tuba uterina","≈10–12 cm"],["Vagina","7–9 cm"],["Mama","Costillas 2–6; 15–20 lóbulos"]]},
  {t:"Irrigación por órgano",h:["Órgano","Arterias","Tronco"],r:[
   ["Esófago abdominal","Gástrica izquierda","tc"],
   ["Estómago, curvatura menor","Gástrica izquierda + gástrica derecha","tc"],
@@ -896,12 +1448,12 @@ let done=new Set(store.get("done",[]));
 
 /* ---------- cabecera ---------- */
 const nq=T.reduce((a,t)=>a+(t.q?t.q.length:0),0)+DECK.length;
-$("#ov-n").textContent=T.length;
+$("#ov-n").textContent=T.length;$("#ov-u").textContent=UNITS.length;
 const spine=$("#spine");
 SPINE.forEach((v,i)=>{const d=document.createElement("div");d.className="vert"+(v.k?" k":"");d.style.left=(4+i*(92/(SPINE.length-1)))+"%";d.innerHTML=`<i></i><em>${v.v}</em>${v.l?`<span>${esc(v.l)}</span>`:""}`;if(v.l)d.title=v.v+": "+v.l;spine.appendChild(d)});
 
 /* ---------- pestañas ---------- */
-const views=["study","irr","fc","tab","lam"];
+const views=["study","irr","fc","tab","lam","ex"];
 function show(v,push){if(!views.includes(v))v="study";$$(".tab").forEach(b=>b.setAttribute("aria-selected",b.dataset.view===v));views.forEach(x=>{$("#v-"+x).hidden=x!==v});if(push){try{history.replaceState(null,"","#"+v)}catch(e){}}}
 $$(".tab").forEach(b=>b.addEventListener("click",()=>{show(b.dataset.view,true);window.scrollTo({top:0})}));
 const h0=(location.hash||"").slice(1); show(views.includes(h0)?h0:"study");
@@ -921,6 +1473,7 @@ function topicHTML(t){
   let b=`<p class="sum">${hl(t.s)}</p><h4>Puntos clave</h4><ul class="keys">${t.k.map(k=>`<li>${hl(k)}</li>`).join("")}</ul>`;
   if(t.p)b+=`<div class="perla"><strong>Perla</strong>${hl(t.p)}</div>`;
   if(dks.length)b+=`<div class="dkbox"><strong>Así viene en tu mazo</strong>${dks.map(d=>`<p>${esc(d.q)} <b>→ ${esc(d.o[d.c])}</b></p>`).join("")}</div>`;
+  if(t.fig&&FIGS[t.fig])b+=`<figure class="own">${FIGS[t.fig].svg}<figcaption>${esc(FIGS[t.fig].c)}</figcaption></figure>`;
   if(t.img){const o=OWN[t.img];b+=`<figure class="own"><button data-lb="${o[0]}" data-cap="${esc(o[1])}"><img src="${o[0]}" alt="${esc(o[1])}" loading="lazy"></button><figcaption>${esc(o[1])}. Toca para ampliar.</figcaption></figure>`}
   const extras=[];
   if(t.go)extras.push(`<button class="goto" data-go="${t.go}">Ver en el árbol arterial</button>`);
@@ -1112,14 +1665,15 @@ const QALL=[];
 DECK.forEach(d=>QALL.push({q:d.q,o:d.o,c:d.c,e:d.e,t:d.t,dk:1,irr:!!TOP[d.t].irr}));
 T.forEach(t=>(t.q||[]).forEach(([q,o,c,e])=>QALL.push({q,o,c,e,t:t.id,irr:!!t.irr})));
 let ex=null;
-function setup(){const cnt=k=>QALL.filter(q=>k==="all"||(k==="dk"&&q.dk)||(k==="irr"&&q.irr)).length;
-  $("#qz").innerHTML=`<div class="qcard setup"><h3>Arma tu examen</h3><p class="sum" style="color:var(--muted)">Preguntas de práctica sobre todo el temario. «Irrigación» se concentra en arterias, arcadas y territorios.</p>
-<div><h4 style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);margin:0 0 6px">TEMARIO</h4><div class="chips wrapy" id="exPool"><button class="chip" aria-pressed="true" data-k="irr">Irrigación (${cnt("irr")})</button><button class="chip" aria-pressed="false" data-k="all">Todo (${cnt("all")})</button></div></div>
+const inPool=(q,k)=>k==="all"||(k==="dk"&&q.dk)||(k==="irr"&&q.irr)||(BLQ[k]&&BLQ[k].u.includes(TOP[q.t].u));
+function setup(){const cnt=k=>QALL.filter(q=>inPool(q,k)).length;
+  $("#qz").innerHTML=`<div class="qcard setup"><h3>Arma tu examen</h3><p class="sum" style="color:var(--muted)">Preguntas de práctica sobre todo el temario. Elige un bloque o todo el curso; «Irrigación» se concentra en arterias, arcadas y territorios.</p>
+<div><h4 style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);margin:0 0 6px">TEMARIO</h4><div class="chips wrapy" id="exPool"><button class="chip" aria-pressed="true" data-k="all">Todo (${cnt("all")})</button>${Object.entries(BLQ).map(([k,b])=>`<button class="chip" aria-pressed="false" data-k="${k}">${esc(b.t)} (${cnt(k)})</button>`).join("")}<button class="chip" aria-pressed="false" data-k="irr">Irrigación (${cnt("irr")})</button></div></div>
 <div><h4 style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);margin:0 0 6px">PREGUNTAS</h4><div class="chips wrapy" id="exN"><button class="chip" aria-pressed="false" data-n="10">10</button><button class="chip" aria-pressed="true" data-n="20">20</button><button class="chip" aria-pressed="false" data-n="999">Todas</button></div></div>
 <div><button class="btn pri" id="exGo">Empezar</button></div></div>`;
   const tog=s=>$(s).addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;$$(s+" .chip").forEach(c=>c.setAttribute("aria-pressed",c===b))});tog("#exPool");tog("#exN");
   $("#exGo").onclick=()=>{const k=$("#exPool [aria-pressed=true]").dataset.k,n=+$("#exN [aria-pressed=true]").dataset.n;
-    const src=shuffle(QALL.filter(q=>k==="all"||(k==="dk"&&q.dk)||(k==="irr"&&q.irr))).slice(0,n);
+    const src=shuffle(QALL.filter(q=>inPool(q,k))).slice(0,n);
     ex={qs:src.map(q=>{const idx=q.o.map((_,i)=>i);const keep=q.o===VF||q.o.length<=2;const ord=keep?idx:shuffle(idx);return{...q,ord}}),i:0,ok:0,miss:[]};drawQ()}}
 function drawQ(){const q=ex.qs[ex.i];if(!q){result();return}
   $("#qz").innerHTML=`<div class="qcard"><div class="qmeta"><span>Pregunta ${ex.i+1} de ${ex.qs.length}</span><span>${q.dk?"MAZO DEL PARCIAL":esc(TOP[q.t].t.toUpperCase())}</span><span>${ex.ok} correctas</span></div><div class="bar" style="margin-bottom:14px"><span style="width:${ex.i/ex.qs.length*100}%"></span></div><p class="qtext">${esc(q.q)}</p><div class="opts">${q.ord.map((oi,k)=>`<button class="opt" data-oi="${oi}"><span class="l">${"ABCDE"[k]}</span><span>${esc(q.o[oi])}</span></button>`).join("")}</div><div id="qx"></div></div>`;
@@ -1131,6 +1685,8 @@ function result(){const n=ex.qs.length,p=Math.round(ex.ok/n*100);
   $("#qz").innerHTML=`<div class="qcard setup"><p class="qmeta"><span>RESULTADO</span></p><p class="score">${p}%</p><p class="sum">${ex.ok} de ${n} correctas.${p>=80?" Vas muy bien.":p>=60?" Repasa los temas de abajo.":" Vale la pena repasar con las flashcards."}</p>
 ${ex.miss.length?`<h4 style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);margin:6px 0 0">PARA REPASAR</h4><ul class="miss">${ex.miss.map(q=>`<li>${esc(q.q)}<br><b>${esc(q.o[q.c])}</b> · <a href="#t-${q.t}" data-jump="${q.t}">${esc(TOP[q.t].t)}</a></li>`).join("")}</ul>`:""}
 <div class="row"><button class="btn pri" id="exAgain">Otro examen</button></div></div>`;$("#exAgain").onclick=setup}
+
+setup();
 
 /* ---------- tablas ---------- */
 $("#tables").innerHTML=TABLES.map(tb=>`<div class="tbl"><h3>${esc(tb.t)}</h3><div class="scroll"><table><thead><tr>${tb.h.map(h=>`<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${tb.r.map(r=>`<tr>${r.map((c,i)=>{if(tb.t==="Irrigación por órgano"&&i===2)return `<td><span class="k" style="background:var(--${c==="mix"?"ili":c})"></span>${TRN[c]}</td>`;return `<td${tb.mono&&i===1?' class="num"':""}>${esc(c)}</td>`}).join("")}</tr>`).join("")}</tbody></table></div></div>`).join("");

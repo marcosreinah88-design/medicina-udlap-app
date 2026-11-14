@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AnKing en español</title>
+<style>
+:root{--c:#1f4e8c;--o:#f26b21;--bg:#f7f5ef;--card:#fff;--ink:#1d2a24;--mute:#5d6b64;--line:#e0e3dc}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--c:#2d64ad;--bg:#101512;--card:#19211d;--ink:#e7ece8;--mute:#a3b0a9;--line:#2c3832}}
+:root[data-theme="dark"]{--c:#2d64ad;--bg:#101512;--card:#19211d;--ink:#e7ece8;--mute:#a3b0a9;--line:#2c3832}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--c),#12305a);color:#fff;padding:34px 16px 30px}
+.hero .w{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.hero small{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px 10px;font-weight:600;letter-spacing:.03em}
+.hero h1{font:700 clamp(26px,5vw,38px)/1.1 Georgia,"Times New Roman",serif;margin:12px 0 6px}
+.hero p{margin:0;opacity:.92;max-width:560px}
+.stats{display:flex;gap:22px;margin-top:18px;flex-wrap:wrap}.stats b{display:block;font-size:24px;line-height:1.1}.stats span{font-size:13px;opacity:.85}
+.crown{position:absolute;right:24px;top:50%;transform:translateY(-50%);width:170px;opacity:.18}
+@media (max-width:640px){.crown{display:none}}
+main{max-width:900px;margin:0 auto;padding:18px 16px 60px}
+h2{margin:6px 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--o)}
+.sis{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:20px}
+.sis button{display:flex;flex-direction:column;gap:4px;text-align:left;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:10px 12px;font:inherit;cursor:pointer}
+.sis button b{font-size:15px}.sis button small{color:var(--mute);font-size:12.5px}
+.sis button i{display:block;height:4px;border-radius:4px;background:var(--line);overflow:hidden}.sis button i span{display:block;height:100%;background:var(--c)}
+.sis button[aria-current=true]{border-color:var(--c);box-shadow:0 0 0 2px var(--c)}
+.sis button:hover{border-color:var(--o)}
+#ak-root{background:var(--card);border:1px solid var(--line);border-radius:16px;min-height:120px}
+#ak-root .ak{--ak-g:var(--c)}
+.hint{color:var(--mute);font-size:13px;margin:-8px 0 14px}
+footer{color:var(--mute);font-size:12px;text-align:center;margin-top:20px}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="w">
+  <small>Material extra · AnKing</small>
+  <h1>AnKing en español</h1>
+  <p>El mazo AnKing (Step 1, 2 y 3) traducido y revisado, separado de tus tarjetas propias. Cada sistema se estudia por su cuenta con repetición espaciada.</p>
+  <div class="stats"><div><b id="nT">…</b><span>tarjetas</span></div><div><b id="nS">…</b><span>sistemas</span></div></div>
+</div>
+<svg class="crown" viewBox="0 0 100 70" aria-hidden="true"><path d="M5 60 L12 15 L32 40 L50 5 L68 40 L88 15 L95 60 Z" fill="#fff"/></svg>
+</header>
+<main>
+  <h2>Elige un sistema</h2>
+  <div class="sis" id="sis"></div>
+  <p class="hint" id="hint"></p>
+  <div id="ak-root"></div>
+  <footer>Repositorio de Marcos David Reinah Guzmán</footer>
+</main>
+<script>
+(function(){
+  const IDX="../../anki/anking/index.json",box=document.getElementById("sis");
+  const seen=id=>{try{const p=JSON.parse(localStorage.getItem("carrera-anki-anking-"+id)||"null");return p&&p.c?Object.keys(p.c).length:0}catch(e){return 0}};
+  let last="";try{last=localStorage.getItem("carrera-anking-ultimo")||""}catch(e){}
+  fetch(IDX).then(r=>r.json()).then(L=>{
+    document.getElementById("nT").textContent=L.reduce((a,x)=>a+x.c,0).toLocaleString("es-MX");
+    document.getElementById("nS").textContent=L.length;
+    const cur=(location.hash||"").slice(1)||last||L[0].id;
+    box.innerHTML=L.map(x=>{const s=seen(x.id),p=Math.round(100*s/x.c);
+      return `<button type="button" data-id="${x.id}" aria-current="${x.id===cur}"><b>${x.n}</b><small>${x.c.toLocaleString("es-MX")} tarjetas · ${s?p+" % vistas":"sin empezar"}</small><i><span style="width:${p}%"></span></i></button>`}).join("");
+    box.onclick=e=>{const b=e.target.closest("button");if(!b||b.getAttribute("aria-current")==="true")return;
+      try{localStorage.setItem("carrera-anking-ultimo",b.dataset.id)}catch(e){}location.hash=b.dataset.id;location.reload()};
+    const x=L.find(y=>y.id===cur)||L[0];
+    document.getElementById("hint").textContent="Estudiando: "+x.n;
+    const s=document.createElement("script");s.src="../../anki/anki.js";s.dataset.m="anking-"+x.id;s.dataset.src="anking/"+x.id+".txt";s.dataset.enc="1";s.dataset.n=x.c;
+    document.body.appendChild(s);
+  }).catch(()=>{document.getElementById("ak-root").textContent="No se pudo cargar el mazo AnKing."});
+})();
+</script>
+</body>
+</html>

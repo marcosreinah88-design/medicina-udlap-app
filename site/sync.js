@@ -64,6 +64,11 @@
   function both(k,l,r,first){
     try{
       const a=JSON.parse(l),b=JSON.parse(r);
+      /* tarjetas (anki/srs.js): por tarjeta gana la que se repasó al último; el historial por día se junta */
+      const newer=(x,y)=>!y?x:!x?y:(x.u||0)!==(y.u||0)?((x.u||0)>(y.u||0)?x:y):((x.n||0)>=(y.n||0)?x:y);
+      if(/^carrera-anki-/.test(k)&&a&&b&&a.c&&b.c&&!Array.isArray(a)&&!Array.isArray(b)){const c=Object.assign({},b.c);for(const h in a.c)c[h]=newer(a.c[h],b.c[h]);return JSON.stringify(Object.assign({},b,a,{c}))}
+      if(k==="carrera-srs-dias"&&a&&b&&a.d&&b.d){const d=JSON.parse(JSON.stringify(b.d));for(const day in a.d){const t=d[day]||(d[day]={});for(const m in a.d[day]){const x=a.d[day][m],y=t[m];t[m]=y?x.map((v,i)=>Math.max(v,y[i]||0)):x}}return JSON.stringify({v:1,d,n:Object.assign({},b.n,a.n)})}
+      if(k==="carrera-repaso"&&a&&b&&Array.isArray(a.items)&&Array.isArray(b.items)){const m=new Map();b.items.forEach(e=>e&&e.id!=null&&m.set(e.id,e));a.items.forEach(e=>e&&e.id!=null&&m.set(e.id,newer(e,m.get(e.id))));return JSON.stringify(Object.assign({},b,a,{items:[...m.values()]}))}
       const byId=(x,y)=>{const m=new Map();y.forEach(e=>e&&e.id!=null&&m.set(e.id,e));x.forEach(e=>e&&e.id!=null&&m.set(e.id,e));return [...m.values()]};
       if(Array.isArray(a)&&Array.isArray(b)&&a.concat(b).every(e=>e&&typeof e==="object"&&"id" in e))return JSON.stringify(byId(a,b));
       if(a&&b&&Array.isArray(a.items)&&Array.isArray(b.items))return JSON.stringify(Object.assign({},b,a,{items:byId(a.items,b.items)}));

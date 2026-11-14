@@ -7,43 +7,50 @@
 @color #8a3b78
 @icon histo
 @sub Técnicas · Epitelios · Conectivo · Cartílago y hueso · Músculo · Nervio · Sangre · Piel
-@desc Los cuatro tejidos básicos y sus variantes, con las tinciones, las estructuras que se preguntan en el práctico y su correlación con la patología.
-@kw histologia tejido epitelio conectivo colageno cartilago hueso osificacion musculo sarcomero neurona glia sangre hematopoyesis piel tincion hematoxilina eosina pas microscopio
+@desc Los cuatro tejidos básicos y sus variantes, divididos en subtemas: técnica y tinciones, estructuras que se preguntan en el práctico, diagramas de cada proceso y su correlación con la patología.
+@kw histologia tejido epitelio conectivo colageno cartilago hueso osificacion osteona musculo sarcomero neurona glia mielina sangre hematopoyesis leucocitos piel epidermis tincion hematoxilina eosina pas microscopio uniones celulares
 
 # Métodos de estudio y tinciones
 > Cómo pasa un órgano a una laminilla y qué color toma cada estructura.
-- Secuencia de la técnica histológica: **obtención → fijación → deshidratación → aclaramiento → inclusión en parafina → corte (micrótomo, 5–10 µm) → tinción → montaje**.
-- Fijador de rutina: **formol (formaldehído) al 10 % amortiguado**; forma enlaces cruzados entre proteínas. El glutaraldehído se usa para microscopía electrónica.
-- **Hematoxilina** (básica) tiñe estructuras **basófilas** (ácidas): núcleo, heterocromatina, RER, ribosomas → azul-morado.
-- **Eosina** (ácida) tiñe estructuras **acidófilas/eosinófilas** (básicas): citoplasma, mitocondrias, colágeno → rosa.
-- Tinciones especiales: **PAS** (glucógeno, mucinas, membranas basales → magenta), **tricrómico de Masson** (colágeno azul/verde), **impregnación argéntica** (fibras reticulares, tipo III → negras), **orceína/Verhoeff** (fibras elásticas), **Sudán/aceite rojo O** (lípidos, requiere corte por congelación), **azul de toluidina** (metacromasia de mastocitos y cartílago).
-- Microscopía: óptica (resolución ≈ 0.2 µm), electrónica de transmisión (ultraestructura, ≈ 1 nm), de barrido (superficies en 3D), de fluorescencia e inmunohistoquímica (antígeno–anticuerpo marcado).
+## La técnica histológica
+= De la biopsia a la laminilla :: Obtención → Fijación (formol 10 %) → Deshidratación (alcoholes) → Aclaramiento (xilol) → Inclusión en parafina → Corte con micrótomo (5–10 µm) → Tinción → Montaje
+- Fijador de rutina: **formol (formaldehído) al 10 % amortiguado**; forma enlaces cruzados entre proteínas. El **glutaraldehído** se usa para microscopía electrónica.
+- Los solventes del procesamiento **disuelven los lípidos**: por eso el adipocito se ve "vacío" en H&E.
++ Biopsia transoperatoria: corte por **congelación (criostato)** para un diagnóstico rápido mientras el paciente sigue en el quirófano; también conserva los lípidos.
+## Hematoxilina y eosina (H&E)
+~ Basófilo :: Estructura ácida que capta el colorante básico (hematoxilina): núcleo, ADN, ARN, ribosomas, RER. Se ve azul-morado.
+~ Acidófilo (eosinófilo) :: Estructura básica que capta el colorante ácido (eosina): citoplasma, mitocondrias, colágeno. Se ve rosa.
+~ Metacromasia :: Cambio de color del colorante (p. ej. azul de toluidina se vuelve morado) en gránulos de mastocitos y matriz de cartílago.
+! Basófilo = afinidad por colorante **básico** porque la estructura es **ácida** (ADN, ARN). Es la confusión más frecuente.
+## Tinciones especiales
 | Tinción ¦ Qué demuestra ¦ Color
 | H&E ¦ Núcleo / citoplasma ¦ Azul-morado / rosa
 | PAS ¦ Glucógeno, moco neutro, membrana basal ¦ Magenta
 | Tricrómico de Masson ¦ Colágeno (fibrosis) ¦ Azul o verde
 | Plata (reticulina) ¦ Colágeno III ¦ Negro
-| Sudán / aceite rojo O ¦ Lípidos ¦ Rojo-naranja
-! Basófilo = afinidad por colorante básico (hematoxilina) porque la estructura es **ácida** (ADN, ARN). Es la confusión más frecuente.
-! Los lípidos se disuelven en la técnica de parafina: los adipocitos se ven "vacíos" en H&E; para verlos se usa corte por congelación + Sudán.
-+ Biopsia transoperatoria: corte por **congelación (criostato)** para diagnóstico rápido mientras el paciente sigue en quirófano.
-+ La **inmunohistoquímica** clasifica tumores por sus proteínas (p. ej. citoqueratinas en carcinomas, vimentina en sarcomas†).
+| Orceína / Verhoeff ¦ Fibras elásticas ¦ Café / negro
+| Sudán / aceite rojo O ¦ Lípidos (corte en congelación) ¦ Rojo-naranja
+| Azul de toluidina ¦ Mastocitos, cartílago ¦ Metacromático (morado)
+## Tipos de microscopía
+% ≈ 0.2 µm :: resolución del microscopio óptico
+% ≈ 1 nm :: resolución del electrónico de transmisión
+- **Electrónico de transmisión**: ultraestructura (organelos, uniones). **De barrido**: superficies en 3D.
+- **Inmunohistoquímica**: anticuerpo marcado contra una proteína; clasifica tumores (citoqueratinas en carcinomas, vimentina en sarcomas†).
 ? ¿Qué tiñe la hematoxilina y por qué? :: Estructuras basófilas (ácidas): núcleo, ADN, ARN, ribosomas y RER. Es un colorante básico.
 ? Fijador de rutina en histología :: Formol amortiguado al 10 % (enlaces cruzados de proteínas).
 ? Tinción para glucógeno y membrana basal :: PAS (ácido peryódico de Schiff): magenta.
 ? Tinción para fibras reticulares (colágeno III) :: Impregnación argéntica (plata): negras.
 ? ¿Por qué el adipocito se ve vacío en H&E? :: Los solventes del procesamiento en parafina disuelven los lípidos.
-Q ¿Qué estructura es característicamente basófila en H&E? :: *El RER de una célula plasmática :: Las mitocondrias :: Las fibras de colágeno I :: El citoplasma de un eritrocito || El RER y los ribosomas tienen ARN (ácido), por eso captan hematoxilina; la basofilia citoplasmática de la célula plasmática es un clásico.
+? Tinción que demuestra fibrosis (colágeno) :: Tricrómico de Masson.
+Q ¿Qué estructura es característicamente basófila en H&E? :: *El RER de una célula plasmática :: Las mitocondrias :: Las fibras de colágeno I :: El citoplasma de un eritrocito || El RER y los ribosomas tienen ARN (ácido), por eso captan hematoxilina.
 Q Necesitas demostrar lípidos en una biopsia. ¿Qué haces? :: *Corte por congelación y tinción con Sudán :: Inclusión en parafina y PAS :: Tricrómico de Masson :: Impregnación argéntica || La parafina exige solventes que disuelven la grasa; el corte en congelación la conserva.
 Q La tinción PAS es positiva en: :: *Glucógeno y membranas basales :: Colágeno tipo I :: Fibras elásticas :: Lípidos neutros || PAS marca carbohidratos (glucógeno, mucinas neutras, glucoproteínas de la membrana basal).
 
 # Tejido epitelial
 > Láminas de células unidas con poca matriz, sobre una membrana basal y sin vasos.
-- Características: **polaridad** (apical, lateral, basal), **avascular** (se nutre por difusión desde el conectivo), apoyado en **membrana basal** (lámina basal + lámina reticular), alta capacidad de renovación.
-- Clasificación por **número de capas** (simple, estratificado, seudoestratificado) y **forma de la capa superficial** (plano, cúbico, cilíndrico). Transicional = urotelio.
-- Especializaciones apicales: **microvellosidades** (actina; borde en cepillo/chapa estriada → absorción), **estereocilios** (microvellosidades largas: epidídimo, oído), **cilios** (axonema 9+2 de microtúbulos con dineína → movimiento).
-- Uniones laterales (de apical a basal): **zónula occludens** (unión estrecha: claudinas y ocludinas, barrera), **zónula adherens** (cadherinas + actina), **desmosoma** (cadherinas desmogleína/desmocolina + filamentos intermedios), **unión comunicante/gap** (conexinas, paso de iones). Basal: **hemidesmosoma** (integrinas, a la lámina basal).
-- Glándulas: exocrinas (con conducto) vs endocrinas (a la sangre). Secreción **merocrina** (exocitosis: páncreas, salivales), **apocrina** (pierde porción apical: mama), **holocrina** (la célula entera: glándula sebácea).
+## Características y clasificación
+- **Polaridad** (dominios apical, lateral y basal), **avascular** (se nutre por difusión desde el conectivo), apoyado en la **membrana basal** (lámina basal + lámina reticular) y con alta renovación.
+- Se clasifica por **número de capas** (simple, estratificado, seudoestratificado) y **forma de la capa superficial** (plano, cúbico, cilíndrico). El transicional es el **urotelio**.
 | Epitelio ¦ Localización típica
 | Plano simple ¦ Endotelio, mesotelio, alvéolo, asa de Henle
 | Cúbico simple ¦ Folículo tiroideo, túbulos renales, conductos pequeños
@@ -52,39 +59,71 @@ Q La tinción PAS es positiva en: :: *Glucógeno y membranas basales :: Colágen
 | Plano estratificado no queratinizado ¦ Boca, esófago, vagina, córnea
 | Plano estratificado queratinizado ¦ Epidermis
 | Transicional (urotelio) ¦ Pelvis renal, uréter, vejiga
-! Unión estrecha = barrera (ocludinas/claudinas); desmosoma = resistencia mecánica (filamentos intermedios); hemidesmosoma = anclaje a la membrana basal (integrinas).
-! Cilios: 9 pares + 2 centrales (9+2) y dineína; cuerpo basal y centriolo: 9 tripletes (9+0).
-+ **Metaplasia**: cambio de un epitelio maduro por otro; en fumadores el epitelio respiratorio pasa a plano estratificado; en el **esófago de Barrett** el plano estratificado pasa a cilíndrico con células caliciformes (riesgo de adenocarcinoma).
-+ **Síndrome de Kartagener** (discinesia ciliar primaria): falta de brazos de dineína → bronquiectasias, sinusitis, infertilidad y situs inversus.
-+ **Pénfigo vulgar**: anticuerpos contra desmogleína 3 (desmosomas) → ampollas intraepidérmicas flácidas; **penfigoide ampolloso**: contra hemidesmosomas → ampollas subepidérmicas tensas.
+## Especializaciones apicales
+~ Microvellosidades :: Proyecciones con actina; forman el borde en cepillo o chapa estriada y aumentan la absorción (intestino, túbulo proximal).
+~ Estereocilios :: Microvellosidades muy largas e inmóviles (epidídimo, células ciliadas del oído).
+~ Cilios :: Axonema 9+2 de microtúbulos con dineína; se mueven (tráquea, trompa uterina).
+! Cilios: 9 pares + 2 centrales (9+2) con dineína; el cuerpo basal y el centriolo tienen 9 tripletes (9+0).
++ **Síndrome de Kartagener** (discinesia ciliar primaria): faltan los brazos de dineína → bronquiectasias, sinusitis, infertilidad y situs inversus.
+## Uniones celulares
+= De apical a basal :: Zónula occludens (unión estrecha) → Zónula adherens → Desmosoma (mácula adherens) → Unión gap (comunicante) → Hemidesmosoma (a la lámina basal)
+| Unión ¦ Proteína ¦ Se ancla a ¦ Función
+| Zónula occludens ¦ Claudinas, ocludinas ¦ Actina ¦ Barrera (sella la vía paracelular)
+| Zónula adherens ¦ Cadherina E ¦ Actina ¦ Adhesión en cinturón
+| Desmosoma ¦ Desmogleína, desmocolina ¦ Filamentos intermedios ¦ Resistencia mecánica
+| Unión gap ¦ Conexinas ¦ — ¦ Paso de iones y moléculas pequeñas
+| Hemidesmosoma ¦ Integrinas ¦ Filamentos intermedios ¦ Anclaje a la membrana basal
++ **Pénfigo vulgar**: anticuerpos contra **desmogleína 3** (desmosomas) → ampollas intraepidérmicas flácidas; **penfigoide ampolloso**: contra hemidesmosomas → ampollas subepidérmicas tensas.
+## Glándulas
+- **Exocrinas** (con conducto) vs **endocrinas** (secretan a la sangre).
+| Secreción ¦ Cómo ¦ Ejemplo
+| Merocrina ¦ Exocitosis, la célula queda intacta ¦ Páncreas, salivales, sudorípara ecrina
+| Apocrina ¦ Pierde la porción apical ¦ Lípidos de la glándula mamaria
+| Holocrina ¦ Se libera la célula completa ¦ Glándula sebácea
++ **Metaplasia**: en fumadores el epitelio respiratorio pasa a plano estratificado; en el **esófago de Barrett** el plano estratificado pasa a cilíndrico con células caliciformes (riesgo de adenocarcinoma).
 ? Epitelio de la tráquea :: Seudoestratificado cilíndrico ciliado con células caliciformes.
 ? Epitelio de la vejiga :: Transicional (urotelio), con células en paraguas.
 ? Proteínas de la unión estrecha :: Claudinas y ocludinas (zónula occludens).
 ? Estructura del axonema de un cilio :: 9 pares periféricos + 2 microtúbulos centrales (9+2), con dineína.
 ? Secreción holocrina: ejemplo :: Glándula sebácea (se libera la célula completa).
-? Pénfigo vs penfigoide :: Pénfigo: anticuerpos contra desmosomas (desmogleína) → ampolla intraepidérmica. Penfigoide: contra hemidesmosomas → ampolla subepidérmica.
-Q ¿Qué epitelio reviste el esófago normal? :: *Plano estratificado no queratinizado :: Cilíndrico simple con caliciformes :: Seudoestratificado ciliado :: Plano estratificado queratinizado || El esófago soporta fricción: plano estratificado no queratinizado. Si cambia a cilíndrico con caliciformes es esófago de Barrett.
-Q La unión que impide el paso de solutos entre células epiteliales es: :: *Zónula occludens :: Desmosoma :: Unión gap :: Hemidesmosoma || La unión estrecha sella el espacio intercelular (vía paracelular).
+? Pénfigo vs penfigoide :: Pénfigo: anticuerpos contra desmosomas → ampolla intraepidérmica. Penfigoide: contra hemidesmosomas → ampolla subepidérmica.
+Q ¿Qué epitelio reviste el esófago normal? :: *Plano estratificado no queratinizado :: Cilíndrico simple con caliciformes :: Seudoestratificado ciliado :: Plano estratificado queratinizado || El esófago soporta fricción; si cambia a cilíndrico con caliciformes es esófago de Barrett.
+Q La unión que impide el paso de solutos entre células epiteliales es: :: *Zónula occludens :: Desmosoma :: Unión gap :: Hemidesmosoma || La unión estrecha sella el espacio intercelular.
 Q Paciente con infertilidad, bronquiectasias y dextrocardia. ¿Qué proteína falla? :: *Dineína ciliar :: Distrofina :: Colágeno III :: Espectrina || Síndrome de Kartagener: discinesia ciliar por defecto de los brazos de dineína.
-Q La glándula mamaria secreta lípidos por un mecanismo: :: *Apocrino :: Holocrino :: Merocrino exclusivo :: Endocrino || Las gotas de lípido salen con una porción de la membrana apical (apocrina).
+Q La glándula mamaria secreta lípidos por un mecanismo: :: *Apocrino :: Holocrino :: Merocrino exclusivo :: Endocrino || Las gotas de lípido salen con una porción de la membrana apical.
 
 # Tejido conjuntivo
 > Células dispersas en abundante matriz extracelular: fibras + sustancia fundamental.
-- Células **residentes**: fibroblasto (sintetiza fibras y matriz), adipocito, macrófago (histiocito), mastocito (heparina, histamina; IgE en su superficie). **Transitorias**: plasmocitos, linfocitos, neutrófilos, eosinófilos.
-- Fibras: **colágeno** (resistencia a la tracción), **reticulares** (colágeno III, armazón de órganos linfoides, hígado, médula ósea), **elásticas** (elastina + fibrilina; aorta, pulmón, piel).
+## Células
+- **Residentes**: fibroblasto (sintetiza fibras y matriz), adipocito, macrófago (histiocito), mastocito (heparina e histamina; IgE en su superficie).
+- **Transitorias**: plasmocitos, linfocitos, neutrófilos, eosinófilos.
+~ Fibroblasto :: Célula fusiforme que fabrica colágeno, elastina y sustancia fundamental; en reposo se llama fibrocito.
+~ Mastocito :: Célula con gránulos de histamina y heparina; tiene IgE en su membrana y media la alergia inmediata.
+~ Plasmocito :: Linfocito B diferenciado que secreta anticuerpos; núcleo en "rueda de carreta" y citoplasma basófilo.
+## Fibras y sustancia fundamental
+- **Colágeno**: resistencia a la tracción. **Reticulares** (colágeno III): armazón de órganos linfoides, hígado y médula ósea. **Elásticas** (elastina + fibrilina): aorta, pulmón, piel.
 - Sustancia fundamental: glucosaminoglucanos (ácido hialurónico, condroitín sulfato, heparán sulfato), proteoglucanos y glucoproteínas de adhesión (fibronectina, laminina).
-- Síntesis de colágeno: en el RER se hidroxilan prolina y lisina (**requiere vitamina C**) → triple hélice (procolágeno) → se exocita → peptidasas cortan los extremos (tropocolágeno) → **lisil oxidasa** forma enlaces cruzados (requiere cobre).
-- Clasificación: conjuntivo laxo (areolar), denso irregular (dermis), denso regular (tendones, ligamentos), especializados: adiposo (blanco unilocular / pardo multilocular con UCP-1, termogénesis), reticular, cartílago, hueso y sangre.
 | Colágeno ¦ Dónde ¦ Recuerda
 | I ¦ Hueso, tendón, piel, cicatriz madura ¦ El más abundante
-| II ¦ Cartílago hialino y elástico, humor vítreo ¦ "Car-two-lage"
+| II ¦ Cartílago hialino y elástico, humor vítreo ¦ Cartílago
 | III ¦ Fibras reticulares, vasos, útero, cicatriz inicial ¦ Ehlers-Danlos vascular
 | IV ¦ Lámina basal ¦ Alport, Goodpasture
-! Escorbuto: sin vitamina C no se hidroxila la prolina → colágeno débil: encías sangrantes, hemorragias perifoliculares, mala cicatrización.
-! Síndrome de Marfan = fibrilina-1 (fibras elásticas): talla alta, aracnodactilia, subluxación del cristalino hacia arriba, dilatación/disección aórtica.
+& "Be So Totally Cool, Read Books" :: Tipo I: Bone, Skin, Tendon (hueso, piel, tendón) · II: Cartilage · III: Reticulina · IV: Basement membrane (lámina basal).
+## Síntesis del colágeno
+= Del gen a la fibra :: Síntesis de cadenas α en el RER → Hidroxilación de prolina y lisina (requiere vitamina C) → Glucosilación → Triple hélice (procolágeno) → Exocitosis → Peptidasas cortan los extremos (tropocolágeno) → Lisil oxidasa forma enlaces cruzados (requiere cobre) → Fibrilla
+! **Escorbuto**: sin vitamina C no se hidroxila la prolina → colágeno débil: encías sangrantes, hemorragias perifoliculares, mala cicatrización.
 + **Osteogénesis imperfecta**: colágeno I defectuoso → fracturas múltiples, escleras azules, sordera.
-+ **Ehlers-Danlos**: colágeno (III en la forma vascular) → piel hiperelástica, articulaciones hiperlaxas, rotura arterial.
++ **Ehlers-Danlos**: piel hiperelástica, articulaciones hiperlaxas; la forma vascular (colágeno III) causa rotura arterial.
 + **Síndrome de Alport**: colágeno IV → nefritis hereditaria, sordera neurosensorial y alteraciones oculares.
++ **Marfan** (fibrilina-1): talla alta, aracnodactilia, subluxación del cristalino hacia arriba, dilatación y disección aórtica.
+## Tipos de conjuntivo
+| Tipo ¦ Rasgo ¦ Dónde
+| Laxo (areolar) ¦ Pocas fibras, muchas células ¦ Lámina propia, alrededor de vasos
+| Denso irregular ¦ Fibras en todas direcciones ¦ Dermis reticular
+| Denso regular ¦ Fibras paralelas ¦ Tendones, ligamentos
+| Adiposo blanco ¦ Unilocular, reserva energética ¦ Hipodermis
+| Adiposo pardo ¦ Multilocular, muchas mitocondrias, UCP-1 ¦ Recién nacido (termogénesis)
+| Reticular ¦ Colágeno III ¦ Ganglios, bazo, médula ósea
 ? Colágeno de la lámina basal :: Tipo IV.
 ? Colágeno del cartílago hialino :: Tipo II.
 ? Cofactor para hidroxilar prolina y lisina :: Vitamina C (ácido ascórbico).
@@ -97,17 +136,31 @@ Q Las fibras reticulares que sostienen el bazo están formadas por: :: *Colágen
 
 # Cartílago y hueso
 > Conectivos especializados de sostén: el cartílago es avascular; el hueso, muy vascularizado y mineralizado.
-- Cartílago: condrocitos en **lagunas** (grupos isógenos), matriz de colágeno II + agrecano; nutrición por difusión desde el **pericondrio** (excepto cartílago articular y fibrocartílago, sin pericondrio).
-- **Hialino** (articular, costal, tráquea, placa epifisaria), **elástico** (pabellón auricular, epiglotis; fibras elásticas), **fibrocartílago** (discos intervertebrales, sínfisis del pubis, meniscos; colágeno I, sin pericondrio).
-- Hueso: matriz orgánica (osteoide, colágeno I) + inorgánica (**hidroxiapatita**). Células: **osteoprogenitoras**, **osteoblastos** (forman osteoide, fosfatasa alcalina), **osteocitos** (en lagunas, conectados por canalículos), **osteoclastos** (multinucleados, origen monocito-macrófago; borde en cepillo, fosfatasa ácida resistente a tartrato; laguna de Howship).
-- Hueso compacto: **osteona (sistema de Havers)** = conducto de Havers central + laminillas concéntricas; conductos de **Volkmann** perpendiculares. Hueso esponjoso: trabéculas sin osteonas.
-- Osificación **intramembranosa** (huesos planos del cráneo, clavícula) vs **endocondral** (huesos largos, sobre molde de cartílago hialino). Placa epifisaria: zonas de reposo → proliferación → hipertrofia → calcificación → osificación.
-- Regulación: **RANKL** (osteoblasto) se une a **RANK** (osteoclasto) → resorción; **osteoprotegerina** bloquea RANKL. PTH estimula resorción (vía osteoblastos); calcitonina inhibe osteoclastos.
-! Osteoclasto: célula multinucleada de origen **monocito-macrófago**, no mesenquimal. Marca: fosfatasa ácida resistente a tartrato (TRAP).
-! El crecimiento en longitud del hueso largo depende de la **zona de proliferación** de la placa epifisaria.
-+ **Acondroplasia**: mutación activadora de FGFR3 → menos proliferación en la placa epifisaria → enanismo de extremidades cortas con tronco normal.
-+ **Osteoporosis**: menos masa ósea con mineralización normal; **raquitismo/osteomalacia**: falla de mineralización por déficit de vitamina D (exceso de osteoide).
+## Cartílago
+- Condrocitos en **lagunas** (grupos isógenos), matriz de colágeno II + agrecano; se nutre por difusión desde el **pericondrio**.
+| Tipo ¦ Fibras ¦ Pericondrio ¦ Dónde
+| Hialino ¦ Colágeno II ¦ Sí (no en el articular) ¦ Articular, costal, tráquea, placa epifisaria
+| Elástico ¦ Colágeno II + fibras elásticas ¦ Sí ¦ Pabellón auricular, epiglotis
+| Fibrocartílago ¦ Colágeno I ¦ No ¦ Discos intervertebrales, sínfisis del pubis, meniscos
+- Crecimiento **aposicional** (desde el pericondrio) e **intersticial** (división de condrocitos dentro de la matriz).
+## Células y estructura del hueso
+~ Osteoblasto :: Forma osteoide (colágeno I) y lo mineraliza; tiene fosfatasa alcalina y produce RANKL.
+~ Osteocito :: Osteoblasto atrapado en una laguna; se comunica con otros por canalículos y detecta la carga mecánica.
+~ Osteoclasto :: Célula multinucleada de origen monocito-macrófago; reabsorbe hueso con su borde en cepillo en la laguna de Howship; marcador TRAP.
+- Matriz: orgánica (osteoide, **colágeno I**) + inorgánica (**hidroxiapatita**).
+- **Hueso compacto**: osteona (sistema de Havers) = conducto de Havers central + laminillas concéntricas; conductos de **Volkmann** perpendiculares. **Esponjoso**: trabéculas sin osteonas, con médula ósea entre ellas.
+! Osteoclasto: origen **monocito-macrófago**, no mesenquimal. Marcador: fosfatasa ácida resistente a tartrato (TRAP).
+## Osificación
+- **Intramembranosa**: el mesénquima se diferencia directamente en hueso (huesos planos del cráneo, clavícula).
+- **Endocondral**: sobre un molde de cartílago hialino (huesos largos, vértebras, base del cráneo).
+= Placa epifisaria (de la epífisis a la diáfisis) :: Zona de reposo → Proliferación (columnas de condrocitos) → Hipertrofia → Calcificación del cartílago → Osificación
+! El crecimiento en longitud depende de la **zona de proliferación** de la placa epifisaria.
+## Remodelación y regulación
+= Acoplamiento :: Osteoblasto expresa RANKL → RANKL se une a RANK del precursor → Se forma y activa el osteoclasto → Resorción → Osteoblastos rellenan la cavidad
+- **Osteoprotegerina** (OPG): receptor señuelo que bloquea RANKL. **PTH**: estimula la resorción (vía osteoblastos). **Calcitonina**: inhibe osteoclastos.
 + **Denosumab** (anticuerpo anti-RANKL) trata la osteoporosis imitando a la osteoprotegerina.
++ **Acondroplasia**: mutación activadora de **FGFR3** → menos proliferación en la placa → enanismo de extremidades cortas con tronco normal.
++ **Osteoporosis**: menos masa ósea con mineralización normal. **Raquitismo / osteomalacia**: falla de mineralización por déficit de vitamina D (exceso de osteoide).
 ? Cartílago sin pericondrio :: Fibrocartílago y cartílago articular.
 ? Cartílago de la epiglotis :: Elástico.
 ? Unidad estructural del hueso compacto :: Osteona o sistema de Havers.
@@ -115,76 +168,104 @@ Q Las fibras reticulares que sostienen el bazo están formadas por: :: *Colágen
 ? Osificación de la clavícula y huesos planos del cráneo :: Intramembranosa.
 ? Señal que activa a los osteoclastos :: RANKL (del osteoblasto) sobre RANK; la osteoprotegerina la bloquea.
 Q ¿Qué tipo de cartílago forma los discos intervertebrales? :: *Fibrocartílago :: Hialino :: Elástico :: Hialino con pericondrio || Fibrocartílago: colágeno I, resiste compresión y tensión, sin pericondrio.
-Q Niño con extremidades cortas, tronco normal y macrocefalia. ¿Qué zona de la placa epifisaria está alterada? :: *Proliferación (por FGFR3 activado) :: Calcificación por falta de vitamina D :: Reposo por exceso de PTH :: Osificación por colágeno I defectuoso || Acondroplasia: FGFR3 frena la proliferación de condrocitos; es autosómica dominante, casi siempre mutación nueva.
+Q Niño con extremidades cortas, tronco normal y macrocefalia. ¿Qué zona de la placa epifisaria está alterada? :: *Proliferación (por FGFR3 activado) :: Calcificación por falta de vitamina D :: Reposo por exceso de PTH :: Osificación por colágeno I defectuoso || Acondroplasia: autosómica dominante, casi siempre mutación nueva.
 Q ¿Qué conectan los conductos de Volkmann? :: *Conductos de Havers entre sí y con el periostio :: Lagunas de osteocitos :: Grupos isógenos :: Laminillas intersticiales || Son perpendiculares al eje del hueso y llevan vasos entre osteonas.
 
 # Tejido muscular
 > Células alargadas (fibras) especializadas en contraer gracias a actina y miosina.
-- **Esquelético**: fibras multinucleadas con núcleos periféricos, estriado, voluntario; envolturas: epimisio → perimisio (fascículo) → endomisio (fibra). Células satélite = regeneración.
-- **Sarcómero** (de línea Z a línea Z): banda **A** (miosina, longitud constante), banda **I** (solo actina), **zona H** (solo miosina), **línea M** (centro). En la contracción se acortan **I y H**; A no cambia.
-- **Tríada** del esquelético: túbulo T + 2 cisternas terminales del retículo sarcoplásmico (en la unión A-I). Receptor de dihidropiridina (sensor de voltaje) acoplado a **receptor de rianodina** (libera Ca²⁺).
-- **Cardiaco**: estriado, 1–2 núcleos centrales, ramificado, **discos intercalares** (uniones gap + desmosomas + fascias adherentes), díada (túbulo T + 1 cisterna, en la línea Z); casi sin regeneración.
-- **Liso**: fusiforme, núcleo central, sin estrías, cuerpos densos (equivalentes a Z), contracción regulada por **calmodulina → cinasa de cadena ligera de miosina**; puede dividirse.
+## Los tres tipos de músculo
 | ¦ Esquelético ¦ Cardiaco ¦ Liso
 | Núcleos ¦ Muchos, periféricos ¦ 1–2 centrales ¦ 1 central
 | Estrías ¦ Sí ¦ Sí ¦ No
-| Unión ¦ — ¦ Discos intercalares ¦ Uniones gap
+| Uniones ¦ — ¦ Discos intercalares ¦ Uniones gap
+| Control ¦ Voluntario ¦ Involuntario ¦ Involuntario
 | Ca²⁺ se une a ¦ Troponina C ¦ Troponina C ¦ Calmodulina
 | Regeneración ¦ Células satélite ¦ Mínima (fibrosis) ¦ Alta
-! En la contracción: **H e I se acortan, A permanece igual** ("HIZ se acorta; A no").
-! Distrofina une el citoesqueleto de actina a la matriz extracelular; su ausencia → distrofia muscular de Duchenne (ligada al X).
-+ **Duchenne**: deleción en el gen de distrofina → debilidad proximal, signo de Gowers, seudohipertrofia de pantorrillas, CK muy elevada.
-+ **Infarto**: el miocardio no se regenera; cicatriza con colágeno. Las troponinas I y T son los marcadores de lesión miocárdica.
-+ **Hipertermia maligna**: mutación del receptor de rianodina → liberación masiva de Ca²⁺ con anestésicos halogenados/succinilcolina; tratamiento con dantroleno.
+- Envolturas del esquelético: **epimisio** (músculo) → **perimisio** (fascículo) → **endomisio** (fibra).
+## El sarcómero
+- Unidad contráctil, de **línea Z a línea Z**.
+~ Banda A :: Longitud de los filamentos gruesos (miosina); no cambia en la contracción.
+~ Banda I :: Solo filamentos delgados (actina); se acorta al contraer.
+~ Zona H :: Centro de la banda A con solo miosina; se acorta al contraer.
+~ Línea M :: Centro del sarcómero; une los filamentos de miosina.
+! En la contracción: **H e I se acortan, A permanece igual**.
+## Acoplamiento excitación-contracción
+= Músculo esquelético :: Potencial de acción en el sarcolema → Viaja por el túbulo T → Receptor de dihidropiridina (sensor de voltaje) → Abre el receptor de rianodina → Sale Ca²⁺ del retículo sarcoplásmico → Ca²⁺ se une a troponina C → Tropomiosina libera los sitios de la actina → Puentes cruzados actina-miosina (ATP)
+- **Tríada** (esquelético): túbulo T + 2 cisternas terminales, en la unión A-I. **Díada** (cardiaco): túbulo T + 1 cisterna, en la línea Z.
+- **Liso**: Ca²⁺ + **calmodulina** → activa la **cinasa de la cadena ligera de miosina**; tiene cuerpos densos (equivalentes a Z).
++ **Hipertermia maligna**: mutación del receptor de rianodina → liberación masiva de Ca²⁺ con anestésicos halogenados o succinilcolina; tratamiento: **dantroleno**.
+## Correlación clínica
++ **Duchenne**: deleción en el gen de **distrofina** (une la actina a la matriz extracelular) → debilidad proximal, signo de Gowers, seudohipertrofia de pantorrillas, CK muy elevada; ligada al X.
++ **Infarto**: el miocardio no se regenera; cicatriza con colágeno. Las **troponinas I y T** son los marcadores de lesión miocárdica.
 ? Bandas que se acortan en la contracción :: Banda I y zona H (la banda A no cambia).
 ? Componentes del disco intercalar :: Uniones gap, desmosomas y fascias adherentes.
 ? Tríada del músculo esquelético :: Túbulo T + dos cisternas terminales del retículo sarcoplásmico.
 ? En el músculo liso el Ca²⁺ se une a :: Calmodulina, que activa la cinasa de la cadena ligera de miosina.
 ? Células madre del músculo esquelético :: Células satélite.
-Q ¿Qué banda del sarcómero mantiene su longitud durante la contracción? :: *Banda A :: Banda I :: Zona H :: Distancia Z-Z || La banda A corresponde a la longitud de los filamentos gruesos de miosina, que no cambian.
-Q Niño de 5 años que se levanta del suelo apoyándose en sus muslos y tiene pantorrillas grandes. ¿Qué proteína falta? :: *Distrofina :: Titina :: Troponina C :: Nebulina || Distrofia de Duchenne: signo de Gowers y seudohipertrofia; herencia recesiva ligada al X.
+? Fármaco para la hipertermia maligna :: Dantroleno.
+Q ¿Qué banda del sarcómero mantiene su longitud durante la contracción? :: *Banda A :: Banda I :: Zona H :: Distancia Z-Z || La banda A corresponde a los filamentos gruesos de miosina, que no cambian.
+Q Niño de 5 años que se levanta del suelo apoyándose en sus muslos y tiene pantorrillas grandes. ¿Qué proteína falta? :: *Distrofina :: Titina :: Troponina C :: Nebulina || Distrofia de Duchenne: signo de Gowers y seudohipertrofia.
 Q ¿Qué característica distingue al músculo cardiaco en un corte? :: *Discos intercalares y núcleos centrales :: Núcleos periféricos múltiples :: Ausencia de estrías :: Cuerpos densos citoplásmicos || Los discos intercalares son exclusivos del miocardio.
+Q En el músculo esquelético, ¿a qué se une el Ca²⁺ para iniciar la contracción? :: *Troponina C :: Calmodulina :: Tropomiosina :: Miosina || La troponina C mueve a la tropomiosina y expone los sitios de la actina.
 
 # Tejido nervioso
 > Neuronas que conducen impulsos y glía que las sostiene, aísla y defiende.
-- Neurona: soma con **cuerpos de Nissl** (RER, basófilos), dendritas (reciben), axón (conduce; nace del cono axónico, sin Nissl). Tipos: multipolar (motoneurona), bipolar (retina, epitelio olfatorio), seudounipolar (ganglio de la raíz dorsal).
-- Glía del SNC: **astrocitos** (barrera hematoencefálica, GFAP, cicatriz glial), **oligodendrocitos** (mielina de muchos axones), **microglía** (macrófagos, origen mesodérmico/monocito), **ependimocitos** (revisten ventrículos; plexos coroideos).
-- Glía del SNP: **células de Schwann** (mielina de un solo internodo de un axón; permiten regeneración) y células satélite (ganglios).
-- Mielina: aumenta la velocidad por **conducción saltatoria** entre **nodos de Ranvier** (canales de Na⁺ concentrados).
-- Nervio periférico: **endoneuro** (cada fibra) → **perineuro** (fascículo, barrera) → **epineuro** (nervio completo).
-- Barrera hematoencefálica: uniones estrechas del endotelio + membrana basal + pies de astrocitos.
+## La neurona
+- Soma con **cuerpos de Nissl** (RER, basófilos), **dendritas** (reciben) y **axón** (conduce; nace del cono axónico, sin Nissl).
+| Tipo ¦ Forma ¦ Ejemplo
+| Multipolar ¦ Muchas dendritas, un axón ¦ Motoneurona, la mayoría del SNC
+| Bipolar ¦ Una dendrita y un axón ¦ Retina, epitelio olfatorio
+| Seudounipolar ¦ Una prolongación que se divide en T ¦ Ganglio de la raíz dorsal
+## Glía
 | Célula ¦ Origen ¦ Función clave
+| Astrocito ¦ Neuroectodermo ¦ Barrera hematoencefálica, sostén, cicatriz (GFAP)
 | Oligodendrocito ¦ Neuroectodermo ¦ Mielina en SNC (varios axones)
-| Schwann ¦ Cresta neural ¦ Mielina en SNP (1 internodo)
-| Astrocito ¦ Neuroectodermo ¦ BHE, sostén, cicatriz (GFAP)
 | Microglía ¦ Mesodermo (saco vitelino) ¦ Fagocitosis
+| Ependimocito ¦ Neuroectodermo ¦ Reviste ventrículos; plexos coroideos (LCR)
+| Célula de Schwann ¦ Cresta neural ¦ Mielina en SNP (un internodo); permite regenerar
+| Célula satélite ¦ Cresta neural ¦ Rodea somas en ganglios
 ! Esclerosis múltiple daña **oligodendrocitos** (SNC); Guillain-Barré daña **células de Schwann** (SNP).
-! Microglía es la única glía de origen mesodérmico; en VIH forma células gigantes multinucleadas.
+! La microglía es la única glía de origen mesodérmico; en VIH forma células gigantes multinucleadas.
+## Mielina, nervio y barrera hematoencefálica
+- La mielina permite la **conducción saltatoria** entre **nodos de Ranvier**, donde se concentran los canales de Na⁺.
+= Envolturas del nervio periférico :: Endoneuro (cada fibra) → Perineuro (fascículo; barrera) → Epineuro (nervio completo)
+- **Barrera hematoencefálica**: uniones estrechas del endotelio + membrana basal + pies de astrocitos.
 + **Esclerosis múltiple**: placas de desmielinización en sustancia blanca, bandas oligoclonales en LCR; neuritis óptica, oftalmoplejía internuclear.
 + **Guillain-Barré**: polirradiculoneuropatía desmielinizante aguda tras infección (Campylobacter), debilidad ascendente y arreflexia.
-+ Tumores: **GFAP** positivo en tumores astrocíticos; schwannoma vestibular (neurinoma del acústico) en neurofibromatosis tipo 2.
++ Tumores: **GFAP** positivo en tumores astrocíticos; schwannoma vestibular en neurofibromatosis tipo 2.
 ? Cuerpos de Nissl :: Retículo endoplásmico rugoso del soma neuronal (basófilo); no hay en el axón.
 ? Mielina en SNC vs SNP :: SNC: oligodendrocitos (varios axones). SNP: células de Schwann (un internodo).
 ? Marcador de astrocitos :: GFAP (proteína ácida fibrilar glial).
 ? Neurona del ganglio de la raíz dorsal :: Seudounipolar.
 ? Capa del nervio que forma barrera :: Perineuro.
-Q En la esclerosis múltiple la célula dañada es: :: *Oligodendrocito :: Célula de Schwann :: Microglía :: Astrocito || Es una enfermedad desmielinizante del SNC, donde la mielina la forma el oligodendrocito.
-Q ¿Qué glía tiene origen mesodérmico? :: *Microglía :: Astrocito :: Ependimocito :: Oligodendrocito || La microglía deriva de precursores del saco vitelino (línea monocito-macrófago).
+Q En la esclerosis múltiple la célula dañada es: :: *Oligodendrocito :: Célula de Schwann :: Microglía :: Astrocito || Es una enfermedad desmielinizante del SNC.
+Q ¿Qué glía tiene origen mesodérmico? :: *Microglía :: Astrocito :: Ependimocito :: Oligodendrocito || La microglía deriva de precursores del saco vitelino.
 Q La conducción saltatoria se debe a: :: *Concentración de canales de Na⁺ en los nodos de Ranvier :: Ausencia de canales de K⁺ :: Mayor diámetro del soma :: Uniones gap entre axones || La mielina aísla los internodos y el potencial "salta" de nodo en nodo.
 
 # Sangre y hematopoyesis
 > Tejido conjuntivo líquido: plasma + elementos formes.
-- Plasma ≈ 55 % del volumen (agua, albúmina, globulinas, fibrinógeno). Suero = plasma sin factores de coagulación.
-- **Eritrocito**: disco bicóncavo, 7.5 µm, sin núcleo ni organelos, vida ≈ 120 días; citoesqueleto con **espectrina** y anquirina.
-- **Neutrófilo** (50–70 %): núcleo de 3–5 lóbulos, gránulos específicos; primera línea contra bacterias. **Eosinófilo** (1–4 %): núcleo bilobulado, gránulos rojos (proteína básica mayor); parásitos y alergia. **Basófilo** (<1 %): gránulos azules con histamina.
-- **Linfocito** (20–40 %): núcleo redondo, poco citoplasma (T, B, NK). **Monocito** (2–8 %): núcleo arriñonado; en tejidos se vuelve macrófago.
-- **Plaquetas**: fragmentos de megacariocito, 2–3 µm, vida 7–10 días; gránulos α y densos.
-- Hematopoyesis: saco vitelino → hígado (y bazo) fetal → **médula ósea** desde el final del periodo fetal. Célula madre hematopoyética **CD34+**. EPO (riñón) estimula eritropoyesis; TPO (hígado) a megacariocitos.
-! Orden de frecuencia de leucocitos: "**Nunca Llames Mal A Bob**" → neutrófilos > linfocitos > monocitos > eosinófilos > basófilos.
-! Reticulocitos (eritrocitos jóvenes con ARN residual) reflejan la respuesta de la médula: ↑ en hemólisis o hemorragia.
-+ **Esferocitosis hereditaria**: defecto de espectrina/anquirina → esferocitos, anemia hemolítica, esplenomegalia.
-+ **Eosinofilia**: parasitosis por helmintos, alergias, asma, insuficiencia suprarrenal†.
-+ Biometría hemática: la neutrofilia con bandas sugiere infección bacteriana; la linfocitosis, infección viral.
+## Plasma y eritrocitos
+% ≈ 55 % :: del volumen sanguíneo es plasma
+% 7.5 µm :: diámetro del eritrocito
+% ≈ 120 días :: vida del eritrocito
+% 7–10 días :: vida de las plaquetas
+- Plasma: agua, albúmina, globulinas, fibrinógeno. **Suero** = plasma sin factores de coagulación.
+- **Eritrocito**: disco bicóncavo sin núcleo ni organelos; citoesqueleto con **espectrina** y anquirina.
++ **Esferocitosis hereditaria**: defecto de espectrina o anquirina → esferocitos, anemia hemolítica, esplenomegalia.
+## Leucocitos
+| Célula ¦ % ¦ Núcleo ¦ Función
+| Neutrófilo ¦ 50–70 ¦ 3–5 lóbulos ¦ Bacterias (primera línea)
+| Linfocito ¦ 20–40 ¦ Redondo, poco citoplasma ¦ Inmunidad adaptativa (T, B) y NK
+| Monocito ¦ 2–8 ¦ Arriñonado ¦ En tejidos se vuelve macrófago
+| Eosinófilo ¦ 1–4 ¦ Bilobulado, gránulos rojos ¦ Helmintos, alergia
+| Basófilo ¦ < 1 ¦ Gránulos azules que lo cubren ¦ Histamina, alergia
+& "Nunca Llames Mal A Bob" :: Neutrófilos > Linfocitos > Monocitos > eosinófilos (Acidófilos) > Basófilos.
++ La neutrofilia con bandas sugiere infección bacteriana; la linfocitosis, infección viral; la **eosinofilia**, helmintos o alergia.
+## Hematopoyesis
+= Sitio de hematopoyesis según la edad :: Saco vitelino (semanas 3–8) → Hígado (y bazo) fetal → Médula ósea (desde el final del periodo fetal)
+- Célula madre hematopoyética **CD34+**. **EPO** (riñón) estimula la eritropoyesis; **TPO** (hígado) a los megacariocitos.
+- **Reticulocitos**: eritrocitos jóvenes con ARN residual; ↑ en hemólisis o hemorragia (la médula responde).
+- **Plaquetas**: fragmentos del megacariocito, 2–3 µm, con gránulos α y densos.
 ? Vida media del eritrocito :: ≈ 120 días.
 ? Leucocito más abundante :: Neutrófilo (50–70 %).
 ? Proteína del citoesqueleto del eritrocito alterada en esferocitosis :: Espectrina (o anquirina).
@@ -192,22 +273,34 @@ Q La conducción saltatoria se debe a: :: *Concentración de canales de Na⁺ en
 ? Sitio principal de hematopoyesis en el feto del 2º trimestre :: Hígado.
 Q Paciente con helmintiasis intestinal. ¿Qué leucocito esperas elevado? :: *Eosinófilo :: Basófilo :: Neutrófilo :: Monocito || Los eosinófilos liberan proteína básica mayor contra helmintos.
 Q ¿Qué célula da origen a las plaquetas? :: *Megacariocito :: Monocito :: Eritroblasto :: Mieloblasto || Las plaquetas son fragmentos citoplásmicos del megacariocito.
+Q Un aumento de reticulocitos en un paciente anémico indica: :: *Que la médula responde (hemólisis o hemorragia) :: Falla de la médula ósea :: Déficit de eritropoyetina :: Aplasia pura de serie roja || La médula sana libera más eritrocitos jóvenes.
 
 # Piel y anexos
 > El órgano más grande: epidermis (epitelio) + dermis (conectivo) + hipodermis.
-- Capas de la epidermis (de profundo a superficial): **basal** (germinativa, células madre), **espinosa** (desmosomas), **granulosa** (gránulos de queratohialina), **lúcida** (solo piel gruesa: palmas y plantas), **córnea**. "**Buenos Estudiantes Ganan Lugares Cómodos**".
-- Células: queratinocitos (≈ 90 %), **melanocitos** (capa basal, cresta neural; producen melanina y la transfieren), **células de Langerhans** (presentadoras de antígeno, gránulos de Birbeck), **células de Merkel** (mecanorreceptores, tacto fino).
-- Dermis: papilar (conectivo laxo, asas capilares, **corpúsculos de Meissner**) y reticular (denso irregular, **corpúsculos de Pacini** para vibración y presión).
-- Anexos: folículo piloso, glándula sebácea (holocrina), sudoríparas **ecrinas** (todo el cuerpo, termorregulación, inervación simpática colinérgica) y **apocrinas** (axila, ingle; desembocan en folículo).
+## Epidermis
+= Estratos, de profundo a superficial :: Basal (germinativo) → Espinoso (desmosomas) → Granuloso (queratohialina) → Lúcido (solo piel gruesa) → Córneo
+& "Buenos Estudiantes Ganan Lugares Cómodos" :: Basal · Espinoso · Granuloso · Lúcido · Córneo.
+~ Queratinocito :: ≈ 90 % de las células; produce queratina y migra de la capa basal a la córnea.
+~ Melanocito :: En la capa basal, deriva de la cresta neural; produce melanina y la transfiere a los queratinocitos.
+~ Célula de Langerhans :: Presentadora de antígeno de la epidermis; gránulos de Birbeck.
+~ Célula de Merkel :: Mecanorreceptor del tacto fino en la capa basal.
 ! El color de la piel depende de la **cantidad de melanina** producida y transferida, no del número de melanocitos.
-! Meissner = tacto fino en dermis papilar; Pacini = vibración/presión profunda en dermis reticular e hipodermis.
-+ **Vitiligo**: destrucción autoinmune de melanocitos; **albinismo**: melanocitos presentes pero sin tirosinasa funcional.
-+ **Carcinoma basocelular** (el cáncer de piel más común), **espinocelular** y **melanoma** (de melanocitos, el más letal; criterios ABCDE).
+## Dermis y receptores
+- **Dermis papilar**: conectivo laxo, asas capilares, **corpúsculos de Meissner** (tacto fino).
+- **Dermis reticular**: denso irregular; **corpúsculos de Pacini** (vibración y presión profunda) en dermis profunda e hipodermis.
+## Anexos
+| Anexo ¦ Secreción ¦ Dónde ¦ Función
+| Glándula sebácea ¦ Holocrina ¦ Junto al folículo piloso ¦ Sebo
+| Sudorípara ecrina ¦ Merocrina ¦ Todo el cuerpo ¦ Termorregulación (simpático colinérgico)
+| Sudorípara apocrina ¦ Desemboca en el folículo ¦ Axila, ingle, areola ¦ Secreción odorífera tras la pubertad
++ **Vitiligo**: destrucción autoinmune de melanocitos; **albinismo**: melanocitos presentes sin tirosinasa funcional.
++ **Carcinoma basocelular** (el cáncer de piel más común), **espinocelular** y **melanoma** (el más letal; criterios ABCDE: asimetría, bordes, color, diámetro, evolución).
 + **Psoriasis**: hiperproliferación con paraqueratosis (núcleos en la capa córnea).
 ? Capa que solo existe en piel gruesa :: Estrato lúcido.
 ? Célula presentadora de antígeno de la epidermis :: Célula de Langerhans (gránulos de Birbeck).
 ? Origen embrionario del melanocito :: Cresta neural.
 ? Receptor de vibración :: Corpúsculo de Pacini.
 ? Glándula sudorípara de la termorregulación :: Ecrina.
-Q Una persona de piel oscura y otra de piel clara tienen: :: *Número similar de melanocitos con distinta producción de melanina :: Más melanocitos en la piel oscura :: Melanocitos en distintas capas :: Ausencia de melanocitos en piel clara || La diferencia es de actividad de los melanocitos y transferencia de melanosomas.
+Q Una persona de piel oscura y otra de piel clara tienen: :: *Número similar de melanocitos con distinta producción de melanina :: Más melanocitos en la piel oscura :: Melanocitos en distintas capas :: Ausencia de melanocitos en piel clara || La diferencia es de actividad de los melanocitos.
 Q ¿En qué estrato de la epidermis se encuentran las células madre? :: *Basal :: Espinoso :: Granuloso :: Córneo || El estrato basal (germinativo) contiene las células que se dividen y los melanocitos.
+Q Lesión pigmentada asimétrica, de bordes irregulares, varios colores y que creció en meses. Sospecha: :: *Melanoma :: Nevo común :: Vitiligo :: Psoriasis || Cumple criterios ABCDE.

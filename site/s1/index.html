@@ -134,7 +134,7 @@ const ARTEFACTOS = [
   "materia": "Histología",
   "codigo": "HIS",
   "color": "#8a3b78",
-  "descripcion": "Los cuatro tejidos básicos y sus variantes, con las tinciones, las estructuras que se preguntan en el práctico y su correlación con la patología.",
+  "descripcion": "Los cuatro tejidos básicos y sus variantes, divididos en subtemas: técnica y tinciones, estructuras que se preguntan en el práctico, diagramas de cada proceso y su correlación con la patología.",
   "temas": [
    "Métodos de estudio y tinciones",
    "Tejido epitelial",
@@ -151,8 +151,9 @@ const ARTEFACTOS = [
    "Examen"
   ],
   "ntemas": 8,
-  "ntarjetas": 43,
-  "npreguntas": 23,
+  "nsubs": 29,
+  "ntarjetas": 45,
+  "npreguntas": 26,
   "extra": false
  },
  {
@@ -161,14 +162,14 @@ const ARTEFACTOS = [
   "materia": "Bioquímica Clínica",
   "codigo": "BQ",
   "color": "#b0680a",
-  "descripcion": "Metabolismo de principio a fin con las enzimas limitantes, sus reguladores y las enfermedades que salen en examen, más la lectura de una química sanguínea.",
+  "descripcion": "Metabolismo de principio a fin, dividido en subtemas: cada vía como diagrama, sus enzimas limitantes y reguladores, las enfermedades que salen en examen y la lectura de una gasometría y una química sanguínea.",
   "temas": [
    "Agua, pH y amortiguadores",
    "Aminoácidos, proteínas y hemoglobina",
    "Enzimas y cinética",
-   "Carbohidratos: glucólisis, gluconeogénesis y glucógeno",
+   "Carbohidratos: glucólisis, gluconeogénesis, glucógeno y pentosas",
    "Ciclo de Krebs, cadena respiratoria y fosforilación oxidativa",
-   "Lípidos: oxidación, cetonas, colesterol y lipoproteínas",
+   "Lípidos: síntesis, oxidación, cetonas, colesterol y lipoproteínas",
    "Aminoácidos y ciclo de la urea",
    "Vitaminas y coenzimas",
    "Integración metabólica y química sanguínea"
@@ -179,8 +180,9 @@ const ARTEFACTOS = [
    "Examen"
   ],
   "ntemas": 9,
+  "nsubs": 34,
   "ntarjetas": 48,
-  "npreguntas": 27,
+  "npreguntas": 28,
   "extra": false
  },
  {
@@ -189,7 +191,7 @@ const ARTEFACTOS = [
   "materia": "Anatomofisiología",
   "codigo": "AF",
   "color": "#0f6f6a",
-  "descripcion": "Recorrido por los aparatos y sistemas del cuerpo: cómo están hechos y cómo funcionan, con los datos que conectan la estructura con la clínica.",
+  "descripcion": "Recorrido por los aparatos y sistemas del cuerpo dividido en subtemas: cómo están hechos y cómo funcionan, con diagramas del recorrido de la sangre, el aire, el alimento y la orina, y los datos que conectan la estructura con la clínica.",
   "temas": [
    "Organización del cuerpo y homeostasis",
    "Sistema esquelético y articulaciones",
@@ -207,8 +209,9 @@ const ARTEFACTOS = [
    "Examen"
   ],
   "ntemas": 9,
+  "nsubs": 32,
   "ntarjetas": 42,
-  "npreguntas": 18,
+  "npreguntas": 20,
   "extra": false
  },
  {
@@ -217,11 +220,11 @@ const ARTEFACTOS = [
   "materia": "Embriología y Genética",
   "codigo": "EG",
   "color": "#3d63b3",
-  "descripcion": "Del gameto al feto semana por semana, los derivados de cada capa germinal, los teratógenos y la genética clínica: patrones de herencia y cromosomopatías.",
+  "descripcion": "Del gameto al feto semana por semana, dividido en subtemas: diagramas de cada etapa, derivados de cada capa germinal, circulación fetal, teratógenos y genética clínica (patrones de herencia y cromosomopatías).",
   "temas": [
    "Gametogénesis y fecundación",
-   "Primera y segunda semanas: segmentación, implantación y disco bilaminar",
-   "Tercera semana: gastrulación y neurulación",
+   "Semanas 1 y 2: segmentación, implantación y disco bilaminar",
+   "Semana 3: gastrulación y neurulación",
    "Semanas 4 a 8: periodo embrionario",
    "Periodo fetal, placenta y anexos",
    "Teratología",
@@ -234,7 +237,8 @@ const ARTEFACTOS = [
    "Examen"
   ],
   "ntemas": 8,
-  "ntarjetas": 42,
+  "nsubs": 25,
+  "ntarjetas": 43,
   "npreguntas": 18,
   "extra": false
  },
@@ -244,49 +248,29 @@ const ARTEFACTOS = [
   "materia": "Simulación",
   "codigo": "SIM I",
   "color": "#c4142f",
-  "descripcion": "Soporte vital básico (BLS) y atención prehospitalaria: seguridad de la escena, evaluación primaria, RCP de alta calidad, DEA, atragantamiento, posición de recuperación, control de hemorragias, inmovilización y traslado.",
+  "descripcion": "Soporte vital básico (BLS) y atención prehospitalaria: seguridad de la escena, evaluación primaria, RCP de alta calidad en adulto, niño y lactante, DEA, atragantamiento, emergencias médicas, control de hemorragias, inmovilización, triage y traslado.",
   "temas": [
-   "Atención extrahospitalaria: escena y evaluación inicial",
-   "Cadena de supervivencia y reconocimiento del paro",
+   "Atención extrahospitalaria: la escena y el sistema de emergencias",
+   "Evaluación del paciente: primaria y secundaria",
+   "Paro cardiaco: reconocimiento y cadena de supervivencia",
    "RCP de alta calidad en el adulto",
    "Desfibrilador externo automático (DEA)",
-   "Obstrucción de la vía aérea por cuerpo extraño",
-   "Posición de recuperación y emergencias médicas frecuentes",
-   "Trauma prehospitalario: hemorragia, inmovilización y traslado"
+   "BLS pediátrico: niño y lactante",
+   "Obstrucción de la vía aérea por cuerpo extraño (OVACE)",
+   "Emergencias médicas frecuentes fuera del hospital",
+   "Trauma prehospitalario: hemorragia, choque, columna y fracturas",
+   "Incidentes con múltiples víctimas y traslado"
   ],
   "modos": [
    "Estudiar",
    "Tarjetas",
    "Examen"
   ],
-  "ntemas": 7,
-  "ntarjetas": 36,
-  "npreguntas": 15,
+  "ntemas": 10,
+  "nsubs": 31,
+  "ntarjetas": 51,
+  "npreguntas": 29,
   "extra": false
- },
- {
-  "id": "anatomia-dental",
-  "titulo": "Anatomía Dental",
-  "materia": "Anatomía Dental",
-  "codigo": "AD",
-  "color": "#5b7d8c",
-  "descripcion": "Materia extra (no cuenta para el promedio): nomenclatura FDI, cronología de erupción, tejidos del diente, morfología por grupo y lo que todo médico debe saber de la boca.",
-  "temas": [
-   "Nomenclatura y dentición",
-   "Cronología de erupción",
-   "Tejidos dentarios y periodonto",
-   "Morfología por grupo dentario",
-   "Inervación, irrigación y correlación médica"
-  ],
-  "modos": [
-   "Estudiar",
-   "Tarjetas",
-   "Examen"
-  ],
-  "ntemas": 5,
-  "ntarjetas": 19,
-  "npreguntas": 8,
-  "extra": true
  }
 ];
 const OTRAS = [["Lengua Extranjera I", "Alemán I"], ["Tecnologías de la Información en la Construcción del Conocimiento", ""], ["Optativa de Matemáticas", "Matemáticas para Pensar"]];
@@ -303,6 +287,7 @@ function stats(){
     `<span><b>${ARTEFACTOS.length}</b>guías</span>` +
     `<span><b>${materias.size}</b>materias</span>` +
     `<span><b>${n("ntemas")}</b>temas</span>` +
+    `<span><b>${n("nsubs")}</b>subtemas</span>` +
     `<span><b>${n("ntarjetas")}</b>tarjetas</span>` +
     `<span><b>${n("npreguntas")}</b>preguntas</span>`;
   $("#others").innerHTML = OTRAS.map(o => `<li>${esc(o[0])}${o[1]?` <small>· ${esc(o[1])}</small>`:""}</li>`).join("");

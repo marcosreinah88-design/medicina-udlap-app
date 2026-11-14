@@ -13,15 +13,39 @@
 
 # Generalidades y terminología anatómica
 > El lenguaje común de la anatomía.
-- Posición anatómica y planos (sagital, coronal, transversal). Movimientos: **flexión/extensión** (sagital), **abducción/aducción** (coronal), **rotación medial/lateral**, pronación/supinación (antebrazo), inversión/eversión (pie), dorsiflexión/flexión plantar.
-- **Dermatoma**: área de piel inervada por una raíz espinal. **Miotoma**: músculos inervados por una raíz.
-- Dermatomas clave: **C6** pulgar, **C7** dedo medio, **C8** meñique, **T4** pezón, **T10** ombligo, **L1** ingle, **L4** rodilla y maléolo medial, **L5** dorso del pie y primer dedo, **S1** borde lateral del pie y planta.
-- Reflejos osteotendinosos: **bicipital C5–C6**, braquiorradial C6, **tricipital C7**, **rotuliano L3–L4**, **aquíleo S1**. "**1-2 tobillo, 3-4 rodilla, 5-6 bíceps, 7-8 tríceps**".
-- Fascias y compartimentos: los músculos se agrupan en compartimentos con su propio nervio y vasos.
-! Mnemotecnia de reflejos: S1-S2 Aquiles, L3-L4 rotuliano, C5-C6 bíceps, C7-C8 tríceps.
+## Posición, planos y movimientos
+- Posición anatómica: de pie, mirada al frente, brazos a los lados y palmas hacia adelante.
+| Plano ¦ Divide en ¦ Movimientos en ese plano
+| Sagital ¦ Derecha e izquierda ¦ Flexión y extensión
+| Coronal (frontal) ¦ Anterior y posterior ¦ Abducción y aducción
+| Transversal (axial) ¦ Superior e inferior ¦ Rotación medial y lateral
+- Movimientos especiales: pronación y supinación (antebrazo), inversión y eversión (pie), dorsiflexión y flexión plantar (tobillo).
+## Dermatomas
+~ Dermatoma :: Área de piel inervada por una sola raíz espinal.
+~ Miotoma :: Grupo de músculos inervados por una sola raíz espinal.
+| Dermatoma ¦ Referencia
+| C6 ¦ Pulgar
+| C7 ¦ Dedo medio
+| C8 ¦ Meñique
+| T4 ¦ Pezón
+| T10 ¦ Ombligo
+| L1 ¦ Ingle
+| L4 ¦ Rodilla y maléolo medial
+| L5 ¦ Dorso del pie y primer dedo
+| S1 ¦ Borde lateral del pie y planta
 ! T4 = pezón, T10 = ombligo (dolor periumbilical en apendicitis temprana).
-+ **Síndrome compartimental**: aumento de presión en un compartimento (fractura de tibia, aplastamiento) → dolor desproporcionado al estirar el músculo; tratamiento con fasciotomía.
 + **Herpes zóster** sigue un dermatoma.
+## Reflejos osteotendinosos
+| Reflejo ¦ Raíz
+| Bicipital ¦ C5–C6
+| Braquiorradial ¦ C6
+| Tricipital ¦ C7
+| Rotuliano ¦ L3–L4
+| Aquíleo ¦ S1
+& 1-2, 3-4, 5-6, 7-8 :: S1–S2 tobillo (aquíleo), L3–L4 rodilla (rotuliano), C5–C6 bíceps, C7–C8 tríceps.
+## Compartimentos
+- Fascias y compartimentos: los músculos se agrupan en compartimentos con su propio nervio y vasos.
++ **Síndrome compartimental**: aumento de presión en un compartimento (fractura de tibia, aplastamiento) → dolor desproporcionado al estirar el músculo; tratamiento con fasciotomía.
 ? Dermatoma del ombligo :: T10.
 ? Dermatoma del dedo medio :: C7.
 ? Raíz del reflejo rotuliano :: L3–L4 (principalmente L4).
@@ -32,10 +56,22 @@ Q El dermatoma del pulgar corresponde a: :: *C6 :: C5 :: C7 :: C8 || C6 = pulgar
 
 # Cráneo: huesos, suturas y base del cráneo
 > Neurocráneo (8 huesos) y viscerocráneo (14 huesos).
+## Huesos del cráneo
+% 8 :: huesos del neurocráneo
+% 14 :: huesos del viscerocráneo
 - **Neurocráneo**: frontal, 2 parietales, 2 temporales, occipital, esfenoides y etmoides. **Viscerocráneo**: maxilares, cigomáticos, nasales, lagrimales, palatinos, cornetes inferiores, vómer y **mandíbula** (único hueso móvil).
+## Suturas y fontanelas
 - Suturas: **coronal** (frontal–parietales), **sagital** (entre parietales), **lambdoidea** (parietales–occipital), escamosa (temporal–parietal). Puntos: **bregma** (coronal + sagital) y **lambda** (sagital + lambdoidea).
-- Fontanelas: **anterior** (bregmática, romboidal; cierra a los **18–24 meses**) y **posterior** (lambdoidea, triangular; cierra a los **2–3 meses**).
+~ Bregma :: Unión de las suturas coronal y sagital; ahí está la fontanela anterior.
+~ Lambda :: Unión de las suturas sagital y lambdoidea; ahí está la fontanela posterior.
+% 18–24 meses :: cierre de la fontanela anterior (romboidal)
+% 2–3 meses :: cierre de la fontanela posterior (triangular)
++ **Fontanela anterior abombada** en el lactante sugiere hipertensión intracraneal (meningitis, hidrocefalia); **hundida**, deshidratación.
++ **Craneosinostosis**: cierre prematuro de una sutura (la sagital da cráneo alargado, escafocefalia).
+## Pterion
 - **Pterion**: unión de frontal, parietal, temporal y ala mayor del esfenoides; es la zona más delgada y debajo pasa la **arteria meníngea media**.
+! Fractura en el **pterion** → rotura de la **arteria meníngea media** → hematoma **epidural**.
+## Fosas y agujeros de la base
 - Fosas craneales: **anterior** (lóbulos frontales; lámina cribosa del etmoides → nervio olfatorio), **media** (lóbulos temporales; silla turca con la hipófisis), **posterior** (cerebelo y tronco).
 | Agujero ¦ Fosa ¦ Contenido
 | Lámina cribosa ¦ Anterior ¦ NC I (olfatorio)
@@ -48,11 +84,8 @@ Q El dermatoma del pulgar corresponde a: :: *C6 :: C5 :: C7 :: C8 || C6 = pulgar
 | Yugular ¦ Posterior ¦ NC IX, X y XI; vena yugular interna
 | Conducto del hipogloso ¦ Posterior ¦ NC XII
 | Foramen magno ¦ Posterior ¦ Bulbo, arterias vertebrales y raíces espinales del XI
-! "**Redondo, Oval, Espinoso**": V2, V3 y meníngea media, en ese orden de anterior a posterior.
-! Fractura en el **pterion** → rotura de la **arteria meníngea media** → hematoma **epidural**.
-+ **Fontanela anterior abombada** en el lactante sugiere hipertensión intracraneal (meningitis, hidrocefalia); **hundida**, deshidratación.
+& Redondo, Oval, Espinoso :: En el ala mayor del esfenoides, de anterior a posterior: V2, V3 y arteria meníngea media.
 + Fractura de la base del cráneo (fosa anterior): **ojos de mapache**, rinorraquia; fosa media: **signo de Battle** (equimosis retroauricular), otorraquia.
-+ **Craneosinostosis**: cierre prematuro de una sutura (la sagital da cráneo alargado, escafocefalia).
 ? Huesos del neurocráneo :: Frontal, 2 parietales, 2 temporales, occipital, esfenoides y etmoides (8).
 ? Cierre de la fontanela anterior :: Entre los 18 y 24 meses.
 ? Qué pasa por el agujero espinoso :: Arteria meníngea media.
@@ -65,6 +98,7 @@ Q Lactante de 4 meses con fontanela anterior hundida y mucosas secas. Interpreta
 
 # Nervios craneales
 > Doce pares; I y II son prolongaciones del sistema nervioso central.
+## Los 12 pares
 | Par ¦ Nombre ¦ Tipo ¦ Función clave
 | I ¦ Olfatorio ¦ Sensitivo ¦ Olfato
 | II ¦ Óptico ¦ Sensitivo ¦ Visión; vía aferente del reflejo pupilar
@@ -78,9 +112,15 @@ Q Lactante de 4 meses con fontanela anterior hundida y mucosas secas. Interpreta
 | X ¦ Vago ¦ Mixto ¦ Faringe, laringe (fonación), vísceras; rama eferente del reflejo nauseoso
 | XI ¦ Accesorio ¦ Motor ¦ Esternocleidomastoideo y trapecio
 | XII ¦ Hipogloso ¦ Motor ¦ Músculos de la lengua
-- Motilidad ocular: **LR6 SO4**, el resto **III** (recto lateral = VI; oblicuo superior = IV; los demás = III).
-- Reflejo corneal: aferente **V1**, eferente **VII**. Reflejo pupilar: aferente **II**, eferente **III**.
+## Motilidad ocular
+& LR6 SO4 :: Recto lateral = VI, oblicuo superior = IV; el resto de los músculos del ojo = III.
 ! **Parálisis del III**: ojo "abajo y afuera", ptosis y midriasis (compresión por aneurisma de la comunicante posterior o herniación del uncus).
+## Reflejos de los nervios craneales
+| Reflejo ¦ Aferente ¦ Eferente
+| Corneal ¦ V1 ¦ VII
+| Pupilar (fotomotor) ¦ II ¦ III
+| Nauseoso ¦ IX ¦ X
+## Lesiones típicas
 ! Lengua desviada **hacia el lado de la lesión** en parálisis del XII; úvula desviada **al lado sano** en lesión del X.
 + **Parálisis de Bell** (VII periférico): toda la hemicara paralizada, incluida la frente; un EVC (central) **respeta la frente**.
 + **Neuralgia del trigémino**: dolor lancinante breve en el territorio de V2 o V3.
@@ -95,17 +135,28 @@ Q Ptosis, midriasis y ojo desviado hacia abajo y afuera. Nervio afectado: :: *Oc
 
 # Cara: músculos, masticación, ATM y parótida
 > Expresión facial = nervio facial; masticación = trigémino (V3).
+## Expresión facial y masticación
 - **Músculos de la expresión facial** (VII): orbicular de los ojos (cerrar el ojo), orbicular de la boca, **buccinador** (mejilla), frontal (occipitofrontal), cigomático mayor (sonrisa), platisma.
 - **Músculos de la masticación** (V3): **masetero**, **temporal**, **pterigoideo medial** (cierran la boca) y **pterigoideo lateral** (el único que **abre** la boca y protruye la mandíbula).
-- **ATM**: sinovial con disco articular; movimientos de bisagra y deslizamiento. Luxación anterior del cóndilo al bostezar.
-- **Parótida**: la mayor glándula salival; dentro pasan el **nervio facial** (se divide en 5 ramas: temporal, cigomática, bucal, marginal mandibular y cervical), la arteria carótida externa y la vena retromandibular. Su conducto (**Stensen**) se abre frente al **2.º molar superior**. Inervación secretora por el **IX**.
-- **Submandibular** (conducto de Wharton) y **sublingual**: secreción por el **VII** (cuerda del tímpano).
-- Sensibilidad de la cara: **V1** frente y dorso de la nariz, **V2** mejilla y labio superior, **V3** labio inferior y mentón (no el ángulo de la mandíbula, que es C2–C3).
 ! El pterigoideo lateral es el único músculo masticatorio que abre la boca.
-! Ramas del facial en la parótida: "**Te Comí Bien Mi Comida**" (temporal, cigomática, bucal, marginal mandibular, cervical).
+## Articulación temporomandibular
+- **ATM**: sinovial con disco articular; movimientos de bisagra y deslizamiento. Luxación anterior del cóndilo al bostezar.
+## Glándulas salivales
+- **Parótida**: la mayor glándula salival; dentro pasan el **nervio facial** (se divide en 5 ramas: temporal, cigomática, bucal, marginal mandibular y cervical), la arteria carótida externa y la vena retromandibular. Su conducto (**Stensen**) se abre frente al **2.º molar superior**. Inervación secretora por el **IX**.
+& Te Comí Bien Mi Comida :: Ramas del facial dentro de la parótida: temporal, cigomática, bucal, marginal mandibular y cervical.
+| Glándula ¦ Conducto ¦ Inervación secretora
+| Parótida ¦ Stensen (frente al 2.º molar superior) ¦ IX (ganglio ótico)
+| Submandibular ¦ Wharton ¦ VII (cuerda del tímpano, ganglio submandibular)
+| Sublingual ¦ Varios conductos pequeños ¦ VII (cuerda del tímpano, ganglio submandibular)
 + La cirugía de la parótida (tumor mixto o adenoma pleomorfo) pone en riesgo el **nervio facial**.
 + **Parotiditis** (paperas): dolor al masticar; puede complicarse con orquitis.
 + Los **cálculos salivales** son más frecuentes en la submandibular (conducto de Wharton, saliva más espesa y trayecto ascendente).
+## Sensibilidad de la cara
+| Rama ¦ Territorio
+| V1 (oftálmica) ¦ Frente, párpado superior y dorso de la nariz
+| V2 (maxilar) ¦ Mejilla, párpado inferior y labio superior
+| V3 (mandibular) ¦ Labio inferior y mentón
+! El ángulo de la mandíbula no es del trigémino: lo inerva el plexo cervical (C2–C3, auricular mayor).
 ? Nervio de los músculos de la masticación :: Rama mandibular del trigémino (V3).
 ? Músculo que abre la boca :: Pterigoideo lateral.
 ? Dónde desemboca el conducto parotídeo :: Frente al segundo molar superior.
@@ -117,19 +168,22 @@ Q ¿Qué músculo NO cierra la mandíbula? :: *Pterigoideo lateral :: Masetero :
 
 # Cuello: fascias, triángulos, músculos y plexo cervical
 > El esternocleidomastoideo divide el cuello en triángulo anterior y posterior.
+## Músculos y triángulos
 - **Esternocleidomastoideo** (XI): gira la cabeza al lado contrario y flexiona el cuello. **Trapecio** (XI) forma el borde posterior del triángulo posterior.
 - **Triángulo anterior** (línea media, ECM, mandíbula): subdividido en submentoniano, submandibular, **carotídeo** (bifurcación carotídea, yugular interna, vago) y muscular.
 - **Triángulo posterior** (ECM, trapecio, clavícula): contiene el **nervio accesorio** (superficial y vulnerable), plexo cervical, troncos del plexo braquial, arteria subclavia (3.ª porción) y vena yugular externa.
 - **Músculos infrahioideos** (esternohioideo, omohioideo, esternotiroideo, tirohioideo): inervados por el **asa cervical (C1–C3)**. Suprahioideos: digástrico, milohioideo, estilohioideo, geniohioideo.
 - **Escalenos**: el anterior separa la vena subclavia (por delante) de la arteria subclavia y el plexo braquial (por detrás).
-- **Plexo cervical** (C1–C4): ramas sensitivas en el **punto de Erb** (auricular mayor, occipital menor, cervical transverso, supraclaviculares) y el **nervio frénico (C3–C5)** que baja sobre el escaleno anterior al diafragma.
-- Fascias: capa superficial (envuelve ECM y trapecio), pretraqueal (tiroides, tráquea, esófago), prevertebral, y la **vaina carotídea** (carótida, yugular interna y vago).
-! "**C3, 4 y 5 mantienen vivo al diafragma**": nervio frénico.
-! Contenido de la vaina carotídea: arteria carótida (medial), vena yugular interna (lateral) y vago (posterior, entre ambas).
 + Lesión del **accesorio** en una biopsia de ganglio del triángulo posterior → hombro caído y debilidad para elevar el brazo por encima de 90°.
++ **Síndrome del opérculo torácico**: compresión del plexo braquial y la arteria subclavia entre escalenos o por una costilla cervical.
+## Fascias y vaina carotídea
+- Fascias: capa superficial (envuelve ECM y trapecio), pretraqueal (tiroides, tráquea, esófago), prevertebral, y la **vaina carotídea** (carótida, yugular interna y vago).
+! Contenido de la vaina carotídea: arteria carótida (medial), vena yugular interna (lateral) y vago (posterior, entre ambas).
+## Plexo cervical y nervio frénico
+- **Plexo cervical** (C1–C4): ramas sensitivas en el **punto de Erb** (auricular mayor, occipital menor, cervical transverso, supraclaviculares) y el **nervio frénico (C3–C5)** que baja sobre el escaleno anterior al diafragma.
+& C3, 4 y 5 mantienen vivo al diafragma :: El nervio frénico nace de C3–C5 y baja sobre el escaleno anterior hasta el diafragma.
 + Lesión medular **por arriba de C3**: paro respiratorio por pérdida del frénico.
 + **Dolor referido al hombro** (C4) por irritación del diafragma (sangre en abdomen, absceso subfrénico).
-+ **Síndrome del opérculo torácico**: compresión del plexo braquial y la arteria subclavia entre escalenos o por una costilla cervical.
 ? Límites del triángulo posterior del cuello :: Esternocleidomastoideo, trapecio y clavícula.
 ? Nervio vulnerable en el triángulo posterior :: Accesorio (XI).
 ? Raíces del nervio frénico :: C3, C4 y C5.
@@ -141,22 +195,26 @@ Q Paciente con dolor en el hombro derecho y líquido bajo el diafragma derecho. 
 
 # Vísceras del cuello: tiroides, paratiroides, laringe y faringe
 > Del hioides a la tráquea: glándulas endocrinas y vía aérea.
+## Tiroides y paratiroides
 - **Tiroides**: dos lóbulos unidos por el **istmo** (sobre los anillos traqueales 2–4); ± lóbulo piramidal (resto del conducto tirogloso). Envuelta por la fascia pretraqueal: **sube al deglutir**.
 - Irrigación: **arteria tiroidea superior** (1.ª rama de la carótida externa; junto a la **rama externa del laríngeo superior**) e **inferior** (del tronco tirocervical de la subclavia; cruza el **nervio laríngeo recurrente**). Venas tiroideas superior, media e inferior.
 - **Paratiroides**: 4 glándulas en la cara posterior de la tiroides; irrigadas principalmente por la **tiroidea inferior**.
++ **Tiroidectomía**: riesgo de lesión del **recurrente** (al ligar la tiroidea inferior), de la **rama externa del laríngeo superior** (pérdida de agudos) y de **hipoparatiroidismo** (hipocalcemia, Chvostek y Trousseau).
++ **Quiste del conducto tirogloso**: masa en la línea media que **sube al sacar la lengua**.
+## Laringe y faringe
 - **Laringe**: cartílagos tiroides, **cricoides** (único anillo completo), epiglotis, aritenoides. **Membrana cricotiroidea** entre tiroides y cricoides.
 - Nervios: **laríngeo superior** (rama externa → cricotiroideo, tensa las cuerdas; rama interna → sensibilidad supraglótica) y **laríngeo recurrente** (todos los demás músculos intrínsecos; sensibilidad infraglótica). El recurrente izquierdo rodea el **arco aórtico**; el derecho, la **subclavia**.
+= Trayecto del laríngeo recurrente :: Nace del vago → Izquierdo: rodea el arco aórtico; derecho: rodea la subclavia → Sube por el surco traqueoesofágico → Pasa junto a la arteria tiroidea inferior → Entra a la laringe e inerva casi todos sus músculos intrínsecos
 - **Faringe**: nasofaringe, orofaringe, laringofaringe; constrictores (X). Esófago inicia en **C6** (cartílago cricoides).
+! **Cricotiroidotomía** de urgencia: a través de la **membrana cricotiroidea**.
+! Lesión **unilateral** del recurrente → **disfonía** (ronquera); **bilateral** → **estridor y dificultad respiratoria**.
++ Un aneurisma del arco aórtico o un tumor del ápice pulmonar izquierdo pueden comprimir el recurrente izquierdo → ronquera.
+## Referencias vertebrales
 | Estructura ¦ Nivel vertebral
 | Hioides ¦ C3
 | Cartílago tiroides (prominencia) ¦ C4–C5
 | Bifurcación carotídea ¦ C4 (borde superior del tiroides)
 | Cricoides; inicio de tráquea y esófago ¦ C6
-! **Cricotiroidotomía** de urgencia: a través de la **membrana cricotiroidea**.
-! Lesión **unilateral** del recurrente → **disfonía** (ronquera); **bilateral** → **estridor y dificultad respiratoria**.
-+ **Tiroidectomía**: riesgo de lesión del **recurrente** (al ligar la tiroidea inferior), de la **rama externa del laríngeo superior** (pérdida de agudos) y de **hipoparatiroidismo** (hipocalcemia, Chvostek y Trousseau).
-+ **Quiste del conducto tirogloso**: masa en la línea media que **sube al sacar la lengua**.
-+ Un aneurisma del arco aórtico o un tumor del ápice pulmonar izquierdo pueden comprimir el recurrente izquierdo → ronquera.
 ? Único cartílago de la vía aérea que es un anillo completo :: Cricoides.
 ? Nivel vertebral del cricoides :: C6.
 ? Arteria que cruza el nervio laríngeo recurrente :: Tiroidea inferior.
@@ -170,22 +228,26 @@ Q Al día siguiente de una tiroidectomía la paciente tiene hormigueo peribucal 
 
 # Irrigación de la cabeza y el cuello y meninges
 > Carótidas y vertebrales llevan la sangre; las yugulares la regresan.
+## Arterias
 - **Carótida común**: la derecha nace del tronco braquiocefálico y la izquierda del arco aórtico; se bifurca en **C4** en interna y externa. El **seno carotídeo** (barorreceptor, IX) está en la bifurcación.
 - **Carótida interna**: sin ramas en el cuello; en el cráneo da la **oftálmica**, comunicante posterior, cerebral anterior y media.
-- **Carótida externa**: ramas "**Some Anatomists Like Freaking Out Poor Medical Students**": tiroidea **S**uperior, faríngea **A**scendente, **L**ingual, **F**acial, **O**ccipital, auricular **P**osterior, **M**axilar y temporal **S**uperficial.
-- **Vertebrales** (de la subclavia) suben por los agujeros transversos C6–C1, entran por el foramen magno y forman la **basilar** → **polígono de Willis**.
+- **Carótida externa**: ocho ramas, la primera es la tiroidea superior.
+& Some Anatomists Like Freaking Out Poor Medical Students :: Tiroidea Superior, faríngea Ascendente, Lingual, Facial, Occipital, auricular Posterior, Maxilar y temporal Superficial.
+= Circulación posterior :: Arteria subclavia → Arteria vertebral → Agujeros transversos de C6 a C1 → Foramen magno → Las dos vertebrales se unen en la basilar → Polígono de Willis
+! Primera rama de la carótida externa: **tiroidea superior**. Primera rama intracraneal de la interna: **oftálmica**.
++ **Masaje del seno carotídeo**: estimula el barorreflejo y frena el corazón (maniobra vagal en taquicardia supraventricular).
+## Venas
 - Venas: **yugular interna** (recibe los senos durales; termina con la subclavia en la braquiocefálica) y **yugular externa** (superficial, cruza el ECM).
-- **Meninges**: duramadre, aracnoides y piamadre. Espacios: **epidural** (meníngea media), **subdural** (**venas puente**), **subaracnoideo** (LCR y arterias del polígono).
 - **Triángulo de peligro de la cara** (labio superior y nariz): la vena facial comunica con el **seno cavernoso** vía la oftálmica, sin válvulas.
+! Infección del triángulo de peligro de la cara → **trombosis del seno cavernoso** (afecta III, IV, V1, V2 y VI).
++ **Acceso venoso central** en la yugular interna: en el vértice del triángulo entre las dos cabezas del ECM, lateral a la carótida.
++ **Ingurgitación yugular**: se valora en la yugular interna derecha con el paciente a 45° (insuficiencia cardiaca derecha).
+## Meninges y hematomas
+- **Meninges**: duramadre, aracnoides y piamadre. Espacios: **epidural** (meníngea media), **subdural** (**venas puente**), **subaracnoideo** (LCR y arterias del polígono).
 | Hematoma ¦ Vaso ¦ Imagen y clínica
 | Epidural ¦ Arteria meníngea media ¦ Lente biconvexa, no cruza suturas; intervalo lúcido
 | Subdural ¦ Venas puente ¦ Semiluna, cruza suturas; adultos mayores, alcohólicos, maltrato infantil
 | Subaracnoideo ¦ Aneurisma del polígono de Willis ¦ "La peor cefalea de mi vida"
-! Primera rama de la carótida externa: **tiroidea superior**. Primera rama intracraneal de la interna: **oftálmica**.
-! Infección del triángulo de peligro de la cara → **trombosis del seno cavernoso** (afecta III, IV, V1, V2 y VI).
-+ **Masaje del seno carotídeo**: estimula el barorreflejo y frena el corazón (maniobra vagal en taquicardia supraventricular).
-+ **Acceso venoso central** en la yugular interna: en el vértice del triángulo entre las dos cabezas del ECM, lateral a la carótida.
-+ **Ingurgitación yugular**: se valora en la yugular interna derecha con el paciente a 45° (insuficiencia cardiaca derecha).
 ? Nivel de la bifurcación carotídea :: C4 (borde superior del cartílago tiroides).
 ? Primera rama de la carótida externa :: Arteria tiroidea superior.
 ? Primera rama intracraneal de la carótida interna :: Arteria oftálmica.
@@ -197,11 +259,22 @@ Q Paciente con forúnculo en el labio superior que desarrolla fiebre, edema palp
 
 # Miembro superior: hombro, brazo y plexo braquial
 > El plexo braquial (C5–T1) inerva todo el miembro superior.
-- Plexo: **R**aíces → **T**roncos → **D**ivisiones → **C**ordones (fascículos) → **R**amas ("**Randy Travis Drinks Cold Beer**"). Ramas terminales: **musculocutáneo, axilar, radial, mediano, cubital (ulnar)**.
-- **Manguito rotador** (**SITS**): supraespinoso (abducción 0–15°; el que más se lesiona), infraespinoso y redondo menor (rotación lateral), subescapular (rotación medial). Nervio supraescapular (supra e infraespinoso), axilar (redondo menor y deltoides), subescapulares.
-- **Deltoides** (axilar): abducción 15–90°. Por encima de 90°, trapecio y serrato anterior (nervio torácico largo) rotan la escápula.
+## Plexo braquial
+= Organización del plexo braquial :: Raíces (C5–T1) → Troncos (superior, medio e inferior) → Divisiones (anteriores y posteriores) → Cordones (lateral, posterior y medial) → Ramas terminales
+& Randy Travis Drinks Cold Beer :: Raíces, Troncos, Divisiones, Cordones y Ramas.
+- Ramas terminales: **musculocutáneo, axilar, radial, mediano y cubital (ulnar)**.
+## Hombro y manguito rotador
+| Músculo ¦ Acción ¦ Nervio
+| Supraespinoso ¦ Abducción 0–15° (el que más se lesiona) ¦ Supraescapular
+| Infraespinoso ¦ Rotación lateral ¦ Supraescapular
+| Redondo menor ¦ Rotación lateral ¦ Axilar
+| Subescapular ¦ Rotación medial ¦ Subescapulares
+& SITS :: Supraespinoso, Infraespinoso, redondo menor (Teres minor) y Subescapular.
+= Abducción del hombro :: 0–15°: supraespinoso → 15–90°: deltoides (nervio axilar) → Más de 90°: trapecio y serrato anterior (torácico largo) rotan la escápula
+## Brazo
 - Compartimento anterior del brazo (**musculocutáneo**): bíceps, braquial, coracobraquial → flexión del codo y supinación. Posterior (**radial**): tríceps → extensión.
 - Arteria axilar → **braquial** (en el brazo, junto al nervio mediano) → radial y cubital en el codo.
+## Lesiones del plexo y del brazo
 | Lesión ¦ Raíces/nervio ¦ Signo
 | Erb-Duchenne ¦ C5–C6 (tronco superior) ¦ "Propina de mesero": brazo en aducción, rotación medial, codo extendido
 | Klumpke ¦ C8–T1 (tronco inferior) ¦ Mano en garra total ± Horner
@@ -223,20 +296,24 @@ Q Recién nacido con brazo en aducción, rotación medial y antebrazo pronado tr
 
 # Miembro superior: antebrazo, mano y lesiones nerviosas
 > Mediano, cubital y radial definen la función de la mano.
+## Fosa cubital y antebrazo
 - **Fosa cubital** (de lateral a medial): tendón del bíceps, **arteria braquial**, **nervio mediano** ("TAN": tendón, arteria, nervio).
+& TAN :: En la fosa cubital, de lateral a medial: Tendón del bíceps, Arteria braquial y Nervio mediano.
 - Antebrazo anterior: flexores y pronadores, casi todos por el **mediano** (excepto flexor cubital del carpo y la mitad medial del flexor profundo → **cubital**). Antebrazo posterior: extensores por el **radial** (rama profunda/interósea posterior).
++ **Fractura supracondílea** en niños: vigilar arteria braquial y nervio mediano (interóseo anterior); riesgo de contractura isquémica de Volkmann.
+## Muñeca y carpo
 - **Túnel carpiano**: bajo el retináculo flexor pasan el **nervio mediano** y 9 tendones flexores (4 superficiales, 4 profundos, flexor largo del pulgar). Huesos del carpo: escafoides, semilunar, piramidal, pisiforme / trapecio, trapezoide, grande, ganchoso.
-- Mano: **mediano** → músculos tenares (oposición del pulgar) y lumbricales 1–2; **cubital** → hipotenares, interóseos (abducción/aducción de dedos), lumbricales 3–4, aductor del pulgar.
 - **Tabaquera anatómica**: escafoides en el piso, arteria radial.
+! **Fractura del escafoides**: dolor en la tabaquera anatómica tras caída sobre la mano extendida; riesgo de **necrosis avascular** (irrigación retrógrada) aunque la radiografía inicial sea normal.
+! El semilunar es el hueso del carpo que más se luxa (hacia anterior; puede comprimir el mediano).
++ **Síndrome del túnel carpiano**: embarazo, hipotiroidismo, diabetes, artritis reumatoide, trabajo repetitivo; prueba de Phalen y Tinel; estudio de conducción nerviosa.
+## Mano
+- Mano: **mediano** → músculos tenares (oposición del pulgar) y lumbricales 1–2; **cubital** → hipotenares, interóseos (abducción/aducción de dedos), lumbricales 3–4, aductor del pulgar.
 | Nervio ¦ Lesión típica ¦ Signo
 | Mediano (muñeca) ¦ Túnel carpiano ¦ Parestesias en pulgar a mitad del anular, atrofia tenar, Tinel y Phalen
 | Mediano (codo/supracondílea) ¦ Fractura supracondílea del húmero ¦ "Mano del predicador" al intentar cerrar el puño
 | Cubital ¦ Epicóndilo medial (codo), gancho del ganchoso ¦ Mano en garra (4.º y 5.º dedos), signo de Froment
 | Radial ¦ Surco radial del húmero ¦ Mano caída
-! **Fractura del escafoides**: dolor en la tabaquera anatómica tras caída sobre la mano extendida; riesgo de **necrosis avascular** (irrigación retrógrada) aunque la radiografía inicial sea normal.
-! El semilunar es el hueso del carpo que más se luxa (hacia anterior; puede comprimir el mediano).
-+ **Síndrome del túnel carpiano**: embarazo, hipotiroidismo, diabetes, artritis reumatoide, trabajo repetitivo; prueba de Phalen y Tinel; estudio de conducción nerviosa.
-+ **Fractura supracondílea** en niños: vigilar arteria braquial y nervio mediano (interóseo anterior); riesgo de contractura isquémica de Volkmann.
 ? Contenido de la fosa cubital de lateral a medial :: Tendón del bíceps, arteria braquial y nervio mediano (TAN).
 ? Contenido del túnel carpiano :: Nervio mediano y 9 tendones flexores.
 ? Nervio de los interóseos de la mano :: Cubital (ulnar).
@@ -249,15 +326,23 @@ Q Mano en garra de los dedos 4.º y 5.º con pérdida de abducción de los dedos
 
 # Miembro inferior: cadera, muslo y plexo lumbosacro
 > Plexo lumbar (L1–L4) y sacro (L4–S4).
-- Plexo lumbar: **femoral (L2–L4)** → cuádriceps (extensión de la rodilla), sensibilidad anterior del muslo y medial de la pierna (safeno). **Obturador (L2–L4)** → aductores del muslo.
-- Plexo sacro: **ciático (L4–S3)** → isquiotibiales; se divide en **tibial** y **peroneo común**. **Glúteo superior** (L4–S1) → glúteo medio y menor (abducción, estabilizan la pelvis). **Glúteo inferior** → glúteo mayor (extensión de la cadera).
-- **Triángulo femoral** (ligamento inguinal, sartorio, aductor largo): de lateral a medial **N**ervio, **A**rteria, **V**ena, (**E**spacio vacío), **L**infáticos ("**NAVEL**").
-- Articulación de la cadera: esferoidea muy estable; ligamento iliofemoral (el más fuerte). Irrigación de la cabeza femoral: **arterias circunflejas femorales**, sobre todo la **medial**.
+## Plexo lumbar y sacro
+| Nervio ¦ Raíces ¦ Inerva
+| Femoral ¦ L2–L4 ¦ Cuádriceps (extiende la rodilla); piel anterior del muslo y medial de la pierna (safeno)
+| Obturador ¦ L2–L4 ¦ Aductores del muslo
+| Glúteo superior ¦ L4–S1 ¦ Glúteo medio y menor (abducción; estabilizan la pelvis)
+| Glúteo inferior ¦ L5–S2 ¦ Glúteo mayor (extensión de la cadera)
+| Ciático ¦ L4–S3 ¦ Isquiotibiales; se divide en tibial y peroneo común
 ! **Signo de Trendelenburg**: lesión del nervio glúteo superior → al apoyarse en ese pie, la pelvis cae del lado contrario.
-! Fractura del cuello femoral desplazada → lesión de la circunfleja femoral medial → **necrosis avascular** de la cabeza.
 + **Inyección intramuscular glútea**: en el cuadrante superoexterno para no lesionar el ciático.
-+ Fractura de cadera en adulto mayor: miembro acortado y en rotación externa.
+## Triángulo femoral
+- Límites: ligamento inguinal, sartorio y aductor largo.
+& NAVEL :: De lateral a medial: Nervio, Arteria, Vena, Espacio vacío (conducto femoral) y Linfáticos.
 + **Acceso venoso femoral** y punción arterial usan el triángulo femoral (vena medial a la arteria).
+## Cadera
+- Articulación de la cadera: esferoidea muy estable; ligamento iliofemoral (el más fuerte). Irrigación de la cabeza femoral: **arterias circunflejas femorales**, sobre todo la **medial**.
+! Fractura del cuello femoral desplazada → lesión de la circunfleja femoral medial → **necrosis avascular** de la cabeza.
++ Fractura de cadera en adulto mayor: miembro acortado y en rotación externa.
 ? Contenido del triángulo femoral de lateral a medial :: Nervio, arteria, vena, espacio vacío y linfáticos (NAVEL).
 ? Nervio del cuádriceps :: Femoral (L2–L4).
 ? Nervio de los aductores del muslo :: Obturador.
@@ -269,16 +354,27 @@ Q Adulta mayor con caída, miembro inferior acortado y en rotación externa. Com
 
 # Miembro inferior: rodilla, pierna y pie
 > La rodilla soporta peso con ayuda de ligamentos y meniscos.
-- Rodilla: **ligamento cruzado anterior** (impide desplazamiento anterior de la tibia; prueba de **cajón anterior** y **Lachman**), **cruzado posterior** (cajón posterior), **colateral medial** (valgo) y **lateral** (varo); meniscos medial (unido al colateral medial, se lesiona más) y lateral.
+## Rodilla
+| Estructura ¦ Función ¦ Prueba
+| Ligamento cruzado anterior ¦ Impide el desplazamiento anterior de la tibia ¦ Lachman (la más sensible) y cajón anterior
+| Ligamento cruzado posterior ¦ Impide el desplazamiento posterior de la tibia ¦ Cajón posterior
+| Colateral medial ¦ Resiste el valgo ¦ Estrés en valgo
+| Colateral lateral ¦ Resiste el varo ¦ Estrés en varo
+- Meniscos: el **medial** (unido al colateral medial) se lesiona más que el lateral.
 - **Tríada infeliz** (O'Donoghue): LCA + ligamento colateral medial + menisco (medial clásico; lateral en estudios recientes) por golpe lateral en valgo.
 - **Fosa poplítea**: arteria poplítea (la más profunda), vena, nervios tibial y peroneo común.
-- Pierna: compartimento **anterior** (dorsiflexión, extensión de dedos; **peroneo profundo**), **lateral** (eversión; **peroneo superficial**), **posterior** (flexión plantar, inversión; **tibial**).
+## Pierna
+| Compartimento ¦ Acción ¦ Nervio
+| Anterior ¦ Dorsiflexión y extensión de dedos ¦ Peroneo profundo
+| Lateral ¦ Eversión ¦ Peroneo superficial
+| Posterior ¦ Flexión plantar e inversión ¦ Tibial
 - **Nervio peroneo común**: rodea el **cuello del peroné** → vulnerable a fracturas, yesos y cruzar las piernas → **pie caído** (steppage) y pérdida de eversión.
+! Pie caído = peroneo común (cuello del peroné). Lesión del tibial = no puede pararse de puntas, pérdida de flexión plantar.
++ **Rotura del tendón de Aquiles**: chasquido al impulsarse, prueba de **Thompson** positiva (al apretar la pantorrilla no hay flexión plantar).
+## Tobillo y pie
 - Pulsos: **pedio** (dorso del pie, lateral al extensor largo del dedo gordo) y **tibial posterior** (detrás del maléolo medial).
 - Esguince de tobillo más común: inversión → **ligamento talofibular anterior**.
-! Pie caído = peroneo común (cuello del peroné). Lesión del tibial = no puede pararse de puntas, pérdida de flexión plantar.
 ! Esguince de tobillo en inversión → ligamento talofibular anterior.
-+ **Rotura del tendón de Aquiles**: chasquido al impulsarse, prueba de **Thompson** positiva (al apretar la pantorrilla no hay flexión plantar).
 + **Insuficiencia arterial periférica**: pulsos pedio y tibial posterior disminuidos, claudicación; índice tobillo-brazo < 0.9.
 ? Prueba más sensible para lesión del LCA :: Lachman (también cajón anterior).
 ? Componentes de la tríada infeliz :: LCA, ligamento colateral medial y menisco.

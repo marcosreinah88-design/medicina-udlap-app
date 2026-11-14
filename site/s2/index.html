@@ -134,7 +134,7 @@ const ARTEFACTOS = [
   "materia": "Fisiología",
   "codigo": "FIS",
   "color": "#c2410c",
-  "descripcion": "Los mecanismos que más se preguntan: potenciales, ciclo cardiaco, Frank-Starling, ventilación-perfusión, filtración glomerular y ejes hormonales, siempre con su traducción clínica.",
+  "descripcion": "Los mecanismos que más se preguntan, divididos en subtemas y con diagramas paso a paso: potenciales, ciclo cardiaco, Frank-Starling, ventilación-perfusión, filtración glomerular, ácido-base y ejes hormonales, siempre con su traducción clínica.",
   "temas": [
    "Membrana, transporte y potencial de reposo",
    "Potencial de acción y sinapsis",
@@ -153,6 +153,7 @@ const ARTEFACTOS = [
    "Examen"
   ],
   "ntemas": 10,
+  "nsubs": 36,
   "ntarjetas": 52,
   "npreguntas": 26,
   "extra": false
@@ -163,13 +164,13 @@ const ARTEFACTOS = [
   "materia": "Biología Celular y Molecular",
   "codigo": "BCM",
   "color": "#2e7d4f",
-  "descripcion": "De la membrana al genoma: organelos, flujo de la información genética, ciclo celular, señales y muerte celular, con las enfermedades y técnicas de laboratorio que salen en examen.",
+  "descripcion": "De la membrana al genoma, dividido en subtemas y con diagramas paso a paso: organelos, flujo de la información genética, ciclo celular, señales y muerte celular, con las enfermedades y técnicas de laboratorio que salen en examen.",
   "temas": [
    "Membrana plasmática y organelos",
    "Citoesqueleto y motores moleculares",
    "ADN, replicación y reparación",
    "Transcripción y procesamiento del ARN",
-   "Traducción, código genético y tráfico de proteínas",
+   "Traducción, código genético y mutaciones",
    "Ciclo celular y cáncer",
    "Señalización celular",
    "Apoptosis, necrosis y adaptación celular",
@@ -181,8 +182,9 @@ const ARTEFACTOS = [
    "Examen"
   ],
   "ntemas": 9,
-  "ntarjetas": 50,
-  "npreguntas": 18,
+  "nsubs": 32,
+  "ntarjetas": 51,
+  "npreguntas": 24,
   "extra": false
  },
  {
@@ -211,6 +213,7 @@ const ARTEFACTOS = [
    "Examen"
   ],
   "ntemas": 11,
+  "nsubs": 38,
   "ntarjetas": 67,
   "npreguntas": 25,
   "extra": false
@@ -236,6 +239,7 @@ const ARTEFACTOS = [
    "Examen"
   ],
   "ntemas": 6,
+  "nsubs": 22,
   "ntarjetas": 30,
   "npreguntas": 14,
   "extra": false
@@ -255,6 +259,7 @@ function stats(){
     `<span><b>${ARTEFACTOS.length}</b>guías</span>` +
     `<span><b>${materias.size}</b>materias</span>` +
     `<span><b>${n("ntemas")}</b>temas</span>` +
+    `<span><b>${n("nsubs")}</b>subtemas</span>` +
     `<span><b>${n("ntarjetas")}</b>tarjetas</span>` +
     `<span><b>${n("npreguntas")}</b>preguntas</span>`;
   $("#others").innerHTML = OTRAS.map(o => `<li>${esc(o[0])}${o[1]?` <small>· ${esc(o[1])}</small>`:""}</li>`).join("");

@@ -63,18 +63,32 @@
   }
   const upcoming=()=>{const t=today();const c=J("carrera-calendario",{});return (Array.isArray(c.exams)?c.exams:[]).filter(e=>e&&e.date>=t&&e.name).sort((a,b)=>a.date.localeCompare(b.date))};
 
-  /* ===== repetición espaciada (SM-2 simplificado) ===== */
+  /* ===== repetición espaciada estilo Anki (SM-2 con pasos de aprendizaje) =====
+     st: 0 nueva/aprendiendo, 1 repaso, 2 reaprendiendo · s: paso · e: facilidad · i: días · d: fecha en que toca.
+     Aprender: 1 min y 10 min (dentro del repaso), luego 1 día; Fácil = 4 días. Repaso: Difícil ×1.2, Bien ×facilidad, Fácil ×facilidad×1.3. */
   const progMap=()=>{const m=new Map();list(K.prog).forEach(p=>m.set(p.id,p));return m};
+  const LSTEP=[1,10],RSTEP=[10];
   function schedule(p,g){/* g: 0 otra vez, 1 difícil, 2 bien, 3 fácil */
-    const t=today(),n=p?Object.assign({},p):{e:250,i:0,n:0,l:0,f:t};
-    if(!n.n){n.i=[0,1,1,3][g]}
-    else if(g===0){n.l=(n.l||0)+1;n.i=1;n.e=Math.max(130,n.e-20)}
-    else if(g===1){n.i=Math.max(1,Math.round(n.i*1.2));n.e=Math.max(130,n.e-15)}
-    else if(g===2){n.i=Math.max(n.i+1,Math.round(n.i*n.e/100))}
-    else{n.i=Math.max(n.i+2,Math.round(n.i*n.e/100*1.3));n.e+=15}
-    n.i=Math.min(n.i,365);if(g>0)n.n=(n.n||0)+1;n.d=addD(t,n.i);n.u=Date.now();return n;
+    const t=today(),n=p?Object.assign({},p):{e:250,i:0,n:0,l:0,f:t,st:0,s:0};let m=0;
+    if(n.st===undefined){n.st=n.n>0?1:0;n.s=0}
+    if(n.st!==1){
+      const S=n.st===2?RSTEP:LSTEP;let grad=0;n.s=n.s||0;
+      if(g===0){n.s=0;m=S[0]}
+      else if(g===1)m=n.s===0?(S.length>1?Math.round((S[0]+S[1])/2):Math.round(S[0]*1.5)):S[n.s];
+      else if(g===2){if(n.s+1<S.length){n.s++;m=S[n.s]}else grad=n.st===2?Math.max(1,n.i):1}
+      else grad=n.st===2?Math.max(1,n.i)+1:4;
+      if(grad){n.st=1;n.s=0;n.i=grad}
+    }else{
+      const late=Math.max(0,n.d?diffD(n.d,t):0),h=Math.max(n.i+1,Math.round(n.i*1.2)),
+        gd=Math.max(h+1,Math.round((n.i+late/2)*n.e/100)),ez=Math.max(gd+1,Math.round((n.i+late)*n.e/100*1.3));
+      if(g===0){n.l=(n.l||0)+1;n.e=Math.max(130,n.e-20);n.i=1;n.st=2;n.s=0;m=RSTEP[0]}
+      else if(g===1){n.i=h;n.e=Math.max(130,n.e-15)}
+      else if(g===2)n.i=gd;
+      else{n.i=ez;n.e+=15}
+    }
+    n.i=Math.min(n.i,3650);n.n=(n.n||0)+1;n.m=m;n.d=m?t:addD(t,n.i);n.u=Date.now();return n;
   }
-  const ivTxt=i=>i<=0?"hoy":i===1?"1 día":i<30?i+" días":i<365?Math.round(i/30)+" m":"1 año";
+  const ivTxt=n=>{if(n.m)return n.m<=1?"<1 min":n.m+" min";const i=n.i,f=x=>String(Math.round(x*10)/10).replace(".",",");return i<30?i+(i===1?" día":" días"):i<365?f(i/30)+" m":f(i/365)+" a"};
   function dueInfo(mat){
     const t=today(),pm=progMap(),cs=allCards().filter(c=>sameMat(c.mat,mat));
     let due=0,nw=0,learned=0;
@@ -284,7 +298,7 @@
       box.innerHTML=`<h3>Repaso <small>${session.i+1} de ${session.q.length}</small></h3><div class="es-bar"><i style="width:${pct(session.i,session.q.length)}%"></i></div>
         <div class="es-card"><div class="es-meta">${esc(c.mat)}${c.t?" · "+esc(c.t):""}${c.src==="guia"?" · de tu guía":c.src==="anki"?" · de tu Anki":c.src==="ia"?" · IA":" · tuya"}${!p?" · nueva":""}</div>
         <div class="es-f">${esc(c.f)}</div>${session.show?`<div class="es-b">${esc(c.b)}</div>`:""}</div>
-        ${session.show?`<div class="es-grades">${["Otra vez","Difícil","Bien","Fácil"].map((l,g)=>`<button type="button" class="g${g}" data-g="${g}">${l}<small>${ivTxt(schedule(p,g).i)}</small></button>`).join("")}</div>`
+        ${session.show?`<div class="es-grades">${["Otra vez","Difícil","Bien","Fácil"].map((l,g)=>`<button type="button" class="g${g}" data-g="${g}">${l}<small>${ivTxt(schedule(p,g))}</small></button>`).join("")}</div>`
           :`<div class="btns" style="margin-top:12px"><button class="cbtn" type="button" id="esShow">Mostrar respuesta</button> <button class="cbtn sec" type="button" id="esStop">Terminar</button></div>`}
         <p class="es-help" style="margin-top:12px">Atajos: espacio = mostrar, 1–4 = calificar.</p>`;
       return;
@@ -296,13 +310,15 @@
     box.innerHTML=`<h3>Tarjetas <small>${esc(mat||"todas las materias")}</small></h3>
       <div class="es-stat"><div><b>${di.due}</b><span>para repasar</span></div><div><b>${di.newLeft}</b><span>nuevas hoy</span></div><div><b>${di.learned}</b><span>ya dominas</span></div><div><b>${di.total}</b><span>en total</span></div></div>
       ${di.total?`<div class="btns"><button class="cbtn" type="button" id="esStart" ${di.due+di.newLeft?"":"disabled"}>${di.due+di.newLeft?"Empezar repaso ("+(di.due+di.newLeft)+")":"Nada pendiente hoy"}</button></div>`:`<p class="es-mut">Todavía no hay tarjetas de esta materia. Agrega las tuyas o créalas con IA.</p>`}
-      <p class="es-help" style="margin-top:14px">Las que fallas vuelven pronto y las que dominas se espacian (1 día, 3, 1 semana, 1 mes…). ${guias.length?"Incluye las tarjetas de tus guías: "+guias.map(g=>{const x=GUIDES().find(y=>y.id===g);return esc(x?x.title:g)}).join(", ")+".":""}</p>`;
+      <p class="es-help" style="margin-top:14px">Funciona como Anki: Otra vez la repite en 1 minuto, Difícil en unos 6, Bien la pasa a 10 minutos y luego a 1 día, y Fácil la manda a 4 días. Después cada acierto multiplica el intervalo (curva del olvido). ${guias.length?"Incluye las tarjetas de tus guías: "+guias.map(g=>{const x=GUIDES().find(y=>y.id===g);return esc(x?x.title:g)}).join(", ")+".":""}</p>`;
   }
   function grade(g){
     if(!session||!session.show)return;const c=session.q[session.i],pm=progMap(),items=list(K.prog);
-    const n=schedule(pm.get(c.id),g);n.id=c.id;
+    const n=schedule(pm.get(c.id),g),m=n.m;delete n.m;n.id=c.id;
+    if(!m&&n.i>=3){const f=Math.max(1,Math.round(n.i*.05));n.i=Math.min(3650,n.i+Math.round((Math.random()*2-1)*f));n.d=addD(today(),n.i)}
     const i=items.findIndex(x=>x.id===c.id);if(i>=0)items[i]=n;else items.push(n);saveList(K.prog,items);
-    if(g===0){session.q.push(c);session.again++}else session.done++;
+    /* aprendiendo: vuelve dentro de este repaso (más pronto con Otra vez, más tarde con Bien) */
+    if(m){session.q.splice(Math.min(session.q.length,session.i+1+(m<=1?3:m<=6?6:10)),0,c);if(g===0)session.again++}else session.done++;
     session.i++;session.show=false;renderCards();renderHero();
   }
   function bindCards(){

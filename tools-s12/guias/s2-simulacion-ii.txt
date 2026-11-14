@@ -4,7 +4,7 @@
 @title Laboratorio de Simulación II
 @materia Simulación
 @codigo SIM II
-@color #c4142f
+@color #0f6a8b
 @icon simu
 @sub Exploración física · Ruidos cardiacos · Ruidos respiratorios · Vías de administración · Venopunción · Soporte vital básico
 @desc Técnicas de exploración y procedimientos básicos para la estación práctica: cómo auscultar, qué se escucha, cómo inyectar y canalizar, y RCP de alta calidad.

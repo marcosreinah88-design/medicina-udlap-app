@@ -1349,18 +1349,18 @@ const Finder=(()=>{
     }
     return out.sort((x,y)=>(x.nav-y.nav));
   }
-  async function brute(doc,win,t,my){
+  async function brute(doc,win,ts,my,ms){/*buscador-v2*/
     let ls=null;try{ls=Object.assign({},win.localStorage)}catch(e){}
     const homeHash=win.location.hash,t0=Date.now(),tried=new Set();
     const homeActive=[...doc.querySelectorAll("nav .active,nav [aria-selected=true],nav [aria-current],.tabs .active,[role=tab][aria-selected=true]")].map(sig);
-    const found=async()=>{const v=textHits(doc,t);if(!v.length)return false;if(v.some(h=>shown(h.node.parentElement,win)))return true;return await reveal(v[0],doc,win,my)};
+    const found=async()=>{for(const t of ts){const v=textHits(doc,t);if(!v.length)continue;if(v.some(h=>shown(h.node.parentElement,win)))return t;if(await reveal(v[0],doc,win,my))return t}return false};
     const goHome=async()=>{
       if(win.location.hash!==homeHash){try{win.location.hash=homeHash}catch(e){}await wait(200)}
       for(const s of homeActive){const x=cands(doc,win).find(c=>c.s===s);if(x){x.e.click();await wait(200);break}}
       try{win.scrollTo(0,0)}catch(e){}
     };
     const homeSet=new Set(cands(doc,win).map(c=>c.s));let hit=false;const later=[];
-    const out=()=>my!==token||Date.now()-t0>25000;
+    const out=()=>my!==token||Date.now()-t0>(ms||9000);
     const toHome=async()=>{if(!cands(doc,win).some(x=>homeSet.has(x.s)&&!tried.has(x.s)))await goHome()};
     try{
       /* nivel 1: cada apartado visible desde el inicio */
@@ -1368,7 +1368,7 @@ const Finder=(()=>{
         const c=cands(doc,win).find(c=>homeSet.has(c.s)&&!tried.has(c.s));
         if(!c){await goHome();if(!cands(doc,win).some(c=>homeSet.has(c.s)&&!tried.has(c.s)))break;continue}
         tried.add(c.s);try{c.e.click()}catch(e){}await wait(200);
-        if(await found()){hit=true;break}
+        if((hit=await found()))break;
         const sub=cands(doc,win).filter(x=>!homeSet.has(x.s)).map(x=>x.s);
         if(sub.length)later.push([c.s,sub]);
         await toHome();
@@ -1381,9 +1381,10 @@ const Finder=(()=>{
           let el=(cands(doc,win).find(x=>x.s===ss)||{}).e;
           if(!el){await goHome();const p=cands(doc,win).find(x=>x.s===cs);if(!p)break;p.e.click();await wait(200);el=(cands(doc,win).find(x=>x.s===ss)||{}).e;if(!el)continue}
           tried.add(ss);try{el.click()}catch(e){}await wait(200);
-          if(await found()){hit=true;break}
+          if((hit=await found()))break;
         }
       }
+      if(!hit&&my===token)await goHome();
     }finally{
       if(ls)try{const cur=win.localStorage;for(const k of Object.keys(cur))if(!(k in ls))cur.removeItem(k);for(const k in ls)if(cur.getItem(k)!==ls[k])cur.setItem(k,ls[k])}catch(e){}
     }
@@ -1409,29 +1410,40 @@ const Finder=(()=>{
       for(const ms of [120,350,700,1200,2000]){setTimeout(()=>{if(!m.isConnected)return;const r=m.getBoundingClientRect(),h=win.innerHeight;if(r.top<0||r.bottom>h)m.scrollIntoView({block:"center"})},ms)}}
     say(`“${label}” · ${idx+1} de ${hits.length}`,hits.length>1);
   }
-  async function locate(frame,q,my){
+  async function locate(frame,q,my,gid){
     const win=frame.contentWindow,doc=frame.contentDocument;if(!doc)return;
-    const terms=[fold(q)].concat(fold(q).split(/\s+/).filter(x=>x.length>2).sort((a,b)=>b.length-a.length));
-    for(const t of [...new Set(terms)]){
-      if(my!==token)return;
-      label=t;ctx={doc,win,t};
-      let all=textHits(doc,t);
-      if(!all.length){
-        for(const box of searchBoxes(doc,win)){box.value=q;["input","keyup","change"].forEach(ev=>box.dispatchEvent(new win.Event(ev,{bubbles:true})));await wait(250);all=textHits(doc,t);if(all.length)break;box.value="";box.dispatchEvent(new win.Event("input",{bubbles:true}))}
-      }
-      if(!all.length||!visibleHits(doc,win,t).length){
-        if(all.length&&await reveal(all[0],doc,win,my)&&visibleHits(doc,win,t).length){}
-        else{say(`Buscando “${q}” en los apartados de la guía…`,false);await brute(doc,win,t,my)}
-      }
-      hits=textHits(doc,t);
-      if(hits.length){const vi=hits.findIndex(h=>shown(h.node.parentElement,win));await focusHit(vi<0?0:vi,my);return}
+    const fq=fold(q).replace(/\s+/g," ").trim();
+    const terms=[...new Set([fq].concat(fq.split(" ").filter(x=>x.length>2).sort((a,b)=>b.length-a.length)))].filter(Boolean);
+    const pick=async t=>{label=t;ctx={doc,win,t};hits=textHits(doc,t);if(!hits.length)return false;const vi=hits.findIndex(h=>shown(h.node.parentElement,win));await focusHit(vi<0?0:vi,my);return true};
+    /* 1) lo que ya se ve */
+    for(const t of terms){if(my!==token)return;if(visibleHits(doc,win,t).length&&await pick(t))return}
+    /* 2) está en la página pero escondido: abrir su apartado */
+    for(const t of terms){if(my!==token)return;const all=textHits(doc,t);if(all.length&&await reveal(all[0],doc,win,my)&&visibleHits(doc,win,t).length&&await pick(t))return}
+    /* 3) el buscador propio de la guía */
+    for(const box of searchBoxes(doc,win)){if(my!==token)return;box.value=q;["input","keyup","change"].forEach(ev=>box.dispatchEvent(new win.Event(ev,{bubbles:true})));await wait(250);
+      for(const t of terms)if(textHits(doc,t).length&&await pick(t))return;
+      box.value="";box.dispatchEvent(new win.Event("input",{bubbles:true}))}
+    /* 4) recorrer los apartados UNA sola vez, con límite, y solo con palabras que sí están en esta guía */
+    const ft=gid&&typeof FT==="object"&&FT[gid]?" "+FT[gid]:null;
+    const known=t=>!ft||t.split(" ").every(w=>w.length<4||ft.includes(w));
+    const bt=terms.filter(known);
+    let t=null;
+    if(bt.length&&my===token){
+      say(`Buscando “${q}” en los apartados de la guía…`,false);
+      const st=frame.style,o=[st.opacity,st.pointerEvents,st.transition];st.transition="opacity .2s";st.opacity=".35";st.pointerEvents="none";
+      try{t=await brute(doc,win,bt,my,20000)}finally{[st.opacity,st.pointerEvents,st.transition]=o}
     }
-    say(`No encontré “${q}” dentro de esta guía`,false);
+    if(my!==token)return;
+    if(t&&await pick(t))return;
+    ctx=null;hits=[];try{win.scrollTo(0,0)}catch(e){}
+    let inData=false;try{inData=terms.some(t=>fold(doc.documentElement.innerHTML).includes(t))}catch(e){}
+    say(inData?`No encontré “${q}” a la vista; seguramente está en las preguntas o tarjetas de esta guía (salen al practicar). Te dejé en el inicio.`:`No encontré “${q}” dentro de esta guía. Te dejé en el inicio.`,false);
+    setTimeout(()=>{if(my===token)close()},6000);
   }
-  function run(frame,q){
+  function run(frame,q,gid){
     const my=++token;if(ctx)clearMarks(ctx.doc);hits=[];
     say(`Buscando “${q}”…`,false);
-    const go=()=>setTimeout(()=>locate(frame,q,my).catch(()=>say(`No pude saltar a “${q}”; usa la búsqueda de la guía`,false)),450);
+    const go=()=>setTimeout(()=>locate(frame,q,my,gid).catch(()=>say(`No pude saltar a “${q}”; usa la búsqueda de la guía`,false)),450);
     let d=null;try{d=frame.contentDocument}catch(e){}
     if(d&&d.readyState==="complete"&&d.URL!=="about:blank")go();else frame.addEventListener("load",go,{once:true});
   }
@@ -1485,7 +1497,7 @@ function route(){const h=location.hash.slice(1);
   window.__fromOtr=false;window.__fromSem=null;
   if(h.startsWith("sem-"))show(h.slice(4));
   else if(h.startsWith("guia-")){const [id,q]=h.slice(5).split("~"),g=G.find(x=>x.id===decodeURIComponent(id));
-    if(!g){hideViewer();return}const f=show(g.sem,g);if(q)Finder.run(f,decodeURIComponent(q));else Finder.close()}
+    if(!g){hideViewer();return}const f=show(g.sem,g);if(q)Finder.run(f,decodeURIComponent(q),g.id);else Finder.close()}
   else hideViewer()}
 document.addEventListener("click",e=>{const t=e.target.closest("[data-sem]");if(t)go("sem-"+t.dataset.sem)});
 window.addEventListener("popstate",route);

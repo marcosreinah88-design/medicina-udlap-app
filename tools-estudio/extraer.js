@@ -26,7 +26,8 @@ function walk(v,ctx,res,depth=0){
   if(Array.isArray(v)){
     // tarjetas como pares [frente, reverso]
     if(v.length>=6&&v.every(x=>Array.isArray(x)&&x.length===3&&/^[a-z0-9_-]{1,20}$/i.test(x[0])&&S(x[1])&&S(x[2]))){v.forEach(x=>res.c.push({t:IDS[x[0]]||ctx.t,f:strip(x[1]),b:strip(x[2])}));return}
-    if(v.length>=6&&v.every(x=>Array.isArray(x)&&x.length>=2&&x.length<=3&&S(x[0])&&S(x[1])&&strip(x[0]).length<400)){v.forEach(x=>res.c.push({t:ctx.t,f:strip(x[0]),b:strip(x[1])}));return}
+    // "nums" (datos clave de gastro) viene como [cifra, qué significa]: el frente es lo que significa y el reverso la cifra
+    if(v.length>=6&&v.every(x=>Array.isArray(x)&&x.length>=2&&x.length<=3&&S(x[0])&&S(x[1])&&strip(x[0]).length<400)){const inv=ctx.k==='nums';v.forEach(x=>res.c.push({t:ctx.t,f:strip(x[inv?1:0]),b:strip(x[inv?0:1])}));return}
     // preguntas como [tema, texto, [opciones], idx, explicación]
     if(v.length>=4&&v.every(x=>Array.isArray(x)&&typeof x[0]==='string'&&x[0].length<25&&S(x[1])&&Array.isArray(x[2])&&typeof x[3]==='number')){v.forEach(x=>res.q.push({t:IDS[x[0]]||ctx.t,q:strip(x[1]),o:x[2].map(strip),a:x[3],e:x[4]?strip(x[4]):''}));return}
     // preguntas como [texto, [opciones], idx, explicación]
@@ -34,7 +35,6 @@ function walk(v,ctx,res,depth=0){
     v.forEach(x=>walk(x,ctx,res,depth+1));return;
   }
   const o=v,t=typeof o.title==='string'?o.title:typeof o.t==='string'&&o.t.length>2&&o.t.length<80&&!o.q?o.t:ctx.t;
-  const c2={t};
   const qt=['q','s','p','pregunta','question','stem'].find(k=>S(o[k]));
   const ot=['o','opts','opciones','options'].find(k=>Array.isArray(o[k])&&o[k].length>=2);
   if(qt&&ot){
@@ -48,7 +48,7 @@ function walk(v,ctx,res,depth=0){
   if(Array.isArray(o.q)&&S(o.q[0])&&Array.isArray(o.q[1])&&typeof o.q[2]==='number'){res.q.push({t:ctx.t,q:strip(o.q[0]),o:o.q[1].map(strip),a:o.q[2],e:o.q[3]?strip(o.q[3]):''});return}
   const pairs=[['f','b'],['front','back'],['frente','reverso'],['q','a'],['p','r'],['k','v'],['term','def']];
   for(const [x,y] of pairs)if(S(o[x])&&S(o[y])&&Object.keys(o).length<=5&&strip(o[x]).length<400){res.c.push({t,f:strip(o[x]),b:strip(o[y])});return}
-  for(const k in o)walk(o[k],c2,res,depth+1);
+  for(const k in o)walk(o[k],{t,k},res,depth+1);
 }
 module.exports=function(file){
   const html=fs.readFileSync(file,'utf8');

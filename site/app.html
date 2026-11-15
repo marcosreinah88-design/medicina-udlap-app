@@ -1494,6 +1494,7 @@ function route(){const h=location.hash.slice(1);
   const W={calendario:window.Cal,calificaciones:window.Grades,estudio:window.Estudio,ajustes:window.Ajustes,cto:window.CtoLib,otros:window.OtrosLib};
   for(const k in W)if(k!==h&&W[k])W[k].close();
   if(W[h]!==undefined){window.__fromHome=null;hideViewer();W[h]&&W[h].open();return}
+  if(h==="mat-anking"&&window.Estudio&&Estudio.anking){Estudio.anking();return}
   if(h.startsWith("mat-")){window.OtrosLib&&OtrosLib.openDoc(decodeURIComponent(h.slice(4)));return}
   window.__fromOtr=false;window.__fromSem=null;
   if(h.startsWith("sem-"))show(h.slice(4));
@@ -2963,7 +2964,7 @@ window.OtrosLib=(()=>{
 })();
 if(location.hash==="#cto")CtoLib.open();
 if(location.hash==="#otros")OtrosLib.open();
-if(location.hash.startsWith("#mat-"))OtrosLib.openDoc(decodeURIComponent(location.hash.slice(5)));
+if(location.hash.startsWith("#mat-")&&location.hash!=="#mat-anking")OtrosLib.openDoc(decodeURIComponent(location.hash.slice(5)));
 </script>
 
 <script src="estudio.js"></script>

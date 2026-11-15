@@ -1226,12 +1226,12 @@ const semsWith=SEMS.filter(s=>G.some(g=>g.sem===s.n));
 const ARROW='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
 /* franja de cifras */
+const SEM_ACTUAL=5; /* semestre que cursa Marcos ahora */
 const temas=G.reduce((a,g)=>a+g.temas,0);
-$("#totals").innerHTML=[[semsWith.length,"semestres con guías"],[G.length,"guías"],[temas,"temas"],[semsWith.length+" / "+SEMS.length,"etapas de la carrera"]]
+$("#totals").innerHTML=[[semsWith.length,"semestres con guías"],[G.length,"guías"],[temas,"temas"],[(SEMS.findIndex(s=>s.n===SEM_ACTUAL)+1)+" / "+SEMS.length,"etapas de la carrera"]]
   .map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join("");
 
 /* semestre por semestre: trayectoria + tarjetas */
-const SEM_ACTUAL=5; /* semestre que cursa Marcos ahora */
 const CHECK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
 const semIdx=SEMS.findIndex(s=>s.n===SEM_ACTUAL);
 const stOf=s=>typeof s.n!=="number"?"next":s.n<SEM_ACTUAL?"done":s.n===SEM_ACTUAL?"now":"next";

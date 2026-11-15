@@ -21,6 +21,7 @@ OLDCSS=[r'\.horizon \.smoke path\{[^}]*\}\n?',r'\.horizon \.smoke path\+path\{[^
 for f in sys.argv[1:]:
     s=open(f,encoding='utf-8').read()
     for p in OLDCSS: s=re.sub(p,'',s)
+    s=s.replace('.hero.dusk .horizon .smoke path,.hero.dawn .hero.night .hero.night .horizon .crater{','.hero.night .horizon .crater{')  # arreglo de una versión anterior del parche
     if '/* ===== volcán:' in s:
         s=sub1(s,r'/\* ===== volcán:.*?/\* ===== /volcán ===== \*/\n?',CSS,f,'el CSS del volcán')
     else:

@@ -210,7 +210,7 @@ footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);paddi
 <div class="shell">
 <nav class="toc" aria-label="Temas">
   <div class="brand">Psiquiatría clínica</div>
-  <div class="sub">Ansiedad, bipolar, psicosis y TCA</div>
+  <div class="sub">Ansiedad, bipolar, psicosis, TCA y neuropsiquiatría</div>
   <ol id="tocList">
     <li><a href="#bases"><span class="n">00</span>Bases de la ansiedad<span class="ok">✓</span></a></li>
     <li><a href="#fobias"><span class="n">01</span>Fobia específica y social<span class="ok">✓</span></a></li>
@@ -225,6 +225,7 @@ footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);paddi
     <li><a href="#bipolar"><span class="n">10</span>Trastorno bipolar I y II<span class="ok">✓</span></a></li>
     <li><a href="#esquizofrenia"><span class="n">11</span>Esquizofrenia y psicosis<span class="ok">✓</span></a></li>
     <li><a href="#tca"><span class="n">12</span>Conducta alimentaria<span class="ok">✓</span></a></li>
+    <li data-np="1"><a href="#neuropsiq"><span class="n">13</span>Neuropsiquiátricos<span class="ok">✓</span></a></li>
     <li><a href="#repaso"><span class="n">★</span>Repaso y autoevaluación</a></li>
   </ol>
   <div class="progress"><span id="progTxt">0 de 10 temas repasados</span><div class="bar"><i id="progBar"></i></div></div>
@@ -234,9 +235,9 @@ footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);paddi
 <header class="hero">
   <div class="eyebrow">Psiquiatría Clínica · Dr. Víctor Trejo Terreros</div>
   <h1>Ansiedad, bipolar, psicosis y <em>alimentación</em></h1>
-  <p>Resumen de las presentaciones de clase (trastornos de ansiedad, trastorno bipolar, espectro de la esquizofrenia y conducta alimentaria), ordenado por tema: definición, criterios DSM‑5, epidemiología, fisiopatología, casos clínicos y preguntas para repasar. Toca cualquier figura para verla en grande.</p>
+  <p>Resumen de las presentaciones de clase (trastornos de ansiedad, trastorno bipolar, espectro de la esquizofrenia, conducta alimentaria y trastornos neuropsiquiátricos), ordenado por tema: definición, criterios DSM‑5, epidemiología, fisiopatología, casos clínicos y preguntas para repasar. Toca cualquier figura para verla en grande.</p>
   <div class="meta">
-    <span class="chip">13 temas</span><span class="chip">41 figuras de los PDF</span><span class="chip">Casos con respuesta</span><span class="chip">Quiz y tarjetas</span>
+    <span class="chip">14 temas</span><span class="chip">47 figuras de los PDF</span><span class="chip">Casos con respuesta</span><span class="chip">Quiz y tarjetas</span>
   </div>
   <div class="tools">
     <button class="btn" id="recallBtn" aria-pressed="false">Modo memoria: ocultar criterios</button>
@@ -1254,6 +1255,263 @@ footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);paddi
   <div class="quiz" data-quiz="tca"></div>
 </section>
 
+<!-- ================= 13 NEUROPSIQUIÁTRICOS ================= -->
+<section class="tema" id="neuropsiq" data-t="neuropsiq" data-np="1">
+  <div class="tema-head"><span class="num">13</span><h2>Trastornos neuropsiquiátricos</h2><button class="mark" aria-pressed="false">Marcar como repasado</button></div>
+  <div class="def">Cuadros en los que una <b>enfermedad cerebral o médica</b> produce síntomas cognitivos, conductuales y psiquiátricos. La presentación revisa cuatro: <b>delirium</b> (agudo), <b>trastornos neurocognitivos</b> (crónicos), <b>epilepsia</b> y <b>tumores cerebrales</b>.</div>
+
+  <h3>Cómo distinguirlos <span class="tag">diap. 11</span></h3>
+  <div class="tbl"><table>
+    <tr><th>Característica</th><th>Depresión</th><th>Esquizofrenia</th><th>Demencia</th><th>Delirium</th></tr>
+    <tr><td><b>Inicio</b></td><td>Subagudo</td><td>Subagudo</td><td>Crónico</td><td class="bad">Agudo</td></tr>
+    <tr><td><b>Curso</b></td><td>Estable</td><td>Estable</td><td>Estable</td><td class="bad">Fluctuante</td></tr>
+    <tr><td><b>Duración</b></td><td>&gt; 2 semanas</td><td>&gt; 2 semanas</td><td>&gt; 2 semanas</td><td>&lt; 2 semanas</td></tr>
+    <tr><td><b>Edad de inicio</b></td><td>30–50</td><td>20–40</td><td>60–80</td><td>50–80</td></tr>
+    <tr><td><b>Asociación con problemas médicos</b></td><td>Infrecuente</td><td>Infrecuente</td><td>Algunas veces</td><td>Siempre</td></tr>
+    <tr><td><b>Problemas motores</b></td><td>Raramente</td><td>Alguna vez</td><td>Frecuente</td><td>Alguna vez</td></tr>
+    <tr><td><b>Alteración de memoria</b></td><td>Raramente</td><td>Raramente</td><td>Casi siempre</td><td>Siempre</td></tr>
+    <tr><td><b>Déficit de atención (frecuencia / intensidad)</b></td><td>Posible · leve</td><td>Probable · leve</td><td>Casi siempre · moderado</td><td class="bad">Siempre · grave</td></tr>
+    <tr><td><b>Problemas de orientación</b></td><td>No</td><td>No</td><td>Casi siempre</td><td>Casi siempre</td></tr>
+    <tr><td><b>Delirios</b></td><td>Infrecuente</td><td>Casi siempre</td><td>A veces</td><td>Frecuente</td></tr>
+    <tr><td><b>Alucinaciones auditivas</b></td><td>Muy poco frecuente</td><td>Casi siempre</td><td>Infrecuente</td><td>Poco frecuente</td></tr>
+    <tr><td><b>Alucinaciones visuales</b></td><td>Nunca</td><td>Infrecuente</td><td>A veces</td><td>Frecuente</td></tr>
+    <tr><td><b>Conciencia</b></td><td>Vigil</td><td>Vigil</td><td>Vigil / déficits cualitativos</td><td class="bad">Déficits cualitativos y cuantitativos</td></tr>
+  </table></div>
+
+  <!-- ---------- DELIRIUM ---------- -->
+  <h3>Delirium <span class="tag">diap. 2–14</span></h3>
+  <p class="prose"><span>Síndrome neuropsiquiátrico <b>agudo</b> con alteración de la <b>atención y la conciencia</b> y cambios cognitivos. Se desarrolla en horas a días, tiene un <b>curso fluctuante</b> a lo largo del día y suele ser consecuencia directa de una condición médica, intoxicación o abstinencia, medicamentos o varias causas.</span></p>
+  <div class="cycle" style="margin-top:12px">
+    <div class="step hot"><b>1</b>Inicio agudo</div><span class="arrow">→</span>
+    <div class="step"><b>2</b>Inatención</div><span class="arrow">→</span>
+    <div class="step"><b>3</b>Alteración cognitiva</div><span class="arrow">→</span>
+    <div class="step"><b>4</b>Curso fluctuante</div>
+  </div>
+
+  <h4 style="margin-top:20px">Subtipos según la actividad psicomotora</h4>
+  <div class="grid g3">
+    <div class="card alert"><div class="k">Hiperactivo</div>Agitación, inquietud, hipervigilancia, alucinaciones, conducta inapropiada. Combatividad, retiro involuntario de catéteres o sondas, hiperreactividad a estímulos.</div>
+    <div class="card teal"><div class="k">Hipoactivo</div>Letargo, somnolencia, poca actividad motora, menor interacción; apatía, enlentecimiento motor severo, mutismo acinético, bradipsiquia.</div>
+    <div class="card plum"><div class="k">Mixto</div>Alterna manifestaciones hiperactivas e hipoactivas: oscilaciones impredecibles en 24 horas.</div>
+  </div>
+
+  <div class="stats" style="margin-top:14px">
+    <div class="stat"><b>≈ 23.6 %</b><span>prevalencia en adultos mayores hospitalizados</span></div>
+    <div class="stat"><b>≈ 13.5 %</b><span>incidencia durante la hospitalización</span></div>
+    <div class="stat"><b>↑↑</b><span>con demencia, enfermedad grave, cirugía o ingreso a UCI</span></div>
+  </div>
+
+  <h4 style="margin-top:20px">Etiología: vulnerabilidad + factor precipitante → delirium</h4>
+  <div class="tbl"><table>
+    <tr><th>Grupo</th><th>Ejemplos</th></tr>
+    <tr><td><b>Infecciosas</b></td><td>Infecciones sistémicas, meningitis, encefalitis</td></tr>
+    <tr><td><b>Metabólicas</b></td><td>Alteraciones electrolíticas, glucosa, deshidratación</td></tr>
+    <tr><td><b>Sistémicas</b></td><td>Hipoxia, choque, falla renal, hepática o cardiaca</td></tr>
+    <tr><td><b>Neurológicas</b></td><td>EVC, hemorragia, traumatismo, convulsiones</td></tr>
+    <tr><td><b>Fármacos / sustancias</b></td><td>Polifarmacia, psicoactivos, anticolinérgicos</td></tr>
+    <tr><td><b>Abstinencia / intoxicación</b></td><td>Alcohol y otras sustancias</td></tr>
+    <tr><td><b>Iatrogénicas</b></td><td>Cirugía, hospitalización, procedimientos</td></tr>
+  </table></div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="k">Predisponentes (ya los tenía)</div>Edad avanzada · <b>demencia o deterioro cognitivo previo</b> · antecedente de delirium · fragilidad · multimorbilidad · déficit visual o auditivo · dependencia funcional/inmovilidad · malnutrición · polifarmacia.</div>
+    <div class="card alert"><div class="k">Precipitantes (el «golpe»)</div>Infección · cirugía o trauma · dolor · hipoxia · deshidratación · alteraciones electrolíticas/metabólicas · fármacos o cambios de medicamentos · abstinencia de alcohol o sustancias · privación de sueño · sondas, restricciones físicas y otros factores hospitalarios.</div>
+  </div>
+  <div class="pearl"><span class="ic">CLAVE</span><span>La <b>demencia o el deterioro cognitivo previo</b> es uno de los factores de riesgo más importantes de delirium.</span></div>
+
+  <h4 style="margin-top:20px">Fisiopatología</h4>
+  <div class="grid g2">
+    <div class="card"><ul class="clean"><li><b>Neuroinflamación:</b> activación de microglía y mediadores (IL‑1β, IL‑6, TNF‑α).</li><li>Disfunción de la <b>barrera hematoencefálica</b>.</li><li>Neurotransmisores: <b>acetilcolina</b>, dopamina, GABA y glutamato.</li><li>Estrés metabólico y energético neuronal.</li><li>Disfunción de las redes de atención y alerta.</li></ul></div>
+    <button class="fig" data-src="img/n7.webp"><img src="img/n7.webp" alt="Neuroinflamación en el delirium" loading="lazy"><figcaption><b>Diap. 7.</b> Inflamación sistémica → BHE alterada → microglía activada → daño sináptico → delirium.</figcaption></button>
+  </div>
+  <div class="cycle" style="margin-top:14px">
+    <div class="step hot"><b>1</b>Agresión médica aguda: infección, hipoxia, fármacos o trastorno metabólico</div><span class="arrow">→</span>
+    <div class="step"><b>2</b>Neuroinflamación + alteraciones neuroquímicas y energéticas</div><span class="arrow">→</span>
+    <div class="step"><b>3</b>Disfunción de redes de atención y regulación del estado de alerta</div><span class="arrow">→</span>
+    <div class="step"><b>4</b>Inatención, desorientación, fluctuaciones y alteraciones perceptivas</div>
+  </div>
+
+  <h4 style="margin-top:20px">Clínica <span class="tag">diap. 9–10</span></h4>
+  <div class="grid g2">
+    <div class="card"><div class="k">Signos y síntomas</div><ul class="clean"><li>Inicio agudo con curso muy fluctuante; empeora en la tarde y noche (<b>sundowning</b>).</li><li>Ciclo sueño‑vigilia alterado: somnolencia diurna, insomnio de conciliación, inversión de fases.</li><li>Autonómicos: taquicardia, diaforesis, midriasis, temblor fino.</li></ul></div>
+    <div class="card"><div class="k">Cognitivas</div><ul class="clean"><li><b>Atención y alerta:</b> compromiso primario y patognomónico; no puede fijar, sostener ni desviar la atención.</li><li>Desorientación temporoespacial y, en casos graves, autopsíquica.</li><li>Amnesia por fallo de codificación atencional.</li><li>Pensamiento desorganizado, fragmentario, tangencial o incoherente.</li></ul></div>
+    <div class="card"><div class="k">Psiquiátricas</div><ul class="clean"><li>Alucinaciones <b>predominantemente visuales</b> (figuras amenazantes, insectos, microzoopsias) e ilusiones.</li><li>Ideas delirantes paranoides o de perjuicio, mal sistematizadas y lábiles.</li><li>Afecto reactivo: perplejidad, miedo paroxístico, hostilidad, terror nocturno.</li></ul></div>
+  </div>
+
+  <h4 style="margin-top:20px">Criterios diagnósticos (DSM‑5‑TR)</h4>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Alteración de la <b>atención</b> y de la <b>conciencia</b>.</span></li>
+    <li><span class="L">B</span><span class="t">Inicio en un periodo breve, representa un cambio del estado basal y tiende a <b>fluctuar</b> a lo largo del día.</span></li>
+    <li><span class="L">C</span><span class="t">Alteración cognitiva adicional.</span></li>
+    <li><span class="L">D</span><span class="t">No se explica mejor por un trastorno neurocognitivo previo ya establecido ni por coma.</span></li>
+    <li><span class="L">E</span><span class="t">Evidencia de que es consecuencia fisiológica directa de una afección médica, intoxicación/abstinencia o efecto farmacológico.</span></li>
+  </ol>
+  <p class="prose" style="margin-top:10px"><span>Transitorio y <b>reversible si se corrige la causa</b>; si persiste, se asocia a mayor mortalidad hospitalaria y declive cognitivo a largo plazo.</span></p>
+  <div class="card teal" style="margin-top:14px"><div class="k">Tamizaje: CAM (Confusion Assessment Method)</div>Positivo con <b>1 + 2 + (3 o 4)</b>: (1) inicio agudo y curso fluctuante · (2) inatención (contar los meses hacia atrás, deletrear «MUNDO» al revés) · (3) pensamiento desorganizado · (4) alteración del nivel de conciencia (alerta, letárgico o estuporoso).</div>
+
+  <!-- ---------- TNC ---------- -->
+  <h3>Trastornos neurocognitivos <span class="tag">diap. 15–28</span></h3>
+  <p class="prose"><span>Declive <b>adquirido</b> de una o más funciones cognitivas respecto al nivel previo: atención compleja, función ejecutiva, aprendizaje y memoria, lenguaje, función perceptivo‑motora y cognición social. A diferencia del delirium, es un proceso <b>crónico</b>.</span></p>
+  <div class="grid g2" style="margin-top:12px">
+    <div class="card teal"><div class="k">TNC leve (deterioro cognitivo leve)</div>Declive modesto; <b>conserva la independencia</b> en las actividades instrumentales, aunque con más esfuerzo o estrategias compensatorias.</div>
+    <div class="card alert"><div class="k">TNC mayor (demencia)</div>Declive significativo que <b>interfiere con la independencia</b> en las actividades instrumentales (manejar dinero, medicamentos, compras).</div>
+  </div>
+  <p class="prose" style="margin-top:10px"><span><b>Por causa (DSM‑5‑TR):</b> Alzheimer · vascular · cuerpos de Lewy · degeneración frontotemporal · Parkinson · Huntington · lesión cerebral traumática · VIH · priones · sustancias/medicamentos · otras enfermedades · etiologías múltiples · no especificada.</span></p>
+  <div class="stats" style="margin-top:14px">
+    <div class="stat"><b>57 M</b><span>personas vivían con demencia en el mundo en 2021</span></div>
+    <div class="stat"><b>≈ 10 M</b><span>casos nuevos cada año</span></div>
+    <div class="stat"><b>60–70 %</b><span>de las demencias son Alzheimer (la causa más frecuente)</span></div>
+    <div class="stat"><b>≈ 15.6 %</b><span>prevalencia de deterioro cognitivo leve en adultos ≥ 50 años de la comunidad</span></div>
+    <div class="stat"><b>45 %</b><span>del riesgo de demencia es atribuible a factores modificables (OMS)</span></div>
+  </div>
+  <div class="tbl" style="margin-top:14px"><table>
+    <tr><th>Etiología</th><th>Ejemplos</th></tr>
+    <tr><td><b>Neurodegenerativa</b></td><td>Alzheimer, cuerpos de Lewy, frontotemporal, Parkinson, Huntington</td></tr>
+    <tr><td><b>Vascular</b></td><td>Infartos cerebrales, enfermedad de pequeños vasos</td></tr>
+    <tr><td><b>Traumática</b></td><td>Traumatismo craneoencefálico</td></tr>
+    <tr><td><b>Infecciosa</b></td><td>VIH, enfermedades por priones</td></tr>
+    <tr><td><b>Sustancias / medicamentos</b></td><td>Alcohol y otras sustancias</td></tr>
+    <tr><td><b>Mixta / múltiple</b></td><td>Alzheimer + enfermedad cerebrovascular</td></tr>
+  </table></div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="k">No modificables</div>Edad avanzada · genética/antecedentes familiares · sexo (según la etiología) · predisposición a enfermedades neurodegenerativas.</div>
+    <div class="card gold"><div class="k">Modificables</div>Hipertensión · diabetes · tabaquismo · alcohol · inactividad física · aislamiento social · contaminación ambiental · factores cardiovasculares y metabólicos.</div>
+  </div>
+
+  <h4 style="margin-top:20px">Fisiopatología</h4>
+  <p class="prose"><span>Disfunción sináptica · neurodegeneración · <b>proteinopatías</b> (β‑amiloide, tau, α‑sinucleína) · lesión vascular (isquemia, infartos, sustancia blanca) · alteración de las redes de memoria, atención, lenguaje y funciones ejecutivas.</span></p>
+  <div class="tbl" style="margin-top:12px"><table>
+    <tr><th>Causa</th><th>Mecanismo</th><th>Resultado</th></tr>
+    <tr><td><b>Alzheimer</b></td><td>β‑amiloide y tau patológica → disfunción sináptica y neurodegeneración</td><td>Alteración de memoria</td></tr>
+    <tr><td><b>Vascular</b></td><td>Lesiones cerebrovasculares → interrupción de conexiones neuronales</td><td>Lentitud cognitiva y disfunción ejecutiva</td></tr>
+    <tr><td><b>Cuerpos de Lewy</b></td><td>Agregación de α‑sinucleína → disfunción de neuronas y neurotransmisores</td><td>Fluctuaciones cognitivas y alteraciones perceptivas</td></tr>
+    <tr><td><b>Frontotemporal</b></td><td>Neurodegeneración frontal y temporal → redes conductuales y del lenguaje</td><td>Desinhibición, apatía o afasia</td></tr>
+  </table></div>
+  <div class="figs">
+    <button class="fig" data-src="img/n20.webp"><img src="img/n20.webp" alt="Cerebro normal vs Alzheimer" loading="lazy"><figcaption><b>Diap. 20.</b> Alzheimer: atrofia cortical, hipocampo reducido, ventrículos agrandados, placas de amiloide y ovillos neurofibrilares.</figcaption></button>
+    <button class="fig" data-src="img/n21.webp"><img src="img/n21.webp" alt="Alzheimer, vascular, Lewy y frontotemporal" loading="lazy"><figcaption><b>Diap. 21.</b> Mecanismo de cada causa de TNC.</figcaption></button>
+  </div>
+
+  <h4 style="margin-top:20px">Clínica <span class="tag">diap. 22–23</span></h4>
+  <div class="grid g2">
+    <div class="card"><div class="k">Curso</div>Inicio insidioso y progresión crónica en meses o años, con <b>conciencia inicialmente preservada</b>. Pierde primero las actividades instrumentales (AIVD) y después las básicas (ABVD).</div>
+    <div class="card"><div class="k">Cognitivas</div><ul class="clean"><li><b>Memoria:</b> déficit anterógrado temprano (variante amnésica).</li><li><b>Ejecutiva:</b> juicio, abstracción, planificación, flexibilidad.</li><li><b>Lenguaje:</b> anomia temprana, circunloquios, ↓ fluidez categórica, afasias.</li><li><b>Perceptivo‑motoras:</b> apraxias ideomotoras y constructivas, agnosia visual.</li></ul></div>
+    <div class="card"><div class="k">Conductuales</div>Apatía e hipobulia · desinhibición social, hiperoralidad, cambios dietéticos · vagabundeo y deambulación nocturna · conductas motoras aberrantes y acumulación (hoarding).</div>
+    <div class="card"><div class="k">Psiquiátricas (SCPD)</div>Depresión, anhedonia y ansiedad en fases tempranas · delirios secundarios a la amnesia · falsa identificación delirante, <b>síndrome de Capgras</b> · alucinaciones visuales complejas y precoces (típicas de <b>cuerpos de Lewy</b>).</div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="k">Diagnóstico diferencial</div>Envejecimiento normal · <b>delirium</b> (confusión de inicio repentino) · depresión mayor (afecta concentración, memoria y velocidad de pensamiento) · trastornos del aprendizaje y del neurodesarrollo. La clave es <b>cómo era la persona antes</b>.</div>
+    <div class="card alert"><div class="k">Complicaciones</div>Pérdida de autonomía · caídas, fracturas, inmovilidad, úlceras por presión · desnutrición · depresión, agitación, delirios y alucinaciones · aislamiento y sobrecarga del cuidador · infecciones, hospitalizaciones y mayor mortalidad.</div>
+  </div>
+
+  <h4 style="margin-top:20px">Criterios diagnósticos</h4>
+  <ol class="crit">
+    <li><span class="L">A</span><span class="t">Evidencia de <b>declive</b> respecto al nivel previo en ≥ 1 dominio: atención compleja, función ejecutiva, aprendizaje/memoria, lenguaje, visuopercepción o cognición social.</span></li>
+    <li><span class="L">B</span><span class="t"><b>Mayor:</b> interfiere con la independencia en las AIVD. <b>Leve:</b> la independencia se mantiene con más esfuerzo o estrategias compensatorias.</span></li>
+    <li><span class="L">C</span><span class="t">No ocurre exclusivamente durante un <b>delirium</b>.</span></li>
+    <li><span class="L">D</span><span class="t">No se explica mejor por otro trastorno mental.</span></li>
+  </ol>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card"><div class="k">Alzheimer</div>Inicio insidioso y progresión gradual.</div>
+    <div class="card"><div class="k">Vascular</div>Inicio abrupto o deterioro escalonado/fluctuante, con déficit focal o disejecutivo.</div>
+    <div class="card"><div class="k">Cuerpos de Lewy</div>Fluctuaciones de la atención, alucinaciones visuales tempranas y parkinsonismo.</div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card teal"><div class="k">Exploración neurológica</div><ul class="clean"><li>Focalidad o signos piramidales → <b>vascular</b>.</li><li>Rigidez, temblor de reposo, inestabilidad postural temprana → <b>Lewy o Parkinson</b>.</li><li>Apraxia de la marcha («marcha magnética») → <b>hidrocefalia normotensiva</b> (tríada de Hakim‑Adams).</li></ul></div>
+    <div class="card teal"><div class="k">Pruebas cognitivas</div><ul class="clean"><li><b>MoCA ≤ 25</b> o <b>MMSE ≤ 23</b>: tamizaje inicial; el MoCA es más sensible para TNC leve y disfunción ejecutiva.</li><li><b>Prueba del reloj:</b> función ejecutiva y habilidades visuoespaciales.</li></ul></div>
+  </div>
+
+  <!-- ---------- EPILEPSIA ---------- -->
+  <h3>Epilepsia <span class="tag">diap. 29–44</span></h3>
+  <p class="prose"><span>Enfermedad cerebral crónica con <b>predisposición persistente</b> a crisis epilépticas recurrentes por actividad neuronal anormal y excesiva. Además de las crisis, hay más síntomas psiquiátricos: sobre todo <b>depresión y ansiedad</b> (las comorbilidades más importantes) y, con menor frecuencia, psicosis; también alteraciones conductuales y cognitivas e ideación o conducta suicida.</span></p>
+  <div class="stats" style="margin-top:14px">
+    <div class="stat"><b>≈ 50 M</b><span>personas con epilepsia en el mundo</span></div>
+    <div class="stat"><b>4–10 / 1000</b><span>con epilepsia activa</span></div>
+    <div class="stat"><b>≈ 5 M</b><span>diagnósticos nuevos cada año</span></div>
+    <div class="stat"><b>≈ 80 %</b><span>viven en países de ingresos bajos y medios</span></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="k">Etiologías (OMS)</div>Genética · estructural · infecciosa · metabólica · inmunológica · desconocida.</div>
+    <div class="card"><div class="k">¿Por qué hay síntomas psiquiátricos?</div><ul class="clean"><li><b>Neurobiológica:</b> las redes de la epilepsia comparten circuitos límbicos (hipocampo + amígdala + corteza temporal) con ánimo, ansiedad, conducta y cognición; por eso la <b>epilepsia del lóbulo temporal</b> se asocia tanto a síntomas psiquiátricos.</li><li><b>Enfermedad:</b> frecuencia y gravedad de las crisis, duración y farmacorresistencia.</li><li><b>Psicosocial:</b> estigma, limitaciones, problemas laborales o escolares, aislamiento.</li></ul></div>
+  </div>
+  <div class="card gold" style="margin-top:14px"><div class="k">Factores de riesgo de carga psiquiátrica</div>Epilepsia del lóbulo temporal · farmacorresistencia · crisis más frecuentes o graves · mayor duración · alteraciones estructurales · antecedentes psiquiátricos o psicosociales · efectos adversos de algunos antiepilépticos · estigma y aislamiento.</div>
+
+  <h4 style="margin-top:20px">Fisiopatología</h4>
+  <div class="grid g2">
+    <div class="card"><ul class="clean"><li>Hiperexcitabilidad neuronal y alteración de la sincronización de redes.</li><li>Desequilibrio excitación/inhibición: <b>glutamato</b> (principal excitador) frente a <b>GABA</b> (principal inhibidor).</li><li>Participan circuitos temporales y límbicos: amígdala e hipocampo.</li></ul></div>
+    <button class="fig" data-src="img/n34.webp"><img src="img/n34.webp" alt="Sinapsis excitadora e inhibidora" loading="lazy"><figcaption><b>Diap. 34.</b> Sinapsis excitadora (glutamato) e inhibidora (GABA) y dónde actúan los antiepilépticos.</figcaption></button>
+  </div>
+
+  <h4 style="margin-top:20px">Clínica según el momento de la crisis</h4>
+  <div class="grid g3">
+    <div class="card alert"><div class="k">Ictal / periictal · descarga</div><ul class="clean"><li><b>Auras psíquicas:</b> miedo o terror súbito, déjà vu y fenómenos dismnésicos, despersonalización y desrealización.</li><li><b>Automatismos:</b> orofaciales, manipular la ropa, marcha errática o lenguaje repetitivo, con amnesia del episodio.</li><li>Alucinaciones breves: sensación epigástrica ascendente, <b>cacosmia</b>, crisis gustativas.</li></ul></div>
+    <div class="card gold"><div class="k">Postictal · recuperación de redes</div><ul class="clean"><li><b>Psicosis postictal:</b> tras un <b>intervalo lúcido de 12 a 72 h</b> después de crisis repetidas; delirios místicos o persecutorios, alucinaciones multimodales, agresividad transitoria.</li><li><b>Disforia postictal:</b> cefalea, letargo, irritabilidad, labilidad y amnesia.</li><li>Estado confusional y agitación.</li></ul></div>
+    <div class="card plum"><div class="k">Interictal · crónico</div><ul class="clean"><li><b>Síndrome de Blumer</b> (trastorno disfórico interictal): irritabilidad, tristeza anhedónica, astenia, euforia breve y dolor sin causa periférica.</li><li><b>Síndrome de Gastaut‑Geschwind</b> (temporal medial crónica): <b>hipergrafía</b>, hiperreligiosidad, hiposexualidad y viscosidad interpersonal.</li><li>Deterioro cognitivo: enlentecimiento, fallas en el recuerdo diferido, anomia.</li></ul></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="k">Diagnóstico diferencial</div><ol style="margin:0;padding-left:1.2em"><li><b>Crisis funcionales disociativas</b>: movimientos, temblor, aparente pérdida de conciencia.</li><li><b>Pánico</b>: desconexión, miedo intenso, palpitaciones.</li><li><b>Esquizofrenia</b>: alucinaciones, conducta extraña.</li><li><b>Depresión mayor</b>: lentitud, falta de respuesta.</li><li><b>Bipolar</b>: agitación e impulsividad en la manía.</li><li><b>Delirium</b>: desorientación y cambios de conciencia.</li></ol></div>
+    <div class="card alert"><div class="k">Complicaciones</div><ul class="clean"><li><b>Neurológicas:</b> deterioro cognitivo, lesión neuronal en crisis prolongadas.</li><li><b>Agudas:</b> estatus epiléptico, traumatismos y fracturas, broncoaspiración e hipoxia.</li><li><b>Psiquiátricas:</b> depresión, ansiedad, estigma, peor calidad de vida.</li><li><b>Mortales:</b> <b>SUDEP</b>, insuficiencia respiratoria, arritmias.</li><li><b>Por tratamiento:</b> toxicidad, hepatotoxicidad, alteraciones hematológicas, ↓ densidad ósea, teratogenicidad.</li></ul></div>
+  </div>
+
+  <h4 style="margin-top:20px">Diagnóstico (definición práctica ILAE)</h4>
+  <ol class="crit">
+    <li><span class="L">1</span><span class="t"><b>≥ 2 crisis no provocadas</b> separadas por más de 24 horas.</span></li>
+    <li><span class="L">2</span><span class="t"><b>1 crisis no provocada</b> con riesgo de recurrencia elevado.</span></li>
+    <li><span class="L">3</span><span class="t">Diagnóstico de un <b>síndrome epiléptico</b> definido.</span></li>
+  </ol>
+  <p class="prose" style="margin-top:10px"><span>Distribución <b>bimodal</b>: más en la infancia temprana y en mayores de 60 años. Hasta <b>30–50 %</b> de los pacientes con epilepsia refractaria desarrolla depresión o psicosis interictal.</span></p>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card teal"><div class="k">Exploración</div>Focalidad motora, sensitiva o campimétrica, <b>paresia de Todd</b>; tamizaje de memoria episódica y verbal.</div>
+    <div class="card teal"><div class="k">EEG</div>Estándar: descargas epileptiformes interictales y actividad ictal. <b>Video‑EEG</b> para distinguir las crisis no epilépticas psicógenas: movimientos bilaterales asincrónicos, <b>ojos cerrados con resistencia</b> y EEG normal durante el evento.</div>
+    <div class="card teal"><div class="k">RM de alta resolución</div>Esclerosis hipocampal mesial; malformaciones del desarrollo cortical, cavernomas o tumores glioneuronales de bajo grado.</div>
+  </div>
+
+  <!-- ---------- TUMORES ---------- -->
+  <h3>Tumores cerebrales <span class="tag">diap. 45–58</span></h3>
+  <p class="prose"><span>Proliferaciones anormales de células del encéfalo o estructuras relacionadas: <b>primarios</b> (se originan en el SNC) o <b>metastásicos</b>. Además de los síntomas neurológicos causan depresión, ansiedad, cambios de personalidad, apatía, desinhibición, alteraciones cognitivas, delirium y, con menor frecuencia, psicosis. Los síntomas dependen de la localización, el tamaño, la velocidad de crecimiento, el edema peritumoral, el efecto de masa, las redes alteradas y el tratamiento.</span></p>
+  <div class="stats" style="margin-top:14px">
+    <div class="stat"><b>≈ 324 000</b><span>casos nuevos de cáncer de cerebro y SNC estimados en el mundo para 2024</span></div>
+    <div class="stat"><b>3.4 / 100 000</b><span>tasa de incidencia estandarizada mundial</span></div>
+    <div class="stat"><b>15–20 %</b><span>debutan con síntomas psiquiátricos antes de la focalidad o la hipertensión intracraneal</span></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="k">Factores de riesgo del tumor</div><ul class="clean"><li><b>Radiación ionizante</b> previa al cerebro (el factor ambiental mejor establecido).</li><li>Síndromes hereditarios (minoría de los casos).</li><li>Edad: cambia la incidencia y el tipo histológico.</li><li><b>Inmunosupresión</b> → linfoma primario del SNC.</li></ul></div>
+    <div class="card"><div class="k">¿Qué favorece los síntomas psiquiátricos?</div>Localización · edema peritumoral · alteración de redes · convulsiones · tratamientos y neurotoxicidad · impacto psicológico del diagnóstico · antecedentes psiquiátricos.</div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><div class="k">Fisiopatología</div><ul class="clean"><li>Infiltración y compresión del tejido.</li><li><b>Edema vasogénico</b> por alteración de la BHE.</li><li>Alteración de la conectividad de redes.</li><li>Disfunción metabólica y vascular local.</li><li>Hiperexcitabilidad cortical y crisis.</li></ul></div>
+    <button class="fig" data-src="img/n50.webp"><img src="img/n50.webp" alt="RM de tumor cerebral con edema" loading="lazy"><figcaption><b>Diap. 50.</b> RM: lesión con realce en anillo (flecha amarilla) y edema peritumoral (flechas blancas).</figcaption></button>
+  </div>
+
+  <h4 style="margin-top:20px">Síntomas según la localización</h4>
+  <div class="tbl"><table>
+    <tr><th>Región</th><th>Cuadro</th></tr>
+    <tr><td><b>Frontal dorsolateral</b></td><td><b>Síndrome apático‑abúlico:</b> hipocinesia, bradipsiquia, aplanamiento afectivo, mutismo acinético, pérdida de iniciativa (simula una depresión resistente). Síndrome disejecutivo.</td></tr>
+    <tr><td><b>Frontal basal / orbitomedial</b></td><td><b>Síndrome desinhibido o pseudopsicopático:</b> impulsividad, euforia pueril y chistes inapropiados (<b>moria</b>), pérdida del juicio social, hipersexualidad, agresividad.</td></tr>
+    <tr><td><b>Temporal (límbico y neocortical)</b></td><td>Psicosis <b>esquizofreniforme</b> de inicio tardío (delirios persecutorios, alucinaciones auditivas), alucinaciones olfativas/gustativas (uncus), auras de terror súbito, pánico refractario, amnesia de consolidación.</td></tr>
+    <tr><td><b>Parietal</b></td><td><b>Anosognosia</b>, asomatognosia, confusión, apraxias, acalculia, síndrome de Gerstmann.</td></tr>
+    <tr><td><b>Occipital</b></td><td>Alucinaciones visuales elementales (fotopsias, fosfenos, escotomas móviles) y metamorfopsias (macropsia, micropsia).</td></tr>
+    <tr><td><b>Hipotálamo‑hipófisis y línea media</b></td><td>Apatía, hiperfagia o anorexia central, desregulación del sueño, labilidad emocional extrema, hipopituitarismo.</td></tr>
+  </table></div>
+  <div class="figs">
+    <button class="fig" data-src="img/n51.webp"><img src="img/n51.webp" alt="Lóbulos cerebrales" loading="lazy"><figcaption><b>Diap. 51.</b> Frontal: conducta y control ejecutivo · temporal: memoria y emoción · parietal: integración sensorial · circuitos límbicos: regulación emocional.</figcaption></button>
+  </div>
+
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card alert"><div class="k">Signos de alarma</div><ul class="clean"><li><b>Hipertensión endocraneana:</b> cefalea matutina que despierta o empeora con Valsalva, vómito en proyectil y papiledema.</li><li><b>Debut psiquiátrico atípico:</b> primer episodio depresivo, psicótico o cambio de personalidad en <b>&gt; 40–50 años</b> sin antecedentes.</li></ul></div>
+    <div class="card"><div class="k">Curso</div><b>Bajo grado:</b> inicio insidioso; síntomas psiquiátricos puros durante meses o años antes de la focalidad. <b>Alto grado:</b> progresión rápida con deterioro motor y del estado de alerta.</div>
+  </div>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card teal"><div class="k">Exploración</div><b>Fondo de ojo obligatorio</b> (papiledema); asimetrías de pares craneales, reflejos de liberación frontal, hemiparesia, defectos campimétricos.</div>
+    <div class="card teal"><div class="k">Imagen</div><b>RM con contraste</b>; la espectroscopia muestra ↑ colina (recambio de membrana) y ↓ N‑acetilaspartato (pérdida neuronal). <b>TC</b> simple y contrastada de urgencia si se sospecha sangrado o hidrocefalia aguda.</div>
+    <div class="card teal"><div class="k">Diagnóstico definitivo</div><b>Histopatológico y molecular:</b> biopsia o resección para tipificar y graduar.</div>
+  </div>
+  <div class="card" style="margin-top:14px"><div class="k">Diagnóstico diferencial</div>Depresión primaria · esquizofrenia y otras psicosis · trastorno mental debido a otra afección médica · delirium · trastornos neurocognitivos · enfermedades degenerativas que pueden debutar con cambios mentales (<b>Huntington</b>, <b>esclerosis múltiple</b>).</div>
+
+  <h3>Casos para practicar <span class="tag">complemento †, no vienen en las diapositivas</span></h3>
+  <div class="quiz" data-quiz="neuro"></div>
+</section>
+
 <!-- ================= REPASO ================= -->
 <section class="tema" id="repaso">
   <div class="tema-head"><span class="num">★</span><h2>Repaso y autoevaluación</h2></div>
@@ -1300,8 +1558,15 @@ footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);paddi
     <li>La presentación no incluye casos clínicos; los de esta sección son de práctica.</li>
     <li>Erratas menores: "catidad", "circustancias parecidad", "recurrentees", "inlcuso", "epis0dio", "contnuo".</li>
   </ul>
+  <p class="prose" style="margin:14px 0 8px" data-np="1"><b>Trastornos neuropsiquiátricos:</b></p>
+  <ul class="errata" data-np="1">
+    <li>Diap. 17 (etiología de los TNC): la tabla repite al inicio las filas de subtipos del delirium (hiperactivo, hipoactivo, mixto), que no corresponden a la demencia.</li>
+    <li>Diap. 9 dice «amnesia de fijación retrógrada y anterógrada»; la amnesia de fijación es, por definición, anterógrada (no se graban recuerdos nuevos). †</li>
+    <li>La presentación no incluye casos clínicos ni tratamiento; los casos de este tema son de práctica. †</li>
+    <li>Erratas menores: "Transtornos", "anõs", "Trastorno de panico".</li>
+  </ul>
 
-  <footer>Basado en "Psiquiatría · Trastornos de Ansiedad", Equipo I: Israel Barraza Padua, Emilio Morayta Bulos, Marcos David Reynah, María José Fuentes y Daniela Allende Olivier. Fuentes citadas en el PDF: DSM‑5 (APA, 2014), OMS 2026, Fawcett 2020, Caraveo y Colmenares 2004, UNAM Global. Trastorno bipolar I y II: Victoria Carbajal, Florencia Vila, Yuleny Cervantes, Isis Santamaría y María Fernanda Cordero. Espectro de la esquizofrenia: Valeria Cristela Mejía Vázquez, Sofía Morrugares Sánchez, Diana Ximena González Abadía e Ivanna Valeria Moreno Rocha. Conducta alimentaria: Ximena Salinas Aragón, Casandra Lobato Domínguez, Betsabeth Ramos Rugerio y Rafael Carrera Cuéllar. Los datos marcados como complemento (estrés agudo, el caso de práctica de bipolar y las mnemotecnias) provienen del DSM‑5, no de las diapositivas.</footer>
+  <footer>Basado en "Psiquiatría · Trastornos de Ansiedad", Equipo I: Israel Barraza Padua, Emilio Morayta Bulos, Marcos David Reynah, María José Fuentes y Daniela Allende Olivier. Fuentes citadas en el PDF: DSM‑5 (APA, 2014), OMS 2026, Fawcett 2020, Caraveo y Colmenares 2004, UNAM Global. Trastorno bipolar I y II: Victoria Carbajal, Florencia Vila, Yuleny Cervantes, Isis Santamaría y María Fernanda Cordero. Espectro de la esquizofrenia: Valeria Cristela Mejía Vázquez, Sofía Morrugares Sánchez, Diana Ximena González Abadía e Ivanna Valeria Moreno Rocha. Conducta alimentaria: Ximena Salinas Aragón, Casandra Lobato Domínguez, Betsabeth Ramos Rugerio y Rafael Carrera Cuéllar. Trastornos neuropsiquiátricos: Nataly Ramírez Cortez, Samary Jaretzi Catalán Hernández, Adrián Merlos Contreras, Jean Cyran Díaz Lima y Valeria Cortés. Los datos marcados como complemento (estrés agudo, el caso de práctica de bipolar y las mnemotecnias) provienen del DSM‑5, no de las diapositivas.</footer>
 </section>
 </main>
 </div>
@@ -1372,7 +1637,7 @@ footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);paddi
     ["Fobia específica",6,"≥ 6 meses"],["Fobia social",6,"≥ 6 meses"],["Agorafobia",6,"≥ 6 meses"],["TAG",6,"≥ 6 meses"],["Síntomas somáticos",6,"> 6 meses"],["Ansiedad por enfermedad",6,"≥ 6 meses"],
     ["Hipomanía",0.13,"≥ 4 días","short"],["Manía",0.23,"≥ 7 días","short"],["Depresión mayor",0.47,"≥ 2 semanas","short"],
     ["Psicótico breve",0.5,"1 d – < 1 mes","short"],["Trastorno delirante",1,"≥ 1 mes","short"],["Esquizofreniforme",3.5,"1 – < 6 meses"],["Esquizofrenia",6,"≥ 6 meses"],
-    ["Atracón / bulimia",3,"≥ 1/sem × 3 meses"],["Anorexia (subtipo)",3,"últimos 3 meses"]
+    ["Atracón / bulimia",3,"≥ 1/sem × 3 meses"],["Anorexia (subtipo)",3,"últimos 3 meses"],["Delirium",0.05,"horas a días","short"]
   ],6);
   bars(document.getElementById('imc'),[["Leve",4,"IMC ≥ 17"],["Moderado",3,"16 – 16.99"],["Grave",2,"15 – 15.99","short"],["Extremo",1,"< 15","short"]],4);
   bars(document.getElementById('tpbEvol'),[["Sigue como psicótico breve",55,"55 %"],["Evoluciona a esquizofrenia",25,"25 %","short"],["Pasa a trastorno afectivo",12,"12 %"]],100);
@@ -1429,7 +1694,25 @@ footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);paddi
     ["TCA","Subtipos de anorexia","Restrictivo vs atracones/purgas, según los últimos 3 meses."],
     ["TCA","Hormonas del apetito en la anorexia","↓ leptina, ↑ grelina, ↑ péptido YY."],
     ["TCA","¿Por qué hay amenorrea y bradicardia en la anorexia?","↓ GnRH/LH/FSH → ↓ estrógenos; ↓ conversión T4 → T3 → bradicardia e intolerancia al frío."],
-    ["TCA","TCA más frecuente en hombres","Trastorno por atracón (0.8 % vs 1.6 % en mujeres)."]
+    ["TCA","TCA más frecuente en hombres","Trastorno por atracón (0.8 % vs 1.6 % en mujeres)."],
+    ["Neuro","Rasgo central del delirium","Alteración aguda de la atención y la conciencia, con curso fluctuante a lo largo del día."],
+    ["Neuro","CAM positivo","1 (inicio agudo y fluctuante) + 2 (inatención) + 3 (pensamiento desorganizado) o 4 (nivel de conciencia alterado)."],
+    ["Neuro","Subtipos motores del delirium","Hiperactivo (agitación), hipoactivo (letargo, el que más se pasa por alto †) y mixto."],
+    ["Neuro","Factor predisponente de delirium más importante","La demencia o el deterioro cognitivo previo."],
+    ["Neuro","Delirium vs demencia","Delirium: agudo, fluctuante, conciencia alterada, reversible. Demencia: crónica, estable, conciencia preservada al inicio."],
+    ["Neuro","TNC leve vs mayor","Leve: conserva la independencia en las AIVD. Mayor: el déficit interfiere con la independencia."],
+    ["Neuro","Causa más frecuente de demencia","Alzheimer (60–70 %): β‑amiloide y tau → pérdida de memoria."],
+    ["Neuro","Pistas de demencia por cuerpos de Lewy","Fluctuaciones de la atención, alucinaciones visuales tempranas y parkinsonismo."],
+    ["Neuro","Tríada de Hakim‑Adams","Hidrocefalia normotensiva: apraxia de la marcha (marcha magnética), deterioro cognitivo e incontinencia urinaria †."],
+    ["Neuro","Puntos de corte de tamizaje cognitivo","MoCA ≤ 25 o MMSE ≤ 23; el MoCA detecta mejor el TNC leve."],
+    ["Neuro","Psicosis postictal","Tras un intervalo lúcido de 12–72 h después de crisis repetidas: delirios místicos o persecutorios y alucinaciones."],
+    ["Neuro","Síndrome de Gastaut‑Geschwind","Epilepsia temporal medial crónica: hipergrafía, hiperreligiosidad, hiposexualidad y viscosidad interpersonal."],
+    ["Neuro","Definición práctica de epilepsia (ILAE)","≥ 2 crisis no provocadas separadas > 24 h, 1 crisis con alto riesgo de recurrencia o un síndrome epiléptico."],
+    ["Neuro","Crisis psicógena vs epiléptica en video‑EEG","Psicógena: movimientos asincrónicos, ojos cerrados con resistencia y EEG normal durante el evento."],
+    ["Neuro","Tumor frontal orbitomedial","Síndrome desinhibido: impulsividad, moria (chistes inapropiados), hipersexualidad."],
+    ["Neuro","Tumor frontal dorsolateral","Síndrome apático‑abúlico que simula una depresión resistente."],
+    ["Neuro","Signo de alarma psiquiátrico de tumor","Primer episodio depresivo, psicótico o cambio de personalidad después de los 40–50 años sin antecedentes."],
+    ["Neuro","Espectroscopia por RM en tumor","↑ colina y ↓ N‑acetilaspartato."]
   ];
   let fi=0;const fc=document.getElementById('fcard');
   function drawF(){const c=cards[fi];fc.classList.remove('flip');document.getElementById('fTema').textContent=c[0];document.getElementById('fQ').textContent=c[1];document.getElementById('fA').textContent=c[2];document.getElementById('fCount').textContent=(fi+1)+' / '+cards.length}
@@ -1457,6 +1740,13 @@ footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);paddi
       {q:"Mujer de 19 años con IMC 22. Desde hace 5 meses tiene atracones unas 3 veces por semana y después se provoca el vómito. Dice que \"vale lo que pesa\".",o:["Trastorno por atracón","Bulimia nerviosa, leve","Anorexia, tipo atracones/purgas"],a:1,w:"Atracones + compensación ≥ 1/semana por 3 meses, autoevaluación por el peso y peso normal. 1–3 compensaciones por semana = leve."},
       {q:"Mujer de 17 años con IMC 15.5, amenorrea y miedo intenso a engordar. En los últimos 3 meses usa laxantes varias veces por semana.",o:["Bulimia nerviosa","Anorexia nerviosa, atracones/purgas, grave","Anorexia nerviosa, restrictiva, moderada"],a:1,w:"Con bajo peso significativo es anorexia; las purgas definen el subtipo; IMC 15–15.99 = grave."},
       {q:"Hombre de 40 años con obesidad: atracones 5 veces por semana desde hace 1 año, come a escondidas y se siente avergonzado. No vomita ni hace ejercicio compensatorio.",o:["Trastorno por atracón, moderado","Bulimia nerviosa","Obesidad sin trastorno mental"],a:0,w:"Atracones con pérdida de control, ≥ 3 rasgos del criterio B, sin compensación. 4–7 por semana = moderado."}
+    ],
+    neuro:[
+      {q:"Mujer de 82 años, 2.º día posoperatorio de cadera. En la noche está agitada, se quita la sonda y ve «bichos en la pared»; en la mañana está somnolienta y no logra decir los meses al revés. Su hija dice que antes de operarse estaba bien.",o:["Demencia de Alzheimer","Delirium mixto","Esquizofrenia de inicio tardío"],a:1,w:"Inicio agudo, fluctuante, con inatención y alucinaciones visuales en un contexto médico: delirium. Alterna agitación nocturna y somnolencia = subtipo mixto. Se busca y corrige la causa (dolor, infección, fármacos, hipoxia)."},
+      {q:"Hombre de 74 años: en 2 años olvida conversaciones recientes, repite preguntas y ya no puede manejar sus cuentas ni sus medicinas; se baña y come solo. Está alerta y orientado en persona. MoCA 18.",o:["Deterioro cognitivo leve","TNC mayor, probable Alzheimer","Delirium"],a:1,w:"Declive insidioso y progresivo con memoria anterógrada afectada y pérdida de AIVD (dinero, medicamentos): TNC mayor; el patrón amnésico gradual orienta a Alzheimer."},
+      {q:"Hombre de 70 años con olvidos que fluctúan día a día, ve niños sentados en su sala desde hace meses y camina rígido, con temblor de reposo.",o:["TNC por cuerpos de Lewy","TNC vascular","TNC frontotemporal"],a:0,w:"Fluctuaciones de la atención + alucinaciones visuales complejas tempranas + parkinsonismo = cuerpos de Lewy (α‑sinucleína)."},
+      {q:"Mujer de 35 años con epilepsia del lóbulo temporal. Tras un fin de semana con 4 crisis, pasa un día lúcida y luego cree que Dios le habla y la persigue el demonio. Su EEG intercrisis no cambia.",o:["Esquizofrenia","Psicosis postictal","Crisis no epiléptica psicógena"],a:1,w:"Intervalo lúcido de 12–72 h después de crisis repetidas, con delirios místicos o persecutorios: psicosis postictal."},
+      {q:"Hombre de 56 años sin antecedentes: en 6 meses se volvió desinhibido, hace chistes inapropiados en el trabajo y propuestas sexuales; últimamente cefalea que lo despierta en la madrugada y vómito.",o:["Manía de inicio tardío","Tumor frontal orbitomedial","Trastorno de la personalidad"],a:1,w:"Debut psiquiátrico atípico > 50 años + síndrome desinhibido (moria) + datos de hipertensión endocraneana: tumor frontal basal hasta demostrar lo contrario. Fondo de ojo y RM con contraste."}
     ],
     final:[
       {q:"La ansiedad, según la APA, se orienta hacia…",o:["Una amenaza inmediata","La anticipación de una amenaza futura","Un estímulo condicionado presente"],a:1,w:"El miedo responde a la amenaza inmediata; la ansiedad anticipa una futura."},
@@ -1488,7 +1778,15 @@ footer{color:var(--muted);font-size:.8rem;border-top:1px solid var(--line);paddi
       {q:"¿Cuál es el criterio de frecuencia y duración común a la bulimia y al trastorno por atracón?",o:["2 veces por semana durante 6 meses","1 vez por semana durante 3 meses","Diario durante 1 mes"],a:1,w:"El DSM‑5 pide ≥ 1 episodio por semana durante 3 meses en ambos."},
       {q:"Paciente con anorexia, frecuencia cardiaca de 48 lpm e intolerancia al frío. ¿Qué cambio hormonal lo explica mejor?",o:["↑ conversión de T4 a T3","↓ conversión de T4 a T3 con ↑ rT3","↑ leptina"],a:1,w:"La desnutrición reduce la T3 activa para ahorrar energía: bradicardia y menor gasto energético."},
       {q:"Una paciente con anorexia tiene IMC 16.4. Su gravedad es:",o:["Leve","Moderada","Grave"],a:1,w:"IMC 16–16.99 = moderada."},
-      {q:"¿Qué distingue a la anorexia restrictiva del subtipo atracones/purgas?",o:["El IMC","Si hubo atracones o purgas recurrentes en los últimos 3 meses","La edad de inicio"],a:1,w:"El subtipo se define por la conducta de los últimos 3 meses."}
+      {q:"¿Qué distingue a la anorexia restrictiva del subtipo atracones/purgas?",o:["El IMC","Si hubo atracones o purgas recurrentes en los últimos 3 meses","La edad de inicio"],a:1,w:"El subtipo se define por la conducta de los últimos 3 meses."},
+      {q:"¿Cuál es la alteración primaria y patognomónica del delirium?",o:["Memoria","Atención y alerta","Lenguaje"],a:1,w:"El delirium es ante todo un trastorno de la atención y la conciencia (criterio A)."},
+      {q:"En el delirium, las alucinaciones son predominantemente…",o:["Auditivas","Visuales","Olfativas"],a:1,w:"Visuales: figuras amenazantes, insectos, microzoopsias, junto con ilusiones."},
+      {q:"Un TNC con independencia conservada en las actividades instrumentales, aunque con más esfuerzo, es:",o:["TNC mayor","TNC leve","Delirium"],a:1,w:"TNC leve: declive modesto sin pérdida de independencia en las AIVD."},
+      {q:"Apraxia de la marcha («marcha magnética») y deterioro cognitivo sugieren:",o:["Hidrocefalia normotensiva","Enfermedad de Huntington","Alzheimer"],a:0,w:"Tríada de Hakim‑Adams: marcha, cognición e incontinencia †."},
+      {q:"Hipergrafía, hiperreligiosidad e hiposexualidad en un paciente con epilepsia temporal crónica:",o:["Síndrome de Blumer","Síndrome de Gastaut‑Geschwind","Psicosis postictal"],a:1,w:"Rasgos interictales crónicos de la epilepsia temporal medial."},
+      {q:"En video‑EEG, ojos cerrados con resistencia activa y EEG normal durante el evento sugieren:",o:["Crisis focal temporal","Crisis no epiléptica psicógena","Estatus epiléptico"],a:1,w:"Son datos de crisis no epiléptica psicógena (pseudocrisis)."},
+      {q:"Un tumor del lóbulo temporal se manifiesta típicamente con:",o:["Moria e hipersexualidad","Alucinaciones olfativas y psicosis de inicio tardío","Anosognosia y acalculia"],a:1,w:"El uncus da alucinaciones olfativas/gustativas; el temporal, psicosis esquizofreniforme y amnesia."},
+      {q:"¿Qué estudio da el diagnóstico definitivo de un tumor cerebral?",o:["RM con espectroscopia","TC contrastada","Biopsia o resección (histopatología y perfil molecular)"],a:2,w:"La imagen orienta; la histopatología tipifica y gradúa."}
     ]
   };
   let right=0,answered=0;

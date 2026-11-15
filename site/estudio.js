@@ -264,9 +264,9 @@
   function open(){
     mount();if(!$("#estudio").hidden)return;
     lastY=window.scrollY;
-    if(!mat){const e=upcoming()[0];if(e&&diffD(today(),e.date)<=14)mat=examMat(e)}
+    mat="";/* siempre abre en Todas las materias */
     $("#estudio").hidden=false;document.documentElement.style.overflow="hidden";document.title="Estudio · Carrera de Medicina";
-    render();Promise.all([loadBank(),loadSRS()]).then(()=>{if(!mat){const e=upcoming()[0];if(e&&diffD(today(),e.date)<=14)mat=examMat(e)}render()});
+    render();Promise.all([loadBank(),loadSRS()]).then(()=>render());
   }
   function close(){
     if(!ready||$("#estudio").hidden)return;$("#estudio").hidden=true;document.documentElement.style.overflow="";document.title="Carrera de Medicina";

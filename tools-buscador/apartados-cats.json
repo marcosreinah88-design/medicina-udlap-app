@@ -1,0 +1,15 @@
+[
+ {"id":"definicion","label":"Definición","rx":"definicion|concepto|generalidades"},
+ {"id":"epidemiologia","label":"Epidemiología","rx":"epidemiolog|prevalencia|incidencia|frecuencia\\b"},
+ {"id":"etiologia","label":"Etiología y factores de riesgo","rx":"etiolog|causas?\\b|factores de riesgo|agentes? (causal|etiol)"},
+ {"id":"fisiologia","label":"Fisiología","rx":"fisiologia|funcion(es)?\\b|mecanismo normal|regulacion"},
+ {"id":"fisiopatologia","label":"Fisiopatología y patología","rx":"fisiopatolog|patogeni|patogenesis|patologia|anatomia patol|histopatolog"},
+ {"id":"clinica","label":"Cuadro clínico","rx":"cuadro clinico|clinica\\b|manifestaciones|sintomas|signos y sintomas|signos\\b|presentacion clinica|semiolog"},
+ {"id":"diagnostico","label":"Diagnóstico","rx":"diagnostico|estudios\\b|laboratorio|gabinete|criterios|abordaje|exploracion"},
+ {"id":"tratamiento","label":"Tratamiento","rx":"tratamiento|manejo|terapia|terapeutica|conducta\\b|tx\\b"},
+ {"id":"posologia","label":"Posología y dosis","rx":"posolog|dosis|dosificacion|via de administracion|presentacion\\b"},
+ {"id":"farmacologia","label":"Farmacología","rx":"farmacocinetica|farmacodinamia|mecanismo de accion|mecanismo\\b|efectos adversos|efectos secundarios|reacciones adversas|ram\\b|interacciones|contraindicaciones|indicaciones|farmacos?\\b|farmacologia|medicamentos"},
+ {"id":"complicaciones","label":"Complicaciones y pronóstico","rx":"complicacion|pronostico|secuelas|evolucion\\b"},
+ {"id":"prevencion","label":"Prevención","rx":"prevencion|profilaxis|tamizaje|cribado|vacunacion|vacunas?\\b"},
+ {"id":"anatomia","label":"Anatomía","rx":"anatomia(?! patol)|irrigacion|inervacion|drenaje linfatico|vascularizacion"}
+]

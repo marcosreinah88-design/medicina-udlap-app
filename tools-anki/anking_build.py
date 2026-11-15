@@ -28,13 +28,18 @@ def cards(t,e):
         out.append((f,b+(' · '+e if e else '')))
     return out
 slug=lambda s:re.sub(r'[^a-z0-9]+','-',unicodedata.normalize('NFD',s).encode('ascii','ignore').decode().lower()).strip('-')
+# mazos muy chicos se juntan con su sistema; dentro del mazo siguen como tema propio
+JUNTA={'Genética':'Bioquímica','Biología celular':'Bioquímica','Oftalmología':'Neurología',
+       'General':'Urgencias, cirugía y medicina interna','Urgencias':'Urgencias, cirugía y medicina interna',
+       'Cirugía y anestesia':'Urgencias, cirugía y medicina interna','Medicina interna':'Urgencias, cirugía y medicina interna',
+       'Patología general':'Farmacología y patología general','Farmacología':'Farmacología y patología general'}
 decks={};miss=0;x=0
 for k,o in notes.items():
     p=tr.get(k)
     if not p: miss+=1;continue
     if p[1]=='X': x+=1;continue
     for f,b in cards(p[1].strip(),p[2].strip()):
-        decks.setdefault(o['s'],[]).append([o['s'],f,b])
+        decks.setdefault(JUNTA.get(o['s'],o['s']),[]).append([o['s'],f,b])
 idx=[]
 for s,c in sorted(decks.items(),key=lambda kv:-len(kv[1])):
     sid=slug(s);d={'id':'anking-'+sid,'n':'AnKing · '+s,'s':0,'c':c,'q':[]}

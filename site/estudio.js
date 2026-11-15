@@ -248,6 +248,14 @@
     addEventListener("storage",ev=>{if(ev.key&&ev.key.startsWith("carrera-")&&!$("#estudio").hidden&&!exam){if(window.SRS)SRS.reloadAll();render()}});
     tickPomo();setInterval(tickPomo,1000);
   }
+  /* el botón «AnKing» de la portada abre Estudio en Modo AnKing (así se regresa a la portada) */
+  document.addEventListener("click",ev=>{
+    const a=ev.target.closest&&ev.target.closest("#akBtn");if(!a||ev.button||ev.metaKey||ev.ctrlKey)return;
+    ev.preventDefault();ev.stopImmediatePropagation();window.__fromHome=null;
+    modo="anking";set(KM,"anking");akSel=null;tab="tarjetas";set(K.tab,tab);
+    if(ready){if(rv){rv.destroy();rv=null}rvKey=null;$("#esCards").innerHTML=""}
+    if(location.hash==="#estudio")render();else location.hash="estudio";
+  },true);
   const goHome=()=>{if(typeof go==="function")go("");else location.hash=""};
   function open(){
     mount();if(!$("#estudio").hidden)return;

@@ -1,0 +1,1919 @@
+# Términos para el botón «Seguir leyendo en AMBOSS» (ver build.py para el formato).
+# español<TAB>búsqueda en AMBOSS (inglés). «tema › subtema» = solo dentro de ese tema. «* x» = apartado genérico.
+# Si un botón te lleva a un lugar raro, corrige aquí la columna derecha y corre: python3 tools-amboss/build.py
+#
+# ===== Apartados genéricos (se busca «<tema> <apartado>») =====
+* Tratamiento	treatment
+* Tratamiento endoscópico	endoscopic treatment
+* Diagnóstico	diagnosis
+* Diagnóstico diferencial	differential diagnosis
+* Diagnóstico y diferencial	diagnosis
+* Cuadro clínico	clinical features
+* Cuadro clínico y diagnóstico	clinical features
+* Clínica	clinical features
+* Criterios clínicos	diagnostic criteria
+* Criterios DSM-5	DSM-5 criteria
+* Criterios DSM‑5	DSM-5 criteria
+* Criterios DSM-5-TR	DSM-5 criteria
+* Criterios DSM‑5‑TR	DSM-5 criteria
+* Complicaciones	complications
+* Complicaciones y pronóstico	complications
+* Pronóstico	prognosis
+* Fisiopatología	pathophysiology
+* Fisiopatología (patogenia)	pathophysiology
+* Etiología	etiology
+* Etiología y factores de riesgo	etiology
+* Factores de riesgo	risk factors
+* Epidemiología	epidemiology
+* Epidemiología y factores de riesgo	epidemiology
+* Definición	
+* Definición y epidemiología	epidemiology
+* Clasificación	classification
+* Tipos	classification
+* Algoritmo de manejo	management
+* Anatomía	anatomy
+* Agentes	pathogens
+* Fármacos	drugs
+* Conceptos	
+* Historia	history
+* Complemento	
+* Errores frecuentes	
+* Otras	
+* Cómo distinguirlos	differential diagnosis
+* Caso clínico	-
+* Casos para practicar	-
+* Perlas ENARM / MIR	
+* Perlas de examen	
+* Abordaje	diagnostic approach
+* Laboratorio	laboratory findings
+* Prevención	prevention
+* Seguimiento	follow-up
+* Manejo	management
+* Imagen	imaging
+* Estudios de imagen	imaging
+* Estadificación	staging
+* Tamizaje	screening
+* Mecanismo de acción	mechanism of action
+* Efectos adversos	adverse effects
+* Indicaciones	indications
+* Contraindicaciones	contraindications
+* Interacciones	interactions
+* Farmacocinética	pharmacokinetics
+#
+# ===== 1er semestre =====
+Organización del cuerpo y homeostasis	homeostasis
+Posición anatómica, planos y términos	anatomical terminology
+Cavidades y regiones	body cavities
+Homeostasis	homeostasis
+Líquidos corporales	body fluid compartments
+Sistema esquelético y articulaciones	joints
+Funciones y clasificación de los huesos	bone tissue
+Articulaciones	joints
+Sinoviales según su forma	synovial joint
+Sistema muscular	skeletal muscle
+Organización y función	skeletal muscle
+Unión neuromuscular	neuromuscular junction
+Tipos de fibra y de contracción	muscle fiber types
+Sistema nervioso: organización	nervous system
+Encéfalo	brain anatomy
+Meninges y líquido cefalorraquídeo	meninges cerebrospinal fluid
+Médula espinal y nervios	spinal cord
+Sistema nervioso autónomo	autonomic nervous system
+Sistema cardiovascular	cardiovascular physiology
+Corazón y circulaciones	heart anatomy
+Sistema de conducción	cardiac conduction system
+Coronarias	coronary arteries
+Hemodinámica y vasos	hemodynamics
+Sistema respiratorio	respiratory physiology
+Vía aérea y pulmones	lung anatomy
+Alvéolo y surfactante	surfactant
+Mecánica e intercambio	gas exchange
+Sistema digestivo	gastrointestinal physiology
+Pared del tubo digestivo	gastrointestinal wall layers
+Recorrido y función de cada segmento	gastrointestinal physiology
+Hígado y páncreas	liver anatomy
+Hormonas gastrointestinales	gastrointestinal hormones
+Sistema urinario	renal physiology
+Riñón y nefrona	nephron
+Qué hace cada segmento	nephron physiology
+Otras funciones y sistema renina-angiotensina-aldosterona	renin-angiotensin-aldosterone system
+Sistemas endocrino y reproductor	endocrine system
+Eje hipotálamo-hipófisis	hypothalamic-pituitary axis
+Tiroides, paratiroides, suprarrenal y páncreas	endocrine glands
+Reproductor masculino	male reproductive system
+Reproductor femenino y ciclo menstrual	menstrual cycle
+Agua, pH y amortiguadores	acid-base buffer
+Conceptos básicos	acid-base physiology
+Henderson-Hasselbalch y amortiguadores	Henderson-Hasselbalch equation
+Gasometría arterial	arterial blood gas
+Brecha aniónica	anion gap
+Aminoácidos, proteínas y hemoglobina	amino acids
+Aminoácidos	amino acids
+Niveles de estructura	protein structure
+Hemoglobina y curva de disociación	oxygen-hemoglobin dissociation curve
+Proteínas plasmáticas	plasma proteins
+Enzimas y cinética	enzyme kinetics
+Michaelis-Menten	Michaelis-Menten kinetics
+Inhibición	enzyme inhibition
+Coenzimas	coenzymes
+Enzimas en el laboratorio clínico	enzyme kinetics
+Carbohidratos: glucólisis, gluconeogénesis, glucógeno y pentosas	carbohydrate metabolism
+Glucólisis	glycolysis
+Destino del piruvato	pyruvate metabolism
+Gluconeogénesis	gluconeogenesis
+Glucógeno	glycogen metabolism
+Vía de las pentosas fosfato	pentose phosphate pathway
+Ciclo de Krebs, cadena respiratoria y fosforilación oxidativa	citric acid cycle
+Ciclo de Krebs	citric acid cycle
+Cadena de transporte de electrones	electron transport chain
+Inhibidores y desacopladores	oxidative phosphorylation inhibitors
+Lípidos: síntesis, oxidación, cetonas, colesterol y lipoproteínas	lipid metabolism
+Síntesis y β-oxidación de ácidos grasos	fatty acid oxidation
+Cuerpos cetónicos	ketone bodies
+Colesterol	cholesterol synthesis
+Lipoproteínas	lipoproteins
+Aminoácidos y ciclo de la urea	urea cycle
+Transaminación y transporte del amonio	ammonia transport
+Ciclo de la urea	urea cycle
+Destino de los aminoácidos	amino acid metabolism
+Errores innatos	inborn errors of metabolism
+Vitaminas y coenzimas	vitamins
+Complejo B	B vitamins
+Vitamina C y liposolubles	fat-soluble vitamins
+Integración metabólica y química sanguínea	metabolism fed fasting state
+Alimentado vs ayuno	fed and fasting state
+Transportadores de glucosa	glucose transporters
+Química sanguínea	basic metabolic panel
+Diagnóstico de diabetes (ADA)	diabetes mellitus diagnosis
+Gametogénesis y fecundación	gametogenesis
+Meiosis	meiosis
+Espermatogénesis vs ovogénesis	gametogenesis
+Fecundación	fertilization
+Semanas 1 y 2: segmentación, implantación y disco bilaminar	implantation embryology
+Semana 1	fertilization implantation
+Semana 2: la regla de los dos	bilaminar disc
+Semana 3: gastrulación y neurulación	gastrulation
+Gastrulación	gastrulation
+Neurulación y cresta neural	neural crest
+Mesodermo	mesoderm derivatives
+Derivados de las capas germinales	germ layer derivatives
+Semanas 4 a 8: periodo embrionario	embryonic period
+Plegamiento y cronología	embryonic folding
+Arcos faríngeos	pharyngeal arches
+Bolsas faríngeas	pharyngeal pouches
+Circulación fetal	fetal circulation
+Periodo fetal, placenta y anexos	placenta
+Periodo fetal	fetal development
+Placenta	placenta
+Cordón umbilical y líquido amniótico	amniotic fluid
+Teratología	teratogens
+Periodos de susceptibilidad	teratogens
+Fármacos y sustancias	teratogenic drugs
+Infecciones TORCH	TORCH infections
+Herencia mendeliana y patrones	modes of inheritance
+Herencia mendeliana y patrones › Conceptos	genetics basic concepts
+Patrones de herencia	modes of inheritance
+Tripletes e imprinting	trinucleotide repeat disorders genomic imprinting
+Cromosomas y alteraciones cromosómicas	chromosomal abnormalities
+Estudio de los cromosomas	karyotype
+Trisomías autosómicas	autosomal trisomies
+Cromosomas sexuales	sex chromosome abnormalities
+Métodos de estudio y tinciones	histological stains
+La técnica histológica	histology tissue preparation
+Hematoxilina y eosina (H&E)	hematoxylin and eosin stain
+Tinciones especiales	special stains
+Tipos de microscopía	microscopy
+Tejido epitelial	epithelium
+Características y clasificación	epithelium
+Especializaciones apicales	microvilli cilia
+Uniones celulares	cell junctions
+Glándulas	exocrine glands
+Tejido conjuntivo	connective tissue
+Tejido conjuntivo › Células	connective tissue cells
+Fibras y sustancia fundamental	extracellular matrix
+Síntesis del colágeno	collagen synthesis
+Tipos de conjuntivo	connective tissue
+Cartílago y hueso	bone tissue
+Cartílago	cartilage
+Células y estructura del hueso	bone cells
+Osificación	ossification
+Remodelación y regulación	bone remodeling
+Tejido muscular	muscle tissue
+Los tres tipos de músculo	muscle tissue
+El sarcómero	sarcomere
+Acoplamiento excitación-contracción	excitation-contraction coupling
+Tejido muscular › Correlación clínica	muscular dystrophy
+Tejido nervioso	nervous tissue
+La neurona	neuron
+Glía	glial cells
+Mielina, nervio y barrera hematoencefálica	blood-brain barrier
+Sangre y hematopoyesis	hematopoiesis
+Plasma y eritrocitos	erythrocytes
+Leucocitos	leukocytes
+Hematopoyesis	hematopoiesis
+Piel y anexos	skin histology
+Epidermis	epidermis
+Dermis y receptores	dermis sensory receptors
+Anexos	skin appendages
+Atención extrahospitalaria: la escena y el sistema de emergencias	prehospital care
+Seguridad de la escena y bioseguridad	scene safety
+Activar el sistema de emergencias médicas (SEM)	emergency medical services
+Signos vitales de referencia en el adulto	vital signs
+Evaluación del paciente: primaria y secundaria	primary survey
+Evaluación primaria XABCDE (trauma)	primary survey trauma
+Nivel de conciencia	AVPU Glasgow coma scale
+Evaluación secundaria (paciente estable)	secondary survey
+Paro cardiaco: reconocimiento y cadena de supervivencia	cardiac arrest
+Por qué cada minuto cuenta	cardiac arrest
+Reconocimiento y primeros pasos	basic life support
+Cadena de supervivencia extrahospitalaria (AHA 2020)	chain of survival
+RCP de alta calidad en el adulto	high-quality CPR
+Técnica de las compresiones	chest compressions
+Vía aérea y ventilación	rescue breathing
+Simulación I › Errores frecuentes	high-quality CPR
+RCP de alta calidad en el adulto › Errores frecuentes	high-quality CPR
+Desfibrilador externo automático (DEA)	automated external defibrillator
+Cómo se usa	automated external defibrillator
+Ritmos	shockable rhythms
+Situaciones especiales	automated external defibrillator
+BLS pediátrico: niño y lactante	pediatric basic life support
+Diferencias clave con el adulto	pediatric basic life support
+¿Llamo primero o hago RCP primero?	pediatric basic life support
+Obstrucción de la vía aérea por cuerpo extraño (OVACE)	foreign body airway obstruction
+Reconocer la gravedad	foreign body airway obstruction
+Adulto y niño consciente	Heimlich maneuver
+Lactante consciente	foreign body airway obstruction infant
+Si pierde la conciencia	foreign body airway obstruction
+Emergencias médicas frecuentes fuera del hospital	medical emergencies
+Posición de recuperación	recovery position
+Síncope y convulsiones	syncope
+Hipoglucemia, anafilaxia y opioides	anaphylaxis
+Infarto y evento vascular cerebral	acute coronary syndrome
+Trauma prehospitalario: hemorragia, choque, columna y fracturas	prehospital trauma
+Control de hemorragias	hemorrhage control tourniquet
+Trauma prehospitalario: hemorragia, choque, columna y fracturas › Choque	hemorrhagic shock
+Restricción del movimiento de la columna	spinal motion restriction
+Fracturas y quemaduras	burns
+Incidentes con múltiples víctimas y traslado	mass casualty incident
+Triage START	START triage
+Comunicación y traslado	patient handoff
+#
+# ===== 2º semestre =====
+Generalidades y terminología anatómica	anatomical terminology
+Posición, planos y movimientos	anatomical terminology
+Dermatomas	dermatomes
+Reflejos osteotendinosos	deep tendon reflexes
+Compartimentos	compartment syndrome
+Cráneo: huesos, suturas y base del cráneo	skull
+Huesos del cráneo	skull
+Suturas y fontanelas	cranial sutures fontanelles
+Pterion	pterion
+Fosas y agujeros de la base	skull base foramina
+Nervios craneales	cranial nerves
+Los 12 pares	cranial nerves
+Motilidad ocular	extraocular muscles
+Reflejos de los nervios craneales	cranial nerve reflexes
+Lesiones típicas	cranial nerve lesions
+Cara: músculos, masticación, ATM y parótida	facial muscles
+Expresión facial y masticación	muscles of mastication
+Articulación temporomandibular	temporomandibular joint
+Cara: músculos, masticación, ATM y parótida › Glándulas salivales	salivary glands
+Sensibilidad de la cara	trigeminal nerve
+Cuello: fascias, triángulos, músculos y plexo cervical	neck anatomy
+Músculos y triángulos	triangles of the neck
+Fascias y vaina carotídea	carotid sheath
+Plexo cervical y nervio frénico	phrenic nerve
+Vísceras del cuello: tiroides, paratiroides, laringe y faringe	thyroid gland anatomy
+Tiroides y paratiroides	thyroid gland anatomy
+Laringe y faringe	larynx anatomy
+Referencias vertebrales	neck anatomy
+Irrigación de la cabeza y el cuello y meninges	arteries of the head and neck
+Arterias	arteries of the head and neck
+Venas	dural venous sinuses
+Meninges y hematomas	epidural hematoma
+Miembro superior: hombro, brazo y plexo braquial	brachial plexus
+Plexo braquial	brachial plexus
+Hombro y manguito rotador	rotator cuff
+Brazo	upper limb anatomy
+Lesiones del plexo y del brazo	brachial plexus injury
+Miembro superior: antebrazo, mano y lesiones nerviosas	upper limb nerve injuries
+Fosa cubital y antebrazo	cubital fossa
+Muñeca y carpo	carpal bones
+Mano	hand anatomy
+Miembro inferior: cadera, muslo y plexo lumbosacro	lumbosacral plexus
+Plexo lumbar y sacro	lumbosacral plexus
+Triángulo femoral	femoral triangle
+Cadera	hip joint
+Miembro inferior: rodilla, pierna y pie	knee joint
+Rodilla	knee joint
+Pierna	lower leg anatomy
+Miembro inferior: rodilla, pierna y pie › Tobillo y pie	ankle joint
+Membrana plasmática y organelos	cell organelles
+Membrana plasmática	cell membrane
+Organelos de síntesis	endoplasmic reticulum Golgi
+Organelos de degradación y energía	lysosome mitochondria
+Enfermedades de los organelos	lysosomal storage diseases
+Citoesqueleto y motores moleculares	cytoskeleton
+Los tres filamentos	cytoskeleton
+Filamentos intermedios como marcadores	intermediate filaments
+Motores moleculares	dynein kinesin
+Fármacos que actúan sobre los microtúbulos	microtubule inhibitors
+ADN, replicación y reparación	DNA replication
+Estructura y cromatina	chromatin
+Replicación (fase S)	DNA replication
+Reparación del ADN	DNA repair
+Transcripción y procesamiento del ARN	transcription
+ARN polimerasas y promotor	RNA polymerase
+Procesamiento del pre-ARNm	RNA processing splicing
+Tipos de ARN	RNA types
+Inhibidores de la transcripción	transcription
+Traducción, código genético y mutaciones	translation
+Código genético	genetic code
+Ribosoma y etapas	translation ribosome
+Antibióticos y ribosoma	protein synthesis inhibitors
+Tipos de mutación	mutations
+Ciclo celular y cáncer	cell cycle
+Fases del ciclo	cell cycle
+Rb y p53	tumor suppressor genes
+Tipos de células por su capacidad de dividirse	cell cycle
+Oncogenes y genes supresores	oncogenes
+Señalización celular	signal transduction
+Tipos de señal	signal transduction
+Receptores acoplados a proteína G	G protein-coupled receptors
+Otros receptores	receptor tyrosine kinase
+Apoptosis, necrosis y adaptación celular	apoptosis
+Apoptosis	apoptosis
+Necrosis	necrosis
+Adaptación celular	cellular adaptation
+Técnicas de biología molecular	laboratory techniques molecular biology
+PCR	polymerase chain reaction
+Blots y ELISA	ELISA blotting
+Otras técnicas	laboratory techniques molecular biology
+Membrana, transporte y potencial de reposo	resting membrane potential
+Tipos de transporte	membrane transport
+Concentraciones y potenciales de equilibrio	Nernst equation
+Potasio y excitabilidad	resting membrane potential
+Osmolalidad	osmolality
+Potencial de acción y sinapsis	action potential
+Fases del potencial de acción	action potential
+Sinapsis química	synapse
+Fisiología muscular	muscle physiology
+Músculo esquelético	skeletal muscle contraction
+Músculo cardiaco y liso	smooth muscle
+Fisiología cardiaca	cardiac physiology
+Potenciales de acción cardiacos	cardiac action potential
+Electrocardiograma	electrocardiography
+Ciclo cardiaco	cardiac cycle
+Gasto cardiaco y Frank-Starling	Frank-Starling
+Hemodinamia y control de la presión arterial	blood pressure regulation
+Presiones, flujo y resistencia	hemodynamics
+Reflejo barorreceptor (control rápido)	baroreceptor reflex
+Control a largo plazo	renin-angiotensin-aldosterone system
+Fuerzas de Starling y edema	Starling forces
+Fisiología respiratoria	respiratory physiology
+Volúmenes y capacidades	lung volumes
+Espirometría	spirometry
+Mecánica	respiratory mechanics compliance
+Ventilación/perfusión	ventilation perfusion
+Control de la respiración	control of respiration
+Fisiología renal	renal physiology
+Filtración glomerular	glomerular filtration rate
+Depuración (clearance)	renal clearance
+Concentración de la orina	urine concentration
+Diuréticos	diuretics
+Equilibrio ácido-base	acid-base disorders
+El riñón y el bicarbonato	renal acid-base regulation
+Abordaje de la gasometría	arterial blood gas interpretation
+Potasio y pH	hyperkalemia acidosis
+Fisiología endocrina	endocrine physiology
+Tipos de hormona y receptor	hormone receptors
+Eje tiroideo	thyroid hormones
+Eje suprarrenal	adrenal cortex
+GH, prolactina, calcio e insulina	growth hormone
+Fisiología digestiva	gastrointestinal physiology
+Control nervioso	enteric nervous system
+Secreción gástrica	gastric acid secretion
+Digestión y absorción	digestion absorption
+Técnicas de exploración física	physical examination
+Preparación e inspección	physical examination
+Palpación y percusión	percussion
+Auscultación	auscultation
+Orden en el abdomen	abdominal examination
+Exploración cardiaca: focos, ruidos y soplos	heart murmurs
+Focos de auscultación	cardiac auscultation
+Ruidos cardiacos	heart sounds
+Soplos	heart murmurs
+Maniobras	heart murmurs maneuvers
+Exploración pulmonar y ruidos respiratorios	lung auscultation
+Exploración pulmonar y ruidos respiratorios › Inspección y palpación	pulmonary examination
+Ruidos respiratorios	breath sounds
+Síndromes pleuropulmonares	pleural effusion
+Vías de administración y cálculo de dosis	routes of drug administration
+Los correctos	medication administration
+Vías e inyecciones	intramuscular injection
+Cálculo de dosis y goteo	drug dosage calculation
+Venopunción y acceso venoso periférico	peripheral venous access
+Sitios y técnica	venipuncture
+Calibres del catéter	peripheral venous catheter
+Orden de llenado de tubos	order of draw blood collection
+Venopunción y acceso venoso periférico › Complicaciones	phlebitis
+Soporte vital básico (RCP del adulto)	basic life support
+Secuencia de atención	basic life support
+RCP de alta calidad	high-quality CPR
+DEA	automated external defibrillator
+Atragantamiento y niños	foreign body airway obstruction
+#
+# ===== 3er semestre · Farmacología =====
+Generalidades de la farmacología	pharmacology
+Definición y conceptos	pharmacology
+Formas farmacéuticas	dosage forms
+Clasificación de la farmacología y de los fármacos	pharmacology
+Medicina alternativa y «farmacia de la naturaleza»	herbal supplements
+Historia de la farmacología	pharmacology
+Primeros fármacos (línea de tiempo)	pharmacology
+Farmacocinética	pharmacokinetics
+Concepto y vías de administración	routes of drug administration
+Absorción y transporte a través de membranas	drug absorption
+pKa y ecuación de Henderson-Hasselbalch	Henderson-Hasselbalch equation drug ionization
+Primer paso, profármacos y biodisponibilidad	bioavailability first-pass effect
+Distribución y barreras	volume of distribution
+Metabolismo (biotransformación) y CYP450	cytochrome P450
+Excreción	drug elimination
+Farmacodinamia	pharmacodynamics
+Concepto y dianas terapéuticas	pharmacodynamics
+Tipos de receptores	receptor types pharmacology
+Especificidad y tipos de unión	drug receptor binding
+Afinidad, curvas dosis-respuesta, eficacia y potencia	dose-response curve efficacy potency
+Agonistas, antagonistas y sinergismo	agonists antagonists
+Posología	drug dosage calculation
+Concentración y porcentajes	drug dosage calculation
+Regla de tres para dosificar	drug dosage calculation
+Ejercicios de clase resueltos	drug dosage calculation
+Reacciones adversas a medicamentos (RAM)	adverse drug reactions
+Reacciones adversas a medicamentos (RAM) › Definición	adverse drug reactions
+Tipos de reacción	adverse drug reactions
+Teratogenicidad	teratogens
+Fármacos teratógenos	teratogenic drugs
+Farmacovigilancia	pharmacovigilance
+Fases de los ensayos clínicos	clinical trial phases
+Definición y por qué hace falta	pharmacovigilance
+Clasificación por mecanismo (Rawlings y Thompson)	adverse drug reactions classification
+Clasificación por severidad	adverse drug reactions
+NOM-220-SSA1-2002 y causalidad	pharmacovigilance causality
+Algoritmo de Naranjo (calculadora)	Naranjo algorithm
+Interacciones farmacológicas	drug interactions
+Definición y tipos	drug interactions
+Interacciones farmacocinéticas	pharmacokinetic drug interactions
+Horarios respecto a los alimentos	drug food interactions
+Interacciones medicamento-alimento	drug food interactions
+Interacciones con alcohol (etanol)	alcohol drug interactions disulfiram-like reaction
+Antiinflamatorios y analgésicos	NSAIDs
+Inflamación y mediadores	inflammation mediators
+AINE: COX-1 vs COX-2	NSAIDs COX-2 inhibitors
+Paracetamol, ketorolaco y AINE en situaciones especiales	acetaminophen
+Fichas de AINE	NSAIDs
+Glucocorticoides	glucocorticoids
+Analgésicos opioides	opioids
+Aislamiento y síntesis de nuevos principios activos	drug development
+Plantas como fuente de principios activos	drug development
+Hallazgo y fases	drug development
+Patentes	drug development generic drugs
+Colinérgicos y anticolinérgicos	cholinergic drugs
+Neurotransmisión y sistema nervioso autónomo	autonomic nervous system
+Receptores colinérgicos	cholinergic receptors
+Agonistas de acción directa	direct cholinomimetic agonists
+Agonistas indirectos (anticolinesterasas)	cholinesterase inhibitors
+Antagonistas colinérgicos: antimuscarínicos	antimuscarinic drugs
+Bloqueantes ganglionares y neuromusculares	neuromuscular blocking agents
+Desarrollo galénico de medicamentos	dosage forms
+Formas y procesos	dosage forms
+Buenas prácticas de fabricación	drug development
+Estabilidad y caducidad	drug development
+Medicamentos magistrales	compounded medications
+Desarrollo preclínico y clínico	clinical trial phases
+Desarrollo preclínico	preclinical drug development
+Principio de las 3 R	animal research ethics
+Estudios de toxicidad	toxicity studies drug development
+Desarrollo clínico	clinical trial phases
+Adrenérgicos y antiadrenérgicos	sympathomimetics
+Catecolaminas: síntesis y metabolismo	catecholamine synthesis
+Receptores adrenérgicos	adrenergic receptors
+Adrenalina y agonistas α	epinephrine alpha agonists
+Agonistas β	beta-agonists
+Bloqueantes α	alpha blockers
+Bloqueantes β («-olol»)	beta blockers
+Antídotos del sistema autónomo	antidotes
+Repaso general	-
+#
+# ===== 3er semestre · Anatomía 2 =====
+Generalidades	anatomical terminology
+Columna y tórax óseo	vertebral column
+Columna vertebral	vertebral column
+Esternón y costillas	ribs sternum
+Músculos del tronco, diafragma y periné	diaphragm
+Pared abdominal y tórax: músculos	abdominal wall muscles
+Diafragma y músculos de la respiración	diaphragm
+Periné y suelo pélvico	pelvic floor perineum
+Vía respiratoria superior	upper airway anatomy
+Nariz y cavidad nasal	nasal cavity
+Senos paranasales e irrigación nasal	paranasal sinuses
+Vía respiratoria superior › Faringe	pharynx anatomy
+Vía respiratoria superior › Laringe	larynx anatomy
+Tráquea, bronquios y pulmones	lung anatomy
+Tráquea y árbol bronquial	bronchial tree
+Alvéolos y surfactante	surfactant
+Pulmones, lóbulos, hilio y segmentos	lung anatomy bronchopulmonary segments
+Mediastino	mediastinum
+Mediastino: límites y divisiones	mediastinum
+Contenido del mediastino	mediastinum
+Corazón	heart anatomy
+Corazón: ubicación, pericardio y capas	pericardium
+Válvulas, músculos papilares y focos	heart valves
+Arterias coronarias y drenaje venoso	coronary arteries
+Corazón › Sistema de conducción	cardiac conduction system
+Pared del tubo y cavidad oral	oral cavity
+Cavidad oral, lengua y dientes	oral cavity tongue
+Pared del tubo y cavidad oral › Glándulas salivales	salivary glands
+Esófago › Esófago	esophagus anatomy
+Esófago	esophagus
+Cavidad abdominal	peritoneum
+Regiones y pared abdominal	abdominal wall
+Peritoneo, omentos y mesenterio	peritoneum
+Estómago	stomach anatomy
+Estómago: partes y capas	stomach anatomy
+Glándulas gástricas y secreciones	gastric acid secretion
+Irrigación del estómago	stomach blood supply
+Intestino delgado	small intestine
+Duodeno	duodenum
+Yeyuno, íleon y vellosidades	small intestine
+Intestino grueso, recto y ano	large intestine
+Ciego y colon	colon anatomy
+Recto y canal anal	anal canal
+Irrigación del colon	colon blood supply
+Hígado y vía biliar	liver anatomy
+Hígado: lóbulos, segmentos e irrigación	liver anatomy
+Vesícula biliar	gallbladder
+Vía biliar, colédoco y ampolla de Vater	biliary tract anatomy
+Páncreas	pancreas
+Páncreas: partes y función	pancreas anatomy
+Irrigación del páncreas	pancreas blood supply
+Irrigación digestiva integrada	celiac trunk
+Tronco celíaco	celiac trunk
+Arteria mesentérica superior	superior mesenteric artery
+Arteria mesentérica inferior	inferior mesenteric artery
+Anastomosis y sistema porta	portal vein portosystemic anastomoses
+Riñón, suprarrenales y vía urinaria	kidney anatomy
+Riñón: forma, relaciones y estructura	kidney anatomy
+Riñón, suprarrenales y vía urinaria › Glándulas suprarrenales	adrenal gland
+Irrigación renal y uréteres	ureter
+Vejiga y uretra	urinary bladder
+Región inguinal y aparato reproductor masculino	inguinal canal
+Pliegues umbilicales y hernias inguinales	inguinal hernia
+Conducto inguinal y cordón espermático	inguinal canal spermatic cord
+Escroto, testículo y epidídimo	testis anatomy
+Vías espermáticas, próstata y glándulas	prostate
+Uretra masculina y pene	penis anatomy
+Aparato reproductor femenino	female reproductive system
+Pelvis femenina y vulva	female pelvis
+Ovarios y tubas uterinas	ovary fallopian tube
+Útero y vagina	uterus
+Mama	breast anatomy
+Mama: forma, capas y glándula	breast anatomy
+Mama: irrigación, nervios y lactancia	breast anatomy lactation
+Mama: cuadrantes, exploración y patología	breast examination
+#
+# ===== 4º semestre · Cirugía (principios) =====
+Hemostasia, hemorragia y transfusión	blood transfusion
+Antiagregantes	antiplatelet drugs perioperative management
+Concentrado eritrocitario (CE)	packed red blood cells transfusion
+Concentrado plaquetario	platelet transfusion
+Plasma fresco congelado (PFC)	fresh frozen plasma
+Fases de la hemostasia	hemostasis
+Choque hemorrágico (ATLS)	hemorrhagic shock
+Compatibilidad ABO	ABO blood group
+Reacciones transfusionales	transfusion reactions
+Crioprecipitado	cryoprecipitate
+Hemostasia quirúrgica	surgical hemostasis
+Historia de la cirugía	history of surgery
+Orígenes	history of surgery
+Civilizaciones antiguas	history of surgery
+Galeno (129–216 d.C.)	history of surgery
+Edad Media y tratados	history of surgery
+Ambroise Paré — padre de la cirugía moderna	history of surgery
+Renacimiento	history of surgery
+Anestesia y cirugía moderna	history of anesthesia
+Personajes que suelen preguntar	history of surgery
+Respuesta metabólica al trauma	metabolic response to trauma
+Ante una lesión ocurre	metabolic response to trauma
+Mediadores	metabolic response to trauma cytokines
+Metabolismo (lo más importante)	metabolic response to trauma
+Respuesta neuroendocrina	stress response cortisol catecholamines
+Cambios metabólicos	metabolic response to trauma
+Fases en detalle	metabolic response to trauma ebb flow phase
+Citocinas clave	cytokines
+Asepsia y antisepsia	asepsis antisepsis
+Asepsia y antisepsia › Conceptos	asepsis antisepsis
+Personajes	history of antisepsis
+Antisépticos	antiseptics
+Zonas del quirófano	operating room
+Los 5 momentos del lavado de manos (OMS)	hand hygiene
+Lavado quirúrgico	surgical hand antisepsis
+Métodos de esterilización	sterilization
+Clasificación de Spaulding	Spaulding classification
+Instrumental quirúrgico	surgical instruments
+Instrumental quirúrgico › Generalidades	surgical instruments
+Corte / incisión	scalpel
+Tijeras	surgical instruments
+Instrumental quirúrgico › Hemostasia	surgical instruments hemostats
+Exposición, tracción y aspiración	surgical retractors
+Disección	surgical instruments forceps
+Síntesis	sutures
+Hueso	orthopedic surgical instruments
+Separadores	surgical retractors
+Hojas de bisturí	scalpel blades
+Electrocirugía	electrosurgery
+Suturas	sutures
+Retiro de puntos	suture removal
+Vestido quirúrgico	surgical gowning and gloving
+Vestido quirúrgico › Historia	surgical attire
+Elementos esenciales	surgical attire
+Secuencia	surgical gowning and gloving
+Colocación de la bata (técnica autónoma)	surgical gowning and gloving
+Técnica asistida	surgical gowning and gloving
+Reglas de oro	sterile technique
+Calzado de guantes	surgical gloving
+Zonas estériles de la bata	sterile field
+Roles del equipo	surgical team roles
+Intervención quirúrgica y valoración preoperatoria	preoperative evaluation
+Fase diagnóstica	preoperative evaluation
+Laboratorio preoperatorio	preoperative testing
+Diagnóstico integral	preoperative evaluation
+Indicación quirúrgica	preoperative evaluation
+Clasificación ASA (solo la asigna el anestesiólogo)	ASA physical status classification
+Índice de Goldman (riesgo cardiaco)	cardiac risk assessment noncardiac surgery
+Riesgo tromboembólico	Caprini score venous thromboembolism prophylaxis
+Factores no cardiacos de riesgo	preoperative evaluation pulmonary risk
+Fase de preparación	preoperative preparation
+Lista de verificación de la OMS (cirugía segura)	WHO surgical safety checklist
+Clasificación de la cirugía	surgical wound classification
+ASA: complementos	ASA physical status classification
+Índice de Lee (riesgo cardiaco revisado)	revised cardiac risk index
+Otras escalas preoperatorias	preoperative risk assessment
+Preparación preoperatoria	preoperative preparation
+Preparación general	preoperative fasting
+Preparaciones especiales	bowel preparation
+Antibiótico profiláctico	surgical antibiotic prophylaxis
+Corregir antes de operar	preoperative evaluation
+Traslado	patient transport
+Manejo de medicamentos	perioperative medication management
+Preparación de piel	surgical skin preparation
+Tromboprofilaxis	venous thromboembolism prophylaxis
+Protocolo ERAS (recuperación acelerada)	enhanced recovery after surgery
+Transoperatorio	intraoperative care
+Identificación	surgical safety checklist
+Monitoreo (anestesiología y enfermería)	intraoperative monitoring
+Eventos de seguridad (ejemplo: lado equivocado)	wrong-site surgery
+Posiciones quirúrgicas	surgical positioning
+Acto quirúrgico	intraoperative care
+Tipos de anestesia	anesthesia
+Posiciones: para qué sirve cada una	surgical positioning
+Complicaciones transoperatorias	intraoperative complications malignant hyperthermia
+Postoperatorio	postoperative care
+Cuidados de enfermería	postoperative care
+Postoperatorio › Complicaciones	postoperative complications
+Escala de Aldrete	Aldrete score
+Fiebre postoperatoria: las 5 W	postoperative fever
+Dehiscencia y evisceración	wound dehiscence
+Íleo postoperatorio (recuperación normal)	postoperative ileus
+Dolor	postoperative pain management
+Infección del sitio quirúrgico	surgical site infection
+Agentes más frecuentes	surgical site infection
+Clasificación por profundidad	surgical site infection
+Infección del sitio quirúrgico › Factores de riesgo	surgical site infection risk factors
+Clasificación de la herida (carga bacteriana)	surgical wound classification
+Profilaxis	surgical antibiotic prophylaxis
+Tasa de infección por tipo de herida (aprox.)	surgical wound classification
+Criterios diagnósticos (CDC)	surgical site infection
+Infección del sitio quirúrgico › Tratamiento	surgical site infection treatment
+Prevención: medidas con evidencia	surgical site infection prevention
+Drenajes quirúrgicos	surgical drains
+Drenajes quirúrgicos › Tipos	surgical drains
+Cuidados	surgical drains
+Clasificaciones	surgical drains
+Colocación	surgical drains
+Características del líquido	surgical drains
+Sonda pleural	chest tube
+Sonda en T de Kehr	T-tube biliary
+Nutrición parenteral total	parenteral nutrition
+Cálculo (ejemplo 70 kg)	parenteral nutrition
+Calculadora	parenteral nutrition
+Indicaciones específicas	parenteral nutrition indications
+Vías de acceso	central venous catheter
+Balance nitrogenado	nitrogen balance
+Requerimientos diarios adicionales	parenteral nutrition
+Monitoreo	refeeding syndrome
+#
+# ===== 4º semestre · Inmunología =====
+Generalidades › Las tres capas	innate immune system
+Las tres capas	innate immune system
+Inmunoglobulinas (GAMDE)	immunoglobulins
+Sistema inmune innato	innate immune system
+Receptores PRR según localización	pattern recognition receptors
+Las 3 "T" de la activación inflamatoria	inflammation
+SIRS → muerte	systemic inflammatory response syndrome
+Fagocitosis, ETosis y complemento	complement system
+ETosis / NETosis	neutrophil extracellular traps
+Fagocitos	phagocytosis
+Pasos de la fagocitosis	phagocytosis
+Complemento	complement system
+Activación de linfocitos T y B	T cell activation
+Linfocito B y cambio de clase	class switching B cells
+Respuesta inmune contra microorganismos	immune response to infection
+Sarampión	measles
+Errores innatos de la inmunidad en el adulto	primary immunodeficiency
+Errores innatos de la inmunidad en el adulto › Abordaje	primary immunodeficiency diagnosis
+Complejo principal de histocompatibilidad	major histocompatibility complex
+Inmunodeficiencias primarias (errores innatos)	primary immunodeficiency
+Autoinmunidad	autoimmunity
+Hipersensibilidad tipo I (inmediata)	type I hypersensitivity
+Hipersensibilidad tipos II, III y IV	hypersensitivity reactions
+#
+# ===== 4º semestre · Nutrición =====
+Nutrición y metabolismo e historia de la alimentación	nutrition
+Nutrición y metabolismo e historia de la alimentación › Conceptos	nutrition
+Nutrición y metabolismo e historia de la alimentación › Historia	nutrition
+Lactancia, calostro y alimentación complementaria	breastfeeding
+Lactogénesis y hormonas	lactation physiology prolactin oxytocin
+Calostro vs. leche madura	breast milk composition colostrum
+La madre que lacta	breastfeeding
+Alimentación complementaria (NOM-043)	complementary feeding infant
+Requerimientos por etapa de la vida y cálculo energético	energy requirements
+Niñez y adolescencia	pediatric nutrition
+Gasto energético en el adulto	energy expenditure Harris-Benedict
+Distribución de macros en el adulto	macronutrients
+Fórmulas y factores	energy expenditure
+Alimentación en el embarazo	nutrition in pregnancy
+Periodos	nutrition in pregnancy
+Cambios fisiológicos	physiologic changes in pregnancy
+Requerimientos	nutrition in pregnancy
+Adulto mayor, alimentos y macronutrimentos	macronutrients
+Adulto mayor	malnutrition in older adults
+Alimentos	macronutrients
+Hidratos de carbono	carbohydrates
+Proteínas	protein requirements
+Lípidos	dietary fats
+Micronutrimentos	micronutrients
+Vitaminas (micronutrimentos orgánicos)	vitamins
+Minerales (micronutrimentos inorgánicos)	trace elements minerals
+Deficiencias, nutracéuticos, grupos de alimentos y SMAE	vitamin deficiencies
+Signos de deficiencia	vitamin deficiencies
+Nutracéuticos	dietary supplements
+A partir de aquí entra al examen	nutrition
+Subgrupos del SMAE	food groups nutrition
+Tiempos de comida y dieta correcta	healthy diet
+Distribución ideal de calorías	healthy diet
+Características del menú	healthy diet
+Compartimentos corporales e hidratación	body fluid compartments
+Composición corporal	body composition
+Agua corporal	total body water
+Seed cycling	dietary supplements
+PAN, interacción fármaco-nutrimento y evaluación dietética	nutritional assessment
+Proceso de Atención Nutricional	nutritional assessment
+SOAP	nutritional assessment
+Fármacos y evaluación dietética	drug nutrient interactions
+Enfermedades relacionadas con la alimentación	medical nutrition therapy
+Enfermedad renal crónica	chronic kidney disease diet
+Hígado	cirrhosis nutrition
+Obesidad	obesity
+Hipertensión arterial	DASH diet hypertension
+Intestino	inflammatory bowel disease nutrition
+Dislipidemia y diabetes	medical nutrition therapy diabetes
+Dietas hospitalarias progresivas	hospital diet
+Progresión por consistencia	hospital diet
+Nutrición enteral	enteral nutrition
+Nutrición enteral › Indicaciones	enteral nutrition
+Administración	enteral nutrition feeding tube
+Nutrición deportiva	sports nutrition
+Energía	sports nutrition
+Proteína, lípidos e hidratación	sports nutrition hydration
+#
+# ===== 4º semestre · Simulación IV =====
+Protocolos para verbalizar en la simulación	ACLS
+Signos de inestabilidad	unstable tachycardia bradycardia
+Técnica 20-20	ACLS
+Fármacos en paro	ACLS drugs epinephrine amiodarone
+Algoritmo de paro: dos ramas	cardiac arrest algorithm
+Causas reversibles: 5 H	reversible causes of cardiac arrest Hs and Ts
+Causas reversibles: 5 T	reversible causes of cardiac arrest Hs and Ts
+Bradicardia (<50 sintomática)	bradycardia
+Taquicardia con pulso (>150)	tachycardia with a pulse
+Energía de cardioversión sincronizada	synchronized cardioversion
+Cuidados post-ROSC	post-cardiac arrest care
+EVC agudo	acute ischemic stroke
+Revisión primaria: xABCDE	primary survey trauma
+Clasificación del choque hemorrágico	hemorrhagic shock classification
+Tórax que mata	chest trauma tension pneumothorax
+Escala de Glasgow	Glasgow coma scale
+Revisión secundaria	secondary survey
+Perlas rápidas	ATLS
+Monitor de ritmos	ECG rhythms
+Antes de nombrar el ritmo	ECG interpretation
+Galería de ritmos	ECG rhythms
+Ojos de mapache y rinorraquia. ¿Qué sonda gástrica usas?	basilar skull fracture
+Llegas primero. ¿Qué haces?	primary survey trauma
+#
+# ===== 4º semestre · Farmacología II =====
+Antibióticos	antibiotics
+Clasificación de antimicrobianos	antibiotics classification
+Bacteriostático vs bactericida	bacteriostatic bactericidal antibiotics
+Espectro	antibiotics spectrum
+Resistencia	antibiotic resistance
+Mecanismos (4 grandes grupos)	antibiotics mechanism of action
+Sulfonamidas	sulfonamides
+Trimetoprim	trimethoprim
+Trimetoprim-sulfametoxazol (cotrimoxazol)	trimethoprim-sulfamethoxazole
+Penicilina G y V	penicillin G
+Penicilinas antiestafilocócicas	penicillinase-resistant penicillins
+Ampicilina	ampicillin
+Amoxicilina	amoxicillin
+Inhibidores de β-lactamasas	beta-lactamase inhibitors
+Piperacilina (antipseudomonas)	piperacillin-tazobactam
+Cefalosporinas (generalidades)	cephalosporins
+5ª generación	ceftaroline
+4ª generación (cefepima)	cefepime
+Carbapenems (imipenem, meropenem, ertapenem)	carbapenems
+Aztreonam (monobactámico)	aztreonam
+Vancomicina	vancomycin
+Bacitracina	bacitracin
+Eritromicina	erythromycin
+Claritromicina / azitromicina	macrolides azithromycin
+Cloranfenicol	chloramphenicol
+Clindamicina	clindamycin
+Aminoglucósidos (generalidades)	aminoglycosides
+Amikacina	amikacin
+Estreptomicina	streptomycin
+Neomicina y kanamicina	neomycin
+Gentamicina, tobramicina, netilmicina	gentamicin
+Tetraciclinas (generalidades)	tetracyclines
+Tetraciclina	tetracycline
+Doxiciclina	doxycycline
+Quinolonas 1ª generación	quinolones nalidixic acid
+Fluoroquinolonas (generalidades)	fluoroquinolones
+Ciprofloxacino (2ª gen.)	ciprofloxacin
+Levofloxacino (3ª gen.)	levofloxacin
+Moxifloxacino (4ª gen.)	moxifloxacin
+Nitrofurantoína / nitrofurazona	nitrofurantoin
+Buenas prácticas de prescripción	prescribing
+Relación terapéutica	patient-physician relationship
+Inventario de tratamientos	prescribing
+Selección de la farmacoterapia	prescribing
+Conveniencia y costo: revisar	prescribing
+La receta lleva	prescription writing
+Supervisar (¿y detener?)	deprescribing
+Dificultades	medication adherence
+Resolución	prescribing
+Opciones	prescribing
+Antimicobacterianos	antituberculosis drugs
+Primera línea: I R P E	antituberculosis drugs
+Esquema (6 meses)	tuberculosis treatment
+Zonas con resistencia	multidrug-resistant tuberculosis
+Segunda línea	multidrug-resistant tuberculosis
+Isoniacida (INH)	isoniazid
+Rifampicina	rifampin
+Pirazinamida	pyrazinamide
+Etambutol	ethambutol
+Fluoroquinolonas en TB	multidrug-resistant tuberculosis fluoroquinolones
+Etionamida	ethionamide
+Cicloserina	cycloserine
+Antimicóticos	antifungals
+Micosis sistémicas	systemic antifungals
+Mucocutáneas	antifungals
+Tópicos	topical antifungals
+Dónde actúa cada uno	antifungals mechanism of action
+Anfotericina B	amphotericin B
+Flucitosina	flucytosine
+Equinocandinas (caspofungina)	echinocandins
+Azoles (generalidades)	azoles
+Fluconazol	fluconazole
+Itraconazol	itraconazole
+Terbinafina	terbinafine
+Griseofulvina	griseofulvin
+Nistatina	nystatin
+Miconazol / clotrimazol	clotrimazole
+Antivirales	antiviral drugs
+Bloques	antiviral drugs
+Influenza: quién cubre qué	influenza antivirals
+VIH: familias	antiretroviral therapy
+Amantadina / rimantadina	amantadine
+Oseltamivir	oseltamivir
+Zanamivir	zanamivir
+Peramivir	peramivir
+Baloxavir marboxil	baloxavir
+Aciclovir	acyclovir
+Valaciclovir / famciclovir	valacyclovir
+Foscarnet	foscarnet
+Ganciclovir / valganciclovir	ganciclovir
+Zidovudina (AZT)	zidovudine
+ITINN (efavirenz, nevirapina…)	non-nucleoside reverse transcriptase inhibitors
+Inhibidores de integrasa	integrase inhibitors
+Saquinavir	protease inhibitors
+Ritonavir	ritonavir
+Enfuvirtida	enfuvirtide
+Interferones	interferon
+Antivirales para hepatitis B	hepatitis B treatment
+Antivirales para hepatitis C	hepatitis C treatment direct-acting antivirals
+Remdesivir	remdesivir
+Paxlovid (nirmatrelvir/ritonavir)	nirmatrelvir ritonavir
+Molnupiravir	molnupiravir
+Anticuerpos monoclonales	COVID-19 monoclonal antibodies
+Antiparasitarios	antiparasitic drugs
+Amebiasis (E. histolytica): elección según cuadro	amebiasis treatment
+Paludismo (Anopheles)	malaria treatment
+Helmintos	anthelmintic drugs
+Metronidazol / tinidazol	metronidazole
+Diloxanida (furoato)	amebiasis luminal agents
+Yodoquinol	iodoquinol
+Paromomicina	paromomycin
+Emetina y dehidroemetina	amebiasis treatment
+Cloroquina	chloroquine
+Quinina y quinidina	quinine
+Primaquina	primaquine
+Artemisinina y derivados	artemisinin
+Mebendazol	mebendazole
+Pamoato de pirantel	pyrantel pamoate
+Ivermectina	ivermectin
+Prazicuantel	praziquantel
+Niclosamida	niclosamide
+Albendazol	albendazole
+Fármacos antiparkinsonianos	Parkinson disease treatment
+Fármacos antiparkinsonianos › Clínica	Parkinson disease clinical features
+Epidemiología y causas secundarias	secondary parkinsonism
+Estrategia farmacológica	Parkinson disease treatment
+Tratamiento quirúrgico	deep brain stimulation Parkinson disease
+Levodopa (L-dopa)	levodopa
+Agonistas dopaminérgicos	dopamine agonists
+Apomorfina	apomorphine
+Inhibidores de MAO-B	MAO-B inhibitors
+Inhibidores de COMT	COMT inhibitors
+Amantadina	amantadine
+Disminuyen la acetilcolina › Antimuscarínicos	Parkinson disease anticholinergics
+Antimuscarínicos	antimuscarinic drugs
+Insulina e hipoglucemiantes orales	antidiabetic drugs
+Secreción de insulina	insulin secretion
+Hipoglucemiantes: 6 familias	antidiabetic drugs
+Dónde actúa cada familia	antidiabetic drugs
+Objetivos de HbA1c (GPC)	HbA1c targets diabetes
+Insulina regular	regular insulin
+Insulinas ultracortas	rapid-acting insulin
+Insulina NPH (intermedia)	NPH insulin
+Insulinas prolongadas	long-acting insulin
+Insulina inhalada	inhaled insulin
+Sulfonilureas	sulfonylureas
+Glinidas (repaglinida)	meglitinides
+Metformina	metformin
+Pioglitazona	thiazolidinediones
+Acarbosa y miglitol	alpha-glucosidase inhibitors
+Gliptinas (iDPP-4)	DPP-4 inhibitors
+Análogos de GLP-1	GLP-1 receptor agonists
+Inhibidores de SGLT2	SGLT2 inhibitors
+Fármacos tiroideos y antitiroideos	antithyroid drugs
+Causas de hipertiroidismo	hyperthyroidism
+Tratar el hipertiroidismo	hyperthyroidism treatment
+Hipotiroidismo	hypothyroidism
+Factores de riesgo de hipotiroidismo	hypothyroidism
+Yodo-131	radioactive iodine therapy
+Propiltiouracilo (PTU)	propylthiouracil
+Metimazol / carbimazol	methimazole
+β-bloqueadores y calcioantagonistas	hyperthyroidism beta blockers
+Levotiroxina sódica (T4)	levothyroxine
+Liotironina sódica (T3)	liothyronine
+Liotrix y tiroides desecada	thyroid hormone replacement
+Ansiolíticos e hipnóticos	anxiolytics hypnotics
+Trastornos de ansiedad	anxiety disorders
+¿Qué se usa en cada caso?	anxiolytics
+Efecto según la dosis	sedative hypnotics
+BZD según su uso	benzodiazepines
+Benzodiacepinas	benzodiazepines
+Midazolam	midazolam
+Flumazenil	flumazenil
+Hipnóticos Z	nonbenzodiazepine hypnotics zolpidem
+Barbitúricos (generalidades)	barbiturates
+Fenobarbital	phenobarbital
+Tiopental	thiopental
+Buspirona	buspirone
+#
+# ===== 4º semestre · Hematología =====
+Hematopoyesis y célula madre	hematopoiesis
+Sitios a lo largo del desarrollo	hematopoiesis
+Hemoglobinas según la edad	fetal hemoglobin
+Célula madre hematopoyética	hematopoietic stem cells
+Microambiente (nicho) y señales	hematopoiesis
+Compatibilidad HLA	HLA matching transplant
+Linaje mieloide: granulocitos, eritroide, monocitos y megacariocitos	myeloid cells
+Granulopoyesis	granulopoiesis
+Neutrófilo en acción	neutrophils
+Eosinófilos, basófilos y mastocitos	eosinophils mast cells
+Eritropoyesis	erythropoiesis
+Metabolismo del eritrocito	erythrocyte metabolism
+Monocito‑macrófago	monocytes macrophages
+Megacariocitos y plaquetas	platelets
+Linaje linfoide e inmunoglobulinas	lymphocytes
+NK	natural killer cells
+Maduración B: fase independiente de antígeno (médula)	B cell development
+Fase dependiente de antígeno (ganglio, centro germinal)	germinal center
+Linaje linfoide e inmunoglobulinas › Complemento	complement system
+Linfocito T (timo)	T cell development thymus
+HLA y subpoblaciones	major histocompatibility complex
+Citometría hemática (biometría)	complete blood count
+Serie roja	red blood cell indices
+Los tres “apellidos” de la anemia	anemia classification
+Serie blanca	white blood cell count
+Neutropenia (cuenta absoluta = leucocitos × (% neutrófilos + % bandas))	neutropenia
+Serie plaquetaria	thrombocytopenia
+Volumen plaquetario medio (VPM 7‑11 fL)	mean platelet volume
+Metabolismo del hierro y anemia ferropénica	iron deficiency anemia
+Balance	iron metabolism
+Absorción (duodeno)	iron absorption
+Metabolismo del hierro y anemia ferropénica › Laboratorio	iron studies
+Cobalamina (B12), ácido fólico y anemia megaloblástica	megaloblastic anemia
+Viaje de la B12	vitamin B12 absorption
+Causas de déficit	vitamin B12 deficiency
+Bioquímica	vitamin B12 folate metabolism
+Clínica y laboratorio	vitamin B12 deficiency
+Anemia de enfermedad crónica (inflamatoria)	anemia of chronic disease
+Mecanismos	anemia of chronic disease hepcidin
+Ferropenia vs. inflamación	anemia of chronic disease iron deficiency
+Anemias hemolíticas: generalidades	hemolytic anemia
+Dos escenarios	intravascular extravascular hemolysis
+Pruebas de hemólisis	hemolysis laboratory
+Hemólisis intracorpuscular	hemolytic anemia
+Membranopatías	hereditary spherocytosis
+Enzimopatías	G6PD deficiency
+Hemoglobinopatías estructurales: drepanocitosis	sickle cell disease
+Talasemias (defecto de cantidad)	thalassemia
+Anemias hemolíticas microangiopáticas	microangiopathic hemolytic anemia
+Púrpura trombocitopénica trombótica (PTT)	thrombotic thrombocytopenic purpura
+Síndrome urémico hemolítico (SUH)	hemolytic uremic syndrome
+HELLP	HELLP syndrome
+Coagulación intravascular diseminada (CID)	disseminated intravascular coagulation
+Anemia hemolítica autoinmune	autoimmune hemolytic anemia
+Prueba de Coombs (antiglobulina)	Coombs test
+Puntos del caso de clase	autoimmune hemolytic anemia
+Anemia aplásica y HPN	aplastic anemia
+Formas hereditarias	Fanconi anemia
+Adquirida	aplastic anemia
+Gravedad (criterios de Camitta)	aplastic anemia severity
+Hemoglobinuria paroxística nocturna (HPN)	paroxysmal nocturnal hemoglobinuria
+Leucemias agudas y LLA	acute lymphoblastic leukemia
+LLA	acute lymphoblastic leukemia
+Factores pronósticos	acute lymphoblastic leukemia prognosis
+Tratamiento (~2‑3 años en total)	acute lymphoblastic leukemia treatment
+Recaída y nuevas terapias	CAR T-cell therapy
+Leucemia mieloide aguda	acute myeloid leukemia
+FAB y genética	acute myeloid leukemia classification
+LMA promielocítica (M3, LPA)	acute promyelocytic leukemia
+Leucemia linfocítica crónica y tricoleucemia	chronic lymphocytic leukemia
+Inmunofenotipo (sangre periférica)	chronic lymphocytic leukemia
+Estadificación	chronic lymphocytic leukemia staging
+Pronóstico genético	chronic lymphocytic leukemia prognosis
+¿Cuándo tratar?	chronic lymphocytic leukemia treatment
+Tratamiento actual	chronic lymphocytic leukemia treatment
+Transformaciones	Richter transformation
+Tricoleucemia (leucemia de células peludas)	hairy cell leukemia
+Leucemia mieloide crónica	chronic myeloid leukemia
+Fases	chronic myeloid leukemia
+Metas de respuesta (ELN, BCR‑ABL1 en escala internacional)	chronic myeloid leukemia treatment
+Linfoma de Hodgkin	Hodgkin lymphoma
+Subtipos (OMS)	Hodgkin lymphoma
+Ann Arbor (modificación de Lugano)	Ann Arbor staging
+Linfomas no Hodgkin	non-Hodgkin lymphoma
+Comportamiento	non-Hodgkin lymphoma
+Linfomas B	B-cell lymphoma
+Linfomas T/NK	T-cell lymphoma
+Urgencias oncohematológicas	tumor lysis syndrome
+IPI (Índice Pronóstico Internacional), 1 punto cada uno	international prognostic index
+Mieloma múltiple	multiple myeloma
+Fisiopatología → CRAB	multiple myeloma
+Diagnóstico (IMWG)	multiple myeloma diagnosis
+Estadificación ISS / R‑ISS	multiple myeloma staging
+Neoplasias mieloproliferativas (Ph negativas)	myeloproliferative neoplasms
+Policitemia vera	polycythemia vera
+Trombocitemia esencial	essential thrombocythemia
+Mielofibrosis primaria	primary myelofibrosis
+Neoplasias mieloproliferativas (Ph negativas) › Otras	myeloproliferative neoplasms
+Síndromes mielodisplásicos	myelodysplastic syndrome
+Fisiopatología según riesgo	myelodysplastic syndrome
+Clasificación OMS 2022 (lo esencial)	myelodysplastic syndrome classification
+Leucemia mielomonocítica crónica (SMD/NMP)	chronic myelomonocytic leukemia
+Trasplante de células progenitoras hematopoyéticas	hematopoietic stem cell transplantation
+Trasplante de células progenitoras hematopoyéticas › Tipos	hematopoietic stem cell transplantation
+Etapas	hematopoietic stem cell transplantation
+Injerto	engraftment
+Enfermedad injerto contra huésped (EICH)	graft-versus-host disease
+Hemostasia y coagulación	coagulation cascade
+Hemostasia primaria	primary hemostasis
+Cascada (modelo clásico para interpretar pruebas)	coagulation cascade
+Anticoagulantes naturales y fibrinólisis	fibrinolysis
+Pruebas	coagulation tests
+Trastornos que debes dominar (complemento)	bleeding disorders
+Trombofilias	thrombophilia
+#
+# ===== 5º semestre · Cirugía =====
+Enfermedad hemorroidal	hemorrhoids
+Clasificación (hemorroides internas)	hemorrhoids classification
+Fisura anal	anal fissure
+Anatomía y fisiología	anal canal anatomy
+Tratamiento médico	anal fissure treatment
+Tratamiento quirúrgico y prevención	lateral internal sphincterotomy
+Fístula anal	anal fistula
+Clasificación de Parks	anal fistula Parks classification
+Simples vs complejas (AGA)	anal fistula
+Cuadro clínico: evoluciones tras drenar un absceso	anorectal abscess
+Técnicas quirúrgicas	anal fistula surgery
+Manejo postquirúrgico	anal fistula
+Quiste pilonidal	pilonidal disease
+Origen e historia	pilonidal disease
+Fisiopatología moderna	pilonidal disease
+Factores de riesgo y epidemiología	pilonidal disease
+Presentación clínica y diagnóstico	pilonidal disease
+Absceso y evolución del tratamiento	pilonidal abscess
+Técnicas tradicionales	pilonidal disease treatment
+Colgajos	pilonidal disease flap
+EPSiT	pilonidal disease
+Conclusión	pilonidal disease
+Sangrado de tubo digestivo alto y bajo	gastrointestinal bleeding
+Definición y clasificación	gastrointestinal bleeding
+STDA: epidemiología	upper gastrointestinal bleeding
+STDA: etiología	upper gastrointestinal bleeding
+Sangrado de tubo digestivo alto y bajo › Úlcera péptica	peptic ulcer bleeding
+Mallory-Weiss y várices esofágicas	Mallory-Weiss syndrome
+Manifestaciones sistémicas y gravedad	upper gastrointestinal bleeding
+Abordaje inicial del STDA	upper gastrointestinal bleeding management
+Tratamiento médico, balones y cirugía	esophageal varices balloon tamponade
+Factores predictores de muerte y resangrado (STDA)	Glasgow-Blatchford score Rockall score
+STDB: epidemiología y causas	lower gastrointestinal bleeding
+STDB: presentación y diagnóstico	lower gastrointestinal bleeding
+STDB: tratamiento y mal pronóstico	lower gastrointestinal bleeding
+Cáncer de testículo	testicular cancer
+Embriología y anatomía	testis anatomy
+Patología	testicular germ cell tumors
+Marcadores tumorales	testicular cancer tumor markers
+Diagnóstico por imagen	testicular cancer diagnosis
+Estadificación TNM (AJCC 8.ª)	testicular cancer staging
+Pronóstico (IGCCCG) y seguimiento	testicular cancer prognosis
+Cáncer de pene	penile cancer
+Lesiones premalignas	penile cancer premalignant lesions
+Lesiones relacionadas a virus	HPV penile lesions
+Carcinoma in situ	erythroplasia of Queyrat
+Epidemiología, factores de riesgo y prevención	penile cancer
+Presentación e historia natural	penile cancer
+Estadificación TNM, grado y riesgo	penile cancer staging
+Manejo del tumor primario	penile cancer treatment
+Linfadenectomía y seguimiento	penile cancer lymphadenectomy
+Tumores malignos no escamosos	penile cancer
+Tratamiento por tipo y etapa (resumen)	penile cancer treatment
+#
+# ===== 5º semestre · Esófago, estómago, hígado (y Gastro) =====
+ERGE y trastornos motores del esófago	gastroesophageal reflux disease
+Anatomía y fisiología de la UEG	lower esophageal sphincter
+Clasificación de los trastornos motores	esophageal motility disorders Chicago classification
+Síntomas y patogenia de los trastornos motores	esophageal motility disorders
+Tratamiento de los trastornos motores	esophageal motility disorders
+Fisiopatología de la ERGE	gastroesophageal reflux disease pathophysiology
+Diagnóstico de la ERGE	gastroesophageal reflux disease diagnosis
+ERGE resistente a IBP y cirugía	refractory GERD fundoplication
+Acalasia	achalasia
+Subtipos por manometría (Chicago 4.0)	achalasia Chicago classification
+Pseudoacalasia y otros imitadores	pseudoachalasia
+Calidad de vida y pronóstico	achalasia prognosis
+Esófago de Barrett	Barrett esophagus
+Diagnóstico endoscópico e histológico	Barrett esophagus diagnosis
+Pruebas no endoscópicas de triaje	Barrett esophagus screening
+Vigilancia y pronóstico	Barrett esophagus surveillance
+Enfermedad ácido-péptica (úlcera péptica)	peptic ulcer disease
+Tratamiento de la úlcera no complicada	peptic ulcer disease treatment
+Sangrado por úlcera	peptic ulcer bleeding
+Obstrucción, perforación y antitrombóticos	peptic ulcer perforation
+Profilaxis y seguridad de los IBP	proton pump inhibitors adverse effects
+Dispepsia funcional	functional dyspepsia
+Refractarios y controversias	functional dyspepsia treatment
+Gastroparesia	gastroparesis
+Fisiología y fisiopatología	gastroparesis pathophysiology
+Epidemiología y cuadro clínico	gastroparesis clinical features
+Tratamiento escalonado	gastroparesis treatment
+Gastroparesia refractaria	gastroparesis treatment
+Infección por Helicobacter pylori	Helicobacter pylori
+Epidemiología y transmisión	Helicobacter pylori
+Microbiología y patogenia	Helicobacter pylori pathogenesis
+Estrategias y prevención del cáncer	Helicobacter pylori gastric cancer
+Sangrado de tubo digestivo alto	upper gastrointestinal bleeding
+Reanimación inicial	upper gastrointestinal bleeding management
+Estratificación y momento de la endoscopía	Glasgow-Blatchford score
+Antitrombóticos	upper gastrointestinal bleeding anticoagulants
+Fármacos antes de la endoscopía	upper gastrointestinal bleeding proton pump inhibitor
+Después de la endoscopía y resangrado	upper gastrointestinal bleeding rebleeding
+Pruebas de función hepática alteradas	liver function tests
+Fisiología detrás de cada prueba	liver function tests
+Fisiopatología: los tres patrones de daño	liver injury patterns hepatocellular cholestatic
+Aminotransferasas: cuánto es normal y qué tanto subieron	elevated aminotransferases
+Fosfatasa alcalina, colestasis y factor R	elevated alkaline phosphatase cholestasis
+Pruebas de función: albúmina, TP e INR, bilirrubina	liver synthetic function
+Abordaje del paciente con PFH alteradas	abnormal liver function tests approach
+Causas extrahepáticas	elevated aminotransferases extrahepatic causes
+Pruebas no invasivas de fibrosis	liver fibrosis noninvasive assessment
+Las PFH en el pronóstico	MELD score Child-Pugh
+Inmunoglobulinas en la hepatopatía	liver disease immunoglobulins
+Lesión hepática inducida por fármacos (DILI)	drug-induced liver injury
+Hospitalizados, UCI, oncología y embarazo	liver disease in pregnancy
+Hepatitis virales de la A a la E	viral hepatitis
+Las cinco de un vistazo	viral hepatitis
+Fisiopatología: cómo dañan el hígado los virus	viral hepatitis pathophysiology
+Hepatitis A: epidemiología y patogenia	hepatitis A
+Hepatitis A: clínica, diagnóstico y prevención	hepatitis A
+Hepatitis B: epidemiología y patogenia	hepatitis B
+Hepatitis B: aguda y fases de la crónica	chronic hepatitis B
+Serología del VHB: cómo leerla	hepatitis B serology
+Hepatitis B: tratamiento, trasplante y vacunas	hepatitis B treatment
+Hepatitis C: epidemiología, genotipos y patogenia	hepatitis C
+Hepatitis C: clínica e historia natural	hepatitis C
+Hepatitis C: diagnóstico	hepatitis C diagnosis
+Hepatitis C: tratamiento, trasplante y tamizaje	hepatitis C treatment
+Hepatitis D (delta)	hepatitis D
+Hepatitis E	hepatitis E
+Hepatitis autoinmune	autoimmune hepatitis
+Cuadro clínico y poblaciones especiales	autoimmune hepatitis clinical features
+Diagnóstico: abordaje y autoanticuerpos	autoimmune hepatitis diagnosis
+Criterios simplificados del IAIHG	autoimmune hepatitis diagnosis
+Histología e imagen	autoimmune hepatitis histology
+Diagnóstico diferencial y síndromes variantes	autoimmune hepatitis overlap syndrome
+Tratamiento de inducción	autoimmune hepatitis treatment
+Mantenimiento, segunda línea y suspensión	autoimmune hepatitis treatment
+Pronóstico, trasplante y cáncer	autoimmune hepatitis prognosis
+Guías, terapias emergentes y viaje del paciente	autoimmune hepatitis
+Colangitis biliar primaria	primary biliary cholangitis
+Pruebas hepáticas en la CBP	primary biliary cholangitis diagnosis
+Estadificación y respuesta al tratamiento	primary biliary cholangitis treatment response
+Tratamiento modificador de la enfermedad	primary biliary cholangitis ursodeoxycholic acid
+Manejo de síntomas: prurito, sicca y fatiga	primary biliary cholangitis pruritus
+Sobreposición con hepatitis autoinmune	autoimmune hepatitis overlap syndrome
+Complicaciones, vigilancia y trasplante	primary biliary cholangitis complications
+Enfermedad hepática esteatósica asociada a disfunción metabólica (MASLD)	metabolic dysfunction-associated steatotic liver disease
+Nomenclatura y criterios diagnósticos	metabolic dysfunction-associated steatotic liver disease
+Epidemiología y carga global	metabolic dysfunction-associated steatotic liver disease
+Enfermedad multisistémica	metabolic dysfunction-associated steatotic liver disease
+Historia natural y fibrosis	metabolic dysfunction-associated steatohepatitis fibrosis
+Fisiopatología y genética	metabolic dysfunction-associated steatotic liver disease pathophysiology
+Cómo encontrar la MASH en riesgo: FIB-4, VCTE y ELF	FIB-4 score
+Estilo de vida y pérdida de peso	metabolic dysfunction-associated steatotic liver disease treatment
+Resmetirom	resmetirom
+Incretinas: GLP-1 y poliagonistas	GLP-1 receptor agonists
+Pioglitazona, lanifibranor, FGF21 e iSGLT2	metabolic dysfunction-associated steatohepatitis treatment
+Cirrosis, combinaciones y preguntas abiertas	metabolic dysfunction-associated steatohepatitis cirrhosis
+Cirrosis: prevenir la descompensación y la muerte	liver cirrhosis
+Historia natural y estadios	compensated cirrhosis decompensation
+Fisiopatología: de la lesión crónica a la cirrosis	liver cirrhosis pathophysiology
+Descompensación: definición y pronóstico	decompensated cirrhosis
+Fisiopatología de la hipertensión portal	portal hypertension pathophysiology
+GPVH: el estándar invasivo	hepatic venous pressure gradient
+Pruebas no invasivas y estratificación	clinically significant portal hypertension noninvasive
+Tratamiento etiológico y TESLA	liver cirrhosis treatment
+Precipitantes de descompensación	decompensated cirrhosis
+Betabloqueadores no selectivos (BBNS)	nonselective beta blockers portal hypertension
+Carvedilol: el BBNS preferido	carvedilol portal hypertension
+Estatinas, anticoagulantes y otras estrategias	liver cirrhosis
+Hipertensión portal y cirrosis descompensada: Baveno VIII	portal hypertension
+Conceptos, etapas y el papel del GPVH	hepatic venous pressure gradient
+Fisiopatología de la descompensación	decompensated cirrhosis
+Diagnóstico no invasivo: regla de 5, plaquetas y bazo	clinically significant portal hypertension noninvasive
+Modificadores: alcohol, MASLD y factores pronósticos	portal hypertension
+Prevenir la primera descompensación: betabloqueadores	nonselective beta blockers portal hypertension
+Descompensación adicional y su prevención	decompensated cirrhosis
+Hemorragia variceal aguda: las primeras 12 horas	esophageal variceal bleeding
+TIPS preventivo, rescate, várices gástricas y otras lesiones	transjugular intrahepatic portosystemic shunt
+Ascitis, hidrotórax y TIPS electivo	ascites
+Encefalopatía, SHR-LRA, PBE e infecciones	hepatic encephalopathy
+Recompensación de la cirrosis	decompensated cirrhosis
+Enfermedad vascular hepática y Budd-Chiari	Budd-Chiari syndrome
+Enfermedad vascular porto-sinusoidal (PSVD/NCPF)	porto-sinusoidal vascular disease
+Trombosis de la vena porta	portal vein thrombosis
+Litiasis biliar	cholelithiasis
+Definición, tipos y epidemiología	cholelithiasis
+Factores de riesgo y genética	cholelithiasis risk factors
+Fisiopatología: cálculos de colesterol	cholesterol gallstones
+Cálculos de pigmento	pigment gallstones
+Fisiopatología de las complicaciones: dónde se atora el lito	gallstone complications
+Cuadro clínico y diagnóstico en la vesícula	biliary colic acute cholecystitis
+Coledocolitiasis: diagnóstico y estratificación	choledocholithiasis
+Litiasis biliar › Prevención	cholelithiasis prevention
+Tratamiento de la litiasis vesicular	cholecystectomy
+Coledocolitiasis: tratamiento y complicaciones	choledocholithiasis ERCP
+Hepatolitiasis, embarazo y calidad de vida	hepatolithiasis
+Colangitis aguda: guías de Tokio 2018	acute cholangitis
+Definición e historia de las guías	acute cholangitis Tokyo guidelines
+Triada de Charcot y péntada de Reynolds	Charcot triad Reynolds pentad
+Criterios diagnósticos TG18/TG13	acute cholangitis diagnostic criteria Tokyo
+Imagen en la colangitis aguda	acute cholangitis imaging
+Gravedad TG18/TG13	acute cholangitis severity grading
+Gravedad, drenaje y mortalidad	acute cholangitis biliary drainage
+Abordaje inicial de la infección biliar aguda	acute cholangitis management
+Diagrama de flujo de manejo por grado	acute cholangitis management
+Drenaje, causa, CID y traslado	acute cholangitis biliary drainage
+Colangitis contra colecistitis (Tokio 2018)	acute cholecystitis
+Pancreatitis aguda	acute pancreatitis
+Etiologías	acute pancreatitis etiology
+Gravedad: Atlanta revisada y colecciones	revised Atlanta classification
+Poblaciones especiales	acute pancreatitis
+Manejo hospitalario	acute pancreatitis management
+Necrosis, infección y abordaje escalonado	necrotizing pancreatitis
+Secuelas: diabetes e insuficiencia exocrina	exocrine pancreatic insufficiency
+Prevención de recurrencias	recurrent acute pancreatitis
+Detección y referencia oportuna del cáncer gastrointestinal (AMG)	gastrointestinal cancer screening
+Epidemiología en México y método del consenso	gastrointestinal cancer
+Fisiopatología: cómo se forma el cáncer gastrointestinal	colorectal cancer pathogenesis adenoma-carcinoma sequence
+Esófago: datos de alarma (enunciado 1)	esophageal cancer
+Esófago: población de riesgo (enunciado 2)	esophageal cancer risk factors
+Esófago: endoscopia y referencia (enunciados 3–5)	esophageal cancer diagnosis
+Estómago: datos de alarma (enunciado 6)	gastric cancer alarm features
+Estómago: estratificación de riesgo (enunciado 7)	gastric cancer risk factors
+Estómago: endoscopia y referencia (enunciados 8–9)	gastric cancer diagnosis
+Colon: datos de alarma (enunciado 10)	colorectal cancer
+Colon: estratificación de riesgo (enunciado 11)	colorectal cancer risk factors
+Colon: colonoscopia, calidad y referencia (enunciados 12–13)	colorectal cancer screening colonoscopy
+La nota de referencia (Tabla 1) y el sistema de referencia	gastrointestinal cancer
+Diarrea aguda	acute diarrhea
+Definiciones y clasificación	acute diarrhea
+Historia clínica y exploración	acute diarrhea
+Cuándo y qué estudiar	acute diarrhea diagnosis
+Tratamiento: rehidratación, sintomáticos y antibióticos	acute diarrhea treatment oral rehydration
+Prevención y secuelas	postinfectious irritable bowel syndrome
+Diarrea crónica	chronic diarrhea
+Fisiopatología: cinco mecanismos	chronic diarrhea pathophysiology
+Claves de la historia clínica	chronic diarrhea
+Diarrea por fármacos y posquirúrgica	drug-induced diarrhea bile acid diarrhea
+Enteropatías vs colonopatías	chronic diarrhea
+Biomarcadores y pruebas: tabla de sensibilidad y especificidad	fecal calprotectin
+Endoscopia e histología	microscopic colitis
+Algoritmo diagnóstico propuesto	chronic diarrhea diagnosis
+Ciclosporiasis	cyclosporiasis
+El parásito y su transmisión	Cyclospora cayetanensis
+Ciclo de vida	Cyclospora cayetanensis
+Clínica y patogenia	cyclosporiasis
+Epidemiología y prevención	cyclosporiasis
+Enfermedad celiaca	celiac disease
+Epidemiología y genética	celiac disease HLA-DQ2
+Patogenia	celiac disease pathophysiology
+Manifestaciones clínicas	celiac disease clinical features
+Tratamiento y seguimiento	celiac disease treatment gluten-free diet
+Celiaquía no respondedora y refractaria	refractory celiac disease
+Caso del artículo	-
+Enfermedad de Crohn	Crohn disease
+Metas de tratamiento (STRIDE II) y estrategia	Crohn disease treatment
+Enfermedad de Crohn › Fármacos	Crohn disease treatment
+Cirugía, dieta y salud mental	Crohn disease surgery
+Colitis ulcerosa (CUCI)	ulcerative colitis
+Cuadro clínico y diagnóstico diferencial	ulcerative colitis clinical features
+Estudios diagnósticos e histología	ulcerative colitis diagnosis
+Tratamiento de la enfermedad leve a moderada	ulcerative colitis treatment mesalamine
+Tratamiento de la enfermedad moderada a grave	ulcerative colitis treatment biologics
+Colitis grave aguda	acute severe ulcerative colitis
+Cirugía y pouchitis	pouchitis
+Metas de tratamiento (STRIDE-II) y monitoreo	ulcerative colitis treatment
+Vacunas, tamizaje y vigilancia de cáncer	inflammatory bowel disease colorectal cancer surveillance
+SII y trastornos intestinales	irritable bowel syndrome
+Clasificación Roma V y epidemiología	irritable bowel syndrome Rome criteria
+Criterios diagnósticos de SII	irritable bowel syndrome Rome criteria
+Qué pruebas pedir (y cuáles no)	irritable bowel syndrome diagnosis
+Tratamiento por síntoma dominante	irritable bowel syndrome treatment
+Diarrea funcional, distensión, no clasificado y opioides	functional diarrhea opioid-induced constipation
+Estreñimiento crónico	chronic constipation
+Definición, epidemiología y subtipos	chronic constipation
+Asociaciones clínicas	chronic constipation
+Pruebas diagnósticas	chronic constipation diagnosis anorectal manometry
+Medidas conservadoras y conductuales	chronic constipation treatment
+Estreñimiento crónico › Fármacos	laxatives
+Estreñimiento crónico › Cirugía	chronic constipation surgery
+Hemorragia digestiva baja	lower gastrointestinal bleeding
+Definición, epidemiología y causas	lower gastrointestinal bleeding
+Evaluación inicial y estratificación de riesgo	lower gastrointestinal bleeding Oakland score
+Reanimación y descartar fuente alta	lower gastrointestinal bleeding management
+Anticoagulantes, antiplaquetarios y ácido tranexámico	lower gastrointestinal bleeding anticoagulants
+Diagnóstico: colonoscopia y angio-TC	lower gastrointestinal bleeding CT angiography colonoscopy
+Momento de la colonoscopia y preparación	lower gastrointestinal bleeding colonoscopy
+Resangrado, cirugía y reinicio de antitrombóticos	lower gastrointestinal bleeding
+#
+# ===== 5º semestre · Imagenología =====
+Física y modalidades	radiology imaging modalities
+Historia de la imagenología	radiology imaging modalities
+Rayos X: propiedades, producción e interacción	x-ray conventional radiography
+Tomografía computarizada y unidades Hounsfield	computed tomography Hounsfield units
+Efectos biológicos y protección radiológica	radiation exposure radiation protection
+Ecografía	ultrasound
+Doppler	Doppler ultrasound
+Resonancia magnética	magnetic resonance imaging
+Medios de contraste	contrast media contrast-induced nephropathy
+Neurorradiología	neuroimaging
+Proyecciones de cráneo	skull x-ray
+Evento vascular cerebral (EVC)	stroke imaging
+Hemorragia subaracnoidea	subarachnoid hemorrhage
+Edema cerebral	cerebral edema
+Aproximación sistemática a tumores cerebrales	brain tumors
+Tumores malignos: glioblastoma y metástasis	glioblastoma brain metastases
+Tumores benignos: adenoma, meningioma, craneofaringioma	meningioma pituitary adenoma craniopharyngioma
+Tórax	chest x-ray
+Telerradiografía de tórax: calidad y lectura	chest x-ray interpretation
+Patrones pulmonares	chest x-ray patterns
+Neumonía	pneumonia
+EPOC: bronquitis crónica y enfisema	COPD imaging emphysema
+Derrame pleural	pleural effusion
+Neumotórax	pneumothorax
+Atelectasias	atelectasis
+Neumomediastino y derrame pericárdico	pneumomediastinum pericardial effusion
+Abdomen e hígado	abdominal imaging
+Radiografía de abdomen	abdominal x-ray
+Íleo y obstrucción del intestino delgado	small bowel obstruction
+Obstrucción del intestino grueso	large bowel obstruction
+Apendicitis	appendicitis
+Vías biliares y colangiografías	cholangiography MRCP
+Hígado: anatomía en imagen	liver imaging anatomy
+Colecistitis y coledocolitiasis	acute cholecystitis choledocholithiasis imaging
+Lesiones hepáticas focales	focal liver lesions
+Genitourinario y ginecología	genitourinary imaging
+Riñón, uréter y vejiga: anatomía en imagen	kidney ureter bladder imaging
+Patología renal: quistes, litiasis, IVU y carcinoma	renal cyst Bosniak nephrolithiasis renal cell carcinoma
+Pelvis femenina: anatomía y endometrio	pelvic ultrasound endometrium
+Patología ginecológica	pelvic ultrasound ovarian cyst uterine fibroids
+Musculoesquelético y mama	musculoskeletal imaging
+Fracturas	fractures
+Clasificación de Salter-Harris	Salter-Harris fracture
+Aproximación a tumores óseos	bone tumors
+Mama: mastografía, ecografía y BI-RADS	BI-RADS mammography
+Anatomía radiológica del tórax	chest x-ray anatomy
+Semiología: nódulos, opacidades y cavidades	solitary pulmonary nodule cavitary lung lesion
+Patrones difusos en TC y distribución	high-resolution CT interstitial lung disease patterns
+Neumonía viral y COVID-19	COVID-19 pneumonia imaging
+Tuberculosis y micobacterias atípicas	pulmonary tuberculosis nontuberculous mycobacteria
+Aspergilosis y Pneumocystis	aspergillosis Pneumocystis pneumonia
+Empiema, absceso y embolismos sépticos	empyema lung abscess septic emboli
+Cáncer de pulmón, metástasis y tumores pleurales	lung cancer mesothelioma
+Neumonías intersticiales idiopáticas	idiopathic interstitial pneumonias
+Sarcoidosis, histiocitosis X, LAM y neumonía eosinófila	sarcoidosis Langerhans cell histiocytosis lymphangioleiomyomatosis
+Neumonitis por hipersensibilidad, neumoconiosis y asbesto	hypersensitivity pneumonitis pneumoconiosis asbestosis
+TEP y hemoptisis	pulmonary embolism hemoptysis
+Síndrome aórtico agudo	acute aortic syndrome aortic dissection
+Masas mediastínicas por compartimento	mediastinal masses
+Abdomen	abdominal imaging
+Gas extraluminal y calcificaciones abdominales	pneumoperitoneum abdominal calcifications
+Estudios baritados y contrastados (digestivo y urinario)	barium swallow fluoroscopy
+Esófago: trastornos motores y patología estructural	esophageal motility disorders esophageal stricture
+Estómago y duodeno: úlcera y tumores	peptic ulcer gastric cancer imaging
+Tumores de intestino delgado y colon	small bowel tumors colorectal cancer
+Isquemia mesentérica y hemorragia digestiva	acute mesenteric ischemia
+Enfermedad inflamatoria intestinal y enterocolitis	inflammatory bowel disease imaging
+Diverticulitis aguda y diferenciales de fosa ilíaca	acute diverticulitis
+Hígado: esteatosis, hierro, Budd-Chiari e hidatidosis	hepatic steatosis hemochromatosis Budd-Chiari echinococcosis
+Colangitis esclerosante y tumores biliares	primary sclerosing cholangitis cholangiocarcinoma
+Pancreatitis aguda: imagen y colecciones	acute pancreatitis imaging
+Pancreatitis crónica, autoinmune y tumores pancreáticos	chronic pancreatitis pancreatic cancer
+Bazo: esplenomegalia, infarto y lesiones focales	splenomegaly splenic infarction
+Imagenología › Glándulas suprarrenales	adrenal incidentaloma
+Abdomen › Glándulas suprarrenales	adrenal incidentaloma
+Riñón: anomalías congénitas, nefropatías difusas e infecciones complicadas	congenital kidney anomalies emphysematous pyelonephritis
+Tumores uroteliales, vejiga y cistitis	urothelial carcinoma bladder cancer
+Uretra y próstata	prostate cancer MRI
+Patología escrotal	testicular torsion scrotal ultrasound
+Código ictus: perfusión, ASPECTS y transformación hemorrágica	acute ischemic stroke imaging ASPECTS
+Trombosis venosa cerebral, vasoespasmo y disección	cerebral venous sinus thrombosis cervical artery dissection
+Sangre en TC/RM y traumatismo craneoencefálico	traumatic brain injury intracranial hemorrhage imaging
+Meningitis, empiema, cerebritis y absceso	brain abscess meningitis
+TORCH, sida e infecciones con patrón típico	HIV-associated CNS infections toxoplasmosis
+Esclerosis múltiple y lesiones de sustancia blanca	multiple sclerosis MRI
+NMO, ADEM, vasculitis y vasoconstricción reversible	neuromyelitis optica ADEM reversible cerebral vasoconstriction syndrome
+Lesiones con realce en anillo y pistas diagnósticas	ring-enhancing lesions
+Gliomas y tumores corticales e infratentoriales	glioma
+Ángulo pontocerebeloso, intraventriculares, selares y pineales	vestibular schwannoma pineal tumors
+Imagen cardíaca	cardiac imaging
+Ecocardiografía cardiaca: modos, contraste y estrés	echocardiography stress echocardiography
+Coronariografía y cardio-TC	coronary angiography coronary CT angiography
+Cardio-RM, realce tardío y SPECT	cardiac MRI myocardial perfusion imaging
+Cardiopatía isquémica: viabilidad y complicaciones	myocardial infarction complications
+Miocardiopatías hipertrófica, dilatada y arritmogénica	hypertrophic cardiomyopathy dilated cardiomyopathy
+Restrictiva, no compactada, tako-tsubo y miocarditis	restrictive cardiomyopathy takotsubo myocarditis
+Valvulopatías y endocarditis	valvular heart disease infective endocarditis
+Pericarditis y tumores cardiacos	pericarditis cardiac tumors myxoma
+Cardiopatías congénitas en imagen	congenital heart defects
+Musculoesquelético	musculoskeletal imaging
+Técnicas de imagen en musculoesquelético	musculoskeletal imaging
+Fracturas por estrés	stress fracture
+Tumores de partes blandas	soft tissue sarcoma
+Hombro: manguito rotador e inestabilidad	rotator cuff tear shoulder dislocation
+Codo: tendones y nervios	elbow injuries epicondylitis
+Muñeca y mano	wrist fractures scaphoid fracture
+Cadera: pinzamiento femoroacetabular y necrosis avascular	femoroacetabular impingement osteonecrosis femoral head
+Rodilla: rótula, meniscos y ligamentos	meniscal tear ACL tear
+Musculoesquelético › Tobillo y pie	ankle fracture
+Ginecología y mama	breast imaging
+Mama: tomosíntesis, RM e intervencionismo	breast MRI breast biopsy
+Mama: lesiones benignas	benign breast disease fibroadenoma
+Mastitis aguda y de células plasmáticas	mastitis
+Cáncer de mama: in situ e invasivo	breast cancer
+Ovario y pelvis: endometriosis, cistoadenoma y teratoma	endometrioma ovarian teratoma
+Mola hidatiforme	hydatidiform mole
+Cáncer de ovario, endometrio y cérvix	ovarian cancer endometrial cancer cervical cancer
+Pediatría	pediatric imaging
+Neurorradiología neonatal y calota	neonatal intraventricular hemorrhage craniosynostosis
+Dificultad respiratoria neonatal	neonatal respiratory distress syndrome transient tachypnea
+Trastornos digestivos del recién nacido	necrotizing enterocolitis malrotation
+Cabeza, cuello y vía aérea pediátrica	croup epiglottitis imaging
+Tórax y esófago pediátrico	esophageal atresia tracheoesophageal fistula
+Píloro, invaginación y Meckel	pyloric stenosis intussusception Meckel diverticulum
+Genitourinario pediátrico y reflujo	vesicoureteral reflux
+Wilms vs neuroblastoma	Wilms tumor neuroblastoma
+Musculoesquelético pediátrico: cadera y maltrato	developmental dysplasia of the hip child abuse
+Medicina nuclear	nuclear medicine
+Medicina nuclear: fundamentos y equipos	nuclear medicine
+PET-TC con 18-FDG: bases e interpretación	PET-CT FDG
+PET-TC en oncología por tumor	PET-CT cancer staging
+Otros radiofármacos oncológicos y terapia	radionuclide therapy PSMA
+Biopsia del ganglio centinela	sentinel lymph node biopsy
+#
+# ===== 5º semestre · Oftalmología =====
+Órbita y músculos	orbit anatomy
+Órbita ósea y anillo de Zinn	orbit anatomy
+Músculos extraoculares, intraoculares e inervación	extraocular muscles
+Movimientos oculares	extraocular muscles eye movements
+Canal óptico y fisuras orbitarias	superior orbital fissure
+Arteria oftálmica y sus ramas	ophthalmic artery
+Párpado, lágrima y conjuntiva	eyelid anatomy
+Párpado: capas, tarso y músculos	eyelid anatomy
+Glándulas y película lagrimal	tear film dry eye
+Drenaje lagrimal, dacrioestenosis y Horner	nasolacrimal duct obstruction Horner syndrome
+Conjuntiva	conjunctiva
+Alteraciones de posición	ectropion entropion ptosis
+Globo ocular	eye anatomy
+Mapa del globo ocular	eye anatomy
+Córnea	cornea
+Humor acuoso y ángulo iridocorneal	aqueous humor
+Cristalino y acomodación	lens accommodation
+Úvea: iris, cuerpo ciliar y coroides	uvea
+Las tres túnicas y el vítreo	eye anatomy vitreous
+Retina y vía visual	retina
+Organización de la retina	retina
+Las 10 capas de la retina	retina layers
+Fotorreceptores y fototransducción	phototransduction
+Nervio óptico y vía visual	visual pathway visual field defects
+Patologías	eye diseases
+Blefaritis	blepharitis
+Orzuelo vs chalazión	hordeolum chalazion
+Celulitis preseptal y orbitaria	orbital cellulitis preseptal cellulitis
+Orbitopatía tiroidea	Graves ophthalmopathy
+Conjuntivitis: cómo distinguirlas	conjunctivitis
+Conjuntivitis virales	viral conjunctivitis
+Conjuntivitis bacterianas y por clamidia	bacterial conjunctivitis chlamydial conjunctivitis
+Conjuntivitis alérgicas	allergic conjunctivitis
+Pinguécula vs pterigión	pterygium pinguecula
+Córnea: generalidades y clasificación	keratitis
+Queratitis infecciosas	infectious keratitis
+Ectasias corneales: queratocono	keratoconus
+Anomalías del cristalino y cataratas	cataract
+Glaucoma	glaucoma
+Uveítis	uveitis
+Retinopatía diabética	diabetic retinopathy
+Refracción, historia y exploración	refractive errors
+Conceptos de refracción	refractive errors
+Miopía, hipermetropía, astigmatismo y presbicia	refractive errors myopia hyperopia
+Presbicia y visión borrosa	presbyopia
+Refracción y cirugía refractiva	refractive surgery LASIK
+Historia clínica y motivos de consulta por edad	eye examination
+Glosario de síntomas	eye examination
+Exploración: agudeza, campo, color y pupilas	visual acuity eye examination
+Pares craneales en la exploración	cranial nerves eye examination
+#
+# ===== 5º semestre · Otorrinolaringología =====
+Anatomía de cavidad oral, glándulas y faringe	oral cavity anatomy
+Cavidad oral: límites	oral cavity anatomy
+Dientes y buccinador	oral cavity anatomy teeth
+Paladar	palate anatomy
+Lengua	tongue anatomy
+Suprahioideos importantes	suprahyoid muscles
+Anatomía de cavidad oral, glándulas y faringe › Glándulas salivales	salivary glands
+Ganglios cervicales	cervical lymph nodes levels
+Anatomía de cavidad oral, glándulas y faringe › Faringe	pharynx anatomy
+Musculatura y deglución	swallowing physiology pharyngeal muscles
+Anillo de Waldeyer (MALT)	Waldeyer ring tonsils
+Escala de amígdalas palatinas	tonsillar hypertrophy grading
+Infecciones de faringe	pharyngitis
+Viral vs. bacteriana	pharyngitis Centor score
+Virus y su pista	viral pharyngitis
+Estreptococo grupo A	streptococcal pharyngitis
+Tratamiento de GAS (clase)	streptococcal pharyngitis treatment
+Complicaciones de GAS	rheumatic fever poststreptococcal glomerulonephritis
+Mononucleosis infecciosa	infectious mononucleosis
+Epiglotitis	epiglottitis
+Absceso periamigdalino	peritonsillar abscess
+Infecciones de faringe › Otras etiologías	pharyngitis diphtheria
+Hipertrofia amigdalina y adenoidea	adenotonsillar hypertrophy tonsillectomy
+SAOS	obstructive sleep apnea
+Laringe y patología benigna	benign vocal fold lesions
+Anatomía de examen	larynx anatomy
+Reflujo faringolaríngeo	laryngopharyngeal reflux
+Edema de Reinke	Reinke edema
+Nódulos vocales	vocal fold nodules
+Pólipos cordales	vocal fold polyps
+Laringe y patología benigna › Otras lesiones	vocal cord cysts granuloma
+CROUP y diferenciales	croup
+Comparativo	croup epiglottitis bacterial tracheitis
+CROUP: datos	croup
+CROUP y diferenciales › Epiglotitis	epiglottitis
+Laringomalacia y estridor congénito	laryngomalacia
+Estridor	stridor
+Historia y exploración	stridor
+Laringomalacia	laryngomalacia
+Estenosis subglótica	subglottic stenosis
+Escala de Cotton–Myer	subglottic stenosis Cotton-Myer
+Parálisis de cuerdas vocales	vocal cord paralysis
+Laringomalacia y estridor congénito › Otras	congenital stridor
+Mnemotecnias	stridor
+Papilomatosis, laringitis y cáncer de laringe	laryngeal cancer
+Papilomatosis respiratoria	recurrent respiratory papillomatosis
+Tratamiento de papilomatosis	recurrent respiratory papillomatosis treatment
+Laringitis fúngica y tuberculosa	laryngitis
+Cáncer de laringe: sospecha	laryngeal cancer
+Estudio	laryngeal cancer diagnosis
+Papilomatosis, laringitis y cáncer de laringe › Tratamiento	laryngeal cancer treatment
+Sx Disfónico	hoarseness dysphonia
+Cuerpos extraños nasales y rinosinusitis	nasal foreign body
+Cuerpos extraños de alto riesgo	nasal foreign body button battery
+Cuerpos orgánicos	nasal foreign body
+Diagnóstico y manejo	nasal foreign body
+Rinosinusitis	acute rhinosinusitis
+Rinosinusitis fúngica, sistémicas y complicaciones	fungal sinusitis
+Formas fúngicas	fungal sinusitis mucormycosis
+Complicaciones orbitarias (de menos a más grave)	orbital complications of sinusitis Chandler classification
+Histopatología	fungal sinusitis
+Enfermedades sistémicas	granulomatosis with polyangiitis sinusitis
+Rinitis infecciosas y otras	rhinitis
+Complicaciones intracraneales y óseas	sinusitis complications Pott puffy tumor
+Perlas de casos y biológicos	chronic rhinosinusitis with nasal polyps biologics
+Trauma nasal y epistaxis	nasal fracture
+Fractura nasal: epidemiología	nasal fracture
+Fuerza y patrón	nasal fracture
+Clínica y diagnóstico	nasal fracture septal hematoma
+Grados y tratamiento	nasal fracture reduction
+Tiempos de reducción	nasal fracture reduction
+Posreducción	nasal fracture
+Epistaxis: anatomía	epistaxis Kiesselbach plexus
+Epistaxis: manejo escalonado	epistaxis management
+Desviación septal y tumores nasales	deviated nasal septum
+Desviación septal	deviated nasal septum
+Septumplastia	septoplasty
+Papiloma nasal invertido	inverted papilloma
+Angiofibroma nasofaríngeo juvenil	juvenile nasopharyngeal angiofibroma
+Clasificación de Chandler	orbital complications of sinusitis Chandler classification
+Otros tumores	sinonasal tumors
+Repaso	-
+#
+# ===== 5º semestre · Psiquiatría =====
+Bases de la ansiedad	anxiety disorders
+Miedo vs. ansiedad	anxiety disorders
+Neuroanatomía	anxiety neurobiology amygdala
+Fisiología de la respuesta	stress response
+De respuesta adaptativa a patológica	anxiety disorders
+¿Qué mantiene la ansiedad?	anxiety disorders cognitive behavioral therapy
+Respuesta multidimensional	anxiety disorders
+Epidemiología mundial	anxiety disorders epidemiology
+Fobia específica y fobia social	specific phobia
+Fobia específica	specific phobia
+Especificadores (tipo de estímulo)	specific phobia
+Fisiopatología y mantenimiento	specific phobia
+Fobia social (trastorno de ansiedad social)	social anxiety disorder
+Trastorno de pánico y agorafobia	panic disorder
+Trastorno de pánico	panic disorder
+Agorafobia	agoraphobia
+Trastorno de ansiedad generalizada	generalized anxiety disorder
+Características y epidemiología	generalized anxiety disorder
+TOC y trastornos relacionados	obsessive-compulsive disorder
+El círculo vicioso	obsessive-compulsive disorder
+Neurobiología: circuito córtico‑estriado‑tálamo‑cortical	obsessive-compulsive disorder pathophysiology
+Criterios DSM‑5 del TOC	obsessive-compulsive disorder diagnosis
+Especificador de insight	obsessive-compulsive disorder
+Dimensiones sintomáticas	obsessive-compulsive disorder
+Comorbilidad	obsessive-compulsive disorder
+Casos clínicos rápidos	-
+Trastornos relacionados	body dysmorphic disorder hoarding disorder trichotillomania
+Caso integrador	-
+Estrés postraumático y estrés agudo	posttraumatic stress disorder
+Historia y etiología	posttraumatic stress disorder
+Criterios DSM‑5 del TEPT	posttraumatic stress disorder diagnosis
+Neurobiología	posttraumatic stress disorder pathophysiology
+Trastorno de síntomas somáticos	somatic symptom disorder
+Fisiopatología: amplificación somatosensorial	somatic symptom disorder
+Trastorno de ansiedad por enfermedad	illness anxiety disorder
+Fisiopatología: el ciclo de la comprobación	illness anxiety disorder
+Trastorno de conversión	conversion disorder functional neurological symptom disorder
+Fisiopatología: modelo predictivo	functional neurological symptom disorder
+Ansiedad por enfermedad vs conversión	illness anxiety disorder conversion disorder
+Caso para discutir	-
+Trastorno facticio	factitious disorder
+Dos formas DSM‑5	factitious disorder imposed on another
+Claves clínicas	factitious disorder malingering
+Trastorno bipolar I y II	bipolar disorder
+Los tres tipos de episodio	bipolar disorder mood episodes
+¿Por qué se divide en I y II?	bipolar I bipolar II disorder
+Episodio maníaco	manic episode
+Presentaciones de la manía	manic episode
+Episodio hipomaníaco	hypomanic episode
+Episodio de depresión mayor	major depressive episode
+Criterios del trastorno	bipolar disorder diagnosis
+Epidemiología y pronóstico	bipolar disorder
+Ritmos circadianos y sueño	bipolar disorder circadian rhythm
+Caso para practicar	-
+Esquizofrenia y otros trastornos psicóticos	schizophrenia
+La regla de la duración	psychotic disorders duration schizophreniform brief psychotic
+Delirio vs alucinación	delusions hallucinations
+Esquizofrenia	schizophrenia
+Trastorno delirante	delusional disorder
+Trastorno psicótico breve	brief psychotic disorder
+Trastorno esquizofreniforme	schizophreniform disorder
+Trastorno esquizoafectivo	schizoaffective disorder
+Casos clínicos	-
+Trastornos de la conducta alimentaria	eating disorders
+Trastorno por atracón	binge eating disorder
+Bulimia nerviosa	bulimia nervosa
+Anorexia nerviosa	anorexia nervosa
+Fisiopatología de la anorexia	anorexia nervosa
+Trastornos neuropsiquiátricos	delirium dementia
+Delirium	delirium
+Trastornos neurocognitivos	dementia neurocognitive disorder
+Epilepsia	epilepsy psychiatric comorbidity
+Tumores cerebrales	brain tumors psychiatric symptoms
+Repaso y autoevaluación	psychiatry
+Duraciones mínimas	psychiatric disorders duration criteria
+Tarjetas de memoria	-
+Quiz final	-
+Notas sobre las diapositivas	-
+#
+# ===== 6º semestre · Infectología =====
+Infecciones del sistema nervioso central	meningitis
+Lectura del LCR	cerebrospinal fluid analysis meningitis
+Agente según edad	bacterial meningitis pathogens by age
+Bacterianas	bacterial meningitis
+Streptococcus pneumoniae (neumococo)	Streptococcus pneumoniae
+Neisseria meningitidis (meningococo)	Neisseria meningitidis
+Listeria monocytogenes	Listeria monocytogenes
+Virales	viral meningitis
+Encefalitis por VHS-1	herpes simplex encephalitis
+Hongos	cryptococcal meningitis
+Cryptococcus neoformans	Cryptococcus neoformans
+Parásitos	neurocysticercosis
+Neurocisticercosis (Taenia solium)	neurocysticercosis
+Toxoplasmosis cerebral (Toxoplasma gondii)	cerebral toxoplasmosis
+Infecciones del tracto urinario	urinary tract infection
+Escherichia coli uropatógena (UPEC)	Escherichia coli urinary tract infection
+Proteus mirabilis	Proteus mirabilis
+Staphylococcus saprophyticus	Staphylococcus saprophyticus
+Enterococcus faecalis	Enterococcus
+Síndromes específicos	urinary tract infection
+Prostatitis aguda bacteriana	acute bacterial prostatitis
+Bacteriuria asintomática	asymptomatic bacteriuria
+Infección cardiovascular	infective endocarditis
+Endocarditis infecciosa	infective endocarditis
+Staphylococcus aureus (endocarditis aguda)	Staphylococcus aureus endocarditis
+Streptococcus grupo viridans (subaguda)	viridans streptococci endocarditis
+Otros agentes relevantes	HACEK culture-negative endocarditis
+Criterios de Duke	Duke criteria
+Pericarditis, miocarditis y Chagas	myocarditis pericarditis
+Coxsackie B: pericarditis y miocarditis	coxsackievirus myocarditis
+Trypanosoma cruzi (enfermedad de Chagas)	Chagas disease
+Infecciones gastrointestinales bacterianas	bacterial gastroenteritis
+Mecanismos de diarrea bacteriana	infectious diarrhea
+Campylobacter jejuni	Campylobacter jejuni
+Escherichia coli diarreogénica	diarrheagenic Escherichia coli
+Shigella	Shigella
+Salmonella typhi y no typhi	typhoid fever nontyphoidal Salmonella
+Vibrio cholerae	cholera
+Clostridioides difficile	Clostridioides difficile infection
+Manejo general	infectious diarrhea treatment
+* Perlas para examen	
+Infecciones gastrointestinales virales	viral gastroenteritis
+Rotavirus (serogrupo A)	rotavirus
+Norovirus (virus Norwalk)	norovirus
+Adenovirus entéricos (40 y 41)	adenovirus gastroenteritis
+Planes de hidratación	dehydration in children oral rehydration
+Hepatitis virales A, B, C, D y E	viral hepatitis
+Hepatitis A (VHA)	hepatitis A
+Hepatitis B (VHB)	hepatitis B
+Serología del VHB	hepatitis B serology
+Hepatitis C (VHC)	hepatitis C
+Hepatitis D (delta) y E	hepatitis D hepatitis E
+Amebiasis, giardiasis, trematodos y candidiasis esofágica	amebiasis
+Entamoeba histolytica (amebiasis)	amebiasis
+Giardia lamblia (giardiasis)	giardiasis
+Fasciola hepatica (fasciolosis)	fascioliasis
+Schistosoma spp. (esquistosomiasis)	schistosomiasis
+Esofagitis por Candida albicans	esophageal candidiasis
+Infecciones por helmintos	helminth infections
+Ascaris lumbricoides (ascariasis)	ascariasis
+Enterobius vermicularis (oxiuriasis)	enterobiasis
+Taenia solium y T. saginata	taeniasis
+Trichuris trichiura (tricocefalosis)	trichuriasis
+Uncinarias (Necator americanus, Ancylostoma)	hookworm infection
+Strongyloides stercoralis	strongyloidiasis
+* Perlas	
+Artritis séptica y tenosinovitis infecciosa	septic arthritis
+Agentes según edad	septic arthritis
+Signos de Kanavel	flexor tenosynovitis Kanavel signs
+Artritis séptica	septic arthritis
+Tenosinovitis infecciosa	infectious flexor tenosynovitis
+#
+# ===== 6º semestre · Salud pública =====
+Origen y definición de la salud pública	public health
+Ámbito de estudio, disciplinas y acciones	public health
+Funciones Esenciales de la Salud Pública (FESP)	public health
+Salud y enfermedad	public health
+Historia natural de la enfermedad y triada epidemiológica	natural history of disease levels of prevention
+Proceso salud-enfermedad	social determinants of health
+Determinantes sociales vs. determinación social	social determinants of health
+Transición demográfica y epidemiológica en México	epidemiologic transition
+El sistema de salud mexicano	health care systems
+Etnografía, observación participante y diario de campo	qualitative research
+Economía de la salud	health economics cost-effectiveness
+#
+# ===== Otros materiales · Signos vitales =====
+Cómo tomarlos y por qué importan	vital signs
+Presión arterial: técnica correcta	blood pressure measurement
+Presión arterial: clasificación e importancia	hypertension classification
+Hipotensión ortostática y POTS	orthostatic hypotension postural orthostatic tachycardia syndrome
+Frecuencia cardiaca y pulso	pulse examination
+Frecuencia respiratoria	respiratory rate
+Temperatura	fever body temperature
+Oximetría de pulso (SpO₂)	pulse oximetry
+Escalas que combinan signos	early warning score
+Índice de choque	shock index
+NEWS / NEWS2	National Early Warning Score
+Signos vitales en pediatría	pediatric vital signs
+Triadas diagnósticas	clinical triads
+Triada de Beck	Beck triad cardiac tamponade
+Triada de Cushing	Cushing reflex
+Triada de Virchow	Virchow triad
+Triada de Whipple	Whipple triad insulinoma
+Triada de Hakim	normal pressure hydrocephalus
+Triada de Mackler	Boerhaave syndrome
+Otras triadas para repasar (complemento)	clinical triads
+#
+# ===== Otros materiales · Triage (guía y clase) =====
+¿Qué es el triage?	triage
+Historia breve	triage
+Principios del buen triage	triage
+Los 5 colores de Manchester	Manchester triage system
+Triage IMSS y triage obstétrico	triage
+Cómo se realiza: Manchester en 4 pasos	Manchester triage system
+Discriminadores generales	Manchester triage system
+Qué se mide: primera impresión y signos vitales	triage vital signs
+START: triage en desastres	START triage mass casualty
+Triage › Errores frecuentes	triage
+Al terminar podrás…	-
+Del campo de batalla a urgencias	triage
+Cuatro reglas del buen triage	triage
+Cinco niveles, cinco colores	Manchester triage system
+IMSS: misma lógica, tiempos adaptados	triage
+Manchester en cuatro pasos	Manchester triage system
+Preguntas comunes a todos los diagramas	Manchester triage system
+Mira, pregunta y mide	triage vital signs
+Dolor en el pecho	chest pain
+Herida en el abdomen	penetrating abdominal trauma
+Tobillo torcido	ankle sprain
+Niña con fiebre	fever in children
+Resfriado de cuatro días	common cold
+Embarazada con dolor de cabeza	preeclampsia
+START: muchas víctimas, pocos rescatistas	START triage mass casualty
+Cuatro preguntas en orden: RPM	START triage
+Choque de autobús: clasifica a cuatro víctimas	START triage mass casualty
+Equivocarse hacia arriba o hacia abajo	triage
+Cinco ideas para el examen	triage
+Fuentes	-
+#
+# ===== Otros materiales · Soporte vital básico (clase) =====
+Seis bloques, una secuencia	basic life support
+Los eslabones del soporte vital básico	chain of survival
+RCP enel adulto	adult basic life support
+Reconocer el paro y activar	cardiac arrest recognition
+Cinco números que definen la compresión	chest compressions
+Dónde y cómo colocarse	chest compressions hand position
+Niños ylactantes	pediatric basic life support
+¿Lactante, niño o adulto?	pediatric basic life support
+Un tercio del tórax, a la misma frecuencia	pediatric chest compressions
+La tabla para memorizar	pediatric basic life support
+Vía aérea yventilación	rescue breathing
+Abrir la vía aérea	head tilt chin lift jaw thrust
+Cómo dar una buena ventilación	bag-valve-mask ventilation
+Cuántas ventilaciones por minuto	rescue breathing
+Uso delDEA	automated external defibrillator
+Cinco pasos con el DEA	automated external defibrillator
+Qué desfibrilador usar en pediatría	pediatric defibrillation
+Atragantamientoy Heimlich	Heimlich maneuver
+Leve: deja toser. Grave: 5 y 5	foreign body airway obstruction
+Mismo ritmo, distinta maniobra	foreign body airway obstruction infant
+Si pierde el conocimiento, empieza RCP	foreign body airway obstruction
+Lo que no puedes fallar	basic life support
+Bibliografía	-
+ › Errores frecuentes	triage

@@ -182,6 +182,8 @@ body.notebook .cover .ctop,body.notebook .cover .tag{left:30px}
   <iframe id="frame" title="Guía"></iframe>
 </div>
 
+<style data-fav>.fav-w .item .ctop{right:58px}body.notebook .fav-w .item .ctop{right:60px}</style>
+<script src="../favoritos.js"></script>
 <script>
 /* Para añadir una guía: agregar su archivo en tools-s12/guias/ y correr tools-s12/build.py */
 const ARTEFACTOS = [
@@ -454,4 +456,6 @@ window.addEventListener("hashchange", ruta);
 
 stats(); hprog(); chips(); render(); ruta();
 </script>
+<script data-fav>try{Fav.init({sem:SKIN==="notebook"?"s2":"s1",list:ARTEFACTOS,grid:"#grid",card:".item",wrap:true,skin:SKIN==="notebook"?"ribbon":"circle",
+ id:el=>el.dataset.id,name:a=>a.titulo,render:()=>{chips();hprog();render()}})}catch(e){}</script>
 </body></html>

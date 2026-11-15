@@ -156,6 +156,7 @@ footer p{margin:0;max-width:62ch}
   <iframe id="v-frame" title="Material de estudio"></iframe>
 </div>
 
+<script src="../favoritos.js"></script>
 <script>
 /* Para agregar una materia: pon su archivo en apps/ y añade un objeto a esta lista. */
 const ITEMS = [
@@ -368,5 +369,7 @@ renderTop();
 renderShelf();
 route();
 </script>
+<script data-fav>try{Fav.init({sem:"s4",list:ITEMS,grid:"#shelf",card:"article.card",skin:"glass",
+ id:el=>{const a=el.querySelector("a.cover");return a?a.getAttribute("href").slice(1):""},name:it=>it.title,render:()=>{renderTop();renderShelf()}})}catch(e){}</script>
 
 </body></html>

@@ -235,6 +235,8 @@ footer .in{border-top:1px solid var(--line);padding-top:16px;display:flex;justif
   <div class="frames" id="frames"></div>
 </div>
 
+<style data-fav>.fav-b{position:absolute;top:1px;left:50%;width:14px;height:14px;margin-left:-7px;background:#fff;filter:drop-shadow(0 0 1.5px rgba(0,0,0,.6));clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}</style>
+<script src="../favoritos.js"></script>
 <script>
 const ICONS={
   gastro:'<path d="M14 3v4c0 2 2 3 2 6a7 7 0 0 1-7 7H6"/><path d="M14 7c4 0 5 3 5 6 0 5-4 8-9 8"/><path d="M10 3v5c0 2-2 3-2 5"/>',
@@ -387,5 +389,10 @@ if(!document.fullscreenEnabled)$("#vFull").hidden=true;
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&current&&!document.fullscreenElement)$("#vBack").click()});
 render();renderExtra();route();showResume();
 </script>
+<script data-fav>try{Fav.init({sem:"s5",list:G,grid:"#grid",card:".book-card",skin:"ribbon",id:el=>el.id.slice(2),name:g=>g.title,render:()=>render(),
+ after:is=>{
+  $("#books").innerHTML=G.map((g,i)=>`<button class="book${i===4?" lean":""}${is(g.id)?" fav-on":""}" type="button" data-open="${g.id}" style="--sp:${g.sp};--h:${HEIGHTS[i]}px" aria-label="Abrir ${esc(g.title)}${is(g.id)?" (favorita)":""}">${is(g.id)?'<i class="fav-b" aria-hidden="true"></i>':""}<span>${esc(SPINE[g.id][0])}</span><em>${esc(SPINE[g.id][1])}</em></button>`).join("");
+  $("#chips").innerHTML=G.map(g=>`<button class="chip" type="button" data-jump="${g.id}" style="--c:${g.color}"><i></i>${esc(g.area==="Otorrinolaringología"?"Otorrino":g.area==="Gastroenterología"?"Gastro":g.area)}</button>`).join("");
+ }})}catch(e){}</script>
 
 </body></html>

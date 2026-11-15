@@ -154,3 +154,64 @@ html[data-theme="dark"] body #estudio .es-tab[aria-selected="true"]{background:v
   html body #estudio .es-tab{font-size:.58rem}
   html body #estudio .es-tab svg{width:18px;height:18px}
 }
+
+/* =====================================================================
+   Pasada 2 (15 nov 2026): títulos con acento, iconos en los paneles,
+   botones principales más claros, estadísticas y tabla de mazos más pulidas.
+   ===================================================================== */
+html body #estudio .cal-body{background:radial-gradient(900px 340px at 50% -120px,color-mix(in srgb,var(--green-3) 10%,transparent),transparent 70%)}
+
+/* Títulos de cada tarjeta: barrita naranja y verde UDLAP */
+html body #estudio .ccard>h3,html body #estudio .ccard summary h3,html body #estudio .es-akkey>h3{position:relative;padding-left:14px;color:var(--go);font-stretch:85%}
+html body #estudio .ccard>h3::before,html body #estudio .ccard summary h3::before,html body #estudio .es-akkey>h3::before{content:"";position:absolute;left:0;top:50%;width:4px;height:1.05em;border-radius:4px;transform:translateY(-50%);background:linear-gradient(var(--orange),#ffa364)}
+
+/* Paneles desplegables con icono */
+html body #estudio details.ccard>summary{display:flex;align-items:center;gap:12px}
+html body #estudio details.ccard>summary h3{flex:1;margin:0;padding-left:0}
+html body #estudio details.ccard>summary h3::before{display:none}
+html body #estudio details.ccard>summary::before{content:"";flex:none;width:38px;height:38px;border-radius:12px;
+  background:var(--es-ic,var(--green-3)) center/20px no-repeat;
+  -webkit-mask:none;mask:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+html body #estudio details.ccard>summary::before{background-image:var(--es-svg)}
+html body #estudio details[data-fold="es-addc"],html body #estudio details[data-fold="es-addq"]{--es-svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E")}
+html body #estudio details[data-fold="es-ia"]{--es-ic:var(--orange);--es-svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9zM19 15l.9 2.6 2.6.9-2.6.9L19 22l-.9-2.6-2.6-.9 2.6-.9z'/%3E%3C/svg%3E")}
+html body #estudio details[data-fold="es-cset"]{--es-ic:color-mix(in srgb,var(--muted) 70%,var(--green));--es-svg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0'/%3E%3Ccircle cx='16' cy='6' r='2'/%3E%3Ccircle cx='10' cy='12' r='2'/%3E%3Ccircle cx='18' cy='18' r='2'/%3E%3C/svg%3E")}
+html body #estudio details.ccard:not([data-fold])>summary::before{display:none}
+html body #estudio details.ccard[open]{border-color:color-mix(in srgb,var(--green-3) 45%,var(--line))}
+
+/* Botón principal (Empezar, Guardar, Crear…) */
+html body #estudio .cbtn{background:linear-gradient(180deg,#ff8a45,var(--orange));box-shadow:0 8px 18px -10px var(--orange),inset 0 1px 0 rgba(255,255,255,.25);padding-inline:22px;font-size:.95rem}
+html body #estudio .cbtn:hover{filter:brightness(1.05)}
+html body #estudio .cbtn:disabled{opacity:.5;box-shadow:none}
+
+/* Tabla de mazos: semestres con acento y números más legibles */
+html body #estudio .es-srsbox .srs-top{background:linear-gradient(90deg,color-mix(in srgb,var(--green-3) 12%,var(--paper)),var(--paper))}
+html body #estudio .es-srsbox .srs-decks .sem td{color:var(--go);background:color-mix(in srgb,var(--green-3) 8%,var(--paper));box-shadow:inset 3px 0 0 var(--orange);font-size:11.5px;letter-spacing:.08em}
+html body #estudio .es-srsbox .srs-decks td.n,html body #estudio .es-srsbox .srs-decks td.l,html body #estudio .es-srsbox .srs-decks td.r{font-weight:700}
+html body #estudio .es-srsbox .srs-decks td.z{font-weight:400}
+html body #estudio .es-srsbox .srs-decks tbody tr[data-deck]{cursor:pointer}
+html body #estudio .es-srsbox .srs-decks tbody tr[data-deck] td:first-child{font-weight:600}
+
+/* Estadísticas */
+html body #estudio .es-srsbox .srs-st{padding:18px 18px 28px}
+html body #estudio .es-srsbox .srs-sc{border-radius:16px;padding:16px 18px;border-color:var(--line)}
+html body #estudio .es-srsbox .srs-sc h4{text-align:left;color:var(--go);font-size:15px;font-weight:800}
+html body #estudio .es-srsbox .srs-sc .sub{text-align:left}
+html body #estudio .es-srsbox .srs-seg{border-radius:999px;padding:3px;gap:2px;background:var(--bg)}
+html body #estudio .es-srsbox .srs-seg button{border-radius:999px;background:transparent;padding:6px 14px;font-weight:700}
+html body #estudio .es-srsbox .srs-seg button[aria-pressed=true]{background:var(--green);color:#fff!important;box-shadow:inset 0 -2px 0 var(--orange)}
+html body #estudio .es-srsbox .srs-st select{border-radius:12px}
+
+/* Contador: anillo más fino y número con más presencia */
+html body #estudio .es-ring circle{stroke-width:6}
+html body #estudio .es-ring span{letter-spacing:.02em}
+
+/* Estados vacíos más amables */
+html body #estudio .es-mut,html body #estudio .ccard>p.es-help{line-height:1.5}
+
+@media (max-width:560px){
+  html body #estudio .cbtn{width:100%;min-height:50px;font-size:1rem}
+  html body #estudio .es-presets .cbtn,html body #estudio .es-row .cbtn{width:auto}
+  html body #estudio details.ccard>summary::before{width:34px;height:34px;border-radius:10px;background-size:18px}
+  html body #estudio .es-srsbox .srs-st{padding:12px 10px 22px}
+}

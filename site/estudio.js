@@ -424,7 +424,7 @@
     const S=(type,extra)=>Object.assign({type},extra||{});
     const schema=S("OBJECT",{properties:{tarjetas:S("ARRAY",{items:S("OBJECT",{properties:{frente:S("STRING"),reverso:S("STRING")},required:["frente","reverso"]})}),
       preguntas:S("ARRAY",{items:S("OBJECT",{properties:{pregunta:S("STRING"),opciones:S("ARRAY",{items:S("STRING")}),correcta:S("INTEGER"),explicacion:S("STRING")},required:["pregunta","opciones","correcta","explicacion"]})})},required:["tarjetas","preguntas"]});
-    const sys=`Eres profesor de medicina en México y preparas a un estudiante de 5º semestre de Médico Cirujano (UDLAP) para sus parciales y el ENARM.
+    const sys=`Eres profesor de medicina en México y preparas a un estudiante de ${typeof CURSO!=="undefined"?CURSO.sem:6}º semestre de Médico Cirujano (UDLAP) para sus parciales y el ENARM.
 Materia: ${m}. Tema: ${tema}.
 Haz exactamente ${nc} tarjetas de memoria (frente = pregunta corta y concreta; reverso = respuesta breve, con el dato clave) y ${nq} preguntas de opción múltiple estilo ENARM (caso clínico corto cuando aplique, 4 opciones, una sola correcta, "correcta" es el índice empezando en 0, explicación de 1 a 3 frases de por qué).
 Todo en español de México, con guías mexicanas (GPC, NOM) cuando aplique. ${txt?"Básate SOLO en el texto que te da el estudiante; no inventes datos que no estén ahí.":"Usa información médica actual y confiable."} Responde solo con el JSON pedido.`;

@@ -97,7 +97,7 @@ ${msg?`<p class="err">${esc(msg)}</p>`:""}
   function context(){
     const now=new Date(),t=ymd(now);
     const mats=(typeof CURSO!=="undefined"?CURSO.materias:[]).map(m=>"- "+m.n+(m.g?" (guía: "+m.g+")":"")).join("\n");
-    return `Eres el asistente del calendario de estudio de Marcos, estudiante de Medicina en la UDLAP (${typeof CURSO!=="undefined"?CURSO.sem:5}º semestre).
+    return `Eres el asistente del calendario de estudio de Marcos, estudiante de Medicina en la UDLAP (${typeof CURSO!=="undefined"?CURSO.sem:6}º semestre).
 Hoy es ${DIAS[now.getDay()]} ${t}. Zona horaria de Puebla, México.
 Tu trabajo: leer lo que Marcos escribe o adjunta (fotos o PDF de calendarios de materias, programas, avisos) y proponer qué agregar.
 - "examenes": exámenes, parciales, finales, quizzes con fecha. name = "Materia · qué examen" (ej. "Cirugía · 2º parcial"). Si hay temas, ponlos en topics (uno por elemento). guide = id de guía de la materia si existe.

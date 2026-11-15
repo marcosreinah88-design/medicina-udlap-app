@@ -1077,7 +1077,7 @@ footer p{margin:0;max-width:70ch}
       <details class="ccard udet fold" id="calFormCard" data-fold="exam"><summary><h3><span class="hi o"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span><span id="calFormTtl">Agregar examen</span></h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
         <form class="cform" id="calForm" autocomplete="off">
           <div class="row2">
-            <label>Materia <span class="h" id="cfSemLbl">5º semestre</span><select id="cfName" required><option value="" disabled selected>Elige la materia</option></select></label>
+            <label>Materia <span class="h" id="cfSemLbl">6º semestre</span><select id="cfName" required><option value="" disabled selected>Elige la materia</option></select></label>
             <label>¿Qué examen? <span class="h">opcional</span><input id="cfWhat" maxlength="50" placeholder="Ej. 2º parcial, final, quiz"></label>
           </div>
           <div class="row2">
@@ -1283,7 +1283,7 @@ const semsWith=SEMS.filter(s=>G.some(g=>g.sem===s.n));
 const ARROW='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 
 /* franja de cifras */
-const SEM_ACTUAL=5; /* semestre que cursa Marcos ahora */
+const SEM_ACTUAL=6; /* semestre que cursa Marcos ahora */
 const temas=G.reduce((a,g)=>a+g.temas,0);
 $("#totals").innerHTML=[[semsWith.length,"semestres con guías"],[G.length,"guías"],[temas,"temas"],[(SEMS.findIndex(s=>s.n===SEM_ACTUAL)+1)+" / "+SEMS.length,"etapas de la carrera"]]
   .map(([n,l])=>`<div><b>${n}</b><span>${l}</span></div>`).join("");
@@ -2117,10 +2117,10 @@ route();showResume();
    Guarda en la cuenta de quien lo usa (db privado: data/users/<id>/calendario) y, si no se puede,
    en este navegador. Arma el plan: reparte los temas pendientes entre hoy y el día antes del examen,
    deja el último día para repaso general y reacomoda solo lo que no se hizo. */
-/* Materias que Marcos está cursando (plan Médico Cirujano UDLAP, 5º semestre). Al cambiar de semestre, actualizar esta lista. */
-const CURSO={sem:5,materias:[
-  {n:"Bioética en Ciencias de la Salud"},{n:"Psiquiatría",g:"psiquiatria"},{n:"Gastroenterología",g:"gastro"},{n:"Cirugía",g:"cirugia"},
-  {n:"Oftalmología",g:"oftalmo"},{n:"Otorrinolaringología",g:"otorrino"},{n:"Campos Clínicos I"},{n:"Casos Clínicos I"},{n:"Temas Selectos I"}]};
+/* Materias que Marcos está cursando (plan Médico Cirujano UDLAP, 6º semestre). Al cambiar de semestre, actualizar esta lista. */
+const CURSO={sem:6,materias:[
+  {n:"Salud Pública y Epidemiología en Ciencias de la Salud",g:"salud-publica"},{n:"Temas Selectos II"},{n:"Neurología"},{n:"Gastrocirugía"},
+  {n:"Obstetricia"},{n:"Dermatología"},{n:"Nefrología"},{n:"Campos Clínicos II"},{n:"Casos Clínicos II"}]};
 
 /* Aztecas UDLAP, futbol americano (liga mayor ONEFA 2026). Fuente: udlap.mx/fba/calendario (consultado 7 nov 2026).
    loc: true = en casa (Templo del Dolor). Playoffs con fecha tentativa: tent=true y e=fin del rango. */
@@ -2660,8 +2660,8 @@ const Grades=(()=>{
     [["Rotación de Internado de Pregrado I",30],["Rotación de Internado de Pregrado II",30]],
     [["Supervisión y Evaluación del Servicio Social",3]]
   ].map((l,i)=>l.map(([n,u,o],j)=>({sem:i+1,i:j,n,u,o:o||"",mat:o||n})));
-  /* lo que Marcos cursa ahora (otoño 2026), según su portal UDLAP */
-  const ACTUALES=["Psiquiatría","Gastroenterología","Cirugía","Oftalmología","Otorrinolaringología","Campos Clínicos III"];
+  /* lo que Marcos cursa ahora (6º semestre, primavera 2027) */
+  const ACTUALES=["Salud Pública y Epidemiología en Ciencias de la Salud","Temas Selectos II","Neurología","Gastrocirugía","Obstetricia","Dermatología","Nefrología","Campos Clínicos II","Casos Clínicos II"];
   const PLANALL=PLAN.flat(),isX=p=>p.n==="Optativa extra",PLANU=PLANALL.filter(p=>!isX(p)).reduce((a,x)=>a+x.u,0);
   const norm=t=>String(t).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
   const planOf=mat=>{const k=norm(mat);return PLANALL.find(x=>norm(x.mat)===k||norm(x.n)===k)};
@@ -2759,7 +2759,7 @@ const Grades=(()=>{
     need();
   }
   function renderPlan(){
-    const cur=typeof CURSO!=="undefined"?CURSO.sem:5,done=new Map();
+    const cur=typeof CURSO!=="undefined"?CURSO.sem:6,done=new Map();
     for(const x of st.items){const p=planOf(x.mat);if(p)done.set(p,x)}
     const du=Math.min(PLANU,[...done.keys()].reduce((a,p)=>a+p.u,0)),isNow=p=>!done.has(p)&&ACTUALES.includes(p.n),nowL=PLANALL.filter(isNow),left=PLANALL.filter(p=>!isX(p)&&!done.has(p)).length;
     const gl=$g("#grLeft");if(gl&&!gl.dataset.touched)gl.value=String(left);
@@ -2817,7 +2817,7 @@ const Grades=(()=>{
   $g("#grMin").addEventListener("change",ev=>{load();st.min=+ev.target.value;save()});
   document.querySelectorAll("#grades details.fold").forEach(d=>{const k="carrera-fold-"+d.dataset.fold,v=store.get(k);if(v!=null)d.open=v==="1";d.addEventListener("toggle",()=>store.set(k,d.open?"1":"0"))});
   let lastY=0;
-  function open(){if(!$g("#grades").hidden)return;lastY=window.scrollY;$g("#grSem").value=String(typeof CURSO!=="undefined"?CURSO.sem:5);render();$g("#grades").hidden=false;document.documentElement.style.overflow="hidden";document.title="Calificaciones · Carrera de Medicina"}
+  function open(){if(!$g("#grades").hidden)return;lastY=window.scrollY;$g("#grSem").value=String(typeof CURSO!=="undefined"?CURSO.sem:6);render();$g("#grades").hidden=false;document.documentElement.style.overflow="hidden";document.title="Calificaciones · Carrera de Medicina"}
   function close(){if($g("#grades").hidden)return;$g("#grades").hidden=true;document.documentElement.style.overflow="";document.title="Carrera de Medicina";requestAnimationFrame(()=>window.scrollTo(0,lastY))}
   $g("#grBack").addEventListener("click",ev=>{ev.preventDefault();go("")});
   document.addEventListener("keydown",ev=>{if(ev.key==="Escape"&&!$g("#grades").hidden&&!/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName))go("")});
@@ -3031,7 +3031,7 @@ window.CtoLib=(()=>{
       <span class="cb-top"><b>CTO</b>${v?`<i>Vol. ${esc(v)}</i>`:""}</span>
       ${icon(s[4],"cb-ic")}
       <span class="cb-name${name.split(/\s+/).some(w=>w.length>12)?" lg":""}">${shy(esc(name))}</span>
-      <span class="cb-foot">${esc([it.subject&&s[2]!=="otr"&&isSem(it)?"5º semestre":"",mb(it.size)].filter(Boolean).join(" · ")||"Manual")}</span>
+      <span class="cb-foot">${esc([it.subject&&s[2]!=="otr"&&isSem(it)?(typeof CURSO!=="undefined"?CURSO.sem:6)+"º semestre":"",mb(it.size)].filter(Boolean).join(" · ")||"Manual")}</span>
       ${canDel()?`<button class="cb-del" type="button" data-del="${esc(it.id)}" aria-label="Quitar ${esc(it.title)}">Quitar</button>`:""}
     </a>`;
   }

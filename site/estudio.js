@@ -252,10 +252,14 @@
   document.addEventListener("click",ev=>{
     const a=ev.target.closest&&ev.target.closest("#akBtn");if(!a||ev.button||ev.metaKey||ev.ctrlKey)return;
     ev.preventDefault();ev.stopImmediatePropagation();window.__fromHome=null;
-    modo="anking";set(KM,"anking");akSel=null;tab="tarjetas";set(K.tab,tab);
+    anking();
+  },true);
+  /* cualquier entrada a AnKing (portada, Otros materiales, semestres) abre Estudio en Modo AnKing: ya no hay página aparte */
+  function anking(){
+    modo="anking";set(KM,"anking");akSel=null;tab="tarjetas";set(K.tab,tab);window.__fromHome=null;
     if(ready){if(rv){rv.destroy();rv=null}rvKey=null;$("#esCards").innerHTML=""}
     if(location.hash==="#estudio")render();else location.hash="estudio";
-  },true);
+  }
   const goHome=()=>{if(typeof go==="function")go("");else location.hash=""};
   function open(){
     mount();if(!$("#estudio").hidden)return;
@@ -718,6 +722,7 @@ Todo en español de México, con guías mexicanas (GPC, NOM) cuando aplique. ${t
     /* si el contador está corriendo, que se vea la píldora aunque no abras Estudio */
     tickPomo();
   }
-  window.Estudio={open,close,examMat:e=>examMat(e)};
+  window.Estudio={open,close,anking,examMat:e=>examMat(e)};
+  if(location.hash==="#mat-anking")anking();
   if(document.readyState==="loading")addEventListener("DOMContentLoaded",boot);else boot();
 })();

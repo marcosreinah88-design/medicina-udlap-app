@@ -1481,7 +1481,7 @@ function go(h){
 function route(){const h=location.hash.slice(1);
   const W={calendario:window.Cal,calificaciones:window.Grades,estudio:window.Estudio,ajustes:window.Ajustes,cto:window.CtoLib,otros:window.OtrosLib};
   for(const k in W)if(k!==h&&W[k])W[k].close();
-  if(W[h]!==undefined){hideViewer();W[h]&&W[h].open();return}
+  if(W[h]!==undefined){window.__fromHome=null;hideViewer();W[h]&&W[h].open();return}
   if(h.startsWith("mat-")){window.OtrosLib&&OtrosLib.openDoc(decodeURIComponent(h.slice(4)));return}
   window.__fromOtr=false;window.__fromSem=null;
   if(h.startsWith("sem-"))show(h.slice(4));
@@ -1491,7 +1491,7 @@ function route(){const h=location.hash.slice(1);
 document.addEventListener("click",e=>{const t=e.target.closest("[data-sem]");if(t)go("sem-"+t.dataset.sem)});
 window.addEventListener("popstate",route);
 window.addEventListener("hashchange",route);
-$("#vBack").addEventListener("click",()=>{const c=window.__fromCal,o=window.__fromOtr,sm=window.__fromSem;window.__fromCal=false;window.__fromOtr=false;window.__fromSem=null;go(sm?"sem-"+sm:c?"calendario":o?"otros":"")});
+$("#vBack").addEventListener("click",()=>{const fhm=window.__fromHome;window.__fromHome=null;const c=window.__fromCal,o=window.__fromOtr,sm=window.__fromSem;window.__fromCal=false;window.__fromOtr=false;window.__fromSem=null;go(sm?"sem-"+sm:c?"calendario":fhm?"":o?"otros":"")});
 function step(d){const i=semsWith.findIndex(x=>x.n===current);if(i<0)return;go("sem-"+semsWith[(i+d+semsWith.length)%semsWith.length].n)}
 $("#vPrev").addEventListener("click",()=>step(-1));
 $("#vNext").addEventListener("click",()=>step(1));
@@ -2782,12 +2782,13 @@ window.OtrosLib=(()=>{
   $("#otrBack").addEventListener("click",ev=>{ev.preventDefault();go("")});
   document.addEventListener("keydown",ev=>{if(ev.key==="Escape"&&!$("#otrLib").hidden&&document.activeElement!==$("#otrQ"))go("")});
   /* abrir un material dentro del visor de la página */
+  document.addEventListener("click",ev=>{if(ev.target.closest&&ev.target.closest("#akBtn"))window.__fromHome="anking"},true);
   function openDoc(id){
     const m=MAT.find(x=>x.id===id)||items.find(x=>x.inpage&&x.id===id);if(!m){go("otros");return}
     if(current===null)lastScroll=window.scrollY;
-    const fs=window.__fromSem;current="mat:"+id;window.__fromOtr=!fs;
+    const fs=window.__fromSem,fh=window.__fromHome===id;current="mat:"+id;window.__fromOtr=!fs&&!fh;
     $("#vTitle").textContent=m.title;$("#vSem").textContent="Otros materiales"+(m.subject?" · "+m.subject:"");$("#vTab").href=m.src;
-    $("#vPrev").hidden=$("#vNext").hidden=true;$("#vBack .lbl").textContent=fs?"Semestre":"Materiales";
+    $("#vPrev").hidden=$("#vNext").hidden=true;$("#vBack .lbl").textContent=fs?"Semestre":fh?"Inicio":"Materiales";
     const key="m:"+id;
     if(!frames[key]){const f=document.createElement("iframe");f.src=m.src;f.title=m.title;f.setAttribute("allow","fullscreen");frames[key]=f;$("#frames").appendChild(f)}
     for(const k in frames)frames[k].hidden=k!==key;

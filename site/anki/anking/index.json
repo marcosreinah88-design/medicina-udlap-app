@@ -7,7 +7,7 @@
 {
 "id": "neurologia",
 "n": "Neurología",
-"c": 4339
+"c": 4364
 },
 {
 "id": "gastroenterologia",
@@ -25,14 +25,14 @@
 "c": 2679
 },
 {
+"id": "bioquimica",
+"n": "Bioquímica",
+"c": 2317
+},
+{
 "id": "endocrinologia",
 "n": "Endocrinología",
 "c": 2294
-},
-{
-"id": "bioquimica",
-"n": "Bioquímica",
-"c": 2275
 },
 {
 "id": "hematologia-y-oncologia",
@@ -70,6 +70,11 @@
 "c": 732
 },
 {
+"id": "urgencias-cirugia-y-medicina-interna",
+"n": "Urgencias, cirugía y medicina interna",
+"c": 693
+},
+{
 "id": "bioestadistica-y-epidemiologia",
 "n": "Bioestadística y epidemiología",
 "c": 438
@@ -80,53 +85,13 @@
 "c": 428
 },
 {
-"id": "general",
-"n": "General",
-"c": 379
-},
-{
 "id": "dermatologia",
 "n": "Dermatología",
 "c": 338
 },
 {
-"id": "patologia-general",
-"n": "Patología general",
-"c": 149
-},
-{
-"id": "urgencias",
-"n": "Urgencias",
-"c": 137
-},
-{
-"id": "cirugia-y-anestesia",
-"n": "Cirugía y anestesia",
-"c": 126
-},
-{
-"id": "farmacologia",
-"n": "Farmacología",
-"c": 108
-},
-{
-"id": "medicina-interna",
-"n": "Medicina interna",
-"c": 51
-},
-{
-"id": "genetica",
-"n": "Genética",
-"c": 37
-},
-{
-"id": "oftalmologia",
-"n": "Oftalmología",
-"c": 25
-},
-{
-"id": "biologia-celular",
-"n": "Biología celular",
-"c": 5
+"id": "farmacologia-y-patologia-general",
+"n": "Farmacología y patología general",
+"c": 257
 }
 ]

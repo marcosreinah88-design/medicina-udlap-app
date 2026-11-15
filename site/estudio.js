@@ -724,5 +724,7 @@ Todo en español de México, con guías mexicanas (GPC, NOM) cuando aplique. ${t
   }
   window.Estudio={open,close,anking,examMat:e=>examMat(e)};
   if(location.hash==="#mat-anking")anking();
+  /* AnKing vive dentro de Estudio: en la app no hace falta su propio botón en la portada (el artefacto, sin Estudio, lo conserva) */
+  {const ak=document.getElementById("akBtn");if(ak)ak.remove()}
   if(document.readyState==="loading")addEventListener("DOMContentLoaded",boot);else boot();
 })();

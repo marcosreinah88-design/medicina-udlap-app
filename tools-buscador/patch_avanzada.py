@@ -7,7 +7,7 @@
 import sys, os, re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-MARK = '/*busqueda-avanzada-v1*/'
+MARK = '/*busqueda-avanzada-v2*/'
 START = '/* buscador: materias, temas y palabras clave de todas las guías */'
 END = '/* modo oscuro: botón en la portada'
 

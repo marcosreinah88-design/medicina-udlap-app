@@ -1,0 +1,32 @@
+/* ===== volcán: fumarola, ceniza y lava del Popocatépetl ===== */
+.horizon .v-sky{position:absolute;left:55.83%;top:16%;width:340px;height:240px;transform:translate(-50%,-62%);pointer-events:none;opacity:0;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,120,40,.55),rgba(255,90,30,.22) 45%,rgba(255,80,20,0) 100%)}
+.horizon .volc{position:absolute;left:0;right:0;bottom:0;top:-250px;pointer-events:none;z-index:1}
+.horizon .volc canvas{position:absolute;inset:0;width:100%;height:100%}
+.horizon .v-fum{position:absolute;left:55.83%;top:15.6%;width:0;height:0;pointer-events:none;z-index:1;--fc:214,224,219;--wx:1}
+.horizon .v-fum i{position:absolute;left:-9px;top:-9px;width:18px;height:18px;border-radius:50%;opacity:0;will-change:transform,opacity;
+  background:radial-gradient(closest-side,rgba(var(--fc),.7),rgba(var(--fc),.38) 45%,rgba(var(--fc),.12) 75%,rgba(var(--fc),0));
+  animation:vfum 11s linear infinite}
+.horizon .v-fum i:nth-child(2){animation-delay:-2.2s}
+.horizon .v-fum i:nth-child(3){animation-delay:-4.4s;width:22px;height:22px;left:-11px;top:-11px}
+.horizon .v-fum i:nth-child(4){animation-delay:-6.6s}
+.horizon .v-fum i:nth-child(5){animation-delay:-8.8s;width:15px;height:15px;left:-7px;top:-7px}
+@keyframes vfum{
+  0%{transform:translate(0,2px) scale(.45);opacity:0}
+  10%{opacity:.5}
+  35%{transform:translate(calc(var(--wx)*6px),-24px) scale(1.3);opacity:.42}
+  70%{transform:translate(calc(var(--wx)*22px),-52px) scale(2.4);opacity:.2}
+  100%{transform:translate(calc(var(--wx)*44px),-74px) scale(3.4);opacity:0}}
+.hero.dawn .horizon .v-fum{--fc:255,226,214}
+.hero.dusk .horizon .v-fum{--fc:255,206,180}
+.hero.night .horizon .v-fum{--fc:168,180,204}
+.hero.v-off .horizon .v-fum i{animation-play-state:paused}
+@media (max-width:560px){.horizon .volc{top:-150px}.horizon .v-sky{width:220px;height:160px}.horizon .v-fum i{transform-origin:center;scale:.7}}
+@media (prefers-reduced-motion:reduce){
+  .horizon .v-fum i{opacity:.32}
+  .horizon .v-fum i:nth-child(1){transform:translate(0,-4px) scale(.8)}
+  .horizon .v-fum i:nth-child(2){transform:translate(calc(var(--wx)*5px),-16px) scale(1.3);opacity:.24}
+  .horizon .v-fum i:nth-child(3){transform:translate(calc(var(--wx)*13px),-32px) scale(1.8);opacity:.16}
+  .horizon .v-fum i:nth-child(4),.horizon .v-fum i:nth-child(5){display:none}}
+.hero>.in:not(.horizon){z-index:2}
+/* ===== /volcán ===== */

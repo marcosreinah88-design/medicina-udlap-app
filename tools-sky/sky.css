@@ -23,8 +23,6 @@
 .hero.dusk #snowG stop:first-child{stop-color:#ffc9a8}.hero.dusk #snowG stop:last-child{stop-color:#e58aa0}
 .hero.dawn #snowG stop:first-child{stop-color:#ffd9e2}.hero.dawn #snowG stop:last-child{stop-color:#f6a8b8}
 .hero.night #snowG stop:first-child{stop-color:#e4ebf7}.hero.night #snowG stop:last-child{stop-color:#93a5c4}
-.hero.dusk .horizon .smoke path,.hero.dawn .horizon .smoke path{stroke:#ffe1cf}
-.hero.night .horizon .smoke path{stroke:#b9c6dc}
 .hero.night .horizon .crater{stroke:#0a1120}
 .skylbl{position:absolute;z-index:1;left:0;top:0;display:inline-flex;align-items:center;gap:0;font:600 .72rem var(--f-mono);letter-spacing:.04em;color:#fff;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 11px;backdrop-filter:blur(4px);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .skylbl b{font-weight:700;margin-right:5px}

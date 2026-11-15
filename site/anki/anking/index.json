@@ -2,7 +2,12 @@
 {
 "id": "microbiologia",
 "n": "Microbiología",
-"c": 3881
+"c": 4760
+},
+{
+"id": "neurologia",
+"n": "Neurología",
+"c": 4339
 },
 {
 "id": "gastroenterologia",
@@ -10,9 +15,34 @@
 "c": 2816
 },
 {
+"id": "cardiologia",
+"n": "Cardiología",
+"c": 2703
+},
+{
+"id": "ginecologia-y-obstetricia",
+"n": "Ginecología y obstetricia",
+"c": 2679
+},
+{
 "id": "endocrinologia",
 "n": "Endocrinología",
 "c": 2294
+},
+{
+"id": "bioquimica",
+"n": "Bioquímica",
+"c": 2275
+},
+{
+"id": "hematologia-y-oncologia",
+"n": "Hematología y oncología",
+"c": 2263
+},
+{
+"id": "nefrologia",
+"n": "Nefrología",
+"c": 2164
 },
 {
 "id": "neumologia",
@@ -20,24 +50,9 @@
 "c": 2147
 },
 {
-"id": "ginecologia-y-obstetricia",
-"n": "Ginecología y obstetricia",
-"c": 1978
-},
-{
-"id": "bioquimica",
-"n": "Bioquímica",
-"c": 1802
-},
-{
-"id": "cardiologia",
-"n": "Cardiología",
-"c": 1327
-},
-{
 "id": "musculoesqueletico-y-reumatologia",
 "n": "Musculoesquelético y reumatología",
-"c": 1139
+"c": 1911
 },
 {
 "id": "psiquiatria",
@@ -50,13 +65,68 @@
 "c": 793
 },
 {
-"id": "neurologia",
-"n": "Neurología",
-"c": 654
+"id": "inmunologia",
+"n": "Inmunología",
+"c": 732
+},
+{
+"id": "bioestadistica-y-epidemiologia",
+"n": "Bioestadística y epidemiología",
+"c": 438
 },
 {
 "id": "infectologia",
 "n": "Infectología",
-"c": 343
+"c": 428
+},
+{
+"id": "general",
+"n": "General",
+"c": 379
+},
+{
+"id": "dermatologia",
+"n": "Dermatología",
+"c": 338
+},
+{
+"id": "patologia-general",
+"n": "Patología general",
+"c": 149
+},
+{
+"id": "urgencias",
+"n": "Urgencias",
+"c": 137
+},
+{
+"id": "cirugia-y-anestesia",
+"n": "Cirugía y anestesia",
+"c": 126
+},
+{
+"id": "farmacologia",
+"n": "Farmacología",
+"c": 108
+},
+{
+"id": "medicina-interna",
+"n": "Medicina interna",
+"c": 51
+},
+{
+"id": "genetica",
+"n": "Genética",
+"c": 37
+},
+{
+"id": "oftalmologia",
+"n": "Oftalmología",
+"c": 25
+},
+{
+"id": "biologia-celular",
+"n": "Biología celular",
+"c": 5
 }
 ]

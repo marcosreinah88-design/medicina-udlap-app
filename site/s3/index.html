@@ -131,6 +131,7 @@ h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,6.4vw,64px);l
   <iframe id="frame" title="Artefacto"></iframe>
 </div>
 
+<script src="../favoritos.js"></script>
 <script>
 /* Para agregar un artefacto: súbelo en su carpeta (p. ej. nombre/index.html) y añade una entrada aquí. */
 const ITEMS=[
@@ -210,5 +211,6 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!viewer.hidden)clos
 function route(){const h=(location.hash||"").slice(1);if(h&&ITEMS.some(x=>x.id===h))openItem(h,false);else if(!viewer.hidden)closeViewer(false)}
 window.addEventListener("hashchange",route);route();
 </script>
+<script data-fav>try{Fav.init({sem:"s3",list:ITEMS,grid:"#grid",card:".card",wrap:true,skin:"tab",id:el=>el.dataset.open,name:it=>it.title,render:()=>render()})}catch(e){}</script>
 
 </body></html>

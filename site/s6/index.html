@@ -97,6 +97,7 @@ h1{font-family:var(--font-display);font-weight:700;font-size:clamp(2.1rem,5vw,3.
   <iframe id="frame" title="Artefacto"></iframe>
 </div>
 
+<script src="../favoritos.js"></script>
 <script>
 /* Para añadir un artefacto: agregar un objeto aquí y su HTML en artefactos/<id>.html */
 const ARTEFACTOS = [
@@ -216,5 +217,6 @@ window.addEventListener("hashchange", ruta);
 
 stats(); chips(); render(); ruta();
 </script>
+<script data-fav>try{Fav.init({sem:"s6",list:ARTEFACTOS,grid:"#grid",card:".folder",wrap:true,skin:"tab",id:el=>el.dataset.id,name:a=>a.titulo,render:()=>render()})}catch(e){}</script>
 
 </body></html>

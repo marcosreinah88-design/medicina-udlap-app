@@ -1563,7 +1563,7 @@ if(!(document.fullscreenEnabled||document.webkitFullscreenEnabled))$("#vFull").h
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&current!==null&&!document.fullscreenElement)$("#vBack").click()});
 
 /* buscador: materias, temas y palabras clave de todas las guías */
-/*busqueda-avanzada-v1*/
+/*busqueda-avanzada-v2*/
 (()=>{
   const q=$("#q"),out=$("#results"),hint=$("#shint"),clr=$("#qc"),kbd=$("#qk");
   const advT=$("#advT"),advP=$("#advP"),advN=$("#advN"),advS=$("#advS"),advClr=$("#advClr");
@@ -1583,10 +1583,12 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&current!==null&&!do
         for(const c of o.$||[]){const cur=m[c]||(m[c]={all:" ",places:[]});cur.whole=true;cur.all+=x.ft}
         AP[x.g.id]=m}
       paintChips();run()}).catch(()=>{apLoading=null;advS.textContent="No pude cargar los apartados. Revisa tu conexión e inténtalo otra vez."}));
-  /* filtros elegidos (se recuerdan en este aparato) */
+  /* filtros elegidos: solo duran mientras buscas (se quitan al borrar la búsqueda o al abrir un resultado) */
   const sel={sem:new Set(),mat:new Set(),ap:new Set()};
-  try{const s=JSON.parse(store.get("busqueda-filtros")||"{}");for(const k in sel)(s[k]||[]).forEach(v=>sel[k].add(k==="sem"?+v:v))}catch(e){}
-  const save=()=>store.set("busqueda-filtros",JSON.stringify({sem:[...sel.sem],mat:[...sel.mat],ap:[...sel.ap]}));
+  try{localStorage.removeItem("busqueda-filtros")}catch(e){}
+  const save=()=>{};
+  let lastRaw="";
+  function clearSel(){for(const k in sel)sel[k].clear();advP.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed","false"));openP(false)}
   const nSel=()=>sel.sem.size+sel.mat.size+sel.ap.size;
   function mark(text,terms){
     const f=fold(text);const hit=new Array(text.length).fill(false);
@@ -1668,8 +1670,11 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&current!==null&&!do
     return parts;
   }
   function run(){
-    const raw=q.value.trim(),terms=fold(raw).split(/\s+/).filter(Boolean),n=nSel();
-    clr.hidden=!raw;kbd.hidden=!!raw;hint.hidden=!!raw||!!n;
+    const raw=q.value.trim();
+    if(lastRaw&&!raw&&nSel())clearSel(); /* borraste la búsqueda: la búsqueda avanzada vuelve a cero */
+    lastRaw=raw;
+    const terms=fold(raw).split(/\s+/).filter(Boolean),n=nSel();
+    clr.hidden=!raw&&!n;kbd.hidden=!!raw||!!n;hint.hidden=!!raw||!!n;
     if(sel.ap.size&&!AP)loadAP();
     const parts=summary();
     if(!advP.hidden)counts(terms);
@@ -1698,7 +1703,7 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&current!==null&&!do
         <span class="rgo">${terms.length?"Ir al apartado":"Abrir guía"} ${ARROW}</span></button>`}).join("")+`</div>`;
   }
   /* abrir y cerrar el panel */
-  const openP=on=>{advP.hidden=!on;advT.setAttribute("aria-expanded",on);if(on){if(!AP)loadAP();if(!advP.querySelector(".chip"))paintChips();run()}};
+  function openP(on){advP.hidden=!on;advT.setAttribute("aria-expanded",on);if(on){if(!AP)loadAP();if(!advP.querySelector(".chip"))paintChips();run()}}
   advT.addEventListener("click",()=>openP(advP.hidden));
   advP.addEventListener("click",e=>{
     const b=e.target.closest(".chip");if(!b)return;
@@ -1709,13 +1714,15 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&current!==null&&!do
   advClr.addEventListener("click",clearF);
   paintChips();summary();
   q.addEventListener("input",run);
-  clr.addEventListener("click",()=>{q.value="";run();q.focus()});
+  clr.addEventListener("click",()=>{reset();q.focus()});
   hint.addEventListener("click",e=>{const b=e.target.closest("button");if(b){q.value=b.textContent;run();q.focus()}});
   q.addEventListener("keydown",e=>{
-    if(e.key==="Escape"){e.stopPropagation();if(q.value){q.value="";run()}else q.blur()}
+    if(e.key==="Escape"){e.stopPropagation();if(q.value||nSel()||!advP.hidden)reset();else q.blur()}
     if(e.key==="Enter"){const f=out.querySelector(".rcard");if(f)f.click()}
   });
-  const goGuide=(id,t)=>go("guia-"+encodeURIComponent(id)+(t?"~"+encodeURIComponent(t):""));
+  /* al abrir un resultado la búsqueda terminó: se borra la palabra y se quitan los filtros */
+  const reset=()=>{q.value="";lastRaw="";clearSel();run()};
+  const goGuide=(id,t)=>{go("guia-"+encodeURIComponent(id)+(t?"~"+encodeURIComponent(t):""));setTimeout(reset,0)};
   out.addEventListener("click",e=>{
     if(e.target.closest("[data-clr]")){clearF();return}
     const c=e.target.closest("[data-guide]");if(!c)return;
@@ -1726,7 +1733,6 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&current!==null&&!do
   document.addEventListener("keydown",e=>{
     if(e.key==="/"&&current===null&&document.activeElement!==q&&!/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)){e.preventDefault();q.focus();q.scrollIntoView({block:"center",behavior:"smooth"})}
   });
-  if(nSel()){if(sel.ap.size)loadAP();run()}
 })();
 /* modo oscuro: botón en la portada, se recuerda en este navegador */
 (()=>{

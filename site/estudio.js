@@ -112,6 +112,12 @@
 #estudio .es-k span{display:block;font-size:.8rem;color:#cfe5da;margin-top:4px}
 #estudio .es-next{grid-column:1/-1;margin:4px 0 0;font-size:.92rem;color:#e7f3ec}#estudio .es-next b{color:#ffb98f}
 #estudio .es-pane[hidden]{display:none}
+#estudio .es-modo{display:flex;gap:6px;margin:0 0 12px;padding:4px;border-radius:14px;background:color-mix(in srgb,var(--line) 55%,transparent)}
+#estudio .es-modo button{flex:1;border:0;background:transparent;color:var(--ink);font:800 .88rem var(--f-display);padding:10px 8px;border-radius:10px;cursor:pointer}
+#estudio .es-modo button[aria-pressed="true"]{background:var(--paper);color:var(--go);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+#estudio .es-modo{order:-3!important}
+#estudio .es-modo small{display:block;font:600 .66rem var(--f-mono);color:var(--muted);letter-spacing:.04em;margin-top:1px}
+#estudio .es-akkey{padding:18px;display:grid;gap:10px}#estudio .es-akkey input{font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
 #estudio .es-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 #estudio .es-srsbox{padding:0;overflow:hidden}#estudio .es-srsbox>.srs{min-height:460px}#estudio .es-srsbox>h3,#estudio .es-srsbox>p{padding:0 18px}#estudio .es-srsbox>h3{padding-top:16px}
 #estudio .es-stat{display:flex;gap:18px;flex-wrap:wrap;margin:2px 0 14px}#estudio .es-stat div b{display:block;font:900 1.6rem/1 var(--f-display)}#estudio .es-stat div span{font-size:.78rem;color:var(--muted)}
@@ -185,7 +191,7 @@
     <div class="es-tabs" role="tablist">${TABS.map(([k,l,i])=>`<button class="es-tab" type="button" role="tab" data-tab="${k}" aria-selected="false">${i}<span>${l}</span><b hidden></b></button>`).join("")}</div>
     <div class="es-mats" id="esMats" aria-label="Materia"></div>
     <div class="es-pane" data-pane="tarjetas"><div class="cal-grid"><div class="cal-main">
-      <section class="ccard es-srsbox" id="esCards"></section></div><div class="cal-side">
+      <div class="es-modo" id="esModo" role="group" aria-label="Modo de tarjetas"></div><section class="ccard es-srsbox" id="esCards"></section></div><div class="cal-side">
       <details class="ccard udet fold" data-fold="es-addc"><summary><h3>Agregar tarjeta</h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
         <form class="cform" id="esCForm" autocomplete="off">
           <div class="row2"><label>Materia<input class="es-matin" list="esMatList" maxlength="80" required></label><label>Tema <span class="h">opcional</span><input id="esCTema" maxlength="80"></label></div>
@@ -266,6 +272,7 @@
     $("#esMats").innerHTML=[["","Todas"]].concat(ms.map(m=>[m,m])).map(([v,l])=>`<button type="button" class="es-chip" data-mat="${esc(v)}" aria-pressed="${norm(v)===norm(mat)}">${esc(l)}</button>`).join("");
     $$("#estudio .es-matin").forEach(i=>{if(!i.value&&mat)i.value=mat});
     const di=dueInfo("");const badge=$('#estudio .es-tab[data-tab="tarjetas"] b');badge.hidden=!(di.due+di.newLeft);badge.textContent=di.due+di.newLeft;
+    renderModo();$("#esMats").hidden=tab==="tarjetas"&&modo==="anking";
     renderHero();
     if(tab==="tarjetas")renderCards();else if(tab==="stats")renderStats();else if(tab==="examen")renderExam();else if(tab==="contador")renderPomo();else renderNotes();
   }
@@ -282,9 +289,65 @@
   }
 
   /* ===== Tarjetas (pantallas de Anki: Mazos → resumen del mazo → repaso) ===== */
+  /* ===== Modo AnKing: mazo AnKing en español (cifrado), un mazo por sistema; avance propio (carrera-anki-anking-<sistema>) ===== */
+  const KM="carrera-es-modo",CK="carrera-anking-clave";
+  let modo=get(KM)==="anking"?"anking":"normal",AK=null,akP=null,akErr="",akSel=null;
+  async function akDecrypt(buf){
+    const pass=(get(CK)||"").trim();if(!pass)throw new Error("nokey");
+    const te=new TextEncoder(),ikm=await crypto.subtle.importKey("raw",te.encode(pass),"HKDF",false,["deriveKey"]);
+    const key=await crypto.subtle.deriveKey({name:"HKDF",hash:"SHA-256",salt:te.encode("medicina-udlap/anking/v1"),info:te.encode("mazo")},ikm,{name:"AES-GCM",length:256},false,["decrypt"]);
+    const u=new Uint8Array(buf);let pt;try{pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:u.slice(0,12)},key,u.slice(12))}catch(e){throw new Error("badkey")}
+    return JSON.parse(await new Response(new Blob([pt]).stream().pipeThrough(new DecompressionStream("gzip"))).text());
+  }
+  function loadAK(){
+    if(AK)return Promise.resolve(AK);
+    if(akP)return akP;
+    akErr="";
+    akP=fetch("anki/anking/index.json").then(r=>{if(!r.ok)throw new Error("http");return r.json()}).then(async idx=>{
+      const out=[];
+      for(const m of idx){
+        const t=await fetch("anki/anking/"+m.id+".txt").then(r=>{if(!r.ok)throw new Error("http");return r.text()});
+        const d=await akDecrypt(Uint8Array.from(atob(t.trim()),c=>c.charCodeAt(0)));
+        const id="anking-"+m.id,st=SRS.deckStore(id),P=st.meta();
+        if(P.N!==d.c.length||P.name!==m.n)st.set({N:d.c.length,name:m.n});
+        const cards=d.c.map(c=>({k:SRS.hash(c[1]+"|"+c[2]),st,f:c[1],b:c[2],t:c[0],deck:id,dn:m.n}));
+        out.push({id,slug:m.id,name:m.n,group:"AnKing en español",ids:[id],cards:()=>cards,total:cards.length,
+          newLim:()=>{const l=st.meta().lim;return l!=null?l:20},revLim:()=>st.meta().rlim||200,store:st});
+      }
+      return AK=out;
+    }).catch(e=>{akErr=e&&e.message||"err";akP=null;return null});
+    return akP;
+  }
+  function renderAK(){
+    const box=$("#esCards");
+    if(rv&&AK&&akSel&&rvKey==="ak:"+akSel&&box.contains(rv.el)){rv.refresh();return}
+    if(rv){rv.destroy();rv=null}
+    if(!window.SRS){rvKey=null;box.innerHTML=`<h3>AnKing</h3><p class="es-mut">Cargando…</p>`;return}
+    if(!AK){rvKey=null;
+      if(akErr==="nokey"||akErr==="badkey"){
+        box.innerHTML=`<div class="es-akkey"><h3>Mazo AnKing</h3><p class="es-help">${akErr==="badkey"?"Esa clave no abre el mazo. Revísala.":"Escribe la clave del mazo AnKing. Solo se pide una vez y se sincroniza con tus otros aparatos."}</p><input type="password" id="esAkKey" autocomplete="off" placeholder="Clave"><div class="btns"><button class="cbtn" type="button" id="esAkGo">Abrir mazo</button></div></div>`;
+        const go=()=>{const v=$("#esAkKey").value.trim();if(!v)return;set(CK,v);akErr="";akP=null;renderAK()};
+        $("#esAkGo").onclick=go;$("#esAkKey").onkeydown=e=>{if(e.key==="Enter")go()};return}
+      if(akErr){box.innerHTML=`<h3>AnKing</h3><p class="es-mut">No pude cargar el mazo AnKing. Revisa tu conexión e inténtalo de nuevo.</p><div class="es-row"><button class="cbtn" type="button" id="esAkRe">Reintentar</button></div>`;$("#esAkRe").onclick=()=>{akErr="";renderAK()};return}
+      box.innerHTML=`<h3>AnKing en español</h3><p class="es-mut">Abriendo el mazo (35,034 tarjetas)…</p>`;
+      loadAK().then(()=>{if(modo==="anking"&&!$("#estudio").hidden)render()});return}
+    const d=akSel&&AK.find(x=>x.id===akSel);
+    if(d){rvKey="ak:"+d.id;box.innerHTML="";
+      rv=SRS.reviewer(box,{title:()=>"AnKing · "+d.name,cards:d.cards,ids:d.ids,newLim:d.newLim,revLim:d.revLim,setLim:o=>d.store.set(o),shuffleNew:true,
+        onStats:()=>{tab="stats";set(K.tab,tab);render()},onBack:()=>{akSel=null;render()},back:"Mazos AnKing"});return}
+    rvKey="ak:list";SRS.css();
+    box.innerHTML=`<div class="srs"${SRS.dark()?" data-dark":""}><div class="srs-top"><b>AnKing en español</b><button class="srs-tb" type="button" data-es="stats">Estadísticas</button></div>
+      <div style="padding:6px 8px 4px;overflow-x:auto">${SRS.deckList(AK)}</div>
+      <p class="srs-k" style="text-align:center;padding:4px 10px 14px">Un mazo por sistema, con repaso estilo Anki (Otra vez, Difícil, Bien, Fácil). Su avance es aparte de tus tarjetas normales.</p></div>`;
+  }
+  function renderModo(){
+    const m=$("#esModo");if(!m)return;
+    m.innerHTML=`<button type="button" data-modo="normal" aria-pressed="${modo==="normal"}">Estudio normal<small>tus guías y tarjetas</small></button><button type="button" data-modo="anking" aria-pressed="${modo==="anking"}">Modo AnKing<small>mazo en español</small></button>`;
+  }
   let rv=null,rvKey=null,stv=null;
   function renderCards(){
     const box=$("#esCards");
+    if(modo==="anking"){renderAK();return}
     if(!BANK||!window.SRS){if(rv){rv.destroy();rv=null}rvKey=null;box.innerHTML=`<h3>Tarjetas</h3><p class="es-mut">Cargando tus tarjetas…</p>`;return}
     const d=deckOf(mat),key=(d?d.id:mat?"none:"+mat:"")+"|"+DKsig;
     if(rvKey===key&&(rv?box.contains(rv.el):box.querySelector(".srs"))){if(rv)rv.refresh();else drawDecks(box);return}
@@ -309,7 +372,9 @@
     stv=SRS.stats(box,{decks:()=>decks(),scopes:()=>[["","Todas las materias"]].concat(decks().map(x=>[x.id,x.name])),scope:sc});
   }
   function bindCards(){
+    $("#esModo").addEventListener("click",ev=>{const b=ev.target.closest("[data-modo]");if(!b||b.dataset.modo===modo)return;modo=b.dataset.modo;set(KM,modo);akSel=null;if(rv){rv.destroy();rv=null}rvKey=null;$("#esCards").innerHTML="";render()});
     $("#esCards").addEventListener("click",ev=>{
+      if(modo==="anking"){const r=ev.target.closest("tr[data-deck]");if(r&&AK&&AK.find(x=>x.id===r.dataset.deck)){akSel=r.dataset.deck;render();return}}
       const r=ev.target.closest("tr[data-deck]");if(r){const d=decks().find(x=>x.id===r.dataset.deck);if(d){mat=d.name;render()}return}
       const b=ev.target.closest("button");if(!b)return;
       if(b.dataset.es==="stats"){tab="stats";set(K.tab,tab);render()}

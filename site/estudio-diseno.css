@@ -1,0 +1,156 @@
+/* Medicina UDLAP · Diseño de la página Estudio (solo apariencia; estudio.js sigue igual).
+   Se carga en index.html y app.html con tools-estudio/patch_diseno.py (idempotente).
+   Todo va con prefijo "html body #estudio" para ganarle a los estilos que estudio.js mete al abrir. */
+
+html body #estudio{--es-r:18px;--es-soft:color-mix(in srgb,var(--green-3) 9%,var(--paper));--es-ring:color-mix(in srgb,var(--orange) 55%,transparent)}
+html body #estudio .cal-body{padding-top:16px}
+html body #estudio .cal-body>.in{max-width:1180px;margin-inline:auto}
+
+/* ---------- Encabezado con números ---------- */
+html body #estudio .es-hero{grid-template-columns:repeat(4,minmax(0,1fr));gap:4px 0;padding:22px 24px 20px;margin-bottom:18px;border-radius:22px}
+html body #estudio .es-hero .gh-kick{margin-bottom:10px;color:#ffc59f}
+html body #estudio .es-k{padding:2px 18px;border-left:1px solid rgba(255,255,255,.16)}
+html body #estudio .es-k:first-of-type{padding-left:0;border-left:0}
+html body #estudio .es-k b{font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+html body #estudio .es-k:first-of-type b{color:#ffc59f}
+html body #estudio .es-k span{font-size:.78rem;color:#cfe5da;line-height:1.25}
+html body #estudio .es-next{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14)}
+
+/* ---------- Pestañas: barra tipo app, fija arriba al bajar ---------- */
+html body #estudio .es-tabs{position:sticky;top:0;z-index:6;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin:0 0 14px;padding:5px;border-radius:16px;
+  background:color-mix(in srgb,var(--paper) 92%,transparent);border:1px solid var(--line);box-shadow:0 10px 24px -18px rgba(0,0,0,.55);
+  -webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px)}
+html body #estudio .es-tab{position:relative;justify-content:center;min-height:44px;border:0;background:transparent;border-radius:12px;padding:8px 10px;color:var(--muted);font:800 .88rem var(--f-display);white-space:nowrap}
+html body #estudio .es-tab:hover{color:var(--ink);background:color-mix(in srgb,var(--line) 55%,transparent)}
+html body #estudio .es-tab[aria-selected="true"]{background:var(--green);color:#fff;box-shadow:inset 0 -3px 0 var(--orange)}
+html body #estudio .es-tab[aria-selected="true"] svg{stroke:#ffc59f}
+html body #estudio .es-tab b{font:800 .7rem var(--f-mono);padding:2px 7px;letter-spacing:0}
+
+/* ---------- Materias (chips) ---------- */
+html body #estudio .es-mats{gap:6px;padding:2px 2px 12px;margin:0 0 10px;scroll-snap-type:x proximity;scrollbar-width:none;
+  -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}
+html body #estudio .es-mats::-webkit-scrollbar{display:none}
+html body #estudio .es-chip{scroll-snap-align:start;min-height:36px;padding:7px 14px;border:1.5px solid var(--line);background:var(--paper);font-weight:700}
+html body #estudio .es-chip:hover{border-color:var(--green-3)}
+html body #estudio .es-chip[aria-pressed="true"]{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 6px 14px -8px var(--orange)}
+html body #estudio .es-mats:empty{display:none}
+
+/* ---------- Tarjetas de contenido ---------- */
+html body #estudio .ccard{border-radius:var(--es-r);border:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.04),0 16px 34px -28px rgba(0,0,0,.6)}
+html body #estudio .ccard>h3:first-child,html body #estudio .ccard summary h3{letter-spacing:.02em}
+html body #estudio .cal-side{display:grid;gap:14px;align-content:start}
+html body #estudio .cal-side>.ccard{margin-top:0}
+html body #estudio details.ccard>summary{min-height:30px}
+html body #estudio details.ccard[open]>summary{margin-bottom:6px}
+
+/* Selector Estudio normal / Modo AnKing */
+html body #estudio .es-modo{gap:4px;margin:0 0 12px;padding:5px;border-radius:16px;background:color-mix(in srgb,var(--line) 60%,transparent);border:1px solid var(--line)}
+html body #estudio .es-modo button{min-height:52px;border-radius:12px;color:var(--muted)}
+html body #estudio .es-modo button:hover{color:var(--ink)}
+html body #estudio .es-modo button[aria-pressed="true"]{background:var(--paper);color:var(--go);box-shadow:0 1px 2px rgba(0,0,0,.12),inset 0 -3px 0 var(--orange)}
+html body #estudio .es-modo button[aria-pressed="true"] small{color:var(--orange)}
+
+/* Steps de AnKing */
+html body #estudio .es-steps{gap:6px;padding:12px 12px 4px}
+html body #estudio .es-steps button{min-height:44px;border-radius:12px;background:var(--paper)}
+html body #estudio .es-steps button[aria-pressed="true"] small{opacity:1}
+
+/* Caja de tarjetas (mazos y repaso) */
+html body #estudio .es-srsbox{border-radius:var(--es-r)}
+html body #estudio .es-srsbox .srs-top{min-height:48px;padding:8px 14px}
+html body #estudio .es-srsbox .srs-decks td,html body #estudio .es-srsbox .srs-decks th{padding:9px 10px}
+html body #estudio .es-srsbox .srs-decks td:first-child{text-align:left}
+html body #estudio .es-srsbox .srs-decks tbody tr:not(.sem):hover td{background:var(--es-soft)}
+html body #estudio .es-srsbox .srs-card{font-size:20px}
+html body #estudio .es-srsbox .srs-b{min-height:44px;border-radius:10px}
+
+/* Modo examen */
+html body #estudio .es-opt{min-height:48px;align-items:flex-start;border-radius:14px;padding:12px 14px}
+html body #estudio .es-opt:hover{border-color:var(--green-3)}
+html body #estudio .es-opt i{flex:none;display:inline-grid;place-items:center;width:24px;height:24px;border-radius:8px;background:color-mix(in srgb,var(--line) 70%,transparent);font-size:.8rem}
+html body #estudio .es-opt.sel i{background:var(--orange);color:#fff}
+html body #estudio .es-opt.ok i{background:#1f9d6b;color:#fff}
+html body #estudio .es-opt.ko i{background:#c0392b;color:#fff}
+html body #estudio .es-q{font-size:1.12rem}
+html body #estudio .es-top{margin-bottom:8px}
+html body #estudio .es-clock{font-variant-numeric:tabular-nums}
+html body #estudio .es-bar{height:8px}
+html body #estudio .es-bar i{border-radius:9px;background:linear-gradient(90deg,var(--orange),#ffa364)}
+
+/* Calificar tarjeta */
+html body #estudio .es-grades button{min-height:52px;border-radius:14px}
+html body #estudio .es-card{border-radius:var(--es-r)}
+
+/* Contador */
+html body #estudio .es-ring{width:min(240px,64vw)}
+html body #estudio .es-presets .cbtn,html body #estudio .es-presets button{min-height:40px}
+
+/* Notas */
+html body #estudio .es-note{border-radius:14px;padding:12px 14px}
+html body #estudio .es-note[open]{border-color:var(--green-3)}
+
+/* Campos y botones */
+html body #estudio select,html body #estudio input:not([type=checkbox]):not([type=radio]),html body #estudio textarea{min-height:44px;border-radius:12px}
+html body #estudio textarea{min-height:0}
+html body #estudio .cbtn{min-height:44px;border-radius:12px}
+
+/* Foco visible con teclado */
+html body #estudio button:focus-visible,html body #estudio a:focus-visible,html body #estudio summary:focus-visible,
+html body #estudio select:focus-visible,html body #estudio input:focus-visible,html body #estudio textarea:focus-visible{outline:3px solid var(--es-ring);outline-offset:2px}
+
+/* Movimiento suave solo si no está activo "Reducir movimiento" */
+@media (prefers-reduced-motion:no-preference){
+  html body #estudio .es-tab,html body #estudio .es-chip,html body #estudio .es-modo button,html body #estudio .es-steps button,
+  html body #estudio .es-opt,html body #estudio .es-grades button,html body #estudio .cbtn{transition:background-color .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .12s ease}
+  html body #estudio .es-grades button:active,html body #estudio .es-opt:active,html body #estudio .es-tab:active,html body #estudio .es-chip:active{transform:scale(.97)}
+  html body #estudio .es-bar i{transition:width .3s ease}
+}
+
+/* Modo oscuro: un poco más de contraste en bordes y tarjetas */
+@media (prefers-color-scheme:dark){html:not([data-theme="light"]) body #estudio{--es-soft:color-mix(in srgb,var(--go) 8%,var(--paper))}
+  html:not([data-theme="light"]) body #estudio .ccard{border-color:color-mix(in srgb,var(--line) 80%,#fff 6%)}
+  html:not([data-theme="light"]) body #estudio .es-tab[aria-selected="true"]{background:var(--green-3)}}
+html[data-theme="dark"] body #estudio{--es-soft:color-mix(in srgb,var(--go) 8%,var(--paper))}
+html[data-theme="dark"] body #estudio .ccard{border-color:color-mix(in srgb,var(--line) 80%,#fff 6%)}
+html[data-theme="dark"] body #estudio .es-tab[aria-selected="true"]{background:var(--green-3)}
+
+/* ---------- Mac / pantallas medianas ---------- */
+@media (max-width:860px){
+  html body #estudio .es-hero{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+
+/* ---------- Cel (320 a 560 px) ---------- */
+@media (max-width:560px){
+  html body #estudio .cal-body{padding-top:12px}
+  html body #estudio .es-hero{padding:16px 14px 14px;border-radius:18px;margin-bottom:12px}
+  html body #estudio .es-hero .gh-kick{margin-bottom:6px;font-size:.66rem}
+  html body #estudio .es-k{padding:0 8px}
+  html body #estudio .es-k b{font-size:clamp(1.15rem,6vw,1.5rem)}
+  html body #estudio .es-k span{font-size:.66rem;margin-top:3px}
+  html body #estudio .es-next{font-size:.84rem;margin-top:10px;padding-top:10px}
+  html body #estudio .es-tabs{padding:4px;gap:2px;border-radius:14px}
+  html body #estudio .es-tab{flex-direction:column;gap:3px;min-height:54px;padding:7px 1px 6px;font-size:.64rem;font-stretch:80%;letter-spacing:-.015em}
+  html body #estudio .es-tab span{display:block!important;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+  html body #estudio .es-tab svg{width:20px;height:20px}
+  html body #estudio .es-tab b{position:absolute;top:2px;left:calc(50% + 8px);font-size:.6rem;padding:1px 5px}
+  html body #estudio .es-chip{min-height:34px;padding:6px 12px;font-size:.8rem}
+  html body #estudio .es-modo button{min-height:48px;padding:8px 6px;font-size:.84rem}
+  html body #estudio .es-srsbox>.srs{min-height:420px}
+  html body #estudio .es-srsbox .srs-decks{font-size:13.5px;table-layout:auto}
+  html body #estudio .es-srsbox div:has(>table.srs-decks){padding-left:0!important;padding-right:0!important}
+  html body #estudio .es-srsbox .srs-decks small{font-size:11px}
+  html body #estudio .es-srsbox .srs-decks td:first-child{-webkit-hyphens:auto;hyphens:auto;overflow-wrap:anywhere}
+  html body #estudio .es-srsbox .srs-decks th{font-size:10.5px;padding:8px 4px;white-space:normal;line-height:1.2}
+  html body #estudio .es-srsbox .srs-decks td{padding:9px 5px}
+  html body #estudio .es-srsbox .srs-decks td:first-child,html body #estudio .es-srsbox .srs-decks th:first-child{padding-left:12px}
+  html body #estudio .es-srsbox .srs-decks td:last-child,html body #estudio .es-srsbox .srs-decks th:last-child{padding-right:12px}
+  html body #estudio .es-srsbox .srs-card{font-size:18px;padding:22px 16px 24px}
+  html body #estudio .es-srsbox .srs-top{gap:2px;padding:6px 8px}
+  html body #estudio .es-srsbox .srs-tb{white-space:nowrap;padding:5px 7px}
+  html body #estudio .es-q{font-size:1.02rem}
+}
+@media (max-width:360px){
+  html body #estudio .es-k span{font-size:.6rem}
+  html body #estudio .es-tab{font-size:.58rem}
+  html body #estudio .es-tab svg{width:18px;height:18px}
+}

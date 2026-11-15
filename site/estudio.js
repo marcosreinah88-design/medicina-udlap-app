@@ -117,6 +117,10 @@
 #estudio .es-modo button[aria-pressed="true"]{background:var(--paper);color:var(--go);box-shadow:0 1px 3px rgba(0,0,0,.15)}
 #estudio .es-modo{order:-3!important}
 #estudio .es-modo small{display:block;font:600 .66rem var(--f-mono);color:var(--muted);letter-spacing:.04em;margin-top:1px}
+#estudio .es-steps{display:flex;gap:6px;flex-wrap:wrap;padding:8px 10px 2px}
+#estudio .es-steps button{flex:1 1 70px;border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:7px 10px;font:800 .82rem var(--f-display);cursor:pointer}
+#estudio .es-steps button[aria-pressed="true"]{background:var(--orange);border-color:var(--orange);color:#fff}
+#estudio .es-steps small{display:block;font:600 .64rem var(--f-mono);opacity:.8}
 #estudio .es-akkey{padding:18px;display:grid;gap:10px}#estudio .es-akkey input{font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
 #estudio .es-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 #estudio .es-srsbox{padding:0;overflow:hidden}#estudio .es-srsbox>.srs{min-height:460px}#estudio .es-srsbox>h3,#estudio .es-srsbox>p{padding:0 18px}#estudio .es-srsbox>h3{padding-top:16px}
@@ -291,7 +295,7 @@
   /* ===== Tarjetas (pantallas de Anki: Mazos → resumen del mazo → repaso) ===== */
   /* ===== Modo AnKing: mazo AnKing en español (cifrado), un mazo por sistema; avance propio (carrera-anki-anking-<sistema>) ===== */
   const KM="carrera-es-modo",CK="carrera-anking-clave";
-  let modo=get(KM)==="anking"?"anking":"normal",AK=null,akP=null,akErr="",akSel=null;
+  let modo=get(KM)==="anking"?"anking":"normal",AK=null,akP=null,akErr="",akSel=null,akStep=["1","2","3"].includes(get("carrera-es-akstep"))?get("carrera-es-akstep"):"";
   async function akDecrypt(buf){
     const pass=(get(CK)||"").trim();if(!pass)throw new Error("nokey");
     const te=new TextEncoder(),ikm=await crypto.subtle.importKey("raw",te.encode(pass),"HKDF",false,["deriveKey"]);
@@ -304,14 +308,15 @@
     if(akP)return akP;
     akErr="";
     akP=fetch("anki/anking/index.json").then(r=>{if(!r.ok)throw new Error("http");return r.json()}).then(async idx=>{
-      const out=[];
+      const out=[],STP=await fetch("anki/anking/steps.json").then(r=>r.ok?r.json():{}).catch(()=>({}));
       for(const m of idx){
         const t=await fetch("anki/anking/"+m.id+".txt").then(r=>{if(!r.ok)throw new Error("http");return r.text()});
         const d=await akDecrypt(Uint8Array.from(atob(t.trim()),c=>c.charCodeAt(0)));
         const id="anking-"+m.id,st=SRS.deckStore(id),P=st.meta();
         if(P.N!==d.c.length||P.name!==m.n)st.set({N:d.c.length,name:m.n});
-        const cards=d.c.map(c=>({k:SRS.hash(c[1]+"|"+c[2]),st,f:c[1],b:c[2],t:c[0],deck:id,dn:m.n}));
-        out.push({id,slug:m.id,name:m.n,group:"AnKing en español",ids:[id],cards:()=>cards,total:cards.length,
+        const sm=STP[m.id]||"",cards=d.c.map((c,i)=>({k:SRS.hash(c[1]+"|"+c[2]),st,f:c[1],b:c[2],t:c[0],deck:id,dn:m.n,m:+(sm[i]||0)}));
+        const by={"":cards};["1","2","3"].forEach(n=>by[n]=cards.filter(c=>c.m&(1<<(n-1))));
+        out.push({id,slug:m.id,name:m.n,group:"AnKing en español",ids:[id],all:cards,by,cards:()=>by[akStep],total:cards.length,
           newLim:()=>{const l=st.meta().lim;return l!=null?l:20},revLim:()=>st.meta().rlim||200,store:st});
       }
       return AK=out;
@@ -320,7 +325,7 @@
   }
   function renderAK(){
     const box=$("#esCards");
-    if(rv&&AK&&akSel&&rvKey==="ak:"+akSel&&box.contains(rv.el)){rv.refresh();return}
+    if(rv&&AK&&akSel&&rvKey==="ak:"+akSel+":"+akStep&&box.contains(rv.el)){rv.refresh();return}
     if(rv){rv.destroy();rv=null}
     if(!window.SRS){rvKey=null;box.innerHTML=`<h3>AnKing</h3><p class="es-mut">Cargando…</p>`;return}
     if(!AK){rvKey=null;
@@ -332,13 +337,15 @@
       box.innerHTML=`<h3>AnKing en español</h3><p class="es-mut">Abriendo el mazo (35,034 tarjetas)…</p>`;
       loadAK().then(()=>{if(modo==="anking"&&!$("#estudio").hidden)render()});return}
     const d=akSel&&AK.find(x=>x.id===akSel);
-    if(d){rvKey="ak:"+d.id;box.innerHTML="";
-      rv=SRS.reviewer(box,{title:()=>"AnKing · "+d.name,cards:d.cards,ids:d.ids,newLim:d.newLim,revLim:d.revLim,setLim:o=>d.store.set(o),shuffleNew:true,
+    if(d){rvKey="ak:"+d.id+":"+akStep;box.innerHTML="";
+      rv=SRS.reviewer(box,{title:()=>"AnKing · "+d.name+(akStep?" · Step "+akStep:""),cards:d.cards,ids:d.ids,newLim:d.newLim,revLim:d.revLim,setLim:o=>d.store.set(o),shuffleNew:true,
         onStats:()=>{tab="stats";set(K.tab,tab);render()},onBack:()=>{akSel=null;render()},back:"Mazos AnKing"});return}
-    rvKey="ak:list";SRS.css();
+    rvKey="ak:list:"+akStep;SRS.css();
+    const cnt=n=>AK.reduce((a,x)=>a+x.by[n].length,0),shown=AK.filter(x=>x.by[akStep].length);
     box.innerHTML=`<div class="srs"${SRS.dark()?" data-dark":""}><div class="srs-top"><b>AnKing en español</b><button class="srs-tb" type="button" data-es="stats">Estadísticas</button></div>
-      <div style="padding:6px 8px 4px;overflow-x:auto">${SRS.deckList(AK)}</div>
-      <p class="srs-k" style="text-align:center;padding:4px 10px 14px">Un mazo por sistema, con repaso estilo Anki (Otra vez, Difícil, Bien, Fácil). Su avance es aparte de tus tarjetas normales.</p></div>`;
+      <div class="es-steps" role="group" aria-label="Step">${[["","Todas"],["1","Step 1"],["2","Step 2"],["3","Step 3"]].map(([v,l])=>`<button type="button" data-step="${v}" aria-pressed="${v===akStep}">${l}<small>${cnt(v).toLocaleString("es-MX")}</small></button>`).join("")}</div>
+      <div style="padding:6px 8px 4px;overflow-x:auto">${SRS.deckList(shown)}</div>
+      <p class="srs-k" style="text-align:center;padding:4px 10px 14px">Un mazo por sistema, con repaso estilo Anki (Otra vez, Difícil, Bien, Fácil). Su avance es aparte de tus tarjetas normales. Una tarjeta etiquetada para varios Steps sale en cada uno y su avance es el mismo.</p></div>`;
   }
   function renderModo(){
     const m=$("#esModo");if(!m)return;
@@ -374,7 +381,8 @@
   function bindCards(){
     $("#esModo").addEventListener("click",ev=>{const b=ev.target.closest("[data-modo]");if(!b||b.dataset.modo===modo)return;modo=b.dataset.modo;set(KM,modo);akSel=null;if(rv){rv.destroy();rv=null}rvKey=null;$("#esCards").innerHTML="";render()});
     $("#esCards").addEventListener("click",ev=>{
-      if(modo==="anking"){const r=ev.target.closest("tr[data-deck]");if(r&&AK&&AK.find(x=>x.id===r.dataset.deck)){akSel=r.dataset.deck;render();return}}
+      if(modo==="anking"){const sb=ev.target.closest("[data-step]");if(sb){akStep=sb.dataset.step;set("carrera-es-akstep",akStep);render();return}
+        const r=ev.target.closest("tr[data-deck]");if(r&&AK&&AK.find(x=>x.id===r.dataset.deck)){akSel=r.dataset.deck;render();return}}
       const r=ev.target.closest("tr[data-deck]");if(r){const d=decks().find(x=>x.id===r.dataset.deck);if(d){mat=d.name;render()}return}
       const b=ev.target.closest("button");if(!b)return;
       if(b.dataset.es==="stats"){tab="stats";set(K.tab,tab);render()}

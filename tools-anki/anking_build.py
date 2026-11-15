@@ -12,6 +12,9 @@ OUT=os.path.join(SITE,'anki','anking');os.makedirs(OUT,exist_ok=True)
 pw=open(KEYF).read().strip().encode()
 key=HKDF(algorithm=hashes.SHA256(),length=32,salt=b'medicina-udlap/anking/v1',info=b'mazo').derive(pw)
 notes={o['k']:o for o in json.load(open(os.path.join(SRC,'notes.json')))}
+# steps.json (opcional): por nota, los Steps de USMLE en que viene etiquetada ("12" = Step 1 y 2). No es sensible, va sin cifrar.
+STF=os.path.join(SRC,'steps.json');ST=json.load(open(STF)) if os.path.exists(STF) else None
+ONLY=os.environ.get('STEPS_ONLY')=='1'  # solo reescribe steps.json (no vuelve a cifrar los mazos)
 tr={}
 for f in sorted(glob.glob(os.path.join(SRC,'out','*.tsv'))):
     for l in open(f,encoding='utf-8'):  # también las partes de lotes a medio terminar
@@ -33,18 +36,21 @@ JUNTA={'Genética':'Bioquímica','Biología celular':'Bioquímica','Oftalmologí
        'General':'Urgencias, cirugía y medicina interna','Urgencias':'Urgencias, cirugía y medicina interna',
        'Cirugía y anestesia':'Urgencias, cirugía y medicina interna','Medicina interna':'Urgencias, cirugía y medicina interna',
        'Patología general':'Farmacología y patología general','Farmacología':'Farmacología y patología general'}
-decks={};miss=0;x=0
+decks={};stp={};miss=0;x=0
 for k,o in notes.items():
     p=tr.get(k)
     if not p: miss+=1;continue
     if p[1]=='X': x+=1;continue
     for f,b in cards(p[1].strip(),p[2].strip()):
-        decks.setdefault(JUNTA.get(o['s'],o['s']),[]).append([o['s'],f,b])
+        dk=JUNTA.get(o['s'],o['s']);decks.setdefault(dk,[]).append([o['s'],f,b])
+        if ST:stp.setdefault(dk,[]).append(str(sum(1<<(int(c)-1) for c in ST[k])))
 idx=[]
 for s,c in sorted(decks.items(),key=lambda kv:-len(kv[1])):
     sid=slug(s);d={'id':'anking-'+sid,'n':'AnKing · '+s,'s':0,'c':c,'q':[]}
     raw=gzip.compress(json.dumps(d,ensure_ascii=False,separators=(',',':')).encode(),9)
+    if ONLY:idx.append({'id':sid,'n':s,'c':len(c)});continue
     iv=os.urandom(12);open(os.path.join(OUT,sid+'.txt'),'w').write(base64.b64encode(iv+AESGCM(key).encrypt(iv,raw,None)).decode())
     idx.append({'id':sid,'n':s,'c':len(c)})
-json.dump(idx,open(os.path.join(OUT,'index.json'),'w'),ensure_ascii=False,indent=0)
+if not ONLY:json.dump(idx,open(os.path.join(OUT,'index.json'),'w'),ensure_ascii=False,indent=0)
+if ST:json.dump({slug(s):''.join(v) for s,v in stp.items()},open(os.path.join(OUT,'steps.json'),'w'),separators=(',',':'))  # un dígito por tarjeta: 1=Step1, 2=Step2, 4=Step3 (suma)
 print('mazos',len(idx),'tarjetas',sum(i['c'] for i in idx),'notas sin traducir',miss,'descartadas',x)

@@ -157,7 +157,7 @@ html{transition:background-color .3s}
 .hero.dusk #snowG stop:first-child{stop-color:#ffc9a8}.hero.dusk #snowG stop:last-child{stop-color:#e58aa0}
 .hero.dawn #snowG stop:first-child{stop-color:#ffd9e2}.hero.dawn #snowG stop:last-child{stop-color:#f6a8b8}
 .hero.night #snowG stop:first-child{stop-color:#e4ebf7}.hero.night #snowG stop:last-child{stop-color:#93a5c4}
-.hero.dusk .horizon .smoke path,.hero.dawn .hero.night .hero.night .horizon .crater{stroke:#0a1120}
+.hero.night .horizon .crater{stroke:#0a1120}
 .skylbl{position:absolute;z-index:1;left:0;top:0;display:inline-flex;align-items:center;gap:0;font:600 .72rem var(--f-mono);letter-spacing:.04em;color:#fff;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 11px;backdrop-filter:blur(4px);white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .skylbl b{font-weight:700;margin-right:5px}
 .skylbl[hidden]{display:none}
@@ -1856,8 +1856,8 @@ route();showResume();
   const ctx=cv.getContext("2d");
   const R=(a,b)=>a+Math.random()*(b-a),clamp=(x,a,b)=>x<a?a:x>b?b:x,ease=t=>1-Math.pow(1-clamp(t,0,1),3);
   const smooth=t=>{t=clamp(t,0,1);return t*t*(3-2*t)};
-  /* viento del día: casi siempre sopla hacia el oriente (derecha) */
-  const WIND=(Math.random()<.8?1:-1)*R(.6,1);
+  /* viento del día: como en la vida real, empuja la ceniza del Popo hacia el Iztaccíhuatl (a la derecha en el dibujo) */
+  const WIND=R(.75,1.05);
   if(fum)fum.style.setProperty("--wx",WIND.toFixed(2));
   /* perfil del Popo en coordenadas del dibujo (1200 x 180) */
   const RIDGE=[[0,180],[470,180],[640,34],[656,30],[684,30],[700,34],[800,120],[870,120],[890,112],[912,96],[930,100],[1200,100]];
@@ -1876,6 +1876,19 @@ route();showResume();
     const x=px/W*1200;
     for(let i=1;i<RIDGE.length;i++){const a=RIDGE[i-1],b=RIDGE[i];if(x<=b[0]){const k=(x-a[0])/(b[0]-a[0]||1);return Y(a[1]+(b[1]-a[1])*k)}}
     return Y(180);
+  }
+  /* camino de una colada: se subdivide, serpentea un poco y se ensancha cuesta abajo; cada punto lleva [x,y,distancia,ancho,nx,ny] */
+  function arm(base,seed,wmul){
+    const pts=[];
+    for(let i=1;i<base.length;i++){const a=base[i-1],b=base[i];for(let k=0;k<4;k++){const u=k/4;pts.push([a[0]+(b[0]-a[0])*u,a[1]+(b[1]-a[1])*u])}}
+    pts.push(base[base.length-1].slice());
+    let len=0;const N=pts.length;
+    for(let i=0;i<N;i++){const p=pts[i],q=pts[Math.min(N-1,i+1)],r=pts[Math.max(0,i-1)],tx=q[0]-r[0],ty=q[1]-r[1],tl=Math.hypot(tx,ty)||1;
+      const nx=-ty/tl,ny=tx/tl,u=i/(N-1),wig=(Math.sin(seed+i*.9)*1.6+Math.sin(seed*2.3+i*2.1)*.8)*S*u;
+      p[0]+=nx*wig;p[1]+=ny*wig*.4;
+      if(i)len+=Math.hypot(p[0]-pts[i-1][0],p[1]-pts[i-1][1]);
+      p.push(len,(3.2+6*Math.pow(u,.8)+Math.sin(seed+i*1.7)*.9)*wmul,nx,ny)}
+    return {pts,len};
   }
   const scene=()=>hero.classList.contains("night")?"night":hero.classList.contains("dusk")?"dusk":hero.classList.contains("dawn")?"dawn":"day";
   /* colores de la ceniza según la luz: sombra, lado iluminado y (de noche) reflejo de la lava */
@@ -1921,7 +1934,7 @@ route();showResume();
     const dt=Math.min(.05,(now-last)/1000||.016);last=now;
     ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
     emit=emit.filter(e=>(e.t+=dt,e.fn(e.t,dt)!==false));
-    const top=oy*.9;
+    const top=Math.min(oy*.62,110*S);
     /* resplandor del cráter */
     glows=glows.filter(g=>{g.t+=dt;if(g.t>g.d)return false;
       const k=g.t/g.d,base=g.kind==="lava"?(k<.08?k/.08:1-smooth((k-.55)/.45)):(1-k)*(1-k);
@@ -1929,29 +1942,41 @@ route();showResume();
       ctx.globalCompositeOperation="lighter";ctx.globalAlpha=clamp(base*fl,0,1);
       ctx.drawImage(g.kind==="lava"?sprites.lava:sprites.dull,ox-rr,oy-rr*.75,rr*2,rr*1.5);
       if(g.kind==="lava"){ctx.globalAlpha=clamp(base*(.6+.4*fl),0,1);ctx.fillStyle="#ffe08a";ctx.beginPath();ctx.ellipse(ox,oy+1*S,7*S*Math.max(.35,W/1200),1.6*S,0,0,7);ctx.fill()}
-      ctx.globalCompositeOperation="source-over";return true});
+      ctx.globalCompositeOperation="source-over";ctx.globalAlpha=1;return true});
     /* coladas de lava por las laderas */
+    /* coladas de lava: lengua ancha e irregular con costra oscura, canal incandescente trenzado y brazos que se separan */
+    ctx.lineCap="round";ctx.lineJoin="round";
     flows=flows.filter(f=>{f.t+=dt;if(f.t>f.life)return false;
-      const prog=ease(f.t/f.adv),cool=clamp((f.t-f.adv*.8)/(f.life-f.adv*.8),0,1),fade=1-smooth((f.t-(f.life-3))/3);
-      const pts=f.pts,want=prog*f.len;let acc=0;ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);let tip=pts[0];
-      for(let i=1;i<pts.length;i++){const a=pts[i-1],b=pts[i],L=Math.hypot(b[0]-a[0],b[1]-a[1]);
-        if(acc+L>=want){const k=(want-acc)/L;tip=[a[0]+(b[0]-a[0])*k,a[1]+(b[1]-a[1])*k];ctx.lineTo(tip[0],tip[1]);break}
-        acc+=L;ctx.lineTo(b[0],b[1]);tip=b}
-      ctx.lineCap="round";ctx.lineJoin="round";
-      const gr=ctx.createLinearGradient(pts[0][0],pts[0][1],tip[0],tip[1]);
-      gr.addColorStop(0,lavaColor(.95-cool*.9,fade));gr.addColorStop(1,lavaColor(.75-cool*.75,fade));
-      ctx.globalCompositeOperation="lighter";ctx.strokeStyle=`rgba(255,90,20,${.22*fade*(1-cool*.7)})`;ctx.lineWidth=9*S;ctx.stroke();
-      ctx.globalCompositeOperation="source-over";ctx.strokeStyle=gr;ctx.lineWidth=4.6*S;ctx.stroke();
-      if(cool<.6){ctx.globalCompositeOperation="lighter";ctx.strokeStyle=`rgba(255,236,170,${.5*fade*(1-cool/.6)})`;ctx.lineWidth=1.1*S;
-        ctx.save();ctx.translate(-.9*S,0);ctx.stroke();ctx.translate(1.8*S,.6*S);ctx.globalAlpha=.6;ctx.stroke();ctx.restore()}
-      /* frente incandescente que avanza */
-      if(prog<.995){const r=6*S;ctx.globalAlpha=fade;ctx.drawImage(sprites.lava,tip[0]-r,tip[1]-r,r*2,r*2);ctx.globalAlpha=1}
-      ctx.globalCompositeOperation="source-over";return true});
+      const fade=1-smooth((f.t-(f.life-3.5))/3.5);
+      f.arms.forEach(a=>{
+        const at=f.t-a.delay;if(at<=0)return;
+        const prog=ease(at/a.adv),want=prog*a.len,heat=1-clamp((at-a.adv*.7)/(f.life-a.delay-a.adv*.7),0,1);
+        const P=a.pts;let n=1;while(n<P.length-1&&P[n][2]<want)n++;
+        /* 1) resplandor sobre la nieve */
+        ctx.globalCompositeOperation="lighter";
+        for(let i=1;i<=n&&i<P.length;i++){const q=P[i-1],r=P[i];ctx.strokeStyle=`rgba(255,80,20,${.16*fade*heat})`;ctx.lineWidth=(r[3]*2.6+4)*S;ctx.beginPath();ctx.moveTo(q[0],q[1]);ctx.lineTo(r[0],r[1]);ctx.stroke()}
+        /* 2) costra oscura (bordes ya fríos), más ancha cuesta abajo */
+        ctx.globalCompositeOperation="source-over";
+        for(let i=1;i<=n&&i<P.length;i++){const q=P[i-1],r=P[i];ctx.strokeStyle=`rgba(${Math.round(70+50*heat)},${Math.round(22+12*heat)},12,${.92*fade})`;ctx.lineWidth=r[3]*S*1.35;ctx.beginPath();ctx.moveTo(q[0],q[1]);ctx.lineTo(r[0],r[1]);ctx.stroke()}
+        /* 3) cuerpo naranja: se enfría primero en el frente y en los bordes */
+        for(let i=1;i<=n&&i<P.length;i++){const q=P[i-1],r=P[i],u=r[2]/a.len,T=clamp(heat*(.95-.45*u)-(1-prog)*.05,0,1);
+          ctx.strokeStyle=lavaColor(T*.85,fade*clamp(heat*1.4,0,1));ctx.lineWidth=r[3]*S*.85;ctx.beginPath();ctx.moveTo(q[0],q[1]);ctx.lineTo(r[0],r[1]);ctx.stroke()}
+        /* 4) canal incandescente: dos hilos que se cruzan y parpadean */
+        if(heat>.05){ctx.globalCompositeOperation="lighter";
+          for(const side of [-1,1]){ctx.beginPath();for(let i=0;i<=n&&i<P.length;i++){const r=P[i],o=side*r[3]*.22*S*Math.sin(r[2]*.25+f.t*1.6+side);
+              const x=r[0]+r[4]*o,y=r[1]+r[5]*o;i?ctx.lineTo(x,y):ctx.moveTo(x,y)}
+            ctx.strokeStyle=`rgba(255,${210+Math.round(30*Math.random())},120,${.4*fade*heat*heat*(.8+.2*Math.random())})`;ctx.lineWidth=Math.max(.7,.9*S);ctx.stroke()}}
+        /* 5) frente en forma de lóbulo, más brillante mientras avanza */
+        const tip=P[Math.min(n,P.length-1)];
+        if(prog<.995||heat>.6){const r=tip[3]*S*1.5;ctx.globalCompositeOperation="lighter";ctx.globalAlpha=fade*(prog<.995?.9:.5)*heat;ctx.drawImage(sprites.lava,tip[0]-r,tip[1]-r*.8,r*2,r*1.6);ctx.globalAlpha=1}
+        ctx.globalCompositeOperation="source-over";
+      });
+      return true});
     /* columna de ceniza: sube rápido, frena, se abre como hongo y el viento la arrastra */
     for(const p of puffs){p.age+=dt;
       const h=oy-p.y,k=smooth(h/top);
       p.vy+=((-p.buoy*(1-k))-p.vy)*Math.min(1,p.drag*dt);
-      p.vx+=((WIND*p.wind*S*(.1+1.3*k))-p.vx)*Math.min(1,.7*dt);
+      p.vx+=((WIND*p.wind*S*clamp(W/1200,.5,1)*(.1+1.3*k))-p.vx)*Math.min(1,.7*dt);
       if(h>top*.92)p.vy*=1-Math.min(1,3*dt);
       p.x+=p.vx*dt;p.y+=p.vy*dt;p.r=p.r0+p.grow*(1-Math.exp(-p.age/2.2))+p.age*p.spread*k;
     }
@@ -2004,7 +2029,7 @@ route();showResume();
     glowSky.animate(kf,{duration:ms,easing:"ease-in-out"});
   }
   function ash(){
-    geo();makeSprites();const sc=scene(),p=PAL[sc],big=Math.random()<.45,E=big?3.6:2.6,top=oy*.9;
+    geo();makeSprites();const sc=scene(),p=PAL[sc],big=Math.random()<.45,E=big?3.6:2.6,top=Math.min(oy*.62,110*S);
     glows.push({kind:"dull",t:0,d:1.4,r:30*S});skyGlow("ash",big?7000:5000);
     let acc=0;
     emit.push({t:0,fn:(t,dt)=>{
@@ -2012,8 +2037,8 @@ route();showResume();
       const rate=(big?30:22)*(1-.55*t/E);acc+=rate*dt;
       while(acc>=1){acc--;
         const jet=1-t/E;
-        addPuff({x:ox+R(-3,3)*S,y:oy-1*S,vx:R(-8,8)*S,vy:-R(80,125)*S*(.55+.45*jet),buoy:R(10,20)*S*(big?1.2:1),drag:R(.9,1.4),wind:R(26,42),
-          r0:R(7,10)*S,grow:R(24,36)*S*(big?1.25:1),spread:R(5,9)*S,life:R(6.5,9.5)*(big?1.15:1),a:R(.75,.95),lit:sc==="night"&&jet>.7&&Math.random()<.4});
+        addPuff({x:ox+R(-3,3)*S,y:oy-1*S,vx:R(-8,8)*S,vy:-R(80,125)*S*(.55+.45*jet),buoy:R(10,20)*S*(big?1.2:1),drag:R(.9,1.4),wind:R(42,60),
+          r0:R(7,10)*S,grow:R(24,36)*S*(big?1.25:1),spread:R(5,9)*S,life:R(8.5,11.5)*(big?1.15:1),a:R(.75,.95),lit:sc==="night"&&jet>.7&&Math.random()<.4});
       }
     }});
     /* caída de ceniza desde la parte alta de la nube */
@@ -2057,8 +2082,14 @@ route();showResume();
     const both=Math.random()<.3,first=Math.random()<.6?0:1;
     FLOWS.forEach((f,i)=>{if(!both&&i!==first)return;const at=.5+(i!==first)*R(.8,1.4);
       emit.push({t:0,fn:t=>{if(t<at)return;
-        const pts=f.map(([x,y],j)=>[X(x+(j?R(-3,3):0)),Y(y+(j?R(-1.5,1.5):0))]);let len=0;for(let j=1;j<pts.length;j++)len+=Math.hypot(pts[j][0]-pts[j-1][0],pts[j][1]-pts[j-1][1]);
-        const adv=R(6,8);flows.push({pts,len,t:0,adv,life:adv+R(5,7)});return false}});
+        const adv=R(6.5,8.5),main=arm(f.map(([x,y])=>[X(x),Y(y)]),R(0,9),1),arms=[Object.assign(main,{delay:0,adv})];
+        /* uno o dos brazos que se separan de la colada principal y bajan por su cuenta */
+        const nb=Math.random()<.6?2:1;
+        for(let b=0;b<nb;b++){const k=R(.3,.7),P=main.pts,j=Math.max(2,Math.round(k*(P.length-1))),o=P[j],dir=(Math.random()<.5?-1:1);
+          const len=main.len*R(.25,.45),dx=X(1200)/1200*dir*R(8,16),pts=[[o[0],o[1]]];
+          for(let q=1;q<=4;q++){const u=q/4;pts.push([o[0]+dx*u+(P[Math.min(P.length-1,j+q*2)][0]-o[0])*.4*u,o[1]+len*u*.9])}
+          const a=arm(pts,R(0,9),.7);a.delay=adv*k*R(.9,1.1);a.adv=adv*R(.35,.5);arms.push(a)}
+        flows.push({t:0,adv,life:adv+R(6,8),arms});return false}});
     });
     run();
   }

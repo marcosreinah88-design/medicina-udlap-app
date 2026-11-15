@@ -82,7 +82,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .horizon .peak small{font-weight:500;color:var(--on-green-mut);letter-spacing:.08em}
 /* ===== volcán: fumarola, ceniza y lava del Popocatépetl ===== */
 .horizon .v-sky{position:absolute;left:55.83%;top:16%;width:340px;height:240px;transform:translate(-50%,-62%);pointer-events:none;opacity:0;border-radius:50%;
-  background:radial-gradient(closest-side,rgba(255,120,40,.55),rgba(255,90,30,.22) 45%,rgba(255,80,20,0) 100%)}
+  background:radial-gradient(closest-side,rgba(226,110,56,.5),rgba(200,90,46,.18) 45%,rgba(180,80,40,0) 100%)}
 .horizon .volc{position:absolute;left:0;right:0;bottom:0;top:-250px;pointer-events:none;z-index:1}
 .horizon .volc canvas{position:absolute;inset:0;width:100%;height:100%}
 .horizon .v-fum{position:absolute;left:55.83%;top:15.6%;width:0;height:0;pointer-events:none;z-index:1;--fc:214,224,219;--wx:1}
@@ -1912,7 +1912,7 @@ route();showResume();
     lobes.forEach(([x,y,r])=>{const up=clamp((84-y)/50,0,1)*.75;
       gr=g.createRadialGradient(x-r*.12,y-r*.22,0,x,y,r);gr.addColorStop(0,rgba(mix(.15+.6*up),.75));gr.addColorStop(.55,rgba(mix(.08+.35*up),.5));gr.addColorStop(1,rgba(mix(up*.2),0));
       g.fillStyle=gr;g.beginPath();g.arc(x,y,r,0,7);g.fill()});
-    if(lit){g.globalCompositeOperation="source-atop";const lg=g.createLinearGradient(0,40,0,128);lg.addColorStop(0,"rgba(255,120,40,0)");lg.addColorStop(1,"rgba(255,110,30,.75)");g.fillStyle=lg;g.fillRect(0,0,z,z)}
+    if(lit){g.globalCompositeOperation="source-atop";const lg=g.createLinearGradient(0,40,0,128);lg.addColorStop(0,"rgba(226,104,44,0)");lg.addColorStop(1,"rgba(214,98,46,.42)");g.fillStyle=lg;g.fillRect(0,0,z,z)}
     g.globalCompositeOperation="destination-in";const m=g.createRadialGradient(64,64,30,64,64,64);m.addColorStop(0,"#000");m.addColorStop(.8,"rgba(0,0,0,.9)");m.addColorStop(1,"rgba(0,0,0,0)");g.fillStyle=m;g.fillRect(0,0,z,z);
     return c;
   }
@@ -1920,15 +1920,18 @@ route();showResume();
   function makeSprites(){
     const sc=scene();if(sprites&&spriteKey===sc)return;spriteKey=sc;const p=PAL[sc];
     sprites={ash:[11,23,37,51].map(s=>puffSprite(p,false,s)),lit:[7,19,43].map(s=>puffSprite(p,true,s)),
-      lava:glowSprite([[0,"rgba(255,244,200,1)"],[.18,"rgba(255,170,60,.9)"],[.5,"rgba(255,80,20,.35)"],[1,"rgba(255,60,10,0)"]]),
-      dull:glowSprite([[0,"rgba(255,170,110,.8)"],[.4,"rgba(200,90,50,.3)"],[1,"rgba(160,60,40,0)"]])};
+      lava:glowSprite([[0,"rgba(246,196,140,.8)"],[.22,"rgba(232,120,58,.5)"],[.55,"rgba(190,80,40,.16)"],[1,"rgba(160,60,30,0)"]]),
+      dull:glowSprite([[0,"rgba(214,150,110,.55)"],[.4,"rgba(170,90,60,.2)"],[1,"rgba(140,70,50,0)"]])};
   }
   /* partículas */
   let puffs=[],fall=[],bombs=[],sparks=[],flows=[],bolts=[],emit=[],glows=[],raf=0,last=0;
   function addPuff(o){puffs.push(Object.assign({age:0,spr:(Math.random()*4)|0},o))}
-  function lavaColor(T,a){/* 1 = blanco-amarillo, .6 naranja, .3 rojo, 0 roca oscura */
-    const k=clamp(T,0,1),r=k>.3?255:Math.round(90+165*(k/.3)),g=k>.6?Math.round(150+100*((k-.6)/.4)):Math.round(30+120*(k/.6)),b=k>.8?Math.round(60+140*((k-.8)/.2)):Math.round(10+40*k);
-    return `rgba(${r},${g},${b},${a})`;
+  /* colores de la lava, sobrios y de la familia del naranja UDLAP: 1 = ámbar claro, .65 naranja UDLAP, .35 rojo óxido, 0 roca */
+  const LAVA=[[0,[58,34,28]],[.35,[150,60,32]],[.65,[226,104,44]],[1,[240,178,120]]];
+  function lavaColor(T,a){
+    const k=clamp(T,0,1);let i=1;while(i<LAVA.length-1&&LAVA[i][0]<k)i++;
+    const [k0,c0]=LAVA[i-1],[k1,c1]=LAVA[i],u=(k-k0)/(k1-k0||1);
+    return `rgba(${Math.round(c0[0]+(c1[0]-c0[0])*u)},${Math.round(c0[1]+(c1[1]-c0[1])*u)},${Math.round(c0[2]+(c1[2]-c0[2])*u)},${a})`;
   }
   function step(now){
     const dt=Math.min(.05,(now-last)/1000||.016);last=now;
@@ -1939,9 +1942,9 @@ route();showResume();
     glows=glows.filter(g=>{g.t+=dt;if(g.t>g.d)return false;
       const k=g.t/g.d,base=g.kind==="lava"?(k<.08?k/.08:1-smooth((k-.55)/.45)):(1-k)*(1-k);
       const fl=g.kind==="lava"?.72+.28*Math.sin(g.t*23)*Math.sin(g.t*7.3+1):1,rr=g.r*(0.85+.25*fl);
-      ctx.globalCompositeOperation="lighter";ctx.globalAlpha=clamp(base*fl,0,1);
+      ctx.globalCompositeOperation="screen";ctx.globalAlpha=clamp(base*fl,0,1);
       ctx.drawImage(g.kind==="lava"?sprites.lava:sprites.dull,ox-rr,oy-rr*.75,rr*2,rr*1.5);
-      if(g.kind==="lava"){ctx.globalAlpha=clamp(base*(.6+.4*fl),0,1);ctx.fillStyle="#ffe08a";ctx.beginPath();ctx.ellipse(ox,oy+1*S,7*S*Math.max(.35,W/1200),1.6*S,0,0,7);ctx.fill()}
+      if(g.kind==="lava"){ctx.globalAlpha=clamp(base*(.6+.4*fl),0,1);ctx.fillStyle="#efb47e";ctx.beginPath();ctx.ellipse(ox,oy+1*S,7*S*Math.max(.35,W/1200),1.6*S,0,0,7);ctx.fill()}
       ctx.globalCompositeOperation="source-over";ctx.globalAlpha=1;return true});
     /* coladas de lava por las laderas */
     /* coladas de lava: lengua ancha e irregular con costra oscura, canal incandescente trenzado y brazos que se separan */
@@ -1953,8 +1956,8 @@ route();showResume();
         const prog=ease(at/a.adv),want=prog*a.len,heat=1-clamp((at-a.adv*.7)/(f.life-a.delay-a.adv*.7),0,1);
         const P=a.pts;let n=1;while(n<P.length-1&&P[n][2]<want)n++;
         /* 1) resplandor sobre la nieve */
-        ctx.globalCompositeOperation="lighter";
-        for(let i=1;i<=n&&i<P.length;i++){const q=P[i-1],r=P[i];ctx.strokeStyle=`rgba(255,80,20,${.16*fade*heat})`;ctx.lineWidth=(r[3]*2.6+4)*S;ctx.beginPath();ctx.moveTo(q[0],q[1]);ctx.lineTo(r[0],r[1]);ctx.stroke()}
+        ctx.globalCompositeOperation="screen";
+        for(let i=1;i<=n&&i<P.length;i++){const q=P[i-1],r=P[i];ctx.strokeStyle=`rgba(214,96,44,${.1*fade*heat})`;ctx.lineWidth=(r[3]*2.6+4)*S;ctx.beginPath();ctx.moveTo(q[0],q[1]);ctx.lineTo(r[0],r[1]);ctx.stroke()}
         /* 2) costra oscura (bordes ya fríos), más ancha cuesta abajo */
         ctx.globalCompositeOperation="source-over";
         for(let i=1;i<=n&&i<P.length;i++){const q=P[i-1],r=P[i];ctx.strokeStyle=`rgba(${Math.round(70+50*heat)},${Math.round(22+12*heat)},12,${.92*fade})`;ctx.lineWidth=r[3]*S*1.35;ctx.beginPath();ctx.moveTo(q[0],q[1]);ctx.lineTo(r[0],r[1]);ctx.stroke()}
@@ -1962,13 +1965,13 @@ route();showResume();
         for(let i=1;i<=n&&i<P.length;i++){const q=P[i-1],r=P[i],u=r[2]/a.len,T=clamp(heat*(.95-.45*u)-(1-prog)*.05,0,1);
           ctx.strokeStyle=lavaColor(T*.85,fade*clamp(heat*1.4,0,1));ctx.lineWidth=r[3]*S*.85;ctx.beginPath();ctx.moveTo(q[0],q[1]);ctx.lineTo(r[0],r[1]);ctx.stroke()}
         /* 4) canal incandescente: dos hilos que se cruzan y parpadean */
-        if(heat>.05){ctx.globalCompositeOperation="lighter";
+        if(heat>.05){ctx.globalCompositeOperation="screen";
           for(const side of [-1,1]){ctx.beginPath();for(let i=0;i<=n&&i<P.length;i++){const r=P[i],o=side*r[3]*.22*S*Math.sin(r[2]*.25+f.t*1.6+side);
               const x=r[0]+r[4]*o,y=r[1]+r[5]*o;i?ctx.lineTo(x,y):ctx.moveTo(x,y)}
-            ctx.strokeStyle=`rgba(255,${210+Math.round(30*Math.random())},120,${.4*fade*heat*heat*(.8+.2*Math.random())})`;ctx.lineWidth=Math.max(.7,.9*S);ctx.stroke()}}
+            ctx.strokeStyle=`rgba(244,${178+Math.round(16*Math.random())},120,${.32*fade*heat*heat*(.85+.15*Math.random())})`;ctx.lineWidth=Math.max(.7,.9*S);ctx.stroke()}}
         /* 5) frente en forma de lóbulo, más brillante mientras avanza */
         const tip=P[Math.min(n,P.length-1)];
-        if(prog<.995||heat>.6){const r=tip[3]*S*1.5;ctx.globalCompositeOperation="lighter";ctx.globalAlpha=fade*(prog<.995?.9:.5)*heat;ctx.drawImage(sprites.lava,tip[0]-r,tip[1]-r*.8,r*2,r*1.6);ctx.globalAlpha=1}
+        if(prog<.995||heat>.6){const r=tip[3]*S*1.5;ctx.globalCompositeOperation="screen";ctx.globalAlpha=fade*(prog<.995?.9:.5)*heat;ctx.drawImage(sprites.lava,tip[0]-r,tip[1]-r*.8,r*2,r*1.6);ctx.globalAlpha=1}
         ctx.globalCompositeOperation="source-over";
       });
       return true});
@@ -1990,7 +1993,7 @@ route();showResume();
     /* rayos volcánicos dentro de la nube */
     bolts=bolts.filter(b=>{b.t+=dt;if(b.t>b.d)return false;
       const on=b.t<.05||(b.t>.09&&b.t<.16);if(!on)return true;
-      ctx.globalCompositeOperation="lighter";ctx.strokeStyle="rgba(206,214,255,.95)";ctx.lineWidth=1.4*S;ctx.shadowColor="#b9c4ff";ctx.shadowBlur=8*S;
+      ctx.globalCompositeOperation="screen";ctx.strokeStyle="rgba(222,226,240,.7)";ctx.lineWidth=1.1*S;ctx.shadowColor="rgba(200,206,230,.6)";ctx.shadowBlur=5*S;
       ctx.beginPath();b.pts.forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1]));ctx.stroke();
       ctx.shadowBlur=0;ctx.globalCompositeOperation="source-over";return true});
     /* ceniza que cae de la nube, inclinada por el viento */
@@ -2007,13 +2010,13 @@ route();showResume();
       else{b.sp*=1-Math.min(1,.9*dt);b.x+=b.dir*b.sp*dt;b.y=ground(b.x);b.T-=.42*dt;if(b.trail.length)b.trail.shift()}
       if(b.T<=0||b.y>H)return false;
       const T=clamp(b.T,0,1);
-      if(b.trail.length>1){ctx.globalCompositeOperation="lighter";for(let i=1;i<b.trail.length;i++){const a=b.trail[i-1],c=b.trail[i];ctx.strokeStyle=lavaColor(T*.9,.5*i/b.trail.length);ctx.lineWidth=b.s*1.3*(i/b.trail.length);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(c[0],c[1]);ctx.stroke()}}
-      ctx.globalCompositeOperation="lighter";if(T>.35){const r=b.s*4*T;ctx.globalAlpha=T*.7;ctx.drawImage(sprites.lava,b.x-r,b.y-r,r*2,r*2);ctx.globalAlpha=1}
+      if(b.trail.length>1){ctx.globalCompositeOperation="screen";for(let i=1;i<b.trail.length;i++){const a=b.trail[i-1],c=b.trail[i];ctx.strokeStyle=lavaColor(T*.9,.5*i/b.trail.length);ctx.lineWidth=b.s*1.3*(i/b.trail.length);ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(c[0],c[1]);ctx.stroke()}}
+      ctx.globalCompositeOperation="screen";if(T>.35){const r=b.s*3.2*T;ctx.globalAlpha=T*.45;ctx.drawImage(sprites.lava,b.x-r,b.y-r,r*2,r*2);ctx.globalAlpha=1}
       ctx.globalCompositeOperation="source-over";ctx.fillStyle=lavaColor(T,Math.min(1,T*3));ctx.beginPath();ctx.arc(b.x,b.y,b.s,0,7);ctx.fill();return true});
     /* chispas que parpadean */
-    ctx.globalCompositeOperation="lighter";
+    ctx.globalCompositeOperation="screen";
     sparks=sparks.filter(s=>{s.age+=dt;if(s.age>s.life)return false;s.vy+=g*.7*dt;s.vx*=1-.6*dt;s.x+=s.vx*dt;s.y+=s.vy*dt;
-      const a=(1-s.age/s.life)*(.55+.45*Math.random());ctx.strokeStyle=lavaColor(1-s.age/s.life*.6,a);ctx.lineWidth=Math.max(.8,1.1*S);ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s.x-s.vx*.035,s.y-s.vy*.035);ctx.stroke();return true});
+      const a=(1-s.age/s.life)*(.4+.3*Math.random());ctx.strokeStyle=lavaColor(1-s.age/s.life*.6,a);ctx.lineWidth=Math.max(.8,1.1*S);ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(s.x-s.vx*.035,s.y-s.vy*.035);ctx.stroke();return true});
     ctx.globalCompositeOperation="source-over";ctx.globalAlpha=1;
     if(emit.length||puffs.length||fall.length||bombs.length||sparks.length||flows.length||bolts.length||glows.length)raf=requestAnimationFrame(step);
     else{raf=0;ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,cv.width,cv.height);hero.classList.remove("v-on")}
@@ -2022,9 +2025,9 @@ route();showResume();
   /* resplandor en el cielo (detrás de los volcanes) */
   function skyGlow(kind,ms){
     if(!glowSky||!glowSky.animate)return;
-    const sc=scene(),m=kind==="lava"?{night:.95,dusk:.75,dawn:.65,day:.32}[sc]:{night:.35,dusk:.25,dawn:.2,day:0}[sc];
+    const sc=scene(),m=kind==="lava"?{night:.62,dusk:.45,dawn:.4,day:.18}[sc]:{night:.25,dusk:.18,dawn:.14,day:0}[sc];
     if(!m)return;
-    glowSky.style.background=kind==="lava"?"":"radial-gradient(closest-side,rgba(255,170,110,.5),rgba(200,110,70,.18) 50%,rgba(160,80,50,0))";
+    glowSky.style.background=kind==="lava"?"":"radial-gradient(closest-side,rgba(200,150,120,.4),rgba(160,110,80,.14) 50%,rgba(140,90,60,0))";
     const kf=[{opacity:0}];for(let i=1;i<10;i++)kf.push({opacity:m*(kind==="lava"?(.7+.3*Math.random())*(i<7?1:(10-i)/4):(1-i/10)),offset:i/10});kf.push({opacity:0});
     glowSky.animate(kf,{duration:ms,easing:"ease-in-out"});
   }
@@ -2057,7 +2060,7 @@ route();showResume();
         const segs=5+((Math.random()*3)|0),len=R(40,70)*S;
         for(let j=0;j<segs;j++){x+=R(-7,7)*S;y+=len/segs;pts.push([x,y])}
         bolts.push({t:0,d:.2,pts});
-        if(glowSky&&glowSky.animate)glowSky.animate([{opacity:0,background:"radial-gradient(closest-side,rgba(205,215,255,.55),rgba(205,215,255,0))"},{opacity:.9},{opacity:0}],{duration:220});
+        if(glowSky&&glowSky.animate)glowSky.animate([{opacity:0,background:"radial-gradient(closest-side,rgba(215,220,236,.35),rgba(215,220,236,0))"},{opacity:.6},{opacity:0}],{duration:220});
         return false}})}
     }
     run();

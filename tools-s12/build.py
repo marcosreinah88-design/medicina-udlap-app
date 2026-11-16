@@ -1,5 +1,5 @@
 # Arma las guías y las páginas de 1º y 2º semestre a partir de tools-s12/guias/*.txt
-# Uso: python3 tools-s12/build.py            → escribe site/s1/, site/s2/ y tools-s12/hub.json
+# Uso: python3 tools-s12/build.py            → escribe site/s1/, site/s2/, las guías nuevas de site/s3/<id>/ y tools-s12/hub.json
 # Después: python3 tools-s12/patch_hub.py (conecta los semestres al hub), node tools-estudio/banco.js y firmar.
 #
 # Formato de cada guía (una línea por dato):
@@ -179,6 +179,9 @@ SEMS = {
             lede='De la célula al organismo: fisiología, biología celular y molecular, anatomía humana I y simulación. Cada libreta abre su guía con temario, conceptos de alto rendimiento, correlación clínica, tarjetas y examen.',
             deco='<svg class="deco" viewBox="0 0 190 150" aria-hidden="true"><g fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="50" y="14" width="96" height="122" rx="8" stroke="var(--accent)"/><path d="M42 30h16M42 52h16M42 74h16M42 96h16M42 118h16" stroke="var(--orange)"/><path d="M70 60h18l6-14 8 30 6-16h22" stroke="var(--accent)"/><path d="M70 96h56M70 110h40" stroke="var(--accent)" opacity=".5"/></g></svg>',
             otras=[['Lengua Extranjera II', 'Alemán II'], ['Argumentación Académica', ''], ['Optativa de Ciencias del Comportamiento', 'Alimentación y Vida'], ['Optativa de Artes', 'Arte, Historia y Cultura']]),
+    # 3º conserva su página original (archivero, site/s3/index.html): aquí solo se arman sus guías nuevas,
+    # cada una en site/s3/<id>/index.html; tools-s12/patch_s3.py las agrega al archivero.
+    3: dict(kicker='Tercer semestre', page=False),
 }
 
 def main():
@@ -192,13 +195,16 @@ def main():
         out = (tpl.replace('__TITLE__', html.escape(g['title']))
                   .replace('__COLOR__', g['color']).replace('__CODE__', html.escape(g['codigo']))
                   .replace('__DATA__', json.dumps(data, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')))
-        d = os.path.join(SITE, f's{sem}', 'guias')
+        if SEMS[sem].get('page', True):
+            d, fn = os.path.join(SITE, f's{sem}', 'guias'), g['id'] + '.html'
+        else:
+            d, fn = os.path.join(SITE, f's{sem}', g['id']), 'index.html'
         os.makedirs(d, exist_ok=True)
-        open(os.path.join(d, g['id'] + '.html'), 'w', encoding='utf-8').write(out)
+        open(os.path.join(d, fn), 'w', encoding='utf-8').write(out)
         nc = sum(len(t.get('cards', [])) for t in g['temas'])
         nq = sum(len(t.get('quiz', [])) for t in g['temas'])
         g['_n'] = (len(g['temas']), nc, nq)
-        print(f"s{sem}/guias/{g['id']}.html  temas {len(g['temas']):3}  subtemas {nsubs(g):3}  tarjetas {nc:4}  preguntas {nq:4}"
+        print(f"s{sem}/{os.path.relpath(os.path.join(d, fn), os.path.join(SITE, f's{sem}'))}  temas {len(g['temas']):3}  subtemas {nsubs(g):3}  tarjetas {nc:4}  preguntas {nq:4}"
               + (f"  imágenes {nimgs(g):3}  ({len(out) // 1024} KB)" if nimgs(g) else ''))
         hub['G'].append({'id': g['id'], 'sem': sem, 'icon': g.get('icon', 'anat'), 'color': g['color'], 'area': g['materia'],
                          'title': g['title'], 'sub': g.get('sub', ''), 'desc': g.get('desc', ''),
@@ -208,6 +214,8 @@ def main():
         hub['FT'][g['id']] = words(g)
     stpl = open(os.path.join(HERE, 'semestre.html'), encoding='utf-8').read()
     for sem, S in SEMS.items():
+        if not S.get('page', True):
+            continue
         arts = [{'id': g['id'], 'titulo': g['title'], 'materia': g['materia'], 'codigo': g['codigo'], 'color': g['color'],
                  'descripcion': g.get('desc', ''), 'temas': [t['t'] for t in g['temas']], 'modos': g['modos'].split(','),
                  'ntemas': g['_n'][0], 'nsubs': nsubs(g), 'ntarjetas': g['_n'][1], 'npreguntas': g['_n'][2], 'extra': bool(g.get('extra'))}

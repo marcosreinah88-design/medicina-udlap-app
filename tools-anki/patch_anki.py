@@ -7,14 +7,13 @@ import os,re,json,sys,html
 HERE=os.path.dirname(os.path.abspath(__file__)); SITE=os.environ.get('SITE') or os.path.join(HERE,'..','site')
 J=lambda m:json.load(open(os.path.join(SITE,'anki',m+'.json'),encoding='utf-8'))
 EXIST={'simulacion-i':'s1/guias/simulacion-i.html','simulacion-ii':'s2/guias/simulacion-ii.html','anatomia-humana-i':'s2/guias/anatomia-humana-i.html',
- 'farmacologia':'s3/farmacologia/index.html','anatomia':'s3/anatomia/index.html','hematologia':'s4/apps/hematologia.html','farmacologia-ii':'s4/apps/farmacologia-ii.html',
+ 'farmacologia':'s3/farmacologia/index.html','microbiologia':'s3/microbiologia/index.html','simulacion-iii':'s3/simulacion-iii/index.html','anatomia':'s3/anatomia/index.html','hematologia':'s4/apps/hematologia.html','farmacologia-ii':'s4/apps/farmacologia-ii.html',
  'inmunologia':'s4/apps/inmunologia.html','simulacion-iv':'s4/apps/simulacion-iv.html','nutricion':'s4/apps/nutricion.html','cirugia-principios':'s4/apps/cirugia.html',
  'gastro':'s5/gastro/index.html','cirugia':'s5/cirugia/index.html','oftalmo':'s5/oftalmo/index.html','otorrino':'s5/otorrino/index.html','imagenologia':'s5/imagenologia/index.html',
  'infectologia':'s6/artefactos/infectologia.html','salud-publica':'s6/artefactos/salud-publica.html'}
 # materias nuevas: (archivo, título, color, frase, código)
-NEW={'microbiologia':('s3/microbiologia/index.html','Microbiología y Parasitología','#6b3fa0','Bacterias, virus, hongos y parásitos','MIC'),
- 'simulacion-iii':('s3/simulacion-iii/index.html','Laboratorio de Simulación III','#c4142f','Choque, heridas, gasometría y cálculo de goteo','SIM'),
- 'ecosofia':('s3/ecosofia/index.html','Ecosofía','#3f7d3a','Ecología, sociedad y salud','ECO'),
+# (Microbiología y Simulación III ya tienen guía propia desde tools-s12: pasaron a EXIST)
+NEW={'ecosofia':('s3/ecosofia/index.html','Ecosofía','#3f7d3a','Ecología, sociedad y salud','ECO'),
  'examen-basicos':('s4/apps/examen-basicos.html','Examen de Conocimientos Básicos','#1d4e89','Repaso de ciencias básicas de 1º a 4º','EXB'),
  'bioetica':('s5/bioetica/index.html','Bioética en Ciencias de la Salud','#8a5a2b','Principios, consentimiento y dilemas','BIO'),
  'campos-clinicos-i':('s5/campos-clinicos-i/index.html','Campos Clínicos I','#00573c','Medicina interna en el hospital','CC1'),
@@ -61,7 +60,7 @@ def nums(m): d=J(m); return len(d['c']),len(d['q']),len(temas(d))
 # 3) semestres
 # 3º: ITEMS (archivero)
 blk=[]
-for m in ['microbiologia','simulacion-iii','ecosofia']:
+for m in ['ecosofia']:
     f,title,color,frase,cod=NEW[m]; c,q,t=nums(m)
     st={'temas':t,'tarjetas':c}; 
     if q: st['preguntas']=q

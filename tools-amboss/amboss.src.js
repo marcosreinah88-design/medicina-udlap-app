@@ -35,7 +35,7 @@ var CFG={
  "x-triage":{h:"details.topic>summary"},
  "x-slides":{h:"#scaler>section h2",b:"section",abs:1}
 };
-var cfg=CFG[G]||CFG[G.replace(/^(s[12])-.*/,"s12")];
+var cfg=CFG[G]||CFG[G.replace(/^(s[123])-.*/,"s12")];
 if(!cfg)return;
 var DROP=".n,.no,.num,.sn,.kd,.tag,.cam,.mod,.meta,.hint,.chev,.done-ic,.cnt,.amb-btn,small,svg";
 function norm(s){return String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase()

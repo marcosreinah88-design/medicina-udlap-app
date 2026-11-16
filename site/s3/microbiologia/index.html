@@ -1,48 +1,535 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Microbiología y Parasitología · Tarjetas</title>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Microbiología y Parasitología</title>
+<link rel="stylesheet" href="../../fonts/g973afc81ad.css">
 <style>
-:root{--c:#6b3fa0;--o:#f26b21;--bg:#f7f5ef;--card:#fff;--ink:#1d2a24;--mute:#5d6b64;--line:#e0e3dc}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101512;--card:#19211d;--ink:#e7ece8;--mute:#a3b0a9;--line:#2c3832}}
-:root[data-theme="dark"]{--bg:#101512;--card:#19211d;--ink:#e7ece8;--mute:#a3b0a9;--line:#2c3832}
+/* Guía de estudio de 1º/2º semestre: temas divididos en subtemas con diagramas de flujo, cifras clave, conceptos para revelar,
+   mnemotecnias, tablas con autoexamen, alto rendimiento, correlación clínica, mini-quiz por tema y progreso; tarjetas y examen. */
+:root{
+  --bg:#f5f3ee; --paper:#fff; --sunk:#ece8df; --ink:#17201c; --muted:#5d6762; --line:#ddd7cb;
+  --c:#6b3fa0; --c-soft:color-mix(in srgb,var(--c) 11%,var(--paper)); --c-ink:color-mix(in srgb,var(--c) 82%,#000);
+  --hy:#f26b21; --hy-soft:#fff1e8; --cl:#00573c; --cl-soft:#e6f2ec; --ok:#1d7a4c; --bad:#b3261e;
+  --f-d:"Newsreader",Georgia,serif; --f-b:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --f-m:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1412; --paper:#171e1b; --sunk:#1f2824; --ink:#e7eeea; --muted:#9daba4; --line:#2b3732;
+  --c-soft:color-mix(in srgb,var(--c) 22%,var(--paper)); --c-ink:color-mix(in srgb,var(--c) 45%,#fff);
+  --hy-soft:#3a2418; --cl:#7fd3a8; --cl-soft:#16302a; --ok:#6fd39c; --bad:#ff8a80; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1412; --paper:#171e1b; --sunk:#1f2824; --ink:#e7eeea; --muted:#9daba4; --line:#2b3732;
+  --c-soft:color-mix(in srgb,var(--c) 22%,var(--paper)); --c-ink:color-mix(in srgb,var(--c) 45%,#fff);
+  --hy-soft:#3a2418; --cl:#7fd3a8; --cl-soft:#16302a; --ok:#6fd39c; --bad:#ff8a80; color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
-.hero{position:relative;overflow:hidden;background:var(--c);color:#fff;padding:34px 16px 30px}
-.hero .w{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.hero small{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px 10px;font-weight:600;letter-spacing:.03em}
-.hero h1{font:700 clamp(26px,5vw,38px)/1.1 Georgia,"Times New Roman",serif;margin:12px 0 6px}
-.hero p{margin:0;opacity:.92;max-width:520px}
-.stats{display:flex;gap:22px;margin-top:18px;flex-wrap:wrap}.stats b{display:block;font-size:24px;line-height:1.1}.stats span{font-size:13px;opacity:.85}
-.deck{position:absolute;right:-10px;top:50%;transform:translateY(-50%);width:230px;height:170px;opacity:.95}
-.deck i{position:absolute;inset:0;border-radius:16px;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.18)}
-.deck i:nth-child(1){transform:rotate(-12deg) translate(-30px,6px);opacity:.35}.deck i:nth-child(2){transform:rotate(-5deg) translate(-12px,2px);opacity:.6}
-.deck i:nth-child(3){display:flex;align-items:center;justify-content:center;color:var(--c);font:700 40px Georgia,serif;transform:rotate(4deg)}
-@media (max-width:640px){.deck{display:none}}
-main{max-width:760px;margin:0 auto;padding:18px 16px 60px}
-.temas{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:18px}
-.temas h2{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--o)}
-.temas ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
-.temas li{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:13px}
-#ak-root{background:var(--card);border:1px solid var(--line);border-radius:16px}
-#ak-root .ak{--ak-g:var(--c)}
-footer{color:var(--mute);font-size:12px;text-align:center;margin-top:20px}
-</style>
-</head>
-<body>
-<header class="hero"><div class="w">
-  <small>3er semestre · MIC</small>
-  <h1>Microbiología y Parasitología</h1>
-  <p>Bacterias, virus, hongos y parásitos. Tus tarjetas de Anki, revisadas y corregidas, para repasar aquí mismo.</p>
-  <div class="stats"><div><b>84</b><span>tarjetas</span></div><div><b>3</b><span>temas</span></div></div>
-</div><div class="deck" aria-hidden="true"><i></i><i></i><i>MIC</i></div></header>
-<main>
-  <section class="temas"><h2>Temas</h2><ul><li>General</li><li>Gram positivas y negativas</li><li>Parcial 2</li></ul></section>
-  <div id="ak-root"></div>
-  <footer>Repositorio de Marcos David Reinah Guzmán</footer>
-</main>
-<script src="../../anki/anki.js" data-m="microbiologia" data-n="84" defer></script><!--anki-->
-</body>
-</html>
+[hidden]{display:none!important}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--f-b);-webkit-font-smoothing:antialiased}
+button,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--hy);outline-offset:2px}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.in{max-width:1120px;margin:0 auto}
+b,strong{font-weight:700}
+/* encabezado */
+header.hero{background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 60%,#000));color:#fff;padding-top:calc(40px + env(safe-area-inset-top,0px));padding-bottom:26px;position:relative;overflow:hidden}
+header.hero::after{content:attr(data-code);position:absolute;right:-6px;bottom:-34px;font:800 9rem/1 var(--f-d);opacity:.12;letter-spacing:-.04em;pointer-events:none}
+.kick{font:500 .74rem var(--f-m);letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin:0 0 10px}
+h1{font:700 clamp(2rem,5.4vw,3.2rem)/1.05 var(--f-d);margin:0;letter-spacing:-.015em;text-wrap:balance}
+.lede{margin:12px 0 0;max-width:62ch;opacity:.9}
+.stats{display:flex;flex-wrap:wrap;gap:6px 26px;margin-top:20px;font-size:.88rem;opacity:.92}
+.stats b{font:600 1.15rem var(--f-m);margin-right:6px}
+.nota{margin:18px 0 0;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:9px 13px;font-size:.88rem;max-width:80ch}
+/* pestañas */
+nav.tabs{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+nav.tabs .in{display:flex;gap:4px;overflow-x:auto}
+nav.tabs button{border:0;background:none;padding:13px 14px 11px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--c)}
+/* estudiar */
+.study{display:grid;grid-template-columns:250px minmax(0,1fr);gap:32px;padding-block:22px 80px}
+.toc{position:sticky;top:64px;align-self:start;max-height:calc(100vh - 80px);overflow:auto;font-size:.9rem}
+.toc p{font:600 .72rem var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.toc .tg{margin-bottom:2px}
+.toc a{display:flex;gap:8px;padding:6px 8px;border-radius:8px;color:var(--ink);text-decoration:none;line-height:1.3}
+.toc a span{font:500 .75rem var(--f-m);color:var(--c-ink);min-width:1.6em}
+.toc a:hover,.toc a.on{background:var(--c-soft)}
+.toc .tg.ok>a span{color:var(--ok)}
+.toc .tg.ok>a span::before{content:"✓"}
+.toc .tg.ok>a span i{display:none}
+.toc .sl{display:none;margin:2px 0 6px 30px;border-left:2px solid var(--c-soft)}
+.toc .tg.on .sl{display:block}
+.toc .sl a{font-size:.82rem;padding:3px 10px;color:var(--muted)}
+.toc .sl a:hover{color:var(--ink)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:20px}
+.tools .pg{flex:1 1 220px;display:flex;align-items:center;gap:10px;min-width:0;font-size:.85rem;color:var(--muted)}
+.tools .pg i{flex:1;height:8px;border-radius:9px;background:var(--sunk);overflow:hidden;min-width:60px}
+.tools .pg i b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c),var(--hy));border-radius:9px;transition:width .4s}
+.tools .pg strong{color:var(--ink);font-family:var(--f-m);font-weight:600}
+.tg-btn{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 12px;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.tg-btn[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#fff}
+.tg-btn:hover{border-color:var(--c)}
+.tema{background:var(--paper);border:1px solid var(--line);border-radius:18px;margin-bottom:26px;box-shadow:0 1px 2px rgba(0,0,0,.04);overflow:hidden}
+.tema.ok{border-color:color-mix(in srgb,var(--ok) 55%,var(--line))}
+.thead{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;align-items:start;padding:22px 24px 18px;background:linear-gradient(135deg,var(--c-soft),var(--paper) 70%);border-bottom:1px solid var(--line)}
+.thead .bn{grid-row:span 3;width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:var(--c);color:#fff;font:700 1.5rem var(--f-d);box-shadow:0 8px 18px -10px var(--c)}
+.tema.ok .thead .bn{background:var(--ok)}
+.tema .num{font:500 .72rem var(--f-m);letter-spacing:.1em;color:var(--c-ink);text-transform:uppercase}
+.tema h2{font:700 1.6rem/1.15 var(--f-d);margin:2px 0 4px;text-wrap:balance}
+.tema .intro{color:var(--muted);margin:0}
+.schips{grid-column:2;display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.schips a{font-size:.78rem;font-weight:600;text-decoration:none;color:var(--c-ink);background:var(--paper);border:1px solid color-mix(in srgb,var(--c) 30%,var(--line));border-radius:999px;padding:3px 10px}
+.schips a:hover{background:var(--c);color:#fff;border-color:var(--c)}
+.tbody{padding:8px 24px 20px}
+details.sub{border-bottom:1px dashed var(--line);padding:6px 0}
+details.sub:last-of-type{border-bottom:0}
+details.sub>summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:10px;padding:10px 0 6px}
+details.sub>summary::-webkit-details-marker{display:none}
+details.sub>summary .sn{font:600 .8rem var(--f-m);color:#fff;background:var(--c);border-radius:7px;padding:2px 7px;flex:none}
+details.sub>summary h3{margin:0;font:700 1.18rem/1.25 var(--f-d);flex:1}
+details.sub>summary::after{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);margin:0 6px 3px;transition:transform .2s}
+details.sub:not([open])>summary::after{transform:rotate(-45deg)}
+.sub .si{color:var(--muted);margin:0 0 6px;font-style:italic}
+.sub ul{margin:6px 0;padding-left:1.15em}
+.sub li{margin:5px 0}
+.sub li::marker{color:var(--c)}
+.box{border-radius:12px;padding:12px 16px;margin:12px 0;border-left:4px solid}
+.box h4{margin:0 0 4px;font:700 .74rem var(--f-b);letter-spacing:.09em;text-transform:uppercase}
+.box ul{margin:0}
+.box.hy{background:var(--hy-soft);border-color:var(--hy)}
+.box.hy h4{color:var(--hy)}
+.box.cl{background:var(--cl-soft);border-color:var(--cl)}
+.box.cl h4{color:var(--cl)}
+.box h4::before{margin-right:6px}
+.box.hy h4::before{content:"★"}
+.box.cl h4::before{content:"✚"}
+/* tabla con autoexamen */
+.tblw{margin:12px 0}
+.tblw .tbar{display:flex;justify-content:flex-end;margin-bottom:6px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:420px}
+th,td{border-bottom:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{background:var(--c-soft);font-weight:700}
+tbody tr:hover td{background:color-mix(in srgb,var(--c) 6%,transparent)}
+td:first-child{font-weight:600}
+.tblw.quiz td:not(:first-child){cursor:pointer}
+.tblw.quiz td:not(:first-child):not(.shown){color:transparent;background:repeating-linear-gradient(-45deg,var(--sunk) 0 6px,transparent 6px 12px)}
+.tblw.quiz td:not(:first-child):not(.shown) *{color:transparent}
+.mini{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:3px 11px;font-size:.78rem;font-weight:600;cursor:pointer}
+.mini:hover{border-color:var(--c)}
+.mini[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#fff}
+/* diagrama de flujo */
+.flow{margin:14px 0;padding:14px;border-radius:14px;background:var(--bg);border:1px solid var(--line)}
+.flow .fh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.flow .fh b{font:700 .74rem var(--f-b);letter-spacing:.09em;text-transform:uppercase;color:var(--c-ink)}
+.flow ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:stretch;gap:8px 0;counter-reset:f}
+.flow li{counter-increment:f;display:flex;align-items:center}
+.flow li .st{position:relative;background:var(--paper);border:1.5px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:12px;padding:8px 12px 8px 36px;font-size:.88rem;line-height:1.35;max-width:240px;min-height:100%;display:flex;align-items:center;transition:opacity .25s,transform .25s}
+.flow li .st::before{content:counter(f);position:absolute;left:9px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;background:var(--c);color:#fff;font:600 .7rem/20px var(--f-m);text-align:center}
+.flow li+li::before{content:"→";flex:none;width:26px;text-align:center;color:var(--c);font:700 1.1rem/1 var(--f-b)}
+.flow.step li.dim .st{opacity:.15;transform:scale(.97)}
+.flow.step li.dim::before{opacity:.2}
+.flow li.cur .st{box-shadow:0 0 0 3px color-mix(in srgb,var(--hy) 45%,transparent);border-color:var(--hy)}
+@media (max-width:640px){.flow ol{flex-direction:column;align-items:stretch;gap:0}.flow li{flex-direction:column;align-items:stretch}.flow li+li::before{content:"↓";width:auto;text-align:left;padding:2px 0 2px 14px}.flow li .st{max-width:none}}
+/* cifras clave */
+.stats-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.stat{background:linear-gradient(160deg,var(--c-soft),var(--paper));border:1px solid color-mix(in srgb,var(--c) 25%,var(--line));border-radius:14px;padding:12px 14px}
+.stat .v{display:block;font:700 1.5rem/1.1 var(--f-d);color:var(--c-ink)}
+.stat .l{display:block;font-size:.82rem;color:var(--muted);margin-top:4px;line-height:1.35}
+/* conceptos para revelar */
+.terms{margin:14px 0}
+.terms .th{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
+.terms .th b{font:700 .74rem var(--f-b);letter-spacing:.09em;text-transform:uppercase;color:var(--c-ink)}
+.terms .tgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.term{border:1.5px solid var(--line);background:var(--paper);border-radius:14px;padding:12px 14px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:6px;min-height:84px;transition:border-color .2s,background .2s}
+.term:hover{border-color:var(--c)}
+.term .w{font:700 1.02rem/1.25 var(--f-d)}
+.term .d{font-size:.86rem;line-height:1.4;color:var(--ink)}
+.term .h{font:500 .68rem var(--f-m);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:auto}
+.term[aria-expanded="false"] .d{display:none}
+.term[aria-expanded="true"]{background:var(--c-soft);border-color:var(--c)}
+.term[aria-expanded="true"] .h{display:none}
+/* mnemotecnia */
+.mn{margin:12px 0;display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border-radius:14px;border:2px dashed color-mix(in srgb,var(--hy) 55%,var(--line));background:color-mix(in srgb,var(--hy) 6%,var(--paper))}
+.mn .mi{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--hy);color:#fff;font:700 1rem var(--f-d)}
+.mn b.mm{display:block;font:700 1.08rem/1.3 var(--f-d);color:var(--ink)}
+.mn span{font-size:.88rem;color:var(--muted)}
+/* palabras clave ocultas */
+body.hidekw .sub li b:not(.shown),body.hidekw .sub td b:not(.shown){color:transparent;background:repeating-linear-gradient(-45deg,color-mix(in srgb,var(--c) 30%,transparent) 0 5px,color-mix(in srgb,var(--c) 14%,transparent) 5px 10px);border-radius:4px;cursor:pointer}
+/* ponte a prueba */
+.pp{margin:6px 24px 0;padding:16px 18px;border-radius:14px;background:var(--sunk)}
+.pp h4{margin:0 0 10px;font:700 .78rem var(--f-b);letter-spacing:.09em;text-transform:uppercase;color:var(--c-ink)}
+.pq+.pq{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.pq p{margin:0 0 8px;font-weight:600}
+.pq .po{display:grid;gap:6px}
+.pq .po button{border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 12px;text-align:left;cursor:pointer;font-size:.92rem}
+.pq .po button:hover:not(:disabled){border-color:var(--c)}
+.pq .po button.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 13%,var(--paper))}
+.pq .po button.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--paper))}
+.pq .po button:disabled{cursor:default}
+.pq .pe{margin-top:8px;font-size:.9rem;padding:8px 12px;border-radius:10px;background:var(--cl-soft)}
+.tfoot{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:16px 24px 22px}
+.tfoot button{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 13px;font-size:.85rem;font-weight:600;cursor:pointer}
+.tfoot button:hover{border-color:var(--c)}
+.tfoot .dom{margin-left:auto;background:var(--paper);border-color:var(--ok);color:var(--ok)}
+.tfoot .dom[aria-pressed="true"]{background:var(--ok);color:#fff}
+.dag{color:var(--hy);font-weight:700}
+/* tarjetas */
+.pane{padding-block:26px 80px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.bar select{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 10px;max-width:100%}
+.btn{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 14px;font-weight:600;cursor:pointer}
+.btn.pri{background:var(--c);border-color:var(--c);color:#fff}
+.btn:hover{border-color:var(--c)}
+.count{margin-left:auto;font:500 .85rem var(--f-m);color:var(--muted)}
+.card{perspective:1200px;max-width:720px;margin:0 auto;cursor:pointer}
+.card .face{min-height:260px;border-radius:18px;background:var(--paper);border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 10px 30px -18px rgba(0,0,0,.35)}
+.card .lbl{font:500 .72rem var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink);margin-bottom:10px}
+.card .txt{font:600 1.3rem/1.35 var(--f-d)}
+.card .back{border-top:5px solid var(--c)}
+.card .back .txt{font:400 1.05rem/1.55 var(--f-b)}
+.cnav{display:flex;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.btn.ok{border-color:var(--ok);color:var(--ok)}.btn.no{border-color:var(--bad);color:var(--bad)}
+.hint{text-align:center;color:var(--muted);font-size:.85rem;margin-top:10px}
+/* examen */
+.qbox{max-width:760px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px}
+.qtop{display:flex;justify-content:space-between;gap:10px;font:500 .8rem var(--f-m);color:var(--muted);margin-bottom:8px}
+.prog{height:5px;background:var(--sunk);border-radius:9px;overflow:hidden;margin-bottom:18px}.prog i{display:block;height:100%;background:var(--c);width:0}
+.qtxt{font:600 1.2rem/1.4 var(--f-d);margin:0 0 16px}
+.opts{display:grid;gap:9px}
+.opt{border:1.5px solid var(--line);background:var(--bg);border-radius:12px;padding:11px 14px;text-align:left;cursor:pointer;display:flex;gap:10px}
+.opt span{font:600 .85rem var(--f-m);color:var(--c-ink)}
+.opt:hover:not(:disabled){border-color:var(--c)}
+.opt.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--paper))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--paper))}
+.opt:disabled{cursor:default}
+.exp{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--cl-soft);font-size:.95rem}
+.res{text-align:center}
+.res .big{font:700 3.4rem/1 var(--f-d);color:var(--c-ink)}
+.res ul{text-align:left;margin:16px auto 0;max-width:620px}
+footer{color:var(--muted);font-size:.82rem;padding-block:0 40px}
+@media (max-width:820px){.study{grid-template-columns:minmax(0,1fr)}.toc{position:static;max-height:none;border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--paper)}
+  .toc .lst{display:grid;grid-template-columns:1fr 1fr;gap:2px}.toc .sl{display:none!important}.thead{padding:18px 16px 14px;gap:4px 12px}.thead .bn{width:42px;height:42px;font-size:1.2rem;border-radius:12px}.schips{grid-column:1/-1}.tbody{padding:4px 16px 16px}.pp{margin:6px 16px 0}.tfoot{padding:14px 16px 18px}}
+@media (max-width:480px){.toc .lst{grid-template-columns:1fr}.card .face{min-height:220px;padding:20px}.card .txt{font-size:1.15rem}}
+@media (prefers-reduced-motion:no-preference){.opt,.btn,.toc a{transition:background .15s,border-color .15s}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ===== v3: portada de la guía, mapa del temario, color por tema, buscador ===== */
+.readbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:30;background:linear-gradient(90deg,var(--c),var(--hy));transition:width .1s linear}
+header.hero{padding-bottom:34px}
+header.hero::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;background-image:radial-gradient(rgba(255,255,255,.22) 1px,transparent 1.4px);background-size:22px 22px;mask-image:linear-gradient(120deg,transparent 30%,#000 90%);-webkit-mask-image:linear-gradient(120deg,transparent 30%,#000 90%)}
+.hgrid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px 48px;align-items:center}
+.sbox4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:22px;border-top:1px solid rgba(255,255,255,.28);border-bottom:1px solid rgba(255,255,255,.28)}
+.sbox4 div{padding:10px 12px 9px;border-left:1px solid rgba(255,255,255,.28)}
+.sbox4 div:first-child{border-left:0;padding-left:0}
+.sbox4 small{display:block;font:500 .66rem var(--f-m);letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.sbox4 b{display:block;font:600 1.7rem/1.15 var(--f-m)}
+.hact{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.hact button{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:8px 16px;font-weight:600;font-size:.9rem;cursor:pointer;transition:background .15s,transform .15s}
+.hact button:hover{background:rgba(255,255,255,.22);transform:translateY(-1px)}
+.hact button.pri{background:#fff;color:color-mix(in srgb,var(--c) 80%,#000);border-color:#fff}
+.hact button.pri:hover{background:#fff}
+.avance{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 24px 50px -30px rgba(0,0,0,.6)}
+.avance .ring{display:flex;align-items:center;gap:16px}
+.avance svg{width:96px;height:96px;flex:none;transform:rotate(-90deg)}
+.avance circle{fill:none;stroke-width:9;stroke-linecap:round}
+.avance .trk{stroke:rgba(255,255,255,.18)}
+.avance .val{stroke:#fff;transition:stroke-dasharray .6s cubic-bezier(.2,.8,.2,1)}
+.avance .rt b{display:block;font:700 2rem/1 var(--f-d)}
+.avance .rt small{display:block;font-size:.8rem;opacity:.85;margin-top:4px}
+.avance .nx{display:block;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;font-size:.85rem}
+.avance .nx small{display:block;font:500 .66rem var(--f-m);letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.avance .nx b{font:700 1.08rem/1.25 var(--f-d)}
+.avance .nx:hover b{text-decoration:underline}
+.avance .ex{margin-top:10px;font-size:.8rem;opacity:.85}
+nav.tabs .in{align-items:center}
+nav.tabs .brand{display:flex;align-items:center;gap:8px;font:700 .95rem var(--f-d);margin-right:14px;white-space:nowrap}
+nav.tabs .brand i{width:14px;height:14px;border-radius:50% 50% 50% 0;background:linear-gradient(135deg,var(--c),var(--hy));transform:rotate(-45deg)}
+/* mapa */
+.mapa{margin-bottom:26px}
+.mapa .mh{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 12px}
+.mapa h2{margin:0;font:700 1.45rem var(--f-d)}
+.mapa .mh span{font:500 .74rem var(--f-m);color:var(--muted);letter-spacing:.06em}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.mc{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:2px 12px;align-items:center;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px;transition:transform .15s,border-color .15s,box-shadow .15s}
+.mc:hover{transform:translateY(-2px);border-color:var(--tc);box-shadow:0 14px 26px -20px var(--tc)}
+.mc .n{grid-row:span 2;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--tc);color:#fff;font:600 .95rem var(--f-m)}
+.mc b{font-weight:700;line-height:1.25;font-size:.95rem}
+.mc small{grid-column:2;color:var(--muted);font-size:.76rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mc .ck{grid-row:1/span 2;grid-column:3;width:20px;height:20px;border-radius:50%;border:2px solid var(--line)}
+.mc.ok .ck{background:var(--ok);border-color:var(--ok);display:grid;place-items:center}
+.mc.ok .ck::after{content:"";width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+/* color por tema */
+.tema{--tc:var(--c);--c:var(--tc);--c-soft:color-mix(in srgb,var(--tc) 11%,var(--paper));--c-ink:color-mix(in srgb,var(--tc) 82%,#000);position:relative}
+.tema::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--tc)}
+.thead{background:linear-gradient(135deg,color-mix(in srgb,var(--tc) 13%,var(--paper)),var(--paper) 72%)}
+.thead .bn{background:var(--tc);box-shadow:0 10px 22px -10px var(--tc)}
+.tema .num{color:color-mix(in srgb,var(--tc) 80%,var(--ink))}
+.schips a{color:color-mix(in srgb,var(--tc) 80%,var(--ink));border-color:color-mix(in srgb,var(--tc) 30%,var(--line))}
+.schips a:hover{background:var(--tc);border-color:var(--tc)}
+details.sub>summary .sn{background:var(--tc)}
+.sub li::marker{color:var(--tc)}
+details.sub>summary .kd{display:flex;gap:4px;flex:none;align-self:center}
+details.sub>summary .kd i{font:600 .6rem var(--f-m);font-style:normal;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+details.sub>summary:hover h3{color:color-mix(in srgb,var(--tc) 75%,var(--ink))}
+/* buscador */
+.sfind{flex:1 1 100%;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:0 10px}
+.sfind svg{width:17px;height:17px;flex:none;fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round}
+.sfind input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;font-size:.92rem;padding:9px 0;outline:none}
+.sfind span{font:500 .74rem var(--f-m);color:var(--muted);white-space:nowrap}
+.sfind:focus-within{border-color:var(--c)}
+.nores{padding:26px;border:1.5px dashed var(--line);border-radius:14px;text-align:center;color:var(--muted)}
+.totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;width:44px;height:44px;border-radius:50%;border:0;background:var(--c);color:#fff;font-size:1.2rem;cursor:pointer;box-shadow:0 10px 24px -10px rgba(0,0,0,.6);opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .2s,transform .2s}
+.totop.on{opacity:1;pointer-events:auto;transform:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tema{--tc:var(--tcd)}:root:not([data-theme="light"]) .mc{--tc:var(--tcd)}}
+:root[data-theme="dark"] .tema,:root[data-theme="dark"] .mc{--tc:var(--tcd)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tema{--c-soft:color-mix(in srgb,var(--tc) 18%,var(--paper));--c-ink:color-mix(in srgb,var(--tc) 55%,#fff)}}
+:root[data-theme="dark"] .tema{--c-soft:color-mix(in srgb,var(--tc) 18%,var(--paper));--c-ink:color-mix(in srgb,var(--tc) 55%,#fff)}
+.avance .val.z{opacity:0}
+@media (max-width:820px){.study>.toc{display:none}.mapa .mh span{display:none}}
+@media (max-width:900px){.hgrid{grid-template-columns:minmax(0,1fr)}.avance{max-width:420px}header.hero::after{display:none}}
+@media (max-width:560px){.sbox4{grid-template-columns:repeat(2,minmax(0,1fr))}.sbox4 div:nth-child(3){border-left:0;padding-left:0}.sbox4 div:nth-child(n+3){border-top:1px solid rgba(255,255,255,.28)}nav.tabs .brand span{display:none}details.sub>summary .kd{display:none}.mgrid{grid-template-columns:minmax(0,1fr)}}
+/* imágenes reales (^ en el .txt): figura con pie, crédito, marcadores numerados, "ponme a prueba" y visor */
+.figs{display:grid;gap:14px;margin:14px 0}
+.figs.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.fig{margin:0;background:var(--bg);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.fw{position:relative;line-height:0;background:#111}
+.fw img{display:block;width:100%;height:auto}
+.fz{position:absolute;inset:0;border:0;padding:0;margin:0;background:none;cursor:zoom-in}
+.fz::after{content:"⤢ Ampliar";position:absolute;right:8px;bottom:8px;font:600 .72rem/1 var(--f-b);color:#fff;background:rgba(0,0,0,.55);border-radius:999px;padding:5px 9px}
+.pin{position:absolute;transform:translate(-50%,-50%);width:24px;height:24px;border-radius:50%;border:2px solid #fff;background:var(--hy);color:#fff;font:700 .72rem/20px var(--f-m);text-align:center;padding:0;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.55);z-index:1}
+.pin.on{background:var(--cl);transform:translate(-50%,-50%) scale(1.15)}
+.pin .pl{position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%);white-space:nowrap;background:rgba(0,0,0,.82);color:#fff;font:600 .74rem/1.3 var(--f-b);padding:4px 8px;border-radius:8px;display:none;pointer-events:none}
+.pin.on .pl{display:block}
+.pin.lo .pl{bottom:auto;top:calc(100% + 6px)}.pin.le .pl{left:-4px;transform:none}.pin.ri .pl{left:auto;right:-4px;transform:none}
+.fig.fq .pin .pl{display:none}
+.fig figcaption{padding:10px 13px 12px;font-size:.88rem;line-height:1.45;display:flex;flex-direction:column;gap:6px}
+.fig .cr{color:var(--muted);font-size:.72rem;line-height:1.35}
+.fig .fbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.leg{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:5px 6px;counter-reset:lg}
+.leg li{counter-increment:lg;display:inline-flex;align-items:center;gap:6px;font-size:.8rem;line-height:1.25;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 3px;cursor:pointer}
+.leg li::before{content:counter(lg);flex:none;width:18px;height:18px;border-radius:50%;background:var(--hy);color:#fff;font:700 .66rem/18px var(--f-m);text-align:center}
+.leg li.on{border-color:var(--cl)}
+.fig.fq .leg li:not(.shown) span{filter:blur(5px);opacity:.55;user-select:none}
+.fig.fq .leg li.shown{border-color:var(--ok)}
+body.hidekw .fig b{color:inherit;background:none}
+.lbx{position:fixed;inset:0;z-index:60;background:#0b0d0c;display:flex;flex-direction:column;padding:max(10px,env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right,0px)) max(10px,env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px))}
+.lbx .lt{display:flex;gap:8px;justify-content:flex-end;align-items:center;color:#fff;padding-bottom:8px}
+.lbx .lt .mini{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
+.lbx .lt .x{font-size:1.1rem;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;cursor:pointer}
+.lbx .ls{flex:1;overflow:auto;display:grid;place-items:center;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.lbx .fig{background:transparent;border:0;border-radius:0;max-width:100%}
+.lbx .fw{background:transparent;width:min(100%,calc((100vh - 190px) * var(--ar,1.4)));margin:0 auto}
+.lbx.big .fw{width:min(1800px,220vw)}
+.lbx .fz{cursor:zoom-in}.lbx.big .fz{cursor:zoom-out}
+.lbx .fz::after{content:none}
+.lbx figcaption{color:#e9efec;max-width:820px;margin:0 auto}
+.lbx .leg li{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
+.lbx .cr{color:#aab6b0}
+</style></head><body>
+<div class="readbar" id="readbar"></div>
+<header class="hero gut" data-code="MIC"><div class="in hgrid">
+  <div>
+  <p class="kick" id="kick"></p>
+  <h1 id="ttl"></h1>
+  <p class="lede" id="lede"></p>
+  <div class="sbox4" id="stats"></div>
+  <div class="hact"><button class="pri" type="button" data-go="estudiar">Empezar a estudiar</button><button type="button" data-go="tarjetas">Tarjetas</button><button type="button" data-go="examen">Examen</button></div>
+  <p class="nota" id="nota" hidden></p>
+  </div>
+  <aside class="avance" aria-label="Tu avance"><div class="ring"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="trk" cx="50" cy="50" r="42"/><circle class="val" id="ringV" cx="50" cy="50" r="42" stroke-dasharray="0 264"/></svg><div class="rt"><b id="ringN">0%</b><small id="ringT"></small></div></div><a class="nx" id="nextT" href="#t1"></a><div class="ex" id="lastEx"></div></aside>
+</div></header>
+<nav class="tabs gut" role="tablist" aria-label="Modos"><div class="in">
+  <div class="brand"><i></i><span id="brand"></span></div>
+  <button role="tab" id="tab-estudiar" aria-controls="panel-estudiar" aria-selected="true">Estudiar</button>
+  <button role="tab" id="tab-tarjetas" aria-controls="panel-tarjetas" aria-selected="false">Tarjetas</button>
+  <button role="tab" id="tab-examen" aria-controls="panel-examen" aria-selected="false">Examen</button>
+</div></nav>
+<main class="gut"><div class="in">
+  <section id="panel-estudiar" role="tabpanel" class="study">
+    <aside class="toc"><p>Temario</p><div class="lst" id="toc"></div></aside>
+    <div>
+      <section class="mapa" id="mapa" aria-label="Mapa del temario"><div class="mh"><h2>Mapa del temario</h2><span id="mapaN"></span></div><div class="mgrid" id="mgrid"></div></section>
+      <div class="tools" role="toolbar" aria-label="Herramientas de estudio">
+        <label class="sfind"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="find" type="search" placeholder="Buscar en esta guía: un término, una enfermedad…" aria-label="Buscar en esta guía"><span id="findN"></span></label>
+        <div class="pg"><span>Dominados</span><i><b id="pgBar"></b></i><strong id="pgTxt"></strong></div>
+        <button class="tg-btn" id="kwBtn" type="button" aria-pressed="false" title="Oculta las palabras en negritas; tócalas para revelarlas">Ocultar palabras clave</button>
+        <button class="tg-btn" id="foldBtn" type="button" aria-pressed="false">Contraer subtemas</button>
+      </div>
+      <div id="temas"></div>
+      <p class="nores" id="nores" hidden>No encontré ese término en la guía.</p>
+    </div>
+  </section>
+  <section id="panel-tarjetas" role="tabpanel" class="pane" hidden>
+    <div class="bar"><select id="cSel" aria-label="Tema de las tarjetas"></select><button class="btn" id="cMix" type="button">Revolver</button><button class="btn" id="cRep" type="button">Solo las de repasar</button><span class="count" id="cCount"></span></div>
+    <div class="card" id="card" role="button" tabindex="0" aria-label="Voltear tarjeta">
+      <div class="face front" id="cFront"><div class="lbl" id="cLbl"></div><div class="txt" id="cF"></div></div>
+      <div class="face back" id="cBack" hidden><div class="lbl">Respuesta</div><div class="txt" id="cB"></div></div>
+    </div>
+    <p class="hint">Toca la tarjeta o la barra espaciadora para voltearla.</p>
+    <div class="cnav"><button class="btn" id="cPrev" type="button">← Anterior</button><button class="btn no" id="cNo" type="button">Repasar</button><button class="btn ok" id="cOk" type="button">Me la sé</button><button class="btn" id="cNext" type="button">Siguiente →</button></div>
+  </section>
+  <section id="panel-examen" role="tabpanel" class="pane" hidden>
+    <div id="qStart" class="qbox">
+      <p class="qtxt">Examen de práctica</p>
+      <div class="bar"><select id="qSel" aria-label="Tema del examen"></select><select id="qN" aria-label="Número de preguntas"><option value="10">10 preguntas</option><option value="20">20 preguntas</option><option value="0">Todas</option></select><button class="btn pri" id="qGo" type="button">Comenzar</button></div>
+      <p class="hint" style="text-align:left">Opción múltiple con explicación de cada respuesta. Las preguntas y opciones salen en otro orden cada vez.</p>
+    </div>
+    <div id="qRun" class="qbox" hidden>
+      <div class="qtop"><span id="qPos"></span><span id="qTema"></span></div><div class="prog"><i id="qBar"></i></div>
+      <p class="qtxt" id="qQ"></p><div class="opts" id="qO"></div><div class="exp" id="qE" hidden></div>
+      <div class="cnav"><button class="btn pri" id="qNext" type="button" hidden>Siguiente →</button></div>
+    </div>
+    <div id="qEnd" class="qbox res" hidden></div>
+  </section>
+</div></main>
+<button class="totop" id="totop" type="button" aria-label="Volver arriba">↑</button>
+<footer class="gut"><div class="in" id="foot"></div></footer>
+<script>
+const GUIA={"id":"microbiologia","title":"Microbiología y Parasitología","kicker":"Tercer semestre · Microbiología y Parasitología","desc":"Tus clases y laboratorios de Notion más tus tarjetas de Anki: de Koch y las vías de transmisión a la vigilancia epidemiológica, cultivos y tinción de Gram, bacterias grampositivas y gramnegativas (E. coli y sus patotipos), virus por familia, ébola y parásitos.","nota":"Fuente: tus notas de Notion (Medicina › 3er semestre › Microbiología) y tus tarjetas de Anki de la materia. <b>Corrección<\/b> = estaba mal en tus notas; † = no venía y se agregó para completar el tema.","temas":[{"t":"Generalidades de la microbiología","subs":[{"t":"Ramas","b":[{"k":"ul","x":["<b>Sanitaria<\/b>: microorganismos que contaminan alimentos y ponen en riesgo a quien los consume.","<b>Fitopatología<\/b>: enfermedades que bacterias, virus u hongos causan en las plantas.","<b>Médica<\/b>: microorganismos que causan enfermedad en el ser humano, su tratamiento y su transmisión.","<b>Agrícola<\/b>: bacterias y hongos de los cultivos y sus interacciones benéficas."]},{"k":"tb","x":["Rama de la microbiología médica¦Qué estudia","Bacteriología¦Bacterias y su interacción negativa con el humano","Virología¦Estructura viral e interacción con el hospedero (ensamblaje, transporte y liberación de partículas)","Micología¦Hongos (menos de 50 especies causan más del 50 % de las micosis)","Parasitología¦Protozoos y helmintos; muchas son «enfermedades tropicales» ligadas a falta de higiene"]}]},{"t":"La célula bacteriana","b":[{"k":"ul","x":["Célula: unidad estructural y funcional de los seres vivos. <b>Procariotas<\/b>: arqueas y bacterias. <b>Eucariotas<\/b>: protistas, hongos, plantas y animales.","Formas: <b>cocos<\/b> (diplococos, tétradas, sarcinas, cadenas, racimos), <b>bacilos<\/b> (cortos o cocobacilos, curvos, esporulados, fusiformes, en empalizada o «letras chinas»), <b>vibrios<\/b>, <b>espirilos<\/b> y <b>espiroquetas<\/b>."]},{"k":"tm","x":[{"w":"Pleomorfismo","d":"Capacidad de una bacteria de adoptar distintas formas según las condiciones del medio (Corynebacterium diphtheriae, Mycoplasma)."}]}]},{"t":"Postulados de Koch","b":[{"k":"tb","x":["Clásicos¦Moleculares","El patógeno se aísla de animales enfermos, nunca de sanos¦El gen de virulencia está en las cepas que causan enfermedad y no en las no virulentas","Inoculado en un animal sano, produce la enfermedad¦Inactivar ese gen hace perder la patogenicidad","Se aísla en cultivo puro tras la infección intencional¦Introducir el gen clonado vuelve virulenta a una cepa que no lo era","Se vuelve a aislar puro del animal enfermo¦El gen se expresa durante la infección en el animal"]},{"k":"hy","x":["<b>Corrección:<\/b> el 3.er postulado clásico es que el microorganismo <b>crezca en cultivo puro<\/b> a partir del enfermo, y el 4.º que se <b>reaísle<\/b> del animal infectado experimentalmente."]}]}],"cards":[{"f":"Cuatro ramas de la microbiología médica","b":"Bacteriología, virología, micología y parasitología."},{"f":"¿Qué es el pleomorfismo bacteriano?","b":"Que una bacteria adopte distintas formas según el medio (p. ej., Corynebacterium, Mycoplasma)."}],"quiz":[{"q":"Según los postulados moleculares de Koch, si se inactiva el gen asociado a virulencia…","o":["La bacteria pierde su patogenicidad","La bacteria se vuelve más virulenta","No cambia nada","La bacteria muere"],"a":0,"e":"Es la prueba de que ese gen causa la enfermedad."}],"intro":"La microbiología estudia la clasificación, descripción, distribución y funcionamiento de los microorganismos."},{"t":"Interacción parásito-hospedero y transmisión","subs":[{"t":"Transmisión directa","b":[{"k":"ul","x":["Mordedura (rabia), transplacentaria (toxoplasmosis), aérea, sexual (candidiasis, VIH), mucosas (mononucleosis, difteria), piel (impétigo, erisipela) y manos (heces, orina, secreción nasal: Salmonella, E. coli, Shigella, Acinetobacter, Pseudomonas)."]},{"k":"tb","x":["Partícula aérea¦Tamaño y alcance¦Ejemplos","Gotitas de Flügge¦&gt; 5 µm, caen a ~1 m¦Gripe común, faringoamigdalitis","Núcleos de Wells¦&lt; 5 µm, flotan en el aire¦Tuberculosis, sarampión, varicela († en tus notas: neumonía e influenza)"]},{"k":"st","x":[{"v":"90 %","l":"de las infecciones se transmiten por contacto con las manos"}]}]},{"t":"Transmisión indirecta","b":[{"k":"ul","x":["<b>Suelo (polvo)<\/b>: bacterias esporuladas (tétanos, botulismo), parásitos (ascariasis, necatoriasis), micosis profundas (histoplasmosis, coccidioidomicosis).","<b>Agua<\/b>: contaminación de la red o mantos acuíferos con excremento, epidemias, y soporte para vectores (larvas de mosquito).","<b>Fómites<\/b>: objetos que transmiten infecciones por secreciones (herpesvirus, rinovirus, adenovirus, meningococo, neumococo, enterobacterias, estafilococo).","<b>Vectores<\/b> (artrópodos): <b>mecánico/pasivo<\/b> (transporta el agente sin que se multiplique) o <b>biológico/activo<\/b> (el agente se multiplica o cumple una fase de su ciclo en el vector).","Vías de entrada: digestiva, respiratoria, mucosas, cutánea y placentaria."]}]}],"cards":[{"f":"¿Qué es un fómite?","b":"Objeto inanimado que transmite un agente infeccioso a través de secreciones de la fuente."},{"f":"Vector biológico vs mecánico","b":"Biológico: el agente se multiplica o madura en el artrópodo. Mecánico: solo lo transporta."}],"quiz":[{"q":"El tétanos y el botulismo se adquieren típicamente por…","o":["Esporas del suelo","Gotitas de Flügge","Vectores biológicos","Transmisión transplacentaria"],"a":0,"e":"Clostridium forma esporas muy resistentes que viven en el suelo y el polvo."}],"intro":"El 90 % de las infecciones se transmite por las manos."},{"t":"Salud pública y vigilancia epidemiológica","subs":[{"t":"Salud pública y epidemiología","b":[{"k":"ul","x":["<b>Salud pública<\/b>: protege la salud de la población con promoción de estilos de vida, campañas de concientización, educación e investigación. Depende de: asignación de recursos, acceso, políticas y evaluación.","Determinantes que se cruzan en las estadísticas: <b>grupo de edad<\/b>, <b>región geográfica<\/b> y <b>sexo<\/b>.","Qué hace la epidemiología: mide la frecuencia, describe la distribución (quién, dónde, cuándo), formula hipótesis, identifica determinantes (pobreza, desigualdad, inseguridad alimentaria) y diseña estudios (cohortes, casos y controles)."]}]},{"t":"Vigilancia epidemiológica","b":[{"k":"ul","x":["Recolección <b>sistemática, continua, oportuna y confiable<\/b> de información sobre condiciones de salud.","Tipos: interna o externa; <b>oficial/operativa<\/b> (activa, pasiva, especializada) y <b>científica/técnica<\/b> (básica, aplicada, ambiental).","Se basa en: marco legal, sistema de información, análisis y toma de decisiones, supervisión y evaluación, capacitación y confirmación.","Objetivos: detectar riesgos a tiempo, conocer la tendencia de las enfermedades en un área, identificar grupos vulnerables y factores de riesgo, y elegir intervenciones.","<b>Inteligencia epidemiológica<\/b>: detectar, filtrar, verificar y analizar señales de amenaza. <b>Basada en indicadores<\/b> (sistemas de vigilancia) o <b>en eventos<\/b> (fuentes informales, en tiempo real) → alertas tempranas."]}]},{"t":"Sistemas de información en México","b":[{"k":"ul","x":["Requieren <b>entradas<\/b> (fuentes primarias: consultas; secundarias: expediente; terciarias: registro civil), <b>procesos<\/b> (depurar, analizar por sexo y edad, interpretar) y <b>salidas<\/b>.","<b>NOM-017-SSA2-2012<\/b>: vigilancia epidemiológica.","<b>SINAVE<\/b> (Sistema Nacional de Vigilancia Epidemiológica, creado en 1990): depende de la Dirección General de Epidemiología; su órgano rector es el <b>CONAVE<\/b>, con comités estatales (CEVE) y jurisdiccionales (COJUVE). Integra la información de todas las instituciones.","Niveles de atención: 1.º comunidad y consultorios (incluso los de farmacias), 2.º hospital general, 3.º alta especialidad.","<b>Estudio de caso<\/b> y <b>estudio de brote<\/b> (investigación de campo de los equipos locales)."]}]},{"t":"Medidas de frecuencia","b":[{"k":"tm","x":[{"w":"Incidencia","d":"Casos nuevos de una enfermedad en una población durante un tiempo determinado (p. ej., un año)."},{"w":"Prevalencia","d":"Total de personas con la enfermedad (nuevas y antiguas) en un momento o periodo."},{"w":"Morbilidad","d":"Cantidad de personas enfermas en un lugar y tiempo."},{"w":"Mortalidad","d":"Proporción de muertes en una población en un tiempo determinado."},{"w":"Carga de enfermedad","d":"Pérdida de salud por muertes prematuras y discapacidad (años de vida saludable perdidos)."}]}]}],"cards":[{"f":"¿Qué NOM regula la vigilancia epidemiológica?","b":"La NOM-017-SSA2-2012."},{"f":"¿Quién es el órgano rector del SINAVE?","b":"El CONAVE (Comité Nacional para la Vigilancia Epidemiológica)."}],"quiz":[{"q":"Durante 2025 se diagnosticaron 300 casos nuevos de diabetes en un municipio. Ese dato es…","o":["Prevalencia","Mortalidad","Letalidad","Incidencia"],"a":3,"e":"Casos nuevos en un periodo = incidencia; todos los casos existentes = prevalencia."},{"q":"La vigilancia basada en eventos usa sobre todo…","o":["Expedientes clínicos","Registro civil","Fuentes informales en tiempo real (noticias, redes, rumores)","Encuestas nacionales"],"a":2,"e":"La basada en indicadores usa los datos formales del sistema de salud."}],"intro":"Epidemiología: distribución y determinantes de los eventos de salud y su aplicación al control de enfermedades (OMS)."},{"t":"Laboratorio: bioseguridad, cultivos y siembra","subs":[{"t":"Bioseguridad","b":[{"k":"ul","x":["Barreras (bata cerrada, cubrebocas, guantes, lentes) y <b>lavado de manos siempre<\/b>.","No comer ni beber; limpiar y desinfectar antes y después; sin anillos, pulseras ni reloj; cabello recogido; zapato cerrado; nada de prácticas personales; avisar al profesor ante cualquier emergencia."]},{"k":"tb","x":["RPBI¦Contenedor","Punzocortantes¦Rígido rojo","No anatómicos y cultivos o cepas¦Bolsa roja","† Sangre líquida¦Recipiente hermético rojo","† Patológicos (piezas anatómicas)¦Bolsa amarilla"]}]},{"t":"Medios de cultivo","b":[{"k":"ul","x":["Soporte para crecer microorganismos con nutrientes (fuente de carbono, nitrógeno, proteínas, lípidos, factores) y <b>agar<\/b> como gelificante (derivado de algas). Pueden ser sólidos, semisólidos o líquidos (caldos)."]},{"k":"tb","x":["Tipo¦Para qué¦Ejemplos","Nutritivo (básico)¦Crecimiento general¦Caldo nutritivo, agar nutritivo","Enriquecido¦Nutrientes extra para bacterias exigentes¦Agar sangre, agar chocolate (Neisseria, Haemophilus)","De enriquecimiento¦Aumentar un microorganismo escaso antes de pasarlo a un selectivo¦† Caldo selenito (Salmonella)","Selectivo¦Deja crecer unos e inhibe otros¦Agar SS (Salmonella-Shigella), Sabouraud (hongos), MacConkey","Diferencial¦Distingue por metabolismo (cambio de color)¦XLD (xilosa-lisina-desoxicolato), EMB, MacConkey (fermenta o no lactosa)","Anaerobio¦Bacterias que no toleran O₂¦Tioglicolato (gradiente de oxígeno), cámara de anaerobiosis (Clostridium, Bacteroides)","Celular¦Virus¦Influenza en células MDCK (riñón de perro)"]},{"k":"ul","x":["Factores que afectan el crecimiento: <b>temperatura, pH, oxígeno y nutrientes<\/b>."]},{"k":"st","x":[{"v":"37 °C","l":"incubación de bacterias (temperatura corporal)"},{"v":"25 °C","l":"incubación de hongos"}]},{"k":"ul","x":["<b>Co-cultivo<\/b>: dos o más microorganismos creciendo juntos."]}]},{"t":"Técnicas de siembra","b":[{"k":"ul","x":["<b>Por extensión<\/b>: se reparte un volumen pequeño sobre la superficie con un asa de vidrio en «L» (parece escoba).","<b>Estriado masivo<\/b>: zigzag en toda la placa, se gira 90° y se repite.","<b>Estría cruzada<\/b>: zigzag en un tercio de la placa, se gira y se repite 3 veces (aislar colonias).","<b>Agotamiento<\/b>: estrías de inicio a fin sin girar.","<b>Vertido en placa<\/b>: se mezcla la muestra con agar fundido a ~45 °C y se homogeneiza."]}]},{"t":"Morfología de las colonias","b":[{"k":"tb","x":["Característica¦Opciones","Forma¦Puntiforme, circular, filamentosa, granular, rizoide, fusiforme","Elevación¦Plana, elevada, convexa, pulvinada, umbilicada","Borde¦Entero, ondulado, lobulado, dentado, filamentoso, rizado","Otras¦Tamaño, color, superficie, aspecto, luz reflejada y transmitida, pigmentos"]}]}],"cards":[{"f":"¿Qué medio se usa para Neisseria y Haemophilus?","b":"Agar chocolate (enriquecido)."},{"f":"Diferencia entre medio selectivo y diferencial","b":"Selectivo: inhibe a unos y deja crecer a otros. Diferencial: los distingue por su metabolismo (color)."},{"f":"¿A qué temperatura se incuban bacterias y hongos?","b":"Bacterias a 37 °C; hongos a 25 °C."}],"quiz":[{"q":"El agar MacConkey es…","o":["Para anaerobios","Solo enriquecido","Solo para hongos","Selectivo para gramnegativos y diferencial según fermenten lactosa"],"a":3,"e":"Las sales biliares y el cristal violeta inhiben a los grampositivos; los fermentadores de lactosa salen rosas."},{"q":"Para Clostridium y Bacteroides se usa…","o":["Agar chocolate en CO₂","Agar Sabouraud","Cámara de anaerobiosis o tioglicolato","Células MDCK"],"a":2,"e":"Son anaerobios: no toleran el oxígeno."}],"intro":"Cultivar sirve para identificar, aislar, contar y amplificar microorganismos."},{"t":"Tinción de Gram y pared bacteriana","subs":[{"t":"La técnica","b":[{"k":"fl","x":["Tinción de Gram (Hans Christian Gram)","Cristal violeta (se une al peptidoglucano)","Lugol (fija el colorante, evita que salga)","Alcohol-acetona (decolora: deshidrata la pared y cierra los poros)","Safranina (contraste)","Grampositivas moradas, gramnegativas rosas"]},{"k":"ul","x":["<b>Tinción simple<\/b>: forma, tamaño y agrupación. Diferencial (Gram, Ziehl-Neelsen) y de fondo (negativa)."]}]},{"t":"Pared celular","b":[{"k":"tb","x":["¦Grampositivas¦Gramnegativas","Peptidoglucano¦Grueso (red de tubos)¦Delgado","Ácidos teicoicos¦Sí (las «columnas»)¦No","Membrana externa con LPS¦No¦Sí","Color¦Morado¦Rosa"]},{"k":"ul","x":["<b>Ácidos teicoicos<\/b>: antigenicidad, transporte de cationes (Mg²⁺) y adherencia a tejidos.","<b>Lipopolisacárido (LPS)<\/b>: inmunoestimulante, <b>endotoxina<\/b> muy potente y factor de adherencia."]},{"k":"cl","x":["El LPS liberado a la sangre desencadena fiebre, vasodilatación y choque séptico."]}]},{"t":"Bacterias que no se ven bien con Gram","b":[{"k":"ul","x":["<b>Mycobacterium<\/b>: ácidos micólicos → ácido-alcohol resistentes (Ziehl-Neelsen); resisten la desecación y muchos desinfectantes.","<b>Treponema<\/b> (espiroqueta): campo oscuro o serología. <b>Chlamydia<\/b> y <b>Rickettsia<\/b>: intracelulares obligadas. <b>Mycoplasma<\/b>: sin pared (no responde a betalactámicos)."]}]}],"cards":[{"f":"¿Qué hace el lugol en la tinción de Gram?","b":"Fija el cristal violeta (mordiente) para que no salga."},{"f":"¿Qué componente NO tienen los grampositivos?","b":"Lipopolisacárido (membrana externa)."},{"f":"¿Qué componente NO tienen los gramnegativos?","b":"Ácidos teicoicos."}],"quiz":[{"q":"Si se omite el alcohol en la tinción de Gram, las gramnegativas se verán…","o":["Transparentes","Rosas","Moradas","Verdes"],"a":2,"e":"Sin decolorar conservan el cristal violeta y parecen grampositivas."},{"q":"¿Por qué Mycoplasma no responde a la penicilina?","o":["Tiene LPS muy grueso","Es un virus","No tiene pared celular","Produce betalactamasa siempre"],"a":2,"e":"Los betalactámicos actúan sobre la síntesis del peptidoglucano."}],"intro":"Clasifica por la pared: grampositivas moradas, gramnegativas rosas."},{"t":"Bacterias grampositivas","subs":[{"t":"Cocos grampositivos","b":[{"k":"tb","x":["Bacteria¦Forma¦Clave","Staphylococcus¦Racimos¦S. aureus: β-hemólisis, coagulasa +","Streptococcus¦Cadenas o pares¦S. pyogenes y S. agalactiae: β-hemólisis","S. pneumoniae (neumococo)¦Diplococo lanceolado¦α-hemólisis; principal causa de neumonía adquirida en la comunidad","S. mutans¦Cadenas¦Principal bacteria de la caries","Enterococcus¦Pares o cadenas cortas¦Resistencia intrínseca a cefalosporinas; ERV (resistente a vancomicina)"]},{"k":"tm","x":[{"w":"Hemólisis α","d":"Parcial: halo verde alrededor de la colonia (neumococo, viridans)."},{"w":"Hemólisis β","d":"Completa: halo transparente (S. pyogenes, S. agalactiae, S. aureus)."}]}]},{"t":"Bacilos grampositivos","b":[{"k":"ul","x":["<b>Bacillus<\/b>: esporulados (B. anthracis). <b>Clostridium<\/b>: esporulados anaerobios (tétanos, botulismo, gangrena).","<b>Listeria<\/b>: cortos, no esporulados (lácteos sin pasteurizar; embarazadas y recién nacidos).","<b>Corynebacterium<\/b>: en empalizada o «letras chinas» (difteria).","<b>Nocardia<\/b> y <b>Actinomyces<\/b>: ramificados (antes se creían hongos); Nocardia es débilmente ácido-alcohol resistente y afecta a inmunosuprimidos."]}]}],"cards":[{"f":"¿Qué bacteria produce colonias con halo verde (α-hemólisis)?","b":"Streptococcus pneumoniae y estreptococos viridans."},{"f":"Bacilos grampositivos en «letras chinas»","b":"Corynebacterium."}],"quiz":[{"q":"Cocos grampositivos en racimos, coagulasa positivos y β-hemolíticos","o":["Enterococcus faecalis","Streptococcus pyogenes","Neisseria meningitidis","Staphylococcus aureus"],"a":3,"e":"Racimos = estafilococo; la coagulasa distingue a S. aureus."},{"q":"Causa principal de neumonía adquirida en la comunidad","o":["Streptococcus pneumoniae","Klebsiella pneumoniae","Mycoplasma pneumoniae","Haemophilus influenzae"],"a":0,"e":"El neumococo es el más frecuente en todas las edades después del periodo neonatal."}],"intro":"Cocos en racimos o cadenas y bacilos con o sin esporas."},{"t":"Bacterias gramnegativas","subs":[{"t":"Neisseria","b":[{"k":"ul","x":["Cocos (diplococos en «grano de café»), 0.6–1 µm, sin esporas, con <b>pili<\/b> (adhesión, intercambio genético, antigenicidad).","<b>Capnofílicas<\/b>: crecen con 5–10 % de CO₂."]},{"k":"tb","x":["¦N. gonorrhoeae (gonococo)¦N. meningitidis (meningococo)","Descubrimiento¦Albert Neisser, 1879¦—","Enfermedad¦Gonorrea, septicemia¦Meningitis en niños y adultos (deja secuelas o mata ~10 %)","Transmisión¦Sexual¦Saliva y gotitas (toser, estornudar, besar, juguetes)","Cultivo¦Difícil in vitro¦Exclusivamente humano"]},{"k":"hy","x":["<b>Corrección:<\/b> en tus notas dice «microfílico»; el término es <b>capnofílico<\/b> (necesita CO₂) y microaerófilo."]}]},{"t":"Enterobacterias","b":[{"k":"ul","x":["Bacilos gramnegativos fermentadores de glucosa: ~40 géneros, 150 especies (unas 20 de importancia médica)."]},{"k":"st","x":[{"v":"30 %","l":"de las septicemias"},{"v":"70 %","l":"de las infecciones urinarias"},{"v":"90 %","l":"de las infecciones intestinales (según tus notas)"}]},{"k":"ul","x":["Se cultivan en medios enriquecidos (agar sangre) y selectivos (MacConkey)."]}]},{"t":"Escherichia coli y sus patotipos","b":[{"k":"ul","x":["Descrita en 1885 por Theodor Escherich («Bacterium coli commune»). Bacilo gramnegativo, anaerobio facultativo, <b>comensal<\/b> más abundante del intestino; algunas clonas adquirieron genes de virulencia."]},{"k":"tb","x":["Patotipo¦Mecanismo¦Cuadro","EPEC (enteropatógena)¦Intimina: lesión de adhesión y borrado con «pedestales»¦Diarrea en lactantes","ETEC (enterotoxigénica)¦Toxinas LT (termolábil) y ST (termoestable): ↑ secreción de Cl⁻¦Diarrea acuosa del viajero e infantil; incubación 14–50 h","EIEC (enteroinvasiva)¦Invade el epitelio del colon (como Shigella); inmóvil, no fermenta lactosa¦Diarrea con sangre y moco, dolor","EAEC (enteroagregativa)¦Fimbrias de agregación, «ladrillos apilados», toxinas¦Diarrea acuosa persistente (niños, VIH)","DAEC (adherencia difusa)¦Se adhiere a toda la superficie; citocinas proinflamatorias¦Diarrea en niños","EHEC/STEC (O157:H7)¦Toxina Shiga¦Colitis hemorrágica y síndrome urémico hemolítico (5–10 %)","UPEC (uropatógena)¦Fimbrias y factores en islas de patogenicidad¦&gt; 80 % de las infecciones urinarias","E. coli de meningitis neonatal¦Cápsula K1¦Meningitis del recién nacido"]},{"k":"hy","x":["<b>Corrección:<\/b> en tus notas la ETEC «aumenta la secreción de calcio»: aumenta la de <b>cloro<\/b> (por AMPc/GMPc) e inhibe la absorción de NaCl. Y la EIEC no «libera calcio impidiendo la solidificación ósea»: invade y destruye el epitelio del colon (a veces se asocia a artritis reactiva)."]},{"k":"mn","x":[{"m":"SUH = anemia + plaquetas bajas + riñón","s":"Anemia hemolítica microangiopática, trombocitopenia y falla renal tras diarrea con sangre por EHEC."}]},{"k":"cl","x":["No se dan antibióticos en la diarrea por EHEC: aumentan la liberación de toxina Shiga y el riesgo de SUH."]}]},{"t":"Shigella, Salmonella y otras","b":[{"k":"ul","x":["<b>Shigella<\/b> (Kiyoshi Shiga, 1898): bacilo inmóvil, anaerobio facultativo, fecal-oral con <b>inóculo muy pequeño<\/b>; invade colon, íleon y recto. Grupos de riesgo: preescolares y sus familias, sexo anal. <b>S. dysenteriae<\/b> produce toxina Shiga (detiene la síntesis de proteínas) → disentería: diarrea con sangre y moco, tenesmo, prolapso rectal.","<b>Salmonella<\/b> (Daniel Salmon, 1884): bacilo móvil (flagelos), intracelular facultativo; alimentos contaminados o fecal-oral. <b>S. Typhi<\/b> solo enferma al ser humano: fiebre tifoidea (agua y alimentos).","<b>Klebsiella<\/b> (Edwin Klebs): encapsulada, inmóvil, fermenta lactosa; microbiota de boca, piel e intestino. Cepas con <b>BLEE<\/b> y carbapenemasas. *K. pneumoniae*: neumonía nosocomial y por broncoaspiración en alcohólicos («jalea de grosella»), IVU, infección de herida. *K. oxytoca*: vía biliar y urinaria en hospitalizaciones largas.","<b>Serratia marcescens<\/b>: lugares húmedos; infecciones nosocomiales (heridas, IVU, meningitis, endocarditis); resistente a penicilinas.","<b>Yersinia pestis<\/b> (Alexandre Yersin, 1894): peste bubónica y neumónica; peste negra en Europa (1347–1351); reservorio en roedores, vector la pulga de la rata. <b>Y. enterocolitica<\/b>: cocobacilo móvil, síndrome diarreico."]}]},{"t":"No fermentadores y otros","b":[{"k":"ul","x":["<b>Pseudomonas, Acinetobacter baumannii<\/b> (aerobio estricto, nosocomial y muy resistente) y <b>Stenotrophomonas<\/b> (resistente a carbapenémicos).","<b>Haemophilus<\/b> y <b>Bordetella<\/b>: cocobacilos. La vacuna Hib está en el esquema infantil (no es anual). <b>Brucella<\/b>: lácteos sin pasteurizar (fiebre de Malta).","<b>Campylobacter jejuni<\/b>: curvo («en gaviota»), aves mal cocidas, asociado a Guillain-Barré. <b>Vibrio<\/b>: curvo (cólera).","<b>Chlamydia trachomatis<\/b>: causa bacteriana más común de ITS; también tracoma."]}]}],"cards":[{"f":"¿Qué patotipo de E. coli causa más infecciones urinarias?","b":"UPEC (uropatógena), más del 80 %."},{"f":"¿Qué patotipo de E. coli causa diarrea del viajero?","b":"ETEC (enterotoxigénica), por las toxinas LT y ST."},{"f":"Tríada del síndrome urémico hemolítico","b":"Anemia hemolítica, trombocitopenia y falla renal aguda."},{"f":"¿Qué significa BLEE?","b":"Betalactamasa de espectro extendido: inactiva penicilinas y cefalosporinas."}],"quiz":[{"q":"Niño con diarrea con sangre tras comer hamburguesa mal cocida; a los 7 días tiene anemia, plaquetas bajas y creatinina alta. El agente es…","o":["Salmonella Typhi","E. coli enterotoxigénica","E. coli enterohemorrágica (O157:H7)","Vibrio cholerae"],"a":2,"e":"La toxina Shiga daña el endotelio renal → SUH."},{"q":"Diplococo gramnegativo intracelular en el LCR de un adolescente con petequias y rigidez de nuca","o":["Haemophilus influenzae","Neisseria gonorrhoeae","Neisseria meningitidis","Streptococcus pneumoniae"],"a":2,"e":"Meningitis con exantema petequial es típica del meningococo."},{"q":"Bacteria encapsulada asociada a neumonía en alcohólicos con esputo «en jalea de grosella»","o":["Serratia marcescens","Pseudomonas aeruginosa","Klebsiella pneumoniae","Yersinia pestis"],"a":2,"e":"La cápsula de polisacárido le da el esputo espeso y rojizo."}],"intro":"Neisseria, enterobacterias (E. coli y sus patotipos, Shigella, Salmonella, Klebsiella, Serratia, Yersinia) y no fermentadores."},{"t":"Virología","subs":[{"t":"Historia y estructura","b":[{"k":"ul","x":["1892: virus del mosaico del tabaco. 1898: Martinus Beijerinck, primer tratado de virología. 1911: Peyton Rous relaciona virus y tumores.","«Virus» viene del latín *veneno*. Material genético <b>ADN o ARN<\/b>, de cadena sencilla o doble. Fuera de la célula se llaman <b>viriones<\/b>.","<b>Cápside<\/b> (proteínas) y, en algunos, <b>envoltura<\/b> lipídica (envueltos vs desnudos)."]},{"k":"fl","x":["Ciclo de replicación viral","Adsorción","Penetración","Desnudamiento","Eclipse","Replicación del genoma","Transcripción y traducción","Ensamble","Liberación (lisis o gemación)"]}]},{"t":"Clasificación de Baltimore","b":[{"k":"tb","x":["Clase¦Genoma¦Ejemplos","I¦ADN de doble cadena¦Herpesvirus, adenovirus, papiloma","II¦ADN de cadena sencilla¦Parvovirus","III¦ARN de doble cadena¦Rotavirus","IV¦ARN de cadena sencilla (+)¦Poliovirus, hepatitis A, coronavirus, flavivirus","V¦ARN de cadena sencilla (−)¦Sarampión, parotiditis, influenza, rabia, ébola","VI¦ARN (+) con transcriptasa inversa¦VIH","† VII¦ADN de doble cadena con transcriptasa inversa¦Hepatitis B"]}]},{"t":"Diagnóstico de laboratorio","b":[{"k":"ul","x":["Citología (rápido), microscopía electrónica, aislamiento y cultivo, detección de antígenos y enzimas, detección del genoma (<b>PCR<\/b>) y serología (antígeno-anticuerpo).","La <b>IgM<\/b> indica infección reciente (aguda); la IgG, infección pasada o inmunidad."]},{"k":"hy","x":["<b>Corrección:<\/b> tus notas dicen que la IgM son «anticuerpos inespecíficos»; la IgM es específica del agente, solo que es la <b>primera<\/b> en aparecer."]}]},{"t":"Virus ADN","b":[{"k":"tb","x":["Familia¦Virus¦Lo importante","Papillomaviridae¦VPH¦Verrugas genitales y orales; displasias y cáncer cervicouterino y de pene; latente; hay vacuna (también para hombres)","Adenoviridae¦Adenovirus¦Infecta adenoides: vías respiratorias, conjuntivitis, cistitis hemorrágica, gastroenteritis; gotas, contacto, fecal-oral","Herpesviridae (α)¦Herpes simple 1 y 2¦Contacto con saliva o secreciones; latencia en neuronas; sin vacuna, hay tratamiento (aciclovir)","Herpesviridae (α)¦Varicela-zóster¦Respiratorio, viremia, piel; latencia en ganglios: herpes zóster al bajar la inmunidad","Herpesviridae (γ)¦Epstein-Barr¦«Enfermedad del beso»: mononucleosis; latencia en linfocitos B; neoplasias en inmunodeficientes","Herpesviridae (β)¦Citomegalovirus¦Sangre y fluidos; latencia en linfocitos T y macrófagos; riesgo congénito y en trasplantados","Poxviridae¦Viruela, mpox¦Los virus más grandes; viruela erradicada (OMS); mpox: brote global 2022, vacuna JYNNEOS"]},{"k":"ul","x":["Son <b>8 herpesvirus humanos<\/b>."]},{"k":"hy","x":["<b>Corrección:<\/b> en tus notas el herpes simple dice «ARN de doble cadena»; todos los herpesvirus son <b>ADN de doble cadena<\/b>."]}]},{"t":"Virus ARN","b":[{"k":"tb","x":["Familia¦Virus¦Lo importante","Picornaviridae¦Enterovirus (polio, coxsackie)¦Bucofaringe y tejido linfático; SNC y mano-pie-boca; verano; vacuna oral o inactivada de polio","Picornaviridae¦Rinovirus¦Resfriado común, faringitis, otitis, sinusitis; invierno","Coronaviridae¦Coronavirus (SARS-CoV-2)¦ARN (+) con envoltura «en corona»; vías respiratorias altas (33–35 °C); vacunas ARNm, virus atenuado, vector","Paramyxoviridae¦Sarampión (morbillivirus)¦R0 de 12–18, de los más altos; aerosoles; manchas de Koplik","Paramyxoviridae¦Parotiditis¦Inflama las parótidas; incubación 12–25 días; vacuna triple viral (SRP) al año y refuerzo escolar","Pneumoviridae¦Virus sincitial respiratorio¦Vías altas y bajas; grave en bebés y ancianos","Orthomyxoviridae¦Influenza A, B, C¦ARN (−) con hemaglutinina y neuraminidasa; invierno; pandemias (AH1N1 pdm09); antivirales y vacuna anual","Rhabdoviridae¦Rabia (lyssavirus)¦Saliva por mordedura; se multiplica en músculo y sube al SNC en semanas o meses","Filoviridae¦Ébola¦Fiebre hemorrágica (ver abajo)","Reoviridae¦Rotavirus¦ARN doble cadena; fecal-oral; diarrea en niños; invierno y primavera","Flaviviridae¦Dengue, zika, fiebre amarilla, † hepatitis C¦Arbovirus (artrópodos); ARN (+) con envoltura","Togaviridae¦Chikungunya (alfavirus)¦Arbovirus","Matonaviridae¦Rubéola (rubivirus)¦Leve en niños; en el embarazo: aborto y rubéola congénita","Retroviridae¦VIH (lentivirus)¦Infecta linfocitos T CD4 y macrófagos; fluidos corporales; antirretrovirales"]},{"k":"hy","x":["<b>Corrección:<\/b> la «lengua de fresa» no es del sarampión (es de la escarlatina y de Kawasaki); el signo típico del sarampión son las <b>manchas de Koplik<\/b>. Y el chikungunya es un alfavirus (Togaviridae), no un flavivirus."]}]},{"t":"Hepatitis virales","b":[{"k":"tb","x":["Virus¦Familia¦Transmisión¦Lo importante","A¦Picornavirus¦Fecal-oral¦Aguda, gravedad moderada; no se cronifica","B¦Hepadnavirus¦Sexual, parenteral, perinatal¦Puede cronificarse; hay vacuna","C¦Flavivirus¦Parenteral (sexual menos)¦Se cronifica en ~70 %; hoy es curable con antivirales","† D¦Deltavirus¦Parenteral¦Solo infecta si hay hepatitis B","† E¦Hepevirus¦Fecal-oral¦Grave en embarazadas"]}]},{"t":"Ébola (Filoviridae)","b":[{"k":"ul","x":["ARN de cadena sencilla (−) con envoltura lipídica (sale por gemación); la glicoproteína se une al receptor <b>NPC1<\/b>.","Infecta macrófagos, células dendríticas y hepatocitos; viaja en células inmunes a hígado, timo y bazo.","Reservorio: murciélagos; contagio por fluidos corporales. Endémico en África; <b>mortalidad 25–90 %<\/b>.","Clínica: inicia como gripe (cefalea, artralgias), luego vómito y diarrea, coagulopatía con trombos y hemorragias múltiples, choque.","Diagnóstico: <b>PCR<\/b> y ELISA (el cultivo tarda demasiado y es peligroso).","Prevención: vacuna <b>rVSV-ZEBOV<\/b> (no disponible en México), aislamiento, EPP, desinfección y rastreo de contactos.","Tratamiento: anticuerpos monoclonales (<b>Inmazeb<\/b>, † Ebanga) y soporte (rehidratación, coagulopatía, hemodinamia)."]},{"k":"hy","x":["<b>Corrección:<\/b> el remdesivir se probó en ébola pero fue <b>menos eficaz<\/b> que los anticuerpos monoclonales; Inmazeb no es un antiviral sino un cóctel de anticuerpos."]}]}],"cards":[{"f":"¿Qué tipo de genoma tiene el VIH en Baltimore?","b":"Clase VI: ARN (+) con transcriptasa inversa."},{"f":"¿Dónde hace latencia el virus de Epstein-Barr?","b":"En linfocitos B de memoria."},{"f":"Signo patognomónico del sarampión","b":"Manchas de Koplik (puntos blancos en la mucosa oral)."},{"f":"¿Qué hepatitis se cronifica más?","b":"La C (~70 % de los infectados)."}],"quiz":[{"q":"¿Cuál virus es de ADN?","o":["Rotavirus","Rabia","Influenza","Citomegalovirus"],"a":3,"e":"Todos los herpesvirus (incluido CMV) son ADN de doble cadena."},{"q":"Embarazada con exantema leve en el primer trimestre; preocupa el riesgo de malformaciones. El virus más probable es…","o":["Rinovirus","Rotavirus","Rubéola","Influenza B"],"a":2,"e":"La rubéola congénita causa cataratas, sordera y cardiopatía, y aborto."},{"q":"El receptor celular del virus del ébola es…","o":["CD4","ECA2","Ácido siálico","NPC1"],"a":3,"e":"NPC1 está en los endosomas; CD4 es del VIH, ECA2 del SARS-CoV-2 y el ácido siálico de la influenza."}],"intro":"Virus: genes envueltos en una cápside; solo se replican dentro de células vivas."},{"t":"Parasitología","subs":[{"t":"Protozoos intestinales y urogenitales","b":[{"k":"ul","x":["Colonizan bucofaringe, duodeno y colon; vía <b>fecal-oral<\/b>; zonas tropicales y países en desarrollo. Mejorar la calidad de vida y el saneamiento es la medida más eficaz."]},{"k":"tb","x":["Parásito¦Grupo¦Formas¦Enfermedad","Entamoeba histolytica¦Ameba (seudópodos)¦Trofozoíto (activo) y quiste (infeccioso)¦Amebiasis: necrosis del colon (citotoxinas), † absceso hepático","Giardia lamblia¦Flagelado¦Quiste y trofozoíto¦Basta ingerir 10–25 quistes; se une a las vellosidades del duodeno: diarrea y malabsorción","Trichomonas vaginalis¦Flagelado¦Solo trofozoíto¦Transmisión sexual; vaginitis, uretritis, prostatitis","Balantidium coli¦Ciliado¦Trofozoíto y quiste¦Reservorio el cerdo; diarrea parecida a la amebiasis, úlceras"]}]},{"t":"Protozoos de la sangre y los tejidos","b":[{"k":"ul","x":["<b>Plasmodium<\/b> (paludismo): *P. vivax* (el más común), *P. falciparum* (el más letal), *P. ovale* y *P. malariae*. Lo transmite el mosquito <b>*Anopheles<\/b>* (esporozoítos) o una transfusión. Fiebre en picos &gt; 40 °C con escalofríos y sudoración nocturna; afectación del SNC (malaria cerebral).","<b>Toxoplasma gondii<\/b>: intracelular; el <b>gato<\/b> es el hospedero definitivo y elimina ooquistes en las heces. Benigno en la mayoría, grave en inmunocomprometidos y <b>teratógeno<\/b>.","<b>Trypanosoma<\/b>: *T. brucei* (enfermedad del sueño, mosca tsé-tsé, afecta el SNC hasta el coma) y <b>*T. cruzi<\/b>* (enfermedad de <b>Chagas<\/b>, chinche besucona): hepatoesplenomegalia, <b>miocarditis<\/b>, megaesófago y megacolon."]},{"k":"hy","x":["<b>Corrección:<\/b> el toxoplasma no se transmite al humano «en forma de esporas por vía respiratoria»; se adquiere al <b>ingerir<\/b> ooquistes (tierra, arena del gato, verduras mal lavadas) o quistes en carne mal cocida, y por vía transplacentaria."]}]},{"t":"Helmintos: nematodos","b":[{"k":"ul","x":["Gusanos redondos macroscópicos; adultos en el tubo digestivo.","<b>Ascaris lumbricoides<\/b>: 20–35 cm, rosado; agua y alimentos con huevos; las larvas atraviesan el duodeno y pasan por hígado, corazón y pulmón (ciclo de Loss) antes de volver al intestino; desnutrición.","<b>Trichuris trichiura<\/b>: vive en el ciego; los huevos en heces son infectantes; ligado a falta de saneamiento.","<b>Trichinella spiralis<\/b> (triquinosis): carne de cerdo con larvas enquistadas → gusanos adultos en el intestino → larvas viajan y se enquistan en el <b>músculo<\/b>.","† <b>Uncinarias<\/b> (Ancylostoma, Necator): penetran la piel desde el suelo y causan anemia ferropénica."]}]},{"t":"Trematodos y cestodos","b":[{"k":"ul","x":["<b>Fasciola hepatica<\/b>: gusano plano con ventosas; necesita un <b>caracol<\/b> como hospedero intermedio; del intestino pasa al hígado: hepatitis no viral, fibrosis y riesgo de cáncer.","<b>Cestodos<\/b>: planos en forma de cinta; cabeza (escólex) con órganos de fijación; hermafroditas; cada segmento es una <b>proglótide<\/b> y la cadena es el <b>estróbilo<\/b>."]},{"k":"tb","x":["¦Taenia solium¦Taenia saginata","Hospedero intermedio¦Cerdo¦Res","Escólex¦Con ganchos (rostelo armado)¦Sin ganchos","Tamaño¦2–7 m¦Hasta 10 m","Riesgo especial¦<b>Cisticercosis<\/b>: si se ingieren huevos, los cisticercos se enquistan en músculo, cerebro, pulmón y ojo¦Solo teniasis intestinal"]},{"k":"hy","x":["<b>Corrección:<\/b> en tus notas *T. saginata* aparece como «tenia solium» y con esparganosis; *T. saginata* es la tenia de la <b>res<\/b> y la esparganosis la causa otro cestodo (*Spirometra*)."]},{"k":"cl","x":["† La <b>neurocisticercosis<\/b> es la principal causa de epilepsia adquirida en México y Latinoamérica."]}]}],"cards":[{"f":"¿Qué Plasmodium es el más letal?","b":"Plasmodium falciparum."},{"f":"¿Quién transmite la enfermedad de Chagas?","b":"La chinche besucona (triatomino), con Trypanosoma cruzi."},{"f":"Hospedero definitivo de Toxoplasma gondii","b":"El gato."},{"f":"¿Qué es una proglótide?","b":"Cada segmento del cuerpo de un cestodo; la cadena de proglótides es el estróbilo."}],"quiz":[{"q":"Paciente con miocardiopatía dilatada y megaesófago que vivió en una casa de adobe en zona rural. Sospechas…","o":["Paludismo","Toxoplasmosis","Enfermedad de Chagas","Triquinosis"],"a":2,"e":"T. cruzi daña miocardio y plexos del tubo digestivo; la chinche vive en casas de adobe."},{"q":"La cisticercosis se adquiere al…","o":["Ser picado por Anopheles","Comer carne de res cruda","Caminar descalzo en tierra","Ingerir huevos de Taenia solium"],"a":3,"e":"Comer carne de cerdo con cisticercos da teniasis intestinal; los huevos (fecal-oral) dan cisticercosis."},{"q":"Protozoo que solo tiene forma de trofozoíto y se transmite por vía sexual","o":["Balantidium coli","Trichomonas vaginalis","Giardia lamblia","Entamoeba histolytica"],"a":1,"e":"No forma quistes, por eso necesita contacto directo."}],"intro":"Protozoos intestinales, urogenitales y sanguíneos, y helmintos (nematodos, trematodos y cestodos)."}]};
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const T=GUIA.temas,LS="s12-repasar-"+GUIA.id;
+const allC=[],allQ=[];T.forEach((t,i)=>{(t.cards||[]).forEach(c=>allC.push({...c,ti:i}));(t.quiz||[]).forEach(q=>allQ.push({...q,ti:i}))});
+document.title=GUIA.title;
+$("#kick").textContent=GUIA.kicker;$("#ttl").textContent=GUIA.title;$("#lede").textContent=GUIA.desc;
+$("#stats").innerHTML=[[T.length,"Temas"],[T.reduce((n,t)=>n+t.subs.filter(s=>s.t).length,0),"Subtemas"],[allC.length,"Tarjetas"],[allQ.length,"Preguntas"]].map(([n,l])=>`<div><small>${l}</small><b>${n}</b></div>`).join("");
+$("#brand").textContent=GUIA.title;
+const PAL=[["#c2410c","#fb8a5a"],["#6d28d9","#b69cff"],["#0f766e","#4fd1c0"],["#b45309","#f2b14c"],["#be123c","#ff7c98"],["#1d4ed8","#7aa7ff"],["#15803d","#6edb8f"],["#a21caf","#ec8cf6"],["#0e7490","#5cc9e6"],["#9a3412","#ff9f6e"],["#4d7c0f","#a7d65a"],["#7c3aed","#c4a8ff"]];
+const tcol=i=>`--tc:${PAL[i%PAL.length][0]};--tcd:${PAL[i%PAL.length][1]}`;
+if(GUIA.nota){$("#nota").hidden=false;$("#nota").innerHTML=GUIA.nota}
+$("#foot").innerHTML=`Repositorio de Marcos David Reinah Guzmán · Médico Cirujano UDLAP · ${esc(GUIA.kicker)}. <span class="dag">†</span> = dato agregado para completar el tema.`;
+/* estudiar */
+const LSD="s12-dominado-"+GUIA.id;let dom=new Set();try{dom=new Set(JSON.parse(localStorage.getItem(LSD)||"[]"))}catch(e){}
+const saveDom=()=>{try{localStorage.setItem(LSD,JSON.stringify([...dom]))}catch(e){}};
+const named=t=>t.subs.filter(s=>s.t);
+$("#toc").innerHTML=T.map((t,i)=>`<div class="tg" data-i="${i}"><a href="#t${i+1}"><span><i>${String(i+1).padStart(2,"0")}</i></span>${esc(t.t)}</a>${named(t).length?`<div class="sl">${named(t).map((s,j)=>`<a href="#t${i+1}-${j+1}">${s.t}</a>`).join("")}</div>`:""}</div>`).join("");
+const list=a=>`<ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+const R={
+ ul:x=>list(x),
+ hy:x=>`<div class="box hy"><h4>Alto rendimiento para examen</h4>${list(x)}</div>`,
+ cl:x=>`<div class="box cl"><h4>Correlación clínica</h4>${list(x)}</div>`,
+ tb:x=>{const rows=x.map(r=>r.split("¦"));return `<div class="tblw"><div class="tbar"><button class="mini" type="button" data-tq aria-pressed="false">Ponme a prueba con la tabla</button></div><div class="tbl"><table><thead><tr>${rows[0].map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>${rows.slice(1).map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div>`},
+ fl:x=>`<div class="flow"><div class="fh"><b>${x[0]||"Secuencia"}</b><button class="mini" type="button" data-fl>Paso a paso ▶</button></div><ol>${x.slice(1).map(p=>`<li><div class="st">${p}</div></li>`).join("")}</ol></div>`,
+ st:x=>`<div class="stats-g">${x.map(o=>`<div class="stat"><span class="v">${o.v}</span><span class="l">${o.l}</span></div>`).join("")}</div>`,
+ tm:x=>`<div class="terms"><div class="th"><b>Conceptos clave · toca para revelar</b><button class="mini" type="button" data-tm>Mostrar todos</button></div><div class="tgr">${x.map(o=>`<button class="term" type="button" aria-expanded="false"><span class="w">${o.w}</span><span class="d">${o.d}</span><span class="h">¿Qué es? →</span></button>`).join("")}</div></div>`,
+ mn:x=>x.map(o=>`<div class="mn"><div class="mi">M</div><div><b class="mm">${o.m}</b><span>${o.s}</span></div></div>`).join(""),
+ im:x=>`<div class="figs${x.length>1?" g2":""}">${x.map(fig).join("")}</div>`
+};
+function fig(o){const p=o.p||[];return `<figure class="fig"><div class="fw"><img src="${o.src}" alt="${esc(o.c.replace(/<[^>]+>/g,""))}" loading="lazy" decoding="async"><button class="fz" type="button" aria-label="Ampliar imagen"></button>${p.map((q,n)=>`<button class="pin${q.y<22?" lo":""}${q.x<22?" le":q.x>78?" ri":""}" type="button" data-pn="${n}" style="left:${q.x}%;top:${q.y}%" aria-label="Marcador ${n+1}">${n+1}<span class="pl">${q.l}</span></button>`).join("")}</div><figcaption><span>${o.c}</span>${p.length?`<div class="fbar"><button class="mini" type="button" data-fq aria-pressed="false">Ponme a prueba</button></div><ol class="leg">${p.map((q,n)=>`<li data-pn="${n}"><span>${q.l}</span></li>`).join("")}</ol>`:""}<small class="cr">${o.a}</small></figcaption></figure>`}
+const ppQ=(q,i,k)=>`<div class="pq" data-a="${q.a}"><p>${q.q}</p><div class="po">${q.o.map((o,n)=>`<button type="button" data-n="${n}">${o}</button>`).join("")}</div><div class="pe" hidden>${q.e||""}</div></div>`;
+const KD={im:"Imágenes",fl:"Diagrama",tb:"Tabla",tm:"Conceptos",mn:"Mnemotecnia",st:"Cifras"};
+const kinds=s=>[...new Set(s.b.map(b=>b.k))].filter(k=>KD[k]).map(k=>`<i>${KD[k]}</i>`).join("");
+$("#mapaN").textContent=`${T.length} temas · toca uno para ir`;
+$("#mgrid").innerHTML=T.map((t,i)=>`<a class="mc${dom.has(i)?" ok":""}" href="#t${i+1}" data-i="${i}" style="${tcol(i)}"><span class="n">${i+1}</span><b>${esc(t.t)}</b><small>${named(t).length} subtemas · ${(t.quiz||[]).length} preguntas</small><span class="ck" aria-label="${dom.has(i)?"dominado":"pendiente"}"></span></a>`).join("");
+$("#temas").innerHTML=T.map((t,i)=>{let j=0;const ns=named(t);return `<article class="tema${dom.has(i)?" ok":""}" id="t${i+1}" data-i="${i}" style="${tcol(i)}">
+ <div class="thead"><div class="bn">${i+1}</div><span class="num">Tema ${i+1} de ${T.length}${ns.length?` · ${ns.length} subtemas`:""}</span><h2>${esc(t.t)}</h2>${t.intro?`<p class="intro">${t.intro}</p>`:""}
+ ${ns.length?`<div class="schips">${ns.map((s,k)=>`<a href="#t${i+1}-${k+1}">${i+1}.${k+1} ${s.t}</a>`).join("")}</div>`:""}</div>
+ <div class="tbody">${t.subs.map(s=>{const body=(s.i?`<p class="si">${s.i}</p>`:"")+s.b.map(b=>R[b.k](b.x)).join("");if(!s.t)return `<div class="sub lead">${body}</div>`;j++;return `<details class="sub" open id="t${i+1}-${j}"><summary><span class="sn">${i+1}.${j}</span><h3>${s.t}</h3><span class="kd">${kinds(s)}</span></summary>${body}</details>`}).join("")}</div>
+ ${(t.quiz||[]).length?`<div class="pp"><h4>Ponte a prueba</h4>${t.quiz.slice(0,2).map((q,k)=>ppQ(q,i,k)).join("")}</div>`:""}
+ <div class="tfoot">${(t.cards||[]).length?`<button type="button" data-c="${i}">${t.cards.length} tarjetas</button>`:""}${(t.quiz||[]).length?`<button type="button" data-q="${i}">Examen del tema (${t.quiz.length})</button>`:""}<button type="button" class="dom" data-d="${i}" aria-pressed="${dom.has(i)}">${dom.has(i)?"✓ Dominado":"Marcar como dominado"}</button></div>
+</article>`}).join("");
+const LSE="s12-examen-"+GUIA.id;
+function prog(){const n=dom.size,p=Math.round(n/T.length*100);$("#pgBar").style.width=p+"%";$("#pgTxt").textContent=n+" / "+T.length;document.querySelectorAll(".toc .tg").forEach(g=>g.classList.toggle("ok",dom.has(+g.dataset.i)));
+ document.querySelectorAll(".mc").forEach(m=>m.classList.toggle("ok",dom.has(+m.dataset.i)));
+ $("#ringV").classList.toggle("z",!p);$("#ringV").setAttribute("stroke-dasharray",`${(p/100*263.9).toFixed(1)} 264`);$("#ringN").textContent=p+"%";$("#ringT").textContent=`${n} de ${T.length} temas dominados`;
+ const nx=T.findIndex((t,i)=>!dom.has(i));$("#nextT").innerHTML=nx<0?`<small>¡Terminaste!</small><b>Haz un examen de toda la materia →</b>`:`<small>${n?"Sigue con":"Empieza por"}</small><b>${nx+1}. ${esc(T[nx].t)} →</b>`;$("#nextT").setAttribute("href",nx<0?"#":"#t"+(nx+1));$("#nextT").dataset.nx=nx;
+ let le=null;try{le=JSON.parse(localStorage.getItem(LSE)||"null")}catch(e){}$("#lastEx").textContent=le?`Último examen: ${le.p}% (${le.g} de ${le.n})`:"Aún no haces un examen de esta materia."}
+prog();
+$("#nextT").addEventListener("click",e=>{if(+e.currentTarget.dataset.nx<0){e.preventDefault();$("#qSel").value="all";tab("examen")}});
+document.querySelectorAll(".hact button").forEach(b=>b.addEventListener("click",()=>{tab(b.dataset.go);if(b.dataset.go==="estudiar"){const m=$("#mapa");window.scrollTo({top:m.getBoundingClientRect().top+scrollY-70,behavior:"smooth"})}}));
+/* lectura y volver arriba */
+const onScroll=()=>{const h=document.documentElement,max=h.scrollHeight-h.clientHeight;$("#readbar").style.width=(max>0?scrollY/max*100:0)+"%";$("#totop").classList.toggle("on",scrollY>900)};
+addEventListener("scroll",onScroll,{passive:true});onScroll();
+$("#totop").addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+/* buscador */
+const norm=x=>x.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const subsEl=[...document.querySelectorAll("#temas .sub")];subsEl.forEach(d=>d.dataset.tx=norm(d.textContent));
+let fT;$("#find").addEventListener("input",e=>{clearTimeout(fT);fT=setTimeout(()=>{const q=norm(e.target.value.trim());let hits=0;
+ document.querySelectorAll("#temas .tema").forEach(a=>{let any=false;a.querySelectorAll(".sub").forEach(d=>{const ok=!q||q.length<2||d.dataset.tx.includes(q);d.hidden=!ok;if(ok&&q.length>=2){any=true;hits++;if(d.tagName==="DETAILS")d.open=true}});a.hidden=q.length>=2&&!any;a.querySelectorAll(".pp,.tfoot").forEach(x=>x.hidden=q.length>=2)});
+ $("#mapa").hidden=q.length>=2;$("#findN").textContent=q.length>=2?`${hits} ${hits===1?"subtema":"subtemas"}`:"";$("#nores").hidden=!(q.length>=2&&!hits)},150)});
+const io=("IntersectionObserver" in window)?new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const i=e.target.dataset.i;document.querySelectorAll(".toc .tg").forEach(g=>{const on=g.dataset.i===i;g.classList.toggle("on",on);g.firstElementChild.classList.toggle("on",on)})}})},{rootMargin:"-30% 0px -60% 0px"}):null;
+if(io)document.querySelectorAll(".tema").forEach(a=>io.observe(a));
+$("#kwBtn").addEventListener("click",e=>{const on=!document.body.classList.contains("hidekw");document.body.classList.toggle("hidekw",on);e.currentTarget.setAttribute("aria-pressed",on);document.querySelectorAll(".sub b.shown").forEach(b=>b.classList.remove("shown"))});
+$("#foldBtn").addEventListener("click",e=>{const fold=e.currentTarget.getAttribute("aria-pressed")!=="true";e.currentTarget.setAttribute("aria-pressed",fold);e.currentTarget.textContent=fold?"Expandir subtemas":"Contraer subtemas";document.querySelectorAll("details.sub").forEach(d=>d.open=!fold)});
+document.querySelectorAll('.toc a[href*="-"],.schips a').forEach(a=>a.addEventListener("click",()=>{const d=document.querySelector(a.getAttribute("href"));if(d&&d.tagName==="DETAILS")d.open=true}));
+/* imágenes: marcadores, ponme a prueba y visor a pantalla completa */
+function figClick(e){const f=e.target.closest(".fig");if(!f)return false;
+ const pin=e.target.closest(".pin,.leg li");
+ if(pin){const n=pin.dataset.pn,quiz=f.classList.contains("fq");
+  if(quiz){const li=f.querySelector(`.leg li[data-pn="${n}"]`);li.classList.add("shown");f.querySelectorAll(".pin").forEach(x=>x.classList.toggle("on",x.dataset.pn===n));return true}
+  const was=f.querySelector(`.pin[data-pn="${n}"]`).classList.contains("on");
+  f.querySelectorAll(".pin,.leg li").forEach(x=>x.classList.toggle("on",!was&&x.dataset.pn===n));return true}
+ const q=e.target.closest("[data-fq]");
+ if(q){const on=!f.classList.contains("fq");f.classList.toggle("fq",on);q.setAttribute("aria-pressed",on);q.textContent=on?"Mostrar nombres":"Ponme a prueba";f.querySelectorAll(".shown,.on").forEach(x=>x.classList.remove("shown","on"));return true}
+ if(e.target.closest(".fz")){const L=f.closest(".lbx");if(L){L.classList.toggle("big");return true}openLbx(f);return true}
+ return false}
+let lbx=null,lbxFrom=null;
+function closeLbx(){if(!lbx)return;lbx.remove();lbx=null;document.body.style.overflow="";if(lbxFrom)lbxFrom.focus({preventScroll:true})}
+function openLbx(f){closeLbx();lbxFrom=f.querySelector(".fz");const im=f.querySelector("img");
+ lbx=document.createElement("div");lbx.className="lbx";lbx.setAttribute("role","dialog");lbx.setAttribute("aria-modal","true");lbx.setAttribute("aria-label","Imagen ampliada");
+ lbx.innerHTML=`<div class="lt"><button class="mini" type="button" data-zz>Acercar</button><button class="x" type="button" aria-label="Cerrar">✕</button></div><div class="ls"></div>`;
+ const c=f.cloneNode(true);c.querySelectorAll(".on,.shown").forEach(x=>x.classList.remove("on","shown"));lbx.querySelector(".ls").appendChild(c);
+ if(im.naturalWidth)c.style.setProperty("--ar",(im.naturalWidth/im.naturalHeight).toFixed(3));
+ lbx.addEventListener("click",e=>{if(figClick(e)){lbx&&(lbx.querySelector("[data-zz]").textContent=lbx.classList.contains("big")?"Alejar":"Acercar");return}
+  if(e.target.closest("[data-zz]")){lbx.classList.toggle("big");e.target.textContent=lbx.classList.contains("big")?"Alejar":"Acercar";return}
+  if(e.target.closest(".x")||e.target.classList.contains("ls")||e.target===lbx)closeLbx()});
+ document.body.appendChild(lbx);document.body.style.overflow="hidden";lbx.querySelector(".x").focus()}
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&lbx)closeLbx()});
+$("#temas").addEventListener("click",e=>{
+ if(figClick(e))return;
+ const kw=e.target.closest("b");if(kw&&document.body.classList.contains("hidekw")&&kw.closest(".sub")&&!kw.closest("summary")){kw.classList.add("shown");return}
+ const td=e.target.closest(".tblw.quiz td");if(td){td.classList.toggle("shown");return}
+ const term=e.target.closest(".term");if(term){term.setAttribute("aria-expanded",term.getAttribute("aria-expanded")!=="true");return}
+ const b=e.target.closest("button");if(!b)return;
+ if(b.hasAttribute("data-tq")){const w=b.closest(".tblw"),on=!w.classList.contains("quiz");w.classList.toggle("quiz",on);b.setAttribute("aria-pressed",on);b.textContent=on?"Mostrar la tabla":"Ponme a prueba con la tabla";w.querySelectorAll("td.shown").forEach(x=>x.classList.remove("shown"));return}
+ if(b.hasAttribute("data-tm")){const g=b.closest(".terms"),all=[...g.querySelectorAll(".term")],open=all.some(x=>x.getAttribute("aria-expanded")!=="true");all.forEach(x=>x.setAttribute("aria-expanded",open));b.textContent=open?"Ocultar todos":"Mostrar todos";return}
+ if(b.hasAttribute("data-fl")){const f=b.closest(".flow"),li=[...f.querySelectorAll("li")];
+   if(!f.classList.contains("step")){f.classList.add("step");f.dataset.k=0}else f.dataset.k=+f.dataset.k+1;
+   const k=+f.dataset.k;if(k>=li.length){f.classList.remove("step");li.forEach(x=>x.classList.remove("dim","cur"));b.textContent="Paso a paso ▶";return}
+   li.forEach((x,n)=>{x.classList.toggle("dim",n>k);x.classList.toggle("cur",n===k)});b.textContent=k+1<li.length?`Siguiente (${k+1}/${li.length}) ▶`:"Ver todo ✓";return}
+ if(b.parentElement.classList.contains("po")){const q=b.closest(".pq"),a=+q.dataset.a,ok=+b.dataset.n===a;q.querySelectorAll(".po button").forEach(x=>{x.disabled=true;if(+x.dataset.n===a)x.classList.add("good")});if(!ok)b.classList.add("wrong");const pe=q.querySelector(".pe");pe.hidden=false;pe.innerHTML=(ok?"<b>Correcto.</b> ":"<b>Incorrecto.</b> ")+pe.innerHTML;return}
+ if(b.dataset.d!==undefined){const i=+b.dataset.d,on=!dom.has(i);on?dom.add(i):dom.delete(i);saveDom();b.setAttribute("aria-pressed",on);b.textContent=on?"✓ Dominado":"Marcar como dominado";b.closest(".tema").classList.toggle("ok",on);prog();return}
+ if(b.dataset.c){$("#cSel").value=b.dataset.c;tab("tarjetas");deck()}else if(b.dataset.q){$("#qSel").value=b.dataset.q;tab("examen")}
+});
+/* pestañas */
+function tab(id){document.querySelectorAll("nav.tabs button").forEach(b=>{const on=b.id==="tab-"+id;b.setAttribute("aria-selected",on);$("#"+b.getAttribute("aria-controls")).hidden=!on});window.scrollTo(0,0)}
+document.querySelectorAll("nav.tabs button").forEach(b=>b.addEventListener("click",()=>tab(b.id.slice(4))));
+const opts='<option value="all">Todos los temas</option>'+T.map((t,i)=>`<option value="${i}">${i+1}. ${esc(t.t)}</option>`).join("");
+$("#cSel").innerHTML=opts;$("#qSel").innerHTML=opts;
+/* tarjetas */
+let rep=new Set();try{rep=new Set(JSON.parse(localStorage.getItem(LS)||"[]"))}catch(e){}
+const key=c=>c.f.slice(0,60);
+const save=()=>{try{localStorage.setItem(LS,JSON.stringify([...rep]))}catch(e){}};
+let D=[],ci=0,onlyRep=false;
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function deck(mix){const v=$("#cSel").value;D=allC.filter(c=>(v==="all"||c.ti==+v)&&(!onlyRep||rep.has(key(c))));if(mix)D=shuf(D);ci=0;showC()}
+function showC(){const c=D[ci];$("#cBack").hidden=true;$("#cFront").hidden=false;
+  if(!c){$("#cLbl").textContent="";$("#cF").textContent=onlyRep?"No hay tarjetas marcadas para repasar.":"Sin tarjetas.";$("#cCount").textContent="0 / 0";return}
+  $("#cLbl").textContent=T[c.ti].t+(rep.has(key(c))?" · repasar":"");$("#cF").innerHTML=c.f;$("#cB").innerHTML=c.b;$("#cCount").textContent=(ci+1)+" / "+D.length}
+function flip(){if(!D[ci])return;const b=$("#cBack").hidden;$("#cBack").hidden=!b;$("#cFront").hidden=b}
+$("#card").addEventListener("click",flip);
+$("#card").addEventListener("keydown",e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip()}});
+$("#cSel").addEventListener("change",()=>deck());
+$("#cMix").addEventListener("click",()=>deck(true));
+$("#cRep").addEventListener("click",()=>{onlyRep=!onlyRep;$("#cRep").classList.toggle("pri",onlyRep);deck()});
+$("#cPrev").addEventListener("click",()=>{if(D.length){ci=(ci-1+D.length)%D.length;showC()}});
+$("#cNext").addEventListener("click",()=>{if(D.length){ci=(ci+1)%D.length;showC()}});
+$("#cOk").addEventListener("click",()=>{const c=D[ci];if(!c)return;rep.delete(key(c));save();if(onlyRep){deck()}else{ci=(ci+1)%D.length;showC()}});
+$("#cNo").addEventListener("click",()=>{const c=D[ci];if(!c)return;rep.add(key(c));save();ci=(ci+1)%D.length;showC()});
+document.addEventListener("keydown",e=>{if($("#panel-tarjetas").hidden||e.target.closest("select"))return;if(e.key==="ArrowRight")$("#cNext").click();if(e.key==="ArrowLeft")$("#cPrev").click()});
+deck();
+/* examen */
+let Q=[],qi=0,good=0,miss=[];
+$("#qGo").addEventListener("click",()=>{const v=$("#qSel").value,n=+$("#qN").value;Q=shuf(allQ.filter(q=>v==="all"||q.ti==+v));if(n)Q=Q.slice(0,n);qi=0;good=0;miss=[];if(!Q.length)return;$("#qStart").hidden=true;$("#qEnd").hidden=true;$("#qRun").hidden=false;showQ()});
+function showQ(){const q=Q[qi];$("#qPos").textContent=`Pregunta ${qi+1} de ${Q.length}`;$("#qTema").textContent=T[q.ti].t;$("#qBar").style.width=(qi/Q.length*100)+"%";
+  $("#qQ").innerHTML=q.q;$("#qE").hidden=true;$("#qNext").hidden=true;
+  const ord=shuf(q.o.map((t,i)=>({t,i})));$("#qO").innerHTML=ord.map((o,k)=>`<button class="opt" type="button" data-i="${o.i}"><span>${"ABCDE"[k]}</span><div>${o.t}</div></button>`).join("")}
+$("#qO").addEventListener("click",e=>{const b=e.target.closest(".opt");if(!b||b.disabled)return;const q=Q[qi],ok=+b.dataset.i===q.a;
+  document.querySelectorAll("#qO .opt").forEach(x=>{x.disabled=true;if(+x.dataset.i===q.a)x.classList.add("good")});if(!ok){b.classList.add("wrong");miss.push(q)}else good++;
+  $("#qE").hidden=false;$("#qE").innerHTML=(ok?"<b>Correcto.</b> ":"<b>Incorrecto.</b> ")+(q.e||"");$("#qNext").hidden=false;$("#qNext").textContent=qi+1<Q.length?"Siguiente →":"Ver resultado";$("#qNext").focus()});
+$("#qNext").addEventListener("click",()=>{qi++;if(qi<Q.length)return showQ();$("#qRun").hidden=true;const p=Math.round(good/Q.length*100);
+  try{localStorage.setItem(LSE,JSON.stringify({p,g:good,n:Q.length}))}catch(e){}prog();
+  $("#qEnd").hidden=false;$("#qEnd").innerHTML=`<div class="big">${p}%</div><p>${good} de ${Q.length} correctas · ${p>=75?"aprobado con la mínima UDLAP (7.5)":"aún por debajo de 7.5: repasa los temas de abajo"}</p>${miss.length?`<h3 style="font-family:var(--f-d)">Para repasar</h3><ul>${miss.map(q=>`<li><b>${esc(T[q.ti].t)}:</b> ${q.q}<br><small>Respuesta: ${q.o[q.a]}</small></li>`).join("")}</ul>`:""}<div class="cnav"><button class="btn pri" type="button" id="qAgain">Otro examen</button></div>`;
+  $("#qAgain").addEventListener("click",()=>{$("#qEnd").hidden=true;$("#qStart").hidden=false})});
+})();
+</script>
+<script src="../../anki/anki.js" data-m="microbiologia" data-n="84" defer></script><!--anki--><script src="../../amboss.js" data-amb-g="s3-microbiologia" defer></script><!--amboss--></body></html>

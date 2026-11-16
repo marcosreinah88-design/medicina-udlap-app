@@ -1,0 +1,366 @@
+@id propedeutica
+@sem 3
+@orden 6
+@title Propedéutica en Ciencias de la Salud
+@materia Propedéutica
+@codigo PRO
+@color #2f5d8a
+@icon salud
+@sub Conceptos · Enfermedad · Historia clínica · Exploración física · Inspección general · Glosario de signos y síntomas · Cabeza y cuello · Ojo · Abdomen · Auxiliares de diagnóstico
+@desc Tus notas de Notion de Propedéutica: salud y enfermedad, tipos de diagnóstico, historia clínica completa, métodos de exploración, facies, constitución, marchas y lenguaje, el glosario de signos y síntomas por aparato, y la exploración de cráneo, cuello, ojo y abdomen.
+@nota Fuente: tus notas de Notion (Medicina › Propedéutica). **Corrección** = estaba mal en tus notas; † = no venía y se agregó para completar el tema.
+@kw propedeutica semiologia salud enfermedad oms etiologia patogenia signo sintoma sindrome nosologia diagnostico presuncion diferencial definitivo integral etapas incubacion convalecencia tratamiento historia clinica interrogatorio ficha de identificacion antecedentes heredofamiliares personales patologicos no patologicos gineco obstetricos padecimiento actual aparatos y sistemas exploracion fisica inspeccion palpacion percusion auscultacion puncion medicion posiciones decubito fowler trendelenburg instrumentos estetoscopio baumanometro otoscopio oftalmoscopio diapason inspeccion general facies constitucion ectomorfo mesomorfo endomorfo conformacion actitud movimientos anormales corea atetosis distonia tics marcha helicopoda tabetica espastica steppage festinante cerebelosa anadeo lenguaje disartria afasia dislalia rinolalia glosario nausea disfagia odinofagia polidipsia xerostomia sialorrea halitosis disnea ortopnea taquipnea hemoptisis parestesia vertigo lipotimia sincope paresia ataxia poliuria oliguria disuria hematuria cianosis ictericia palidez scalp craneo braquicefalia dolicocefalia cuello triangulos tiroides orbita parpados glandula lagrimal musculos extraoculares agudeza visual masticacion masetero temporal pterigoideos abdomen cuadrantes ruidos hidroaereos timpanismo matidez radiografia tomografia resonancia ultrasonido terminologia medica
+
+# Conceptos básicos
+> Salud, enfermedad y las palabras que se usan para describirlas.
+## Salud y enfermedad
+~ Salud (OMS) :: «Estado de completo bienestar físico, mental y social, y no solamente la ausencia de afecciones o enfermedades».
+~ Enfermedad :: Conjunto de alteraciones anatómicas y fisiológicas producidas por un agente patógeno; se caracteriza por 3 elementos: agente, huésped y medio ambiente.
+## Etiología y patogenia
+~ Etiología :: Área de la patología que estudia las causas de las enfermedades (físicas, químicas, mecánicas, biológicas).
+~ Patogenia :: Estudia cómo actúan las causas para producir la enfermedad.
+| Causa ¦ Qué es
+| Eficiente (determinante) ¦ La que produce la enfermedad (p. ej., el microbio)
+| Adyuvante ¦ Favorece a la eficiente (medio ambiente)
+| Predisponente ¦ Disminuye la resistencia del huésped (inmunodepresión)
+## Signo, síntoma y síndrome
+~ Signo :: Lo que el médico observa o mide **objetivamente** (fiebre medida, soplo, edema).
+~ Síntoma :: Lo que el paciente refiere: es **subjetivo** (dolor, náusea, mareo).
+~ Síndrome :: Conjunto de signos y síntomas que se presentan juntos.
+~ Sintomatología :: Tratado o conjunto de los síntomas y cómo se comportan.
+~ Nosología :: Estudia la descripción y **clasificación** de las enfermedades.
+~ Diagnóstico :: Identificación de la enfermedad a partir de las alteraciones que el agente produjo, basándose en signos y síntomas.
+! **Corrección:** en tus notas el síntoma aparece «de manera objetiva»; el síntoma es **subjetivo** (lo dice el paciente) y el signo es objetivo.
+& SIGNO SE VE, SÍNTOMA SE SIENTE :: El signo lo encuentra el médico; el síntoma lo cuenta el paciente.
+## Etapas y tipos de diagnóstico
+= Del primer contacto al diagnóstico :: Diagnóstico de presunción (impresión diagnóstica: lo primero que observas y preguntas) → Diagnóstico diferencial (lo que distingue una enfermedad de otra) → Diagnóstico definitivo o de certeza (exploración y estudios)
+| Diagnóstico ¦ Qué dice
+| Etiológico ¦ La causa (virus, bacteria…)
+| Patogénico ¦ Cómo se está desarrollando la enfermedad
+| Anatómico ¦ Qué órgano o estructura está afectado
+| Histopatológico ¦ Qué muestra el estudio de una muestra de tejido
+| Sindromático ¦ El conjunto de signos y síntomas
+| Nosológico ¦ El nombre de la enfermedad según su clasificación
+| Integral ¦ Todo lo anterior junto
+! **Corrección:** en tus notas el diagnóstico anatómico y el histopatológico tienen la misma definición; el **anatómico** ubica el órgano o lesión (p. ej., «válvula mitral») y el **histopatológico** es el resultado de la biopsia.
+? Diferencia entre signo y síntoma :: El signo es objetivo (lo encuentra el médico); el síntoma es subjetivo (lo refiere el paciente).
+? Tres elementos de la enfermedad :: Agente, huésped y medio ambiente.
+? ¿Qué estudia la nosología? :: La descripción y clasificación de las enfermedades.
+Q Un paciente refiere «siento que me late fuerte el corazón». Es… :: *Un síntoma :: Un signo :: Un síndrome :: Un diagnóstico nosológico || Lo refiere el paciente: es subjetivo.
+Q «Insuficiencia mitral por fiebre reumática» incluye diagnósticos… :: *Anatómico y etiológico :: Solo sindromático :: Histopatológico y patogénico :: Solo nosológico || Mitral = anatómico; fiebre reumática = etiológico.
+
+# La enfermedad y su tratamiento
+> Etapas por las que pasa una enfermedad y las formas de tratarla.
+## Etapas evolutivas
+= Historia de la enfermedad :: Incubación (el agente se reproduce, sin síntomas) → Crecimiento (empiezan los síntomas) → Estado (máxima expresión, todos los síntomas) → Declinación (baja su actividad) → Convalecencia (el cuerpo se recupera)
+## Tratamiento
+- Medios **profilácticos, higiénicos, dietéticos, terapéuticos y quirúrgicos** para combatir la enfermedad y evitar su propagación.
+| Tratamiento ¦ Tipos
+| Medicamentoso ¦ Etiológico (ataca la causa) → sintomático (alivia síntomas) → funcional (corrige la función)
+| Quirúrgico ¦ Urgente → electivo (selectivo) → necesario
++ † Ejemplo: en una neumonía el antibiótico es tratamiento etiológico y el paracetamol, sintomático.
+? Etapas evolutivas de la enfermedad :: Incubación, crecimiento, estado, declinación y convalecencia.
+Q Dar insulina a un paciente con diabetes tipo 1 es un tratamiento… :: *Funcional (sustituye una función perdida) :: Etiológico :: Solo sintomático :: Quirúrgico || No elimina la causa autoinmune: reemplaza la función del páncreas.
+
+# Historia clínica
+> Relación escrita, clara, ordenada y detallada de todos los datos del enfermo: base del diagnóstico, pronóstico y tratamiento.
+## Interrogatorio
+= Orden de la historia clínica :: Ficha de identificación → Antecedentes heredofamiliares → Antecedentes personales no patológicos → Antecedentes personales patológicos → († Gineco-obstétricos) → Padecimiento actual → Interrogatorio por aparatos y sistemas → Síntomas generales → Terapéutica empleada → Laboratorio y gabinete → Exploración física
+| Apartado ¦ Qué se pregunta
+| Ficha de identificación ¦ Nombre, sexo, edad, domicilio, lugar de nacimiento y residencia, ocupación, estado civil
+| Heredofamiliares ¦ Enfermedades genéticas, cáncer, diabetes, hipertensión en la familia
+| No patológicos ¦ Hábitos, costumbres, alimentación, vivienda, toxicomanías
+| Patológicos ¦ Enfermedades de la infancia y crónicas, quirúrgicos, traumáticos, transfusionales, alergias, fármacos, inmunizaciones
+| Gineco-obstétricos y perinatales ¦ Menarca, ciclos, embarazos, partos, cesáreas, abortos; antecedentes del nacimiento
+| Padecimiento actual ¦ Qué le pasa, desde cuándo, frecuencia e intensidad: del inicio al estado actual
+| Aparatos y sistemas ¦ Digestivo, respiratorio, cardiovascular, genitourinario, etc.
+| Síntomas generales ¦ Fiebre, astenia, adinamia, anorexia, pérdida de peso
+| Terapéutica empleada ¦ Qué medicamentos (y cuánto) o tratamientos ha usado
+| Laboratorio y gabinete ¦ Estudios previos relacionados con el padecimiento
+& † ALICIA :: Para el dolor: Aparición, Localización, Intensidad, Carácter, Irradiación, Atenuantes y agravantes.
+## Síntomas generales comunes
+~ Astenia :: Sensación de debilidad o falta de energía.
+~ Adinamia :: Falta o disminución de la fuerza física.
+~ Anorexia :: Pérdida del apetito.
+~ Prurito :: Sensación de picazón en la piel.
+~ Fiebre :: Elevación de la temperatura corporal por arriba de lo normal († ≥ 38 °C).
+~ Hiperemia :: Aumento del flujo sanguíneo en una zona.
+? ¿Qué se anota en antecedentes personales no patológicos? :: Hábitos, costumbres, alimentación, vivienda y toxicomanías.
+? ¿Qué es el padecimiento actual? :: El relato de lo que le pasa al paciente desde el inicio hasta hoy: qué, desde cuándo, frecuencia e intensidad.
+Q Las alergias a medicamentos se registran en… :: *Antecedentes personales patológicos :: Ficha de identificación :: Antecedentes heredofamiliares :: No patológicos || Junto con cirugías, traumatismos, transfusiones y enfermedades previas.
+Q El tabaquismo del paciente va en… :: *Antecedentes personales no patológicos :: Antecedentes heredofamiliares :: Padecimiento actual :: Síntomas generales || Las toxicomanías son hábitos (no patológicos).
+
+# Exploración física: métodos, posiciones e instrumentos
+> Inspección, palpación, percusión y auscultación, más punción y medición.
+## Métodos clínicos
+| Método ¦ Con qué ¦ Qué es
+| Inspección ¦ Vista ¦ Observación directa o indirecta (con instrumentos)
+| Palpación ¦ Tacto ¦ Superficial y profunda
+| Percusión ¦ Golpes ¦ Produce sonidos según lo que hay debajo
+| Auscultación ¦ Oído ¦ Directa o con estetoscopio
+| Percusión auscultatoria ¦ Oído + golpes ¦ Escuchar cómo se transmite el sonido de la percusión
+| Punción ¦ Aguja con presión negativa ¦ Confirmar un líquido patológico en una cavidad
+| Medición ¦ Instrumentos ¦ Comparar una magnitud con una unidad (peso, talla, perímetros)
+- Signos vitales e **inspección general** van primero; luego por regiones: cabeza, cráneo, cara, cuello, ojos, aparato respiratorio, digestivo…
+## Posiciones del paciente
+| Posición ¦ Cómo
+| Decúbito dorsal (supino) ¦ Boca arriba
+| Decúbito ventral (prono) ¦ Boca abajo
+| Decúbito lateral ¦ De lado
+| Semi-Fowler ¦ Semisentado (~30–45°)
+| Fowler ¦ Sentado (~45–60° o más)
+| Trendelenburg ¦ Pies más arriba que la cabeza
+| † Antitrendelenburg ¦ Cabeza más arriba que los pies
+! **Corrección:** se escriben **Fowler** y **Trendelenburg** (en tus notas «fawller» y «tren de lembur»).
+## Instrumentos
+| Instrumento ¦ Para qué
+| Estetoscopio ¦ Escuchar corazón, pulmones e intestino
+| Baumanómetro (esfigmomanómetro) ¦ Medir la presión arterial
+| Termómetro ¦ Temperatura
+| Otoscopio ¦ Conducto auditivo y membrana timpánica
+| Oftalmoscopio ¦ Fondo de ojo (retina)
+| Diapasón ¦ Audición (hipoacusia conductiva vs neurosensorial) y vibración
+| Martillo de reflejos ¦ Reflejos osteotendinosos
+| Laringoscopio y faringoscopio ¦ Laringe y faringe
+| Báscula ¦ Peso
+| Lupa con luz ¦ Piel y áreas pequeñas
+! **Corrección:** el otoscopio muestra el **conducto auditivo externo y la membrana timpánica**, no el oído interno.
+? Cuatro métodos básicos de la exploración física :: Inspección, palpación, percusión y auscultación.
+? ¿Qué es la posición de Trendelenburg? :: Paciente acostado con los pies más arriba que la cabeza.
+Q Paciente con insuficiencia cardiaca que respira mejor sentado. Lo colocas en… :: *Fowler :: Trendelenburg :: Decúbito ventral :: Decúbito lateral || Sentado baja el retorno venoso y mejora la mecánica respiratoria.
+Q El instrumento para diferenciar hipoacusia conductiva de neurosensorial es… :: *Diapasón :: Otoscopio :: Oftalmoscopio :: Laringoscopio || Con las pruebas de Rinne y Weber.
+
+# Inspección general
+> Las huellas que deja la enfermedad en el cuerpo y la cara: facies, constitución, actitud, movimientos, marcha y lenguaje.
+## Facies y constitución
+~ Facies :: Expresión de la cara característica de una enfermedad o síndrome (Down, Cushing, acromegalia, parálisis facial, hipertiroidismo, senil).
+~ Constitución :: Características morfológicas, fisiológicas y psíquicas heredadas o adquiridas (hueso, músculo y grasa): fuerte, mediana o débil.
+| Somatotipo ¦ Equivale a
+| Ectomorfo ¦ Hiposténico (delgado)
+| Mesomorfo ¦ Esténico (atlético)
+| Endomorfo ¦ Hiperesténico (robusto)
+| Tipo ¦ Predomina ¦ Se asocia (según tus notas)
+| Mediolíneo (atlético) ¦ Proporción ¦ Insuficiencia coronaria, enfermedades fibromusculares, trastorno maniaco-depresivo
+| Longilíneo (leptosómico) ¦ Dimensiones verticales ¦ Enfermedades digestivas y respiratorias, personalidad esquizoide
+| Brevilíneo (pícnico) ¦ Dimensiones transversales ¦ Enfermedades metabólicas, diabetes, obesidad, temperamento ciclotímico
+| Displásico ¦ Desarmonía ¦ Gigantismo, eunucoidismo, obesidad glandular
+~ Conformación :: Proporción entre los segmentos del cuerpo e integridad de sus partes.
+~ Actitud y postura :: Posición del cuerpo; puede ser libremente escogida, forzada o pasiva.
+## Movimientos anormales
+| Movimiento ¦ Cómo es
+| Convulsiones ¦ Tónicas (rigidez) o clónicas (sacudidas rítmicas)
+| Corea ¦ Rápidos, arrítmicos, involuntarios, «como baile» (corea de Sydenham)
+| Atetosis ¦ Lentos, reptantes, de gran amplitud, en dedos y manos («de pulpo»)
+| Distonía ¦ Contracción sostenida en torsión
+| Tics ¦ Involuntarios pero conscientes, repiten un gesto y dan sensación de alivio
+| Temblor ¦ Rápido, mediano o lento; en reposo o con el movimiento (cinético); fino o amplio
+## Marchas
+| Marcha ¦ Cómo es ¦ Causa
+| Helicópoda (en segador) ¦ La pierna rígida describe un semicírculo ¦ Hemiplejía (EVC)
+| Helcópoda ¦ Arrastra un pie ¦ Dolor o lesión en un miembro
+| Tabética (talonante) ¦ Levanta mucho los pies, taconea y mira el suelo ¦ Ataxia sensitiva (tabes dorsal)
+| Espástica (en tijera) ¦ Pasos cortos, rígidos, las piernas se cruzan ¦ Parálisis cerebral, lesión medular
+| Polineurítica (steppage) ¦ El pie cuelga y levanta mucho la rodilla ¦ Pie caído, neuropatía del peroneo
+| Propulsiva (festinante) ¦ Pasos cortos y rápidos, no puede frenar ¦ Parkinson
+| Titubeante (ebriosa) ¦ Como borracho, base amplia ¦ Cerebelo
+| Miopática (de pato, anadeo) ¦ Balancea la cadera ¦ Distrofias musculares
+! **Corrección:** en tus notas la marcha tabética es «pasitos pequeños»; los pasos cortos son de la espástica o la festinante. La tabética **taconea** y el paciente mira el suelo.
+## Lenguaje
+| Alteración ¦ Qué es
+| Disartria ¦ Mala articulación de las palabras
+| Afasia ¦ Alteración de la expresión y/o comprensión del lenguaje
+| Disfasia ¦ Forma leve de afasia
+| Parafasia ¦ Usa palabras equivocadas
+| Circunloquio ¦ Rodeos de frases en lugar de una palabra
+| Rinolalia ¦ Voz nasal
+| Dislalia ¦ Mala pronunciación de ciertos sonidos
+| Tartamudez ¦ Repetición o bloqueo de sílabas
+| Taquilalia (farfulleo) ¦ Habla demasiado rápida y atropellada
+- Se valora lo que dice y cómo lo dice, según su nivel cultural, ocupación y procedencia.
+## Estado mental
+- **Alucinación**: percepción sin estímulo externo vivida como real. **Obsesión**: pensamiento intrusivo persistente que causa ansiedad. **Delirium**: confusión aguda y fluctuante con inatención. **Demencia**: deterioro cognitivo crónico que interfiere con la vida diaria. **Esquizofrenia**: trastorno crónico con desconexión de la realidad.
+! **Corrección:** el estado agudo de confusión es el **delirium**; «delirio» en psiquiatría es una **idea falsa e irreductible** (p. ej., de persecución).
+? Marcha del paciente con Parkinson :: Propulsiva o festinante: pasos cortos y rápidos, sin poder detenerse.
+? Movimientos lentos y reptantes de los dedos «de pulpo» :: Atetosis.
+? ¿Qué es la rinolalia? :: Voz nasal.
+Q Paciente con EVC que camina haciendo un semicírculo con la pierna rígida :: *Marcha helicópoda (en segador) :: Marcha tabética :: Marcha de pato :: Marcha festinante || La pierna espástica de la hemiplejía «siega» al avanzar.
+Q Paciente con pie caído que levanta mucho la rodilla al caminar :: *Steppage (polineurítica) :: Marcha cerebelosa :: Marcha en tijera :: Marcha miopática || Por debilidad de la dorsiflexión (nervio peroneo).
+
+# Glosario de signos y síntomas por aparato
+> Los términos que tienes que reconocer en la historia clínica.
+## Digestivo
+| Término ¦ Significado
+| Náusea ¦ Sensación de que se va a vomitar
+| Vómito ¦ Expulsión violenta del contenido gástrico por la boca
+| Disfagia ¦ Dificultad para tragar
+| Odinofagia ¦ Dolor al tragar
+| Polifagia ¦ Hambre excesiva
+| Polidipsia ¦ Sed excesiva
+| Adipsia ¦ Falta de sed
+| Xerostomía ¦ Boca seca
+| Sialorrea ¦ Exceso de saliva
+| Halitosis ¦ Mal aliento
+| Disgeusia / hipogeusia / cacogeusia ¦ Gusto distorsionado / disminuido / desagradable (metálico)
+| Anquiloglosia ¦ Frenillo lingual corto («lengua atada»)
+| Bruxismo ¦ Rechinar o apretar los dientes
+! **Corrección:** se escriben **odinofagia** (no «adinofagia»), **adipsia** (no «anadipsia») y **xerostomía**, que es boca **seca** (no saliva espesa).
+## Respiratorio y cardiovascular
+| Término ¦ Significado
+| Disnea ¦ Dificultad para respirar
+| Ortopnea ¦ Disnea al acostarse que mejora al sentarse
+| Apnea ¦ Ausencia de respiración (durante el sueño es la apnea obstructiva)
+| Taquipnea / polipnea ¦ Respiración rápida
+| Bradipnea ¦ Respiración lenta
+| Hiperpnea ¦ Respiración más profunda
+| Crepitación (estertores) ¦ Ruido de burbujeo fino al inspirar
+| Expectoración ¦ Expulsión de moco o flema
+| Hemoptisis ¦ Expulsión de sangre de la vía respiratoria baja
+| Taquicardia / bradicardia ¦ > 100 / < 60 latidos por minuto
+| Bradisfigmia ¦ Pulso lento
+| Soplo ¦ Ruido por flujo turbulento en el corazón
+| Edema ¦ Hinchazón por exceso de líquido en los tejidos
+! **Corrección:** «bradisfignea» en tus notas es **bradisfigmia** (pulso lento), no respiración lenta.
+## Nervioso y locomotor
+| Término ¦ Significado
+| Parestesia ¦ Hormigueo o entumecimiento
+| Hiperestesia ¦ Sensibilidad aumentada
+| Anestesia / analgesia ¦ Pérdida de la sensibilidad / del dolor
+| Vértigo ¦ Sensación de giro
+| Lipotimia ¦ Sensación de desmayo sin perder la conciencia
+| Síncope ¦ Pérdida transitoria de la conciencia y del tono postural
+| Catalepsia ¦ Rigidez con fijación de la postura
+| Paresia / parálisis ¦ Pérdida parcial / total de la fuerza
+| Ataxia ¦ Falta de coordinación
+! **Corrección:** la **lipotimia** es la sensación de desvanecimiento **sin** perder la conciencia; si la pierde, es síncope.
+## Urinario y piel
+| Término ¦ Significado
+| Poliuria ¦ Orina abundante († > 3 L/día)
+| Oliguria ¦ Orina escasa († < 400 mL/día)
+| Anuria ¦ Casi sin orina († < 100 mL/día)
+| Disuria ¦ Dolor o ardor al orinar
+| Hematuria / piuria ¦ Sangre / pus en la orina
+| Cianosis ¦ Color azulado por falta de oxígeno
+| Ictericia ¦ Color amarillo por bilirrubina alta (flavínica: amarillo claro; verdínica: verdoso; rubínica: rojizo)
+| Palidez ¦ Piel pálida (anemia, choque)
+| Rubicundez ¦ Piel roja
+| Melanodermia ¦ Piel oscura por exceso de melanina
+? Diferencia entre disfagia y odinofagia :: Disfagia es dificultad para tragar; odinofagia es dolor al tragar.
+? ¿Qué es la hemoptisis? :: Expulsión de sangre que viene de la vía respiratoria baja (con la tos).
+Q Paciente que despierta con falta de aire y necesita dormir con tres almohadas :: *Ortopnea :: Apnea :: Bradipnea :: Hiperpnea || La ortopnea es disnea en decúbito.
+Q Diuresis de 300 mL en 24 horas :: *Oliguria :: Anuria :: Poliuria :: Normal || Oliguria < 400 mL/día; anuria < 100 mL/día.
+
+# Exploración de cabeza y cuello
+> SCALP, agujeros de la cara, tipos de cráneo, músculos de la masticación y triángulos del cuello.
+## Cráneo y cara
+& SCALP :: Capas del cuero cabelludo: Skin (piel), Connective tissue (tejido conectivo), Aponeurosis (galea), Loose areolar tissue (tejido areolar laxo), Pericranium (pericráneo).
+| Agujero ¦ Qué pasa
+| Supraorbitario ¦ Nervio supraorbitario (V1): frente y cuero cabelludo hasta el vértex
+| Infraorbitario ¦ Nervio infraorbitario (V2)
+| Mentoniano ¦ Nervio mentoniano, rama terminal del alveolar inferior (V3)
+| Escotadura preangular ¦ Arteria facial (se palpa en el borde de la mandíbula)
+- Fisuras orbitarias superior e inferior: pasan los nervios de la órbita.
+- Se exploran: cráneo, bordes orbitarios, pómulos y arco cigomático, nariz, ATM, bordes y ángulo mandibular, cuello.
+| Cráneo ¦ Forma
+| Mesocéfalo ¦ Normal, promedio
+| Braquicéfalo ¦ Corto y ancho (domina el diámetro transversal)
+| Dolicocéfalo ¦ Largo y angosto (domina el anteroposterior)
+| Plagiocéfalo ¦ Asimétrico («chueco»)
+- Puntos de referencia: nasion, vértex e inion.
+- Cráneo masculino: arcos superciliares y eminencias más marcados, órbita cuadrangular, arcos cigomáticos más grandes, gonion y mentón prominentes.
+! **Corrección:** en tus notas dolicocefalia es «la porción vertical más grande»; es el diámetro **anteroposterior** (cráneo largo) el que domina.
+## Músculos de la masticación
+- 4 pares, del **1.er arco faríngeo**, inervados por **V3** (rama mandibular del trigémino).
+| Músculo ¦ Origen → inserción ¦ Función
+| Masetero ¦ Arco cigomático → ángulo (gonion) ¦ Eleva la mandíbula; el más fuerte para su tamaño
+| Temporal ¦ Fosa temporal → apófisis coronoides ¦ Eleva y mantiene la mandíbula († las fibras posteriores la retraen)
+| Pterigoideo medial ¦ Fosa pterigoidea → cara medial del ángulo ¦ Eleva, protruye y lateraliza
+| Pterigoideo lateral ¦ Ala lateral de la pterigoides → cuello del cóndilo ¦ † Protruye, deprime (abre) y lateraliza
+! **Corrección:** el temporal se inserta en la apófisis **coronoides** (en tus notas «coroides»), y el pterigoideo lateral es el único que **abre** la boca (no la eleva).
+## Cuello
+- **Triángulo anterior**: línea media, borde de la mandíbula, borde anterior del esternocleidomastoideo.
+- **Triángulo posterior**: borde posterior del esternocleidomastoideo, borde anterior del trapecio y la clavícula.
+- Se palpan el hioides (sostenido por supra e infrahioideos), cartílago tiroides, glándula tiroides y tráquea: se buscan abultamientos y dolor.
+? Músculo que abre la boca :: Pterigoideo lateral.
+? Nervio de los músculos de la masticación :: V3, rama mandibular del trigémino.
+Q ¿Qué capa del SCALP es la «zona de peligro» por donde se disemina una infección? :: *Tejido areolar laxo :: Piel :: Aponeurosis :: Pericráneo || El tejido areolar laxo tiene venas emisarias que comunican con los senos venosos.
+Q Cráneo largo y angosto :: *Dolicocéfalo :: Braquicéfalo :: Mesocéfalo :: Plagiocéfalo || Domina el diámetro anteroposterior.
+
+# Exploración oftálmica
+> Órbita, párpados, aparato lagrimal, músculos extraoculares y técnicas de exploración.
+## Anatomía básica
+- La órbita ósea la forman **7 huesos**: frontal, esfenoides, etmoides, lagrimal, palatino, maxilar y cigomático.
+- Párpados: tarso superior (más grande) e inferior; ligamentos palpebrales medial y lateral.
+- **Glándula lagrimal** secreta la lágrima (8–12 conductos excretores) → puntos lagrimales → saco lagrimal → conducto nasolagrimal.
+| Glándula ¦ Secreta
+| Zeis ¦ Sebo (folículo de la pestaña)
+| Moll ¦ Sudor
+| Meibomio ¦ Sebo (capa lipídica de la lágrima)
+| Krause ¦ Lágrima accesoria
+- El globo ocular tiene 3 capas: **fibrosa** (esclera y córnea, avascular la córnea), **vascular** (úvea) e **interna** (retina).
+- **Humor acuoso**: se renueva. **Humor vítreo**: no se regenera.
+! **Corrección:** en tus notas la órbita incluye el temporal; los 7 huesos son frontal, esfenoides, etmoides, lagrimal, palatino, maxilar y **cigomático** (el temporal no forma parte de la órbita).
+## Pupila y músculos
+~ Miosis :: Contracción de la pupila.
+~ Midriasis :: Dilatación de la pupila.
+| Músculo extrínseco ¦ † Nervio
+| Elevador del párpado superior ¦ III
+| Recto superior, inferior y medial; oblicuo inferior ¦ III
+| Oblicuo superior ¦ IV
+| Recto lateral ¦ VI
+& † LR6 SO4 :: Recto Lateral = VI, Oblicuo Superior = IV, todos los demás = III.
+## Técnicas
+- Preguntar por dolor, ojo rojo, lagrimeo y secreciones.
+- **Eversión del párpado**: el paciente mira hacia abajo, se apoya un hisopo sobre el párpado superior y se tracciona de las pestañas para ver la cara interna.
+- **Acomodación**: dedo a 20 cm, el paciente mira el dedo y luego la pared: al ver de cerca la pupila se **contrae** (miosis) y al ver lejos se dilata.
+- **Iluminación**: luz de frente; ambas pupilas deben contraerse igual (reflejo fotomotor y consensual).
+- **Palpación** de los párpados cerrados con movimientos suaves y del **saco lagrimal** en el reborde orbitario interno.
+- **Agudeza visual**: 1 = 100 % de visión; 0.1 = 10 %. († Se mide con la cartilla de Snellen a 6 m: 20/20.)
+! **Corrección:** en tus notas la acomodación dice que se observa la dilatación; al mirar **de cerca** la pupila se **contrae** (y los ojos convergen).
+? ¿Qué nervio mueve el recto lateral? :: El VI (abducens).
+? Glándulas que producen la capa lipídica de la lágrima :: Glándulas de Meibomio.
+Q ¿Cuál humor del ojo no se regenera? :: *Vítreo :: Acuoso :: Ambos se regeneran :: Ninguno se regenera || El acuoso se produce continuamente en el cuerpo ciliar.
+
+# Exploración del aparato digestivo
+> Funciones, partes, y la exploración del abdomen: inspección, auscultación, percusión y palpación.
+## Funciones y partes
+- Funciones: transporte de alimentos, secreción de jugos, absorción de nutrientes y egestión de heces; también defensa del organismo.
+- Tubo digestivo (de boca a ano) y glándulas anexas: salivales (parótida, sublingual, submandibular), hígado y vesícula (bilis) y páncreas (exocrino: jugo pancreático por el conducto de Wirsung; endocrino: insulina).
+= Proceso digestivo :: Ingestión → Propulsión (deglución y peristalsis) → Digestión mecánica y química (jugo gástrico, pancreático y bilis) → Absorción → Egestión
+## Exploración del abdomen
+- † Orden en abdomen: **inspección → auscultación → percusión → palpación** (se ausculta antes de palpar para no alterar los ruidos).
+- **Inspección**: forma, tamaño, color y simetría; abultamientos, cicatrices, eritema, edema.
+| Derecha ¦ Centro ¦ Izquierda
+| Hipocondrio derecho ¦ Epigastrio ¦ Hipocondrio izquierdo
+| Flanco derecho ¦ Mesogastrio (umbilical) ¦ Flanco izquierdo
+| Fosa iliaca derecha ¦ Hipogastrio ¦ Fosa iliaca izquierda
+- **Auscultación**: ruidos hidroaéreos (normales, aumentados o disminuidos), en sentido de las manecillas del reloj. Borborigmos (gorgoteo, normales con hambre), ruidos metálicos (tintineo, † obstrucción), chasquidos y ruido de chapoteo (líquido).
+- **Percusión**: timpánico (gas, como tambor), mate (sólido o líquido, como golpear el muslo), hídrico (ascitis) e hipertimpanismo (gas excesivo).
+- **Palpación**: superficial (poca presión) y profunda (ambas manos, rodillas flexionadas).
+! **Corrección:** los ruidos «metálicos» no son peristalsis normal: sugieren **obstrucción intestinal**.
+? Orden de exploración del abdomen :: Inspección, auscultación, percusión y palpación.
+? Sonido a la percusión sobre el hígado :: Mate.
+Q ¿Por qué se ausculta el abdomen antes de palparlo? :: *Porque la palpación altera los ruidos intestinales :: Porque duele menos :: Es lo mismo el orden :: Para relajar al paciente || A diferencia del tórax, en abdomen se ausculta antes de tocar.
+Q Matidez cambiante y signo de la ola sugieren… :: *Ascitis :: Obstrucción intestinal :: Neumoperitoneo :: Íleo paralítico || El líquido libre se mueve con la posición.
+
+# Auxiliares de diagnóstico y terminología médica
+> Rayos X, tomografía, resonancia y ultrasonido; y cómo se forman los términos médicos.
+## Estudios de imagen
+| Estudio ¦ Cómo funciona ¦ Para qué
+| Radiografía ¦ Rayos X (radiación ionizante) ¦ Fracturas, neumonía, cáncer de pulmón, mama (mastografía), dientes, cuerpos extraños
+| Tomografía (TAC) ¦ Rayos X en cortes transversales (y 3D); simple o contrastada ¦ Huesos, sangrado, abdomen; el paciente no debe llevar metales
+| Resonancia magnética ¦ Imanes, sin radiación ionizante ¦ Tejidos blandos: tumores, cirrosis, vía biliar y páncreas
+| Ultrasonido (ecografía) ¦ Sonido, no invasivo ¦ Quistes, tumores, vesícula, embarazo
+- Rayos X móviles (portátiles) o fijos. Dosis bajas, pero se evita en embarazadas.
+- **Radiografía de tórax bien tomada**: en inspiración máxima (se ven **6 arcos costales anteriores o 10 posteriores** por arriba del diafragma), sin rotación (los extremos de las clavículas equidistantes de las apófisis espinosas) y bien expuesta.
+! **Corrección:** en tus notas «10 arcos anteriores y 6 posteriores»; es al revés: **6 anteriores** o **10 posteriores** por arriba del diafragma.
+! **Corrección:** la radiografía no «lanza electrones»: usa **fotones de rayos X**.
+## Anatomía sistémica y terminología
+- Sistemas: tegumentario (piel y anexos), esquelético, muscular, respiratorio, nervioso (SNC y SNP), circulatorio (cardiovascular y linfático) y estomatognático (boca).
+- Casi el 90 % de los términos médicos tienen raíces griegas y latinas.
+- **Epónimos** (del Renacimiento): trompas de Falopio, conducto de Santorini.
+- **Prefijos**: epi-, hipo-, di- (epigástrico, hipogástrico, digástrico). **Sufijos y raíces**: estomato- (boca), odonto- (diente) → estomatología, odontología.
+- **Acrónimos**: palabras hechas con las iniciales de otras (PET, SCALP).
+? ¿Qué estudio no usa radiación ionizante y es mejor para tejidos blandos? :: Resonancia magnética.
+? ¿Qué es un epónimo? :: Término que lleva el nombre de una persona (trompas de Falopio).
+Q Embarazada con dolor en hipocondrio derecho; quieres ver la vesícula. Eliges… :: *Ultrasonido :: Tomografía :: Radiografía de abdomen :: Gammagrama || No usa radiación y ve muy bien la vesícula.
+Q En una radiografía de tórax bien inspirada se cuentan por arriba del diafragma… :: *10 arcos posteriores :: 6 arcos posteriores :: 10 arcos anteriores :: 3 arcos anteriores || O 6 arcos anteriores.

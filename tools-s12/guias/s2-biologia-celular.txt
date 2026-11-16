@@ -8,7 +8,7 @@
 @icon bcm
 @sub Membrana y organelos · Citoesqueleto · ADN y replicación · Transcripción · Traducción · Ciclo celular · Señalización · Muerte celular, inflamación y neoplasias · Técnicas
 @desc De la membrana al genoma, dividido en subtemas y con diagramas paso a paso: organelos, flujo de la información genética, ciclo celular, señales y muerte celular, con las enfermedades y técnicas de laboratorio que salen en examen.
-@kw biologia celular molecular membrana organelos lisosoma peroxisoma mitocondria reticulo golgi citoesqueleto microtubulos adn replicacion reparacion transcripcion arn splicing traduccion ribosoma ciclo celular p53 rb ciclinas oncogenes señalizacion receptores proteina g apoptosis caspasas necrosis pcr western southern northern elisa crispr patologia lesion celular necrosis coagulativa licuefactiva caseosa grasa fibrinoide gangrena inflamacion aguda cronica neutrofilo granuloma signos cardinales neoplasia benigna maligna metastasis displasia carcinoma in situ
+@kw biologia celular molecular mitosis meiosis cariotipo xeroderma electroforesis membrana organelos lisosoma peroxisoma mitocondria reticulo golgi citoesqueleto microtubulos adn replicacion reparacion transcripcion arn splicing traduccion ribosoma ciclo celular p53 rb ciclinas oncogenes señalizacion receptores proteina g apoptosis caspasas necrosis pcr western southern northern elisa crispr patologia lesion celular necrosis coagulativa licuefactiva caseosa grasa fibrinoide gangrena inflamacion aguda cronica neutrofilo granuloma signos cardinales neoplasia benigna maligna metastasis displasia carcinoma in situ
 
 # Membrana plasmática y organelos
 > Compartimentos con funciones especializadas.
@@ -17,12 +17,24 @@
 ~ Modelo de mosaico fluido :: Los lípidos y muchas proteínas se desplazan lateralmente dentro de la bicapa.
 ~ Proteína integral :: Atraviesa la bicapa (canales, transportadores, receptores); solo se separa con detergentes.
 ~ Proteína periférica :: Se une a la superficie o a proteínas integrales; se separa con facilidad.
+^ membrana-mosaico.svg :: Bicapa de fosfolípidos (cabezas hidrófilas hacia afuera, colas hidrófobas adentro) con colesterol, proteínas integrales y periféricas, y azúcares del glucocálix. :: Esquema propio
+^ microvellosidades-tem.webp :: Microvellosidades del enterocito al microscopio electrónico: prolongaciones de la membrana con un eje de **actina** que aumentan la superficie de absorción. :: OpenStax, Biology 2e, sección «Eukaryotic Cells» · micrografía de Louisa Howard · CC BY 4.0 · recortada
 ## Organelos de síntesis
 - **Núcleo**: envoltura doble con poros; el **nucléolo** sintetiza ARN ribosomal.
 - **RER**: proteínas de secreción, de membrana y lisosomales; **N-glucosilación**. Abunda en células plasmáticas y acinares del páncreas.
 - **REL**: lípidos y esteroides, detoxificación (**citocromo P450**), almacén de Ca²⁺ (retículo sarcoplásmico). Abunda en hígado, células de Leydig y corteza suprarrenal.
 - **Aparato de Golgi**: modifica (O-glucosilación), clasifica y empaca; marca las enzimas lisosomales con **manosa-6-fosfato**.
 = Vía secretora :: Ribosoma con péptido señal → La SRP lo lleva al RER → Plegamiento y N-glucosilación → Vesículas COPII → Golgi cis → medial → trans → Destino: secreción, membrana o lisosoma (con manosa-6-fosfato)
+^ celula-organelos.svg :: Mapa de la célula animal: dónde está cada organelo y qué hace. :: Esquema propio
+^ via-secretora.svg :: Ruta de una proteína de secreción: RER → vesículas COPII → Golgi (cis, medial, trans) → lisosoma, membrana o secreción. :: Esquema propio
+^ rer-nucleo-tem.webp :: Célula acinar del páncreas al microscopio electrónico: núcleo rodeado de cisternas de **RER** apiladas (fabrica las enzimas digestivas). :: OpenStax, Biology 2e, sección «The Endomembrane System and Proteins» · micrografía de Louisa Howard · CC BY 4.0 · recortada; rótulos en inglés quitados
+^^ 52,55 :: Núcleo (eucromatina, clara)
+^^ 8,45 :: Retículo endoplásmico rugoso
+^^ 21,27 :: Envoltura nuclear
+^^ 90,86 :: Nucléolo
+^ golgi-tem.webp :: Aparato de Golgi en un leucocito: pila de cisternas aplanadas y curvas con vesículas alrededor. :: OpenStax, Biology 2e, sección «The Endomembrane System and Proteins» · micrografía de Louisa Howard · CC BY 4.0 · rótulo en inglés quitado
+^^ 40,85 :: Cisternas del Golgi
+^^ 37,44 :: Vesículas
 + La **inducción del citocromo P450** (rifampicina, carbamazepina, fenitoína) acelera el metabolismo de otros fármacos, como los anticonceptivos orales.
 ## Organelos de degradación y energía
 | Organelo ¦ Función clave ¦ Dato
@@ -30,6 +42,10 @@
 | Peroxisoma ¦ β-oxidación de ácidos grasos de cadena muy larga, catalasa (H₂O₂), plasmalógenos ¦ —
 | Mitocondria ¦ Fosforilación oxidativa, Krebs, β-oxidación; libera citocromo c en la apoptosis ¦ ADN circular propio, herencia materna
 | Proteasoma ¦ Degrada proteínas marcadas con ubiquitina ¦ Blanco del bortezomib (mieloma)
+^ mitocondria-tem.webp :: Mitocondria al microscopio electrónico: doble membrana y **crestas** (pliegues de la membrana interna donde está la cadena respiratoria). :: OpenStax, Biology 2e, sección «Eukaryotic Cells» · micrografía de Matthew Britton · CC BY 4.0 · rótulos en inglés quitados
+^^ 68,47 :: Crestas (membrana interna)
+^^ 36,25 :: Membrana externa
+^^ 54,65 :: Matriz mitocondrial
 ## Enfermedades de los organelos
 | Enfermedad ¦ Defecto ¦ Clave
 | Enfermedad de células I ¦ Falta de manosa-6-fosfato (Golgi) ¦ Enzimas lisosomales salen al plasma; facies tosca
@@ -56,6 +72,11 @@ Q Lactante con mancha rojo cereza en la mácula, regresión del desarrollo y sin
 % ≈ 25 nm :: microtúbulos (tubulina α/β)
 - **Microfilamentos**: microvellosidades, contracción muscular, anillo contráctil de la citocinesis y migración celular.
 - **Microtúbulos**: huso mitótico, cilios y flagelos (9+2), transporte axonal; el centrosoma (2 centriolos de 9 tripletes) los organiza.
+^ citoesqueleto-fluorescencia.webp :: Células teñidas con fluorescencia: microtúbulos en verde, actina en rojo (sobre todo en la periferia) y núcleos en azul. :: OpenStax, Anatomy & Physiology 2e, sección «The Cytoplasm and Cellular Organelles» · CC BY 4.0 · recortada
+^^ 45,77 :: Microtúbulos (tubulina)
+^^ 25,64 :: Microfilamentos de actina
+^^ 59,62 :: Núcleo
+^ axonema-9-2.webp :: Corte transversal de dos flagelos: 9 pares de microtúbulos en la periferia + 2 centrales (**9+2**); los brazos de dineína los hacen deslizarse. :: OpenStax, Biology 2e, sección «The Cytoskeleton» · micrografía de Dartmouth Electron Microscope Facility · CC BY 4.0
 ## Filamentos intermedios como marcadores
 | Filamento ¦ Tipo celular
 | Citoqueratina ¦ Epitelios (carcinomas)
@@ -69,6 +90,7 @@ Q Lactante con mancha rojo cereza en la mácula, regresión del desarrollo y sin
 ~ Cinesina :: Camina hacia el extremo + del microtúbulo: transporte anterógrado (del soma a la terminal).
 ~ Dineína :: Camina hacia el extremo −: transporte retrógrado (de la terminal al soma) y movimiento de cilios.
 ~ Miosina :: Motor de los microfilamentos de actina.
+^ citoesqueleto-motores.svg :: Grosor de los tres filamentos y sentido de los motores: la cinesina va al extremo + (anterógrado) y la dineína al − (retrógrado). :: Esquema propio
 ! Por transporte retrógrado (dineína) suben al SNC el virus de la rabia, el herpes y la toxina tetánica.
 + **Síndrome de Kartagener** (discinesia ciliar primaria): falla del brazo de dineína → infecciones respiratorias, infertilidad y situs inversus.
 ## Fármacos que actúan sobre los microtúbulos
@@ -100,10 +122,13 @@ Q Varón con sinusitis y bronquiectasias de repetición, infertilidad y corazón
 ~ Eucromatina :: Laxa y transcripcionalmente activa.
 ~ Acetilación de histonas :: Relaja la cromatina y activa la transcripción.
 ~ Metilación del ADN (islas CpG) :: Silencia la transcripción.
+^ cromatina-niveles.svg :: Niveles de compactación: doble hélice → nucleosomas → fibra de 30 nm → bucles → cromosoma en metafase. :: Esquema propio
+^ cariotipo-espectral.webp :: Cariotipo espectral («pintura de cromosomas»): cada par se tiñe de un color con sondas fluorescentes; arriba un núcleo en interfase. :: OpenStax, Biology 2e, sección «Cell Division» · imagen del National Human Genome Research Institute / NIH (dominio público) · CC BY 4.0
 ## Replicación (fase S)
 = Horquilla de replicación :: Helicasa abre la doble hélice → Proteínas SSB evitan que se vuelva a unir → Topoisomerasa relaja el superenrollamiento → Primasa coloca un cebador de ARN → ADN polimerasa sintetiza 5'→3' (continua en la adelantada, en fragmentos de Okazaki en la retrasada) → Se retiran los cebadores → ADN ligasa sella
 - En eucariotas sintetizan las polimerasas **δ y ε**; en procariotas la **ADN polimerasa III**.
 - **Telomerasa** (transcriptasa inversa con molde de ARN) mantiene los extremos; activa en células madre y cáncer.
+^ horquilla-replicacion.svg :: Horquilla de replicación con cada enzima en su lugar: hebra adelantada continua y retrasada en fragmentos de Okazaki. :: Esquema propio
 ! Fluoroquinolonas inhiben la topoisomerasa II (girasa) bacteriana; etopósido e irinotecán inhiben topoisomerasas humanas.
 ## Reparación del ADN
 | Mecanismo ¦ Daño que repara ¦ Enfermedad si falla
@@ -113,6 +138,7 @@ Q Varón con sinusitis y bronquiectasias de repetición, infertilidad y corazón
 | Recombinación homóloga ¦ Rotura de doble cadena ¦ BRCA1/2 (mama y ovario)
 + **Síndrome de Lynch**: cáncer colorrectal hereditario no polipósico con inestabilidad de microsatélites.
 + **BRCA1/2**: cáncer de mama y ovario hereditario; sensibles a inhibidores de PARP.
+^ xeroderma-pigmentoso.webp :: Xeroderma pigmentoso: pecas, piel seca y lesiones en zonas expuestas al sol porque no se reparan los dímeros de timina (escisión de nucleótidos). :: OpenStax, Biology 2e, sección «DNA Repair» · foto de James Halpern y cols. · CC BY 4.0
 ? Puentes de hidrógeno entre G y C :: Tres (más estable que A=T, con dos).
 ? Dirección de síntesis del ADN :: 5' → 3'.
 ? Enzima que sella los fragmentos de Okazaki :: ADN ligasa.
@@ -135,6 +161,7 @@ Q ¿Qué enzima coloca el cebador de ARN para iniciar la síntesis? :: *Primasa 
 ## Procesamiento del pre-ARNm
 = Maduración en el núcleo :: Pre-ARNm → Caperuza 5' de 7-metilguanosina → Cola de poli-A en 3' (señal AAUAAA) → Splicing: el espliceosoma (snRNP) quita intrones y une exones → ARNm maduro sale al citoplasma
 - El **splicing alternativo** produce varias proteínas a partir de un solo gen.
+^ procesamiento-arnm.svg :: Del gen al ARNm maduro: transcripción, caperuza 5′, cola de poli-A y splicing (los intrones salen en lazo). :: Esquema propio
 ! Anticuerpos **anti-Smith** (contra snRNP del espliceosoma) son muy específicos de **lupus eritematoso sistémico**.
 ! Algunas β-talasemias se deben a mutaciones en sitios de splicing.
 ## Tipos de ARN
@@ -169,6 +196,7 @@ Q ¿Cómo produce un solo gen varias proteínas distintas? :: *Por splicing alte
 - La **aminoacil-ARNt sintetasa** une el aminoácido correcto a su ARNt (gasta ATP).
 = Traducción :: Iniciación: subunidad pequeña + ARNt-Met buscan el AUG → Se une la subunidad grande → Elongación: el aminoacil-ARNt entra al sitio A → Peptidil transferasa (ARNr, una ribozima) forma el enlace → Translocación: A → P → E → Terminación: codón stop y factores de liberación
 - Proteínas con **péptido señal** van al RER; las **chaperonas** ayudan al plegamiento.
+^ traduccion-ribosoma.svg :: El ribosoma lee el ARNm de 5′ a 3′: el aminoacil-ARNt entra al sitio A, la cadena crece en el P y el ARNt vacío sale por el E. :: Esquema propio
 + La **toxina diftérica** inactiva el factor de elongación eEF-2 (ADP-ribosilación).
 ## Antibióticos y ribosoma
 | Subunidad ¦ Antibióticos
@@ -198,6 +226,8 @@ Q La mutación de la anemia de células falciformes es de tipo: :: *Sentido err�
 = Ciclo celular :: G1: crecimiento (duración variable) → Punto de control G1/S (el más importante) → S: replicación del ADN → G2: preparación → Punto de control G2/M → M: profase, metafase, anafase, telofase + citocinesis
 - **G0**: reposo fuera del ciclo.
 - Motores: **ciclinas + cinasas dependientes de ciclina (CDK)**. Inhibidores: p21, p27, p16.
+^ ciclo-celular.svg :: Fases del ciclo, sus puntos de control y las ciclinas-CDK que lo hacen avanzar. :: Esquema propio
+^ mitosis-fases.webp :: Mitosis en células reales con fluorescencia: ADN en azul y microtúbulos del huso en verde; en metafase los cromosomas se alinean en el centro y en anafase se separan. :: OpenStax, Anatomy & Physiology 2e, sección «Cell Growth and Division» · CC BY 4.0 · recortada; nombres en español
 ## Rb y p53
 = Rb y la entrada a fase S :: Rb hipofosforilado secuestra a E2F → Factores de crecimiento activan ciclina D-CDK4/6 → Rb se fosforila → Libera E2F → Se transcriben genes de fase S
 = p53 ante daño del ADN :: Daño del ADN → Se estabiliza p53 → Induce p21 (frena el ciclo en G1) → Reparación → Si el daño no se repara: apoptosis
@@ -257,6 +287,7 @@ Q Biopsia de cuello uterino con atipia en todo el espesor del epitelio y membran
 | Gq ¦ Fosfolipasa C → IP₃ (↑ Ca²⁺) y DAG (PKC) ¦ α1, M1, M3, H1, V1
 & HAVe 1 M&M :: Receptores Gq: H1, α1, V1, M1 y M3.
 = Vía Gq :: Ligando → Receptor Gq → Fosfolipasa C → Corta PIP₂ → IP₃ libera Ca²⁺ del retículo y DAG activa PKC → Respuesta (p. ej., contracción del músculo liso)
+^ proteinas-g.svg :: Las tres proteínas G con sus receptores típicos y su segundo mensajero. :: Esquema propio
 ! Toxina del cólera activa Gs (↑ AMPc → diarrea); toxina pertussis inhibe Gi.
 + **Toxina colérica**: ↑ AMPc en el enterocito → secreción de Cl⁻ y agua, diarrea en "agua de arroz".
 ## Otros receptores
@@ -349,6 +380,7 @@ Q El esófago de Barrett (epitelio escamoso sustituido por columnar) es un ejemp
 - Necesita cebadores, desoxinucleótidos y **ADN polimerasa termoestable (Taq)**.
 ~ RT-PCR :: Convierte ARN en ADNc con transcriptasa inversa: carga viral, COVID-19.
 ~ PCR en tiempo real (qPCR) :: Cuantifica el ADN mientras se amplifica.
+^ pcr-ciclo.svg :: Las tres temperaturas de un ciclo de PCR y qué pasa en cada una. :: Esquema propio
 ## Blots y ELISA
 | Técnica ¦ Detecta
 | Southern blot ¦ ADN
@@ -357,6 +389,7 @@ Q El esófago de Barrett (epitelio escamoso sustituido por columnar) es un ejemp
 & SNoW DRoP :: Southern = DNA, Northern = RNA, Western = Proteína.
 - **ELISA**: detecta antígeno o anticuerpo con una enzima que cambia de color; muy sensible, se usa de tamizaje.
 - **Electroforesis**: separa moléculas por tamaño y carga.
+^ gel-electroforesis.webp :: Electroforesis en gel de agarosa: los fragmentos de ADN pequeños avanzan más; a los lados, marcadores de tamaño (escalera). A la derecha se cargan las muestras con micropipeta. :: OpenStax, Biology 2e, sección «DNA Structure and Sequencing» · fotos de James Jacob, Tompkins Cortland Community College · CC BY 4.0
 ! Tamizaje con prueba sensible (ELISA) → confirmación con prueba específica.
 ## Otras técnicas
 | Técnica ¦ Para qué sirve

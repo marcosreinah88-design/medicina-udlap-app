@@ -13,6 +13,11 @@
 # Organización del cuerpo y homeostasis
 > Niveles: químico → celular → tisular → órgano → sistema → organismo.
 ## Posición anatómica, planos y términos
+^ planos.webp :: Los planos del cuerpo: sagital, coronal (frontal), transversal (axial) y un plano oblicuo. :: OpenStax, Anatomy & Physiology 2e, sección «Anatomical Terminology» · ilustración de OpenStax · CC BY 4.0 · nombres en inglés cambiados por marcadores
+^^ 60,58 :: Plano sagital
+^^ 21,64 :: Plano coronal (frontal)
+^^ 9,40 :: Plano transversal (axial)
+^^ 38,74 :: Plano oblicuo
 - **Posición anatómica**: de pie, mirando al frente, brazos a los lados con las palmas hacia adelante, pies juntos.
 | Plano ¦ Divide en ¦ Ejemplo de imagen
 | Sagital (mediosagital = mitades iguales) ¦ Derecha e izquierda ¦ Corte lateral de una resonancia
@@ -20,14 +25,17 @@
 | Transversal (axial) ¦ Superior e inferior ¦ Tomografía (vista desde los pies)
 - Términos: medial/lateral, proximal/distal (extremidades), superficial/profundo, craneal/caudal, ipsilateral/contralateral.
 ## Cavidades y regiones
+^ regiones-abdomen.svg :: Las 9 regiones y los 4 cuadrantes del abdomen. :: Esquema propio
 - Cavidad **dorsal** (craneal y vertebral) y **ventral** (torácica: pleurales y mediastino; abdominopélvica).
 - Abdomen en **9 regiones** (hipocondrios, epigastrio, flancos, mesogastrio, fosas ilíacas, hipogastrio) o **4 cuadrantes**.
 + Dolor en el cuadrante inferior derecho → apéndice; en el hipocondrio derecho → vesícula biliar.
 ## Homeostasis
+^ homeostasis.svg :: Retroalimentación negativa (corrige el cambio) y positiva (lo amplifica hasta un desenlace). :: Esquema propio
 = Asa de control :: Estímulo (cambio) → Receptor (sensor) → Centro integrador → Efector → Respuesta que corrige el cambio
 ~ Retroalimentación negativa :: La respuesta se opone al cambio; es la más común (temperatura, glucemia, presión arterial).
 ~ Retroalimentación positiva :: La respuesta amplifica el cambio hasta un desenlace (oxitocina en el parto, coagulación, pico de LH).
 ## Líquidos corporales
+^ agua-corporal.svg :: Distribución del agua corporal (regla 60-40-20). :: Esquema propio
 % 60 % :: del peso es agua corporal total
 % 40 % :: intracelular
 % 20 % :: extracelular (15 % intersticial + 5 % plasma)
@@ -42,6 +50,18 @@ Q Un paciente de 70 kg tiene aproximadamente cuánta agua en el espacio extracel
 # Sistema esquelético y articulaciones
 > 206 huesos en el adulto: esqueleto axial y apendicular.
 ## Funciones y clasificación de los huesos
+^ hueso-largo.webp :: Partes de un hueso largo (fémur), con la epífisis proximal a la izquierda. :: OpenStax, Anatomy & Physiology 2e, sección «Bone Structure» · ilustración de OpenStax · CC BY 4.0 · nombres en inglés cambiados por marcadores
+^^ 2.5,12 :: Cartílago articular
+^^ 6.7,50 :: Hueso esponjoso con médula roja
+^^ 12.5,45 :: Línea epifisaria
+^^ 16.7,50 :: Metáfisis
+^^ 33,52 :: Cavidad medular
+^^ 33,35 :: Hueso compacto
+^^ 49.7,52 :: Médula amarilla
+^^ 56,61 :: Periostio
+^^ 67.8,68 :: Arteria nutricia
+^^ 75.5,43 :: Diáfisis
+^^ 91,50 :: Epífisis distal
 - Funciones: sostén, protección, movimiento, reserva de calcio y fósforo, hematopoyesis (médula roja).
 - Esqueleto **axial** (cráneo, columna, costillas, esternón) y **apendicular** (cinturas y extremidades).
 | Tipo ¦ Ejemplo
@@ -58,6 +78,13 @@ Q Un paciente de 70 kg tiene aproximadamente cuánta agua en el espacio extracel
 | Sinovial ¦ Libre ¦ Hombro, rodilla
 - Partes de la sinovial: cápsula, membrana sinovial, líquido sinovial y cartílago articular hialino.
 ## Sinoviales según su forma
+^ sinoviales.webp :: Los seis tipos de articulación sinovial y dónde hay un ejemplo en el esqueleto. :: OpenStax, Anatomy & Physiology 2e, sección «Synovial Joints» · ilustración de OpenStax · CC BY 4.0 · nombres en inglés cambiados por marcadores
+^^ 19,11 :: Trocoide (pivote): atlantoaxoidea C1–C2
+^^ 8.3,40 :: Troclear (bisagra): codo
+^^ 21,70 :: En silla de montar: trapecio y 1.er metacarpiano
+^^ 81,72 :: Plana: entre los huesos del tarso
+^^ 89,45 :: Condílea: radiocarpiana (muñeca)
+^^ 81,13 :: Esferoidea: cadera
 ~ Esferoidea :: Movimiento en todos los ejes: hombro y cadera.
 ~ Troclear (bisagra) :: Un eje (flexión y extensión): codo, interfalángicas.
 ~ Trocoide (pivote) :: Rotación: atlantoaxoidea y radioulnar proximal.
@@ -84,6 +111,7 @@ Q El hueso sesamoideo más grande del cuerpo es: :: *La rótula :: El pisiforme 
 ~ Sinergista :: Ayuda al agonista.
 ~ Fijador :: Estabiliza el origen del agonista.
 ## Unión neuromuscular
+^ union-neuromuscular.svg :: Unión neuromuscular: el Ca²⁺ libera acetilcolina, que activa el receptor nicotínico de la placa motora. :: Esquema propio
 = De la neurona al músculo :: Potencial de acción en la motoneurona → Entra Ca²⁺ a la terminal → Se libera acetilcolina → Receptor nicotínico de la placa motora → Potencial de acción muscular → Liberación de Ca²⁺ y contracción → La acetilcolinesterasa termina la señal
 - **Unidad motora**: una motoneurona + todas las fibras que inerva (pocas en músculos oculares → control fino; muchas en el cuádriceps → fuerza).
 ! **Miastenia gravis**: anticuerpos contra el receptor nicotínico → debilidad que empeora con el uso, ptosis y diplopía; mejora con anticolinesterásicos.
@@ -121,6 +149,7 @@ Q La toxina botulínica causa parálisis porque: :: *Impide la liberación de ac
 - 12 pares craneales: I olfatorio, II óptico, III motor ocular común, IV troclear, V trigémino, VI abducens, VII facial, VIII vestibulococlear, IX glosofaríngeo, X vago, XI accesorio, XII hipogloso.
 ! La punción lumbar se hace en **L3–L4 o L4–L5** (debajo del cono medular); la línea entre las crestas ilíacas pasa por L4.
 ## Sistema nervioso autónomo
+^ sna.svg :: Simpático (toracolumbar, ganglios cerca de la médula) y parasimpático (craneosacro, ganglios junto al órgano). :: Esquema propio
 | ¦ Simpático ¦ Parasimpático
 | Origen ¦ Toracolumbar (T1–L2) ¦ Craneosacro (NC III, VII, IX, X y S2–S4)
 | Función ¦ Lucha o huida ¦ Reposo y digestión
@@ -140,9 +169,11 @@ Q ¿Qué par craneal lleva la mayor parte del parasimpático a vísceras toráci
 # Sistema cardiovascular
 > Bomba (corazón) + tubos (arterias, capilares, venas) + líquido (sangre).
 ## Corazón y circulaciones
+^ circulacion.svg :: Circulación pulmonar (corazón derecho → pulmones) y sistémica (corazón izquierdo → cuerpo). :: Esquema propio
 = Recorrido de la sangre :: Venas cavas → Aurícula derecha → Tricúspide → Ventrículo derecho → Válvula pulmonar → Arterias pulmonares → Pulmones (se oxigena) → Venas pulmonares → Aurícula izquierda → Mitral → Ventrículo izquierdo → Válvula aórtica → Aorta → Tejidos
 - Válvulas **auriculoventriculares** (tricúspide derecha, mitral izquierda) y **semilunares** (pulmonar, aórtica). **R1** = cierre AV; **R2** = cierre semilunar.
 ## Sistema de conducción
+^ conduccion.webp :: Recorrido del impulso: (1) nodo sinusal → (2) aurículas → (3) nodo AV con retraso → (4) haz de His y ramas → (5) Purkinje → (6) despolarización ventricular. :: OpenStax, Anatomy & Physiology 2e, sección «Cardiac Muscle and Electrical Activity» · ilustración de OpenStax · CC BY 4.0 · texto en inglés retirado
 = Conducción eléctrica :: Nodo sinusal (marcapasos, 60–100 lpm) → Aurículas → Nodo AV (retraso para el llenado) → Haz de His → Ramas derecha e izquierda → Fibras de Purkinje → Ventrículos
 ## Coronarias
 - **Coronaria izquierda** → descendente anterior y circunfleja. **Coronaria derecha** → irriga el nodo sinusal y el AV en la mayoría.
@@ -176,11 +207,21 @@ Q ¿Qué estructura retrasa el impulso para que los ventrículos se llenen? :: *
 - El **bronquio principal derecho** es más corto, ancho y vertical → los cuerpos extraños aspirados van más a la derecha.
 - Pulmón derecho: **3 lóbulos** (2 cisuras); izquierdo: **2 lóbulos** y língula (escotadura cardiaca).
 ## Alvéolo y surfactante
+^ alveolo.webp :: Bronquiolo terminal, sacos alveolares con su red de capilares y un alvéolo por dentro. :: OpenStax, Anatomy & Physiology 2e, sección «Organs and Structures of the Respiratory System» · ilustración de OpenStax · CC BY 4.0 · nombres en inglés cambiados por marcadores
+^^ 52,11.5 :: Bronquiolo
+^^ 40.7,34.6 :: Saco alveolar
+^^ 81,38 :: Red de capilares pulmonares
+^^ 45,81 :: Alvéolo (espacio con aire)
+^^ 20,60 :: Neumocito tipo I
+^^ 53.5,76.7 :: Neumocito tipo II (surfactante)
+^^ 34,75.5 :: Macrófago alveolar
+^^ 61,61.7 :: Capilar con eritrocito
 ~ Neumocito tipo I :: Célula plana que cubre ~95 % de la superficie alveolar; intercambio de gases.
 ~ Neumocito tipo II :: Produce surfactante (reduce la tensión superficial) y regenera el epitelio alveolar.
 ~ Macrófago alveolar :: Limpia partículas del alvéolo.
 ! El surfactante aparece hacia la semana 24–28 y madura hacia la 35; su déficit causa el síndrome de dificultad respiratoria del prematuro.
 ## Mecánica e intercambio
+^ volumenes.svg :: Volúmenes y capacidades pulmonares en un espirograma. :: Esquema propio
 - **Inspiración** activa: **diafragma** (nervio frénico C3–C5) e intercostales externos. **Espiración** en reposo: pasiva (retroceso elástico).
 & "C3, 4, 5 mantienen vivo al diafragma" :: El nervio frénico nace de C3, C4 y C5.
 % ≈ 100 mmHg :: PO₂ alveolar
@@ -199,8 +240,22 @@ Q El músculo principal de la inspiración en reposo es: :: *Diafragma :: Estern
 # Sistema digestivo
 > Tubo de la boca al ano más glándulas anexas: salivales, hígado, vesícula y páncreas.
 ## Pared del tubo digestivo
+^ capas-tubo.webp :: Las capas de la pared del tubo digestivo, de la luz hacia afuera, con sus plexos nerviosos. :: OpenStax, Anatomy & Physiology 2e, sección «Overview of the Digestive System» · ilustración de OpenStax · CC BY 4.0 · nombres en inglés cambiados por marcadores
+^^ 29.5,84 :: Luz
+^^ 24,82 :: Mucosa
+^^ 37,51 :: Submucosa
+^^ 50,70 :: Muscular: capa circular
+^^ 54.5,84 :: Muscular: capa longitudinal
+^^ 61.7,72.5 :: Serosa
+^^ 59,65 :: Plexo mientérico (Auerbach)
+^^ 51.5,42 :: Plexo submucoso (Meissner)
+^^ 79,15 :: Mesenterio
+^^ 66.5,24.5 :: Arteria
+^^ 56,31 :: Vena
+^^ 28.8,70 :: Glándula de la mucosa
 = Capas, de la luz hacia afuera :: Mucosa → Submucosa (plexo de Meissner: secreción) → Muscular externa (plexo de Auerbach: motilidad) → Serosa o adventicia
 ## Recorrido y función de cada segmento
+^ tubo-digestivo.svg :: Hormonas de cada segmento y sitios clave de absorción. :: Esquema propio
 = Recorrido del alimento :: Boca (masticación, amilasa salival) → Faringe → Esófago (≈ 25 cm) → Estómago (HCl, pepsina) → Duodeno (bilis y jugo pancreático) → Yeyuno e íleon (absorción) → Colon (agua y electrolitos) → Recto y ano
 | Célula gástrica ¦ Produce
 | Parietal ¦ HCl y factor intrínseco
@@ -237,6 +292,7 @@ Q ¿Qué hormona estimula la secreción de bicarbonato pancreático? :: *Secreti
 % ≈ 120 mL/min :: filtración glomerular (≈ 180 L/día)
 % 1–2 L/día :: de orina
 ## Qué hace cada segmento
+^ nefrona.svg :: La nefrona por segmentos: qué reabsorbe cada uno y qué fármaco actúa ahí. :: Esquema propio
 | Segmento ¦ Qué reabsorbe ¦ Fármaco o hormona
 | Túbulo proximal ¦ ~65 % del Na⁺ y agua, toda la glucosa y aminoácidos ¦ Acetazolamida
 | Asa ascendente gruesa ¦ Na⁺, K⁺, 2Cl⁻ (NKCC2); impermeable al agua ¦ Furosemida
@@ -260,12 +316,14 @@ Q Paciente con insuficiencia renal crónica y hemoglobina de 8 g/dL. Causa princ
 # Sistemas endocrino y reproductor
 > Hormonas que viajan por la sangre a órganos diana; ejes hipotálamo-hipófisis.
 ## Eje hipotálamo-hipófisis
+^ hipofisis.svg :: El hipotálamo controla la adenohipófisis por el sistema porta y la neurohipófisis por axones. :: Esquema propio
 = Eje típico :: Hipotálamo libera hormona liberadora → Sistema porta → Adenohipófisis secreta hormona trópica → Glándula diana produce su hormona → Retroalimentación negativa al hipotálamo y la hipófisis
 & FLAT PiG :: Adenohipófisis: FSH, LH, ACTH, TSH, Prolactina, GH.
 - El hipotálamo produce **ADH** y **oxitocina**, que se guardan y liberan en la **neurohipófisis**.
 - La **prolactina** está bajo inhibición tónica por **dopamina**.
 + **Prolactinoma**: galactorrea, amenorrea e infertilidad; se trata con agonistas dopaminérgicos (cabergolina).
 ## Tiroides, paratiroides, suprarrenal y páncreas
+^ suprarrenal.svg :: Capas de la suprarrenal y la hormona de cada una. :: Esquema propio
 - Tiroides: **T4 y T3** (metabolismo basal); **calcitonina** (células C). Paratiroides: **PTH** (↑ calcio).
 | Zona suprarrenal ¦ Hormona ¦ Recuerda
 | Glomerular ¦ Aldosterona ¦ Sal
@@ -279,6 +337,7 @@ Q Paciente con insuficiencia renal crónica y hemoglobina de 8 g/dL. Causa princ
 ~ Célula de Sertoli :: Responde a FSH; sostiene la espermatogénesis y produce inhibina.
 ~ Célula de Leydig :: Responde a LH; produce testosterona.
 ## Reproductor femenino y ciclo menstrual
+^ ciclo-menstrual.svg :: Hormonas hipofisarias y ováricas y cambios del endometrio en un ciclo de 28 días. :: Esquema propio
 = Ciclo de 28 días :: Días 1–5: menstruación → Fase folicular: FSH madura folículos y suben los estrógenos → Pico de LH (≈ día 14) → Ovulación → Fase lútea (14 días): el cuerpo lúteo produce progesterona → Sin embarazo cae la progesterona y vuelve la menstruación
 - La fecundación ocurre en la **ampolla** de la trompa.
 ! La ovulación ocurre tras el pico de LH; la **fase lútea dura ~14 días** constantes.

@@ -1,0 +1,400 @@
+// Casos clínicos tipo examen · Gastroenterología (s5/gastro; los temas de esófago y hepatobiliar se comparten)
+// Basados en «Lo esencial», cifras clave y tablas de cada tema de la guía. † = no viene en los apuntes.
+
+# ERGE y trastornos motores del esófago
+## Pirosis típica sin datos de alarma
+C Hombre de 38 años con pirosis y regurgitación ácida 3 veces por semana desde hace 4 meses, peor después de cenas abundantes y al acostarse. Niega disfagia, pérdida de peso, vómito o sangrado. IMC 29, perímetro de cintura aumentado. Exploración normal.
+P ¿Cuál es la conducta inicial más adecuada?
+* Prueba terapéutica con IBP una vez al día por 6 semanas, más bajar de peso y medidas de estilo de vida :: Con síntomas típicos y sin alarma, el diagnóstico es clínico: pirosis y regurgitación que responden a IBP en 6 semanas.
+- Endoscopía superior antes de iniciar cualquier tratamiento :: La endoscopía va primero solo si hay datos de alarma (disfagia, pérdida de peso, anemia ferropénica o sangrado).
+- pH-metría de 24 h sin IBP :: Se usa en ERGE resistente a IBP o antes de cirugía, no como estudio inicial.
+- Manometría esofágica de alta resolución :: Es el estándar para trastornos motores, no para diagnosticar ERGE típica.
+- Funduplicatura de Nissen :: La cirugía no es el primer paso; 10–20 % tiene efectos adversos molestos (disfagia, distensión, no poder eructar).
+E La obesidad, sobre todo la central (índice cintura-cadera más que IMC), aumenta la presión gástrica y las relajaciones transitorias del EEI; bajar de peso reduce síntomas.
+
+## Mecanismo del reflujo
+C Mujer de 45 años sin hernia hiatal en la endoscopía y con presión basal del EEI normal en la manometría. La pH-metría documenta exposición ácida anormal, con episodios de reflujo casi siempre después de comer.
+P ¿Cuál es el mecanismo principal de su reflujo?
+* Relajaciones transitorias del EEI, cuyo estímulo principal es la distensión gástrica :: Son el mecanismo principal de reflujo cuando no hay hernia hiatal.
+- EEI hipotenso :: Su presión basal es normal, así que no explica el cuadro.
+- Hernia hiatal por deslizamiento :: La endoscopía no mostró hernia.
+- Aumento de la secreción ácida por gastrinoma† :: No hay datos que lo sugieran; la ERGE no depende de producir más ácido.
+- Falla del plexo mientérico con pérdida de óxido nítrico :: Es el mecanismo de la acalasia, no del reflujo.
+E Los tres mecanismos de reflujo: relajación transitoria del EEI (el principal sin hernia), EEI hipotenso y hernia hiatal por deslizamiento.
+
+# Acalasia
+## Disfagia a sólidos y líquidos
+C Mujer de 52 años con disfagia progresiva a sólidos y líquidos desde hace 1 año, regurgitación de alimento sin digerir al acostarse y pérdida de 5 kg. Recibió IBP por «reflujo» sin mejoría. La endoscopía no muestra lesiones estructurales.
+P ¿Qué estudio confirma el diagnóstico más probable?
+* Manometría esofágica de alta resolución :: Es el estándar de oro: IRP por arriba del límite normal y ausencia de peristalsis (clasificación de Chicago).
+- Esofagograma con bario simple como estudio definitivo :: El esofagograma cronometrado apoya si hay duda, pero no sustituye a la manometría.
+- pH-metría de 24 h :: Sirve para ERGE; la acalasia puede confundirse con reflujo, pero no se diagnostica así.
+- Tomografía de tórax :: Se pide si hay sospecha de pseudoacalasia (>55 años, síntomas cortos, pérdida de peso importante), no para confirmar acalasia.
+- Prueba terapéutica con IBP a doble dosis :: Ya fracasó y no corresponde a un trastorno motor obstructivo.
+E Subtipos de Chicago: tipo 1 sin presurización, tipo 2 presurización panesofágica ≥20 % (el que mejor responde) y tipo 3 espástico (mejor con POEM).
+
+## Elegir el tratamiento definitivo
+C Hombre de 41 años con acalasia tipo 3 (contracciones prematuras, latencia distal <4.5 s) por manometría. Tiene dolor torácico frecuente además de disfagia. Es buen candidato quirúrgico.
+P ¿Qué tratamiento ofrece mejor resultado en su subtipo?
+* POEM (miotomía endoscópica peroral), porque permite una miotomía larga :: El tipo 3 responde peor a los tratamientos habituales, salvo al POEM con miotomía larga.
+- Toxina botulínica cada 6 meses :: Es puente o para quien no es candidato a tratamiento definitivo.
+- Nifedipino sublingual antes de cada comida :: Los fármacos orales casi no sirven.
+- Dilatación con balón de 35 mm como primer intento :: Empezar con 35 mm perfora más que con 30 mm (9 % vs 1 %) y no es lo mejor en el tipo 3.
+- Funduplicatura de Nissen :: No trata la obstrucción; en la miotomía de Heller se agrega funduplicatura parcial, no Nissen.
+E POEM contra dilatación neumática: éxito a 2 años 95 % vs 54 %, pero ~40 % desarrolla ERGE después del POEM.
+
+# Enfermedad ácido-péptica (úlcera péptica)
+## Úlcera por AINE y H. pylori
+C Mujer de 63 años con osteoartrosis que toma naproxeno diario. Refiere 2 meses de dolor epigástrico que la despierta en la noche. Sin datos de alarma. Endoscopía: úlcera duodenal de 8 mm limpia; la prueba de ureasa es positiva.
+P Además de suspender el AINE, ¿qué tratamiento corresponde?
+* IBP y erradicación de H. pylori por 14 días :: Hay que quitar la causa, dar IBP (triplica la cicatrización) y erradicar H. pylori 14 días.
+- Solo IBP por 8 semanas :: Sin erradicar H. pylori la úlcera recurre; AINE + H. pylori multiplica ×6 el riesgo de complicación.
+- Antiácidos y sucralfato :: No son el tratamiento de elección.
+- Cirugía (vagotomía) :: Solo para complicaciones que no responden; hoy casi no se usa en la úlcera no complicada†.
+- Repetir endoscopía en 1 semana para biopsiar :: La úlcera duodenal casi nunca es maligna; la que se re-endoscopia es la gástrica (2 % esconde malignidad).
+E Para buscar H. pylori: suspender IBP 2 semanas y antibióticos 4 semanas antes; nunca confirmar erradicación con serología.
+
+## Sangrado por úlcera con vaso visible
+C Hombre de 58 años con melena y Hb 9.2 g/dL. Ya reanimado y estable, a las 14 h se le hace endoscopía: úlcera en bulbo duodenal con vaso visible sin sangrado activo.
+P ¿Cuál es la conducta correcta?
+* Terapia endoscópica y luego IBP en bolo de 80 mg + infusión de 8 mg/h por 72 h :: Forrest IIa es de alto riesgo: se trata en la endoscopía y después IBP en dosis alta.
+- Solo IBP oral y alta al día siguiente :: El vaso visible tiene alto riesgo de resangrado; necesita endoterapia.
+- Inyectar epinefrina sola :: Nunca epinefrina sola: se combina con otro método (térmico o mecánico).
+- Ácido tranexámico IV :: No se usa: no reduce la mortalidad y aumenta trombosis (HALT-IT).
+- Cirugía inmediata :: La cirugía o la embolización se reservan para la falla del tratamiento endoscópico.
+E Forrest Ia (chorro), Ib (rezumante) y IIa (vaso visible) se tratan en la endoscopía; IIb (coágulo adherido) se valora; IIc y III van con IBP oral.
+
+# Infección por Helicobacter pylori
+## Tratamiento cuando no se sabe la resistencia
+C Hombre de 34 años con dispepsia sin datos de alarma. La prueba de aliento con urea 13C es positiva. No sabe si alguna vez tomó claritromicina y en tu región la resistencia a claritromicina es desconocida.
+P ¿Qué esquema de primera línea es el más adecuado?
+* Cuádruple con bismuto (IBP + bismuto + tetraciclina + metronidazol) por 14 días :: Con resistencia a claritromicina >15 % o desconocida se abandona la triple con claritromicina.
+- Triple con claritromicina por 7 días :: No se usa si la resistencia es >15 % o desconocida, y la duración debe ser de 14 días.
+- Levofloxacino + amoxicilina + IBP :: Es la segunda línea.
+- Rifabutina + amoxicilina + IBP :: Es el esquema de rescate.
+- Amoxicilina sola por 10 días :: La monoterapia no erradica H. pylori.
+E Confirmar la erradicación ≥4 semanas después de terminar el tratamiento, con aliento o antígeno fecal (sin IBP 2 semanas antes).
+
+## Fenotipo de la infección
+C Hombre de 60 años con H. pylori desde la infancia. La biopsia muestra gastritis atrófica del cuerpo con metaplasia intestinal y la medición de ácido gástrico está baja.
+P ¿A qué complicación lo predispone sobre todo este fenotipo?
+* Adenocarcinoma gástrico :: La gastritis del cuerpo con atrofia e hipoclorhidria es el fenotipo del cáncer gástrico (cascada de Correa).
+- Úlcera duodenal :: Se asocia a gastritis de predominio antral con gastrina y ácido altos.
+- Esófago de Barrett :: No es una complicación de H. pylori.
+- Acalasia :: No tiene relación con H. pylori.
+- Pancreatitis aguda :: No tiene relación con H. pylori.
+E Cascada de Correa: gastritis superficial → atrófica → metaplasia intestinal → displasia → adenocarcinoma. La OMS clasifica a H. pylori como carcinógeno clase I.
+
+# Sangrado de tubo digestivo alto
+## Riesgo bajo, manejo ambulatorio
+C Hombre de 27 años con un episodio de melena hace 2 días. FC 78, TA 122/76, Hb 14.6 g/dL, BUN normal, sin síncope, insuficiencia cardiaca ni hepatopatía. Glasgow-Blatchford de 0.
+P ¿Qué se recomienda?
+* Manejo ambulatorio con endoscopía programada, sin endoscopía urgente :: GBS 0–1 identifica muy bajo riesgo (sensibilidad 0.98) y permite el alta.
+- Endoscopía en menos de 6 horas :: Hacerla antes de 6 h no mejora los desenlaces, ni siquiera en alto riesgo.
+- Transfundir 2 concentrados eritrocitarios :: La transfusión es restrictiva (Hb 7–8 g/dL) y su Hb es normal.
+- Iniciar terlipresina y ceftriaxona :: Solo si se sospechan várices (cirrosis), lo que no es el caso.
+- Ácido tranexámico IV :: No reduce la mortalidad y aumenta trombosis.
+E Glasgow-Blatchford es la mejor escala pre-endoscópica (AUROC 0.86); Rockall y AIMS65 predicen peor.
+
+## Sospecha de sangrado variceal
+C Hombre de 55 años con cirrosis alcohólica que llega con hematemesis abundante. FC 118, TA 88/50. Se colocan 2 vías periféricas gruesas y se inicia cristaloide.
+P Antes de la endoscopía, ¿qué más necesita?
+* Vasoactivo (terlipresina, octreótido o somatostatina) y antibiótico profiláctico :: En sospecha de várices se dan vasoactivo 2–5 días y antibiótico ≤7 días antes de la endoscopía.
+- Ácido tranexámico IV :: No se usa en STDA (HALT-IT).
+- Transfundir hasta Hb de 10 g/dL :: Se transfunde con meta restrictiva de 7–8 g/dL; más sangre sube la presión portal†.
+- Esperar a la endoscopía para decidir todo :: Vasoactivo y antibiótico se inician desde la sospecha, no después.
+- Intubación orotraqueal de rutina :: Solo si hay hematemesis grave con riesgo de aspiración, agitación o no protege la vía aérea.
+E Várices esofágicas → ligadura con bandas; gástricas → cianoacrilato o trombina. Alto riesgo de resangrado → TIPS preventivo en <72 h.
+
+# Esófago de Barrett
+## Vigilancia sin displasia
+C Hombre de 58 años, blanco, obeso y exfumador, con ERGE de 15 años. Endoscopía: mucosa columnar C2M4 (clasificación de Praga) y biopsias con metaplasia intestinal sin displasia, confirmado por dos patólogos.
+P ¿Cuál es el manejo?
+* IBP y vigilancia endoscópica cada 3 años :: Sin displasia y segmento ≥3 cm se vigila cada 3 años; no se hace ablación.
+- Ablación por radiofrecuencia de todo el segmento :: Solo se ofrece si hay displasia (bajo o alto grado) o T1.
+- Esofagectomía :: No está indicada sin displasia ni cáncer.
+- Funduplicatura para que el Barrett regrese :: Controlar el reflujo no hace regresar el Barrett.
+- Vigilancia cada 5 años :: Es para segmentos de 1 a <3 cm; el suyo mide 4 cm.
+E Biopsias con protocolo de Seattle: 4 cuadrantes cada 2 cm más lesiones visibles. Solo los IBP tienen evidencia como quimioprevención.
+
+# Gastroparesia
+## Náusea en paciente diabética
+C Mujer de 49 años con DM2 de 12 años (HbA1c 9.4 %) y semaglutida desde hace 6 meses. Refiere náusea, vómito posprandial, saciedad temprana y plenitud. La endoscopía descarta obstrucción.
+P ¿Cuál es el siguiente paso más adecuado?
+* Suspender lo que retrasa el vaciamiento (semaglutida), optimizar la glucemia y confirmar con gammagrafía de 4 h :: El primer paso es retirar fármacos que retrasan el vaciamiento y controlar la glucosa; el diagnóstico es con gammagrafía de 4 h (retención >10 %).
+- Gammagrafía de 2 h para confirmar rápido :: Los estudios de 2 h sobrediagnostican; se usa la de 4 h.
+- Metoclopramida indefinida :: Es el único aprobado por la FDA, pero máximo 12 semanas por discinesia tardía.
+- G-POEM de inmediato :: Se reserva para la gastroparesia refractaria.
+- Dieta alta en fibra y en grasa :: Se recomienda dieta baja en grasa y en fibra no digerible, en partículas pequeñas.
+E Gravedad por retención a 4 h: leve 10–15 %, moderada 16–35 %, grave >35 %.
+
+# Dispepsia funcional
+## Dispepsia sin alarma, tras descartar H. pylori
+C Mujer de 29 años con 8 meses de plenitud posprandial y saciedad temprana después de una gastroenteritis. Sin pérdida de peso, anemia ni otros datos de alarma. El antígeno fecal de H. pylori fue negativo y 8 semanas de IBP no la mejoraron.
+P ¿Qué tratamiento tiene mejor evidencia como siguiente paso?
+* Tricíclico a dosis baja (por ejemplo amitriptilina 10 mg en la noche) :: Los tricíclicos son primera línea junto con los antisecretores (NNT 6).
+- Escitalopram :: Los ISRS y la venlafaxina no sirven en dispepsia funcional.
+- Domperidona como tratamiento principal :: Los procinéticos tienen evidencia pobre.
+- Endoscopía cada año :: Sin datos de alarma no está indicada repetirla.
+- Colecistectomía :: No hay datos de litiasis sintomática.
+E Si los síntomas no se relacionan con la comida, duda del diagnóstico. Mirtazapina si hay náusea y pérdida de peso; pregabalina si domina el dolor.
+
+# Diarrea aguda
+## Diarrea acuosa sin datos de alarma
+C Hombre de 24 años con 2 días de diarrea acuosa (5 evacuaciones al día), náusea y cólico leve después de una comida en un puesto. Afebril, sin sangre en heces, tolera la vía oral; mucosas discretamente secas.
+P ¿Cuál es el manejo más adecuado?
+* Rehidratación oral y vigilancia, sin estudios ni antibiótico :: La mayoría es viral y autolimitada; el primer tratamiento siempre es la rehidratación oral.
+- Coprocultivo y ciprofloxacino empírico :: El antibiótico empírico es solo para casos seleccionados.
+- PCR multiplex en heces hoy :: Los estudios se justifican si dura ≥7 días o hay datos de alarma.
+- Colonoscopia :: No está indicada en diarrea aguda no inflamatoria.
+- Loperamida y ayuno de 48 h :: El ayuno no se recomienda†; lo central es hidratar.
+E Sangre, fiebre alta, dolor abdominal importante o duración >3 días sugieren diarrea inflamatoria. 11 % desarrolla SII postinfeccioso.
+
+# Diarrea crónica
+## Diarrea por fármaco
+C Hombre de 66 años hipertenso con 3 meses de diarrea acuosa, sin sangre, y pérdida de 4 kg. La serología celiaca es negativa. Hace 5 meses le cambiaron el antihipertensivo a olmesartán.
+P ¿Cuál es la causa más probable?
+* Enteropatía por olmesartán :: Primero se descartan fármacos y cirugía; 94 % de las enteropatías por ARA II son por olmesartán.
+- Enfermedad celiaca :: La serología es negativa.
+- Síndrome de intestino irritable con diarrea :: No hay dolor predominante y la pérdida de peso es un dato de organicidad.
+- Diarrea funcional :: Antes de llamarla funcional hay que descartar fármacos.
+- Colitis ulcerosa :: Debuta con rectorragia (>90 %).
+E Pistas de la historia: heces voluminosas con esteatorrea = intestino delgado o páncreas; acuosas y escasas = colon; nocturna = orgánica.
+
+# Ciclosporiasis
+## Diarrea después de frambuesas
+C Mujer de 31 años con 3 semanas de diarrea acuosa explosiva, distensión, fatiga y pérdida de peso, que empezó tras un brote por frambuesas importadas. El Ziehl-Neelsen modificado muestra ooquistes ácido-alcohol resistentes de 8–10 µm.
+P ¿Cuál es el tratamiento de elección?
+* TMP-SMX 160/800 mg cada 12 h por 7 días :: Es el tratamiento de elección de Cyclospora cayetanensis.
+- Metronidazol :: Es para Giardia o amibas, no para Cyclospora.
+- Nitazoxanida como primera línea :: No es el de elección para Cyclospora.
+- Ciprofloxacino :: Es antibacteriano; no es la primera opción.
+- Solo hidratación porque es autolimitada :: Puede durar semanas; con tratamiento se resuelve en 1–2 días.
+E Cyclospora mide 8–10 µm; Cryptosporidium 4–6 µm. La excreción es intermitente: pedir varias muestras.
+
+# Enfermedad celiaca
+## Anemia ferropénica sin explicación
+C Mujer de 27 años con anemia ferropénica que no responde al hierro oral, distensión y heces blandas. Come pan y pasta a diario.
+P ¿Cuál es el primer estudio?
+* Anti-transglutaminasa IgA más IgA total, comiendo gluten :: Es el primer paso; la IgA total descarta deficiencia de IgA (falso negativo).
+- HLA-DQ2/DQ8 para confirmar :: El HLA sirve para descartar: solo 3–4 % de los portadores enferma.
+- Dieta sin gluten y ver si mejora :: Retirar el gluten antes de estudiarla vuelve negativas serología e histología.
+- Anticuerpos antigliadina :: Ya no son el estudio de elección†.
+- Colonoscopia :: La lesión está en el intestino delgado proximal.
+E Niños con tTG ≥10× LSN + antiendomisio positivo: diagnóstico sin biopsia. Adultos: biopsia duodenal.
+
+# Enfermedad de Crohn
+## Dolor en fosa iliaca derecha y fístula perianal
+C Hombre de 23 años, fumador, con 6 meses de diarrea, dolor en fosa iliaca derecha, pérdida de peso y una fístula perianal. Su hermano tiene enfermedad inflamatoria intestinal. La ileocolonoscopia muestra úlceras discontinuas en íleon terminal con mucosa sana entre ellas.
+P ¿Qué fármaco NO sirve para tratarlo?
+* Mesalazina (5-ASA) :: Los 5-ASA no sirven en Crohn; son el pilar de la colitis ulcerosa leve-moderada.
+- Infliximab (anti-TNF) :: Es útil, sobre todo en enfermedad perianal o grave.
+- Budesonida :: Sirve para inducir en enfermedad ileal leve.
+- Prednisona para inducir remisión :: Los esteroides inducen, pero no mantienen.
+- Azatioprina como mantenimiento :: Las tiopurinas sirven para mantener.
+E Crohn es transmural, discontinuo y segmentario. 1 de cada 5 debuta con enfermedad perianal; el granuloma se ve en <20 % de las biopsias.
+
+# Colitis ulcerosa (CUCI)
+## Colitis grave que no responde
+C Mujer de 30 años con CUCI pancolónica. Lleva 3 días hospitalizada con 9 evacuaciones con sangre al día, FC 110, fiebre y PCR alta, a pesar de metilprednisolona IV. Cultivos y C. difficile negativos.
+P ¿Cuál es el siguiente paso?
+* Rescate con infliximab o ciclosporina :: Si no responde al día 3 de esteroide IV se da rescate; colectomía si no mejora en 4–7 días.
+- Agregar mesalazina oral y esperar 2 semanas :: En colitis grave aguda no se espera tanto: el riesgo de colectomía urgente aumenta.
+- Suspender la heparina profiláctica por el sangrado :: La heparina profiláctica está indicada aunque haya rectorragia.
+- Colonoscopia completa urgente :: En colitis grave hay riesgo de perforación; se evalúa con rectosigmoidoscopia†.
+- Alta con budesonida oral :: Es una colitis grave que requiere hospitalización.
+E La plasmocitosis basal es el dato histológico más temprano y útil. Primera colonoscopia de vigilancia a los 8 años del inicio.
+
+# SII y trastornos intestinales
+## Dolor que mejora al evacuar
+C Mujer de 26 años con 1 año de dolor abdominal 4 días al mes, que mejora al evacuar y se acompaña de evacuaciones más frecuentes y blandas. Sin sangre, pérdida de peso, anemia ni antecedente familiar de cáncer. La calprotectina fecal es de 30 µg/g.
+P ¿Cuál es la conducta más adecuada?
+* Hacer diagnóstico positivo de SII con diarrea y tratar el síntoma dominante :: El SII es un diagnóstico positivo, no de exclusión; sin alarma, pruebas limitadas.
+- Colonoscopia para descartar EII antes de diagnosticar :: Calprotectina ≤50 µg/g tiene VPN de 99.8 % para EII.
+- Tomografía de abdomen :: No está indicada sin datos de alarma.
+- Dieta sin gluten de por vida :: No hay evidencia de enfermedad celiaca.
+- Diagnosticar diarrea funcional :: En la diarrea funcional no predomina el dolor.
+E Roma V: dolor o molestia ≥3 días al mes con ≥2 de: relación con la defecación, cambio de frecuencia o de forma. Subtipo por Bristol (regla del 25 %).
+
+# Estreñimiento crónico
+## Escalera de tratamiento
+C Mujer de 55 años con estreñimiento crónico sin datos de alarma. Aumentó fibra y agua por 6 semanas sin mejoría.
+P ¿Cuál es el siguiente escalón?
+* Polietilenglicol (PEG) :: La escalera es estilo de vida y fibra → PEG → + estimulante → prucaloprida → secretagogo, 4–8 semanas cada uno.
+- Colectomía subtotal :: Solo en casos muy seleccionados tras discusión multidisciplinaria.
+- Biofeedback sin haber hecho pruebas :: Es para la disinergia demostrada con pruebas anorrectales.
+- Linaclotida como primer fármaco :: Los secretagogos son el último escalón.
+- Enemas diarios indefinidos :: No forman parte de la escalera habitual†.
+E Si no responde a la escalera: pruebas anorrectales; >80 % tiene rasgos de trastorno de evacuación. Expulsión normal del balón: 1–3 min.
+
+# Hemorragia digestiva baja
+## Hematoquecia con inestabilidad
+C Hombre de 74 años con diverticulosis que llega con hematoquecia abundante, FC 122 y TA 86/50 a pesar de 2 L de cristaloide. La aspiración y la endoscopía superior no muestran sangrado alto.
+P ¿Cuál es el siguiente estudio?
+* Angio-TC; si hay extravasación, arteriografía con embolización pronto :: Con sangrado activo e inestabilidad la angio-TC va primero; la arteriografía en los 90 min siguientes.
+- Colonoscopia urgente sin preparación :: La colonoscopia no urgente no es peor y la urgente no es la primera opción en el inestable.
+- Ácido tranexámico IV :: No se usa en HDB.
+- Gammagrafía con eritrocitos marcados como estudio inicial :: Detecta flujos bajos pero no permite tratar y retrasa el manejo†.
+- Alta con colonoscopia ambulatoria :: Oakland ≤8 es para el estable de bajo riesgo, no para él.
+E En inestabilidad, piensa en una fuente alta (15 %). Transfundir con Hb <7 g/dL (8 si hay enfermedad cardiovascular).
+
+# Pruebas de función hepática alteradas
+## Patrón hepatocelular contra colestásico
+C Hombre de 45 años asintomático con ALT 330 U/L (LSN 33) y FA 130 U/L (LSN 120) en un chequeo.
+P ¿Qué patrón tiene según el factor R?
+* Hepatocelular (R ≈ 9) :: R = (ALT/LSN) ÷ (FA/LSN) = 10 ÷ 1.08 ≈ 9; R > 5 es hepatocelular.
+- Colestásico :: Sería R < 2.
+- Mixto :: Sería R entre 2 y 5.
+- Falla hepática aguda :: El factor R no mide función; la función se ve con bilirrubina, TP y albúmina.
+- Gilbert :: Da bilirrubina indirecta aislada, no ALT alta.
+E Antes de estudiar: repetir el panel y suspender alcohol y hepatotóxicos. Estudios iniciales: VHB, VHC, ferritina, saturación de transferrina y US.
+
+## AST/ALT mayor de 2
+C Hombre de 50 años que bebe 6 cervezas diarias desde hace 20 años. AST 168 U/L, ALT 72 U/L, GGT alta, VCM 104.
+P ¿Qué sugiere el cociente AST/ALT?
+* Enfermedad hepática asociada al alcohol :: AST/ALT > 2 la sugiere (déficit de piridoxina); AST > 400 U/L la hace improbable.
+- Hepatitis viral aguda :: Da ALT muy alta, mayor que AST.
+- Hepatitis isquémica :: Da elevaciones masivas (>10× LSN) en un paciente crítico.
+- MASLD :: Suele tener ALT ≥ AST.
+- Colestasis extrahepática :: El patrón sería de FA y GGT con bilirrubina.
+E AST > ALT con FA baja en un cuadro agudo: piensa en enfermedad de Wilson.
+
+# Hepatitis virales de la A a la E
+## Interpretar la serología del VHB
+C Mujer de 22 años con ictericia, coluria y ALT de 1 800 U/L tras una relación sexual sin protección hace 2 meses. HBsAg positivo, anti-HBc IgM positivo, anti-HBs negativo.
+P ¿Cuál es el diagnóstico?
+* Hepatitis B aguda :: HBsAg + anti-HBc IgM = infección aguda.
+- Hepatitis B crónica :: Se define por HBsAg o ALT por más de 6 meses; la IgM indica infección reciente.
+- Vacunación previa :: El vacunado solo tiene anti-HBs.
+- Infección resuelta :: El curado tiene anti-HBc IgG + anti-HBs, sin HBsAg.
+- Periodo de ventana :: En la ventana el único marcador positivo es anti-HBc IgM (HBsAg ya negativo).
+E Primera línea del VHB crónico: entecavir, tenofovir disoproxil o tenofovir alafenamida, por su alta barrera genética.
+
+## Anti-VHC positivo
+C Hombre de 48 años transfundido en 1990. En un tamizaje sale anti-VHC (EIA) positivo. Está asintomático y la ALT es levemente alta.
+P ¿Cuál es el siguiente paso?
+* ARN-VHC para confirmar infección activa :: El anticuerpo solo indica contacto; el ARN-VHC confirma.
+- Iniciar interferón pegilado :: Hoy se tratan con antivirales de acción directa, no con interferón.
+- Biopsia hepática antes de cualquier otra cosa :: No es el siguiente paso.
+- Repetir el anticuerpo en 6 meses :: Retrasa el diagnóstico sin aportar.
+- Vacunarlo contra hepatitis C :: No existe vacuna contra el VHC.
+E Pangenotípicos: sofosbuvir/velpatasvir y glecaprevir/pibrentasvir. Meta: respuesta viral sostenida a 12 semanas.
+
+# Hepatitis autoinmune
+## Hepatitis con IgG alta
+C Mujer de 19 años con fatiga, ictericia y ALT 12 veces el LSN. Serología viral negativa, ceruloplasmina normal y sin fármacos. ANA y anti-músculo liso positivos e IgG elevada.
+P ¿Qué se necesita para confirmar el diagnóstico?
+* Biopsia hepática (hepatitis de interfase, emperipolesis, rosetas) :: En HAI la biopsia es obligatoria; con el score simplificado ≥7 = definitiva.
+- Anticuerpos antimitocondriales :: Son de la colangitis biliar primaria.
+- Colangiorresonancia :: Se usa en colangitis esclerosante, no para HAI.
+- Ninguno: iniciar trasplante :: Primero se confirma y se trata con inmunosupresión.
+- Prueba terapéutica con AUDC :: El AUDC es para la CBP.
+E Inducción: prednisolona 0.5 mg/kg/día y azatioprina a las 2 semanas. Meta: ALT e IgG normales.
+
+# Colangitis biliar primaria
+## Colestasis en mujer con prurito
+C Mujer de 52 años con prurito y fatiga de 1 año, ojos y boca secos. FA 2.8× LSN, GGT alta, bilirrubina normal. US sin dilatación de la vía biliar. Anticuerpos antimitocondriales 1:160.
+P ¿Cuál es el tratamiento de primera línea?
+* Ácido ursodesoxicólico 13–15 mg/kg/día, de por vida :: Es el tratamiento de primera línea para todos.
+- Prednisona y azatioprina :: Es el tratamiento de la hepatitis autoinmune.
+- CPRE con esfinterotomía :: La CBP afecta conductos pequeños; no hay obstrucción.
+- Colecistectomía :: No hay litiasis.
+- Solo antihistamínico :: Trata el prurito pero no la enfermedad.
+E Respuesta al año: FA <1.5× LSN con bilirrubina normal. >90 % tiene AMA; si son negativos, buscar anti-sp100 y anti-gp210.
+
+# Cirrosis: prevenir la descompensación y la muerte
+## Hipertensión portal clínicamente significativa
+C Hombre de 57 años con cirrosis por VHC ya curado. Sin ascitis, sangrado ni encefalopatía. Elastografía hepática 28 kPa, plaquetas 98 × 10⁹/L.
+P ¿Qué se recomienda?
+* Iniciar carvedilol para prevenir la descompensación :: RH ≥25 kPa confirma HPCS; los BBNS reducen a la mitad la descompensación o muerte (PREDESCI).
+- Endoscopía de escrutinio y solo ligadura :: Quien toma BBNS no necesita endoscopía de escrutinio.
+- Esperar a que aparezcan várices grandes :: Con HPCS el riesgo de descompensar ya está aumentado.
+- TIPS preventivo :: Es para hemorragia variceal de alto riesgo, no para la cirrosis compensada.
+- Propranolol solo si hay ascitis :: El objetivo es evitar la primera descompensación.
+E RH ≤15 kPa con plaquetas ≥150 × 10⁹/L descarta HPCS. Carvedilol ≤12.5 mg/día baja la presión portal casi sin hipotensión.
+
+# Hipertensión portal y cirrosis descompensada: Baveno VIII
+## Primera descompensación
+C Mujer de 60 años con cirrosis por MASLD. Se le encuentra encefalopatía encubierta en pruebas psicométricas, una pequeña cantidad de ascitis solo visible por ultrasonido y sangre oculta en heces positiva.
+P Según Baveno VIII, ¿cuál de estos sí sería una primera descompensación?
+* Ascitis clínicamente evidente :: Cuentan ascitis clínica, hemorragia variceal o encefalopatía manifiesta grado ≥II.
+- Ascitis visible solo por ultrasonido :: La ascitis solo por imagen no cuenta.
+- Encefalopatía encubierta :: Solo cuenta la encefalopatía manifiesta (West Haven ≥II).
+- Sangre oculta en heces positiva :: El sangrado oculto no cuenta como descompensación.
+- Plaquetas menores de 150 × 10⁹/L :: Sugieren hipertensión portal, pero no es descompensación.
+E En la hemorragia variceal aguda: vasoactivo 2–5 días, cefalosporina de 3.ª generación, Hb meta 7–8 g/dL, endoscopía ≤12 h y ligadura.
+
+# Litiasis biliar
+## Cólico biliar
+C Mujer de 41 años, con obesidad y 3 embarazos, que presenta dolor en hipocondrio derecho de 40 minutos después de comer grasa, irradiado a la escápula derecha, que cede con analgésico. Afebril, sin ictericia.
+P ¿Cuál es el estudio de elección y el tratamiento definitivo?
+* Ultrasonido abdominal; colecistectomía laparoscópica, de preferencia temprana :: US con exactitud >95 % para cálculos en vesícula; la litiasis sintomática se opera.
+- TC de abdomen; ácido ursodesoxicólico :: El estudio inicial es el US y el AUDC ya no se usa para la vesícula.
+- CPRE; esfinterotomía :: La CPRE es para coledocolitiasis.
+- Colangiorresonancia; observación :: La CPRM se usa para el colédoco; la litiasis sintomática no se observa.
+- Ultrasonido; litotricia :: La litotricia ya no se usa para la vesícula.
+E Asintomático: no colecistectomía de rutina, salvo vesícula en porcelana. Pancreatitis biliar leve: colecistectomía en la misma hospitalización.
+
+# Colangitis aguda: guías de Tokio 2018
+## Colangitis moderada
+C Hombre de 78 años con fiebre de 39.2 °C, ictericia y dolor en hipocondrio derecho. Leucocitos 15 800, BT 4.1 mg/dL, FA 3× LSN. US: colédoco dilatado con lito. TA 128/72, alerta, creatinina y plaquetas normales.
+P ¿Qué grado de gravedad tiene y qué manejo necesita?
+* Grado II (moderado): antibiótico y drenaje biliar temprano :: Tiene ≥2 factores de grado II (leucocitos >12 000, fiebre ≥39 °C, edad ≥75) sin disfunción orgánica.
+- Grado I: solo antibiótico :: No cumple: ya tiene 3 criterios de grado II.
+- Grado III: soporte orgánico y drenaje urgente :: Requiere al menos una disfunción orgánica, que no tiene.
+- El diagnóstico descansa en la tríada de Charcot, no en los criterios TG18 :: Charcot es muy específica pero poco sensible (~26 % en series recientes) y no es criterio diagnóstico.
+- Colecistectomía urgente como primer paso :: La causa se trata cuando mejora el paciente; primero se drena la vía biliar.
+E Diagnóstico definitivo TG18: A (inflamación sistémica) + B (colestasis) + C (imagen). En grado II, drenar en <24 h baja la mortalidad (1.7 % vs 3.4 %).
+
+## ¿Sospecha o diagnóstico definitivo?
+C Mujer de 66 años con fiebre de 38.6 °C y PCR alta. Bilirrubina 2.6 mg/dL y GGT 2× LSN. El ultrasonido todavía no se ha hecho.
+P Según TG18, ¿cómo se clasifica?
+* Sospecha de colangitis aguda :: Tiene A (inflamación) + B (colestasis), sin C (imagen): 1 de A + 1 de B o C = sospecha.
+- Diagnóstico definitivo :: Requiere además un criterio C de imagen (dilatación biliar o causa).
+- No cumple criterios :: Sí cumple la sospecha.
+- Colecistitis aguda grado I :: Los criterios de colecistitis son distintos y no hay datos locales de vesícula.
+- Colangitis grado III :: La gravedad se gradúa por disfunción orgánica, que no se menciona.
+E La inflamación sistémica (criterio A) siempre es necesaria.
+
+# Pancreatitis aguda
+## Diagnóstico y causa
+C Mujer de 46 años con dolor epigástrico intenso irradiado a la espalda desde hace 10 h y vómito. Lipasa 4.5 veces el LSN. No bebe alcohol. Triglicéridos 190 mg/dL.
+P ¿Qué estudio de imagen se pide primero y para qué?
+* Ultrasonido transabdominal, para buscar la causa (litos biliares) :: Ya cumple 2 de 3 criterios; el US busca la causa n.º 1 (litos, ~50 %).
+- TC con contraste para confirmar el diagnóstico :: Con dolor típico y lipasa ≥3× no se necesita TC para diagnosticar.
+- Colangiorresonancia de rutina :: No es el estudio inicial.
+- CPRE inmediata :: Solo si hay colangitis u obstrucción persistente†.
+- Ninguno, porque la lipasa ya la explica :: Siempre se busca la causa con US.
+E Atlanta revisada: leve (sin falla ni complicaciones), moderadamente grave (falla <48 h o complicaciones locales), grave (falla orgánica persistente >48 h).
+
+## Líquidos en las primeras 24 h
+C Hombre de 39 años con pancreatitis aguda por alcohol, FC 108, TA 112/70 y uresis baja. Sin insuficiencia cardiaca ni renal.
+P ¿Cuál es la hidratación recomendada en las primeras 24 h?
+* Ringer lactato a 5–10 mL/kg/h, con metas de FC y uresis >0.5 mL/kg/h, evitando la sobrecarga :: Es la recomendación de la revisión de la guía.
+- Solución salina a 20 mL/kg/h por 48 h :: La hidratación agresiva sobrecarga sin beneficio†.
+- Restringir líquidos para no dar edema pulmonar :: La hipovolemia empeora el pronóstico; se hidrata con metas.
+- Coloides como primera elección :: Se prefiere Ringer lactato.
+- Ayuno y nutrición parenteral total desde el día 1 :: Se prefiere vía oral temprana o sonda enteral en 48 h.
+E Dolor: opioides seguros al inicio. Necrosis infectada: abordaje escalonado (step-up).
+
+# Detección y referencia oportuna del cáncer gastrointestinal (AMG)
+## Disfagia progresiva
+C Hombre de 64 años, fumador y bebedor, con disfagia progresiva de sólidos a líquidos en 3 meses y pérdida no intencionada de 12 % del peso en 6 meses. Hb 12.1 g/dL.
+P ¿Cuál es la conducta en primer nivel?
+* Referir de forma prioritaria (≤2 semanas) para endoscopía con biopsias :: La pérdida de peso >10 % y la disfagia progresiva son datos de alarma; la EDA con biopsias es el estudio de elección.
+- Pedir esofagograma con bario como estudio inicial :: No se recomiendan bario, TC ni marcadores tumorales como estudio inicial.
+- Prueba terapéutica con IBP por 8 semanas :: Retrasa el diagnóstico de un probable cáncer.
+- Pedir marcadores tumorales (CEA, CA 19-9) :: No sirven como estudio inicial.
+- Referencia electiva en 3 meses :: La electiva es ≤4–6 semanas y no aplica con datos de alarma.
+E La disfagia es el dato de alarma más frecuente (61 %) en cáncer de esófago. Urgente (<24 h): sangrado inestable, obstrucción, perforación.
+
+# Enfermedad hepática esteatósica asociada a disfunción metabólica (MASLD)
+## Estratificar la fibrosis
+C Hombre de 52 años con DM2, obesidad y esteatosis en el ultrasonido. No bebe alcohol. ALT 58 U/L. FIB-4 de 1.9.
+P ¿Cuál es el siguiente paso?
+* Elastografía transitoria (VCTE) porque el FIB-4 es indeterminado :: FIB-4 <1.3 bajo, 1.3–2.67 indeterminado, >2.67 alto; el indeterminado va a VCTE.
+- Biopsia hepática de inmediato :: Primero se estratifica con pruebas no invasivas.
+- Tranquilizar y repetir FIB-4 en 5 años :: Eso sería con FIB-4 <1.3.
+- Iniciar resmetirom sin más estudios :: Es para MASH con fibrosis moderada a avanzada demostrada.
+- Pedir anticuerpos antimitocondriales :: No corresponde a esteatosis metabólica.
+E VCTE ≥8.0 kPa → hepatólogo. Pérdida de peso: ≥5 % esteatosis, 7–10 % inflamación, ≥10 % fibrosis. La primera causa de muerte es cardiovascular.

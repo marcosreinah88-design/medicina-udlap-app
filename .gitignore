@@ -9,3 +9,4 @@ seed-cto.json
 *.p12
 .env
 .env.*
+tools-oftalmo/__pycache__/

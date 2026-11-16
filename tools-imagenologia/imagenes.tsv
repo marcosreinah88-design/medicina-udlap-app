@@ -1,0 +1,42 @@
+# tema	archivo	pie	crédito
+historia	historia-linea.svg	Línea del tiempo: de Röntgen (1895) al Nobel de la RM (2003)	Esquema propio con los datos de tus apuntes
+historia	historia-mano-bertha.webp	Una de las primeras radiografías: la mano de Bertha Röntgen (1895), con su anillo	W. C. Röntgen (dominio público), vía OpenStax College Physics 2e, «Photon Energies and the Electromagnetic Spectrum» · CC BY 4.0
+rx	rx-5-densidades.svg	Las 5 densidades radiológicas, de radiolúcido a radiopaco	Esquema propio
+rx	rx-mano.webp	Radiografía de mano: el hueso (calcio) absorbe más rayos X y se ve blanco	Trace Meek (Flickr), vía OpenStax Anatomy & Physiology 2e, «Medical Imaging» · CC BY 4.0
+rx	rx-torax-marcapasos.webp	Tórax PA con marcapasos: el metal es la densidad más blanca	Sunzi99 (Wikimedia Commons), vía OpenStax College Physics 2e, «X Rays: Atomic Origins and Applications» · CC BY 4.0
+rx	rx-torax-valvulas.webp	Tórax con válvulas protésicas, marcapasos y cerclajes esternales (densidad metal)	P. P. Urone, vía OpenStax College Physics 2e, «The Electromagnetic Spectrum» · CC BY 4.0
+rx	rx-panoramica.webp	Radiografía panorámica dental: las amalgamas (metal) se ven más blancas que el esmalte	Dmitry G (Wikimedia Commons), vía OpenStax College Physics 2e, «X Rays: Atomic Origins and Applications» · CC BY 4.0
+tc	tc-hounsfield.svg	Escala Hounsfield y ventanas de TC (valores de tus apuntes)	Esquema propio
+tc	tc-equipo.webp	Paciente dentro del gantry de un tomógrafo	Rebecca Moat, U.S. Navy (dominio público), vía OpenStax College Physics 2e · CC BY 4.0
+tc	tc-cortes-craneo.webp	TC de cráneo impresa: cortes axiales sucesivos	Akira Ohgaki (Flickr), vía OpenStax Anatomy & Physiology 2e, «Medical Imaging» · CC BY 4.0
+tc	tc-craneo-3d.webp	Reconstrucción 3D de cráneo a partir de los cortes de TC	Emailshankar (Wikimedia Commons), vía OpenStax College Physics 2e · CC BY 4.0
+rad	rad-dental-proteccion.webp	Protección en radiografía dental: colimador y mandil de plomo (barreras secundarias)	OpenStax College Physics 2e, «Biological Effects of Ionizing Radiation» · CC BY 4.0 (rótulos traducidos)
+eco	eco-ecogenicidad.svg	Escala de grises y artefactos: sombra, refuerzo posterior y reverberación	Esquema propio
+eco	eco-transductores.svg	Transductores: frecuencia, profundidad y uso	Esquema propio con los datos de tus apuntes
+eco	eco-estudio.webp	Ecografía obstétrica transabdominal en curso	COD Newsroom (Flickr), vía OpenStax College Physics 2e, «Ultrasound» · CC BY 4.0
+eco	eco-feto-12sem.webp	Modo B: feto de 12 semanas (líquido amniótico anecoico)	CDC Public Health Image Library (dominio público), vía OpenStax College Physics 2e · CC BY 4.0
+eco	eco-obstetrico.webp	Ecografía obstétrica: no usa radiación ionizante	«Isis» (Wikimedia Commons), vía OpenStax Anatomy & Physiology 2e, «Medical Imaging» · CC BY 4.0
+eco	eco-3d.webp	Ecografía 3D/4D de un feto	Jennie Cu (Wikimedia Commons), vía OpenStax College Physics 2e · CC BY 4.0
+doppler	doppler-color.svg	Doppler color: rojo se acerca al transductor, azul se aleja	Esquema propio
+doppler	doppler-carotida.webp	Doppler color de carótida interna con estenosis: en la zona estrecha el flujo es más rápido (aliasing, colores mezclados)	Arning C, Grzyska U (Wikimedia Commons), vía OpenStax College Physics 2e, «Ultrasound» · CC BY 4.0
+rm	rm-t1-t2.svg	Cómo se ve cada tejido en T1 y T2	Esquema propio
+rm	rm-equipo.webp	Resonador de campo cerrado (túnel)	Bill McChesney (Flickr), vía OpenStax College Physics 2e · CC BY 4.0
+rm	rm-equipo-2.webp	Equipo de RM con la mesa del paciente	«Petmr» (Wikimedia Commons), vía OpenStax Anatomy & Physiology 2e, «Medical Imaging» · CC BY 4.0
+rm	rm-tc-encefalitis.webp	Encefalitis: TC (izquierda) y RM (derecha) del mismo cerebro; la RM muestra mejor las lesiones (flechas)	CDC (dominio público), vía OpenStax Microbiology, «Acellular Diseases of the Nervous System» · CC BY 4.0
+rm	rm-funcional.webp	RM funcional: zona que se activa al reconocer caras	NIH (Wikimedia Commons), vía OpenStax College Physics 2e · CC BY 4.0
+contraste	contraste-fases.svg	Fases de la TC con contraste yodado	Esquema propio · † tiempos aproximados, no venían en el apunte
+contraste	contraste-coronariografia.webp	Coronariografía: el contraste yodado dibuja la luz de las arterias y muestra dos obstrucciones	OpenStax Anatomy & Physiology 2e, «Heart Anatomy» · CC BY 4.0 (rótulos traducidos)
+evc	evc-hemorragia-tc.webp	TC simple: hemorragia intraparenquimatosa hiperdensa con halo hipodenso de edema	James Heilman, vía OpenStax Anatomy & Physiology 2e, «Overview of the Neurological Exam» · CC BY 4.0
+evc	evc-hemorragia-esquema.webp	Esquema de la misma hemorragia: sangre con edema que desplaza el ventrículo lateral	OpenStax Anatomy & Physiology 2e · CC BY 4.0
+hsa	hsa-esquema-fisher.svg	HSA en TC (estrella hiperdensa) y escala de Fisher	Esquema propio con los datos de tus apuntes
+edema	edema-tipos.svg	Edema citotóxico vs vasogénico en TC	Esquema propio
+edema	evc-hemorragia-tc.webp	Edema vasogénico: halo hipodenso alrededor de un hematoma, con efecto de masa	James Heilman, vía OpenStax Anatomy & Physiology 2e · CC BY 4.0
+aprox-snc	snc-extraaxial.svg	Signos de lesión extraaxial	Esquema propio con los datos de tus apuntes
+aprox-snc	snc-neurocisticercosis.webp	TC sagital y axial: neurocisticercosis, múltiples lesiones quísticas (flechas). Diagnóstico diferencial de lesiones múltiples	Segamwenge IL, Kioko NP (modificado), vía OpenStax Microbiology, «Fungal and Parasitic Diseases of the Nervous System» · CC BY 4.0
+tele	tele-normal.webp	Telerradiografía de tórax PA normal, para comparar	Hannover Medical School, covid-19-image-repository (ml-workgroup, GitHub) · CC BY 3.0
+neumonia	neumonia-infiltrado.webp	Infiltrado sugestivo de neumonía (círculo)	OpenStax Microbiology, «Foundations of Modern Cell Theory» · CC BY 4.0
+neumonia	neumonia-normal.webp	Pulmones normales, para comparar	OpenStax Microbiology · CC BY 4.0
+neumonia	neumonia-cavitacion.webp	Infiltrado bilateral con cavitación apical derecha (flechas negras)	CDC (dominio público), vía OpenStax Microbiology · CC BY 4.0
+neumonia	neumonia-aspergiloma.webp	Bola fúngica (aspergiloma) en lóbulo superior derecho (círculo)	CDC (dominio público), vía OpenStax Microbiology, «Respiratory Mycoses» · CC BY 4.0
+mama	mama-birads.svg	Categorías BI-RADS y conducta	Esquema propio · † rangos del ACR BI-RADS 5ª ed., no venían en el apunte
+mama	mama-proyecciones.svg	Proyecciones craneocaudal y mediolateral oblicua	Esquema propio

@@ -13,6 +13,7 @@
 # Membrana, transporte y potencial de reposo
 > El potencial de reposo depende sobre todo del K⁺ y lo mantiene la bomba Na⁺/K⁺-ATPasa.
 ## Tipos de transporte
+^ transporte.svg :: Transporte pasivo (a favor del gradiente, sin ATP) y activo: la **Na⁺/K⁺-ATPasa** saca 3 Na⁺ y mete 2 K⁺; el **SGLT** aprovecha ese gradiente de Na⁺ para meter glucosa. :: Esquema propio
 | Tipo ¦ Energía ¦ Ejemplo
 | Difusión simple ¦ Gradiente ¦ O₂, CO₂, lípidos
 | Difusión facilitada ¦ Gradiente, con canal o transportador ¦ GLUT, canales iónicos
@@ -50,6 +51,7 @@ Q Paciente con Na⁺ 140, glucosa 180 mg/dL y BUN 28 mg/dL. Osmolalidad calculad
 # Potencial de acción y sinapsis
 > Señal todo o nada: entrada de Na⁺ (despolarización) y salida de K⁺ (repolarización).
 ## Fases del potencial de acción
+^ pa-neuronal.svg :: Potencial de acción neuronal: entra Na⁺ (despolarización), sale K⁺ (repolarización) y el K⁺ cierra tarde (hiperpolarización). En rojo y amarillo, los periodos refractarios. :: Esquema propio
 = Potencial de acción neuronal :: Estímulo → Umbral (~−55 mV) → Se abren canales de Na⁺ dependientes de voltaje: despolarización hasta ~+30 mV → Se inactivan los de Na⁺ y se abren los de K⁺: repolarización → Hiperpolarización posterior → Reposo (−70 mV)
 ~ Periodo refractario absoluto :: Los canales de Na⁺ están inactivados: ningún estímulo genera otro potencial.
 ~ Periodo refractario relativo :: Se puede generar otro potencial, pero con un estímulo mayor.
@@ -57,6 +59,7 @@ Q Paciente con Na⁺ 140, glucosa 180 mg/dL y BUN 28 mg/dL. Osmolalidad calculad
 ! Tetrodotoxina (pez globo) y anestésicos locales (lidocaína) bloquean los canales de Na⁺ → no hay potencial de acción.
 + **Anestésicos locales**: bloquean primero las fibras delgadas (dolor y temperatura), después tacto y al final las motoras.
 ## Sinapsis química
+^ sinapsis.svg :: Sinapsis química: el Ca²⁺ que entra a la terminal dispara la exocitosis; el neurotransmisor actúa en el receptor y se retira por recaptura o por una enzima. :: Esquema propio
 = Transmisión sináptica :: Potencial de acción llega a la terminal → Se abren canales de Ca²⁺ → Exocitosis del neurotransmisor (SNARE) → Se une a receptores postsinápticos → Potencial postsináptico → Se elimina el neurotransmisor (recaptura o degradación)
 - Receptores **ionotrópicos** (canales, rápidos) o **metabotrópicos** (proteína G, lentos).
 | Potencial postsináptico ¦ Neurotransmisor ¦ Ion
@@ -75,6 +78,8 @@ Q ¿Qué se pierde primero con un anestésico local? :: *Dolor y temperatura :: 
 # Fisiología muscular
 > Acoplamiento excitación-contracción: el Ca²⁺ conecta el potencial de acción con los puentes cruzados.
 ## Músculo esquelético
+^ sarcomero.svg :: Al contraerse, los filamentos se deslizan: los discos Z se acercan y se acortan la banda I y la zona H; la **banda A no cambia**. :: Esquema propio
+^ longitud-tension.svg :: La tensión es máxima con la superposición óptima de actina y miosina (≈ 2.0–2.2 µm); muy corto o muy estirado, la fuerza cae. :: Esquema propio
 = Acoplamiento excitación-contracción :: Potencial de acción → Túbulo T → Receptor de dihidropiridina (sensor de voltaje) → Receptor de rianodina libera Ca²⁺ del retículo → Ca²⁺ se une a troponina C → La tropomiosina se desplaza → Puente cruzado actina-miosina → ATP suelta la miosina → SERCA recapta el Ca²⁺ y el músculo se relaja
 ! **Rigor mortis**: sin ATP la miosina queda unida a la actina.
 - Relación **longitud-tensión**: hay una longitud óptima del sarcómero con la máxima superposición útil de filamentos.
@@ -98,6 +103,7 @@ Q La nitroglicerina relaja el músculo liso vascular a través de: :: *Aumento d
 # Fisiología cardiaca
 > El corazón como bomba eléctrica y mecánica.
 ## Potenciales de acción cardiacos
+^ pa-cardiaco.svg :: Miocito ventricular (fases 0–4, con meseta de Ca²⁺) frente al nodo sinusal, que sube solo en la fase 4 por la corriente funny. :: Esquema propio
 | Fase ¦ Ventrículo (respuesta rápida) ¦ Nodo SA (marcapaso)
 | 0 ¦ Entrada rápida de Na⁺ ¦ Entrada de Ca²⁺
 | 1 ¦ Salida transitoria de K⁺ ¦ —
@@ -106,6 +112,7 @@ Q La nitroglicerina relaja el músculo liso vascular a través de: :: *Aumento d
 | 4 ¦ Reposo estable ¦ Despolarización espontánea (corriente funny If, Na⁺)
 - El **simpático** aumenta la pendiente de la fase 4 (↑ FC); el **vago** la disminuye.
 ## Electrocardiograma
+^ ecg.svg :: Ondas, segmento e intervalos de un latido normal con sus valores. :: Esquema propio
 | Onda o intervalo ¦ Representa ¦ Normal
 | P ¦ Despolarización auricular ¦ —
 | PR ¦ Conducción auricular y retraso en el nodo AV ¦ 0.12–0.20 s
@@ -114,9 +121,13 @@ Q La nitroglicerina relaja el músculo liso vascular a través de: :: *Aumento d
 | QT ¦ Sístole eléctrica ventricular ¦ Depende de la FC
 ! QT largo predispone a **torsades de pointes** (hipopotasemia, hipomagnesemia, macrólidos, antipsicóticos, ondansetrón).
 ## Ciclo cardiaco
+^ wiggers.svg :: Diagrama de Wiggers: presiones de aorta, ventrículo y aurícula izquierdos, volumen ventricular, ECG y ruidos en las 6 fases del ciclo. :: Esquema propio
 = Ciclo cardiaco :: Contracción isovolumétrica (todas las válvulas cerradas; R1 al cerrar las AV) → Eyección → Relajación isovolumétrica (R2 al cerrar las semilunares) → Llenado rápido → Llenado lento → Sístole auricular
 + **S3**: llenado rápido en un ventrículo dilatado (insuficiencia cardiaca). **S4**: contracción auricular contra un ventrículo rígido (hipertrofia).
 ## Gasto cardiaco y Frank-Starling
+^ presion-volumen.svg :: Asa presión-volumen del ventrículo izquierdo: sus 4 fases, las válvulas que abren y cierran, y el volumen latido (VTD − VTS). :: Esquema propio
+^ pv-cambios.svg :: Cómo se deforma el asa al subir la precarga, la poscarga o la contractilidad. :: Esquema propio
+^ frank-starling.svg :: Curvas de Frank-Starling: el inotropismo las sube y la insuficiencia cardiaca las aplana. :: Esquema propio
 % FC × VS :: gasto cardiaco
 % ≥ 55 % :: fracción de eyección normal (VS / volumen telediastólico)
 ~ Precarga :: Volumen telediastólico: cuánto se estira el ventrículo antes de contraerse.
@@ -144,12 +155,14 @@ Q La estimulación vagal reduce la frecuencia cardiaca porque: :: *Disminuye la 
 - Resistencias en serie se suman; en paralelo se reducen (por eso la resistencia sistémica total es baja comparada con la de cada órgano).
 ! Reducir el radio a la mitad aumenta la resistencia **16 veces** (r⁴).
 ## Reflejo barorreceptor (control rápido)
+^ barorreflejo.svg :: Asa del reflejo barorreceptor ante una caída de la presión arterial. :: Esquema propio
 = Caída de la presión arterial :: ↓ Estiramiento del seno carotídeo (IX) y del arco aórtico (X) → ↓ Disparo hacia el bulbo → ↑ Simpático y ↓ vago → Taquicardia, ↑ contractilidad y vasoconstricción → La presión se recupera
 + **Masaje del seno carotídeo**: activa los barorreceptores → reflejo vagal que puede terminar una taquicardia supraventricular.
 + **Hipotensión ortostática**: al ponerse de pie baja el retorno venoso; si falla el reflejo (disautonomía, diabetes, fármacos), la presión cae.
 ## Control a largo plazo
 - **Riñón** (volumen) y **SRAA**; **ADH**; **péptido natriurético auricular** (↑ natriuresis y vasodilatación).
 ## Fuerzas de Starling y edema
+^ starling-capilar.svg :: En el extremo arterial gana la presión hidrostática (filtración); en el venoso, la oncótica (reabsorción). Lo que sobra se lo llevan los linfáticos. :: Esquema propio
 | Fuerza ¦ Efecto sobre el líquido
 | Presión hidrostática capilar ¦ Lo saca del vaso
 | Presión oncótica intersticial ¦ Lo saca del vaso
@@ -168,6 +181,7 @@ Q Si el radio de una arteriola se duplica, la resistencia: :: *Disminuye 16 vece
 # Fisiología respiratoria
 > Ventilación, difusión, perfusión y transporte de gases.
 ## Volúmenes y capacidades
+^ volumenes.svg :: Espirograma con los 4 volúmenes y las capacidades que se forman al sumarlos (adulto promedio). :: Esquema propio
 % ~500 mL :: volumen corriente
 % ~150 mL :: espacio muerto anatómico
 ~ Capacidad residual funcional :: Volumen de reserva espiratoria + volumen residual; lo que queda al final de una espiración normal.
@@ -175,6 +189,7 @@ Q Si el radio de una arteriola se duplica, la resistencia: :: *Disminuye 16 vece
 ~ Volumen residual :: Lo que queda tras una espiración máxima; no se mide con espirometría.
 - **Ventilación alveolar** = (VC − espacio muerto) × FR.
 ## Espirometría
+^ flujo-volumen.svg :: Curvas flujo-volumen: la obstructiva es «excavada» y con aire atrapado; la restrictiva es pequeña y angosta. :: Esquema propio
 | Patrón ¦ FEV1/FVC ¦ Volúmenes ¦ Ejemplos
 | Obstructivo ¦ < 0.70 ¦ CPT normal o ↑ (atrapamiento) ¦ Asma, EPOC
 | Restrictivo ¦ Normal o ↑ ¦ CPT ↓ ¦ Fibrosis, obesidad, enfermedad neuromuscular
@@ -183,6 +198,8 @@ Q Si el radio de una arteriola se duplica, la resistencia: :: *Disminuye 16 vece
 - **Distensibilidad** (compliance): ↓ en fibrosis, ↑ en enfisema.
 - El **surfactante** reduce la tensión superficial (ley de Laplace: P = 2T/r) y evita el colapso de los alvéolos pequeños.
 ## Ventilación/perfusión
+^ vq-pulmon.svg :: De pie, la perfusión cae del todo hacia el vértice más que la ventilación: V/Q bajo en la base y alto en el vértice. :: Esquema propio
+^ vq-espectro.svg :: Los extremos del V/Q: cortocircuito (V/Q = 0) y espacio muerto (V/Q = ∞). :: Esquema propio
 | Situación ¦ V/Q ¦ Ejemplo
 | Ápice pulmonar (de pie) ¦ Alto ¦ Normal
 | Base pulmonar (de pie) ¦ Bajo ¦ Normal
@@ -206,6 +223,7 @@ Q En la base del pulmón de pie, la relación V/Q es: :: *Baja (más perfusión 
 # Fisiología renal
 > Filtración, reabsorción y secreción para mantener volumen, osmolalidad y electrolitos.
 ## Filtración glomerular
+^ arteriolas.svg :: Qué le pasa a la TFG al dilatar o contraer cada arteriola, y los fármacos que lo hacen. :: Esquema propio
 % ≈ 120 mL/min :: tasa de filtración glomerular
 % ≈ 20 % :: fracción de filtración (TFG / flujo plasmático renal)
 | Cambio ¦ Efecto en la TFG ¦ Ejemplo
@@ -221,11 +239,13 @@ Q En la base del pulmón de pie, la relación V/Q es: :: *Baja (más perfusión 
 ~ Creatinina :: Estima la TFG; la sobreestima un poco porque se secreta.
 ~ PAH :: Se filtra y se secreta casi por completo: mide el flujo plasmático renal efectivo.
 ## Concentración de la orina
+^ contracorriente.svg :: Multiplicador por contracorriente: la rama descendente pierde agua, la ascendente saca NaCl y deja un intersticio de hasta 1200 mOsm/kg; la ADH decide cuánta agua sale en el colector. :: Esquema propio
 = Orina concentrada :: El asa de Henle crea un intersticio medular hiperosmolar (hasta ~1200 mOsm/kg) por contracorriente → ↑ Osmolalidad plasmática → Hipotálamo libera ADH → ADH se une a V2 del túbulo colector → Inserta acuaporina 2 → El agua sale al intersticio → Orina concentrada
 - **Aldosterona**: en la célula principal ↑ ENaC y Na⁺/K⁺-ATPasa → reabsorbe Na⁺ y secreta K⁺; en las células intercaladas α estimula la secreción de H⁺.
 + **Diabetes insípida**: central (falta ADH) o nefrogénica (no responde; litio); orina abundante y diluida.
 + **SIADH**: exceso de ADH → hiponatremia euvolémica con orina concentrada (cáncer pulmonar de células pequeñas, fármacos).
 ## Diuréticos
+^ nefrona.svg :: La nefrona por segmentos: qué reabsorbe cada uno, con qué transportador y qué diurético lo bloquea. :: Esquema propio
 | Diurético ¦ Sitio ¦ Efecto clave
 | Acetazolamida ¦ TCP ¦ Inhibe la anhidrasa carbónica; acidosis
 | Furosemida ¦ Asa ascendente gruesa (NKCC2) ¦ El más potente; hipopotasemia, hipocalcemia
@@ -248,6 +268,7 @@ Q ¿Qué diurético puede causar hiperpotasemia? :: *Espironolactona :: Furosemi
 - **Reabsorbe** casi todo el HCO₃⁻ filtrado (85 % en el TCP).
 - **Genera** HCO₃⁻ nuevo al excretar H⁺ como **acidez titulable** (fosfato) y **amonio** (NH₄⁺, el principal y el que más se adapta).
 ## Abordaje de la gasometría
+^ gasometria.svg :: Algoritmo para leer una gasometría. :: Esquema propio
 = Paso a paso :: pH: ¿acidemia o alcalemia? → ¿Trastorno primario: PaCO₂ o HCO₃⁻? → ¿La compensación es la esperada? → En acidosis metabólica: brecha aniónica → Si la brecha está alta: ¿hay otro trastorno metabólico agregado?
 & Fórmula de Winter :: En acidosis metabólica, PaCO₂ esperada = 1.5 × HCO₃⁻ + 8 (± 2). Si la real es mayor, hay además acidosis respiratoria; si es menor, alcalosis respiratoria.
 | Trastorno respiratorio ¦ Compensación del HCO₃⁻ por cada 10 mmHg de PaCO₂
@@ -274,6 +295,7 @@ Q Paciente con crisis de ansiedad, hormigueo peribucal y espasmo carpopedal. Gas
 | Peptídicas (insulina, glucagón, ADH) ¦ Membrana ¦ AMPc, IP₃/Ca²⁺, tirosina cinasa
 | Esteroideas y tiroideas ¦ Intracelular o nuclear ¦ Modifican la transcripción de genes
 ## Eje tiroideo
+^ ejes.svg :: Ejes tiroideo y suprarrenal con su retroalimentación negativa (líneas rojas). :: Esquema propio
 = Eje tiroideo :: Hipotálamo: TRH → Adenohipófisis: TSH → Tiroides: T4 (mayor cantidad) y T3 → Tejidos convierten T4 en T3 (desyodasas) → T3 y T4 frenan TRH y TSH
 - Efectos: ↑ metabolismo basal, ↑ receptores β1, termogénesis y desarrollo del SNC.
 | Patrón ¦ TSH ¦ T4 libre
@@ -306,6 +328,7 @@ Q Las hormonas esteroideas actúan principalmente: :: *Sobre receptores intracel
 ## Control nervioso
 - **Sistema nervioso entérico**: plexo mientérico (Auerbach, motilidad) y submucoso (Meissner, secreción). El vago estimula; el simpático inhibe.
 ## Secreción gástrica
+^ celula-parietal.svg :: Célula parietal: acetilcolina, gastrina e histamina convergen en la bomba H⁺/K⁺, blanco de los IBP. :: Esquema propio
 = Fases :: Cefálica (ver, oler, pensar: vago) → Gástrica (distensión y proteínas: gastrina) → Intestinal (el quimo en el duodeno frena la secreción)
 - **Célula parietal**: secreta HCl por la **H⁺/K⁺-ATPasa** (bomba de protones, blanco del omeprazol).
 | Estímulo ¦ Receptor ¦ Fármaco que lo bloquea
@@ -322,6 +345,7 @@ Q Las hormonas esteroideas actúan principalmente: :: *Sobre receptores intracel
 | GIP ¦ K (duodeno) ¦ Incretina: ↑ insulina
 | Motilina ¦ M ¦ Complejo motor migratorio en ayuno
 ## Digestión y absorción
+^ tubo-digestivo.svg :: Hormonas de cada segmento y sitios clave de absorción. :: Esquema propio
 | Nutriente ¦ Digestión ¦ Absorción
 | Carbohidratos ¦ Amilasa → disacaridasas del borde en cepillo ¦ Glucosa y galactosa por SGLT1; fructosa por GLUT5
 | Proteínas ¦ Pepsina, tripsina (la activa la enterocinasa) ¦ Aminoácidos y péptidos pequeños

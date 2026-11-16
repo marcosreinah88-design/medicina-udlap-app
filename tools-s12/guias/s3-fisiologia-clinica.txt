@@ -6,10 +6,10 @@
 @codigo FCL
 @color #b3261e
 @icon fisio
-@sub Electrocardiograma · Arritmias · Hipertensión · Cardiopatía isquémica · Choque · Respiratorio · Neuro · Renal · Digestivo
+@sub Electrocardiograma: derivaciones, vectores, ondas y eje · Arritmias · Hipertensión · Cardiopatía isquémica · Choque · Respiratorio · Neuro · Renal · Digestivo
 @desc Tus notas de Notion de Fisiología Clínica ordenadas por sistema: del electrocardiograma y las arritmias a la hipertensión, el choque, la EPOC y el asma, las enfermedades neurodegenerativas, el riñón y el tubo digestivo. Corregido y completado donde hacía falta.
-@nota Fuente: tus notas de Notion (Medicina › 3er semestre › Fisiología clínica). **Corrección** = estaba mal en tus notas; † = no venía y se agregó para completar el tema.
-@kw fisiologia clinica fisiopatologia electrocardiograma ecg derivaciones onda p qrs segmento st intervalo qt frecuencia ritmo eje hipertrofia marcapasos corriente funny nodo sinusal arritmias reentrada automatismo pospotenciales flutter fibrilacion hipertension renina angiotensina aldosterona ara ii sartanes endotelio ateroesclerosis angina infarto insuficiencia cardiaca frank starling choque hipovolemico cardiogenico distributivo septico anafilactico neurogenico sdra epoc enfisema bronquitis cronica asma cancer pulmonar egfr fibrosis pulmonar sistema nervioso neuronas glia sinapsis depresion serotonina dopamina noradrenalina neurodegenerativas alzheimer amiloide tau parkinson levodopa huntington epilepsia evc ictus excitotoxicidad nmda sindrome nefritico nefrotico lesion renal aguda cronica acalasia erge barrett gastritis crohn cuci hirschsprung
+@nota Fuente: tus notas de Notion (Medicina › 3er semestre › Fisiología clínica) y, en los temas de electrocardiograma, el libro «Electro en esquemas» (Sustancia P); los esquemas son dibujos propios basados en él. **Corrección** = estaba mal en tus notas; † = no venía y se agregó para completar el tema.
+@kw fisiologia clinica fisiopatologia electrocardiograma ecg derivaciones bipolares unipolares aumentadas precordiales einthoven triaxial hexaxial vector vectores isobifasica v4r v7 v8 v9 avr coronaria descendente anterior circunfleja punto j onda tp papel calibracion bazett fridericia framingham qtc desviacion eje reporte onda p qrs segmento st intervalo qt frecuencia ritmo eje hipertrofia marcapasos corriente funny nodo sinusal arritmias reentrada automatismo pospotenciales flutter fibrilacion hipertension renina angiotensina aldosterona ara ii sartanes endotelio ateroesclerosis angina infarto insuficiencia cardiaca frank starling choque hipovolemico cardiogenico distributivo septico anafilactico neurogenico sdra epoc enfisema bronquitis cronica asma cancer pulmonar egfr fibrosis pulmonar sistema nervioso neuronas glia sinapsis depresion serotonina dopamina noradrenalina neurodegenerativas alzheimer amiloide tau parkinson levodopa huntington epilepsia evc ictus excitotoxicidad nmda sindrome nefritico nefrotico lesion renal aguda cronica acalasia erge barrett gastritis crohn cuci hirschsprung
 
 # Excitación rítmica del corazón
 > El corazón se excita solo: su sistema de conducción es músculo modificado, no tejido nervioso.
@@ -36,46 +36,227 @@
 Q ¿Cuál de estas células NO tiene corriente funny (If)? :: *Músculo ventricular :: Nodo sinusal :: Nodo AV :: Fibras de Purkinje || El músculo auricular y ventricular no tienen If; los marcapasos y Purkinje sí.
 Q La adrenalina aumenta la frecuencia cardiaca porque activa… :: *Receptores β1 con proteína Gs y aumento de AMPc :: Receptores M2 con proteína Gi :: Receptores nicotínicos :: Canales de K⁺ que hiperpolarizan || β1 → Gs → adenilato ciclasa → ↑AMPc → más If y más Ca²⁺.
 
+# Electrocardiograma: derivaciones y vectores
+> Qué registra el ECG, desde dónde lo mira cada derivación y por qué las ondas salen hacia arriba o hacia abajo.
+## ¿Qué es un ECG?
+- Es la representación, en **papel milimetrado**, de la **actividad eléctrica del corazón**.
+- Se estudia con **12 derivaciones**: imagina que tomas **12 fotografías** de la actividad eléctrica desde 12 ángulos distintos; cada derivación es un punto de vista diferente.
+- Las derivaciones registran desde **2 planos**: las **frontales** (DI, DII, DIII, aVR, aVL, aVF) ven el plano **frontal o coronal** y las **precordiales** (V1–V6) ven el plano **horizontal o transversal**.
+- Las frontales son de 2 tipos: **bipolares** (DI, DII, DIII) y **unipolares** (aVR, aVL, aVF).
+- En cada derivación revisas **ondas, segmentos e intervalos**, recordando siempre que la **polaridad cambia según la derivación**: DI predomina **positiva**, aVR predomina **negativa** y V3–V4 son **isobifásicas** (intermedias).
+- ¿Hay más derivaciones? Sí, en situaciones específicas: en el **infarto posterior** se usan **V7, V8 y V9**; en el **infarto del ventrículo derecho**, V1R a V6R, de las que **V4R es la más sensible**.
+~ Plano frontal :: Lo ven DI, DII, DIII, aVR, aVL y aVF (electrodos en las 4 extremidades).
+~ Plano horizontal :: Lo ven V1–V6 (electrodos en la región precordial).
+## Derivaciones frontales: bipolares y unipolares
+- Cada derivación funciona como un sistema de electrodos con un **polo positivo** y uno **negativo**; los electrodos de las frontales van en las **4 extremidades**.
+- **Bipolares (DI, DII, DIII)**: registran la **diferencia de potencial entre dos puntos** (el polo + y el polo −).
+| Derivación ¦ Polo positivo ¦ Polo negativo
+| DI ¦ Brazo izquierdo ¦ Brazo derecho
+| DII ¦ Pierna izquierda ¦ Brazo derecho
+| DIII ¦ Pierna izquierda ¦ Brazo izquierdo
+- **Unipolares aumentadas (aVR, aVL, aVF)**: registran el **potencial absoluto de un solo punto**, el polo +; el polo negativo **sí existe pero se anula**. Por su bajo voltaje los potenciales **deben amplificarse**: por eso la «a».
+| Derivación ¦ Polo positivo
+| aVR ¦ Brazo derecho
+| aVL ¦ Brazo izquierdo
+| aVF ¦ Pierna izquierda
+& aVR, aVL, aVF :: a = augmented (aumentada), V = vector, R = right (derecho), L = left (izquierdo), F = foot (pie)
+- † El electrodo de la **pierna derecha** es solo la tierra: no forma parte de ninguna derivación.
+## Triángulo de Einthoven y sistema hexaxial
+- Las **bipolares** forman los **lados** de un triángulo de vértice inferior con el corazón en medio (triángulo de **Einthoven**); las **unipolares** se ubican en sus **vértices**.
+^ einthoven.svg :: Triángulo de Einthoven: las bipolares son los lados (cada flecha va del polo − al +) y las unipolares salen del centro hacia los vértices. :: Esquema propio basado en «Electro en esquemas» (Sustancia P)
+^^ 50,15 :: DI
+^^ 33,53 :: DII
+^^ 67,53 :: DIII
+^^ 38,30 :: aVR
+^^ 62,30 :: aVL
+^^ 50,64 :: aVF
+- **Sistema triaxial**: si trasladas los 3 lados al plano cartesiano y los haces pasar por el corazón, cada derivación queda con un ángulo y capta los vectores desde su **polo +**: **DI 0°**, **DII +60°**, **DIII +120°**.
+- Con las unipolares: **aVR −150°**, **aVL −30°**, **aVF +90°** (los polos + de aVR y aVL quedan en ángulos con valor **negativo**).
+- **Sistema hexaxial** = bipolares + unipolares juntas: 6 ejes separados cada **30°** en el plano frontal.
+^ hexaxial.svg :: Sistema hexaxial: cada flecha apunta al polo positivo de una derivación; en verde, la zona del eje normal (−30° a +90°). :: Esquema propio basado en «Electro en esquemas» (Sustancia P)
+^^ 73,50 :: DI (0°)
+^^ 62,73 :: DII (+60°)
+^^ 38,73 :: DIII (+120°)
+^^ 50,77 :: aVF (+90°)
+^^ 72,37 :: aVL (−30°)
+^^ 28,37 :: aVR (−150°)
+| Derivación ¦ Ángulo ¦ Qué ve
+| DI ¦ 0° ¦ Lateral izquierda
+| aVL ¦ −30° ¦ Lateral izquierda (alta)
+| DII ¦ +60° ¦ Inferior (inferolateral izquierda)
+| aVF ¦ +90° ¦ Inferior
+| DIII ¦ +120° ¦ Inferior (inferolateral derecha)
+| aVR ¦ −150° ¦ Porción basal del septum (superolateral derecha)
+% 30° :: separación entre cada eje del sistema hexaxial
+## Derivaciones precordiales
+- Los electrodos van en la **región precordial** y captan los vectores en el **plano transversal**.
+- Son **unipolares no amplificadas**: registran el potencial absoluto de un punto (polo +) y **no necesitan amplificarse**.
+| Electrodo ¦ Dónde va †
+| V1 ¦ 4.º espacio intercostal, borde paraesternal derecho
+| V2 ¦ 4.º espacio intercostal, borde paraesternal izquierdo
+| V3 ¦ A la mitad entre V2 y V4
+| V4 ¦ 5.º espacio intercostal, línea medioclavicular izquierda
+| V5 ¦ Línea axilar anterior, a la altura de V4
+| V6 ¦ Línea axilar media, a la altura de V4
+^ precordiales.svg :: Corte transversal del tórax: los electrodos precordiales «miran» al corazón desde adelante (V1–V2, sobre el ventrículo derecho y el septum) hasta el lado izquierdo (V5–V6, pared lateral del VI). :: Esquema propio basado en «Electro en esquemas» (Sustancia P)
+^^ 44,12 :: V1
+^^ 56,12 :: V2
+^^ 65,14 :: V3
+^^ 73,18 :: V4
+^^ 83,26 :: V5
+^^ 91,40 :: V6
+! En el trazo normal la **R crece de V1 a V6** y la S se hace más pequeña: V1 es casi toda negativa (rS) y V6 casi toda positiva (qR).
+## Caras del corazón y arterias coronarias
+- Sea en el plano frontal o en el transversal, cada grupo de derivaciones ve una **región anatómica**; sirve, por ejemplo, para saber **dónde está un infarto** y la **posible arteria afectada**.
+| Derivaciones ¦ Cara ¦ Arteria
+| V1–V2 ¦ Septal ¦ Septales de la descendente anterior (2/3 anteriores) y de la descendente posterior (1/3 posterior)
+| V3–V4 ¦ Anterior ¦ Descendente anterior
+| V5–V6 ¦ Lateral baja ¦ Diagonales de la descendente anterior y obtusas marginales de la circunfleja
+| DI y aVL ¦ Lateral alta ¦ Diagonales de la descendente anterior y obtusas marginales de la circunfleja
+| DII, DIII y aVF ¦ Inferior ¦ Descendente posterior: de la coronaria derecha (85 %) o de la circunfleja (15 %)
+| aVR ¦ Porción basal del septum y tracto de salida del VD ¦ Coronaria izquierda, coronaria derecha o descendente anterior
+| V4R ¦ Ventrículo derecho ¦ † Coronaria derecha
+| V7–V9 ¦ Posterior ¦ † Circunfleja o coronaria derecha
+- La **descendente anterior** y la **circunfleja** son ramas de la **coronaria izquierda**; la **descendente posterior** sale de la coronaria derecha o de la circunfleja (según la dominancia).
+- **aVR, «la derivación olvidada»**: en realidad es muy importante; ve la porción basal del septum interventricular y el tracto de salida del VD, que pueden afectarse por obstrucción de la coronaria izquierda, la derecha o la descendente anterior.
+- Es lo más común, **no una regla**: hay pacientes con variaciones anatómicas.
+! **Corrección:** en tus notas DI–aVL dice «lateral baja»; es la **lateral alta**. V5–V6 son la lateral baja.
++ † Elevación del ST en DII, DIII y aVF (cara inferior) → piensa en la **coronaria derecha**; toma también **V4R** para buscar infarto del ventrículo derecho.
+## Vectores cardiacos y origen de las ondas
+- Un potencial eléctrico se grafica como una flecha con **magnitud, dirección y sentido**: un **vector**. La cola es donde comienza el evento y la cabeza hacia dónde va.
+- Cada derivación capta los vectores **a través de su polo positivo**, como una cámara fotográfica:
+| Si la derivación ve… ¦ La onda es
+| La punta del vector (el vector se acerca) ¦ Positiva
+| La cola del vector (el vector se aleja) ¦ Negativa
+| El vector de manera perpendicular (se acerca y luego se aleja) ¦ Isobifásica
+- Como cada derivación está en un sitio distinto, capta los mismos vectores de forma distinta: **por eso cambia la morfología de las ondas** entre derivaciones.
+| Vector ¦ Dirección ¦ Onda
+| 1. Despolarización auricular ¦ De derecha a izquierda, de arriba abajo, de atrás adelante ¦ P
+| Activación del nodo AV ¦ Retraso fisiológico ¦ Segmento PR
+| 2. Despolarización septal ¦ De izquierda a derecha, de atrás adelante ¦ q
+| 3. Despolarización de las paredes libres ¦ De derecha a izquierda, de arriba abajo, de atrás adelante ¦ R
+| 4. Despolarización de las bases ¦ De izquierda a derecha, de abajo arriba, de adelante atrás ¦ S
+| 5. Repolarización ventricular ¦ Misma dirección y sentido que la despolarización ¦ T
+| Repolarización auricular ¦ Opuesta a la despolarización ¦ Tp (oculta en el QRS)
+^ vectores.svg :: Los vectores de la activación cardiaca en orden; cada uno da una onda del ECG. :: Esquema propio basado en «Electro en esquemas» (Sustancia P)
+^^ 38,23 :: 1. Despolarización auricular → P
+^^ 50,50 :: 2. Septal (izquierda a derecha) → q
+^^ 62,62 :: 3. Paredes libres → R
+^^ 75,49 :: 4. Bases (abajo arriba) → S
+^^ 53,79 :: 5. Repolarización ventricular → T
+= Secuencia en el ECG :: Nodo sinusal: inicia la despolarización auricular (P) → Termina la aurícula; el impulso llega al nodo AV → Despolarización ventricular fases 1, 2 y 3 (q, R, S) → Despolarización ventricular completa → Inicia y termina la repolarización ventricular (T)
+- † La **T es positiva** aunque la repolarización tenga el sentido «contrario» a la despolarización porque el ventrículo se repolariza **del epicardio al endocardio** (al revés de como se despolariza).
+? ¿Cuántas derivaciones tiene el ECG estándar y en qué planos? :: 12: 6 frontales (plano frontal o coronal) y 6 precordiales (plano horizontal o transversal).
+? Polos de DII :: Positivo en la pierna izquierda, negativo en el brazo derecho.
+? ¿Por qué las unipolares de miembros llevan «a»? :: Porque son aumentadas: su potencial es bajo y se amplifica.
+? Ángulos de DI, DII, DIII, aVR, aVL y aVF :: DI 0°, DII +60°, DIII +120°, aVR −150°, aVL −30°, aVF +90°.
+? ¿Qué derivación es la más sensible para infarto del VD? :: V4R.
+? ¿Qué cara y arteria ve aVR? :: Porción basal del septum y tracto de salida del VD; coronaria izquierda, derecha o descendente anterior.
+? ¿Qué onda da la despolarización septal y en qué dirección va? :: La q; de izquierda a derecha y de atrás adelante.
+? ¿Por qué no vemos la repolarización auricular? :: Su onda (Tp) coincide con la despolarización ventricular y queda tapada por el QRS.
+Q Un vector que se aleja del polo positivo de una derivación se registra como onda… :: *Negativa :: Positiva :: Isobifásica :: Plana || La derivación ve la cola del vector: onda negativa. Si lo ve de frente (punta), positiva; si es perpendicular, isobifásica.
+Q ¿Cuál de estas derivaciones es bipolar? :: *DIII :: aVF :: aVL :: V1 || Las bipolares son DI, DII y DIII; aVR, aVL y aVF son unipolares aumentadas y V1–V6 unipolares no aumentadas.
+Q En un infarto posterior conviene agregar… :: *V7, V8 y V9 :: V3R y V4R :: aVR :: DI y aVL || V7–V9 ven la cara posterior; V4R ve el ventrículo derecho.
+Q La cara inferior la ven… :: *DII, DIII y aVF :: DI y aVL :: V1 y V2 :: V5 y V6 || La irriga casi siempre la descendente posterior de la coronaria derecha (85 %).
+Q ¿Qué evento produce la onda S? :: *Despolarización de las bases :: Despolarización del septum :: Repolarización ventricular :: Despolarización auricular || q = septum, R = paredes libres, S = bases, T = repolarización ventricular.
+
 # Electrocardiograma: cómo leerlo
-> Papel, derivaciones y los 8 pasos: frecuencia, ritmo, eje, hipertrofia, intervalos, onda P, QRS, ST y T.
+> Papel, ondas, intervalos, frecuencia, eje y los pasos para reportar un ECG.
 ## El papel
+- Del papel milimetrado se estudian 2 parámetros: el **tiempo** (horizontal) y el **voltaje** (vertical).
 | Cuadro ¦ Tiempo (horizontal) ¦ Voltaje (vertical)
-| Chico (1 mm) ¦ 0.04 s ¦ 0.1 mV
-| Grande (5 mm) ¦ 0.20 s ¦ 0.5 mV
+| Chico (1 mm) ¦ 0.04 s (40 ms) ¦ 0.1 mV
+| Grande (5 mm) ¦ 0.20 s (200 ms) ¦ 0.5 mV
 % 25 mm/s :: velocidad estándar: 5 cuadros grandes = 1 segundo
 % 10 mm = 1 mV :: 2 cuadros grandes de alto equivalen a 1 mV (calibración)
-~ Intervalo :: Desde el inicio de un evento hasta el inicio de otro (PR, QT).
+^ papel.svg :: Papel de ECG con la calibración estándar: un cuadro grande mide 0.20 s × 0.5 mV y uno chico 0.04 s × 0.1 mV; el pulso de 1 mV mide 10 mm. :: Esquema propio basado en «Electro en esquemas» (Sustancia P)
+| Situación ¦ Otra calibración
+| Complejos de muy alto voltaje ¦ 5 mm/mV (mitad del voltaje)
+| Complejos de muy bajo voltaje (p. ej., taponamiento) ¦ 20 mm/mV (doble)
+| Taquicardias (para separar los complejos) ¦ 50 mm/s
+~ Intervalo :: Desde el inicio de un evento hasta el inicio de otro (PR, QT); incluye ondas.
 ~ Segmento :: Tramo de línea isoeléctrica entre dos ondas (PR, ST).
 - **Vector de despolarización**: punta positiva, cola negativa; si se acerca al electrodo se marca hacia arriba.
 - **Vector de repolarización**: al revés; por eso se marca hacia abajo si se acerca.
-## Derivaciones y caras del corazón
-- 12 derivaciones: 6 **frontales** (DI, DII, DIII, aVR, aVL, aVF) y 6 **precordiales** (V1–V6). aVR, aVL y aVF son unipolares.
-- **aVR** es casi siempre negativa; **DI** predomina positiva; **V3–V4** son la zona de transición (isobifásicas).
-| Derivaciones ¦ Cara
-| V1–V2 ¦ Septal
-| V3–V4 ¦ Anterior
-| V5–V6 ¦ Lateral baja
-| DI y aVL ¦ Lateral alta
-| DII, DIII y aVF ¦ Inferior
-| V4R ¦ Ventrículo derecho
-| V7–V9 ¦ Posterior
-! **Corrección:** en tus notas DI–aVL dice «lateral baja»; es la **lateral alta**. V5–V6 son la lateral baja.
+## Ondas, segmentos e intervalos
+- Las ondas son deflexiones positivas o negativas que representan la despolarización o la repolarización.
+^ complejo.svg :: Ciclo cardiaco en el ECG con sus ondas, segmentos e intervalos. :: Esquema propio basado en «Electro en esquemas» (Sustancia P)
+^^ 14,52 :: Onda P
+^^ 21,66 :: Onda q
+^^ 29,26 :: Onda R
+^^ 31,73 :: Onda S
+^^ 50,47 :: Onda T
+^^ 33,58 :: Punto J
+| Onda ¦ Qué es ¦ Normal
+| P ¦ Despolarización auricular (1.ª mitad: aurícula derecha; 2.ª: izquierda) ¦ Duración < 0.12 s (< 3 mm); amplitud < 0.25 mV (< 2.5 mm)
+| QRS ¦ Despolarización ventricular (q septum, R paredes libres, S bases) ¦ Duración < 0.12 s (< 3 mm); amplitud < 20–25 mm según el autor
+| q ¦ Despolarización del septum ¦ Duración < 0.04 s (1 mm) y profundidad < 25 % de la R
+| T ¦ Repolarización ventricular ¦ Duración 0.10–0.20 s; amplitud < 5 mm en frontales y < 10 mm en precordiales
+- **Polaridad de la P**: positiva en DI, DII, DIII, aVL, aVF y V2–V6; **negativa en aVR**; **bifásica en V1** (lo capta perpendicular).
+- **Nomenclatura del QRS**: letra **minúscula** = onda pequeña (< 5 mm); **mayúscula** = onda grande (> 5 mm). La q es la onda negativa **antes** de la R; la S, la negativa **después** de la R.
+| Morfología más común ¦ Derivaciones
+| qRs o Rs ¦ DI, DII, DIII, aVL, aVF, V5, V6
+| rS (sin q: no hay nada negativo antes de la R) ¦ V1, V2
+| RS (isobifásico) ¦ V3, V4
+| Predominio negativo (rS, Qr o QS) ¦ aVR
+- **Q patológica** (≥ 0.04 s o ≥ 25 % de la R, o QS) → **necrosis**.
+- **Onda T**: asimétrica, con porción ascendente **lenta** y descendente **rápida**; normalmente **positiva**, excepto en **aVR** (negativa). De **V1 a V4 puede ser negativa** en niños, en personas de raza negra y en el 25 % de las mujeres.
+- T **picuda** → **hiperkalemia** o **isquemia** (hiperaguda).
+- **Onda Tp** (repolarización auricular): sí existe, pero coincide con la despolarización ventricular y **el QRS la tapa**; por eso no se ve.
+- **Punto J**: final del QRS e inicio del segmento ST. Su **elevación o descenso** (junto con el ST) es criterio de **eventos coronarios**: elevado → lesión **subepicárdica**; descendido → lesión **subendocárdica**.
+| Tramo ¦ Qué representa
+| Línea isoeléctrica (T–P) ¦ Periodo de polarización total (reposo)
+| Segmento PR ¦ Retraso fisiológico en el nodo AV († conducción lenta por pocas uniones gap)
+| Segmento ST ¦ Periodo de despolarización total de los ventrículos
+| Intervalo PR (inicio de P a inicio de QRS) ¦ Aurícula + nodo AV: 0.12–0.20 s
+| Intervalo QT (inicio de QRS a final de T) ¦ Despolarización + repolarización ventricular
+| Intervalo RR ¦ Varía con la frecuencia cardiaca
 ## Frecuencia
-- Método de los cuadros grandes: si la segunda R cae en la 1.ª línea gruesa son **300**, luego **150, 100, 75, 60, 50**.
-- Más exacto: **1500 ÷ cuadros chicos** entre dos R (un minuto tiene 1500 cuadros chicos).
-- † Si el ritmo es irregular: cuenta los QRS en 6 segundos (30 cuadros grandes) y multiplica por 10.
+- **Ritmos regulares**, 3 técnicas:
+- **1.ª técnica: 1500 ÷ cuadritos chicos** entre dos R (en un minuto se recorren 1500 cuadros chicos a 25 mm/s). Ej.: 15 cuadritos → 100 lpm.
+- **2.ª técnica: 300 ÷ cuadros grandes** entre dos R (en un minuto hay 300 cuadros grandes). Ej.: 3 cuadros → 100 lpm.
+- **3.ª técnica (de las líneas gruesas)**: busca una R que caiga sobre una línea gruesa; cada línea gruesa siguiente vale **300, 150, 100, 75, 60, 50, 43, 37, 33, 30** lpm; la siguiente R te dice la frecuencia.
+^ frecuencia.svg :: Técnica de las líneas gruesas: desde una R sobre línea gruesa, cada línea siguiente vale 300, 150, 100, 75, 60… La siguiente R cae entre 75 y 60 → ≈ 70 lpm. :: Esquema propio basado en «Electro en esquemas» (Sustancia P)
+- Para afinar entre 2 líneas: entre 150 y 100 hay 50 lpm en 5 cuadritos → cada cuadrito vale 10 lpm. Si la R cae a 1.5 cuadritos de la línea de 100: 100 + 15 = **115 lpm**.
+- **Ritmos irregulares** (p. ej., fibrilación auricular): cuenta los QRS en **6 segundos** (30 cuadros grandes) y multiplica por **10**. Ej.: 12 QRS → 120 lpm.
 % 60–100 lpm :: frecuencia normal en el adulto
-= Calcular la frecuencia :: Busca una R sobre línea gruesa → Cuenta cuadros grandes hasta la siguiente R → 300 / 150 / 100 / 75 / 60 / 50 → Afina con 1500 ÷ cuadros chicos
+= Calcular la frecuencia :: ¿Ritmo regular? → Sí: 300 ÷ cuadros grandes o 1500 ÷ cuadros chicos (o líneas gruesas) → No: QRS en 6 s × 10
+## Eje cardiaco
+- El ventrículo tiene 3 vectores principales de despolarización: **septal, paredes libres y bases**. Su suma es el **vector total de despolarización** = **eje cardiaco** o eje del QRS.
+% −30° a +90° :: eje normal en el sistema de derivaciones frontales (hexaxial)
+- **1.er concepto**: solo te fijas en **DI y aVF**, tanto en el ECG como en el hexaxial.
+- **2.º concepto**: DI positivo = 0°; DI negativo = ±180°; aVF positivo = +90°; aVF negativo = −90°; isobifásico = nulo.
+^ eje.svg :: Cuadrantes del eje con DI y aVF: normal (verde), desviación a la izquierda (amarillo), a la derecha (azul) y extrema (rosa). :: Esquema propio basado en «Electro en esquemas» (Sustancia P)
+^^ 66,61 :: Normal (DI +, aVF +)
+^^ 37,66 :: Desviación a la derecha (DI −, aVF +)
+^^ 37,34 :: Desviación extrema (DI −, aVF −)
+^^ 61,28 :: Desviación a la izquierda (DI +, aVF −)
+| DI ¦ aVF ¦ Eje
+| Positivo ¦ Positivo ¦ Normal (0° a +90°)
+| Positivo ¦ Negativo ¦ Desviación a la izquierda
+| Negativo ¦ Positivo ¦ Desviación a la derecha
+| Negativo ¦ Negativo ¦ Desviación extrema
+| Isobifásico ¦ Positivo ¦ Exactamente +90° (normal)
+| Positivo ¦ Isobifásico ¦ Exactamente 0° (normal)
+| Isobifásico ¦ Negativo ¦ Exactamente −90° (límite entre izquierda y extrema)
+| Negativo ¦ Isobifásico ¦ Exactamente ±180° (límite entre derecha y extrema)
+! † Con DI + y aVF − mira **DII**: si DII es positivo el eje está entre 0° y −30° (aún **normal**); si es negativo, es desviación a la izquierda real.
 ## Ritmo e intervalos
-- **Sinusal**: onda P antes de cada QRS, positiva en DII y negativa en aVR.
+- **Sinusal**: cada onda P seguida de un QRS; P positiva en DII, **negativa en aVR**, isobifásica en V1 y positiva en las demás.
+- **Regular**: intervalo R-R constante. **Irregular**: R-R variable.
 - **Nodal (de la unión)**: sin onda P (o P retrógrada).
 - **Idioventricular**: sin P, QRS ancho y frecuencia lenta (bradicardia).
 | Medida ¦ Normal ¦ Si está alterado
 | PR ¦ 0.12–0.20 s ¦ Corto: preexcitación (Wolff-Parkinson-White); largo: bloqueo AV de 1.er grado
 | QRS ¦ < 0.12 s (≤ 3 cuadritos) ¦ ≥ 0.12 s: bloqueo de rama o ritmo ventricular
-| QTc ¦ < 0.44 s (hombre), < 0.46 s (mujer) ¦ Prolongado: riesgo de arritmias (torsade de pointes)
-- **QTc (Bazett) = QT ÷ √RR** (en segundos).
-! **Corrección:** tus notas dicen que el QRS «debe durar 0.12»; 0.12 s ya es el límite **anormal**. Y la fórmula es QT entre raíz de RR (no QTc entre raíz de RR).
+| QTc ¦ < 0.45 s (hombre), < 0.46 s (mujer) ¦ Prolongado: riesgo de arritmias (torsade de pointes)
+- El **QT** es el tiempo total de despolarización y repolarización ventricular; cambia con la **edad, la frecuencia cardiaca y el sexo**, por eso se corrige (**QTc**). Todos los valores van **en segundos**.
+| Fórmula ¦ QTc
+| Bazett ¦ QT ÷ √RR
+| Fridericia ¦ QT ÷ ∛RR
+| Framingham ¦ QT + 0.154 × (1 − RR)
+- † Bazett sobrecorrige con frecuencias altas; Fridericia y Framingham son más exactas en taquicardia.
+! **Corrección:** tus notas dicen que el QRS «debe durar 0.12»; 0.12 s ya es el límite **anormal**. Y la fórmula es QT entre raíz de RR (no QTc entre raíz de RR). El límite del QTc del hombre varía según el autor (0.44–0.45 s).
 ## Onda P, QRS, hipertrofia y ST
 - Onda P **alta** (> 2.5 mm en DII, «P pulmonale») → crecimiento de **aurícula derecha**.
 - Onda P **ancha** (> 0.12 s, bimodal, «P mitrale») → crecimiento de **aurícula izquierda**.
@@ -86,16 +267,39 @@ Q La adrenalina aumenta la frecuencia cardiaca porque activa… :: *Receptores �
 - Causas de ST/T anormal: **isquemia** (infarto), **hiperkalemia** (T alta, picuda y simétrica), variantes de repolarización, QT largo y patrón de sobrecarga («strain»).
 % K⁺ 3.5–5.0 mEq/L :: potasio normal; por arriba de ~6 aparecen T picudas
 + Elevación del ST en 2 derivaciones contiguas de la misma cara = infarto con elevación del ST hasta demostrar lo contrario.
-& FRE-RI-EJE-HIPER-INTER :: Orden de lectura: frecuencia, ritmo, eje, hipertrofia, intervalos (y luego P, QRS, ST y T).
+## Reporte del ECG
+= Análisis para el reporte :: 1. Clínica: integra los datos del paciente → 2. Calibración: 25 mm/s y 10 mm/mV → 3. Ritmo: sinusal, regular o irregular → 4. Frecuencia: con la técnica que va con el ritmo → 5. Ondas, segmentos e intervalos por bloques → 6. Eje
+| Bloque anatómico ¦ Derivaciones
+| Lateral izquierdo ¦ DI, aVL, V5, V6
+| Inferior ¦ DII, DIII, aVF
+| Basal del septum ¦ aVR
+| Anteroseptal ¦ V1, V2, V3, V4
+- Revisar **por bloques anatómicos** facilita todo: en cada derivación compruebas que ondas, segmentos e intervalos estén en sus rangos y morfologías normales.
+& FRE-RI-EJE-HIPER-INTER :: Orden de lectura de tus notas: frecuencia, ritmo, eje, hipertrofia, intervalos (y luego P, QRS, ST y T).
 ? ¿Cuánto vale un cuadro chico en tiempo y en voltaje? :: 0.04 s y 0.1 mV.
 ? ¿Qué cara ven DII, DIII y aVF? :: La inferior.
 ? ¿Cómo se calcula la frecuencia con cuadros chicos? :: 1500 ÷ número de cuadros chicos entre dos R.
 ? ¿Qué indica una P ancha y bimodal? :: Crecimiento de aurícula izquierda (P mitrale).
 ? Criterio de Sokolow-Lyon para HVI :: S en V1 o V2 + R en V5 o V6 ≥ 35 mm.
+? Valores normales de la onda P :: Duración < 0.12 s (3 mm) y amplitud < 2.5 mm; negativa en aVR y bifásica en V1.
+? ¿Cuándo es normal una q? :: Si dura < 0.04 s (1 mm) y mide < 25 % de la R.
+? ¿Qué es el punto J y por qué importa? :: El final del QRS e inicio del ST; su elevación o descenso indica lesión coronaria (subepicárdica o subendocárdica).
+? Números de la técnica de líneas gruesas :: 300, 150, 100, 75, 60, 50, 43, 37, 33, 30.
+? ¿Cómo calculas la frecuencia en un ritmo irregular? :: QRS en 6 s (30 cuadros grandes) × 10.
+? ¿Qué derivaciones usas para el eje y cuál es el normal? :: DI y aVF; normal de −30° a +90°.
+? Fórmula de Fridericia :: QTc = QT ÷ raíz cúbica de RR (en segundos).
+? Calibraciones distintas a la estándar :: 5 mm/mV (alto voltaje), 20 mm/mV (bajo voltaje) y 50 mm/s (taquicardias).
+? Los 6 pasos para reportar un ECG :: Clínica, calibración, ritmo, frecuencia, ondas/segmentos/intervalos (por bloques) y eje.
 Q Hay 15 cuadros chicos entre dos ondas R. ¿Cuál es la frecuencia? :: *100 lpm :: 75 lpm :: 150 lpm :: 60 lpm || 1500 ÷ 15 = 100 lpm (equivale a 3 cuadros grandes: 300, 150, 100).
 Q Elevación del ST en V3 y V4 sugiere afectación de la cara… :: *Anterior :: Inferior :: Lateral alta :: Posterior || V1–V2 septal, V3–V4 anterior, V5–V6 lateral baja.
 Q ¿Cuál es un QRS normal? :: *0.08 s :: 0.12 s :: 0.16 s :: 0.20 s || El QRS normal dura menos de 0.12 s; 0.12 s o más es QRS ancho.
 Q Onda T alta, picuda y simétrica en un paciente con insuficiencia renal sugiere… :: *Hiperkalemia :: Hipokalemia :: Hipocalcemia :: Pericarditis || La hiperkalemia da T picudas; si avanza, QRS ancho y riesgo de paro.
+Q DI positivo y aVF negativo indica… :: *Desviación del eje a la izquierda :: Eje normal :: Desviación a la derecha :: Desviación extrema || DI + = 0° y aVF − = −90°: el vector cae en el cuadrante superior izquierdo (revisa DII para saber si pasa de −30°).
+Q DI negativo y aVF positivo indica… :: *Desviación del eje a la derecha :: Desviación a la izquierda :: Eje normal :: Desviación extrema || DI − = ±180° y aVF + = +90°: cuadrante inferior derecho.
+Q En una fibrilación auricular cuentas 9 QRS en 30 cuadros grandes. La frecuencia es… :: *90 lpm :: 60 lpm :: 150 lpm :: 45 lpm || 30 cuadros grandes = 6 s; 9 × 10 = 90 lpm.
+Q ¿Para qué se calibra a 50 mm/s? :: *Para separar los complejos en una taquicardia :: Para complejos de muy bajo voltaje :: Para complejos de muy alto voltaje :: Es la velocidad estándar || El estándar es 25 mm/s y 10 mm/mV; 50 mm/s «estira» el trazo cuando la frecuencia es muy alta.
+Q En V1 lo normal es una morfología… :: *rS :: qR :: Qr :: RS || En V1–V2 no hay nada negativo antes de la R (rS); qR es típico de V5–V6 y Qr de aVR.
+Q ¿Por qué no se ve la onda de repolarización auricular (Tp)? :: *Porque coincide con el QRS y queda tapada :: Porque las aurículas no se repolarizan :: Porque solo se ve en V1 :: Porque es la onda U || La Tp sí existe, pero ocurre al mismo tiempo que la despolarización ventricular.
 
 # Arritmias: cómo se producen
 > Por alteración en la formación del impulso (automatismo, actividad desencadenada) o en su conducción (reentrada).

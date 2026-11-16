@@ -24,6 +24,13 @@
 | Micología ¦ Hongos (menos de 50 especies causan más del 50 % de las micosis)
 | Parasitología ¦ Protozoos y helmintos; muchas son «enfermedades tropicales» ligadas a falta de higiene
 ## La célula bacteriana
+^ formas.webp :: Formas bacterianas: dibujo arriba y micrografía electrónica abajo. Los **cocobacilos** combinan la forma esférica y la de bastón. :: OpenStax, Microbiology, sección «Types of Microorganisms» · micrografías de J. Haney Carr y los CDC (dominio público) · CC BY 4.0 · recortada; nombres en inglés cambiados por marcadores
+^^ 7,55 :: Coco
+^^ 24,55 :: Bacilo
+^^ 41,55 :: Vibrio
+^^ 58,55 :: Cocobacilo
+^^ 75,55 :: Espirilo
+^^ 92,55 :: Espiroqueta
 - Célula: unidad estructural y funcional de los seres vivos. **Procariotas**: arqueas y bacterias. **Eucariotas**: protistas, hongos, plantas y animales.
 - Formas: **cocos** (diplococos, tétradas, sarcinas, cadenas, racimos), **bacilos** (cortos o cocobacilos, curvos, esporulados, fusiformes, en empalizada o «letras chinas»), **vibrios**, **espirilos** y **espiroquetas**.
 ~ Pleomorfismo :: Capacidad de una bacteria de adoptar distintas formas según las condiciones del medio (Corynebacterium diphtheriae, Mycoplasma).
@@ -47,6 +54,7 @@ Q Según los postulados moleculares de Koch, si se inactiva el gen asociado a vi
 | Núcleos de Wells ¦ < 5 µm, flotan en el aire ¦ Tuberculosis, sarampión, varicela († en tus notas: neumonía e influenza)
 % 90 % :: de las infecciones se transmiten por contacto con las manos
 ## Transmisión indirecta
+^ fomites.webp :: **Fómites**: perillas, toallas y jeringas contaminadas transmiten patógenos sin contacto directo entre personas. :: OpenStax, Microbiology, sección «Modes of Disease Transmission» · fotos de K. Ter Haar, V. Swanepoel y «Zaldylmg»/Flickr · CC BY 4.0
 - **Suelo (polvo)**: bacterias esporuladas (tétanos, botulismo), parásitos (ascariasis, necatoriasis), micosis profundas (histoplasmosis, coccidioidomicosis).
 - **Agua**: contaminación de la red o mantos acuíferos con excremento, epidemias, y soporte para vectores (larvas de mosquito).
 - **Fómites**: objetos que transmiten infecciones por secreciones (herpesvirus, rinovirus, adenovirus, meningococo, neumococo, enterobacterias, estafilococo).
@@ -75,6 +83,7 @@ Q El tétanos y el botulismo se adquieren típicamente por… :: *Esporas del su
 - Niveles de atención: 1.º comunidad y consultorios (incluso los de farmacias), 2.º hospital general, 3.º alta especialidad.
 - **Estudio de caso** y **estudio de brote** (investigación de campo de los equipos locales).
 ## Medidas de frecuencia
+^ incidencia-prevalencia.svg :: La **incidencia** son los casos nuevos que entran a la tina; la **prevalencia** es todo lo que hay dentro, y baja cuando los pacientes curan o mueren. :: Esquema propio
 ~ Incidencia :: Casos nuevos de una enfermedad en una población durante un tiempo determinado (p. ej., un año).
 ~ Prevalencia :: Total de personas con la enfermedad (nuevas y antiguas) en un momento o periodo.
 ~ Morbilidad :: Cantidad de personas enfermas en un lugar y tiempo.
@@ -96,6 +105,9 @@ Q La vigilancia basada en eventos usa sobre todo… :: *Fuentes informales en ti
 | † Sangre líquida ¦ Recipiente hermético rojo
 | † Patológicos (piezas anatómicas) ¦ Bolsa amarilla
 ## Medios de cultivo
+^ chocolate.webp :: Colonias de *Neisseria meningitidis* en **agar chocolate** (sangre calentada: libera factores X y V para bacterias exigentes). :: OpenStax, Microbiology, sección «Proteobacteria» · imagen original de los CDC (dominio público) · CC BY 4.0
+^ hemolisis.webp :: **Agar sangre**: a la derecha, halo claro de **β-hemólisis** (lisis completa de eritrocitos) alrededor de la colonia; a la izquierda, crecimiento sin halo. :: OpenStax, Microbiology, sección «Oxygen Requirements for Microbial Growth» · imagen original de los CDC (dominio público) · CC BY 4.0 · recortada; texto en inglés retirado
+^ sabouraud.webp :: *Trichophyton rubrum* en **agar Sabouraud** (medio para hongos: pH ácido y mucha glucosa). :: OpenStax, Microbiology, sección «Mycoses of the Skin» · imagen original de los CDC (dominio público) · CC BY 4.0
 - Soporte para crecer microorganismos con nutrientes (fuente de carbono, nitrógeno, proteínas, lípidos, factores) y **agar** como gelificante (derivado de algas). Pueden ser sólidos, semisólidos o líquidos (caldos).
 | Tipo ¦ Para qué ¦ Ejemplos
 | Nutritivo (básico) ¦ Crecimiento general ¦ Caldo nutritivo, agar nutritivo
@@ -110,12 +122,14 @@ Q La vigilancia basada en eventos usa sobre todo… :: *Fuentes informales en ti
 % 25 °C :: incubación de hongos
 - **Co-cultivo**: dos o más microorganismos creciendo juntos.
 ## Técnicas de siembra
+^ estria.webp :: **Siembra por estría** en cuadrantes: al final aparecen colonias aisladas, cada una descendiente de una sola bacteria. :: OpenStax, Microbiology, sección «What Our Ancestors Knew» · imagen original de los CDC (dominio público) · CC BY 4.0 · recortada
 - **Por extensión**: se reparte un volumen pequeño sobre la superficie con un asa de vidrio en «L» (parece escoba).
 - **Estriado masivo**: zigzag en toda la placa, se gira 90° y se repite.
 - **Estría cruzada**: zigzag en un tercio de la placa, se gira y se repite 3 veces (aislar colonias).
 - **Agotamiento**: estrías de inicio a fin sin girar.
 - **Vertido en placa**: se mezcla la muestra con agar fundido a ~45 °C y se homogeneiza.
 ## Morfología de las colonias
+^ colonias.svg :: Cómo describir una colonia: **forma**, **borde** y **elevación**. :: Esquema propio
 | Característica ¦ Opciones
 | Forma ¦ Puntiforme, circular, filamentosa, granular, rizoide, fusiforme
 | Elevación ¦ Plana, elevada, convexa, pulvinada, umbilicada
@@ -130,9 +144,11 @@ Q Para Clostridium y Bacteroides se usa… :: *Cámara de anaerobiosis o tioglic
 # Tinción de Gram y pared bacteriana
 > Clasifica por la pared: grampositivas moradas, gramnegativas rosas.
 ## La técnica
+^ gram.webp :: Tinción de Gram: *Staphylococcus aureus* (grampositivo) queda **morado**; *E. coli* (gramnegativo) se decolora y toma la safranina, **rosa**. :: OpenStax, Microbiology, sección «Staining Microscopic Specimens» · micrografía de Nina Parker · CC BY 4.0
 = Tinción de Gram (Hans Christian Gram) :: Cristal violeta (se une al peptidoglucano) → Lugol (fija el colorante, evita que salga) → Alcohol-acetona (decolora: deshidrata la pared y cierra los poros) → Safranina (contraste) → Grampositivas moradas, gramnegativas rosas
 - **Tinción simple**: forma, tamaño y agrupación. Diferencial (Gram, Ziehl-Neelsen) y de fondo (negativa).
 ## Pared celular
+^ pared-gram.svg :: Pared grampositiva (peptidoglucano grueso con ácidos teicoicos) vs gramnegativa (peptidoglucano delgado, periplasma y membrana externa con LPS). :: Esquema propio
 | ¦ Grampositivas ¦ Gramnegativas
 | Peptidoglucano ¦ Grueso (red de tubos) ¦ Delgado
 | Ácidos teicoicos ¦ Sí (las «columnas») ¦ No
@@ -142,6 +158,7 @@ Q Para Clostridium y Bacteroides se usa… :: *Cámara de anaerobiosis o tioglic
 - **Lipopolisacárido (LPS)**: inmunoestimulante, **endotoxina** muy potente y factor de adherencia.
 + El LPS liberado a la sangre desencadena fiebre, vasodilatación y choque séptico.
 ## Bacterias que no se ven bien con Gram
+^ treponema.webp :: *Treponema pallidum* vivo en **campo oscuro**: espiroqueta demasiado delgada para verse con Gram. :: OpenStax, Microbiology, sección «Staining Microscopic Specimens» · imagen original de los CDC (dominio público) · CC BY 4.0 · recortada
 - **Mycobacterium**: ácidos micólicos → ácido-alcohol resistentes (Ziehl-Neelsen); resisten la desecación y muchos desinfectantes.
 - **Treponema** (espiroqueta): campo oscuro o serología. **Chlamydia** y **Rickettsia**: intracelulares obligadas. **Mycoplasma**: sin pared (no responde a betalactámicos).
 ? ¿Qué hace el lugol en la tinción de Gram? :: Fija el cristal violeta (mordiente) para que no salga.
@@ -153,6 +170,8 @@ Q ¿Por qué Mycoplasma no responde a la penicilina? :: *No tiene pared celular 
 # Bacterias grampositivas
 > Cocos en racimos o cadenas y bacilos con o sin esporas.
 ## Cocos grampositivos
+^ staph.webp :: *Staphylococcus aureus* al microscopio electrónico de barrido: cocos agrupados en **racimos**. :: OpenStax, Microbiology, sección «Gram-Positive Bacteria» · imagen original de los CDC (dominio público) · CC BY 4.0 · reducida
+^ neumococo.webp :: *Streptococcus pneumoniae* de un hemocultivo: **diplococos lanceolados**. :: OpenStax, Microbiology, sección «Bacterial Infections of the Respiratory Tract» · imagen original de los CDC (dominio público) · CC BY 4.0 · recortada
 | Bacteria ¦ Forma ¦ Clave
 | Staphylococcus ¦ Racimos ¦ S. aureus: β-hemólisis, coagulasa +
 | Streptococcus ¦ Cadenas o pares ¦ S. pyogenes y S. agalactiae: β-hemólisis
@@ -174,6 +193,7 @@ Q Causa principal de neumonía adquirida en la comunidad :: *Streptococcus pneum
 # Bacterias gramnegativas
 > Neisseria, enterobacterias (E. coli y sus patotipos, Shigella, Salmonella, Klebsiella, Serratia, Yersinia) y no fermentadores.
 ## Neisseria
+^ neisseria-gram.webp :: *Neisseria meningitidis* con Gram: **diplococos gramnegativos** (rosas) en pares. :: OpenStax, Microbiology, sección «Biogeochemical Cycles» · imagen original de los CDC (dominio público) · CC BY 4.0 · recortada
 - Cocos (diplococos en «grano de café»), 0.6–1 µm, sin esporas, con **pili** (adhesión, intercambio genético, antigenicidad).
 - **Capnofílicas**: crecen con 5–10 % de CO₂.
 | ¦ N. gonorrhoeae (gonococo) ¦ N. meningitidis (meningococo)
@@ -189,6 +209,7 @@ Q Causa principal de neumonía adquirida en la comunidad :: *Streptococcus pneum
 % 90 % :: de las infecciones intestinales (según tus notas)
 - Se cultivan en medios enriquecidos (agar sangre) y selectivos (MacConkey).
 ## Escherichia coli y sus patotipos
+^ ecoli.webp :: *E. coli* O157:H7 (enterohemorrágica, productora de toxina Shiga) al microscopio electrónico. :: OpenStax, Microbiology, sección «Bacterial Infections of the Gastrointestinal Tract» · imagen del USDA (dominio público) · CC BY 4.0
 - Descrita en 1885 por Theodor Escherich («Bacterium coli commune»). Bacilo gramnegativo, anaerobio facultativo, **comensal** más abundante del intestino; algunas clonas adquirieron genes de virulencia.
 | Patotipo ¦ Mecanismo ¦ Cuadro
 | EPEC (enteropatógena) ¦ Intimina: lesión de adhesión y borrado con «pedestales» ¦ Diarrea en lactantes
@@ -203,12 +224,17 @@ Q Causa principal de neumonía adquirida en la comunidad :: *Streptococcus pneum
 & SUH = anemia + plaquetas bajas + riñón :: Anemia hemolítica microangiopática, trombocitopenia y falla renal tras diarrea con sangre por EHEC.
 + No se dan antibióticos en la diarrea por EHEC: aumentan la liberación de toxina Shiga y el riesgo de SUH.
 ## Shigella, Salmonella y otras
+^ salmonella.webp :: *Salmonella* Typhi, agente de la fiebre tifoidea (microscopio electrónico de barrido). :: OpenStax, Microbiology, sección «Proteobacteria» · imagen original de los CDC (dominio público) · CC BY 4.0 · recortada
+^ shigella.webp :: Heces de un paciente con shigelosis: abundantes **leucocitos** y **eritrocitos** (diarrea invasiva, disentería). :: OpenStax, Microbiology, sección «Bacterial Infections of the Gastrointestinal Tract» · imagen de OpenStax · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores
+^^ 52,44 :: Leucocito (polimorfonuclear)
+^^ 43,71 :: Eritrocito
 - **Shigella** (Kiyoshi Shiga, 1898): bacilo inmóvil, anaerobio facultativo, fecal-oral con **inóculo muy pequeño**; invade colon, íleon y recto. Grupos de riesgo: preescolares y sus familias, sexo anal. **S. dysenteriae** produce toxina Shiga (detiene la síntesis de proteínas) → disentería: diarrea con sangre y moco, tenesmo, prolapso rectal.
 - **Salmonella** (Daniel Salmon, 1884): bacilo móvil (flagelos), intracelular facultativo; alimentos contaminados o fecal-oral. **S. Typhi** solo enferma al ser humano: fiebre tifoidea (agua y alimentos).
 - **Klebsiella** (Edwin Klebs): encapsulada, inmóvil, fermenta lactosa; microbiota de boca, piel e intestino. Cepas con **BLEE** y carbapenemasas. *K. pneumoniae*: neumonía nosocomial y por broncoaspiración en alcohólicos («jalea de grosella»), IVU, infección de herida. *K. oxytoca*: vía biliar y urinaria en hospitalizaciones largas.
 - **Serratia marcescens**: lugares húmedos; infecciones nosocomiales (heridas, IVU, meningitis, endocarditis); resistente a penicilinas.
 - **Yersinia pestis** (Alexandre Yersin, 1894): peste bubónica y neumónica; peste negra en Europa (1347–1351); reservorio en roedores, vector la pulga de la rata. **Y. enterocolitica**: cocobacilo móvil, síndrome diarreico.
 ## No fermentadores y otros
+^ pseudomonas.webp :: *Pseudomonas aeruginosa*: bacilos al microscopio electrónico y su pigmento verde (**piocianina**) en agar cetrimida. :: OpenStax, Microbiology, sección «Proteins» · imagen original de los CDC (dominio público) y OpenStax · CC BY 4.0 · recortada
 - **Pseudomonas, Acinetobacter baumannii** (aerobio estricto, nosocomial y muy resistente) y **Stenotrophomonas** (resistente a carbapenémicos).
 - **Haemophilus** y **Bordetella**: cocobacilos. La vacuna Hib está en el esquema infantil (no es anual). **Brucella**: lácteos sin pasteurizar (fiebre de Malta).
 - **Campylobacter jejuni**: curvo («en gaviota»), aves mal cocidas, asociado a Guillain-Barré. **Vibrio**: curvo (cólera).
@@ -224,11 +250,16 @@ Q Bacteria encapsulada asociada a neumonía en alcohólicos con esputo «en jale
 # Virología
 > Virus: genes envueltos en una cápside; solo se replican dentro de células vivas.
 ## Historia y estructura
+^ capsides.webp :: Simetrías de la cápside: **helicoidal**, **icosaédrica** (poliédrica) y **compleja**. :: OpenStax, Microbiology, sección «Viruses» · ilustración de OpenStax · CC BY 4.0 · recortada; nombres en inglés cambiados por marcadores
+^^ 13,50 :: Helicoidal (virus del mosaico del tabaco)
+^^ 47,50 :: Icosaédrica (rinovirus)
+^^ 83,50 :: Compleja (viruela)
 - 1892: virus del mosaico del tabaco. 1898: Martinus Beijerinck, primer tratado de virología. 1911: Peyton Rous relaciona virus y tumores.
 - «Virus» viene del latín *veneno*. Material genético **ADN o ARN**, de cadena sencilla o doble. Fuera de la célula se llaman **viriones**.
 - **Cápside** (proteínas) y, en algunos, **envoltura** lipídica (envueltos vs desnudos).
 = Ciclo de replicación viral :: Adsorción → Penetración → Desnudamiento → Eclipse → Replicación del genoma → Transcripción y traducción → Ensamble → Liberación (lisis o gemación)
 ## Clasificación de Baltimore
+^ baltimore.svg :: Los 7 grupos de Baltimore se definen por el tipo de genoma y por cómo producen ARNm. :: Esquema propio
 | Clase ¦ Genoma ¦ Ejemplos
 | I ¦ ADN de doble cadena ¦ Herpesvirus, adenovirus, papiloma
 | II ¦ ADN de cadena sencilla ¦ Parvovirus
@@ -242,6 +273,7 @@ Q Bacteria encapsulada asociada a neumonía en alcohólicos con esputo «en jale
 - La **IgM** indica infección reciente (aguda); la IgG, infección pasada o inmunidad.
 ! **Corrección:** tus notas dicen que la IgM son «anticuerpos inespecíficos»; la IgM es específica del agente, solo que es la **primera** en aparecer.
 ## Virus ADN
+^ herpes.webp :: Viriones del **virus del herpes simple** (microscopio electrónico de transmisión): ADN de doble cadena, cápside icosaédrica y envoltura. :: OpenStax, Microbiology, sección «Viral Infections of the Reproductive System» · imagen original de los CDC (dominio público) · CC BY 4.0
 | Familia ¦ Virus ¦ Lo importante
 | Papillomaviridae ¦ VPH ¦ Verrugas genitales y orales; displasias y cáncer cervicouterino y de pene; latente; hay vacuna (también para hombres)
 | Adenoviridae ¦ Adenovirus ¦ Infecta adenoides: vías respiratorias, conjuntivitis, cistitis hemorrágica, gastroenteritis; gotas, contacto, fecal-oral
@@ -253,6 +285,8 @@ Q Bacteria encapsulada asociada a neumonía en alcohólicos con esputo «en jale
 - Son **8 herpesvirus humanos**.
 ! **Corrección:** en tus notas el herpes simple dice «ARN de doble cadena»; todos los herpesvirus son **ADN de doble cadena**.
 ## Virus ARN
+^ rabia.webp :: **Virus de la rabia**: forma de **bala** característica (Rhabdoviridae, ARN de cadena negativa). :: OpenStax, Microbiology, sección «Acellular Diseases of the Nervous System» · imagen original de los CDC (dominio público) · CC BY 4.0 · reducida
+^ rotavirus.webp :: **Rotavirus** en heces (microscopio electrónico): aspecto de «rueda»; principal causa de diarrea grave en niños. :: OpenStax, Microbiology, sección «Viral Infections of the Gastrointestinal Tract» · micrografía del Dr. Graham Beards · CC BY 4.0
 | Familia ¦ Virus ¦ Lo importante
 | Picornaviridae ¦ Enterovirus (polio, coxsackie) ¦ Bucofaringe y tejido linfático; SNC y mano-pie-boca; verano; vacuna oral o inactivada de polio
 | Picornaviridae ¦ Rinovirus ¦ Resfriado común, faringitis, otitis, sinusitis; invierno
@@ -270,6 +304,12 @@ Q Bacteria encapsulada asociada a neumonía en alcohólicos con esputo «en jale
 | Retroviridae ¦ VIH (lentivirus) ¦ Infecta linfocitos T CD4 y macrófagos; fluidos corporales; antirretrovirales
 ! **Corrección:** la «lengua de fresa» no es del sarampión (es de la escarlatina y de Kawasaki); el signo típico del sarampión son las **manchas de Koplik**. Y el chikungunya es un alfavirus (Togaviridae), no un flavivirus.
 ## Hepatitis virales
+^ hepatitis.webp :: Los cinco virus de la hepatitis. A y E no tienen envoltura (transmisión fecal-oral); B, C y D sí (sangre y sexo); el D solo se replica si hay virus B. :: OpenStax, Microbiology, sección «Viral Infections of the Gastrointestinal Tract» · ilustración de OpenStax · CC BY 4.0 · recortada; nombres en inglés cambiados por marcadores
+^^ 5,45 :: Hepatitis A
+^^ 26,45 :: Hepatitis B
+^^ 52,45 :: Hepatitis C
+^^ 76,45 :: Hepatitis D
+^^ 95,45 :: Hepatitis E
 | Virus ¦ Familia ¦ Transmisión ¦ Lo importante
 | A ¦ Picornavirus ¦ Fecal-oral ¦ Aguda, gravedad moderada; no se cronifica
 | B ¦ Hepadnavirus ¦ Sexual, parenteral, perinatal ¦ Puede cronificarse; hay vacuna
@@ -277,6 +317,7 @@ Q Bacteria encapsulada asociada a neumonía en alcohólicos con esputo «en jale
 | † D ¦ Deltavirus ¦ Parenteral ¦ Solo infecta si hay hepatitis B
 | † E ¦ Hepevirus ¦ Fecal-oral ¦ Grave en embarazadas
 ## Ébola (Filoviridae)
+^ ebola.webp :: **Virus del Ébola**: filamento largo con el extremo en «gancho» o asa (Filoviridae). :: OpenStax, Microbiology, sección «Viral Infections of the Circulatory and Lymphatic Systems» · imagen original de los CDC (dominio público) · CC BY 4.0
 - ARN de cadena sencilla (−) con envoltura lipídica (sale por gemación); la glicoproteína se une al receptor **NPC1**.
 - Infecta macrófagos, células dendríticas y hepatocitos; viaja en células inmunes a hígado, timo y bazo.
 - Reservorio: murciélagos; contagio por fluidos corporales. Endémico en África; **mortalidad 25–90 %**.
@@ -296,6 +337,7 @@ Q El receptor celular del virus del ébola es… :: *NPC1 :: CD4 :: ECA2 :: Áci
 # Parasitología
 > Protozoos intestinales, urogenitales y sanguíneos, y helmintos (nematodos, trematodos y cestodos).
 ## Protozoos intestinales y urogenitales
+^ giardia.webp :: Trofozoíto de *Giardia lamblia* (microscopio electrónico): disco ventral para adherirse al intestino y flagelos. :: OpenStax, Microbiology, sección «Unicellular Eukaryotic Parasites» · imagen original de los CDC (dominio público) · CC BY 4.0 · recortada
 - Colonizan bucofaringe, duodeno y colon; vía **fecal-oral**; zonas tropicales y países en desarrollo. Mejorar la calidad de vida y el saneamiento es la medida más eficaz.
 | Parásito ¦ Grupo ¦ Formas ¦ Enfermedad
 | Entamoeba histolytica ¦ Ameba (seudópodos) ¦ Trofozoíto (activo) y quiste (infeccioso) ¦ Amebiasis: necrosis del colon (citotoxinas), † absceso hepático
@@ -303,17 +345,28 @@ Q El receptor celular del virus del ébola es… :: *NPC1 :: CD4 :: ECA2 :: Áci
 | Trichomonas vaginalis ¦ Flagelado ¦ Solo trofozoíto ¦ Transmisión sexual; vaginitis, uretritis, prostatitis
 | Balantidium coli ¦ Ciliado ¦ Trofozoíto y quiste ¦ Reservorio el cerdo; diarrea parecida a la amebiasis, úlceras
 ## Protozoos de la sangre y los tejidos
+^ plasmodium.webp :: Frotis de sangre con *Plasmodium falciparum*: trofozoíto joven en **anillo** y un **esquizonte**. :: OpenStax, Microbiology, sección «Parasitic Infections of the Circulatory and Lymphatic Systems» · imagen original de los CDC (dominio público) · CC BY 4.0 · recortada; etiquetas en inglés cambiadas por marcadores
+^^ 24,17 :: Trofozoíto en anillo
+^^ 69,73 :: Esquizonte
+^ chagas.webp :: Enfermedad de Chagas: *Trypanosoma cruzi* en sangre periférica (izquierda) y su vector, la **chinche triatomina** (derecha). :: OpenStax, Microbiology, sección «Parasitic Infections of the Circulatory and Lymphatic Systems» · imagen original de los CDC (dominio público) y foto de Erwin Huebner · CC BY 4.0 · recortada; etiqueta en inglés retirada
+^^ 26,45 :: Trypanosoma cruzi (tripomastigote)
+^^ 80,50 :: Triatomino (vector)
 - **Plasmodium** (paludismo): *P. vivax* (el más común), *P. falciparum* (el más letal), *P. ovale* y *P. malariae*. Lo transmite el mosquito ***Anopheles*** (esporozoítos) o una transfusión. Fiebre en picos > 40 °C con escalofríos y sudoración nocturna; afectación del SNC (malaria cerebral).
 - **Toxoplasma gondii**: intracelular; el **gato** es el hospedero definitivo y elimina ooquistes en las heces. Benigno en la mayoría, grave en inmunocomprometidos y **teratógeno**.
 - **Trypanosoma**: *T. brucei* (enfermedad del sueño, mosca tsé-tsé, afecta el SNC hasta el coma) y ***T. cruzi*** (enfermedad de **Chagas**, chinche besucona): hepatoesplenomegalia, **miocarditis**, megaesófago y megacolon.
 ! **Corrección:** el toxoplasma no se transmite al humano «en forma de esporas por vía respiratoria»; se adquiere al **ingerir** ooquistes (tierra, arena del gato, verduras mal lavadas) o quistes en carne mal cocida, y por vía transplacentaria.
 ## Helmintos: nematodos
+^ ascaris.webp :: *Ascaris lumbricoides*: masa de gusanos adultos expulsada por un niño y huevo fértil (redondo, cubierta gruesa). :: OpenStax, Microbiology, sección «Helminthic Infections of the Gastrointestinal Tract» · foto de James Gathany y micrografía de los CDC (dominio público) · CC BY 4.0 · recortada
 - Gusanos redondos macroscópicos; adultos en el tubo digestivo.
 - **Ascaris lumbricoides**: 20–35 cm, rosado; agua y alimentos con huevos; las larvas atraviesan el duodeno y pasan por hígado, corazón y pulmón (ciclo de Loss) antes de volver al intestino; desnutrición.
 - **Trichuris trichiura**: vive en el ciego; los huevos en heces son infectantes; ligado a falta de saneamiento.
 - **Trichinella spiralis** (triquinosis): carne de cerdo con larvas enquistadas → gusanos adultos en el intestino → larvas viajan y se enquistan en el **músculo**.
 - † **Uncinarias** (Ancylostoma, Necator): penetran la piel desde el suelo y causan anemia ferropénica.
 ## Trematodos y cestodos
+^ tenia.webp :: *Taenia*: escólex con ventosas y ganchos (izquierda) y huevo de *T. solium* (derecha). :: OpenStax, Microbiology, sección «Helminthic Infections of the Gastrointestinal Tract» · imagen original de los CDC (dominio público) · CC BY 4.0 · recortada; etiqueta en inglés retirada
+^^ 30,45 :: Escólex (ventosas y ganchos)
+^^ 86,50 :: Huevo de Taenia solium
+^ neurocisticercosis.webp :: Tomografía de cráneo con **neurocisticercosis**: múltiples quistes (flechas) por larvas de *T. solium*. :: OpenStax, Microbiology, sección «Fungal and Parasitic Diseases of the Nervous System» · imágenes de Segamwenge IL y Kioko NP · CC BY 4.0
 - **Fasciola hepatica**: gusano plano con ventosas; necesita un **caracol** como hospedero intermedio; del intestino pasa al hígado: hepatitis no viral, fibrosis y riesgo de cáncer.
 - **Cestodos**: planos en forma de cinta; cabeza (escólex) con órganos de fijación; hermafroditas; cada segmento es una **proglótide** y la cadena es el **estróbilo**.
 | ¦ Taenia solium ¦ Taenia saginata

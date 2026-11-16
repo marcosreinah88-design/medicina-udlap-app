@@ -14,6 +14,8 @@
 # Excitación rítmica del corazón
 > El corazón se excita solo: su sistema de conducción es músculo modificado, no tejido nervioso.
 ## Marcapasos y corriente funny
+^ pa-marcapasos.svg :: El nodo sinusal no tiene reposo estable: la corriente funny lo despolariza solo (fase 4). El miocito ventricular sí reposa en −90 mV y tiene meseta. :: Esquema propio
+^ conduccion.webp :: Recorrido del impulso: (1) nodo sinusal → (2) aurículas → (3) nodo AV con retraso → (4) haz de His y ramas → (5) Purkinje → (6) despolarización ventricular. :: OpenStax, Anatomy & Physiology 2e, sección «Cardiac Muscle and Electrical Activity» · ilustración de OpenStax · CC BY 4.0 · texto en inglés retirado
 - El sistema intrínseco del corazón (nodo sinusal, nodo AV, haz de His, Purkinje) está formado por **tejido muscular modificado**, no por nervios.
 - Al llegar al **potencial diastólico máximo** se abren los canales **funny (If)**, que dejan entrar Na⁺ y producen la despolarización lenta de la fase 4.
 - La frecuencia de descarga depende de 3 cosas: el **potencial diastólico máximo**, el **potencial umbral** y la **pendiente de despolarización** de la fase 4.
@@ -316,6 +318,7 @@ Q ¿Por qué no se ve la onda de repolarización auricular (Tp)? :: *Porque coin
 ~ Pospotencial tardío (PPT) :: Despolarización pequeña después de la repolarización completa, por sobrecarga de Ca²⁺.
 = Pospotencial tardío :: Se inhibe la bomba Na⁺/K⁺ (p. ej., digoxina) → Se invierte el intercambiador Na⁺/Ca²⁺ → Entra Ca²⁺ → Sobrecarga de Ca²⁺ → Despolarización tras la repolarización
 ## Reentrada
+^ reentrada.svg :: Reentrada: un bloqueo unidireccional y una vía lenta permiten que el impulso regrese por la otra rama y vuelva a excitar el tejido. :: Esquema propio
 - El impulso vuelve a excitar tejido que ya salió de su periodo refractario. Puede ser **anatómica** (una estructura obliga al impulso a rodearla) o **funcional/fisiológica**.
 - Tipos que viste: **anisotrópica** (alteración de uniones gap, p. ej., por acidosis), **en 8** (dos frentes que chocan), **en espiral** y por reciclaje.
 - **Reentrada nodal**: el nodo AV tiene una vía que conduce lento y repolariza rápido y otra al revés; si una está refractaria, el impulso circula entre ambas → taquicardia con **P retrógrada** (pseudo-S en DII, DIII, aVF o pseudo-R′ en V1). La vía lenta está en el **triángulo de Koch**.
@@ -343,6 +346,7 @@ Q Un QT prolongado favorece sobre todo… :: *Pospotenciales precoces :: Pospote
 % 90–95 % :: de la hipertensión es primaria (esencial)
 % PA = GC × RVP :: la ecuación que explica todo
 ## Sistema renina-angiotensina-aldosterona
+^ sraa.svg :: Cascada del SRAA y dónde actúan los fármacos. :: Esquema propio
 = SRAA :: El riñón detecta PA baja (aparato yuxtaglomerular) → Libera renina → Angiotensinógeno → Angiotensina I → ECA (endotelio, sobre todo pulmonar) → Angiotensina II → Vasoconstricción (receptor AT1) y liberación de aldosterona → Retención de Na⁺ y agua, pérdida de K⁺ → ↑ volumen y ↑ PA
 - El receptor **AT1** aumenta el Ca²⁺ intracelular y la contracción; el **AT2** produce vasodilatación (vía óxido nítrico).
 - Los **estrógenos** son vasodilatadores (favorecen la apertura de canales de K⁺).
@@ -373,11 +377,13 @@ Q El losartán actúa… :: *Bloqueando el receptor AT1 de angiotensina II :: In
 # Cardiopatía isquémica e insuficiencia cardiaca
 > El corazón falla por bombeo, obstrucción, regurgitación, cortocircuitos, conducción o ruptura.
 ## Perspectiva general de la enfermedad cardiaca
+^ aterosclerosis.webp :: Placa de **ateroma** en una arteria (corte histológico): la placa estrecha la luz y es la base de la cardiopatía isquémica. :: OpenStax, Anatomy & Physiology 2e, sección «Blood Flow, Blood Pressure, and Resistance» · micrografía de OpenStax · CC BY 4.0 · recortada; etiqueta en inglés retirada
 - Insuficiencia de bombeo, obstrucción al flujo, regurgitación, flujo derivado (cortocircuito), trastornos de conducción y rotura del corazón o de un gran vaso.
 ## Angina de pecho
 ~ Angina estable :: Dolor con el esfuerzo por desequilibrio entre perfusión coronaria y demanda del miocardio; cede con reposo.
 ~ Angina inestable :: Dolor más frecuente, prolongado o con mínimos esfuerzos, por ruptura de una placa o trombosis; puede evolucionar a infarto.
 ## Infarto agudo de miocardio
+^ angiografia.webp :: Coronariografía: las **flechas rojas** señalan la oclusión del tronco de la coronaria izquierda y de la circunfleja. :: OpenStax, Anatomy & Physiology 2e, sección «Heart Anatomy» · angiografía de OpenStax · CC BY 4.0 · etiquetas en inglés retiradas
 - Muerte del músculo cardiaco por **isquemia grave y prolongada**.
 - Causas: oclusión coronaria por placa o trombo (la más común), vasoespasmo, émbolos e isquemia sin ateroesclerosis.
 - **Infarto transmural**: abarca todo el grosor de la pared.
@@ -388,6 +394,7 @@ Q El losartán actúa… :: *Bloqueando el receptor AT1 de angiotensina II :: In
 - La ruptura de pared, septo o músculo papilar es una complicación grave.
 ! † Reperfusión: en el infarto con elevación del ST la angioplastia primaria es de elección si se puede hacer en < 120 min; si no, fibrinólisis.
 ## Insuficiencia cardiaca
+^ frank-starling.svg :: Frank-Starling: a más precarga, más volumen latido; en la insuficiencia cardiaca la curva se aplana. :: Esquema propio
 - El corazón no bombea lo suficiente para las demandas de los tejidos, o solo lo logra con presiones de llenado altas.
 - **Frank-Starling**: con menor volumen de eyección el ventrículo no se vacía bien → ↑ volumen diastólico → mayor estiramiento → intenta aumentar la fuerza.
 - Mecanismos neurohumorales: noradrenalina (simpático), sistema renina-angiotensina y péptido natriurético.
@@ -415,6 +422,7 @@ Q La causa más común de infarto agudo de miocardio es… :: *Ruptura de una pl
 - Taquicardia, taquipnea, **PAM < 65 mmHg** (en tus notas < 60), hipotensión (aparece tarde: no hay que esperarla), alteración del estado mental (inquieto, irritable, hasta no responder), oliguria y piel fría, pálida y sudorosa.
 ! No te guíes por la hipotensión: el choque compensado tiene PA normal; busca taquicardia, llenado capilar lento, lactato y oliguria.
 ## Tipos
+^ choque.svg :: Perfil hemodinámico de los cuatro tipos de choque (↓ disminuye, ↑ aumenta). :: Esquema propio
 | Tipo ¦ Falla ¦ Ejemplos
 | Hipovolémico ¦ Volumen ¦ Hemorragia, deshidratación (diarrea, vómito, quemaduras), tercer espacio
 | Cardiogénico ¦ Bomba ¦ Infarto (> 40 % del VI), ruptura de músculo papilar o septo, aneurisma, miocardiopatías, arritmias, valvulopatías
@@ -457,6 +465,13 @@ Q En el choque, ¿qué produce la acidosis metabólica? :: *El ácido láctico d
 % 10.2 % :: de la población mayor de 40 años tiene bronquitis crónica (dato de tus notas)
 - Tratamiento: broncodilatadores de corta y larga acción (LAMA, LAMA + LABA), corticoide inhalado en algunos casos, fisioterapia. La broncodilatación se logra por dos rutas: **β2 agonistas** o **anticolinérgicos** (bloqueo parasimpático).
 ## Asma
+^ asma.webp :: Pared bronquial (a) normal y (b) en asma: más moco, engrosamiento de la membrana basal, infiltrado de eosinófilos, mastocitos y neutrófilos, y músculo liso hipertrofiado. :: OpenStax, Anatomy & Physiology 2e, sección «Organs and Structures of the Respiratory System» · ilustración de OpenStax · CC BY 4.0 · recortada; nombres en inglés retirados
+^^ 75,4 :: Moco (aumentado en asma)
+^^ 25,8 :: Epitelio con células caliciformes
+^^ 25,22 :: Lámina propia normal
+^^ 75,42 :: Infiltrado inflamatorio (eosinófilos, mastocitos)
+^^ 75,60 :: Músculo liso hipertrofiado
+^^ 75,92 :: Cartílago
 - Reacción inmunitaria con **broncoconstricción** reversible ante estímulos (alérgenos, ejercicio, aire frío), hiperplasia de músculo liso, exceso de moco e inflamación.
 - Etiología: **atópica** (alérgica, la más común) y no atópica. Infecciones y daño epitelial facilitan la sensibilización.
 - Diagnóstico **clínico** con más de una de: sibilancias, tos seca, falta de aire, opresión torácica (peor de noche o al despertar), antecedentes familiares, patrón obstructivo y **mejoría con broncodilatador**.
@@ -484,6 +499,9 @@ Q Las dos rutas para lograr broncodilatación son… :: *β2 agonistas y anticol
 # Sistema nervioso: bases y depresión
 > Organización del sistema nervioso, neuronas y glía, sinapsis, y los circuitos de la depresión.
 ## Organización y células
+^ sustancia-gris.webp :: Cerebro de autopsia con un corte: la **sustancia gris** (cuerpos neuronales) está en la corteza y la **sustancia blanca** (axones mielinizados) por dentro. :: OpenStax, Anatomy & Physiology 2e, sección «Basic Structure and Function of the Nervous System» · foto de OpenStax · CC BY 4.0 · etiquetas en inglés cambiadas por marcadores
+^^ 12,45 :: Sustancia gris (corteza)
+^^ 25,68 :: Sustancia blanca
 | División ¦ Origen ¦ Ganglios ¦ Neurotransmisor
 | Simpático ¦ Toracolumbar ¦ Preganglionar corta, ganglio cerca de la médula ¦ Noradrenalina (adrenérgico)
 | Parasimpático ¦ Craneosacro ¦ Preganglionar larga, ganglio cerca del órgano ¦ Acetilcolina (colinérgico)
@@ -499,6 +517,9 @@ Q Las dos rutas para lograr broncodilatación son… :: *β2 agonistas y anticol
 - **Toxina botulínica**: corta SNARE en la placa motora (parálisis flácida, efecto local). **Toxina tetánica**: actúa en neuronas inhibidoras (parálisis espástica).
 - Receptores **ionotrópicos** (canales que se abren al unirse el transmisor, no dependen de voltaje) y **metabotrópicos** (acoplados a proteína G).
 ## Embriología y corteza
+^ broca.webp :: Áreas del lenguaje unidas por el fascículo arqueado: **Broca** (frontal, expresión) y **Wernicke** (temporal, comprensión). :: OpenStax, Anatomy & Physiology 2e, sección «The Mental Status Exam» · ilustración de OpenStax · CC BY 4.0 · nombres en inglés cambiados por marcadores
+^^ 33,38 :: Área de Broca
+^^ 64,33 :: Área de Wernicke
 | Vesícula primaria ¦ Vesículas secundarias
 | Prosencéfalo ¦ Telencéfalo y diencéfalo
 | Mesencéfalo ¦ Mesencéfalo
@@ -544,6 +565,7 @@ Q ¿Qué estructura regula el eje hipotálamo-hipófisis-suprarrenal y la adapta
 + La pérdida del olfato puede anunciar un proceso neurodegenerativo.
 ! **Corrección:** APOE no se relaciona con la trisomía 21; el que está en el cromosoma 21 es el gen **APP**.
 ## Parkinson
+^ ganglios-basales.svg :: Circuito de los ganglios basales: sin la dopamina de la sustancia nigra se pierde el equilibrio entre la vía directa y la indirecta. :: Esquema propio
 - Segundo trastorno neurodegenerativo más común; inicia a los 55–60 años (5–10 % antes de los 40); más en hombres.
 - Pérdida de neuronas dopaminérgicas de la **sustancia negra** (mesencéfalo) y **cuerpos de Lewy** (α-sinucleína). Los síntomas aparecen cuando se ha perdido el **70–80 %**.
 - La dopamina equilibra las vías **directa** (excitatoria) e **indirecta** (inhibitoria) de los ganglios basales; sin dopamina domina la indirecta → se frena el movimiento.
@@ -579,6 +601,7 @@ Q Neuronas que se pierden en la corea de Huntington :: *GABAérgicas del estriad
 # Enfermedad cerebrovascular
 > Estenosis, oclusión o ruptura de un vaso: ~85 % son isquémicas.
 ## Tipos
+^ hemorragia.webp :: **EVC hemorrágico**: esquema y tomografía con sangre (hiperdensa, blanca) dentro del parénquima cerebral. :: OpenStax, Anatomy & Physiology 2e, sección «Overview of the Neurological Exam» · ilustración y TC de OpenStax · CC BY 4.0 · recortada
 | Isquémica (~85 %) ¦ Hemorrágica
 | Infarto lacunar ¦ Hemorragia intracerebral espontánea
 | Oclusión carotídea ¦ Hemorragia subaracnoidea
@@ -602,6 +625,7 @@ Q El principal factor de riesgo modificable de EVC es… :: *Hipertensión arter
 ## Respuesta del glomérulo a la lesión
 - Engrosamiento de la membrana basal, hipercelularidad (proliferación mesangial o endotelial, infiltrado leucocitario), hialinosis y esclerosis glomerular.
 ## Nefrítico vs nefrótico
+^ nefritico-nefrotico.svg :: Nefrítico = inflamación con hematuria; nefrótico = fuga masiva de proteína. :: Esquema propio
 | Síndrome nefrítico ¦ Síndrome nefrótico
 | Hematuria (macro o microscópica) de inicio agudo ¦ Proteinuria masiva ≥ 3.5 g/día
 | Filtración glomerular reducida ¦ Hipoalbuminemia < 3 g/dL

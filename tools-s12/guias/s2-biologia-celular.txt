@@ -6,9 +6,9 @@
 @codigo BCM
 @color #2e7d4f
 @icon bcm
-@sub Membrana y organelos · Citoesqueleto · ADN y replicación · Transcripción · Traducción · Ciclo celular · Señalización · Muerte celular · Técnicas
+@sub Membrana y organelos · Citoesqueleto · ADN y replicación · Transcripción · Traducción · Ciclo celular · Señalización · Muerte celular, inflamación y neoplasias · Técnicas
 @desc De la membrana al genoma, dividido en subtemas y con diagramas paso a paso: organelos, flujo de la información genética, ciclo celular, señales y muerte celular, con las enfermedades y técnicas de laboratorio que salen en examen.
-@kw biologia celular molecular membrana organelos lisosoma peroxisoma mitocondria reticulo golgi citoesqueleto microtubulos adn replicacion reparacion transcripcion arn splicing traduccion ribosoma ciclo celular p53 rb ciclinas oncogenes señalizacion receptores proteina g apoptosis caspasas necrosis pcr western southern northern elisa crispr
+@kw biologia celular molecular membrana organelos lisosoma peroxisoma mitocondria reticulo golgi citoesqueleto microtubulos adn replicacion reparacion transcripcion arn splicing traduccion ribosoma ciclo celular p53 rb ciclinas oncogenes señalizacion receptores proteina g apoptosis caspasas necrosis pcr western southern northern elisa crispr patologia lesion celular necrosis coagulativa licuefactiva caseosa grasa fibrinoide gangrena inflamacion aguda cronica neutrofilo granuloma signos cardinales neoplasia benigna maligna metastasis displasia carcinoma in situ
 
 # Membrana plasmática y organelos
 > Compartimentos con funciones especializadas.
@@ -215,6 +215,20 @@ Q La mutación de la anemia de células falciformes es de tipo: :: *Sentido err�
 | Ejemplos ¦ RAS, MYC, HER2, BCR-ABL ¦ RB, TP53, APC, BRCA1/2
 ! Retinoblastoma hereditario: un alelo RB mutado heredado + un golpe somático → tumores bilaterales y osteosarcoma.
 + **Imatinib** inhibe la tirosina cinasa BCR-ABL en la leucemia mieloide crónica (cromosoma Filadelfia, t(9;22)).
+## Neoplasia benigna, maligna y progresión †
+> † Lo que distingue a un tumor benigno de uno maligno y cómo un epitelio llega a carcinoma.
+- † **Benigna**: bien diferenciada, crece lento, expansiva y encapsulada; **no** da metástasis (adenoma, lipoma, leiomioma).
+- † **Maligna**: anaplasia y atipia, muchas mitosis atípicas, infiltra y puede dar **metástasis**; carcinoma si viene de epitelio, sarcoma si viene de mesénquima.
+- † Carcinomas: metástasis sobre todo por vía **linfática**; sarcomas: por vía **hematógena**.
+! † La **metástasis** es el único criterio que define con seguridad a un tumor como maligno.
++ † **Carcinoma in situ**: atipia en todo el espesor del epitelio pero con la **membrana basal íntegra**; todavía no puede dar metástasis.
+^ benigno-maligno.svg :: Benigna (encapsulada, células parecidas al tejido normal) vs maligna (bordes que infiltran, núcleos grandes y oscuros, llega a los vasos). :: Esquema propio
+^ carcinogenesis.svg :: Del epitelio normal a carcinoma invasor en el cuello uterino: la displasia (NIC) avanza de abajo hacia arriba y el carcinoma se vuelve invasor cuando rompe la **membrana basal**. :: Esquema propio
+^ cervix-displasia.webp :: Cuello uterino: a la izquierda células displásicas o cancerosas (núcleos grandes, apretados y sin orden); a la derecha epitelio normal con su arquitectura regular. :: OpenStax, Anatomy & Physiology 2e, capítulo «The Tissue Level of Organization» (introducción) · micrografía de «Haymanj» / Wikimedia Commons · CC BY 4.0
+^^ 25,22 :: Células atípicas (desordenadas)
+^^ 86,42 :: Epitelio normal
+^ carcinoma-basocelular.webp :: Carcinoma basocelular: el cáncer de piel más común; lesión perlada con telangiectasias que crece despacio y casi nunca da metástasis. :: OpenStax, Anatomy & Physiology 2e, sección «Diseases, Disorders, and Injuries of the Integumentary System» · foto de John Hendrix, MD · CC BY 4.0
+^ carcinoma-epidermoide.webp :: Carcinoma epidermoide (de células escamosas) en la nariz: lesión costrosa que se ulcera, en piel dañada por el sol. :: OpenStax, Anatomy & Physiology 2e, sección «Diseases, Disorders, and Injuries of the Integumentary System» · foto del National Cancer Institute (dominio público) · CC BY 4.0
 ? Fase donde se replica el ADN :: Fase S.
 ? Función de Rb :: Retiene a E2F e impide pasar de G1 a S hasta que se fosforila.
 ? Función de p53 :: Detener el ciclo (vía p21), reparar o inducir apoptosis ante daño del ADN.
@@ -224,6 +238,9 @@ Q La mutación de la anemia de células falciformes es de tipo: :: *Sentido err�
 Q Niño con retinoblastoma bilateral y luego osteosarcoma. Gen afectado: :: *RB1 (germinal) :: TP53 somático :: RAS :: MYC || Retinoblastoma hereditario: mutación germinal de RB1.
 Q ¿Qué tipo de célula no vuelve a dividirse tras un infarto? :: *Cardiomiocito (permanente) :: Hepatocito (estable) :: Célula basal epidérmica (lábil) :: Fibroblasto || Por eso el miocardio necrosado se reemplaza por cicatriz.
 Q ¿Qué complejo fosforila a Rb para permitir la entrada a fase S? :: *Ciclina D-CDK4/6 :: Ciclina B-CDK1 :: p21 :: p53 || La fosforilación libera a E2F.
+? Único criterio seguro de malignidad :: La metástasis.
+? Diferencia entre carcinoma in situ e invasor :: El invasor rompe la membrana basal; el in situ la conserva.
+Q Biopsia de cuello uterino con atipia en todo el espesor del epitelio y membrana basal íntegra: :: *Carcinoma in situ (NIC 3) :: Carcinoma invasor :: NIC 1 :: Metaplasia escamosa || Mientras la membrana basal esté íntegra no hay invasión ni metástasis.
 
 # Señalización celular
 > Ligandos que se unen a receptores y activan cascadas intracelulares.
@@ -267,6 +284,8 @@ Q La insulina señaliza principalmente mediante: :: *Receptor con actividad tiro
 - Los linfocitos T citotóxicos usan **perforina y granzima** (activa caspasas).
 ! **Bcl-2** sobreexpresado por t(14;18) → linfoma folicular (las células no mueren).
 + La **quimioterapia** y la radiación matan células tumorales principalmente induciendo apoptosis vía p53.
+^ apoptosis-vias.svg :: Vía intrínseca (mitocondria, citocromo c, caspasa 9) y extrínseca (Fas/TNF, caspasa 8): las dos terminan en las caspasas 3 y 7. :: Esquema propio
+^ apoptosis-interdigital.webp :: Apoptosis fisiológica: pie de un embrión de ratón; el tejido entre los dedos se elimina por apoptosis antes de nacer (si falla queda sindactilia†). :: OpenStax, Biology 2e, sección «Response to the Signal» · micrografía de Michal Mañas · CC BY 4.0
 ## Necrosis
 | Tipo ¦ Dónde
 | Coagulativa ¦ Isquemia de órganos sólidos (corazón, riñón)
@@ -277,18 +296,48 @@ Q La insulina señaliza principalmente mediante: :: *Receptor con actividad tiro
 | Gangrenosa ¦ Extremidades con isquemia
 ! Infarto cerebral = necrosis licuefactiva; infarto de miocardio = coagulativa.
 + **Infarto agudo de miocardio**: necrosis coagulativa; la troponina se libera por pérdida de la membrana.
+^ lesion-celular.svg :: La lesión reversible (célula hinchada) se recupera si se quita la causa; pasado el punto de no retorno la célula muere por **necrosis** (membrana rota, inflamación) o por **apoptosis** (cuerpos apoptóticos, sin inflamación). :: Esquema propio
+^ necrosis-tipos.svg :: Los seis patrones de necrosis: qué se ve al microscopio o a simple vista y en qué órgano aparece cada uno. :: Esquema propio
+^ necrosis-cerebro.webp :: Necrosis en el encéfalo por encefalitis amebiana granulomatosa: el tejido muerto se reblandece y se licúa, como pasa en el cerebro. :: OpenStax, Microbiology, sección «Fungal and Parasitic Diseases of the Nervous System» · fotos de los CDC (dominio público) · CC BY 4.0 · recortada
+^ gangrena-seca.webp :: Pie diabético: el primer dedo negro y momificado es **gangrena seca** (necrosis coagulativa por isquemia); la úlcera vecina puede infectarse. :: OpenStax, Microbiology, sección «Oxygen Requirements for Microbial Growth» · foto de Phalinn Ooi / Wikimedia Commons · CC BY
+^ gangrena-gaseosa.webp :: **Gangrena gaseosa** (húmeda) por *Clostridium perfringens*: piel violácea con borde irregular y gas dentro del tejido. :: OpenStax, Microbiology, sección «Bacterial Infections of the Circulatory and Lymphatic Systems» · foto de Aggelidakis J y cols. · CC BY 4.0 · recortada
 ## Adaptación celular
 ~ Hipertrofia :: Aumento del tamaño de las células.
 ~ Hiperplasia :: Aumento del número de células.
 ~ Atrofia :: Disminución del tamaño o número de células.
 ~ Metaplasia :: Un tipo celular maduro se sustituye por otro (reversible), como el epitelio de Barrett.
 ~ Displasia :: Desorganización con atipia; precursora de cáncer.
+^ adaptaciones.svg :: Adaptaciones celulares con un ejemplo de cada una. La displasia ya no es adaptación: es el paso previo al cáncer. :: Esquema propio
+^ bocio.webp :: Bocio: la tiroides crece por **hiperplasia** e hipertrofia de las células foliculares, estimuladas por TSH o por anticuerpos (Graves). :: OpenStax, Microbiology, sección «Autoimmune Disorders» · CC BY 4.0
+## Inflamación aguda y crónica †
+> † Respuesta del tejido vascularizado al daño (necrosis, infección, cuerpo extraño): lleva leucocitos y proteínas al sitio para limpiar y reparar.
+- † **Aguda**: minutos a días; vasodilatación, ↑ permeabilidad (exudado y edema) y **neutrófilos**.
+- † **Crónica**: semanas a años; **macrófagos, linfocitos y células plasmáticas**, con destrucción y reparación (fibrosis, angiogénesis) al mismo tiempo.
+= † Salida del neutrófilo :: Marginación → Rodamiento (selectinas) → Adhesión firme (integrinas con ICAM-1) → Diapédesis (PECAM-1) → Quimiotaxis (C5a, IL-8, LTB₄) → Fagocitosis
+& † RUBOR, CALOR, TUMOR, DOLOR :: Signos de Celso; Virchow agregó la pérdida de función
+! † **Granuloma** = macrófagos epitelioides + células gigantes; con **necrosis caseosa** pensar en tuberculosis.
++ † **Deficiencia de adhesión leucocitaria tipo 1** (falta CD18): infecciones de repetición sin pus y caída tardía del cordón umbilical.
+^ signos-cardinales.svg :: Los cinco signos cardinales con su mecanismo y los mediadores que los causan. :: Esquema propio
+^ inflamacion-leucocitos.svg :: Cómo sale el neutrófilo de la vénula hacia el tejido dañado, paso a paso y con la molécula de cada paso. :: Esquema propio
+^ neutrofilo.webp :: Frotis de sangre: **neutrófilo** (arriba, núcleo en lóbulos), la primera célula en llegar a la inflamación aguda, y un eosinófilo (abajo, gránulos naranjas). :: OpenStax, Biology 2e, sección «The Immune System: Introduction» · micrografía del Dr. David Csaba · CC BY 4.0
+^^ 32,22 :: Neutrófilo
+^^ 50,72 :: Eosinófilo
+^ edema-inflamacion.webp :: **Tumor** (edema) en la mano derecha: los mediadores inflamatorios aumentan la permeabilidad y el líquido sale al tejido. :: OpenStax, Microbiology, sección «Virulence Factors of Bacterial and Viral Pathogens» · CC BY 4.0
+^ aguda-cronica.svg :: Inflamación aguda vs crónica: duración, células, resultado y laboratorio. :: Esquema propio
+^ granuloma.svg :: Partes de un granuloma tuberculoso, de adentro hacia afuera. :: Esquema propio
+^ granuloma-tb.webp :: Granulomas en el pulmón de un paciente con tuberculosis: nidos de macrófagos epitelioides (rosa) rodeados de linfocitos (morado). :: OpenStax, Microbiology, sección «Inflammation and Fever» · micrografía de Piotrowski WJ y cols. · CC BY 4.0 · recortada; rótulo en inglés quitado
+^^ 23,48 :: Granuloma (macrófagos epitelioides)
+^^ 50,52 :: Corona de linfocitos
 ? Proteína antiapoptótica de la mitocondria :: Bcl-2.
 ? Molécula liberada por la mitocondria en la apoptosis :: Citocromo c (activa la caspasa 9).
 ? Caspasa iniciadora de la vía extrínseca :: Caspasa 8 (Fas/TNF).
 ? Necrosis del infarto cerebral :: Licuefactiva.
 ? Necrosis de la tuberculosis :: Caseosa.
 ? Translocación que sobreexpresa Bcl-2 :: t(14;18), linfoma folicular.
+? Signos cardinales de la inflamación :: Rubor, calor, tumor, dolor y pérdida de función.
+? Célula de la inflamación aguda vs crónica :: Aguda: neutrófilo. Crónica: macrófago, linfocito y célula plasmática.
+? Molécula que media el rodamiento del leucocito :: Selectinas (E y P).
+Q Biopsia de pulmón con granulomas y centro amorfo blanco amarillento: :: *Tuberculosis (necrosis caseosa) :: Sarcoidosis :: Infarto pulmonar :: Neumonía neumocócica || La necrosis caseosa dentro de un granuloma es típica de TB; la sarcoidosis da granulomas sin caseum.
 Q ¿Qué distingue a la apoptosis de la necrosis? :: *La apoptosis no produce inflamación :: La apoptosis no necesita ATP :: La necrosis es programada :: La necrosis forma cuerpos apoptóticos || La membrana se conserva y los cuerpos apoptóticos se fagocitan sin liberar contenido.
 Q Paciente con pancreatitis aguda y depósitos blanquecinos en el mesenterio. Tipo de necrosis: :: *Grasa (saponificación) :: Caseosa :: Coagulativa :: Fibrinoide || Las lipasas liberan ácidos grasos que se unen al calcio.
 Q El esófago de Barrett (epitelio escamoso sustituido por columnar) es un ejemplo de: :: *Metaplasia :: Displasia :: Hiperplasia :: Hipertrofia || Es una adaptación al reflujo ácido y puede progresar a displasia.

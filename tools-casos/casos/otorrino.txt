@@ -1,0 +1,173 @@
+// Casos clínicos tipo examen · Otorrinolaringología (s5/otorrino). † = no viene en los apuntes.
+
+# Anatomía de cavidad oral, glándulas y faringe
+## Ganglio en cadena posterior
+C Hombre de 58 años, fumador, con un ganglio cervical de 2.5 cm, pétreo, indoloro, posterior al esternocleidomastoideo, de 2 meses de evolución. Sin fiebre ni infección reciente.
+P ¿Cómo debe considerarse?
+* Maligno hasta demostrar lo contrario; estudiar cabeza y cuello :: Un ganglio en la cadena posterior al ECM es maligno hasta demostrar lo contrario.
+- Reactivo; antibiótico y vigilancia :: Los reactivos son dolorosos, blandos y móviles.
+- Quiste branquial típico† :: Es pétreo, en un adulto fumador y de crecimiento reciente.
+- Normal para su edad :: No es normal un ganglio pétreo de 2.5 cm.
+- Sialoadenitis submandibular :: La submandibular no está en la cadena posterior.
+E Úlcera de paladar que no sana en más de 1 mes: referir a ORL para TC y biopsia (posible linfoma).
+
+# Infecciones de faringe
+## Faringitis con criterios de Centor
+C Niño de 9 años con inicio súbito de fiebre de 39 °C, odinofagia y cefalea. Sin tos ni rinorrea. Amígdalas hipertróficas con exudado y adenopatías cervicales anteriores dolorosas.
+P ¿Cuál es la etiología más probable y cómo se confirma con el estándar?
+* Estreptococo del grupo A; cultivo faríngeo :: Inicio súbito, fiebre alta, sin tos ni rinorrea; el cultivo faríngeo es el estándar (también Centor y prueba rápida).
+- Rinovirus; clínica :: Los virus dan tos, rinorrea y fiebre baja.
+- Adenovirus; serología :: Daría conjuntivitis (fiebre faringoconjuntival).
+- Virus de Epstein-Barr; ASO :: El ASO no diagnostica mononucleosis.
+- Mycoplasma; radiografía de tórax :: Mycoplasma es de 15–19 años con neumonía.
+E Si no se trata en 10 días puede dar fiebre reumática o glomerulonefritis; la complicación supurativa más común es el absceso periamigdalino.
+
+## Faringitis, adenopatía posterior y rash con amoxicilina
+C Estudiante de 18 años con 1 semana de odinofagia, fiebre y fatiga intensa. Exudado amigdalino blanco «como cáscara», petequias en el paladar, adenopatías en el triángulo posterior y esplenomegalia. Le dieron amoxicilina y le salió un exantema.
+P ¿Qué recomendación es clave?
+* Evitar deportes de contacto por riesgo de ruptura esplénica :: Mononucleosis (EBV 90 %): tratamiento de soporte y sin deportes de contacto.
+- Completar 10 días de amoxicilina :: La amoxicilina da rash en mononucleosis y no trata un virus.
+- Amigdalectomía urgente :: No está indicada.
+- Penicilina benzatínica :: No es estreptocócica.
+- Monospot negativo descarta el diagnóstico :: Tiene 40 % de falsos negativos en las primeras 2–3 semanas.
+E Monospot: sensibilidad 85 %, especificidad ~100 %. En la BH, 80–90 % mononucleares con 10 % de linfocitos atípicos.
+
+## Odinofagia unilateral con trismus
+C Hombre de 23 años con faringitis de 5 días que empeora: odinofagia unilateral intensa, trismus, voz de «papa caliente» y úvula desviada a la izquierda con abombamiento del paladar derecho.
+P ¿Cuál es el manejo?
+* Drenaje del absceso periamigdalino, antibiótico IV y vigilancia de la vía aérea :: Es la complicación supurativa más común del estreptococo.
+- Antibiótico oral y cita en 1 semana :: Un absceso requiere drenaje.
+- Rx lateral de cuello con signo del pulgar :: Ese signo es de epiglotitis.
+- Esteroide y alta :: No trata el absceso.
+- Amigdalectomía programada en 6 meses como único manejo :: La urgencia es drenar; la amigdalectomía es absoluta si se repite más de 2 veces.
+E Pilar abombado: TC con contraste si hay duda. Lemierre = trombosis de la yugular interna, otra complicación supurativa.
+
+# SAOS
+## Niño que ronca
+C Niño de 6 años que ronca todas las noches, tiene pausas respiratorias presenciadas, enuresis y está hiperactivo en la escuela. Amígdalas grado 4 y adenoides que obstruyen 70 %.
+P ¿Cuál es el tratamiento definitivo?
+* Adenoamigdalectomía :: En niños con SAOS la cirugía es el tratamiento definitivo.
+- CPAP de por vida :: En adultos es el tratamiento principal; en niños, la cirugía.
+- Montelukast como tratamiento definitivo :: Solo para hipertrofia sin síntomas ni apnea.
+- Bajar de peso :: No explica el cuadro de este niño.
+- Observar hasta los 12 años :: Con SAOS no se espera la involución adenoidea.
+E La polisomnografía es el estándar de oro. Niño con SAOS grave: CPAP 1–2 semanas antes y después de la cirugía.
+
+# Laringe y patología benigna
+## Disfonía en maestra
+C Maestra de 32 años con disfonía que empeora a lo largo del día y amanece mejor. La laringoscopía muestra lesiones bilaterales simétricas en la unión del tercio anterior con el medio de las cuerdas vocales.
+P ¿Cuál es el diagnóstico y el primer tratamiento?
+* Nódulos vocales; terapia de voz :: Son bilaterales en la zona de mayor contacto; los pequeños se tratan con terapia de voz.
+- Pólipo cordal; láser KTP :: Suele ser unilateral y por ruptura capilar.
+- Edema de Reinke; dejar de fumar :: Da voz grave y difusa, ligada a tabaco.
+- Papilomatosis; escisión con láser :: Son lesiones verrugosas exofíticas por VPH.
+- Cáncer glótico; laringectomía :: No hay factores de riesgo y las lesiones son simétricas.
+E Microlaringoscopía si miden 2–3 mm o ya no puede hablar. El reflujo faringolaríngeo da disfonía peor en la mañana.
+
+## Hombre fumador con disfonía
+C Hombre de 72 años, fumador de 40 paquetes-año y bebedor, con disfonía progresiva de 3 meses. Sin infección respiratoria.
+P ¿Cuál es la conducta?
+* Laringoscopía y TC de cuello; biopsia de lo que se encuentre :: Hombre >70 años, disfónico, con alcohol y tabaco: sospecha de cáncer de laringe.
+- IBP por 3 meses y revalorar :: Retrasa el diagnóstico de un probable cáncer.
+- Terapia de voz :: No se indica sin diagnóstico.
+- Antibiótico por laringitis :: No hay datos de infección.
+- Solo vigilancia :: La disfonía persistente en un fumador se estudia.
+E En México el cáncer glótico es el más común. Leucoplaquia y eritroplaquia son premalignas (más sugestiva la eritroplaquia).
+
+# CROUP y diferenciales
+## Tos perruna
+C Niño de 2 años, en invierno, con 2 días de rinorrea y febrícula; hoy tiene tos perruna, disfonía y estridor inspiratorio en reposo con tiraje leve. Sin babeo.
+P ¿Cuál es el diagnóstico y el tratamiento más eficaz para el estridor?
+* Croup (laringotraqueítis); epinefrina racémica nebulizada :: Es lo mejor; los esteroides se usan en cuadros leves.
+- Epiglotitis; intubación inmediata :: La epiglotitis da fiebre alta, babeo, posición en trípode y voz apagada.
+- Cuerpo extraño; broncoscopía :: No hay inicio súbito por atragantamiento.
+- Laringomalacia; vigilancia :: Es congénita, desde las primeras semanas.
+- Absceso retrofaríngeo; drenaje :: Daría fiebre, odinofagia y rigidez de cuello.
+E El croup causa el 80 % de los estridores en niños; afecta de 3 meses a 5 años. CROUP score 7–10: intubación.
+
+# Laringomalacia y estridor congénito
+## Estridor que mejora en prono
+C Lactante de 6 semanas con estridor inspiratorio intermitente desde la segunda semana de vida, peor en supino y al alimentarse, que mejora en prono. Gana peso bien y no tiene cianosis.
+P ¿Cuál es el diagnóstico y el manejo?
+* Laringomalacia; vigilancia y tratar el reflujo :: Es la causa más común de estridor congénito y suele resolverse hacia el año.
+- Estenosis subglótica; dilatación :: Se asocia a intubación prolongada y el estridor es bifásico.
+- Parálisis cordal bilateral; traqueostomía :: Daría estridor agudo y llanto anormal.
+- Supraglotoplastia inmediata :: Solo si es grave o persiste.
+- Croup; epinefrina :: El croup es infeccioso y agudo.
+E Hallazgos: epiglotis en omega, aritenoides redundantes y pliegues aritenoepiglóticos cortos; ERGE asociado en 30–80 %.
+
+# Papilomatosis, laringitis y cáncer de laringe
+## Disfonía en niño
+C Niño de 4 años con disfonía progresiva y, en las últimas semanas, dificultad respiratoria al esfuerzo. La laringoscopía muestra lesiones verrugosas exofíticas en cuerdas vocales. La madre tenía condilomas en el parto.
+P ¿Cuál es el manejo y qué hay que evitar?
+* Escisión endoscópica (ideal con láser); evitar la traqueostomía :: La traqueostomía siembra papilomas en la vía aérea inferior.
+- Radioterapia; evitar la cirugía :: No se usa radioterapia en papilomatosis†.
+- Laringectomía total :: Es una lesión benigna.
+- Solo esperar la pubertad :: Suelen mejorar en la pubertad, pero con obstrucción del 50 % o dificultad respiratoria se opera.
+- Antibiótico prolongado :: Es por VPH, no bacteriana.
+E Papilomatosis respiratoria: VPH 6 y 11 (90 %); es el crecimiento benigno más común de la laringe en niños.
+
+# Sx Disfónico
+## Disfonía con aclaramiento matutino
+C Mujer de 45 años con disfonía peor por la mañana, aclaramiento faríngeo constante, tos y sensación de globo. Casi no tiene pirosis. La laringoscopía muestra edema y eritema de la región posterior de la laringe.
+P ¿Cuál es el diagnóstico más probable y el tratamiento?
+* Reflujo faringolaríngeo; IBP cada 12 h y medidas antirreflujo :: Disfonía matutina (92 %) y aclaramiento; la pirosis está en menos del 50 %.
+- ERGE típica; IBP una vez al día por 6 semanas :: El RFL no es lo mismo que ERGE y la pirosis falta.
+- Nódulos vocales; terapia de voz :: Los nódulos empeoran durante el día.
+- Laringitis aguda viral; reposo de voz :: El cuadro es crónico.
+- Cáncer de laringe; laringectomía :: No hay lesión sospechosa.
+E La laringe tarda en promedio 3 meses en desinflamarse. El laringoespasmo es patognomónico del RFL.
+
+# Cuerpos extraños nasales y rinosinusitis
+## Rinorrea unilateral fétida
+C Niña de 3 años con 2 semanas de rinorrea purulenta y fétida solo por la fosa nasal derecha. Sin fiebre.
+P ¿Cuál es el primer paso?
+* Rinoscopia anterior para buscar un cuerpo extraño y extraerlo :: Es la más eficaz y de primera línea; la TC no está indicada.
+- TC de senos paranasales :: No está indicada; generalmente se ve el objeto.
+- Antibiótico por rinosinusitis bacteriana :: La rinorrea unilateral fétida en un niño es cuerpo extraño hasta demostrar lo contrario.
+- Esteroide nasal :: No resuelve la causa.
+- Referir a cirugía endoscópica sin explorar :: Se refiere si fallas 2 veces (mejor solo 1) o no lo ves.
+E Pila de botón: doble halo en la Rx y verdadera urgencia (necrosis por licuefacción).
+
+# Rinosinusitis fúngica, sistémicas y complicaciones
+## Tríada de Samter
+C Mujer de 42 años con asma y pólipos nasales recurrentes que presentó broncoespasmo y congestión nasal 30 minutos después de tomar ácido acetilsalicílico.
+P ¿Cuál es el diagnóstico?
+* Enfermedad respiratoria exacerbada por aspirina (tríada de Samter) :: Asma + pólipos nasales + intolerancia a aspirina.
+- Fibrosis quística :: Es la principal causa de pólipos en niños, con otros datos sistémicos.
+- Churg-Strauss :: Tendría eosinofilia y fase sistémica con vasculitis.
+- Rinitis alérgica simple :: No explica la reacción a aspirina ni los pólipos.
+- Rinosinusitis fúngica alérgica :: Tendría mucina alérgica con Charcot-Leyden.
+E Para pólipos y olfato, el biológico más eficaz es dupilumab (IL-4 e IL-13).
+
+# Trauma nasal y epistaxis
+## Fractura nasal: cuándo reducir
+C Hombre de 22 años con golpe nasal lateral en un partido hace 4 horas. Desviación de la pirámide, edema importante y epistaxis que ya cedió. Sin hematoma septal ni rinolicuorrea.
+P ¿Cuándo se recomienda la reducción cerrada?
+* A los 3–10 días, cuando baje el edema y antes de que consolide :: Entre 6 horas y 2–3 días no se recomienda por el edema.
+- Inmediatamente, aunque haya edema :: La ventana inmediata es en las primeras 3 horas; ya pasaron.
+- Después de 6 semanas :: Ya habría consolidado.
+- Nunca: siempre rinoplastia abierta :: La reducción cerrada es la regla en fracturas simples.
+- Solo si hay rinolicuorrea :: La rinolicuorrea es una complicación que se descarta, no la indicación.
+E Siempre descartar hematoma septal (riesgo de perforación y nariz en silla de montar) y rinolicuorrea.
+
+## Epistaxis anterior
+C Niño de 8 años con epistaxis anterior izquierda recurrente, sobre todo en invierno y al rascarse la nariz. Hoy sangra poco.
+P ¿Dónde sangra y cuál es el primer escalón del manejo?
+* Plexo de Kiesselbach; lubricación, presión directa y vasoconstrictor :: La causa más frecuente es el trauma digital; el manejo es escalonado.
+- Plexo de Woodruff; taponamiento posterior :: Woodruff es posterior y más común en adultos mayores.
+- Arteria maxilar interna; embolización :: Es el último escalón para la epistaxis refractaria.
+- Cauterio con nitrato de plata de ambos lados a la vez :: Nunca se cauterizan ambos lados al mismo tiempo (riesgo de perforación septal†).
+- Angiofibroma juvenil; biopsia :: El angiofibroma es de adolescentes hombres y nunca se biopsia.
+E Escalones: lubricación → presión + oximetazolina → cauterio → taponamiento anterior → quirúrgico (ligadura de esfenopalatina 93 %).
+
+# Desviación septal y tumores nasales
+## Adolescente con epistaxis y obstrucción
+C Adolescente de 15 años con obstrucción nasal unilateral progresiva y epistaxis abundantes de repetición. La TC muestra una masa que capta contraste en el foramen esfenopalatino y desplaza la pared posterior del maxilar.
+P ¿Qué NO debe hacerse?
+* Biopsiar la masa :: El angiofibroma nasofaríngeo juvenil es muy vascular: no se biopsia.
+- Angio-RM para planear :: Sí se pide RM y angio-RM.
+- Embolización 1–2 días antes de la cirugía :: Es parte del manejo estándar.
+- Cirugía endoscópica :: Es el estándar de oro.
+- Vigilar la recurrencia :: Recurre en 35 %.
+E Signo de Holman-Miller: pared posterior del maxilar desplazada. El papiloma invertido, en cambio, sí se biopsia (después de la TC contrastada).

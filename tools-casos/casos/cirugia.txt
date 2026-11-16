@@ -1,0 +1,78 @@
+// Casos clínicos tipo examen · Cirugía (s5/cirugia). Complementan los casos paso a paso que la guía ya trae. † = no viene en los apuntes.
+
+# Enfermedad hemorroidal
+## Prolapso que se reduce con el dedo
+C Hombre de 45 años con sangrado rojo vivo indoloro al evacuar y un «bulto» que sale al pujar y que él mismo regresa con el dedo. Sin pérdida de peso ni cambios del hábito intestinal.
+P ¿Qué grado de hemorroides tiene?
+* Grado III :: Prolapso que no se reduce solo y necesita reducción manual.
+- Grado I :: No hay prolapso.
+- Grado II :: Prolapsa pero se reduce solo.
+- Grado IV :: No se reduce.
+- Fisura anal :: La fisura da dolor intenso al evacuar.
+E Sangrado rojo vivo sin dolor = hemorroide interna; con signos de alarma, colonoscopia para descartar carcinoma de recto.
+
+# Fisura anal
+## Dolor intenso al evacuar
+C Mujer de 28 años con estreñimiento que refiere dolor desgarrante al evacuar, que dura horas, y sangre roja en el papel. Desde hace 10 semanas. Al separar los glúteos se ve una úlcera en la línea media posterior con bordes engrosados y una papila centinela.
+P ¿Cuál es el tratamiento quirúrgico de elección si falla el manejo médico?
+* Esfinterotomía lateral interna :: Cura 90–98 %; el blanco es el espasmo del esfínter interno.
+- Hemorroidectomía de Milligan-Morgan :: Es para hemorroides.
+- Fistulotomía :: Es para fístula anal.
+- Colgajo de Limberg :: Es para seno pilonidal.
+- Dilatación anal forzada :: No es el tratamiento de elección†.
+E Crónica = más de 6–8 semanas + bordes engrosados + papila o colgajo centinela. Manejo médico: nitroglicerina 0.2 %, diltiazem 2 % o toxina botulínica.
+
+# Fístula anal
+## Secreción perianal tras un absceso
+C Hombre de 36 años que hace 3 meses tuvo un absceso perianal drenado. Desde entonces tiene secreción intermitente por un orificio cerca del ano. El trayecto cruza el 60 % del esfínter externo.
+P ¿Qué tratamiento protege mejor la continencia?
+* Setón o colgajo de avance :: En fístulas complejas protegen la función esfinteriana.
+- Fistulotomía simple :: Seccionaría más del 30 % del esfínter externo con alto riesgo de incontinencia.
+- Fistulectomía :: Está en desuso.
+- Solo antibiótico :: No cierra el trayecto.
+- Esfinterotomía lateral interna :: Es para fisura.
+E Simple si cruza menos del 30 % del esfínter externo; en mujer el trayecto anterior la hace compleja. Clasificación de Parks A→E.
+
+# Quiste pilonidal
+## Absceso en la región sacrococcígea
+C Hombre de 21 años, velludo y con trabajo sentado, con dolor, eritema y fluctuación en la región sacrococcígea. Se ven orificios en la línea media. Primer episodio.
+P ¿Qué es cierto sobre su manejo?
+* El drenaje resuelve la urgencia pero no la enfermedad: necesitará tratamiento definitivo :: 40–60 % recurre tras drenaje simple.
+- Necesita resonancia magnética antes de drenar :: El diagnóstico es clínico; los orificios en la línea media son patognomónicos.
+- Es una malformación congénita que se reseca completa :: Es adquirida (Patey y Scarff).
+- El cierre medial primario tiene la menor recurrencia :: El cierre medial recurre 10–30 %; los colgajos menos de 5 %.
+- Solo antibiótico oral :: Un absceso se drena.
+E Tríada de Karydakis: invasión de vello + fricción + vulnerabilidad cutánea. Colgajos (Limberg, Karydakis, Bascom) = estándar de oro abierto.
+
+# Sangrado de tubo digestivo alto y bajo
+## Sangrado bajo en un joven
+C Niño de 6 años con hematoquecia indolora abundante. Hemodinámicamente estable tras líquidos. Endoscopía superior y colonoscopia sin hallazgos.
+P ¿Qué causa debes buscar?
+* Divertículo de Meckel :: En jóvenes, Meckel es causa clásica de STDB.
+- Enfermedad diverticular :: Es la causa n.º 1 de STDB, pero en adultos mayores.
+- Úlcera duodenal :: La endoscopía superior fue normal.
+- Hemorroides :: Daría sangrado escaso al final de la evacuación y se ve en la exploración†.
+- Várices esofágicas :: No hay hepatopatía y la endoscopía fue normal.
+E 80 % del STDB cede solo. Gammagrafía detecta 0.1 mL/min; angiografía 0.5 mL/min y permite embolizar.
+
+# Cáncer de testículo
+## Masa testicular indolora
+C Hombre de 27 años con antecedente de criptorquidia operada que nota una masa dura e indolora en el testículo izquierdo desde hace 1 mes.
+P ¿Cuál es el primer estudio?
+* Ultrasonido testicular :: Masa testicular indolora en hombre joven = cáncer hasta demostrar lo contrario; primer estudio USG.
+- Biopsia transescrotal :: No se biopsia por vía escrotal†.
+- TAC abdominopélvica como primer estudio :: Se usa para estadificar, no como primer estudio.
+- Antibiótico por orquiepididimitis :: No hay dolor ni datos de infección.
+- Solo marcadores tumorales :: Se piden, pero el primer estudio es el USG.
+E Seminoma: AFP siempre negativa. Coriocarcinoma: hCG 100 %. Senos endodérmicos: AFP 90 %, niños.
+
+# Cáncer de pene
+## Lesión del glande con fimosis
+C Hombre de 62 años con fimosis de toda la vida y una lesión ulcerada en el glande de 2 cm que invade cuerpo esponjoso, sin afectar uretra. Ganglios inguinales no palpables.
+P ¿Cuál es el factor pronóstico más importante?
+* La afectación ganglionar inguinal :: Es el factor pronóstico más importante del cáncer de pene.
+- El tamaño del tumor primario :: Importa, pero no tanto como los ganglios.
+- La edad del paciente :: No es el principal.
+- El antecedente de fimosis :: Es factor de riesgo (×8), no pronóstico.
+- El tipo de VPH :: Se relaciona con el riesgo, no es el pronóstico principal.
+E T2 = cuerpo esponjoso o cavernoso; T3 = uretra. Amputación para T2–T4; cirugía conservadora para CIS, Ta, T1 G1–G2.

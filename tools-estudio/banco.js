@@ -47,6 +47,18 @@ for(const [gid,file,mat,sem] of GUIAS){
   for(const x of r.c){const k='c'+x.f+'|'+x.b;if(seen.has(k)||x.b.length>700)continue;seen.add(k);out.c.push([id('c',k),gi,x.t||'',x.f,x.b]);nc++}
   console.log(gid.padEnd(20),'preguntas',String(nq).padStart(4),'tarjetas',String(nc).padStart(4));
 }
+// casos clínicos tipo examen de las guías de 5º (site/casos/<guía>.json, los arma tools-casos/build.py): van como preguntas de su guía
+const cc=path.join(site,'casos');
+// (gastro primero: esófago y hepatobiliar repiten sus casos; imagenología no saca preguntas de su guía, así que se agrega aquí)
+const ccOrden=f=>f==='gastro.json'?'0':f;
+for(const f of (fs.existsSync(cc)?fs.readdirSync(cc):[]).filter(f=>f.endsWith('.json')).sort((a,b)=>ccOrden(a)<ccOrden(b)?-1:1)){
+  const d=JSON.parse(fs.readFileSync(path.join(cc,f),'utf8'));let gi=out.g.findIndex(g=>g[0]===d.g);
+  if(gi<0){if(d.g!=='imagenologia'){console.log('casos sin guía',d.g);continue}gi=out.g.length;out.g.push(['imagenologia','Imagenología',5])}
+  let nq=0;
+  for(const c of d.c){const q='Caso clínico: '+c.v+' '+c.q,o=c.o.map(x=>x[0]),k='q'+q+'|'+o.join('|');if(seen.has(k))continue;seen.add(k);
+    out.q.push([id('q',k),gi,c.t,q,o,0,[c.o[0][1],c.e].filter(Boolean).join(' ')]);nq++}
+  console.log(('casos '+d.g).padEnd(20),'preguntas',String(nq).padStart(4));
+}
 // tarjetas de Anki de cada materia (site/anki/<id>.json, las arma tools-anki): fuente "a"
 const ak=path.join(site,'anki');
 for(const f of (fs.existsSync(ak)?fs.readdirSync(ak):[]).filter(f=>f.endsWith('.json')).sort()){

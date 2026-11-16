@@ -14,6 +14,10 @@
 # Heridas y lesiones de la piel
 > Herida: pérdida de la continuidad de la piel o mucosas, intencional o accidental.
 ## Conceptos
+^ piel.webp :: Capas de la piel: **epidermis**, **dermis** e **hipodermis**. La profundidad de la herida se describe según la capa que alcanza. :: OpenStax, Anatomy & Physiology 2e, sección «Layers of the Skin» · ilustración de OpenStax · CC BY 4.0 · recortada; nombres en inglés retirados
+^^ 20,26 :: Epidermis
+^^ 20,45 :: Dermis
+^^ 40,88 :: Hipodermis (tejido adiposo)
 ~ Herida :: Lesión intencional o accidental que produce pérdida de la continuidad de la piel o mucosas.
 ~ Lesión :: Alteración de tejidos u órganos por causa externa (golpe, calor, radiación, químicos) o interna (infección, enfermedad metabólica).
 ~ Avulsión :: Desprendimiento incompleto de la piel que queda como colgajo (flap).
@@ -41,6 +45,7 @@
 | Sucia (infectada) ¦ > 6 h, tejido desvitalizado, pus o víscera perforada ¦ Apéndice perforado con pus, drenaje de absceso
 ! **Corrección:** en tus notas la tabla «limpia vs sucia» mezcla clases; lo que describes como «sucia» (entra a cavidad, contacto con mucosas, sin infección) es la **limpia-contaminada**.
 ## Lesiones por presión
+^ lpp-estadios.svg :: Estadios de las lesiones por presión según la profundidad. :: Esquema propio
 - Origen **isquémico** por presión prolongada sobre prominencias óseas (sacro, talones, trocánteres).
 | Grado ¦ Qué se ve
 | 1 ¦ Eritema que no palidece, piel íntegra
@@ -49,6 +54,8 @@
 | 4 ¦ Destrucción extensa con músculo, hueso o tendón expuestos; cavernas, tunelizaciones, infección y osteomielitis
 + † Prevención: cambios de posición cada 2 horas, colchón de aire, piel seca y buena nutrición.
 ## Color del lecho y cicatrización
+^ lecho.svg :: Color del lecho de la herida y la conducta que sigue. :: Esquema propio
+^ reparacion.webp :: Cicatrización: inflamación y coágulo → **tejido de granulación** (fibroblastos y vasos nuevos) → maduración y cicatriz. :: OpenStax, Anatomy & Physiology 2e, sección «Tissue Injury and Aging» · ilustración de OpenStax · CC BY 4.0 · textos en inglés retirados
 | Color ¦ Significa
 | Negro ¦ Necrosis
 | Amarillo ¦ Esfacelo (fibrina)
@@ -60,6 +67,7 @@
 ~ Segunda intención :: La herida no se cierra con sutura (gran pérdida de tejido o infección) y sana de adentro hacia afuera con tejido de granulación.
 - † Primera intención: bordes afrontados con sutura. Tercera intención (cierre diferido): se deja abierta unos días y luego se sutura.
 ## Higiene de manos
+^ lavado-qx.webp :: **Lavado quirúrgico**: se tallan uñas, manos y antebrazos hasta arriba del codo, con las manos siempre más arriba que los codos. :: OpenStax, Microbiology, sección «Using Chemicals to Control Microorganisms» · foto del Sgto. Kevin Iinuma, US Air Force (dominio público) · CC BY 4.0 · recortada
 - **5 momentos (OMS)**: antes de tocar al paciente, antes de una tarea aséptica, después de exposición a líquidos corporales, después de tocar al paciente y después de tocar su entorno.
 % 40–60 s :: lavado con agua y jabón (manos visiblemente sucias)
 % † 20–30 s :: fricción con alcohol gel
@@ -105,6 +113,7 @@ Q PA 90/60. ¿Cuál es la PAM? :: *70 mmHg :: 75 mmHg :: 60 mmHg :: 80 mmHg || (
 # Líquidos y soluciones intravenosas
 > Cristaloides para reponer agua e iones; coloides para aumentar el volumen del plasma.
 ## Agua corporal
+^ agua-corporal.svg :: Distribución del agua corporal (regla 60-40-20). :: Esquema propio
 - El agua es **~60 %** del peso en el hombre adulto y **~50–55 %** en la mujer.
 - **Intracelular 40 %** del peso (2/3 del agua) y **extracelular 20 %** (1/3): de este, 3/4 intersticial y 1/4 intravascular (plasma).
 ~ Tercer espacio :: Líquido atrapado en un espacio patológico (ascitis, edema, luz intestinal) que no participa en el intercambio.
@@ -135,6 +144,7 @@ Q PA 90/60. ¿Cuál es la PAM? :: *70 mmHg :: 75 mmHg :: 60 mmHg :: 80 mmHg || (
 - **Reglas de clase**: en edema cerebral, salina (achica la célula); en hiponatremia, siempre salina; en hipokalemia, Hartmann; en hiperkalemia leve se puede dar Hartmann con cuidado.
 - Truco: para dar salina sin subir tanto el sodio, se tira la mitad de la bolsa y se completa con agua inyectable (queda ≈0.45 %).
 ## Hemoglobina y transfusión
+^ tarjeta-abo.webp :: Tarjeta de tipificación a la cabecera: la muestra **aglutina con anti-A** y con **anti-D**, y no con anti-B → grupo **A Rh+**. :: OpenStax, Anatomy & Physiology 2e, sección «Blood Typing» · imagen de OpenStax · CC BY 4.0 · recortada; texto en inglés retirado
 % 13.5–17.5 g/dL :: hemoglobina normal en hombres
 % 12–16 g/dL :: hemoglobina normal en mujeres
 % +1 g/dL :: sube la hemoglobina con cada paquete globular (≈3 % de hematocrito)
@@ -164,6 +174,7 @@ Q Osmolaridad de la solución glucosada al 10 % :: *505 mOsm/L :: 252 mOsm/L :: 
 % constante 3 :: macrogotero (20 gotas/mL ÷ 60 min)
 % constante 1 :: microgotero (60 microgotas/mL ÷ 60 min)
 ## Catéter y ley de Poiseuille
+^ cateteres.svg :: Colores de los catéteres periféricos y flujo aproximado. :: Esquema propio
 - **Poiseuille**: el flujo aumenta con el radio a la 4.ª potencia y disminuye con la longitud. Mientras **más grueso y corto** el catéter, mayor flujo.
 | Calibre ¦ Uso
 | 14–16 G ¦ Trauma, reanimación con volumen y sangre
@@ -212,6 +223,7 @@ Q Paciente con síndrome nefrótico y edema generalizado. El mecanismo principal
 ~ Acidosis / alcalosis :: El proceso que tiende a bajar o subir el pH (puede estar compensado, con pH normal).
 ~ Acidemia / alcalemia :: El pH ya está fuera de rango (no compensado).
 ## Método paso a paso
+^ gasometria.svg :: Algoritmo para leer una gasometría. :: Esquema propio
 = Leer una gasometría :: ¿pH bajo (acidemia) o alto (alcalemia)? → ¿Lo explica el CO₂ (respiratorio) o el HCO₃⁻ (metabólico)? → Si es metabólica, calcula la PCO₂ esperada (Winter) → ¿La PCO₂ real coincide? Si no, hay un trastorno mixto → En acidosis metabólica calcula el anion gap
 | Trastorno ¦ pH ¦ Primario ¦ Compensación
 | Acidosis metabólica ¦ ↓ ¦ ↓ HCO₃⁻ ¦ ↓ PCO₂ (hiperventila)
@@ -222,6 +234,7 @@ Q Paciente con síndrome nefrótico y edema generalizado. El mecanismo principal
 - **PCO₂ esperada = (1.5 × HCO₃⁻) + 8 ± 2** (solo en acidosis metabólica). Si la PCO₂ real es menor, hay además alcalosis respiratoria; si es mayor, acidosis respiratoria.
 = Ejemplo: pH 7.39, PCO₂ 11, HCO₃⁻ 10 :: 1.5 × 10 = 15 → +8 = 23 ± 2 (21–25) → PCO₂ real 11 < 21 → Acidosis metabólica + alcalosis respiratoria (mixto)
 ## Anion gap
+^ anion-gap.svg :: La brecha aniónica son los aniones que no medimos. :: Esquema propio
 - **AG = Na⁺ − (Cl⁻ + HCO₃⁻)**; normal ≈ **8–12 mEq/L** (12 ± 4 si se incluye el K⁺).
 ! **Corrección:** en tus notas el anion gap «entre Na⁺ y Cl⁻»; también se resta el **bicarbonato**.
 & MUDPILES :: Causas de anion gap elevado: Metanol, Uremia, cetoacidosis Diabética (también alcohólica o por ayuno), Paraldehído, Isoniazida o hierro (Iron), acidosis Láctica (choque, sepsis, metformina), Etilenglicol, Salicilatos.
@@ -285,6 +298,7 @@ Q Paciente con TCE y Glasgow 8. ¿Qué solución evitas? :: *Glucosada 5 % :: Sa
 - **Cálculo**: restas seriadas (100 − 7…).
 ! **Corrección:** en tus notas «egnocias: cambia la función de los objetos»; las gnosias son **reconocer** los objetos. Usarlos bien es la praxia.
 ## Pares craneales
+^ pares.webp :: Base del encéfalo con la salida de los 12 pares craneales (amarillo), de los olfatorios (adelante) al hipogloso (abajo, junto al bulbo). :: OpenStax, Anatomy & Physiology 2e, sección «The Peripheral Nervous System» · ilustración de OpenStax · CC BY 4.0 · recortada; nombres en inglés retirados
 | Par ¦ Nombre
 | I ¦ Olfatorio
 | II ¦ Óptico
@@ -308,6 +322,7 @@ Q Paciente con TCE y Glasgow 8. ¿Qué solución evitas? :: *Glucosada 5 % :: Sa
 | Nauseoso ¦ IX ¦ X ¦ Estimular faringe o úvula → arcada
 - Si un reflejo falta en un paciente en coma, sugiere **daño del tallo**.
 ## Deterioro rostrocaudal (coma)
+^ pupilas.svg :: Las pupilas ayudan a ubicar el nivel de la lesión en el paciente en coma. :: Esquema propio
 | Etapa ¦ Respiración ¦ Pupilas ¦ Motor
 | Diencefálica temprana ¦ Suspiros, bostezos ¦ Pequeñas reactivas ¦ Localiza el dolor
 | Diencefálica tardía ¦ Cheyne-Stokes ¦ Pequeñas reactivas ¦ Decorticación

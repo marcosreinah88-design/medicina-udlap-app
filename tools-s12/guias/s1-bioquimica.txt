@@ -22,6 +22,7 @@
 - **Bicarbonato/ácido carbónico**: extracelular; sistema **abierto** (el pulmón elimina CO₂ y el riñón regula el HCO₃⁻).
 - **Fosfatos**: intracelular y orina. **Proteínas y hemoglobina**: intracelular (histidina).
 ## Gasometría arterial
+^ gasometria.svg :: Algoritmo para leer una gasometría. :: Esquema propio
 % 7.35–7.45 :: pH arterial normal
 % 35–45 mmHg :: PaCO₂ normal
 % 22–26 mEq/L :: HCO₃⁻ normal
@@ -34,6 +35,7 @@
 | Alcalosis respiratoria ¦ ↓ PaCO₂ ¦ Riñón elimina HCO₃⁻
 ! Si el pH y la PaCO₂ se mueven en direcciones **opuestas** → origen respiratorio; en la **misma** dirección → metabólico.
 ## Brecha aniónica
+^ anion-gap.svg :: La brecha aniónica son los aniones que no medimos. :: Esquema propio
 - **Brecha aniónica = Na⁺ − (Cl⁻ + HCO₃⁻)**; normal ≈ 8–12 mEq/L.
 - **Brecha elevada**: cetoacidosis, acidosis láctica, insuficiencia renal, metanol, etilenglicol, salicilatos.
 - **Brecha normal (hiperclorémica)**: diarrea, acidosis tubular renal.
@@ -57,6 +59,10 @@ Q Gasometría: pH 7.52, PaCO₂ 28 mmHg, HCO₃⁻ 23 mEq/L. Trastorno: :: *Alca
 ## Niveles de estructura
 = Del gen a la proteína funcional :: Primaria: secuencia (enlace peptídico) → Secundaria: hélice α y lámina β (puentes de hidrógeno) → Terciaria: plegamiento 3D (disulfuro, interacciones hidrofóbicas) → Cuaternaria: varias subunidades (hemoglobina)
 ## Hemoglobina y curva de disociación
+^ curva-hb.svg :: Curva sigmoidea de la hemoglobina y qué la desvía a la derecha o a la izquierda. :: Esquema propio
+^ drepanocitos.webp :: Eritrocitos en **anemia de células falciformes** (microscopio electrónico): una sola sustitución de aminoácido en la cadena β (Glu6Val) deforma la célula en hoz. :: OpenStax, Anatomy & Physiology 2e, sección «Erythrocytes» · micrografía de Janice Haney Carr, CDC (dominio público) · CC BY 4.0
+^^ 30,50 :: Drepanocito (hoz)
+^^ 47,38 :: Eritrocito normal (bicóncavo)
 - **HbA**: α₂β₂, 4 grupos hemo con Fe²⁺. Curva **sigmoidea** (cooperatividad). Mioglobina: hiperbólica (un hemo, más afinidad).
 | A la derecha (↓ afinidad, entrega O₂) ¦ A la izquierda (↑ afinidad, retiene O₂)
 | ↑ CO₂ y ↑ H⁺ (efecto Bohr) ¦ HbF
@@ -82,12 +88,14 @@ Q ¿Qué aminoácido amortigua a pH fisiológico por su grupo imidazol? :: *Hist
 # Enzimas y cinética
 > Las enzimas bajan la energía de activación; no cambian el equilibrio ni la ΔG de la reacción.
 ## Michaelis-Menten
+^ michaelis.svg :: Curva de Michaelis-Menten: Km es la [S] con la que se llega a la mitad de Vmáx. :: Esquema propio
 - **v = Vmax[S] / (Km + [S])**.
 ~ Km :: Concentración de sustrato a la que v = ½ Vmax. Km bajo = alta afinidad.
 ~ Vmax :: Velocidad máxima con la enzima saturada; depende de la cantidad de enzima.
 ~ Lineweaver-Burk :: Gráfica de dobles recíprocos: corta Y en 1/Vmax y X en −1/Km.
 ! Las enzimas no modifican la constante de equilibrio ni la ΔG; solo aceleran el alcance del equilibrio.
 ## Inhibición
+^ inhibicion.svg :: Inhibición competitiva vs no competitiva en la gráfica de dobles recíprocos. :: Esquema propio
 | Inhibición ¦ Km ¦ Vmax ¦ ¿Se revierte con más sustrato?
 | Competitiva ¦ ↑ ¦ = ¦ Sí
 | No competitiva ¦ = ¦ ↓ ¦ No
@@ -125,6 +133,7 @@ Q Una enzima con Km de 1 mM comparada con otra de Km 10 mM para el mismo sustrat
 # Carbohidratos: glucólisis, gluconeogénesis, glucógeno y pentosas
 > La glucosa es el combustible universal; el hígado mantiene la glucemia en ayuno.
 ## Glucólisis
+^ glucolisis.svg :: Los 10 pasos de la glucólisis resumidos, con las tres enzimas irreversibles. :: Esquema propio
 = Glucólisis (citosol, todas las células) :: Glucosa → Glucosa-6-P (hexocinasa / glucocinasa) → Fructosa-6-P → Fructosa-1,6-bisP (PFK-1, paso limitante) → 2 Gliceraldehído-3-P → 2 Fosfoenolpiruvato → 2 Piruvato (piruvato cinasa)
 % 2 ATP :: netos por glucosa (más 2 NADH)
 % PFK-1 :: enzima limitante; la activan AMP y fructosa-2,6-bisP; la inhiben ATP y citrato
@@ -163,6 +172,7 @@ Q ¿Qué sustrato NO puede convertirse en glucosa? :: *Ácidos grasos de cadena 
 # Ciclo de Krebs, cadena respiratoria y fosforilación oxidativa
 > En la mitocondria el acetil-CoA se oxida a CO₂ y la energía de NADH y FADH₂ produce ATP.
 ## Ciclo de Krebs
+^ krebs.svg :: Intermediarios del ciclo de Krebs y lo que produce cada vuelta. :: Esquema propio
 = Ciclo de Krebs (matriz mitocondrial) :: Acetil-CoA + oxalacetato → Citrato → Isocitrato → α-Cetoglutarato (isocitrato DH, limitante) → Succinil-CoA → Succinato → Fumarato → Malato → Oxalacetato
 % 3 NADH :: por vuelta
 % 1 FADH₂ :: por vuelta
@@ -171,6 +181,7 @@ Q ¿Qué sustrato NO puede convertirse en glucosa? :: *Ácidos grasos de cadena 
 - **Isocitrato deshidrogenasa** (limitante) se inhibe por ATP y NADH.
 - La α-cetoglutarato deshidrogenasa usa los mismos cofactores que la piruvato deshidrogenasa (B1, B2, B3, B5, lipoato).
 ## Cadena de transporte de electrones
+^ cadena.svg :: Complejos de la cadena respiratoria, bombeo de H⁺ y ATP sintasa. :: Esquema propio
 = Membrana mitocondrial interna :: NADH → Complejo I → Coenzima Q (también recibe del complejo II / FADH₂) → Complejo III → Citocromo c → Complejo IV → O₂ → H₂O
 - El gradiente de protones mueve la **ATP sintasa** (complejo V).
 % ≈ 2.5 ATP :: por NADH
@@ -214,6 +225,7 @@ Q ¿Cuántos ATP rinde aproximadamente la oxidación completa de una glucosa? ::
 - Enzima limitante: **HMG-CoA reductasa** (inhibida por **estatinas**). Derivados: hormonas esteroideas, ácidos biliares, vitamina D.
 + **Estatinas**: efectos adversos: miopatía (CK elevada) y elevación de transaminasas.
 ## Lipoproteínas
+^ lipoproteinas.svg :: Lipoproteínas de mayor a menor tamaño, con su función y apolipoproteína principal. :: Esquema propio
 = Vía exógena y endógena :: Quilomicrón (grasa de la dieta, intestino) → Lipoproteína lipasa (apoC-II) libera triglicéridos → Remanente al hígado → VLDL (triglicéridos hepáticos) → IDL → LDL (colesterol a los tejidos vía receptor LDL) → HDL regresa colesterol al hígado
 | Lipoproteína ¦ Lleva ¦ Apo clave
 | Quilomicrón ¦ Triglicéridos de la dieta ¦ B-48, C-II, E
@@ -237,6 +249,7 @@ Q ¿Qué transporta los triglicéridos de la dieta desde el intestino? :: *Quilo
 - **Transaminación**: el grupo amino pasa al α-cetoglutarato → glutamato (ALT, AST; requieren **piridoxal fosfato, B6**).
 - El amoniaco es tóxico para el cerebro: viaja como **glutamina** (tejidos) y **alanina** (músculo, ciclo glucosa-alanina).
 ## Ciclo de la urea
+^ urea.svg :: El ciclo de la urea entre la mitocondria y el citosol del hepatocito. :: Esquema propio
 = Ciclo de la urea (hígado) :: NH₄⁺ + CO₂ → Carbamoil fosfato (CPS I, limitante, en la mitocondria) → Citrulina (ornitina transcarbamilasa) → Argininosuccinato (entra el N del aspartato, citosol) → Arginina → Urea + Ornitina
 - La **CPS I** se activa con **N-acetilglutamato**. Cada urea lleva 1 N del amonio y 1 N del aspartato.
 ! Hiperamonemia: asterixis, vómito, encefalopatía, edema cerebral. El déficit de **ornitina transcarbamilasa** (ligado al X) eleva el **ácido orótico** sin anemia megaloblástica.

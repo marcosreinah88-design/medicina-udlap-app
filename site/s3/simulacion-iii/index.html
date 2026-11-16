@@ -1,48 +1,535 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Laboratorio de Simulación III · Tarjetas</title>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Laboratorio de Simulación III</title>
+<link rel="stylesheet" href="../../fonts/g973afc81ad.css">
 <style>
-:root{--c:#c4142f;--o:#f26b21;--bg:#f7f5ef;--card:#fff;--ink:#1d2a24;--mute:#5d6b64;--line:#e0e3dc}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101512;--card:#19211d;--ink:#e7ece8;--mute:#a3b0a9;--line:#2c3832}}
-:root[data-theme="dark"]{--bg:#101512;--card:#19211d;--ink:#e7ece8;--mute:#a3b0a9;--line:#2c3832}
+/* Guía de estudio de 1º/2º semestre: temas divididos en subtemas con diagramas de flujo, cifras clave, conceptos para revelar,
+   mnemotecnias, tablas con autoexamen, alto rendimiento, correlación clínica, mini-quiz por tema y progreso; tarjetas y examen. */
+:root{
+  --bg:#f5f3ee; --paper:#fff; --sunk:#ece8df; --ink:#17201c; --muted:#5d6762; --line:#ddd7cb;
+  --c:#c4142f; --c-soft:color-mix(in srgb,var(--c) 11%,var(--paper)); --c-ink:color-mix(in srgb,var(--c) 82%,#000);
+  --hy:#f26b21; --hy-soft:#fff1e8; --cl:#00573c; --cl-soft:#e6f2ec; --ok:#1d7a4c; --bad:#b3261e;
+  --f-d:"Newsreader",Georgia,serif; --f-b:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --f-m:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1412; --paper:#171e1b; --sunk:#1f2824; --ink:#e7eeea; --muted:#9daba4; --line:#2b3732;
+  --c-soft:color-mix(in srgb,var(--c) 22%,var(--paper)); --c-ink:color-mix(in srgb,var(--c) 45%,#fff);
+  --hy-soft:#3a2418; --cl:#7fd3a8; --cl-soft:#16302a; --ok:#6fd39c; --bad:#ff8a80; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1412; --paper:#171e1b; --sunk:#1f2824; --ink:#e7eeea; --muted:#9daba4; --line:#2b3732;
+  --c-soft:color-mix(in srgb,var(--c) 22%,var(--paper)); --c-ink:color-mix(in srgb,var(--c) 45%,#fff);
+  --hy-soft:#3a2418; --cl:#7fd3a8; --cl-soft:#16302a; --ok:#6fd39c; --bad:#ff8a80; color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
-.hero{position:relative;overflow:hidden;background:var(--c);color:#fff;padding:34px 16px 30px}
-.hero .w{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.hero small{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:3px 10px;font-weight:600;letter-spacing:.03em}
-.hero h1{font:700 clamp(26px,5vw,38px)/1.1 Georgia,"Times New Roman",serif;margin:12px 0 6px}
-.hero p{margin:0;opacity:.92;max-width:520px}
-.stats{display:flex;gap:22px;margin-top:18px;flex-wrap:wrap}.stats b{display:block;font-size:24px;line-height:1.1}.stats span{font-size:13px;opacity:.85}
-.deck{position:absolute;right:-10px;top:50%;transform:translateY(-50%);width:230px;height:170px;opacity:.95}
-.deck i{position:absolute;inset:0;border-radius:16px;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.18)}
-.deck i:nth-child(1){transform:rotate(-12deg) translate(-30px,6px);opacity:.35}.deck i:nth-child(2){transform:rotate(-5deg) translate(-12px,2px);opacity:.6}
-.deck i:nth-child(3){display:flex;align-items:center;justify-content:center;color:var(--c);font:700 40px Georgia,serif;transform:rotate(4deg)}
-@media (max-width:640px){.deck{display:none}}
-main{max-width:760px;margin:0 auto;padding:18px 16px 60px}
-.temas{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:18px}
-.temas h2{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--o)}
-.temas ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
-.temas li{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:13px}
-#ak-root{background:var(--card);border:1px solid var(--line);border-radius:16px}
-#ak-root .ak{--ak-g:var(--c)}
-footer{color:var(--mute);font-size:12px;text-align:center;margin-top:20px}
-</style>
-</head>
-<body>
-<header class="hero"><div class="w">
-  <small>3er semestre · SIM</small>
-  <h1>Laboratorio de Simulación III</h1>
-  <p>Choque, heridas, gasometría y cálculo de goteo. Tus tarjetas de Anki, revisadas y corregidas, para repasar aquí mismo.</p>
-  <div class="stats"><div><b>143</b><span>tarjetas</span></div><div><b>6</b><span>temas</span></div></div>
-</div><div class="deck" aria-hidden="true"><i></i><i></i><i>SIM</i></div></header>
-<main>
-  <section class="temas"><h2>Temas</h2><ul><li>Heridas</li><li>Choque</li><li>Gasometría</li><li>Cálculo de goteo</li><li>Parcial 1</li><li>Parcial 3</li></ul></section>
-  <div id="ak-root"></div>
-  <footer>Repositorio de Marcos David Reinah Guzmán</footer>
-</main>
-<script src="../../anki/anki.js" data-m="simulacion-iii" data-n="143" defer></script><!--anki-->
-</body>
-</html>
+[hidden]{display:none!important}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--f-b);-webkit-font-smoothing:antialiased}
+button,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--hy);outline-offset:2px}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.in{max-width:1120px;margin:0 auto}
+b,strong{font-weight:700}
+/* encabezado */
+header.hero{background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 60%,#000));color:#fff;padding-top:calc(40px + env(safe-area-inset-top,0px));padding-bottom:26px;position:relative;overflow:hidden}
+header.hero::after{content:attr(data-code);position:absolute;right:-6px;bottom:-34px;font:800 9rem/1 var(--f-d);opacity:.12;letter-spacing:-.04em;pointer-events:none}
+.kick{font:500 .74rem var(--f-m);letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin:0 0 10px}
+h1{font:700 clamp(2rem,5.4vw,3.2rem)/1.05 var(--f-d);margin:0;letter-spacing:-.015em;text-wrap:balance}
+.lede{margin:12px 0 0;max-width:62ch;opacity:.9}
+.stats{display:flex;flex-wrap:wrap;gap:6px 26px;margin-top:20px;font-size:.88rem;opacity:.92}
+.stats b{font:600 1.15rem var(--f-m);margin-right:6px}
+.nota{margin:18px 0 0;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:9px 13px;font-size:.88rem;max-width:80ch}
+/* pestañas */
+nav.tabs{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+nav.tabs .in{display:flex;gap:4px;overflow-x:auto}
+nav.tabs button{border:0;background:none;padding:13px 14px 11px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--c)}
+/* estudiar */
+.study{display:grid;grid-template-columns:250px minmax(0,1fr);gap:32px;padding-block:22px 80px}
+.toc{position:sticky;top:64px;align-self:start;max-height:calc(100vh - 80px);overflow:auto;font-size:.9rem}
+.toc p{font:600 .72rem var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.toc .tg{margin-bottom:2px}
+.toc a{display:flex;gap:8px;padding:6px 8px;border-radius:8px;color:var(--ink);text-decoration:none;line-height:1.3}
+.toc a span{font:500 .75rem var(--f-m);color:var(--c-ink);min-width:1.6em}
+.toc a:hover,.toc a.on{background:var(--c-soft)}
+.toc .tg.ok>a span{color:var(--ok)}
+.toc .tg.ok>a span::before{content:"✓"}
+.toc .tg.ok>a span i{display:none}
+.toc .sl{display:none;margin:2px 0 6px 30px;border-left:2px solid var(--c-soft)}
+.toc .tg.on .sl{display:block}
+.toc .sl a{font-size:.82rem;padding:3px 10px;color:var(--muted)}
+.toc .sl a:hover{color:var(--ink)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:20px}
+.tools .pg{flex:1 1 220px;display:flex;align-items:center;gap:10px;min-width:0;font-size:.85rem;color:var(--muted)}
+.tools .pg i{flex:1;height:8px;border-radius:9px;background:var(--sunk);overflow:hidden;min-width:60px}
+.tools .pg i b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c),var(--hy));border-radius:9px;transition:width .4s}
+.tools .pg strong{color:var(--ink);font-family:var(--f-m);font-weight:600}
+.tg-btn{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 12px;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.tg-btn[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#fff}
+.tg-btn:hover{border-color:var(--c)}
+.tema{background:var(--paper);border:1px solid var(--line);border-radius:18px;margin-bottom:26px;box-shadow:0 1px 2px rgba(0,0,0,.04);overflow:hidden}
+.tema.ok{border-color:color-mix(in srgb,var(--ok) 55%,var(--line))}
+.thead{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;align-items:start;padding:22px 24px 18px;background:linear-gradient(135deg,var(--c-soft),var(--paper) 70%);border-bottom:1px solid var(--line)}
+.thead .bn{grid-row:span 3;width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:var(--c);color:#fff;font:700 1.5rem var(--f-d);box-shadow:0 8px 18px -10px var(--c)}
+.tema.ok .thead .bn{background:var(--ok)}
+.tema .num{font:500 .72rem var(--f-m);letter-spacing:.1em;color:var(--c-ink);text-transform:uppercase}
+.tema h2{font:700 1.6rem/1.15 var(--f-d);margin:2px 0 4px;text-wrap:balance}
+.tema .intro{color:var(--muted);margin:0}
+.schips{grid-column:2;display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.schips a{font-size:.78rem;font-weight:600;text-decoration:none;color:var(--c-ink);background:var(--paper);border:1px solid color-mix(in srgb,var(--c) 30%,var(--line));border-radius:999px;padding:3px 10px}
+.schips a:hover{background:var(--c);color:#fff;border-color:var(--c)}
+.tbody{padding:8px 24px 20px}
+details.sub{border-bottom:1px dashed var(--line);padding:6px 0}
+details.sub:last-of-type{border-bottom:0}
+details.sub>summary{list-style:none;cursor:pointer;display:flex;align-items:baseline;gap:10px;padding:10px 0 6px}
+details.sub>summary::-webkit-details-marker{display:none}
+details.sub>summary .sn{font:600 .8rem var(--f-m);color:#fff;background:var(--c);border-radius:7px;padding:2px 7px;flex:none}
+details.sub>summary h3{margin:0;font:700 1.18rem/1.25 var(--f-d);flex:1}
+details.sub>summary::after{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);margin:0 6px 3px;transition:transform .2s}
+details.sub:not([open])>summary::after{transform:rotate(-45deg)}
+.sub .si{color:var(--muted);margin:0 0 6px;font-style:italic}
+.sub ul{margin:6px 0;padding-left:1.15em}
+.sub li{margin:5px 0}
+.sub li::marker{color:var(--c)}
+.box{border-radius:12px;padding:12px 16px;margin:12px 0;border-left:4px solid}
+.box h4{margin:0 0 4px;font:700 .74rem var(--f-b);letter-spacing:.09em;text-transform:uppercase}
+.box ul{margin:0}
+.box.hy{background:var(--hy-soft);border-color:var(--hy)}
+.box.hy h4{color:var(--hy)}
+.box.cl{background:var(--cl-soft);border-color:var(--cl)}
+.box.cl h4{color:var(--cl)}
+.box h4::before{margin-right:6px}
+.box.hy h4::before{content:"★"}
+.box.cl h4::before{content:"✚"}
+/* tabla con autoexamen */
+.tblw{margin:12px 0}
+.tblw .tbar{display:flex;justify-content:flex-end;margin-bottom:6px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:420px}
+th,td{border-bottom:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{background:var(--c-soft);font-weight:700}
+tbody tr:hover td{background:color-mix(in srgb,var(--c) 6%,transparent)}
+td:first-child{font-weight:600}
+.tblw.quiz td:not(:first-child){cursor:pointer}
+.tblw.quiz td:not(:first-child):not(.shown){color:transparent;background:repeating-linear-gradient(-45deg,var(--sunk) 0 6px,transparent 6px 12px)}
+.tblw.quiz td:not(:first-child):not(.shown) *{color:transparent}
+.mini{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:3px 11px;font-size:.78rem;font-weight:600;cursor:pointer}
+.mini:hover{border-color:var(--c)}
+.mini[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#fff}
+/* diagrama de flujo */
+.flow{margin:14px 0;padding:14px;border-radius:14px;background:var(--bg);border:1px solid var(--line)}
+.flow .fh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.flow .fh b{font:700 .74rem var(--f-b);letter-spacing:.09em;text-transform:uppercase;color:var(--c-ink)}
+.flow ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:stretch;gap:8px 0;counter-reset:f}
+.flow li{counter-increment:f;display:flex;align-items:center}
+.flow li .st{position:relative;background:var(--paper);border:1.5px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:12px;padding:8px 12px 8px 36px;font-size:.88rem;line-height:1.35;max-width:240px;min-height:100%;display:flex;align-items:center;transition:opacity .25s,transform .25s}
+.flow li .st::before{content:counter(f);position:absolute;left:9px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;background:var(--c);color:#fff;font:600 .7rem/20px var(--f-m);text-align:center}
+.flow li+li::before{content:"→";flex:none;width:26px;text-align:center;color:var(--c);font:700 1.1rem/1 var(--f-b)}
+.flow.step li.dim .st{opacity:.15;transform:scale(.97)}
+.flow.step li.dim::before{opacity:.2}
+.flow li.cur .st{box-shadow:0 0 0 3px color-mix(in srgb,var(--hy) 45%,transparent);border-color:var(--hy)}
+@media (max-width:640px){.flow ol{flex-direction:column;align-items:stretch;gap:0}.flow li{flex-direction:column;align-items:stretch}.flow li+li::before{content:"↓";width:auto;text-align:left;padding:2px 0 2px 14px}.flow li .st{max-width:none}}
+/* cifras clave */
+.stats-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:14px 0}
+.stat{background:linear-gradient(160deg,var(--c-soft),var(--paper));border:1px solid color-mix(in srgb,var(--c) 25%,var(--line));border-radius:14px;padding:12px 14px}
+.stat .v{display:block;font:700 1.5rem/1.1 var(--f-d);color:var(--c-ink)}
+.stat .l{display:block;font-size:.82rem;color:var(--muted);margin-top:4px;line-height:1.35}
+/* conceptos para revelar */
+.terms{margin:14px 0}
+.terms .th{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
+.terms .th b{font:700 .74rem var(--f-b);letter-spacing:.09em;text-transform:uppercase;color:var(--c-ink)}
+.terms .tgr{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.term{border:1.5px solid var(--line);background:var(--paper);border-radius:14px;padding:12px 14px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:6px;min-height:84px;transition:border-color .2s,background .2s}
+.term:hover{border-color:var(--c)}
+.term .w{font:700 1.02rem/1.25 var(--f-d)}
+.term .d{font-size:.86rem;line-height:1.4;color:var(--ink)}
+.term .h{font:500 .68rem var(--f-m);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:auto}
+.term[aria-expanded="false"] .d{display:none}
+.term[aria-expanded="true"]{background:var(--c-soft);border-color:var(--c)}
+.term[aria-expanded="true"] .h{display:none}
+/* mnemotecnia */
+.mn{margin:12px 0;display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border-radius:14px;border:2px dashed color-mix(in srgb,var(--hy) 55%,var(--line));background:color-mix(in srgb,var(--hy) 6%,var(--paper))}
+.mn .mi{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--hy);color:#fff;font:700 1rem var(--f-d)}
+.mn b.mm{display:block;font:700 1.08rem/1.3 var(--f-d);color:var(--ink)}
+.mn span{font-size:.88rem;color:var(--muted)}
+/* palabras clave ocultas */
+body.hidekw .sub li b:not(.shown),body.hidekw .sub td b:not(.shown){color:transparent;background:repeating-linear-gradient(-45deg,color-mix(in srgb,var(--c) 30%,transparent) 0 5px,color-mix(in srgb,var(--c) 14%,transparent) 5px 10px);border-radius:4px;cursor:pointer}
+/* ponte a prueba */
+.pp{margin:6px 24px 0;padding:16px 18px;border-radius:14px;background:var(--sunk)}
+.pp h4{margin:0 0 10px;font:700 .78rem var(--f-b);letter-spacing:.09em;text-transform:uppercase;color:var(--c-ink)}
+.pq+.pq{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.pq p{margin:0 0 8px;font-weight:600}
+.pq .po{display:grid;gap:6px}
+.pq .po button{border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 12px;text-align:left;cursor:pointer;font-size:.92rem}
+.pq .po button:hover:not(:disabled){border-color:var(--c)}
+.pq .po button.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 13%,var(--paper))}
+.pq .po button.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--paper))}
+.pq .po button:disabled{cursor:default}
+.pq .pe{margin-top:8px;font-size:.9rem;padding:8px 12px;border-radius:10px;background:var(--cl-soft)}
+.tfoot{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:16px 24px 22px}
+.tfoot button{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:6px 13px;font-size:.85rem;font-weight:600;cursor:pointer}
+.tfoot button:hover{border-color:var(--c)}
+.tfoot .dom{margin-left:auto;background:var(--paper);border-color:var(--ok);color:var(--ok)}
+.tfoot .dom[aria-pressed="true"]{background:var(--ok);color:#fff}
+.dag{color:var(--hy);font-weight:700}
+/* tarjetas */
+.pane{padding-block:26px 80px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.bar select{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 10px;max-width:100%}
+.btn{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 14px;font-weight:600;cursor:pointer}
+.btn.pri{background:var(--c);border-color:var(--c);color:#fff}
+.btn:hover{border-color:var(--c)}
+.count{margin-left:auto;font:500 .85rem var(--f-m);color:var(--muted)}
+.card{perspective:1200px;max-width:720px;margin:0 auto;cursor:pointer}
+.card .face{min-height:260px;border-radius:18px;background:var(--paper);border:1px solid var(--line);padding:28px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 10px 30px -18px rgba(0,0,0,.35)}
+.card .lbl{font:500 .72rem var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--c-ink);margin-bottom:10px}
+.card .txt{font:600 1.3rem/1.35 var(--f-d)}
+.card .back{border-top:5px solid var(--c)}
+.card .back .txt{font:400 1.05rem/1.55 var(--f-b)}
+.cnav{display:flex;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.btn.ok{border-color:var(--ok);color:var(--ok)}.btn.no{border-color:var(--bad);color:var(--bad)}
+.hint{text-align:center;color:var(--muted);font-size:.85rem;margin-top:10px}
+/* examen */
+.qbox{max-width:760px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px}
+.qtop{display:flex;justify-content:space-between;gap:10px;font:500 .8rem var(--f-m);color:var(--muted);margin-bottom:8px}
+.prog{height:5px;background:var(--sunk);border-radius:9px;overflow:hidden;margin-bottom:18px}.prog i{display:block;height:100%;background:var(--c);width:0}
+.qtxt{font:600 1.2rem/1.4 var(--f-d);margin:0 0 16px}
+.opts{display:grid;gap:9px}
+.opt{border:1.5px solid var(--line);background:var(--bg);border-radius:12px;padding:11px 14px;text-align:left;cursor:pointer;display:flex;gap:10px}
+.opt span{font:600 .85rem var(--f-m);color:var(--c-ink)}
+.opt:hover:not(:disabled){border-color:var(--c)}
+.opt.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,var(--paper))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,var(--paper))}
+.opt:disabled{cursor:default}
+.exp{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--cl-soft);font-size:.95rem}
+.res{text-align:center}
+.res .big{font:700 3.4rem/1 var(--f-d);color:var(--c-ink)}
+.res ul{text-align:left;margin:16px auto 0;max-width:620px}
+footer{color:var(--muted);font-size:.82rem;padding-block:0 40px}
+@media (max-width:820px){.study{grid-template-columns:minmax(0,1fr)}.toc{position:static;max-height:none;border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--paper)}
+  .toc .lst{display:grid;grid-template-columns:1fr 1fr;gap:2px}.toc .sl{display:none!important}.thead{padding:18px 16px 14px;gap:4px 12px}.thead .bn{width:42px;height:42px;font-size:1.2rem;border-radius:12px}.schips{grid-column:1/-1}.tbody{padding:4px 16px 16px}.pp{margin:6px 16px 0}.tfoot{padding:14px 16px 18px}}
+@media (max-width:480px){.toc .lst{grid-template-columns:1fr}.card .face{min-height:220px;padding:20px}.card .txt{font-size:1.15rem}}
+@media (prefers-reduced-motion:no-preference){.opt,.btn,.toc a{transition:background .15s,border-color .15s}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ===== v3: portada de la guía, mapa del temario, color por tema, buscador ===== */
+.readbar{position:fixed;top:0;left:0;height:3px;width:0;z-index:30;background:linear-gradient(90deg,var(--c),var(--hy));transition:width .1s linear}
+header.hero{padding-bottom:34px}
+header.hero::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;background-image:radial-gradient(rgba(255,255,255,.22) 1px,transparent 1.4px);background-size:22px 22px;mask-image:linear-gradient(120deg,transparent 30%,#000 90%);-webkit-mask-image:linear-gradient(120deg,transparent 30%,#000 90%)}
+.hgrid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px 48px;align-items:center}
+.sbox4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:22px;border-top:1px solid rgba(255,255,255,.28);border-bottom:1px solid rgba(255,255,255,.28)}
+.sbox4 div{padding:10px 12px 9px;border-left:1px solid rgba(255,255,255,.28)}
+.sbox4 div:first-child{border-left:0;padding-left:0}
+.sbox4 small{display:block;font:500 .66rem var(--f-m);letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.sbox4 b{display:block;font:600 1.7rem/1.15 var(--f-m)}
+.hact{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.hact button{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:8px 16px;font-weight:600;font-size:.9rem;cursor:pointer;transition:background .15s,transform .15s}
+.hact button:hover{background:rgba(255,255,255,.22);transform:translateY(-1px)}
+.hact button.pri{background:#fff;color:color-mix(in srgb,var(--c) 80%,#000);border-color:#fff}
+.hact button.pri:hover{background:#fff}
+.avance{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 24px 50px -30px rgba(0,0,0,.6)}
+.avance .ring{display:flex;align-items:center;gap:16px}
+.avance svg{width:96px;height:96px;flex:none;transform:rotate(-90deg)}
+.avance circle{fill:none;stroke-width:9;stroke-linecap:round}
+.avance .trk{stroke:rgba(255,255,255,.18)}
+.avance .val{stroke:#fff;transition:stroke-dasharray .6s cubic-bezier(.2,.8,.2,1)}
+.avance .rt b{display:block;font:700 2rem/1 var(--f-d)}
+.avance .rt small{display:block;font-size:.8rem;opacity:.85;margin-top:4px}
+.avance .nx{display:block;margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;font-size:.85rem}
+.avance .nx small{display:block;font:500 .66rem var(--f-m);letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+.avance .nx b{font:700 1.08rem/1.25 var(--f-d)}
+.avance .nx:hover b{text-decoration:underline}
+.avance .ex{margin-top:10px;font-size:.8rem;opacity:.85}
+nav.tabs .in{align-items:center}
+nav.tabs .brand{display:flex;align-items:center;gap:8px;font:700 .95rem var(--f-d);margin-right:14px;white-space:nowrap}
+nav.tabs .brand i{width:14px;height:14px;border-radius:50% 50% 50% 0;background:linear-gradient(135deg,var(--c),var(--hy));transform:rotate(-45deg)}
+/* mapa */
+.mapa{margin-bottom:26px}
+.mapa .mh{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 12px}
+.mapa h2{margin:0;font:700 1.45rem var(--f-d)}
+.mapa .mh span{font:500 .74rem var(--f-m);color:var(--muted);letter-spacing:.06em}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.mc{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:2px 12px;align-items:center;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px;transition:transform .15s,border-color .15s,box-shadow .15s}
+.mc:hover{transform:translateY(-2px);border-color:var(--tc);box-shadow:0 14px 26px -20px var(--tc)}
+.mc .n{grid-row:span 2;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--tc);color:#fff;font:600 .95rem var(--f-m)}
+.mc b{font-weight:700;line-height:1.25;font-size:.95rem}
+.mc small{grid-column:2;color:var(--muted);font-size:.76rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mc .ck{grid-row:1/span 2;grid-column:3;width:20px;height:20px;border-radius:50%;border:2px solid var(--line)}
+.mc.ok .ck{background:var(--ok);border-color:var(--ok);display:grid;place-items:center}
+.mc.ok .ck::after{content:"";width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+/* color por tema */
+.tema{--tc:var(--c);--c:var(--tc);--c-soft:color-mix(in srgb,var(--tc) 11%,var(--paper));--c-ink:color-mix(in srgb,var(--tc) 82%,#000);position:relative}
+.tema::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--tc)}
+.thead{background:linear-gradient(135deg,color-mix(in srgb,var(--tc) 13%,var(--paper)),var(--paper) 72%)}
+.thead .bn{background:var(--tc);box-shadow:0 10px 22px -10px var(--tc)}
+.tema .num{color:color-mix(in srgb,var(--tc) 80%,var(--ink))}
+.schips a{color:color-mix(in srgb,var(--tc) 80%,var(--ink));border-color:color-mix(in srgb,var(--tc) 30%,var(--line))}
+.schips a:hover{background:var(--tc);border-color:var(--tc)}
+details.sub>summary .sn{background:var(--tc)}
+.sub li::marker{color:var(--tc)}
+details.sub>summary .kd{display:flex;gap:4px;flex:none;align-self:center}
+details.sub>summary .kd i{font:600 .6rem var(--f-m);font-style:normal;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+details.sub>summary:hover h3{color:color-mix(in srgb,var(--tc) 75%,var(--ink))}
+/* buscador */
+.sfind{flex:1 1 100%;display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:0 10px}
+.sfind svg{width:17px;height:17px;flex:none;fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round}
+.sfind input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;font-size:.92rem;padding:9px 0;outline:none}
+.sfind span{font:500 .74rem var(--f-m);color:var(--muted);white-space:nowrap}
+.sfind:focus-within{border-color:var(--c)}
+.nores{padding:26px;border:1.5px dashed var(--line);border-radius:14px;text-align:center;color:var(--muted)}
+.totop{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;width:44px;height:44px;border-radius:50%;border:0;background:var(--c);color:#fff;font-size:1.2rem;cursor:pointer;box-shadow:0 10px 24px -10px rgba(0,0,0,.6);opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .2s,transform .2s}
+.totop.on{opacity:1;pointer-events:auto;transform:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tema{--tc:var(--tcd)}:root:not([data-theme="light"]) .mc{--tc:var(--tcd)}}
+:root[data-theme="dark"] .tema,:root[data-theme="dark"] .mc{--tc:var(--tcd)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tema{--c-soft:color-mix(in srgb,var(--tc) 18%,var(--paper));--c-ink:color-mix(in srgb,var(--tc) 55%,#fff)}}
+:root[data-theme="dark"] .tema{--c-soft:color-mix(in srgb,var(--tc) 18%,var(--paper));--c-ink:color-mix(in srgb,var(--tc) 55%,#fff)}
+.avance .val.z{opacity:0}
+@media (max-width:820px){.study>.toc{display:none}.mapa .mh span{display:none}}
+@media (max-width:900px){.hgrid{grid-template-columns:minmax(0,1fr)}.avance{max-width:420px}header.hero::after{display:none}}
+@media (max-width:560px){.sbox4{grid-template-columns:repeat(2,minmax(0,1fr))}.sbox4 div:nth-child(3){border-left:0;padding-left:0}.sbox4 div:nth-child(n+3){border-top:1px solid rgba(255,255,255,.28)}nav.tabs .brand span{display:none}details.sub>summary .kd{display:none}.mgrid{grid-template-columns:minmax(0,1fr)}}
+/* imágenes reales (^ en el .txt): figura con pie, crédito, marcadores numerados, "ponme a prueba" y visor */
+.figs{display:grid;gap:14px;margin:14px 0}
+.figs.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.fig{margin:0;background:var(--bg);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.fw{position:relative;line-height:0;background:#111}
+.fw img{display:block;width:100%;height:auto}
+.fz{position:absolute;inset:0;border:0;padding:0;margin:0;background:none;cursor:zoom-in}
+.fz::after{content:"⤢ Ampliar";position:absolute;right:8px;bottom:8px;font:600 .72rem/1 var(--f-b);color:#fff;background:rgba(0,0,0,.55);border-radius:999px;padding:5px 9px}
+.pin{position:absolute;transform:translate(-50%,-50%);width:24px;height:24px;border-radius:50%;border:2px solid #fff;background:var(--hy);color:#fff;font:700 .72rem/20px var(--f-m);text-align:center;padding:0;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.55);z-index:1}
+.pin.on{background:var(--cl);transform:translate(-50%,-50%) scale(1.15)}
+.pin .pl{position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%);white-space:nowrap;background:rgba(0,0,0,.82);color:#fff;font:600 .74rem/1.3 var(--f-b);padding:4px 8px;border-radius:8px;display:none;pointer-events:none}
+.pin.on .pl{display:block}
+.pin.lo .pl{bottom:auto;top:calc(100% + 6px)}.pin.le .pl{left:-4px;transform:none}.pin.ri .pl{left:auto;right:-4px;transform:none}
+.fig.fq .pin .pl{display:none}
+.fig figcaption{padding:10px 13px 12px;font-size:.88rem;line-height:1.45;display:flex;flex-direction:column;gap:6px}
+.fig .cr{color:var(--muted);font-size:.72rem;line-height:1.35}
+.fig .fbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.leg{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:5px 6px;counter-reset:lg}
+.leg li{counter-increment:lg;display:inline-flex;align-items:center;gap:6px;font-size:.8rem;line-height:1.25;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 3px;cursor:pointer}
+.leg li::before{content:counter(lg);flex:none;width:18px;height:18px;border-radius:50%;background:var(--hy);color:#fff;font:700 .66rem/18px var(--f-m);text-align:center}
+.leg li.on{border-color:var(--cl)}
+.fig.fq .leg li:not(.shown) span{filter:blur(5px);opacity:.55;user-select:none}
+.fig.fq .leg li.shown{border-color:var(--ok)}
+body.hidekw .fig b{color:inherit;background:none}
+.lbx{position:fixed;inset:0;z-index:60;background:#0b0d0c;display:flex;flex-direction:column;padding:max(10px,env(safe-area-inset-top,0px)) max(10px,env(safe-area-inset-right,0px)) max(10px,env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px))}
+.lbx .lt{display:flex;gap:8px;justify-content:flex-end;align-items:center;color:#fff;padding-bottom:8px}
+.lbx .lt .mini{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
+.lbx .lt .x{font-size:1.1rem;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;cursor:pointer}
+.lbx .ls{flex:1;overflow:auto;display:grid;place-items:center;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.lbx .fig{background:transparent;border:0;border-radius:0;max-width:100%}
+.lbx .fw{background:transparent;width:min(100%,calc((100vh - 190px) * var(--ar,1.4)));margin:0 auto}
+.lbx.big .fw{width:min(1800px,220vw)}
+.lbx .fz{cursor:zoom-in}.lbx.big .fz{cursor:zoom-out}
+.lbx .fz::after{content:none}
+.lbx figcaption{color:#e9efec;max-width:820px;margin:0 auto}
+.lbx .leg li{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
+.lbx .cr{color:#aab6b0}
+</style></head><body>
+<div class="readbar" id="readbar"></div>
+<header class="hero gut" data-code="SIM"><div class="in hgrid">
+  <div>
+  <p class="kick" id="kick"></p>
+  <h1 id="ttl"></h1>
+  <p class="lede" id="lede"></p>
+  <div class="sbox4" id="stats"></div>
+  <div class="hact"><button class="pri" type="button" data-go="estudiar">Empezar a estudiar</button><button type="button" data-go="tarjetas">Tarjetas</button><button type="button" data-go="examen">Examen</button></div>
+  <p class="nota" id="nota" hidden></p>
+  </div>
+  <aside class="avance" aria-label="Tu avance"><div class="ring"><svg viewBox="0 0 100 100" aria-hidden="true"><circle class="trk" cx="50" cy="50" r="42"/><circle class="val" id="ringV" cx="50" cy="50" r="42" stroke-dasharray="0 264"/></svg><div class="rt"><b id="ringN">0%</b><small id="ringT"></small></div></div><a class="nx" id="nextT" href="#t1"></a><div class="ex" id="lastEx"></div></aside>
+</div></header>
+<nav class="tabs gut" role="tablist" aria-label="Modos"><div class="in">
+  <div class="brand"><i></i><span id="brand"></span></div>
+  <button role="tab" id="tab-estudiar" aria-controls="panel-estudiar" aria-selected="true">Estudiar</button>
+  <button role="tab" id="tab-tarjetas" aria-controls="panel-tarjetas" aria-selected="false">Tarjetas</button>
+  <button role="tab" id="tab-examen" aria-controls="panel-examen" aria-selected="false">Examen</button>
+</div></nav>
+<main class="gut"><div class="in">
+  <section id="panel-estudiar" role="tabpanel" class="study">
+    <aside class="toc"><p>Temario</p><div class="lst" id="toc"></div></aside>
+    <div>
+      <section class="mapa" id="mapa" aria-label="Mapa del temario"><div class="mh"><h2>Mapa del temario</h2><span id="mapaN"></span></div><div class="mgrid" id="mgrid"></div></section>
+      <div class="tools" role="toolbar" aria-label="Herramientas de estudio">
+        <label class="sfind"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="find" type="search" placeholder="Buscar en esta guía: un término, una enfermedad…" aria-label="Buscar en esta guía"><span id="findN"></span></label>
+        <div class="pg"><span>Dominados</span><i><b id="pgBar"></b></i><strong id="pgTxt"></strong></div>
+        <button class="tg-btn" id="kwBtn" type="button" aria-pressed="false" title="Oculta las palabras en negritas; tócalas para revelarlas">Ocultar palabras clave</button>
+        <button class="tg-btn" id="foldBtn" type="button" aria-pressed="false">Contraer subtemas</button>
+      </div>
+      <div id="temas"></div>
+      <p class="nores" id="nores" hidden>No encontré ese término en la guía.</p>
+    </div>
+  </section>
+  <section id="panel-tarjetas" role="tabpanel" class="pane" hidden>
+    <div class="bar"><select id="cSel" aria-label="Tema de las tarjetas"></select><button class="btn" id="cMix" type="button">Revolver</button><button class="btn" id="cRep" type="button">Solo las de repasar</button><span class="count" id="cCount"></span></div>
+    <div class="card" id="card" role="button" tabindex="0" aria-label="Voltear tarjeta">
+      <div class="face front" id="cFront"><div class="lbl" id="cLbl"></div><div class="txt" id="cF"></div></div>
+      <div class="face back" id="cBack" hidden><div class="lbl">Respuesta</div><div class="txt" id="cB"></div></div>
+    </div>
+    <p class="hint">Toca la tarjeta o la barra espaciadora para voltearla.</p>
+    <div class="cnav"><button class="btn" id="cPrev" type="button">← Anterior</button><button class="btn no" id="cNo" type="button">Repasar</button><button class="btn ok" id="cOk" type="button">Me la sé</button><button class="btn" id="cNext" type="button">Siguiente →</button></div>
+  </section>
+  <section id="panel-examen" role="tabpanel" class="pane" hidden>
+    <div id="qStart" class="qbox">
+      <p class="qtxt">Examen de práctica</p>
+      <div class="bar"><select id="qSel" aria-label="Tema del examen"></select><select id="qN" aria-label="Número de preguntas"><option value="10">10 preguntas</option><option value="20">20 preguntas</option><option value="0">Todas</option></select><button class="btn pri" id="qGo" type="button">Comenzar</button></div>
+      <p class="hint" style="text-align:left">Opción múltiple con explicación de cada respuesta. Las preguntas y opciones salen en otro orden cada vez.</p>
+    </div>
+    <div id="qRun" class="qbox" hidden>
+      <div class="qtop"><span id="qPos"></span><span id="qTema"></span></div><div class="prog"><i id="qBar"></i></div>
+      <p class="qtxt" id="qQ"></p><div class="opts" id="qO"></div><div class="exp" id="qE" hidden></div>
+      <div class="cnav"><button class="btn pri" id="qNext" type="button" hidden>Siguiente →</button></div>
+    </div>
+    <div id="qEnd" class="qbox res" hidden></div>
+  </section>
+</div></main>
+<button class="totop" id="totop" type="button" aria-label="Volver arriba">↑</button>
+<footer class="gut"><div class="in" id="foot"></div></footer>
+<script>
+const GUIA={"id":"simulacion-iii","title":"Laboratorio de Simulación III","kicker":"Tercer semestre · Simulación","desc":"Lo que se practica en Simulación III con tus notas de Notion y tus tarjetas de Anki: heridas y lesiones por presión, choque y las H y T, qué solución usar y cuándo no, cálculo de goteo, gasometría con Winter y anion gap, casos clínicos de urgencias y examen neurológico.","nota":"Fuente: tus notas de Notion (Simulación 3) y tus tarjetas de Anki de la materia. <b>Corrección<\/b> = estaba mal en tus notas; † = no venía y se agregó para completar el tema. Las dosis y velocidades de los casos son las que se manejaron en clase: confírmalas siempre con tu profesor y con el paciente real.","temas":[{"t":"Heridas y lesiones de la piel","subs":[{"t":"Conceptos","b":[{"k":"tm","x":[{"w":"Herida","d":"Lesión intencional o accidental que produce pérdida de la continuidad de la piel o mucosas."},{"w":"Lesión","d":"Alteración de tejidos u órganos por causa externa (golpe, calor, radiación, químicos) o interna (infección, enfermedad metabólica)."},{"w":"Avulsión","d":"Desprendimiento incompleto de la piel que queda como colgajo (flap)."},{"w":"Úlcera","d":"Herida crónica por alteración gradual del epitelio por una causa interna."}]},{"k":"ul","x":["Las heridas pueden ser <b>agudas<\/b> o <b>crónicas<\/b>.","La piel es el órgano más grande: ~15–16 % del peso corporal y la primera línea de defensa; la piel gruesa y seca se rompe más fácil."]},{"k":"hy","x":["<b>Corrección:<\/b> en tus notas «la piel abarca 20 % de la superficie corporal»; la piel <b>es<\/b> toda la superficie corporal (~1.8 m²) y pesa ~15–16 % del cuerpo."]}]},{"t":"Tipos por mecanismo","b":[{"k":"tb","x":["Tipo¦Qué es","Cortante (incisa)¦Objeto afilado, bordes limpios, poco daño a la irrigación","Contusa¦Aplastamiento: muerte celular inmediata y daño de la irrigación","Lacerante¦Desgarro con bordes irregulares","Abrasiva¦Raspón: pierde capas superficiales","Avulsión / cizallamiento¦La piel se separa del tejido de abajo con mucha devascularización","Amputación¦Pérdida de un segmento","Mordedura¦Animal o humana, alto riesgo de infección","Química, térmica (quemadura), biológica¦Por el agente","Penetrante (punzante) y perforante¦Entra a una cavidad; la perforante entra y sale"]},{"k":"mn","x":[{"m":"«Con Cada Lucha, A veces A veces Muchos Quieren Tener Buena Protección Personal»","s":"Cortante, Contusa, Lacerante, Abrasiva, Avulsión, Amputación, Mordedura, Química, Térmica, Biológica, Penetrante, Perforante."}]}]},{"t":"Clasificación por contaminación (quirúrgica)","b":[{"k":"tb","x":["Clase¦Características¦Ejemplos","Limpia¦Sin inflamación; no se entra a tubo digestivo, respiratorio ni genitourinario¦Hernioplastia, tiroidectomía","Limpia-contaminada¦Se entra a esos tubos de forma controlada, sin derrame¦Histerectomía, colectomía, lobectomía, colecistectomía por litos","Contaminada¦Heridas abiertas accidentales &lt; 6 h, derrame del tubo digestivo o inflamación aguda no purulenta¦Apendicectomía sin perforación, masaje cardiaco abierto, colecistitis aguda","Sucia (infectada)¦&gt; 6 h, tejido desvitalizado, pus o víscera perforada¦Apéndice perforado con pus, drenaje de absceso"]},{"k":"hy","x":["<b>Corrección:<\/b> en tus notas la tabla «limpia vs sucia» mezcla clases; lo que describes como «sucia» (entra a cavidad, contacto con mucosas, sin infección) es la <b>limpia-contaminada<\/b>."]}]},{"t":"Lesiones por presión","b":[{"k":"ul","x":["Origen <b>isquémico<\/b> por presión prolongada sobre prominencias óseas (sacro, talones, trocánteres)."]},{"k":"tb","x":["Grado¦Qué se ve","1¦Eritema que no palidece, piel íntegra","2¦Pérdida parcial (epidermis y/o dermis): úlcera superficial o flictena","3¦Pérdida total de piel con necrosis del subcutáneo, sin llegar a la fascia","4¦Destrucción extensa con músculo, hueso o tendón expuestos; cavernas, tunelizaciones, infección y osteomielitis"]},{"k":"cl","x":["† Prevención: cambios de posición cada 2 horas, colchón de aire, piel seca y buena nutrición."]}]},{"t":"Color del lecho y cicatrización","b":[{"k":"tb","x":["Color¦Significa","Negro¦Necrosis","Amarillo¦Esfacelo (fibrina)","Rojo¦Tejido de granulación","Rosa¦Epitelización","Verde¦Infección"]},{"k":"ul","x":["También se clasifican por tamaño, profundidad y tiempo de evolución.","Signos tempranos de infección: <b>dolor, eritema y calor local<\/b>."]},{"k":"tm","x":[{"w":"Segunda intención","d":"La herida no se cierra con sutura (gran pérdida de tejido o infección) y sana de adentro hacia afuera con tejido de granulación."}]},{"k":"ul","x":["† Primera intención: bordes afrontados con sutura. Tercera intención (cierre diferido): se deja abierta unos días y luego se sutura."]}]},{"t":"Higiene de manos","b":[{"k":"ul","x":["<b>5 momentos (OMS)<\/b>: antes de tocar al paciente, antes de una tarea aséptica, después de exposición a líquidos corporales, después de tocar al paciente y después de tocar su entorno."]},{"k":"st","x":[{"v":"40–60 s","l":"lavado con agua y jabón (manos visiblemente sucias)"},{"v":"† 20–30 s","l":"fricción con alcohol gel"}]}]}],"cards":[{"f":"¿Qué es una herida limpia-contaminada?","b":"Se entra de forma controlada a tubo digestivo, respiratorio o genitourinario, sin derrame ni infección."},{"f":"Lesión por presión grado 3","b":"Pérdida total de la piel con necrosis del subcutáneo, sin llegar a la fascia."},{"f":"Herida de color amarillo","b":"Esfacelo (fibrina)."}],"quiz":[{"q":"Apendicectomía de un apéndice perforado con pus. La herida es…","o":["Limpia","Contaminada","Sucia","Limpia-contaminada"],"a":2,"e":"Pus o víscera perforada = sucia (infectada)."},{"q":"Úlcera en sacro que expone hueso con tunelizaciones. Es una lesión por presión…","o":["Grado 4","Grado 1","Grado 3","Grado 2"],"a":0,"e":"Hueso, músculo o tendón expuestos = grado 4."},{"q":"Herida con lecho rojo y granuloso","o":["Infección","Necrosis","Tejido de granulación (va bien)","Esfacelo"],"a":2,"e":"Rojo = granulación, rosa = epitelización."}],"intro":"Herida: pérdida de la continuidad de la piel o mucosas, intencional o accidental."},{"t":"Choque y paro: las H y las T","subs":[{"t":"Definición y tipos","b":[{"k":"ul","x":["Causas: <b>la bomba<\/b>, <b>el volumen intravascular<\/b> y la <b>vasodilatación<\/b>."]},{"k":"tb","x":["Tipo¦Ejemplos¦Clave","Hipovolémico¦Hemorrágico (oligohémico) o no hemorrágico, traumático o no¦Falta de volumen","Cardiogénico¦Infarto, arritmias, valvulopatías, miocardiopatías¦Falla la bomba","Obstructivo¦Neumotórax a tensión, TEP, taponamiento¦Algo impide el llenado o la salida","Distributivo¦Séptico, anafiláctico, neurogénico¦Neurogénico: el único con bradicardia"]},{"k":"tm","x":[{"w":"Tríada de Beck","d":"Hipotensión, ingurgitación yugular y ruidos cardiacos apagados: taponamiento cardiaco."}]},{"k":"hy","x":["<b>Corrección:<\/b> en tus notas la tríada de Beck aparece bajo «pericarditis»; es del <b>taponamiento cardiaco<\/b> (que puede venir de una pericarditis con derrame)."]}]},{"t":"PAM y metabolismo","b":[{"k":"ul","x":["<b>PAM = (PAS + 2 × PAD) / 3<\/b>; debe ser al menos <b>60–65 mmHg<\/b>.","Aerobio (glucólisis + Krebs + cadena respiratoria): ~36–38 ATP por glucosa. Anaerobio: solo <b>2 ATP<\/b> y produce <b>lactato<\/b> → acidosis láctica (ciclo de Cori en el hígado)."]},{"k":"fl","x":["PAM de 120/60","PAS 120 + (2 × 60 = 120)","240","÷ 3","PAM 80 mmHg"]},{"k":"st","x":[{"v":"PAM ≥ 65 mmHg","l":"meta en el choque"}]}]},{"t":"Las H y las T (causas reversibles de paro)","b":[{"k":"tb","x":["H¦T","Hipovolemia¦Neumotórax a tensión","Hipoxia¦Taponamiento cardiaco","Hidrogeniones (acidosis)¦Tóxicos","Hipo o hiperkalemia¦Trombosis pulmonar (TEP)","Hipotermia¦Trombosis coronaria (infarto)"]},{"k":"ul","x":["La <b>hipoglucemia<\/b> la añaden algunos, aunque no está en el ACLS."]}]},{"t":"Anafilaxia","b":[{"k":"ul","x":["<b>Adrenalina 1 mg/mL: 0.3–0.5 mg intramuscular<\/b> en la cara anterolateral del muslo; repetir cada 5–15 min si hace falta."]}]}],"cards":[{"f":"¿Qué choque cursa con bradicardia?","b":"El neurogénico."},{"f":"Fórmula de la PAM","b":"(PAS + 2 × PAD) / 3."}],"quiz":[{"q":"Paciente apuñalado en el tórax con hipotensión, yugulares ingurgitadas y ruidos cardiacos apagados","o":["Choque séptico","Choque hipovolémico","Choque neurogénico","Taponamiento cardiaco (choque obstructivo)"],"a":3,"e":"Es la tríada de Beck."},{"q":"¿Cuál NO es una de las H del paro?","o":["Hipoxia","Hipertensión","Hipovolemia","Hipotermia"],"a":1,"e":"Las H: hipovolemia, hipoxia, hidrogeniones, hipo/hiperkalemia e hipotermia."},{"q":"PA 90/60. ¿Cuál es la PAM?","o":["75 mmHg","60 mmHg","70 mmHg","80 mmHg"],"a":2,"e":"(90 + 120) / 3 = 70."}],"intro":"Choque: hipoperfusión tisular por falla del continente (vasos o bomba) o del contenido (sangre)."},{"t":"Líquidos y soluciones intravenosas","subs":[{"t":"Agua corporal","b":[{"k":"ul","x":["El agua es <b>~60 %<\/b> del peso en el hombre adulto y <b>~50–55 %<\/b> en la mujer.","<b>Intracelular 40 %<\/b> del peso (2/3 del agua) y <b>extracelular 20 %<\/b> (1/3): de este, 3/4 intersticial y 1/4 intravascular (plasma)."]},{"k":"tm","x":[{"w":"Tercer espacio","d":"Líquido atrapado en un espacio patológico (ascitis, edema, luz intestinal) que no participa en el intercambio."},{"w":"Osmolaridad","d":"Partículas de soluto por litro de solución (la osmolalidad es por kilo de agua)."}]},{"k":"st","x":[{"v":"275–295 mOsm/L","l":"osmolaridad plasmática normal"}]},{"k":"ul","x":["Duración en el vaso: salina ~2–3 h, Hartmann ~4–5 h (en tus notas); † solo ~25 % de un cristaloide queda intravascular a la hora."]}]},{"t":"Cristaloides y coloides","b":[{"k":"tb","x":["Cristaloides¦Tonicidad¦Ejemplo","Hipotónicos¦&lt; 275¦NaCl 0.45 %","Isotónicos¦275–310¦NaCl 0.9 %, Hartmann (Ringer lactato), glucosada 5 %","Hipertónicos¦&gt; 310¦NaCl 3–7.5 % (hipertensión intracraneal), glucosada 10 % (505 mOsm/L), mixta (≈560)","Coloides¦¦Naturales: albúmina. Artificiales: dextrano 70, gelatinas († el manitol es un diurético osmótico, no un coloide)"]},{"k":"ul","x":["<b>Expansores de plasma<\/b>: aumentan el volumen con poco líquido y sin diluir tanto.","† La glucosada 5 % es isoosmolar en la bolsa pero se comporta como <b>agua libre<\/b> (hipotónica) porque la glucosa se metaboliza."]}]},{"t":"Las soluciones, una por una","b":[{"k":"tb","x":["Solución¦Composición¦Osm¦pH","Salina 0.9 %¦Na⁺ 154, Cl⁻ 154 mEq/L¦308¦~5.5","Hartmann¦Na⁺ 130, Cl⁻ 109, K⁺ 4, Ca²⁺ 3, lactato 28 mEq/L¦273¦~6–6.5","Glucosada 5 %¦50 g de glucosa por litro, sin electrolitos¦252–278¦ácido","Mixta (glucosalina)¦NaCl 0.9 % + glucosa 5 %¦≈560¦—"]},{"k":"ul","x":["Ninguna tiene factores de coagulación."]},{"k":"hy","x":["<b>Corrección:<\/b> en tus notas la salina aparece como «hipertónica»: es <b>isotónica<\/b> (ligeramente hiperosmolar). Y la mixta de 320 mOsm no corresponde a la presentación usual (salina 0.9 % + glucosa 5 %, ≈560 mOsm/L)."]},{"k":"tb","x":["Solución¦Sí¦No","Salina 0.9 %¦Hiponatremia, hipocloremia, choque hipovolémico (de elección), alcalosis por vómito, edema cerebral¦Acidosis hiperclorémica, hipernatremia, hipercloremia, insuficiencia cardiaca con sobrecarga, cirrosis con ascitis","Hartmann¦Hipovolemia, quemados, pérdidas intestinales, hipokalemia leve, choque no acidótico¦TCE con hipertensión intracraneal, hiperkalemia importante, insuficiencia hepática (no metaboliza el lactato), acidosis láctica","Glucosada 5 %¦Hipoglucemia, ayuno prolongado, aporte de agua libre, cirróticos (poca reserva de glucógeno)¦Hiperglucemia, TCE (edema cerebral), hiponatremia (dilucional)","Mixta¦Deshidratación con ayuno o hipoglucemia¦Hiperglucemia, coma hiperosmolar, hipernatremia, hipercloremia, acidosis, insuficiencia cardiaca, cirrosis"]},{"k":"ul","x":["<b>Reglas de clase<\/b>: en edema cerebral, salina (achica la célula); en hiponatremia, siempre salina; en hipokalemia, Hartmann; en hiperkalemia leve se puede dar Hartmann con cuidado.","Truco: para dar salina sin subir tanto el sodio, se tira la mitad de la bolsa y se completa con agua inyectable (queda ≈0.45 %)."]}]},{"t":"Hemoglobina y transfusión","b":[{"k":"st","x":[{"v":"13.5–17.5 g/dL","l":"hemoglobina normal en hombres"},{"v":"12–16 g/dL","l":"hemoglobina normal en mujeres"},{"v":"+1 g/dL","l":"sube la hemoglobina con cada paquete globular (≈3 % de hematocrito)"}]},{"k":"ul","x":["Un paciente con cardiopatía necesita al menos <b>10 g/dL<\/b> para operarse."]}]}],"cards":[{"f":"Composición de la Hartmann","b":"Na 130, Cl 109, K 4, Ca 3 y lactato 28 mEq/L; 273 mOsm/L."},{"f":"¿Por qué no se da Hartmann en TCE?","b":"Es ligeramente hipotónica: puede aumentar el edema cerebral."},{"f":"¿Por qué no se da glucosada en TCE?","b":"Se comporta como agua libre y empeora el edema cerebral (además la hiperglucemia daña la neurona)."}],"quiz":[{"q":"Paciente con hiponatremia de 125 mEq/L y deshidratación. La solución de elección es…","o":["Hartmann","Salina 0.9 %","Glucosada 5 %","Agua inyectable"],"a":1,"e":"La salina aporta 154 mEq/L de sodio; la glucosada empeora la hiponatremia."},{"q":"Paciente cirrótico descompensado con ascitis. ¿Qué solución evitas?","o":["Albúmina","Ninguna","Glucosada 5 %","Hartmann"],"a":3,"e":"El hígado enfermo no metaboliza el lactato; además el sodio empeora la ascitis."},{"q":"Osmolaridad de la solución glucosada al 10 %","o":["505 mOsm/L","273 mOsm/L","308 mOsm/L","252 mOsm/L"],"a":0,"e":"Al doble de glucosa, el doble de osmolaridad."}],"intro":"Cristaloides para reponer agua e iones; coloides para aumentar el volumen del plasma."},{"t":"Cálculo de goteo y elección del catéter","subs":[{"t":"Equivalencias","b":[{"k":"tb","x":["Medida¦Equivale a","1 L¦1000 mL","1 mL¦1 cc","1 mL¦20 gotas (macrogotero)","1 mL¦60 microgotas","1 gota¦3 microgotas","1 microgota/min¦1 mL/h"]}]},{"t":"Fórmulas","b":[{"k":"ul","x":["<b>Macrogotas/min = volumen (mL) ÷ (3 × horas)<\/b>.","<b>Microgotas/min = volumen (mL) ÷ horas<\/b> (con microgotero la constante es 1, y microgotas/min = mL/h)."]},{"k":"fl","x":["1000 mL en 8 h con macrogotero","3 × 8 = 24","1000 ÷ 24","≈ 42 gotas/min"]},{"k":"fl","x":["500 mL en 6 h con microgotero","500 ÷ 6","≈ 83 microgotas/min (= 83 mL/h)"]},{"k":"st","x":[{"v":"constante 3","l":"macrogotero (20 gotas/mL ÷ 60 min)"},{"v":"constante 1","l":"microgotero (60 microgotas/mL ÷ 60 min)"}]}]},{"t":"Catéter y ley de Poiseuille","b":[{"k":"ul","x":["<b>Poiseuille<\/b>: el flujo aumenta con el radio a la 4.ª potencia y disminuye con la longitud. Mientras <b>más grueso y corto<\/b> el catéter, mayor flujo."]},{"k":"tb","x":["Calibre¦Uso","14–16 G¦Trauma, reanimación con volumen y sangre","18 G¦Urgencias, cirugía, transfusión","20 G¦Adulto estable, soluciones y medicamentos","22 G¦Venas pequeñas, ancianos, niños","24 G¦Neonatos y venas muy frágiles"]},{"k":"ul","x":["A menor número de gauge, mayor diámetro."]}]}],"cards":[{"f":"¿Cuántas gotas tiene 1 mL?","b":"20 gotas (macrogotero) o 60 microgotas."},{"f":"Constante del macrogotero y del microgotero","b":"3 y 1."}],"quiz":[{"q":"Indicación: 1500 mL de salina en 12 h con macrogotero. ¿Cuántas gotas por minuto?","o":["≈ 21","≈ 42","≈ 63","≈ 125"],"a":1,"e":"1500 ÷ (3 × 12) = 1500 ÷ 36 = 41.7."},{"q":"250 mL en 2 h con microgotero","o":["125 microgotas/min","42 microgotas/min","63 microgotas/min","250 microgotas/min"],"a":0,"e":"250 ÷ 2 = 125; con microgotero microgotas/min = mL/h."},{"q":"Para pasar volumen rápido en un politraumatizado eliges un catéter…","o":["14–16 G corto","22 G","Catéter central largo de 20 G","24 G largo"],"a":0,"e":"Por Poiseuille, grueso y corto da el mayor flujo."}],"intro":"Gotas por minuto = volumen (mL) ÷ (constante × horas)."},{"t":"Electrolitos séricos","subs":[{"t":"Valores normales","b":[{"k":"tb","x":["Electrolito¦Normal","Sodio (Na⁺)¦135–145 mEq/L","Potasio (K⁺)¦3.5–5.0 mEq/L","Cloro (Cl⁻)¦98–106 mEq/L","Calcio total¦8.5–10.5 mg/dL (ionizado 4.5–5.6 mg/dL)","Magnesio¦1.7–2.2 mg/dL","Fósforo¦2.5–4.5 mg/dL","Bicarbonato¦24 ± 2 mEq/L"]}]},{"t":"Presiones","b":[{"k":"tm","x":[{"w":"Presión hidrostática","d":"La que ejerce el volumen de líquido contra la pared de los vasos (empuja el agua hacia afuera)."},{"w":"Presión oncótica","d":"La que ejercen las macromoléculas, sobre todo la albúmina (retiene el agua dentro del vaso)."}]},{"k":"hy","x":["<b>Corrección:<\/b> en tus notas la presión oncótica incluye sodio, urea y glucosa; esas son partículas <b>osmóticas<\/b>, pero la presión <b>oncótica<\/b> es solo la de las proteínas (albúmina)."]},{"k":"cl","x":["† Edema = ↑ presión hidrostática (insuficiencia cardiaca) o ↓ presión oncótica (hipoalbuminemia: cirrosis, síndrome nefrótico)."]}]}],"cards":[{"f":"Potasio normal","b":"3.5–5.0 mEq/L."},{"f":"Sodio normal","b":"135–145 mEq/L."}],"quiz":[{"q":"Paciente con síndrome nefrótico y edema generalizado. El mecanismo principal es…","o":["Aumento de la presión oncótica","Aumento del sodio sérico","Disminución de la presión oncótica por hipoalbuminemia","Disminución de la presión hidrostática"],"a":2,"e":"Sin albúmina el agua se sale del vaso al intersticio."}],"intro":"Valores normales y las presiones que mueven el agua."},{"t":"Gasometría arterial","subs":[{"t":"Valores normales","b":[{"k":"tb","x":["Parámetro¦Normal","pH¦7.35–7.45","HCO₃⁻¦22–26 mEq/L († en la altura puede ser 18–22; tus notas dicen 18–26)","PaCO₂¦35–45 mmHg a nivel del mar (≈30–35 en Puebla)","PaO₂¦&gt; 60 mmHg (≈80–100 a nivel del mar)"]},{"k":"ul","x":["CO₂ + H₂O ⇄ H₂CO₃ (ácido carbónico) ⇄ H⁺ + HCO₃⁻.","pH &lt; 6.8 o &gt; 7.8: incompatible con la vida."]},{"k":"hy","x":["<b>Corrección:<\/b> la PaCO₂ se mide en <b>mmHg<\/b>, no en mEq/L."]},{"k":"tm","x":[{"w":"Acidosis / alcalosis","d":"El proceso que tiende a bajar o subir el pH (puede estar compensado, con pH normal)."},{"w":"Acidemia / alcalemia","d":"El pH ya está fuera de rango (no compensado)."}]}]},{"t":"Método paso a paso","b":[{"k":"fl","x":["Leer una gasometría","¿pH bajo (acidemia) o alto (alcalemia)?","¿Lo explica el CO₂ (respiratorio) o el HCO₃⁻ (metabólico)?","Si es metabólica, calcula la PCO₂ esperada (Winter)","¿La PCO₂ real coincide? Si no, hay un trastorno mixto","En acidosis metabólica calcula el anion gap"]},{"k":"tb","x":["Trastorno¦pH¦Primario¦Compensación","Acidosis metabólica¦↓¦↓ HCO₃⁻¦↓ PCO₂ (hiperventila)","Alcalosis metabólica¦↑¦↑ HCO₃⁻¦↑ PCO₂ (hipoventila)","Acidosis respiratoria¦↓¦↑ PCO₂¦↑ HCO₃⁻ (riñón)","Alcalosis respiratoria¦↑¦↓ PCO₂¦↓ HCO₃⁻ (riñón)"]}]},{"t":"Fórmula de Winter","b":[{"k":"ul","x":["<b>PCO₂ esperada = (1.5 × HCO₃⁻) + 8 ± 2<\/b> (solo en acidosis metabólica). Si la PCO₂ real es menor, hay además alcalosis respiratoria; si es mayor, acidosis respiratoria."]},{"k":"fl","x":["Ejemplo: pH 7.39, PCO₂ 11, HCO₃⁻ 10","1.5 × 10 = 15","+8 = 23 ± 2 (21–25)","PCO₂ real 11 &lt; 21","Acidosis metabólica + alcalosis respiratoria (mixto)"]}]},{"t":"Anion gap","b":[{"k":"ul","x":["<b>AG = Na⁺ − (Cl⁻ + HCO₃⁻)<\/b>; normal ≈ <b>8–12 mEq/L<\/b> (12 ± 4 si se incluye el K⁺)."]},{"k":"hy","x":["<b>Corrección:<\/b> en tus notas el anion gap «entre Na⁺ y Cl⁻»; también se resta el <b>bicarbonato<\/b>."]},{"k":"mn","x":[{"m":"MUDPILES","s":"Causas de anion gap elevado: Metanol, Uremia, cetoacidosis Diabética (también alcohólica o por ayuno), Paraldehído, Isoniazida o hierro (Iron), acidosis Láctica (choque, sepsis, metformina), Etilenglicol, Salicilatos."}]},{"k":"fl","x":["Na 140, Cl 100, HCO₃⁻ 24","100 + 24 = 124","140 − 124","AG 16: elevado"]}]},{"t":"Ejemplos de clase","b":[{"k":"tb","x":["pH¦PCO₂¦HCO₃⁻¦Interpretación","7.38¦12¦10¦Acidosis metabólica compensada","7.20¦12¦10¦Acidemia metabólica","7.23¦52¦20¦Acidemia respiratoria","6.97¦61¦11¦Acidemia mixta (metabólica + respiratoria)","7.60¦30¦31¦Alcalemia mixta (metabólica + respiratoria)"]}]}],"cards":[{"f":"Fórmula de Winter","b":"PCO₂ esperada = 1.5 × HCO₃⁻ + 8 ± 2."},{"f":"Fórmula del anion gap","b":"Na⁺ − (Cl⁻ + HCO₃⁻); normal 8–12."},{"f":"Diferencia entre acidosis y acidemia","b":"Acidosis es el proceso (puede estar compensado); acidemia es el pH ya bajo."}],"quiz":[{"q":"pH 7.25, PCO₂ 60, HCO₃⁻ 26. Es…","o":["Acidemia metabólica","Normal","Alcalemia respiratoria","Acidemia respiratoria"],"a":3,"e":"pH bajo con PCO₂ alta y HCO₃⁻ normal: respiratoria aguda."},{"q":"Diabético con pH 7.10, HCO₃⁻ 8, PCO₂ 20, Na 138, Cl 100. ¿Qué tiene?","o":["Acidosis metabólica con anion gap normal","Acidosis respiratoria","Alcalosis metabólica","Acidosis metabólica con anion gap elevado (30), bien compensada"],"a":3,"e":"Winter: 1.5×8+8 = 20 ± 2 → compensada. AG = 138 − 108 = 30: cetoacidosis."},{"q":"pH 7.39, PCO₂ 11, HCO₃⁻ 10. ¿Cuál es la PCO₂ esperada?","o":["15","23 ± 2","40","11"],"a":1,"e":"1.5 × 10 + 8 = 23; la real (11) es menor: hay alcalosis respiratoria agregada."}],"intro":"Primero el pH, luego quién lo explica (CO₂ o HCO₃⁻), luego si compensa."},{"t":"Casos clínicos de urgencias","subs":[{"t":"Casos de líquidos","b":[{"k":"tb","x":["Paciente¦Signos¦Manejo de clase¦Por qué","Hombre de 18 años con DM2, HTA, ERC en diálisis peritoneal y dolor abdominal¦190/95, FC 105¦22 G, salina o Hartmann 250 cc en 12 h¦Renal e hipertenso: poco volumen, lento","Repartidor de 45 años, accidente con fractura de fémur¦90/60, FC 115, T 35 °C¦18 G, Hartmann 1000 cc en 2 h; medir diuresis¦Hipovolemia por sangrado oculto en muslo","Mujer de 17 años con SOP, 80 kg, dolor y menstruación¦101/71, FC 96¦20 G, 250 cc en 1 h; paracetamol IV¦Estable: mantener vía y analgesia","Hombre de 91 años hipertenso con diarrea de 4 días¦100/60, FC 85¦24 G salina 500 cc en 24 h o 20 G Hartmann 500 cc en 6 h¦Anciano: reponer con cuidado","Mujer de 69 años con DM2, HTA, ICC clase III con furosemida, probable EVC isquémico¦140/80, FC 91¦22 G, salina 250 cc en 5 h¦Sin glucosada (cerebro) ni mucho volumen (corazón)","Hombre con HTA y DM2, amputación traumática¦70/30, FC 105¦16 G, Hartmann 1000 cc en 2 h; luego sangre¦Choque hemorrágico","Electricista de 27 años, caída de 4 m y quemadura por arco eléctrico, Glasgow 8¦—¦20 G, salina¦TCE: salina, nunca hipotónicas"]},{"k":"ul","x":["En tus tarjetas: anciano de 72 años con fiebre y dolor de pierna → Hartmann; diabético de 57 años con neumonía → salina 0.9 %; debut de diabetes con cetoacidosis → NaCl 0.45 % + KCl tras la carga inicial."]}]},{"t":"Otros puntos que se preguntaron","b":[{"k":"ul","x":["<b>Criterios de Framingham<\/b> (insuficiencia cardiaca, 2 mayores o 1 mayor + 2 menores):"]},{"k":"tb","x":["Mayores¦Menores","Disnea paroxística nocturna, estertores, edema agudo de pulmón¦Disnea de esfuerzo, derrame pleural, tos nocturna","Cardiomegalia, galope por S3¦Taquicardia (&gt; 120)","Ingurgitación yugular, reflujo hepatoyugular, ↑ presión venosa central¦Edema de miembros inferiores, hepatomegalia","Pérdida de &gt; 4.5 kg con el tratamiento¦—"]},{"k":"ul","x":["<b>Síndrome compartimental (5 P)<\/b>: dolor (*pain*, el primero y desproporcionado), parestesias, palidez, parálisis y pérdida de pulso (tardía).","Estudios en politrauma: TAC, radiografía de tórax AP, de miembros y de pelvis, biometría hemática.","Anemia en la BH → pedir <b>frotis de sangre periférica<\/b>. Diuresis normal ≈ <b>800–1500 mL/día<\/b>. Escala <b>SOFA<\/b> para falla orgánica.","Paracetamol: dosis tóxica ~4 g/día en el adulto (máximo diario recomendado)."]}]}],"cards":[{"f":"Criterio para diagnosticar insuficiencia cardiaca con Framingham","b":"2 criterios mayores, o 1 mayor y 2 menores."},{"f":"Primer síntoma del síndrome compartimental","b":"Dolor desproporcionado (sobre todo al estirar el músculo)."}],"quiz":[{"q":"Paciente con fractura de fémur, PA 90/60, FC 115. ¿Qué catéter y solución?","o":["18 G (o mayor) con Hartmann en bolo","22 G con salina 250 cc en 12 h","Sin líquidos hasta tener laboratorio","24 G con glucosada 5 %"],"a":0,"e":"Choque hipovolémico: catéter grueso y cristaloide rápido."},{"q":"Paciente con TCE y Glasgow 8. ¿Qué solución evitas?","o":["Salina 0.9 %","Ninguna","Glucosada 5 %","Salina hipertónica 3 %"],"a":2,"e":"Las hipotónicas (glucosada, Hartmann en exceso) aumentan el edema cerebral."}],"intro":"Cómo se eligió catéter, solución y velocidad en clase."},{"t":"Examen neurológico","subs":[{"t":"Funciones mentales superiores","b":[{"k":"ul","x":["<b>Estado de alerta<\/b>: se mide con Glasgow.","<b>Atención<\/b>: repetir dígitos o deletrear al revés.","<b>Orientación<\/b>: en tiempo (fecha, hora), espacio (dónde está) y persona (cómo se llama él y sus familiares).","<b>Habla vs lenguaje<\/b>: el habla es la articulación de las palabras; el lenguaje es su comprensión y uso coherente."]},{"k":"tb","x":["Afasia¦Qué pasa","Sensitiva (de Wernicke)¦No comprende; habla fluida pero sin sentido","Motora (de Broca)¦Comprende pero no puede expresarse; habla no fluida","Global¦Ni comprende ni habla"]},{"k":"tm","x":[{"w":"Gnosias","d":"Capacidad de reconocer objetos por los sentidos; la agnosia es no reconocerlos."},{"w":"Praxias","d":"Capacidad de hacer movimientos aprendidos (beber de un vaso); la apraxia es no poder hacerlos sin parálisis."}]},{"k":"ul","x":["<b>Juicio<\/b>: preguntas de razonamiento o moral (¿qué haría si ve a un niño corriendo con tijeras?).","<b>Cálculo<\/b>: restas seriadas (100 − 7…)."]},{"k":"hy","x":["<b>Corrección:<\/b> en tus notas «egnocias: cambia la función de los objetos»; las gnosias son <b>reconocer<\/b> los objetos. Usarlos bien es la praxia."]}]},{"t":"Pares craneales","b":[{"k":"tb","x":["Par¦Nombre","I¦Olfatorio","II¦Óptico","III¦Motor ocular común (oculomotor)","IV¦Patético (troclear)","V¦Trigémino","VI¦Motor ocular externo (abducens)","VII¦Facial","VIII¦Vestibulococlear (auditivo)","IX¦Glosofaríngeo: sensibilidad del tercio posterior de la lengua y deglución","X¦Vago","XI¦Espinal (accesorio)","XII¦Hipogloso"]},{"k":"hy","x":["<b>Corrección:<\/b> en tus notas el I aparece como «oftálmico»; el par I es el <b>olfatorio<\/b> (su daño por la lámina cribosa o por COVID produce anosmia). Oftálmico es la rama V1 del trigémino."]}]},{"t":"Reflejos del tallo","b":[{"k":"tb","x":["Reflejo¦Aferente¦Eferente¦Cómo","Pupilar (fotomotor)¦II¦III¦Luz → contracción de la pupila","Corneal¦V¦VII¦Algodón en la córnea → parpadeo","Oculocefálico («ojos de muñeca»)¦VIII¦III y VI¦Girar la cabeza → los ojos van al lado contrario","Oculovestibular¦VIII¦III y VI¦Agua fría en el oído → los ojos se desvían hacia ese oído","Nauseoso¦IX¦X¦Estimular faringe o úvula → arcada"]},{"k":"ul","x":["Si un reflejo falta en un paciente en coma, sugiere <b>daño del tallo<\/b>."]}]},{"t":"Deterioro rostrocaudal (coma)","b":[{"k":"tb","x":["Etapa¦Respiración¦Pupilas¦Motor","Diencefálica temprana¦Suspiros, bostezos¦Pequeñas reactivas¦Localiza el dolor","Diencefálica tardía¦Cheyne-Stokes¦Pequeñas reactivas¦Decorticación","Mesencefálica¦Hiperventilación neurógena central¦Medias fijas¦Descerebración","Protuberancial¦Apnéusica¦Medias fijas¦Flácido","Bulbar¦Atáxica¦Dilatadas fijas¦Flacidez total"]}]}],"cards":[{"f":"Vía del reflejo corneal","b":"Aferente trigémino (V), eferente facial (VII)."},{"f":"¿Qué es la afasia de Broca?","b":"Afasia motora: comprende pero no puede expresarse."},{"f":"Respiración típica de la etapa diencefálica tardía","b":"Cheyne-Stokes."}],"quiz":[{"q":"Paciente en coma con pupilas medias fijas y postura de descerebración. Nivel de la lesión","o":["Bulbar","Mesencefálico","Diencefálico temprano","Cortical"],"a":1,"e":"Descerebración + pupilas medias fijas + hiperventilación neurógena central = mesencéfalo."},{"q":"Paciente que habla fluido pero sin sentido y no entiende órdenes","o":["Afasia de Wernicke (sensitiva)","Afasia de Broca (motora)","Apraxia","Disartria"],"a":0,"e":"Wernicke = comprensión; Broca = expresión."},{"q":"El reflejo nauseoso explora…","o":["Trigémino y facial","Glosofaríngeo (aferente) y vago (eferente)","Vestibulococlear y abducens","Óptico y oculomotor"],"a":1,"e":"Se estimula la faringe (IX) y el vago produce la arcada (X)."}],"intro":"Funciones mentales, pares craneales, reflejos del tallo y niveles del coma."}]};
+</script>
+<script>
+(function(){
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const T=GUIA.temas,LS="s12-repasar-"+GUIA.id;
+const allC=[],allQ=[];T.forEach((t,i)=>{(t.cards||[]).forEach(c=>allC.push({...c,ti:i}));(t.quiz||[]).forEach(q=>allQ.push({...q,ti:i}))});
+document.title=GUIA.title;
+$("#kick").textContent=GUIA.kicker;$("#ttl").textContent=GUIA.title;$("#lede").textContent=GUIA.desc;
+$("#stats").innerHTML=[[T.length,"Temas"],[T.reduce((n,t)=>n+t.subs.filter(s=>s.t).length,0),"Subtemas"],[allC.length,"Tarjetas"],[allQ.length,"Preguntas"]].map(([n,l])=>`<div><small>${l}</small><b>${n}</b></div>`).join("");
+$("#brand").textContent=GUIA.title;
+const PAL=[["#c2410c","#fb8a5a"],["#6d28d9","#b69cff"],["#0f766e","#4fd1c0"],["#b45309","#f2b14c"],["#be123c","#ff7c98"],["#1d4ed8","#7aa7ff"],["#15803d","#6edb8f"],["#a21caf","#ec8cf6"],["#0e7490","#5cc9e6"],["#9a3412","#ff9f6e"],["#4d7c0f","#a7d65a"],["#7c3aed","#c4a8ff"]];
+const tcol=i=>`--tc:${PAL[i%PAL.length][0]};--tcd:${PAL[i%PAL.length][1]}`;
+if(GUIA.nota){$("#nota").hidden=false;$("#nota").innerHTML=GUIA.nota}
+$("#foot").innerHTML=`Repositorio de Marcos David Reinah Guzmán · Médico Cirujano UDLAP · ${esc(GUIA.kicker)}. <span class="dag">†</span> = dato agregado para completar el tema.`;
+/* estudiar */
+const LSD="s12-dominado-"+GUIA.id;let dom=new Set();try{dom=new Set(JSON.parse(localStorage.getItem(LSD)||"[]"))}catch(e){}
+const saveDom=()=>{try{localStorage.setItem(LSD,JSON.stringify([...dom]))}catch(e){}};
+const named=t=>t.subs.filter(s=>s.t);
+$("#toc").innerHTML=T.map((t,i)=>`<div class="tg" data-i="${i}"><a href="#t${i+1}"><span><i>${String(i+1).padStart(2,"0")}</i></span>${esc(t.t)}</a>${named(t).length?`<div class="sl">${named(t).map((s,j)=>`<a href="#t${i+1}-${j+1}">${s.t}</a>`).join("")}</div>`:""}</div>`).join("");
+const list=a=>`<ul>${a.map(x=>`<li>${x}</li>`).join("")}</ul>`;
+const R={
+ ul:x=>list(x),
+ hy:x=>`<div class="box hy"><h4>Alto rendimiento para examen</h4>${list(x)}</div>`,
+ cl:x=>`<div class="box cl"><h4>Correlación clínica</h4>${list(x)}</div>`,
+ tb:x=>{const rows=x.map(r=>r.split("¦"));return `<div class="tblw"><div class="tbar"><button class="mini" type="button" data-tq aria-pressed="false">Ponme a prueba con la tabla</button></div><div class="tbl"><table><thead><tr>${rows[0].map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>${rows.slice(1).map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div>`},
+ fl:x=>`<div class="flow"><div class="fh"><b>${x[0]||"Secuencia"}</b><button class="mini" type="button" data-fl>Paso a paso ▶</button></div><ol>${x.slice(1).map(p=>`<li><div class="st">${p}</div></li>`).join("")}</ol></div>`,
+ st:x=>`<div class="stats-g">${x.map(o=>`<div class="stat"><span class="v">${o.v}</span><span class="l">${o.l}</span></div>`).join("")}</div>`,
+ tm:x=>`<div class="terms"><div class="th"><b>Conceptos clave · toca para revelar</b><button class="mini" type="button" data-tm>Mostrar todos</button></div><div class="tgr">${x.map(o=>`<button class="term" type="button" aria-expanded="false"><span class="w">${o.w}</span><span class="d">${o.d}</span><span class="h">¿Qué es? →</span></button>`).join("")}</div></div>`,
+ mn:x=>x.map(o=>`<div class="mn"><div class="mi">M</div><div><b class="mm">${o.m}</b><span>${o.s}</span></div></div>`).join(""),
+ im:x=>`<div class="figs${x.length>1?" g2":""}">${x.map(fig).join("")}</div>`
+};
+function fig(o){const p=o.p||[];return `<figure class="fig"><div class="fw"><img src="${o.src}" alt="${esc(o.c.replace(/<[^>]+>/g,""))}" loading="lazy" decoding="async"><button class="fz" type="button" aria-label="Ampliar imagen"></button>${p.map((q,n)=>`<button class="pin${q.y<22?" lo":""}${q.x<22?" le":q.x>78?" ri":""}" type="button" data-pn="${n}" style="left:${q.x}%;top:${q.y}%" aria-label="Marcador ${n+1}">${n+1}<span class="pl">${q.l}</span></button>`).join("")}</div><figcaption><span>${o.c}</span>${p.length?`<div class="fbar"><button class="mini" type="button" data-fq aria-pressed="false">Ponme a prueba</button></div><ol class="leg">${p.map((q,n)=>`<li data-pn="${n}"><span>${q.l}</span></li>`).join("")}</ol>`:""}<small class="cr">${o.a}</small></figcaption></figure>`}
+const ppQ=(q,i,k)=>`<div class="pq" data-a="${q.a}"><p>${q.q}</p><div class="po">${q.o.map((o,n)=>`<button type="button" data-n="${n}">${o}</button>`).join("")}</div><div class="pe" hidden>${q.e||""}</div></div>`;
+const KD={im:"Imágenes",fl:"Diagrama",tb:"Tabla",tm:"Conceptos",mn:"Mnemotecnia",st:"Cifras"};
+const kinds=s=>[...new Set(s.b.map(b=>b.k))].filter(k=>KD[k]).map(k=>`<i>${KD[k]}</i>`).join("");
+$("#mapaN").textContent=`${T.length} temas · toca uno para ir`;
+$("#mgrid").innerHTML=T.map((t,i)=>`<a class="mc${dom.has(i)?" ok":""}" href="#t${i+1}" data-i="${i}" style="${tcol(i)}"><span class="n">${i+1}</span><b>${esc(t.t)}</b><small>${named(t).length} subtemas · ${(t.quiz||[]).length} preguntas</small><span class="ck" aria-label="${dom.has(i)?"dominado":"pendiente"}"></span></a>`).join("");
+$("#temas").innerHTML=T.map((t,i)=>{let j=0;const ns=named(t);return `<article class="tema${dom.has(i)?" ok":""}" id="t${i+1}" data-i="${i}" style="${tcol(i)}">
+ <div class="thead"><div class="bn">${i+1}</div><span class="num">Tema ${i+1} de ${T.length}${ns.length?` · ${ns.length} subtemas`:""}</span><h2>${esc(t.t)}</h2>${t.intro?`<p class="intro">${t.intro}</p>`:""}
+ ${ns.length?`<div class="schips">${ns.map((s,k)=>`<a href="#t${i+1}-${k+1}">${i+1}.${k+1} ${s.t}</a>`).join("")}</div>`:""}</div>
+ <div class="tbody">${t.subs.map(s=>{const body=(s.i?`<p class="si">${s.i}</p>`:"")+s.b.map(b=>R[b.k](b.x)).join("");if(!s.t)return `<div class="sub lead">${body}</div>`;j++;return `<details class="sub" open id="t${i+1}-${j}"><summary><span class="sn">${i+1}.${j}</span><h3>${s.t}</h3><span class="kd">${kinds(s)}</span></summary>${body}</details>`}).join("")}</div>
+ ${(t.quiz||[]).length?`<div class="pp"><h4>Ponte a prueba</h4>${t.quiz.slice(0,2).map((q,k)=>ppQ(q,i,k)).join("")}</div>`:""}
+ <div class="tfoot">${(t.cards||[]).length?`<button type="button" data-c="${i}">${t.cards.length} tarjetas</button>`:""}${(t.quiz||[]).length?`<button type="button" data-q="${i}">Examen del tema (${t.quiz.length})</button>`:""}<button type="button" class="dom" data-d="${i}" aria-pressed="${dom.has(i)}">${dom.has(i)?"✓ Dominado":"Marcar como dominado"}</button></div>
+</article>`}).join("");
+const LSE="s12-examen-"+GUIA.id;
+function prog(){const n=dom.size,p=Math.round(n/T.length*100);$("#pgBar").style.width=p+"%";$("#pgTxt").textContent=n+" / "+T.length;document.querySelectorAll(".toc .tg").forEach(g=>g.classList.toggle("ok",dom.has(+g.dataset.i)));
+ document.querySelectorAll(".mc").forEach(m=>m.classList.toggle("ok",dom.has(+m.dataset.i)));
+ $("#ringV").classList.toggle("z",!p);$("#ringV").setAttribute("stroke-dasharray",`${(p/100*263.9).toFixed(1)} 264`);$("#ringN").textContent=p+"%";$("#ringT").textContent=`${n} de ${T.length} temas dominados`;
+ const nx=T.findIndex((t,i)=>!dom.has(i));$("#nextT").innerHTML=nx<0?`<small>¡Terminaste!</small><b>Haz un examen de toda la materia →</b>`:`<small>${n?"Sigue con":"Empieza por"}</small><b>${nx+1}. ${esc(T[nx].t)} →</b>`;$("#nextT").setAttribute("href",nx<0?"#":"#t"+(nx+1));$("#nextT").dataset.nx=nx;
+ let le=null;try{le=JSON.parse(localStorage.getItem(LSE)||"null")}catch(e){}$("#lastEx").textContent=le?`Último examen: ${le.p}% (${le.g} de ${le.n})`:"Aún no haces un examen de esta materia."}
+prog();
+$("#nextT").addEventListener("click",e=>{if(+e.currentTarget.dataset.nx<0){e.preventDefault();$("#qSel").value="all";tab("examen")}});
+document.querySelectorAll(".hact button").forEach(b=>b.addEventListener("click",()=>{tab(b.dataset.go);if(b.dataset.go==="estudiar"){const m=$("#mapa");window.scrollTo({top:m.getBoundingClientRect().top+scrollY-70,behavior:"smooth"})}}));
+/* lectura y volver arriba */
+const onScroll=()=>{const h=document.documentElement,max=h.scrollHeight-h.clientHeight;$("#readbar").style.width=(max>0?scrollY/max*100:0)+"%";$("#totop").classList.toggle("on",scrollY>900)};
+addEventListener("scroll",onScroll,{passive:true});onScroll();
+$("#totop").addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+/* buscador */
+const norm=x=>x.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const subsEl=[...document.querySelectorAll("#temas .sub")];subsEl.forEach(d=>d.dataset.tx=norm(d.textContent));
+let fT;$("#find").addEventListener("input",e=>{clearTimeout(fT);fT=setTimeout(()=>{const q=norm(e.target.value.trim());let hits=0;
+ document.querySelectorAll("#temas .tema").forEach(a=>{let any=false;a.querySelectorAll(".sub").forEach(d=>{const ok=!q||q.length<2||d.dataset.tx.includes(q);d.hidden=!ok;if(ok&&q.length>=2){any=true;hits++;if(d.tagName==="DETAILS")d.open=true}});a.hidden=q.length>=2&&!any;a.querySelectorAll(".pp,.tfoot").forEach(x=>x.hidden=q.length>=2)});
+ $("#mapa").hidden=q.length>=2;$("#findN").textContent=q.length>=2?`${hits} ${hits===1?"subtema":"subtemas"}`:"";$("#nores").hidden=!(q.length>=2&&!hits)},150)});
+const io=("IntersectionObserver" in window)?new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const i=e.target.dataset.i;document.querySelectorAll(".toc .tg").forEach(g=>{const on=g.dataset.i===i;g.classList.toggle("on",on);g.firstElementChild.classList.toggle("on",on)})}})},{rootMargin:"-30% 0px -60% 0px"}):null;
+if(io)document.querySelectorAll(".tema").forEach(a=>io.observe(a));
+$("#kwBtn").addEventListener("click",e=>{const on=!document.body.classList.contains("hidekw");document.body.classList.toggle("hidekw",on);e.currentTarget.setAttribute("aria-pressed",on);document.querySelectorAll(".sub b.shown").forEach(b=>b.classList.remove("shown"))});
+$("#foldBtn").addEventListener("click",e=>{const fold=e.currentTarget.getAttribute("aria-pressed")!=="true";e.currentTarget.setAttribute("aria-pressed",fold);e.currentTarget.textContent=fold?"Expandir subtemas":"Contraer subtemas";document.querySelectorAll("details.sub").forEach(d=>d.open=!fold)});
+document.querySelectorAll('.toc a[href*="-"],.schips a').forEach(a=>a.addEventListener("click",()=>{const d=document.querySelector(a.getAttribute("href"));if(d&&d.tagName==="DETAILS")d.open=true}));
+/* imágenes: marcadores, ponme a prueba y visor a pantalla completa */
+function figClick(e){const f=e.target.closest(".fig");if(!f)return false;
+ const pin=e.target.closest(".pin,.leg li");
+ if(pin){const n=pin.dataset.pn,quiz=f.classList.contains("fq");
+  if(quiz){const li=f.querySelector(`.leg li[data-pn="${n}"]`);li.classList.add("shown");f.querySelectorAll(".pin").forEach(x=>x.classList.toggle("on",x.dataset.pn===n));return true}
+  const was=f.querySelector(`.pin[data-pn="${n}"]`).classList.contains("on");
+  f.querySelectorAll(".pin,.leg li").forEach(x=>x.classList.toggle("on",!was&&x.dataset.pn===n));return true}
+ const q=e.target.closest("[data-fq]");
+ if(q){const on=!f.classList.contains("fq");f.classList.toggle("fq",on);q.setAttribute("aria-pressed",on);q.textContent=on?"Mostrar nombres":"Ponme a prueba";f.querySelectorAll(".shown,.on").forEach(x=>x.classList.remove("shown","on"));return true}
+ if(e.target.closest(".fz")){const L=f.closest(".lbx");if(L){L.classList.toggle("big");return true}openLbx(f);return true}
+ return false}
+let lbx=null,lbxFrom=null;
+function closeLbx(){if(!lbx)return;lbx.remove();lbx=null;document.body.style.overflow="";if(lbxFrom)lbxFrom.focus({preventScroll:true})}
+function openLbx(f){closeLbx();lbxFrom=f.querySelector(".fz");const im=f.querySelector("img");
+ lbx=document.createElement("div");lbx.className="lbx";lbx.setAttribute("role","dialog");lbx.setAttribute("aria-modal","true");lbx.setAttribute("aria-label","Imagen ampliada");
+ lbx.innerHTML=`<div class="lt"><button class="mini" type="button" data-zz>Acercar</button><button class="x" type="button" aria-label="Cerrar">✕</button></div><div class="ls"></div>`;
+ const c=f.cloneNode(true);c.querySelectorAll(".on,.shown").forEach(x=>x.classList.remove("on","shown"));lbx.querySelector(".ls").appendChild(c);
+ if(im.naturalWidth)c.style.setProperty("--ar",(im.naturalWidth/im.naturalHeight).toFixed(3));
+ lbx.addEventListener("click",e=>{if(figClick(e)){lbx&&(lbx.querySelector("[data-zz]").textContent=lbx.classList.contains("big")?"Alejar":"Acercar");return}
+  if(e.target.closest("[data-zz]")){lbx.classList.toggle("big");e.target.textContent=lbx.classList.contains("big")?"Alejar":"Acercar";return}
+  if(e.target.closest(".x")||e.target.classList.contains("ls")||e.target===lbx)closeLbx()});
+ document.body.appendChild(lbx);document.body.style.overflow="hidden";lbx.querySelector(".x").focus()}
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&lbx)closeLbx()});
+$("#temas").addEventListener("click",e=>{
+ if(figClick(e))return;
+ const kw=e.target.closest("b");if(kw&&document.body.classList.contains("hidekw")&&kw.closest(".sub")&&!kw.closest("summary")){kw.classList.add("shown");return}
+ const td=e.target.closest(".tblw.quiz td");if(td){td.classList.toggle("shown");return}
+ const term=e.target.closest(".term");if(term){term.setAttribute("aria-expanded",term.getAttribute("aria-expanded")!=="true");return}
+ const b=e.target.closest("button");if(!b)return;
+ if(b.hasAttribute("data-tq")){const w=b.closest(".tblw"),on=!w.classList.contains("quiz");w.classList.toggle("quiz",on);b.setAttribute("aria-pressed",on);b.textContent=on?"Mostrar la tabla":"Ponme a prueba con la tabla";w.querySelectorAll("td.shown").forEach(x=>x.classList.remove("shown"));return}
+ if(b.hasAttribute("data-tm")){const g=b.closest(".terms"),all=[...g.querySelectorAll(".term")],open=all.some(x=>x.getAttribute("aria-expanded")!=="true");all.forEach(x=>x.setAttribute("aria-expanded",open));b.textContent=open?"Ocultar todos":"Mostrar todos";return}
+ if(b.hasAttribute("data-fl")){const f=b.closest(".flow"),li=[...f.querySelectorAll("li")];
+   if(!f.classList.contains("step")){f.classList.add("step");f.dataset.k=0}else f.dataset.k=+f.dataset.k+1;
+   const k=+f.dataset.k;if(k>=li.length){f.classList.remove("step");li.forEach(x=>x.classList.remove("dim","cur"));b.textContent="Paso a paso ▶";return}
+   li.forEach((x,n)=>{x.classList.toggle("dim",n>k);x.classList.toggle("cur",n===k)});b.textContent=k+1<li.length?`Siguiente (${k+1}/${li.length}) ▶`:"Ver todo ✓";return}
+ if(b.parentElement.classList.contains("po")){const q=b.closest(".pq"),a=+q.dataset.a,ok=+b.dataset.n===a;q.querySelectorAll(".po button").forEach(x=>{x.disabled=true;if(+x.dataset.n===a)x.classList.add("good")});if(!ok)b.classList.add("wrong");const pe=q.querySelector(".pe");pe.hidden=false;pe.innerHTML=(ok?"<b>Correcto.</b> ":"<b>Incorrecto.</b> ")+pe.innerHTML;return}
+ if(b.dataset.d!==undefined){const i=+b.dataset.d,on=!dom.has(i);on?dom.add(i):dom.delete(i);saveDom();b.setAttribute("aria-pressed",on);b.textContent=on?"✓ Dominado":"Marcar como dominado";b.closest(".tema").classList.toggle("ok",on);prog();return}
+ if(b.dataset.c){$("#cSel").value=b.dataset.c;tab("tarjetas");deck()}else if(b.dataset.q){$("#qSel").value=b.dataset.q;tab("examen")}
+});
+/* pestañas */
+function tab(id){document.querySelectorAll("nav.tabs button").forEach(b=>{const on=b.id==="tab-"+id;b.setAttribute("aria-selected",on);$("#"+b.getAttribute("aria-controls")).hidden=!on});window.scrollTo(0,0)}
+document.querySelectorAll("nav.tabs button").forEach(b=>b.addEventListener("click",()=>tab(b.id.slice(4))));
+const opts='<option value="all">Todos los temas</option>'+T.map((t,i)=>`<option value="${i}">${i+1}. ${esc(t.t)}</option>`).join("");
+$("#cSel").innerHTML=opts;$("#qSel").innerHTML=opts;
+/* tarjetas */
+let rep=new Set();try{rep=new Set(JSON.parse(localStorage.getItem(LS)||"[]"))}catch(e){}
+const key=c=>c.f.slice(0,60);
+const save=()=>{try{localStorage.setItem(LS,JSON.stringify([...rep]))}catch(e){}};
+let D=[],ci=0,onlyRep=false;
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function deck(mix){const v=$("#cSel").value;D=allC.filter(c=>(v==="all"||c.ti==+v)&&(!onlyRep||rep.has(key(c))));if(mix)D=shuf(D);ci=0;showC()}
+function showC(){const c=D[ci];$("#cBack").hidden=true;$("#cFront").hidden=false;
+  if(!c){$("#cLbl").textContent="";$("#cF").textContent=onlyRep?"No hay tarjetas marcadas para repasar.":"Sin tarjetas.";$("#cCount").textContent="0 / 0";return}
+  $("#cLbl").textContent=T[c.ti].t+(rep.has(key(c))?" · repasar":"");$("#cF").innerHTML=c.f;$("#cB").innerHTML=c.b;$("#cCount").textContent=(ci+1)+" / "+D.length}
+function flip(){if(!D[ci])return;const b=$("#cBack").hidden;$("#cBack").hidden=!b;$("#cFront").hidden=b}
+$("#card").addEventListener("click",flip);
+$("#card").addEventListener("keydown",e=>{if(e.key===" "||e.key==="Enter"){e.preventDefault();flip()}});
+$("#cSel").addEventListener("change",()=>deck());
+$("#cMix").addEventListener("click",()=>deck(true));
+$("#cRep").addEventListener("click",()=>{onlyRep=!onlyRep;$("#cRep").classList.toggle("pri",onlyRep);deck()});
+$("#cPrev").addEventListener("click",()=>{if(D.length){ci=(ci-1+D.length)%D.length;showC()}});
+$("#cNext").addEventListener("click",()=>{if(D.length){ci=(ci+1)%D.length;showC()}});
+$("#cOk").addEventListener("click",()=>{const c=D[ci];if(!c)return;rep.delete(key(c));save();if(onlyRep){deck()}else{ci=(ci+1)%D.length;showC()}});
+$("#cNo").addEventListener("click",()=>{const c=D[ci];if(!c)return;rep.add(key(c));save();ci=(ci+1)%D.length;showC()});
+document.addEventListener("keydown",e=>{if($("#panel-tarjetas").hidden||e.target.closest("select"))return;if(e.key==="ArrowRight")$("#cNext").click();if(e.key==="ArrowLeft")$("#cPrev").click()});
+deck();
+/* examen */
+let Q=[],qi=0,good=0,miss=[];
+$("#qGo").addEventListener("click",()=>{const v=$("#qSel").value,n=+$("#qN").value;Q=shuf(allQ.filter(q=>v==="all"||q.ti==+v));if(n)Q=Q.slice(0,n);qi=0;good=0;miss=[];if(!Q.length)return;$("#qStart").hidden=true;$("#qEnd").hidden=true;$("#qRun").hidden=false;showQ()});
+function showQ(){const q=Q[qi];$("#qPos").textContent=`Pregunta ${qi+1} de ${Q.length}`;$("#qTema").textContent=T[q.ti].t;$("#qBar").style.width=(qi/Q.length*100)+"%";
+  $("#qQ").innerHTML=q.q;$("#qE").hidden=true;$("#qNext").hidden=true;
+  const ord=shuf(q.o.map((t,i)=>({t,i})));$("#qO").innerHTML=ord.map((o,k)=>`<button class="opt" type="button" data-i="${o.i}"><span>${"ABCDE"[k]}</span><div>${o.t}</div></button>`).join("")}
+$("#qO").addEventListener("click",e=>{const b=e.target.closest(".opt");if(!b||b.disabled)return;const q=Q[qi],ok=+b.dataset.i===q.a;
+  document.querySelectorAll("#qO .opt").forEach(x=>{x.disabled=true;if(+x.dataset.i===q.a)x.classList.add("good")});if(!ok){b.classList.add("wrong");miss.push(q)}else good++;
+  $("#qE").hidden=false;$("#qE").innerHTML=(ok?"<b>Correcto.</b> ":"<b>Incorrecto.</b> ")+(q.e||"");$("#qNext").hidden=false;$("#qNext").textContent=qi+1<Q.length?"Siguiente →":"Ver resultado";$("#qNext").focus()});
+$("#qNext").addEventListener("click",()=>{qi++;if(qi<Q.length)return showQ();$("#qRun").hidden=true;const p=Math.round(good/Q.length*100);
+  try{localStorage.setItem(LSE,JSON.stringify({p,g:good,n:Q.length}))}catch(e){}prog();
+  $("#qEnd").hidden=false;$("#qEnd").innerHTML=`<div class="big">${p}%</div><p>${good} de ${Q.length} correctas · ${p>=75?"aprobado con la mínima UDLAP (7.5)":"aún por debajo de 7.5: repasa los temas de abajo"}</p>${miss.length?`<h3 style="font-family:var(--f-d)">Para repasar</h3><ul>${miss.map(q=>`<li><b>${esc(T[q.ti].t)}:</b> ${q.q}<br><small>Respuesta: ${q.o[q.a]}</small></li>`).join("")}</ul>`:""}<div class="cnav"><button class="btn pri" type="button" id="qAgain">Otro examen</button></div>`;
+  $("#qAgain").addEventListener("click",()=>{$("#qEnd").hidden=true;$("#qStart").hidden=false})});
+})();
+</script>
+<script src="../../anki/anki.js" data-m="simulacion-iii" data-n="143" defer></script><!--anki--><script src="../../amboss.js" data-amb-g="s3-simulacion-iii" defer></script><!--amboss--></body></html>

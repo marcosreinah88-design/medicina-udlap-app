@@ -1,0 +1,322 @@
+@id simulacion-iii
+@sem 3
+@orden 5
+@title Laboratorio de Simulación III
+@materia Simulación
+@codigo SIM
+@color #c4142f
+@icon simu
+@sub Heridas · Choque · Líquidos y soluciones · Cálculo de goteo · Electrolitos · Gasometría · Casos clínicos · Examen neurológico
+@desc Lo que se practica en Simulación III con tus notas de Notion y tus tarjetas de Anki: heridas y lesiones por presión, choque y las H y T, qué solución usar y cuándo no, cálculo de goteo, gasometría con Winter y anion gap, casos clínicos de urgencias y examen neurológico.
+@nota Fuente: tus notas de Notion (Simulación 3) y tus tarjetas de Anki de la materia. **Corrección** = estaba mal en tus notas; † = no venía y se agregó para completar el tema. Las dosis y velocidades de los casos son las que se manejaron en clase: confírmalas siempre con tu profesor y con el paciente real.
+@kw simulacion heridas lesion avulsion cortante contusa lacerante abrasiva amputacion mordedura quemadura herida limpia limpia contaminada contaminada sucia lesiones por presion ulcera grado color necrosis esfacelo granulacion epitelizacion cicatrizacion segunda intencion choque hipovolemico cardiogenico obstructivo distributivo septico anafilactico neurogenico h y t paro beck taponamiento pam adrenalina soluciones cristaloides coloides salina fisiologica hartmann ringer lactato glucosada dextrosa mixta albumina dextrano manitol osmolaridad agua corporal tercer espacio hemoglobina paquete globular goteo macrogotero microgotero gotas por minuto catéter calibre poiseuille electrolitos sodio potasio cloro calcio magnesio fosforo presion oncotica gasometria ph bicarbonato pco2 acidosis acidemia alcalosis winter anion gap mudpiles examen neurologico funciones mentales afasia gnosias praxias coma diencefalico mesencefalico reflejo pupilar corneal oculocefalico oculovestibular nauseoso nervios craneales framingham sindrome compartimental
+
+# Heridas y lesiones de la piel
+> Herida: pérdida de la continuidad de la piel o mucosas, intencional o accidental.
+## Conceptos
+~ Herida :: Lesión intencional o accidental que produce pérdida de la continuidad de la piel o mucosas.
+~ Lesión :: Alteración de tejidos u órganos por causa externa (golpe, calor, radiación, químicos) o interna (infección, enfermedad metabólica).
+~ Avulsión :: Desprendimiento incompleto de la piel que queda como colgajo (flap).
+~ Úlcera :: Herida crónica por alteración gradual del epitelio por una causa interna.
+- Las heridas pueden ser **agudas** o **crónicas**.
+- La piel es el órgano más grande: ~15–16 % del peso corporal y la primera línea de defensa; la piel gruesa y seca se rompe más fácil.
+! **Corrección:** en tus notas «la piel abarca 20 % de la superficie corporal»; la piel **es** toda la superficie corporal (~1.8 m²) y pesa ~15–16 % del cuerpo.
+## Tipos por mecanismo
+| Tipo ¦ Qué es
+| Cortante (incisa) ¦ Objeto afilado, bordes limpios, poco daño a la irrigación
+| Contusa ¦ Aplastamiento: muerte celular inmediata y daño de la irrigación
+| Lacerante ¦ Desgarro con bordes irregulares
+| Abrasiva ¦ Raspón: pierde capas superficiales
+| Avulsión / cizallamiento ¦ La piel se separa del tejido de abajo con mucha devascularización
+| Amputación ¦ Pérdida de un segmento
+| Mordedura ¦ Animal o humana, alto riesgo de infección
+| Química, térmica (quemadura), biológica ¦ Por el agente
+| Penetrante (punzante) y perforante ¦ Entra a una cavidad; la perforante entra y sale
+& «Con Cada Lucha, A veces A veces Muchos Quieren Tener Buena Protección Personal» :: Cortante, Contusa, Lacerante, Abrasiva, Avulsión, Amputación, Mordedura, Química, Térmica, Biológica, Penetrante, Perforante.
+## Clasificación por contaminación (quirúrgica)
+| Clase ¦ Características ¦ Ejemplos
+| Limpia ¦ Sin inflamación; no se entra a tubo digestivo, respiratorio ni genitourinario ¦ Hernioplastia, tiroidectomía
+| Limpia-contaminada ¦ Se entra a esos tubos de forma controlada, sin derrame ¦ Histerectomía, colectomía, lobectomía, colecistectomía por litos
+| Contaminada ¦ Heridas abiertas accidentales < 6 h, derrame del tubo digestivo o inflamación aguda no purulenta ¦ Apendicectomía sin perforación, masaje cardiaco abierto, colecistitis aguda
+| Sucia (infectada) ¦ > 6 h, tejido desvitalizado, pus o víscera perforada ¦ Apéndice perforado con pus, drenaje de absceso
+! **Corrección:** en tus notas la tabla «limpia vs sucia» mezcla clases; lo que describes como «sucia» (entra a cavidad, contacto con mucosas, sin infección) es la **limpia-contaminada**.
+## Lesiones por presión
+- Origen **isquémico** por presión prolongada sobre prominencias óseas (sacro, talones, trocánteres).
+| Grado ¦ Qué se ve
+| 1 ¦ Eritema que no palidece, piel íntegra
+| 2 ¦ Pérdida parcial (epidermis y/o dermis): úlcera superficial o flictena
+| 3 ¦ Pérdida total de piel con necrosis del subcutáneo, sin llegar a la fascia
+| 4 ¦ Destrucción extensa con músculo, hueso o tendón expuestos; cavernas, tunelizaciones, infección y osteomielitis
++ † Prevención: cambios de posición cada 2 horas, colchón de aire, piel seca y buena nutrición.
+## Color del lecho y cicatrización
+| Color ¦ Significa
+| Negro ¦ Necrosis
+| Amarillo ¦ Esfacelo (fibrina)
+| Rojo ¦ Tejido de granulación
+| Rosa ¦ Epitelización
+| Verde ¦ Infección
+- También se clasifican por tamaño, profundidad y tiempo de evolución.
+- Signos tempranos de infección: **dolor, eritema y calor local**.
+~ Segunda intención :: La herida no se cierra con sutura (gran pérdida de tejido o infección) y sana de adentro hacia afuera con tejido de granulación.
+- † Primera intención: bordes afrontados con sutura. Tercera intención (cierre diferido): se deja abierta unos días y luego se sutura.
+## Higiene de manos
+- **5 momentos (OMS)**: antes de tocar al paciente, antes de una tarea aséptica, después de exposición a líquidos corporales, después de tocar al paciente y después de tocar su entorno.
+% 40–60 s :: lavado con agua y jabón (manos visiblemente sucias)
+% † 20–30 s :: fricción con alcohol gel
+? ¿Qué es una herida limpia-contaminada? :: Se entra de forma controlada a tubo digestivo, respiratorio o genitourinario, sin derrame ni infección.
+? Lesión por presión grado 3 :: Pérdida total de la piel con necrosis del subcutáneo, sin llegar a la fascia.
+? Herida de color amarillo :: Esfacelo (fibrina).
+Q Apendicectomía de un apéndice perforado con pus. La herida es… :: *Sucia :: Limpia :: Limpia-contaminada :: Contaminada || Pus o víscera perforada = sucia (infectada).
+Q Úlcera en sacro que expone hueso con tunelizaciones. Es una lesión por presión… :: *Grado 4 :: Grado 1 :: Grado 2 :: Grado 3 || Hueso, músculo o tendón expuestos = grado 4.
+Q Herida con lecho rojo y granuloso :: *Tejido de granulación (va bien) :: Necrosis :: Infección :: Esfacelo || Rojo = granulación, rosa = epitelización.
+
+# Choque y paro: las H y las T
+> Choque: hipoperfusión tisular por falla del continente (vasos o bomba) o del contenido (sangre).
+## Definición y tipos
+- Causas: **la bomba**, **el volumen intravascular** y la **vasodilatación**.
+| Tipo ¦ Ejemplos ¦ Clave
+| Hipovolémico ¦ Hemorrágico (oligohémico) o no hemorrágico, traumático o no ¦ Falta de volumen
+| Cardiogénico ¦ Infarto, arritmias, valvulopatías, miocardiopatías ¦ Falla la bomba
+| Obstructivo ¦ Neumotórax a tensión, TEP, taponamiento ¦ Algo impide el llenado o la salida
+| Distributivo ¦ Séptico, anafiláctico, neurogénico ¦ Neurogénico: el único con bradicardia
+~ Tríada de Beck :: Hipotensión, ingurgitación yugular y ruidos cardiacos apagados: taponamiento cardiaco.
+! **Corrección:** en tus notas la tríada de Beck aparece bajo «pericarditis»; es del **taponamiento cardiaco** (que puede venir de una pericarditis con derrame).
+## PAM y metabolismo
+- **PAM = (PAS + 2 × PAD) / 3**; debe ser al menos **60–65 mmHg**.
+- Aerobio (glucólisis + Krebs + cadena respiratoria): ~36–38 ATP por glucosa. Anaerobio: solo **2 ATP** y produce **lactato** → acidosis láctica (ciclo de Cori en el hígado).
+= PAM de 120/60 :: PAS 120 + (2 × 60 = 120) → 240 → ÷ 3 → PAM 80 mmHg
+% PAM ≥ 65 mmHg :: meta en el choque
+## Las H y las T (causas reversibles de paro)
+| H ¦ T
+| Hipovolemia ¦ Neumotórax a tensión
+| Hipoxia ¦ Taponamiento cardiaco
+| Hidrogeniones (acidosis) ¦ Tóxicos
+| Hipo o hiperkalemia ¦ Trombosis pulmonar (TEP)
+| Hipotermia ¦ Trombosis coronaria (infarto)
+- La **hipoglucemia** la añaden algunos, aunque no está en el ACLS.
+## Anafilaxia
+- **Adrenalina 1 mg/mL: 0.3–0.5 mg intramuscular** en la cara anterolateral del muslo; repetir cada 5–15 min si hace falta.
+? ¿Qué choque cursa con bradicardia? :: El neurogénico.
+? Fórmula de la PAM :: (PAS + 2 × PAD) / 3.
+Q Paciente apuñalado en el tórax con hipotensión, yugulares ingurgitadas y ruidos cardiacos apagados :: *Taponamiento cardiaco (choque obstructivo) :: Choque hipovolémico :: Choque neurogénico :: Choque séptico || Es la tríada de Beck.
+Q ¿Cuál NO es una de las H del paro? :: *Hipertensión :: Hipoxia :: Hipotermia :: Hipovolemia || Las H: hipovolemia, hipoxia, hidrogeniones, hipo/hiperkalemia e hipotermia.
+Q PA 90/60. ¿Cuál es la PAM? :: *70 mmHg :: 75 mmHg :: 60 mmHg :: 80 mmHg || (90 + 120) / 3 = 70.
+
+# Líquidos y soluciones intravenosas
+> Cristaloides para reponer agua e iones; coloides para aumentar el volumen del plasma.
+## Agua corporal
+- El agua es **~60 %** del peso en el hombre adulto y **~50–55 %** en la mujer.
+- **Intracelular 40 %** del peso (2/3 del agua) y **extracelular 20 %** (1/3): de este, 3/4 intersticial y 1/4 intravascular (plasma).
+~ Tercer espacio :: Líquido atrapado en un espacio patológico (ascitis, edema, luz intestinal) que no participa en el intercambio.
+~ Osmolaridad :: Partículas de soluto por litro de solución (la osmolalidad es por kilo de agua).
+% 275–295 mOsm/L :: osmolaridad plasmática normal
+- Duración en el vaso: salina ~2–3 h, Hartmann ~4–5 h (en tus notas); † solo ~25 % de un cristaloide queda intravascular a la hora.
+## Cristaloides y coloides
+| Cristaloides ¦ Tonicidad ¦ Ejemplo
+| Hipotónicos ¦ < 275 ¦ NaCl 0.45 %
+| Isotónicos ¦ 275–310 ¦ NaCl 0.9 %, Hartmann (Ringer lactato), glucosada 5 %
+| Hipertónicos ¦ > 310 ¦ NaCl 3–7.5 % (hipertensión intracraneal), glucosada 10 % (505 mOsm/L), mixta (≈560)
+| Coloides ¦ ¦ Naturales: albúmina. Artificiales: dextrano 70, gelatinas († el manitol es un diurético osmótico, no un coloide)
+- **Expansores de plasma**: aumentan el volumen con poco líquido y sin diluir tanto.
+- † La glucosada 5 % es isoosmolar en la bolsa pero se comporta como **agua libre** (hipotónica) porque la glucosa se metaboliza.
+## Las soluciones, una por una
+| Solución ¦ Composición ¦ Osm ¦ pH
+| Salina 0.9 % ¦ Na⁺ 154, Cl⁻ 154 mEq/L ¦ 308 ¦ ~5.5
+| Hartmann ¦ Na⁺ 130, Cl⁻ 109, K⁺ 4, Ca²⁺ 3, lactato 28 mEq/L ¦ 273 ¦ ~6–6.5
+| Glucosada 5 % ¦ 50 g de glucosa por litro, sin electrolitos ¦ 252–278 ¦ ácido
+| Mixta (glucosalina) ¦ NaCl 0.9 % + glucosa 5 % ¦ ≈560 ¦ —
+- Ninguna tiene factores de coagulación.
+! **Corrección:** en tus notas la salina aparece como «hipertónica»: es **isotónica** (ligeramente hiperosmolar). Y la mixta de 320 mOsm no corresponde a la presentación usual (salina 0.9 % + glucosa 5 %, ≈560 mOsm/L).
+| Solución ¦ Sí ¦ No
+| Salina 0.9 % ¦ Hiponatremia, hipocloremia, choque hipovolémico (de elección), alcalosis por vómito, edema cerebral ¦ Acidosis hiperclorémica, hipernatremia, hipercloremia, insuficiencia cardiaca con sobrecarga, cirrosis con ascitis
+| Hartmann ¦ Hipovolemia, quemados, pérdidas intestinales, hipokalemia leve, choque no acidótico ¦ TCE con hipertensión intracraneal, hiperkalemia importante, insuficiencia hepática (no metaboliza el lactato), acidosis láctica
+| Glucosada 5 % ¦ Hipoglucemia, ayuno prolongado, aporte de agua libre, cirróticos (poca reserva de glucógeno) ¦ Hiperglucemia, TCE (edema cerebral), hiponatremia (dilucional)
+| Mixta ¦ Deshidratación con ayuno o hipoglucemia ¦ Hiperglucemia, coma hiperosmolar, hipernatremia, hipercloremia, acidosis, insuficiencia cardiaca, cirrosis
+- **Reglas de clase**: en edema cerebral, salina (achica la célula); en hiponatremia, siempre salina; en hipokalemia, Hartmann; en hiperkalemia leve se puede dar Hartmann con cuidado.
+- Truco: para dar salina sin subir tanto el sodio, se tira la mitad de la bolsa y se completa con agua inyectable (queda ≈0.45 %).
+## Hemoglobina y transfusión
+% 13.5–17.5 g/dL :: hemoglobina normal en hombres
+% 12–16 g/dL :: hemoglobina normal en mujeres
+% +1 g/dL :: sube la hemoglobina con cada paquete globular (≈3 % de hematocrito)
+- Un paciente con cardiopatía necesita al menos **10 g/dL** para operarse.
+? Composición de la Hartmann :: Na 130, Cl 109, K 4, Ca 3 y lactato 28 mEq/L; 273 mOsm/L.
+? ¿Por qué no se da Hartmann en TCE? :: Es ligeramente hipotónica: puede aumentar el edema cerebral.
+? ¿Por qué no se da glucosada en TCE? :: Se comporta como agua libre y empeora el edema cerebral (además la hiperglucemia daña la neurona).
+Q Paciente con hiponatremia de 125 mEq/L y deshidratación. La solución de elección es… :: *Salina 0.9 % :: Glucosada 5 % :: Hartmann :: Agua inyectable || La salina aporta 154 mEq/L de sodio; la glucosada empeora la hiponatremia.
+Q Paciente cirrótico descompensado con ascitis. ¿Qué solución evitas? :: *Hartmann :: Glucosada 5 % :: Albúmina :: Ninguna || El hígado enfermo no metaboliza el lactato; además el sodio empeora la ascitis.
+Q Osmolaridad de la solución glucosada al 10 % :: *505 mOsm/L :: 252 mOsm/L :: 308 mOsm/L :: 273 mOsm/L || Al doble de glucosa, el doble de osmolaridad.
+
+# Cálculo de goteo y elección del catéter
+> Gotas por minuto = volumen (mL) ÷ (constante × horas).
+## Equivalencias
+| Medida ¦ Equivale a
+| 1 L ¦ 1000 mL
+| 1 mL ¦ 1 cc
+| 1 mL ¦ 20 gotas (macrogotero)
+| 1 mL ¦ 60 microgotas
+| 1 gota ¦ 3 microgotas
+| 1 microgota/min ¦ 1 mL/h
+## Fórmulas
+- **Macrogotas/min = volumen (mL) ÷ (3 × horas)**.
+- **Microgotas/min = volumen (mL) ÷ horas** (con microgotero la constante es 1, y microgotas/min = mL/h).
+= 1000 mL en 8 h con macrogotero :: 3 × 8 = 24 → 1000 ÷ 24 → ≈ 42 gotas/min
+= 500 mL en 6 h con microgotero :: 500 ÷ 6 → ≈ 83 microgotas/min (= 83 mL/h)
+% constante 3 :: macrogotero (20 gotas/mL ÷ 60 min)
+% constante 1 :: microgotero (60 microgotas/mL ÷ 60 min)
+## Catéter y ley de Poiseuille
+- **Poiseuille**: el flujo aumenta con el radio a la 4.ª potencia y disminuye con la longitud. Mientras **más grueso y corto** el catéter, mayor flujo.
+| Calibre ¦ Uso
+| 14–16 G ¦ Trauma, reanimación con volumen y sangre
+| 18 G ¦ Urgencias, cirugía, transfusión
+| 20 G ¦ Adulto estable, soluciones y medicamentos
+| 22 G ¦ Venas pequeñas, ancianos, niños
+| 24 G ¦ Neonatos y venas muy frágiles
+- A menor número de gauge, mayor diámetro.
+? ¿Cuántas gotas tiene 1 mL? :: 20 gotas (macrogotero) o 60 microgotas.
+? Constante del macrogotero y del microgotero :: 3 y 1.
+Q Indicación: 1500 mL de salina en 12 h con macrogotero. ¿Cuántas gotas por minuto? :: *≈ 42 :: ≈ 125 :: ≈ 21 :: ≈ 63 || 1500 ÷ (3 × 12) = 1500 ÷ 36 = 41.7.
+Q 250 mL en 2 h con microgotero :: *125 microgotas/min :: 42 microgotas/min :: 250 microgotas/min :: 63 microgotas/min || 250 ÷ 2 = 125; con microgotero microgotas/min = mL/h.
+Q Para pasar volumen rápido en un politraumatizado eliges un catéter… :: *14–16 G corto :: 24 G largo :: 22 G :: Catéter central largo de 20 G || Por Poiseuille, grueso y corto da el mayor flujo.
+
+# Electrolitos séricos
+> Valores normales y las presiones que mueven el agua.
+## Valores normales
+| Electrolito ¦ Normal
+| Sodio (Na⁺) ¦ 135–145 mEq/L
+| Potasio (K⁺) ¦ 3.5–5.0 mEq/L
+| Cloro (Cl⁻) ¦ 98–106 mEq/L
+| Calcio total ¦ 8.5–10.5 mg/dL (ionizado 4.5–5.6 mg/dL)
+| Magnesio ¦ 1.7–2.2 mg/dL
+| Fósforo ¦ 2.5–4.5 mg/dL
+| Bicarbonato ¦ 24 ± 2 mEq/L
+## Presiones
+~ Presión hidrostática :: La que ejerce el volumen de líquido contra la pared de los vasos (empuja el agua hacia afuera).
+~ Presión oncótica :: La que ejercen las macromoléculas, sobre todo la albúmina (retiene el agua dentro del vaso).
+! **Corrección:** en tus notas la presión oncótica incluye sodio, urea y glucosa; esas son partículas **osmóticas**, pero la presión **oncótica** es solo la de las proteínas (albúmina).
++ † Edema = ↑ presión hidrostática (insuficiencia cardiaca) o ↓ presión oncótica (hipoalbuminemia: cirrosis, síndrome nefrótico).
+? Potasio normal :: 3.5–5.0 mEq/L.
+? Sodio normal :: 135–145 mEq/L.
+Q Paciente con síndrome nefrótico y edema generalizado. El mecanismo principal es… :: *Disminución de la presión oncótica por hipoalbuminemia :: Aumento de la presión oncótica :: Aumento del sodio sérico :: Disminución de la presión hidrostática || Sin albúmina el agua se sale del vaso al intersticio.
+
+# Gasometría arterial
+> Primero el pH, luego quién lo explica (CO₂ o HCO₃⁻), luego si compensa.
+## Valores normales
+| Parámetro ¦ Normal
+| pH ¦ 7.35–7.45
+| HCO₃⁻ ¦ 22–26 mEq/L († en la altura puede ser 18–22; tus notas dicen 18–26)
+| PaCO₂ ¦ 35–45 mmHg a nivel del mar (≈30–35 en Puebla)
+| PaO₂ ¦ > 60 mmHg (≈80–100 a nivel del mar)
+- CO₂ + H₂O ⇄ H₂CO₃ (ácido carbónico) ⇄ H⁺ + HCO₃⁻.
+- pH < 6.8 o > 7.8: incompatible con la vida.
+! **Corrección:** la PaCO₂ se mide en **mmHg**, no en mEq/L.
+~ Acidosis / alcalosis :: El proceso que tiende a bajar o subir el pH (puede estar compensado, con pH normal).
+~ Acidemia / alcalemia :: El pH ya está fuera de rango (no compensado).
+## Método paso a paso
+= Leer una gasometría :: ¿pH bajo (acidemia) o alto (alcalemia)? → ¿Lo explica el CO₂ (respiratorio) o el HCO₃⁻ (metabólico)? → Si es metabólica, calcula la PCO₂ esperada (Winter) → ¿La PCO₂ real coincide? Si no, hay un trastorno mixto → En acidosis metabólica calcula el anion gap
+| Trastorno ¦ pH ¦ Primario ¦ Compensación
+| Acidosis metabólica ¦ ↓ ¦ ↓ HCO₃⁻ ¦ ↓ PCO₂ (hiperventila)
+| Alcalosis metabólica ¦ ↑ ¦ ↑ HCO₃⁻ ¦ ↑ PCO₂ (hipoventila)
+| Acidosis respiratoria ¦ ↓ ¦ ↑ PCO₂ ¦ ↑ HCO₃⁻ (riñón)
+| Alcalosis respiratoria ¦ ↑ ¦ ↓ PCO₂ ¦ ↓ HCO₃⁻ (riñón)
+## Fórmula de Winter
+- **PCO₂ esperada = (1.5 × HCO₃⁻) + 8 ± 2** (solo en acidosis metabólica). Si la PCO₂ real es menor, hay además alcalosis respiratoria; si es mayor, acidosis respiratoria.
+= Ejemplo: pH 7.39, PCO₂ 11, HCO₃⁻ 10 :: 1.5 × 10 = 15 → +8 = 23 ± 2 (21–25) → PCO₂ real 11 < 21 → Acidosis metabólica + alcalosis respiratoria (mixto)
+## Anion gap
+- **AG = Na⁺ − (Cl⁻ + HCO₃⁻)**; normal ≈ **8–12 mEq/L** (12 ± 4 si se incluye el K⁺).
+! **Corrección:** en tus notas el anion gap «entre Na⁺ y Cl⁻»; también se resta el **bicarbonato**.
+& MUDPILES :: Causas de anion gap elevado: Metanol, Uremia, cetoacidosis Diabética (también alcohólica o por ayuno), Paraldehído, Isoniazida o hierro (Iron), acidosis Láctica (choque, sepsis, metformina), Etilenglicol, Salicilatos.
+= Na 140, Cl 100, HCO₃⁻ 24 :: 100 + 24 = 124 → 140 − 124 → AG 16: elevado
+## Ejemplos de clase
+| pH ¦ PCO₂ ¦ HCO₃⁻ ¦ Interpretación
+| 7.38 ¦ 12 ¦ 10 ¦ Acidosis metabólica compensada
+| 7.20 ¦ 12 ¦ 10 ¦ Acidemia metabólica
+| 7.23 ¦ 52 ¦ 20 ¦ Acidemia respiratoria
+| 6.97 ¦ 61 ¦ 11 ¦ Acidemia mixta (metabólica + respiratoria)
+| 7.60 ¦ 30 ¦ 31 ¦ Alcalemia mixta (metabólica + respiratoria)
+? Fórmula de Winter :: PCO₂ esperada = 1.5 × HCO₃⁻ + 8 ± 2.
+? Fórmula del anion gap :: Na⁺ − (Cl⁻ + HCO₃⁻); normal 8–12.
+? Diferencia entre acidosis y acidemia :: Acidosis es el proceso (puede estar compensado); acidemia es el pH ya bajo.
+Q pH 7.25, PCO₂ 60, HCO₃⁻ 26. Es… :: *Acidemia respiratoria :: Acidemia metabólica :: Alcalemia respiratoria :: Normal || pH bajo con PCO₂ alta y HCO₃⁻ normal: respiratoria aguda.
+Q Diabético con pH 7.10, HCO₃⁻ 8, PCO₂ 20, Na 138, Cl 100. ¿Qué tiene? :: *Acidosis metabólica con anion gap elevado (30), bien compensada :: Acidosis respiratoria :: Alcalosis metabólica :: Acidosis metabólica con anion gap normal || Winter: 1.5×8+8 = 20 ± 2 → compensada. AG = 138 − 108 = 30: cetoacidosis.
+Q pH 7.39, PCO₂ 11, HCO₃⁻ 10. ¿Cuál es la PCO₂ esperada? :: *23 ± 2 :: 11 :: 40 :: 15 || 1.5 × 10 + 8 = 23; la real (11) es menor: hay alcalosis respiratoria agregada.
+
+# Casos clínicos de urgencias
+> Cómo se eligió catéter, solución y velocidad en clase.
+## Casos de líquidos
+| Paciente ¦ Signos ¦ Manejo de clase ¦ Por qué
+| Hombre de 18 años con DM2, HTA, ERC en diálisis peritoneal y dolor abdominal ¦ 190/95, FC 105 ¦ 22 G, salina o Hartmann 250 cc en 12 h ¦ Renal e hipertenso: poco volumen, lento
+| Repartidor de 45 años, accidente con fractura de fémur ¦ 90/60, FC 115, T 35 °C ¦ 18 G, Hartmann 1000 cc en 2 h; medir diuresis ¦ Hipovolemia por sangrado oculto en muslo
+| Mujer de 17 años con SOP, 80 kg, dolor y menstruación ¦ 101/71, FC 96 ¦ 20 G, 250 cc en 1 h; paracetamol IV ¦ Estable: mantener vía y analgesia
+| Hombre de 91 años hipertenso con diarrea de 4 días ¦ 100/60, FC 85 ¦ 24 G salina 500 cc en 24 h o 20 G Hartmann 500 cc en 6 h ¦ Anciano: reponer con cuidado
+| Mujer de 69 años con DM2, HTA, ICC clase III con furosemida, probable EVC isquémico ¦ 140/80, FC 91 ¦ 22 G, salina 250 cc en 5 h ¦ Sin glucosada (cerebro) ni mucho volumen (corazón)
+| Hombre con HTA y DM2, amputación traumática ¦ 70/30, FC 105 ¦ 16 G, Hartmann 1000 cc en 2 h; luego sangre ¦ Choque hemorrágico
+| Electricista de 27 años, caída de 4 m y quemadura por arco eléctrico, Glasgow 8 ¦ — ¦ 20 G, salina ¦ TCE: salina, nunca hipotónicas
+- En tus tarjetas: anciano de 72 años con fiebre y dolor de pierna → Hartmann; diabético de 57 años con neumonía → salina 0.9 %; debut de diabetes con cetoacidosis → NaCl 0.45 % + KCl tras la carga inicial.
+## Otros puntos que se preguntaron
+- **Criterios de Framingham** (insuficiencia cardiaca, 2 mayores o 1 mayor + 2 menores):
+| Mayores ¦ Menores
+| Disnea paroxística nocturna, estertores, edema agudo de pulmón ¦ Disnea de esfuerzo, derrame pleural, tos nocturna
+| Cardiomegalia, galope por S3 ¦ Taquicardia (> 120)
+| Ingurgitación yugular, reflujo hepatoyugular, ↑ presión venosa central ¦ Edema de miembros inferiores, hepatomegalia
+| Pérdida de > 4.5 kg con el tratamiento ¦ —
+- **Síndrome compartimental (5 P)**: dolor (*pain*, el primero y desproporcionado), parestesias, palidez, parálisis y pérdida de pulso (tardía).
+- Estudios en politrauma: TAC, radiografía de tórax AP, de miembros y de pelvis, biometría hemática.
+- Anemia en la BH → pedir **frotis de sangre periférica**. Diuresis normal ≈ **800–1500 mL/día**. Escala **SOFA** para falla orgánica.
+- Paracetamol: dosis tóxica ~4 g/día en el adulto (máximo diario recomendado).
+? Criterio para diagnosticar insuficiencia cardiaca con Framingham :: 2 criterios mayores, o 1 mayor y 2 menores.
+? Primer síntoma del síndrome compartimental :: Dolor desproporcionado (sobre todo al estirar el músculo).
+Q Paciente con fractura de fémur, PA 90/60, FC 115. ¿Qué catéter y solución? :: *18 G (o mayor) con Hartmann en bolo :: 24 G con glucosada 5 % :: 22 G con salina 250 cc en 12 h :: Sin líquidos hasta tener laboratorio || Choque hipovolémico: catéter grueso y cristaloide rápido.
+Q Paciente con TCE y Glasgow 8. ¿Qué solución evitas? :: *Glucosada 5 % :: Salina 0.9 % :: Salina hipertónica 3 % :: Ninguna || Las hipotónicas (glucosada, Hartmann en exceso) aumentan el edema cerebral.
+
+# Examen neurológico
+> Funciones mentales, pares craneales, reflejos del tallo y niveles del coma.
+## Funciones mentales superiores
+- **Estado de alerta**: se mide con Glasgow.
+- **Atención**: repetir dígitos o deletrear al revés.
+- **Orientación**: en tiempo (fecha, hora), espacio (dónde está) y persona (cómo se llama él y sus familiares).
+- **Habla vs lenguaje**: el habla es la articulación de las palabras; el lenguaje es su comprensión y uso coherente.
+| Afasia ¦ Qué pasa
+| Sensitiva (de Wernicke) ¦ No comprende; habla fluida pero sin sentido
+| Motora (de Broca) ¦ Comprende pero no puede expresarse; habla no fluida
+| Global ¦ Ni comprende ni habla
+~ Gnosias :: Capacidad de reconocer objetos por los sentidos; la agnosia es no reconocerlos.
+~ Praxias :: Capacidad de hacer movimientos aprendidos (beber de un vaso); la apraxia es no poder hacerlos sin parálisis.
+- **Juicio**: preguntas de razonamiento o moral (¿qué haría si ve a un niño corriendo con tijeras?).
+- **Cálculo**: restas seriadas (100 − 7…).
+! **Corrección:** en tus notas «egnocias: cambia la función de los objetos»; las gnosias son **reconocer** los objetos. Usarlos bien es la praxia.
+## Pares craneales
+| Par ¦ Nombre
+| I ¦ Olfatorio
+| II ¦ Óptico
+| III ¦ Motor ocular común (oculomotor)
+| IV ¦ Patético (troclear)
+| V ¦ Trigémino
+| VI ¦ Motor ocular externo (abducens)
+| VII ¦ Facial
+| VIII ¦ Vestibulococlear (auditivo)
+| IX ¦ Glosofaríngeo: sensibilidad del tercio posterior de la lengua y deglución
+| X ¦ Vago
+| XI ¦ Espinal (accesorio)
+| XII ¦ Hipogloso
+! **Corrección:** en tus notas el I aparece como «oftálmico»; el par I es el **olfatorio** (su daño por la lámina cribosa o por COVID produce anosmia). Oftálmico es la rama V1 del trigémino.
+## Reflejos del tallo
+| Reflejo ¦ Aferente ¦ Eferente ¦ Cómo
+| Pupilar (fotomotor) ¦ II ¦ III ¦ Luz → contracción de la pupila
+| Corneal ¦ V ¦ VII ¦ Algodón en la córnea → parpadeo
+| Oculocefálico («ojos de muñeca») ¦ VIII ¦ III y VI ¦ Girar la cabeza → los ojos van al lado contrario
+| Oculovestibular ¦ VIII ¦ III y VI ¦ Agua fría en el oído → los ojos se desvían hacia ese oído
+| Nauseoso ¦ IX ¦ X ¦ Estimular faringe o úvula → arcada
+- Si un reflejo falta en un paciente en coma, sugiere **daño del tallo**.
+## Deterioro rostrocaudal (coma)
+| Etapa ¦ Respiración ¦ Pupilas ¦ Motor
+| Diencefálica temprana ¦ Suspiros, bostezos ¦ Pequeñas reactivas ¦ Localiza el dolor
+| Diencefálica tardía ¦ Cheyne-Stokes ¦ Pequeñas reactivas ¦ Decorticación
+| Mesencefálica ¦ Hiperventilación neurógena central ¦ Medias fijas ¦ Descerebración
+| Protuberancial ¦ Apnéusica ¦ Medias fijas ¦ Flácido
+| Bulbar ¦ Atáxica ¦ Dilatadas fijas ¦ Flacidez total
+? Vía del reflejo corneal :: Aferente trigémino (V), eferente facial (VII).
+? ¿Qué es la afasia de Broca? :: Afasia motora: comprende pero no puede expresarse.
+? Respiración típica de la etapa diencefálica tardía :: Cheyne-Stokes.
+Q Paciente en coma con pupilas medias fijas y postura de descerebración. Nivel de la lesión :: *Mesencefálico :: Diencefálico temprano :: Bulbar :: Cortical || Descerebración + pupilas medias fijas + hiperventilación neurógena central = mesencéfalo.
+Q Paciente que habla fluido pero sin sentido y no entiende órdenes :: *Afasia de Wernicke (sensitiva) :: Afasia de Broca (motora) :: Disartria :: Apraxia || Wernicke = comprensión; Broca = expresión.
+Q El reflejo nauseoso explora… :: *Glosofaríngeo (aferente) y vago (eferente) :: Trigémino y facial :: Óptico y oculomotor :: Vestibulococlear y abducens || Se estimula la faringe (IX) y el vago produce la arcada (X).

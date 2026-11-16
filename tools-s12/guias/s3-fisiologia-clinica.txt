@@ -1,0 +1,443 @@
+@id fisiologia-clinica
+@sem 3
+@orden 3
+@title Fisiología Clínica
+@materia Fisiología Clínica
+@codigo FCL
+@color #b3261e
+@icon fisio
+@sub Electrocardiograma · Arritmias · Hipertensión · Cardiopatía isquémica · Choque · Respiratorio · Neuro · Renal · Digestivo
+@desc Tus notas de Notion de Fisiología Clínica ordenadas por sistema: del electrocardiograma y las arritmias a la hipertensión, el choque, la EPOC y el asma, las enfermedades neurodegenerativas, el riñón y el tubo digestivo. Corregido y completado donde hacía falta.
+@nota Fuente: tus notas de Notion (Medicina › 3er semestre › Fisiología clínica). **Corrección** = estaba mal en tus notas; † = no venía y se agregó para completar el tema.
+@kw fisiologia clinica fisiopatologia electrocardiograma ecg derivaciones onda p qrs segmento st intervalo qt frecuencia ritmo eje hipertrofia marcapasos corriente funny nodo sinusal arritmias reentrada automatismo pospotenciales flutter fibrilacion hipertension renina angiotensina aldosterona ara ii sartanes endotelio ateroesclerosis angina infarto insuficiencia cardiaca frank starling choque hipovolemico cardiogenico distributivo septico anafilactico neurogenico sdra epoc enfisema bronquitis cronica asma cancer pulmonar egfr fibrosis pulmonar sistema nervioso neuronas glia sinapsis depresion serotonina dopamina noradrenalina neurodegenerativas alzheimer amiloide tau parkinson levodopa huntington epilepsia evc ictus excitotoxicidad nmda sindrome nefritico nefrotico lesion renal aguda cronica acalasia erge barrett gastritis crohn cuci hirschsprung
+
+# Excitación rítmica del corazón
+> El corazón se excita solo: su sistema de conducción es músculo modificado, no tejido nervioso.
+## Marcapasos y corriente funny
+- El sistema intrínseco del corazón (nodo sinusal, nodo AV, haz de His, Purkinje) está formado por **tejido muscular modificado**, no por nervios.
+- Al llegar al **potencial diastólico máximo** se abren los canales **funny (If)**, que dejan entrar Na⁺ y producen la despolarización lenta de la fase 4.
+- La frecuencia de descarga depende de 3 cosas: el **potencial diastólico máximo**, el **potencial umbral** y la **pendiente de despolarización** de la fase 4.
+- El potencial de acción del nodo sinusal y del nodo AV se parecen; el de **Purkinje** es distinto y tiene todas las corrientes (INa, ICa, IK, If).
+- El músculo auricular y el ventricular **no tienen If**.
+= Despolarización del marcapasos :: Potencial diastólico máximo → Se abren canales funny (If, entra Na⁺) → Fase 4: despolarización lenta → Umbral → Entra Ca²⁺ (canales tipo L): potencial de acción → Repolarización por salida de K⁺
++ Un **bloqueador de calcio** (verapamilo, diltiazem) frena el nodo sinusal y el AV: puede causar **bradicardia**.
+! Una arritmia significa, por lo general, que el ritmo no viene del nodo sinusal: el nodo se despolariza antes que los marcapasos de reserva y los suprime (salvo que haya un problema de conducción).
+## Control autonómico
+| Sistema ¦ Neurotransmisor ¦ Receptor ¦ Segundo mensajero ¦ Efecto
+| Simpático (adrenérgico) ¦ Noradrenalina / adrenalina ¦ β1 (corazón), α (vasos) ¦ Proteína Gs → adenilato ciclasa → ↑AMPc ¦ ↑ frecuencia, baja el umbral
+| Parasimpático (colinérgico) ¦ Acetilcolina ¦ Muscarínico M2 ¦ Proteína Gi → ↓AMPc ¦ ↓ frecuencia, hiperpolariza
+- Los receptores adrenérgicos y muscarínicos son **metabotrópicos** (acoplados a proteína G).
+- Receptores colinérgicos: **nicotínicos** (ionotrópicos) y **muscarínicos** (el nombre viene del hongo *Amanita muscaria*).
+- El simpático **baja el umbral** y aumenta la pendiente de la fase 4 (despolarización más temprana); la acetilcolina **hiperpolariza** la célula.
+~ Retardo nodal :: Pausa de la conducción en el nodo AV para que la sangre pase de aurículas a ventrículos antes de que estos se contraigan.
+? ¿De qué tejido está hecho el sistema de conducción del corazón? :: De músculo cardiaco modificado, no de tejido nervioso.
+? ¿Qué corriente produce la fase 4 del nodo sinusal? :: La corriente funny (If): entrada de Na⁺ por canales HCN.
+? ¿Qué proteína G activa la acetilcolina en el corazón? :: Gi (inhibe la adenilato ciclasa y baja el AMPc).
+Q ¿Cuál de estas células NO tiene corriente funny (If)? :: *Músculo ventricular :: Nodo sinusal :: Nodo AV :: Fibras de Purkinje || El músculo auricular y ventricular no tienen If; los marcapasos y Purkinje sí.
+Q La adrenalina aumenta la frecuencia cardiaca porque activa… :: *Receptores β1 con proteína Gs y aumento de AMPc :: Receptores M2 con proteína Gi :: Receptores nicotínicos :: Canales de K⁺ que hiperpolarizan || β1 → Gs → adenilato ciclasa → ↑AMPc → más If y más Ca²⁺.
+
+# Electrocardiograma: cómo leerlo
+> Papel, derivaciones y los 8 pasos: frecuencia, ritmo, eje, hipertrofia, intervalos, onda P, QRS, ST y T.
+## El papel
+| Cuadro ¦ Tiempo (horizontal) ¦ Voltaje (vertical)
+| Chico (1 mm) ¦ 0.04 s ¦ 0.1 mV
+| Grande (5 mm) ¦ 0.20 s ¦ 0.5 mV
+% 25 mm/s :: velocidad estándar: 5 cuadros grandes = 1 segundo
+% 10 mm = 1 mV :: 2 cuadros grandes de alto equivalen a 1 mV (calibración)
+~ Intervalo :: Desde el inicio de un evento hasta el inicio de otro (PR, QT).
+~ Segmento :: Tramo de línea isoeléctrica entre dos ondas (PR, ST).
+- **Vector de despolarización**: punta positiva, cola negativa; si se acerca al electrodo se marca hacia arriba.
+- **Vector de repolarización**: al revés; por eso se marca hacia abajo si se acerca.
+## Derivaciones y caras del corazón
+- 12 derivaciones: 6 **frontales** (DI, DII, DIII, aVR, aVL, aVF) y 6 **precordiales** (V1–V6). aVR, aVL y aVF son unipolares.
+- **aVR** es casi siempre negativa; **DI** predomina positiva; **V3–V4** son la zona de transición (isobifásicas).
+| Derivaciones ¦ Cara
+| V1–V2 ¦ Septal
+| V3–V4 ¦ Anterior
+| V5–V6 ¦ Lateral baja
+| DI y aVL ¦ Lateral alta
+| DII, DIII y aVF ¦ Inferior
+| V4R ¦ Ventrículo derecho
+| V7–V9 ¦ Posterior
+! **Corrección:** en tus notas DI–aVL dice «lateral baja»; es la **lateral alta**. V5–V6 son la lateral baja.
+## Frecuencia
+- Método de los cuadros grandes: si la segunda R cae en la 1.ª línea gruesa son **300**, luego **150, 100, 75, 60, 50**.
+- Más exacto: **1500 ÷ cuadros chicos** entre dos R (un minuto tiene 1500 cuadros chicos).
+- † Si el ritmo es irregular: cuenta los QRS en 6 segundos (30 cuadros grandes) y multiplica por 10.
+% 60–100 lpm :: frecuencia normal en el adulto
+= Calcular la frecuencia :: Busca una R sobre línea gruesa → Cuenta cuadros grandes hasta la siguiente R → 300 / 150 / 100 / 75 / 60 / 50 → Afina con 1500 ÷ cuadros chicos
+## Ritmo e intervalos
+- **Sinusal**: onda P antes de cada QRS, positiva en DII y negativa en aVR.
+- **Nodal (de la unión)**: sin onda P (o P retrógrada).
+- **Idioventricular**: sin P, QRS ancho y frecuencia lenta (bradicardia).
+| Medida ¦ Normal ¦ Si está alterado
+| PR ¦ 0.12–0.20 s ¦ Corto: preexcitación (Wolff-Parkinson-White); largo: bloqueo AV de 1.er grado
+| QRS ¦ < 0.12 s (≤ 3 cuadritos) ¦ ≥ 0.12 s: bloqueo de rama o ritmo ventricular
+| QTc ¦ < 0.44 s (hombre), < 0.46 s (mujer) ¦ Prolongado: riesgo de arritmias (torsade de pointes)
+- **QTc (Bazett) = QT ÷ √RR** (en segundos).
+! **Corrección:** tus notas dicen que el QRS «debe durar 0.12»; 0.12 s ya es el límite **anormal**. Y la fórmula es QT entre raíz de RR (no QTc entre raíz de RR).
+## Onda P, QRS, hipertrofia y ST
+- Onda P **alta** (> 2.5 mm en DII, «P pulmonale») → crecimiento de **aurícula derecha**.
+- Onda P **ancha** (> 0.12 s, bimodal, «P mitrale») → crecimiento de **aurícula izquierda**.
+- **Q patológica**: ≥ 25 % de la R (o ≥ 0.04 s de ancho) → necrosis (infarto antiguo).
+- **HVI (Sokolow-Lyon)**: S en V1 o V2 + R en V5 o V6 **≥ 35 mm**.
+- **HVD**: R/S > 1 en V1 o S/R > 1 en V6.
+- El segmento ST no debe desviarse más de **1 mm** de la línea isoeléctrica.
+- Causas de ST/T anormal: **isquemia** (infarto), **hiperkalemia** (T alta, picuda y simétrica), variantes de repolarización, QT largo y patrón de sobrecarga («strain»).
+% K⁺ 3.5–5.0 mEq/L :: potasio normal; por arriba de ~6 aparecen T picudas
++ Elevación del ST en 2 derivaciones contiguas de la misma cara = infarto con elevación del ST hasta demostrar lo contrario.
+& FRE-RI-EJE-HIPER-INTER :: Orden de lectura: frecuencia, ritmo, eje, hipertrofia, intervalos (y luego P, QRS, ST y T).
+? ¿Cuánto vale un cuadro chico en tiempo y en voltaje? :: 0.04 s y 0.1 mV.
+? ¿Qué cara ven DII, DIII y aVF? :: La inferior.
+? ¿Cómo se calcula la frecuencia con cuadros chicos? :: 1500 ÷ número de cuadros chicos entre dos R.
+? ¿Qué indica una P ancha y bimodal? :: Crecimiento de aurícula izquierda (P mitrale).
+? Criterio de Sokolow-Lyon para HVI :: S en V1 o V2 + R en V5 o V6 ≥ 35 mm.
+Q Hay 15 cuadros chicos entre dos ondas R. ¿Cuál es la frecuencia? :: *100 lpm :: 75 lpm :: 150 lpm :: 60 lpm || 1500 ÷ 15 = 100 lpm (equivale a 3 cuadros grandes: 300, 150, 100).
+Q Elevación del ST en V3 y V4 sugiere afectación de la cara… :: *Anterior :: Inferior :: Lateral alta :: Posterior || V1–V2 septal, V3–V4 anterior, V5–V6 lateral baja.
+Q ¿Cuál es un QRS normal? :: *0.08 s :: 0.12 s :: 0.16 s :: 0.20 s || El QRS normal dura menos de 0.12 s; 0.12 s o más es QRS ancho.
+Q Onda T alta, picuda y simétrica en un paciente con insuficiencia renal sugiere… :: *Hiperkalemia :: Hipokalemia :: Hipocalcemia :: Pericarditis || La hiperkalemia da T picudas; si avanza, QRS ancho y riesgo de paro.
+
+# Arritmias: cómo se producen
+> Por alteración en la formación del impulso (automatismo, actividad desencadenada) o en su conducción (reentrada).
+## Formación del impulso: automatismo
+- **Automatismo normal**: depende del umbral, del potencial diastólico y de la pendiente de la fase 4; lo modulan el sistema autónomo (catecolaminas y acetilcolina), fármacos (atropina, betabloqueadores) y factores metabólicos (hipoxia, hipokalemia). Produce taquicardia o bradicardia.
+- **Marcapasos latentes o ectópicos**: células que normalmente no se despolarizan solas y adquieren esa propiedad.
+- **Supresión por sobreestimulación**: tras disparar rápido, la bomba Na⁺/K⁺ se potencia y aplana la fase 4; la supresión y el tiempo de recuperación son proporcionales a la frecuencia y duración del estímulo. Mantiene el ritmo sinusal.
+| Situación ¦ Un latido ¦ Varios seguidos
+| El nodo sinusal se suprime ¦ Latido de escape ¦ Ritmo de escape
+| El nodo está bien pero un marcapasos latente se acelera ¦ Latido ectópico (prematuro) ¦ Ritmo ectópico
+- **Automatismo anormal**: en tejido lesionado las membranas se vuelven permeables (fuga iónica) y despolarizan solas.
+## Actividad desencadenada (pospotenciales)
+~ Pospotencial precoz (PPP) :: Oscilación durante la meseta o la repolarización tardía; se favorece con un potencial de acción prolongado (QT largo).
+~ Pospotencial tardío (PPT) :: Despolarización pequeña después de la repolarización completa, por sobrecarga de Ca²⁺.
+= Pospotencial tardío :: Se inhibe la bomba Na⁺/K⁺ (p. ej., digoxina) → Se invierte el intercambiador Na⁺/Ca²⁺ → Entra Ca²⁺ → Sobrecarga de Ca²⁺ → Despolarización tras la repolarización
+## Reentrada
+- El impulso vuelve a excitar tejido que ya salió de su periodo refractario. Puede ser **anatómica** (una estructura obliga al impulso a rodearla) o **funcional/fisiológica**.
+- Tipos que viste: **anisotrópica** (alteración de uniones gap, p. ej., por acidosis), **en 8** (dos frentes que chocan), **en espiral** y por reciclaje.
+- **Reentrada nodal**: el nodo AV tiene una vía que conduce lento y repolariza rápido y otra al revés; si una está refractaria, el impulso circula entre ambas → taquicardia con **P retrógrada** (pseudo-S en DII, DIII, aVF o pseudo-R′ en V1). La vía lenta está en el **triángulo de Koch**.
+- **Haz de Kent**: vía accesoria que facilita arritmias (Wolff-Parkinson-White).
+= Condiciones de la reentrada :: Dos vías con distinta velocidad y refractariedad → Bloqueo unidireccional en una → El impulso baja por la otra → Regresa por la vía bloqueada ya recuperada → Circuito que se repite
+## Bradi y taquiarritmias
+- **Bradiarritmias**: el impulso no se forma (degeneración del nodo) o no se propaga completo (bloqueos).
+- **Taquiarritmias**: fisiológicas (compensación: fiebre, ejercicio) o inapropiadas.
+- Auriculares: taquicardia auricular focal (automatismo o reentrada), **flutter** típico y atípico, **fibrilación auricular**.
++ † Flutter típico: ondas F «en dientes de sierra» en DII, DIII y aVF a ~300 lpm. Fibrilación auricular: sin ondas P y R-R irregularmente irregular.
+? Dos mecanismos generales de las arritmias :: Alteración en la formación del impulso (automatismo, actividad desencadenada) o en su conducción (reentrada).
+? Diferencia entre latido de escape y latido ectópico :: Escape: el nodo sinusal falla y un marcapasos latente toma el control. Ectópico: el nodo está bien pero un foco latente dispara antes (prematuro).
+? ¿Qué favorece los pospotenciales tardíos? :: La sobrecarga de calcio intracelular (p. ej., toxicidad por digoxina).
+Q La taquicardia por reentrada nodal se reconoce en el ECG por… :: *Ausencia de P visible o P retrógrada justo después del QRS :: P que precede a cada QRS con PR largo :: Ondas F en dientes de sierra :: QRS ancho > 0.12 s || El circuito está en el nodo AV: aurículas y ventrículos se activan casi a la vez y la P queda escondida o sale retrógrada.
+Q Un QT prolongado favorece sobre todo… :: *Pospotenciales precoces :: Pospotenciales tardíos :: Supresión por sobreestimulación :: Reentrada anatómica || El potencial de acción prolongado permite oscilaciones en la meseta (PPP), base de la torsade de pointes.
+
+# Hipertensión arterial
+> PA = gasto cardiaco × resistencia periférica; 90–95 % es primaria (idiopática).
+## Definición y regulación
+- Aumento de la presión arterial por arriba de **139/89 mmHg** en adultos (≥ 140/90). † Las guías de EUA (ACC/AHA 2017) ya llaman hipertensión a ≥ 130/80.
+- Influyen factores genéticos, ambientales, psicosociales y el estilo de vida.
+- **Gasto cardiaco** depende de: frecuencia, contractilidad, sodio, mineralocorticoides y péptido natriurético auricular.
+- **Resistencia periférica** depende de: vasoconstrictores y vasodilatadores (humorales y neurales) y factores locales (autorregulación, pH, hipoxia).
+- El **simpático** activa receptores del corazón y del músculo liso: ↑ frecuencia y vasoconstricción.
+% 90–95 % :: de la hipertensión es primaria (esencial)
+% PA = GC × RVP :: la ecuación que explica todo
+## Sistema renina-angiotensina-aldosterona
+= SRAA :: El riñón detecta PA baja (aparato yuxtaglomerular) → Libera renina → Angiotensinógeno → Angiotensina I → ECA (endotelio, sobre todo pulmonar) → Angiotensina II → Vasoconstricción (receptor AT1) y liberación de aldosterona → Retención de Na⁺ y agua, pérdida de K⁺ → ↑ volumen y ↑ PA
+- El receptor **AT1** aumenta el Ca²⁺ intracelular y la contracción; el **AT2** produce vasodilatación (vía óxido nítrico).
+- Los **estrógenos** son vasodilatadores (favorecen la apertura de canales de K⁺).
+- El consumo de **sal** aumenta el volumen; el diámetro de los vasos se reduce por depósito de grasa en sus paredes.
+! **Corrección:** la aldosterona no es un vasoconstrictor; sube la PA porque retiene sodio y agua. El vasoconstrictor es la angiotensina II.
+## El endotelio
+- La célula endotelial es la más importante en el control del diámetro del vaso.
+- **Endotelio sano (estado basal)**: normotensión, flujo laminar, superficie no adhesiva y no trombogénica.
+- **Endotelio activado**: flujo turbulento, hipertensión, citocinas, complemento, productos bacterianos, lípidos, hipoxia, acidosis, virus, humo de cigarro → ↑ procoagulantes, moléculas de adhesión y factores proinflamatorios.
+~ Arterioesclerosis :: Engrosamiento y endurecimiento de las paredes arteriales.
+~ Ateroesclerosis :: Formación de placas de ateroma (lípidos, células inflamatorias y fibrosis) en la íntima.
+## Factores de riesgo y causas secundarias
+| No modificables ¦ Modificables
+| Genética, etnia, edad, sexo ¦ Obesidad, sedentarismo, diabetes tipo 2, alcohol, tabaco, exceso de sodio, estrés, poco potasio y calcio
+- **Causas secundarias**: renal (parenquimatosa y renovascular), endocrinas (hiperaldosteronismo, feocromocitoma, † Cushing, hipertiroidismo), inducida por fármacos, apnea del sueño y coartación de aorta.
+! **Corrección:** en tus notas los factores genéticos, etnia, edad y sexo aparecen como «modificables»; son **no modificables**.
+## Tratamiento
+- Primero **cambios de estilo de vida**; después monoterapia a dosis plena (o cambiar de fármaco) y luego combinación de 2 fármacos.
+- **ARA II (sartanes, bloquean AT1)**: azilsartán, candesartán, eprosartán, irbesartán, losartán, olmesartán, telmisartán, valsartán.
+& «-SARTÁN» :: Todos los bloqueadores del receptor AT1 terminan en -sartán; los IECA terminan en -pril.
++ † IECA y ARA II pueden subir el potasio y la creatinina: se vigilan a las 1–2 semanas de iniciar.
+? Ecuación de la presión arterial :: PA = gasto cardiaco × resistencia vascular periférica.
+? ¿Dónde se convierte la angiotensina I en II? :: En el endotelio (sobre todo pulmonar), por la enzima convertidora de angiotensina (ECA).
+? ¿Qué hace la aldosterona? :: Retiene sodio y agua y elimina potasio en el túbulo colector → ↑ volumen.
+Q ¿Cuál es causa secundaria de hipertensión? :: *Feocromocitoma :: Sedentarismo :: Edad avanzada :: Dieta alta en sodio || El feocromocitoma (tumor que secreta catecolaminas) es endocrino; las otras son factores de riesgo de la HTA primaria.
+Q El losartán actúa… :: *Bloqueando el receptor AT1 de angiotensina II :: Inhibiendo la ECA :: Inhibiendo la renina :: Bloqueando la aldosterona || Los sartanes son antagonistas AT1; el aliskireno inhibe la renina y la espironolactona bloquea la aldosterona.
+
+# Cardiopatía isquémica e insuficiencia cardiaca
+> El corazón falla por bombeo, obstrucción, regurgitación, cortocircuitos, conducción o ruptura.
+## Perspectiva general de la enfermedad cardiaca
+- Insuficiencia de bombeo, obstrucción al flujo, regurgitación, flujo derivado (cortocircuito), trastornos de conducción y rotura del corazón o de un gran vaso.
+## Angina de pecho
+~ Angina estable :: Dolor con el esfuerzo por desequilibrio entre perfusión coronaria y demanda del miocardio; cede con reposo.
+~ Angina inestable :: Dolor más frecuente, prolongado o con mínimos esfuerzos, por ruptura de una placa o trombosis; puede evolucionar a infarto.
+## Infarto agudo de miocardio
+- Muerte del músculo cardiaco por **isquemia grave y prolongada**.
+- Causas: oclusión coronaria por placa o trombo (la más común), vasoespasmo, émbolos e isquemia sin ateroesclerosis.
+- **Infarto transmural**: abarca todo el grosor de la pared.
+- Clínica: dolor torácico opresivo persistente, pulso rápido y débil, diaforesis, náusea y vómito, disnea; algunos (diabéticos, ancianos) cursan asintomáticos.
+% ~20 min :: de isquemia bastan para empezar la necrosis: hay que actuar en minutos
+= Del infarto a la falla :: Oclusión coronaria → Necrosis → ↓ gasto cardiaco → Hipotensión → Insuficiencia cardiaca y respuesta inflamatoria (IL-1, IL-6)
+- Tratamiento que anotaste: opiáceos (analgesia y vasodilatación), **ácido acetilsalicílico** (antiagregante), **heparina** (anticoagulante), **betabloqueadores** (bajan la demanda de O₂), antiarrítmicos, **IECA** (evitan la dilatación ventricular) y **angioplastia** (catéter con balón y a veces stent).
+- La ruptura de pared, septo o músculo papilar es una complicación grave.
+! † Reperfusión: en el infarto con elevación del ST la angioplastia primaria es de elección si se puede hacer en < 120 min; si no, fibrinólisis.
+## Insuficiencia cardiaca
+- El corazón no bombea lo suficiente para las demandas de los tejidos, o solo lo logra con presiones de llenado altas.
+- **Frank-Starling**: con menor volumen de eyección el ventrículo no se vacía bien → ↑ volumen diastólico → mayor estiramiento → intenta aumentar la fuerza.
+- Mecanismos neurohumorales: noradrenalina (simpático), sistema renina-angiotensina y péptido natriurético.
+- Síntomas: disnea de esfuerzo progresiva, tos, **disnea paroxística nocturna**, **ortopnea** y dolor torácico en casos graves.
++ Aumentar el calcio disponible (inotrópicos como digoxina o dobutamina) mejora la contracción en la insuficiencia cardiaca.
+? Diferencia entre angina estable e inestable :: Estable: con esfuerzo y cede con reposo. Inestable: en reposo o con mínimo esfuerzo, más prolongada, por ruptura de placa.
+? ¿Por qué se dan betabloqueadores en el infarto? :: Bajan la frecuencia y la contractilidad → menor demanda de oxígeno del miocardio.
+Q Paciente que despierta por la noche con falta de aire que mejora al sentarse. Esto es… :: *Disnea paroxística nocturna :: Platipnea :: Disnea de esfuerzo :: Apnea del sueño || Es típica de la insuficiencia cardiaca izquierda: al acostarse regresa líquido al pulmón.
+Q La causa más común de infarto agudo de miocardio es… :: *Ruptura de una placa de ateroma con trombosis :: Vasoespasmo coronario :: Embolia :: Anemia grave || La gran mayoría son por ateroesclerosis complicada con trombo.
+
+# Choque
+> Falla circulatoria que no perfunde los tejidos: hipoxia celular, metabolismo anaerobio y falla orgánica.
+## Fisiopatología
+- Desbalance entre el aporte y la demanda de oxígeno de los tejidos, por volumen bajo, bomba que falla o vasos que pierden el tono.
+= De la hipoperfusión a la muerte celular :: ↓ perfusión → Metabolismo anaerobio → Ácido láctico → Membrana más permeable → Edema celular y pérdida del equilibrio de líquidos y electrolitos → Daño mitocondrial → Muerte celular → Falla orgánica
+## Compensación y fases
+- **Compensación (simpático)**: ↑ frecuencia, ↑ contractilidad, vasoconstricción, ↑ precarga, SRAA, hormona antidiurética y cortisol.
+- La médula suprarrenal está hecha de **neuronas posganglionares modificadas**: libera adrenalina directo a la sangre.
+| Fase ¦ Qué pasa
+| Inicial ¦ Tejidos poco perfundidos, empieza el metabolismo anaerobio (lactato)
+| Compensatoria ¦ El simpático intenta compensar el gasto bajo
+| Progresiva ¦ Vasoconstricción intensa, isquemia y acidosis metabólica
+| Irreversible ¦ Necrosis celular y falla orgánica múltiple
+## Signos
+- Taquicardia, taquipnea, **PAM < 65 mmHg** (en tus notas < 60), hipotensión (aparece tarde: no hay que esperarla), alteración del estado mental (inquieto, irritable, hasta no responder), oliguria y piel fría, pálida y sudorosa.
+! No te guíes por la hipotensión: el choque compensado tiene PA normal; busca taquicardia, llenado capilar lento, lactato y oliguria.
+## Tipos
+| Tipo ¦ Falla ¦ Ejemplos
+| Hipovolémico ¦ Volumen ¦ Hemorragia, deshidratación (diarrea, vómito, quemaduras), tercer espacio
+| Cardiogénico ¦ Bomba ¦ Infarto (> 40 % del VI), ruptura de músculo papilar o septo, aneurisma, miocardiopatías, arritmias, valvulopatías
+| Obstructivo ¦ Obstrucción al flujo ¦ Taponamiento, neumotórax a tensión, TEP
+| Distributivo ¦ Tono vascular ¦ Séptico, anafiláctico, neurogénico
+- **Hipovolémico**: ↓ retorno venoso → ↓ llenado ventricular → ↓ volumen de eyección → ↓ O₂. Manejo: controlar la hemorragia, restaurar volumen, optimizar el O₂ y vasopresores solo si persiste la hipotensión tras reponer volumen.
+- **Cardiogénico**: la causa más común es el infarto anterior extenso del VI. † La mortalidad histórica de ~80 % hoy es de ~40–50 % con reperfusión.
+- **Séptico**: infección con hipotensión (PAS < 90 o caída > 40 mmHg de la basal) y alteración de la perfusión. Fase caliente (vasodilatada) y fría (descompensada).
+- **Anafiláctico**: reexposición al antígeno → IgE unida a mastocitos y basófilos → vasodilatación, ↑ permeabilidad, broncoconstricción, moco. Manifestaciones cutáneas, estridor y sibilancias, colapso circulatorio.
+- **Neurogénico**: pérdida del tono simpático, casi siempre por lesión medular **por arriba de T6**; hipotensión con **bradicardia**, hipotermia, piel caliente y seca, parálisis flácida.
+! **Corrección:** la adrenalina en anafilaxia va **intramuscular** (0.3–0.5 mg de 1 mg/mL en el muslo), no IV como primera línea; IV solo en choque refractario y monitorizado.
+- Anafilaxia, además: vía aérea, difenhidramina 50 mg IV, corticoides, retirar el antígeno, cristaloides y vasopresores si hace falta.
+- Neurogénico: líquidos con cuidado, vasopresores alfa y atropina para la bradicardia († 1 mg en ACLS actual; en tus notas 0.5 mg).
+& Neurogénico = «caliente y lento» :: Es el único choque con bradicardia y piel caliente y seca.
+? ¿Qué es el choque? :: Falla del sistema circulatorio para perfundir adecuadamente los tejidos.
+? ¿Qué choque cursa con bradicardia? :: El neurogénico (pérdida del tono simpático por lesión medular alta).
+? Cuatro tipos de choque :: Hipovolémico, cardiogénico, obstructivo y distributivo.
+Q Paciente con lesión medular en C6, PA 80/50, FC 48, piel caliente y seca. ¿Qué choque tiene? :: *Neurogénico :: Hipovolémico :: Séptico :: Cardiogénico || Hipotensión con bradicardia y piel caliente por pérdida del tono simpático.
+Q El primer fármaco en el choque anafiláctico es… :: *Adrenalina intramuscular :: Difenhidramina IV :: Hidrocortisona IV :: Salbutamol inhalado || Los antihistamínicos y corticoides son coadyuvantes; la adrenalina IM salva la vida.
+Q En el choque, ¿qué produce la acidosis metabólica? :: *El ácido láctico del metabolismo anaerobio :: La retención de CO₂ :: La pérdida de bicarbonato por orina :: La hiperkalemia || Sin oxígeno la célula solo hace glucólisis anaerobia y acumula lactato.
+
+# Sistema respiratorio
+> Lesión pulmonar aguda, EPOC (enfisema y bronquitis crónica), asma, cáncer de pulmón y fibrosis.
+## Lesión pulmonar aguda y SDRA
+- Lesión pulmonar aguda que evoluciona a **síndrome de dificultad respiratoria aguda**, con hipoxia.
+- Causas: sepsis, infecciones pulmonares difusas, neumonía vírica, aspiración gástrica, traumatismo y contusión pulmonar, ahogamiento, embolia grasa, quemaduras, radiación, toxicidad por oxígeno, humo y gases.
+= Fisiopatología del SDRA :: Agresión → Secuestro de neutrófilos y macrófagos (proteasas, leucotrienos, PAF) → Daño de neumocitos I y II y del endotelio → Edema y fibrina (membranas hialinas) → Surfactante inactivado → Fibroblastos y procolágeno (fibrosis)
+## EPOC: enfisema y bronquitis crónica
+- Casi siempre por **tabaco** (y contaminantes) más predisposición genética.
+~ Enfisema :: Aumento irreversible de los espacios aéreos distales al bronquiolo terminal (acinos) con destrucción de sus paredes, sin fibrosis evidente.
+~ Bronquitis crónica :: Tos productiva al menos 3 meses al año durante 2 años consecutivos, sin otra causa.
+| Tipo de enfisema ¦ Dónde ¦ Asociación
+| Centroacinar ¦ Centro del acino, lóbulos superiores ¦ Tabaco (el más común)
+| Panacinar ¦ Todo el acino, zonas basales ¦ † Déficit de α1-antitripsina
+| † Paraseptal (acinar distal) ¦ Periferia, junto a la pleura ¦ Neumotórax espontáneo en jóvenes
+| Irregular ¦ Sin patrón, con fibrosis ¦ Cicatrices
+- En tus notas: «me faltó uno» → es el **paraseptal**.
+= Enfisema :: Tabaco + genética → Estrés oxidativo, apoptosis y senescencia → Inflamación → Desequilibrio proteasa-antiproteasa → Destrucción de la pared alveolar → Colapso alveolar y atrapamiento de aire
+- Bronquitis crónica: hipersecreción de moco, hiperplasia de células caliciformes y glándulas submucosas, inflamación e infección.
+% 10.2 % :: de la población mayor de 40 años tiene bronquitis crónica (dato de tus notas)
+- Tratamiento: broncodilatadores de corta y larga acción (LAMA, LAMA + LABA), corticoide inhalado en algunos casos, fisioterapia. La broncodilatación se logra por dos rutas: **β2 agonistas** o **anticolinérgicos** (bloqueo parasimpático).
+## Asma
+- Reacción inmunitaria con **broncoconstricción** reversible ante estímulos (alérgenos, ejercicio, aire frío), hiperplasia de músculo liso, exceso de moco e inflamación.
+- Etiología: **atópica** (alérgica, la más común) y no atópica. Infecciones y daño epitelial facilitan la sensibilización.
+- Diagnóstico **clínico** con más de una de: sibilancias, tos seca, falta de aire, opresión torácica (peor de noche o al despertar), antecedentes familiares, patrón obstructivo y **mejoría con broncodilatador**.
+| Paso ¦ Tratamiento (como lo anotaste)
+| 1 ¦ Broncodilatador de acción corta cuando haga falta
+| 2 ¦ Tratamiento diario leve
+| 3 ¦ Diario + corticoide inhalado
+| 4 ¦ Dosis media + corticoide
+| 5 ¦ Dosis alta + corticoide; añadir anticolinérgico y/o teofilina
+- **Control**: bien controlada si los síntomas aparecen ≤ 2 veces por semana (sin limitación ni síntomas nocturnos y función pulmonar > 80 %); parcial si ≥ 3 por semana; mal controlada si tiene 3 o más características de control parcial.
+! † GINA actual ya no recomienda salbutamol solo: desde el paso 1 se usa budesonida-formoterol a demanda.
+## Cáncer de pulmón
+- Desencadenante principal: **humo de tabaco** (alteración de células progenitoras). Alteraciones: oncogenes (protooncogenes mutados), genes supresores de tumores y factores de crecimiento.
+- **EGFR** (gen c-erbB-1): receptor tirosina cinasa; su activación produce autofosforilación y proliferación.
+- Diagnóstico por biopsia (aspiración). Tratamiento: cirugía (lobectomía), radioterapia, quimioterapia, terapia antiangiogénica, inhibidores de EGFR (10–12 % de los casos), de ALK; KRAS predice evolución agresiva.
+% 18.4 % :: mortalidad que anotaste
+## Fibrosis pulmonar
+- Grupo heterogéneo de enfermedades con fisiopatología y clínica-radiología comunes; empieza con **alveolitis** (fase 1) y avanza a fibrosis.
+? ¿Qué distingue al enfisema de la bronquitis crónica? :: Enfisema: destrucción de paredes alveolares (definición anatómica). Bronquitis crónica: tos productiva ≥ 3 meses en 2 años seguidos (definición clínica).
+? Enfisema de lóbulos superiores en fumadores :: Centroacinar.
+? Enfisema panacinar de bases en un joven :: Déficit de α1-antitripsina.
+Q ¿Qué apoya el diagnóstico de asma? :: *Mejoría de la obstrucción con broncodilatador :: Tos productiva por 3 meses en 2 años :: Fibrosis en la biopsia :: Hipoxia sin sibilancias || La reversibilidad con broncodilatador es la clave del asma.
+Q Las dos rutas para lograr broncodilatación son… :: *β2 agonistas y anticolinérgicos :: Corticoides y antihistamínicos :: Teofilina y diuréticos :: Antibióticos y mucolíticos || β2 agonistas relajan el músculo liso; los anticolinérgicos bloquean el tono vagal.
+
+# Sistema nervioso: bases y depresión
+> Organización del sistema nervioso, neuronas y glía, sinapsis, y los circuitos de la depresión.
+## Organización y células
+| División ¦ Origen ¦ Ganglios ¦ Neurotransmisor
+| Simpático ¦ Toracolumbar ¦ Preganglionar corta, ganglio cerca de la médula ¦ Noradrenalina (adrenérgico)
+| Parasimpático ¦ Craneosacro ¦ Preganglionar larga, ganglio cerca del órgano ¦ Acetilcolina (colinérgico)
+| Entérico ¦ Pared intestinal ¦ Plexos ¦ «Segundo cerebro», casi tantas neuronas como la médula
+- Neuronas **multipolares** (Purkinje del cerebelo, piramidales del hipocampo, motoras de la médula), **bipolares** (retina), **pseudounipolares** (ganglio de la raíz dorsal); las unipolares verdaderas son de invertebrados.
+- Funcionales: sensitivas, motoras e interneuronas.
+- **Neuroglía**: astrocitos, oligodendrocitos y células de Schwann (mielina), glía radial, ependimocitos y microglía.
+% ~100 mil millones :: de neuronas en el encéfalo (en tus notas «100 billones»: en español son 100 mil millones)
+% 10 000–20 000 :: contactos sinápticos que puede recibir una neurona
+## Sinapsis
+- **Sinapsis tripartita**: la glía rodea la sinapsis y ayuda a que funcione bien.
+- El **complejo SNARE** fusiona la vesícula con la membrana para liberar el neurotransmisor.
+- **Toxina botulínica**: corta SNARE en la placa motora (parálisis flácida, efecto local). **Toxina tetánica**: actúa en neuronas inhibidoras (parálisis espástica).
+- Receptores **ionotrópicos** (canales que se abren al unirse el transmisor, no dependen de voltaje) y **metabotrópicos** (acoplados a proteína G).
+## Embriología y corteza
+| Vesícula primaria ¦ Vesículas secundarias
+| Prosencéfalo ¦ Telencéfalo y diencéfalo
+| Mesencéfalo ¦ Mesencéfalo
+| Rombencéfalo ¦ Metencéfalo y mielencéfalo
+- 4 lóbulos más el **límbico** (respuestas básicas). **Neocorteza**: 6 capas. **Paleocorteza y arquicorteza** (hipocampo): 3–4 capas (memoria, aprendizaje, olfato). ~50 áreas de Brodmann.
+## Depresión
+- Tristeza excesiva, disforia, pérdida de apetito, alteraciones del sueño, llanto, cansancio, pérdida de ambición y de atención, dificultad para aprender.
+% 7–15 % :: de las personas con depresión cometen suicidio
+- **Corteza prefrontal**: coordina y selecciona conductas hacia metas; en depresión su metabolismo está disminuido.
+- **Hipocampo**: adaptación al estrés y regulación del eje hipotálamo-hipófisis-suprarrenal; memoria y gran neurogénesis.
+- **Corteza cingulada subgenual**: modula estados afectivos negativos; proyecta a tallo, hipotálamo e ínsula.
+- **Núcleo accumbens**: recompensa y placer. **Amígdala**: emociones.
+| Neurotransmisor ¦ Dónde se produce
+| Serotonina ¦ Núcleos del rafe (tallo)
+| Dopamina ¦ Sustancia negra y área tegmental ventral
+| Noradrenalina ¦ Locus coeruleus
+? ¿Dónde se produce la serotonina? :: En los núcleos del rafe del tallo cerebral.
+? ¿Dónde se produce la noradrenalina? :: En el locus coeruleus.
+? Diferencia entre toxina botulínica y tetánica :: Botulínica: bloquea la liberación de acetilcolina en la placa motora (parálisis flácida). Tetánica: bloquea neuronas inhibidoras (espasticidad).
+Q Neurona típica de la retina :: *Bipolar :: Pseudounipolar :: Multipolar de Purkinje :: Unipolar verdadera || Las bipolares están en la retina y el epitelio olfatorio; las pseudounipolares en los ganglios sensitivos.
+Q ¿Qué estructura regula el eje hipotálamo-hipófisis-suprarrenal y la adaptación al estrés? :: *Hipocampo :: Cerebelo :: Núcleo accumbens :: Locus coeruleus || El hipocampo frena el eje HHS; el estrés crónico lo daña.
+
+# Enfermedades neurodegenerativas
+> Progresivas, sin cura, por muerte de grupos específicos de neuronas: Alzheimer, Parkinson, Huntington.
+## Qué son
+- Afectan al SNC de forma progresiva por **degeneración o muerte neuronal**. No son trastornos psiquiátricos, defectos anatómicos ni parte normal del envejecimiento.
+- En común: grupos específicos de neuronas, aparición sin explicación clara (genética o idiopática), progresión imparable, edad avanzada, y a menudo **agregados de proteínas** tóxicas.
+| Enfermedad ¦ Neuronas afectadas
+| Parkinson ¦ Dopaminérgicas (sustancia negra)
+| Alzheimer ¦ Colinérgicas (corteza temporal y núcleo basal)
+| Huntington ¦ GABAérgicas espinosas medianas (estriado)
+- Mecanismos de daño: pérdida de función de una proteína, degeneración sináptica, toxicidad de la proteína mutante, inclusiones nucleares, **excitotoxicidad**, estrés oxidativo, falla de la proteólisis y apoptosis.
+- Clínica: movimiento (ataxia, atetosis, corea), cognición (atención, memoria, razonamiento, lenguaje) y problemas psicológicos (depresión, cambios de personalidad).
+## Alzheimer
+% 50–60 % :: de todas las demencias son Alzheimer
+- Disminución de neuronas colinérgicas en el lóbulo temporal (lateral y medial).
+= Placa amiloide :: Procesamiento alterado de la proteína precursora de amiloide (APP) → Se acumula el fragmento β-amiloide → Placas → Estrés oxidativo, inflamación y alteración iónica → Disfunción neuronal → Demencia
+- **Tau**: mantiene los microtúbulos; al alterarse (hiperfosforilada) se desarman y forma ovillos tóxicos.
+- Genes: **APP, PSEN1, PSEN2** y **APOE ε4** (APP está en el cromosoma 21: por eso el Alzheimer precoz en trisomía 21).
+- Factores de riesgo: hipertensión, obesidad, diabetes, hipercolesterolemia, hiperhomocisteinemia, EVC, tabaco, depresión, soledad, alteraciones del sueño. Protectores: ejercicio, estimulación social y cognitiva, dieta con pescado, educación avanzada, propósito de vida.
+- Evolución: no detectable → memoria a corto plazo → funciones motoras y habla → memoria a largo plazo → desorientación → estado vegetativo → muerte (infección).
+- Tratamiento: **inhibidores de acetilcolinesterasa** (donepezilo, galantamina, rivastigmina), † memantina (antagonista NMDA); en investigación: moduladores de secretasas, antiagregantes, vacunas y anticuerpos anti-amiloide.
++ La pérdida del olfato puede anunciar un proceso neurodegenerativo.
+! **Corrección:** APOE no se relaciona con la trisomía 21; el que está en el cromosoma 21 es el gen **APP**.
+## Parkinson
+- Segundo trastorno neurodegenerativo más común; inicia a los 55–60 años (5–10 % antes de los 40); más en hombres.
+- Pérdida de neuronas dopaminérgicas de la **sustancia negra** (mesencéfalo) y **cuerpos de Lewy** (α-sinucleína). Los síntomas aparecen cuando se ha perdido el **70–80 %**.
+- La dopamina equilibra las vías **directa** (excitatoria) e **indirecta** (inhibitoria) de los ganglios basales; sin dopamina domina la indirecta → se frena el movimiento.
+- Clínica: **temblor de reposo 4–6 Hz**, **bradicinesia**, **rigidez** (en rueda dentada) e **inestabilidad postural**; dificultad para iniciar y detener la marcha, hipotensión, déficit cognitivo.
+- Síntomas previos (prodrómicos): estreñimiento, hipotensión ortostática, disfunción eréctil y urinaria, depresión y ansiedad (2–5 años antes), insomnio, pérdida del olfato.
+- Genes: α-sinucleína, parkina, DJ-1, PINK1.
+- Tratamiento: **levodopa** + inhibidor de dopa-descarboxilasa (carbidopa), inhibidores de COMT, agonistas dopaminérgicos. Con el tiempo pierde efecto y aparecen fluctuaciones y discinesias.
+& TRAP :: Temblor de reposo, Rigidez, Acinesia/bradicinesia, inestabilidad Postural.
+! **Corrección:** en tus notas «TBI (tuberculosis)»: TBI es *traumatic brain injury*, traumatismo craneoencefálico, que sí aumenta el riesgo. El tabaco y la cafeína tienen asociación inversa (estadística), no son recomendaciones.
+## Corea de Huntington
+- Autosómica dominante, gen **HTT** en el **cromosoma 4**: el triplete **CAG** se repite normalmente 10–35 veces; con **≥ 36** la huntingtina se vuelve tóxica.
+- Afecta neuronas GABAérgicas del caudado y putamen → atrofia del caudado y ventrículos ensanchados → predomina la vía excitatoria → **corea**.
+- Muerte por neumonía, broncoaspiración o suicidio. Tratamiento: antipsicóticos, depletores de dopamina (tetrabenazina), benzodiacepinas, antagonistas del glutamato.
+! **Corrección:** el triplete es **CAG** (no GAG).
+## Epilepsia
+- Actividad eléctrica neuronal excesiva y sincronizada con **crisis recurrentes y espontáneas** y cambios en el EEG.
+- Primaria (idiopática) o secundaria (hipoxia-isquemia, infecciones, traumatismo, malformaciones, alteraciones metabólicas, neoplasias).
+- Crisis convulsivas o no convulsivas (ausencias, mioclónicas); descargas **focales** (un hemisferio; pueden generalizarse), multifocales o **generalizadas** (ambos hemisferios, con pérdida de conciencia).
+- Periodos: **ictal** (la crisis), **postictal** (confusión posterior) e **interictal** (entre crisis).
+| Línea ¦ Fármacos
+| Primera ¦ Carbamazepina, valproato, lamotrigina
+| Segunda ¦ Levetiracetam, topiramato, pregabalina
+| Nuevos ¦ Zonisamida, eslicarbazepina, retigabina
+- Quirúrgico: resección anteromesial del lóbulo temporal (epilepsia temporal refractaria).
+? Tétrada del Parkinson :: Temblor de reposo, rigidez, bradicinesia e inestabilidad postural.
+? ¿Qué proteína forma los cuerpos de Lewy? :: α-sinucleína.
+? ¿Cuántas repeticiones CAG causan Huntington? :: 36 o más.
+? Tres periodos de la actividad epiléptica :: Ictal, postictal e interictal.
+Q El donepezilo actúa… :: *Inhibiendo la acetilcolinesterasa :: Como precursor de dopamina :: Bloqueando receptores NMDA :: Inhibiendo la COMT || Aumenta la acetilcolina disponible, que está baja en el Alzheimer.
+Q En el Parkinson, ¿por qué se da carbidopa con la levodopa? :: *Para que la levodopa no se convierta en dopamina fuera del cerebro :: Para bloquear la COMT central :: Porque es agonista dopaminérgico :: Para evitar la tolerancia || La carbidopa inhibe la dopa-descarboxilasa periférica: más levodopa llega al cerebro y hay menos náusea.
+Q Neuronas que se pierden en la corea de Huntington :: *GABAérgicas del estriado :: Dopaminérgicas de la sustancia negra :: Colinérgicas del núcleo basal :: Motoras de la médula || La pérdida de las espinosas medianas del caudado y putamen libera el movimiento (corea).
+
+# Enfermedad cerebrovascular
+> Estenosis, oclusión o ruptura de un vaso: ~85 % son isquémicas.
+## Tipos
+| Isquémica (~85 %) ¦ Hemorrágica
+| Infarto lacunar ¦ Hemorragia intracerebral espontánea
+| Oclusión carotídea ¦ Hemorragia subaracnoidea
+| Oclusión vertebrobasilar ¦ Aneurisma intracraneal y malformación arteriovenosa
+- Suele ser por ruptura de un ateroma. Puede dar coma, hemiplejía, paraplejía, monoplejía, alteraciones del habla, parestesias y pérdida sensitiva.
+- **Ataque isquémico transitorio (AIT)**: déficit de < 24 h sin secuelas, pero anuncia un infarto.
+## Excitotoxicidad
+= Excitotoxicidad :: Isquemia → Liberación masiva de glutamato → Receptores NMDA (ionotrópicos) → Entrada masiva de Ca²⁺ → Daño mitocondrial → Necrosis neuronal
+- Se ha intentado proteger con **bloqueadores NMDA**.
+## Factores de riesgo y manejo
+- Hipertensión (el principal), alteraciones cardiacas (HVI, dilatación, † fibrilación auricular), diabetes, dislipidemia, obesidad, tabaco, intolerancia a la glucosa, anticonceptivos orales (protrombóticos), edad > 70 años.
+- Manejo: prevenir (controlar la hipertensión y los demás factores), detección y tratamiento tempranos, antitrombóticos y trombólisis o trombectomía.
+! † La trombólisis IV con alteplasa se da en las primeras 4.5 h del inicio de los síntomas, tras descartar hemorragia con TAC.
+? ¿Qué porcentaje de las EVC son isquémicas? :: Alrededor del 85 %.
+? ¿Qué es un AIT? :: Déficit neurológico isquémico que dura menos de 24 h y no deja secuelas; aviso de un infarto cerebral.
+Q ¿Qué receptor media la excitotoxicidad en la isquemia cerebral? :: *NMDA de glutamato :: GABA-A :: Muscarínico M1 :: Dopaminérgico D2 || El glutamato abre los NMDA y entra calcio en exceso.
+Q El principal factor de riesgo modificable de EVC es… :: *Hipertensión arterial :: Anticonceptivos orales :: Obesidad :: Edad || La hipertensión es el factor más importante en ambos tipos.
+
+# Nefrología
+> Síndrome nefrítico, síndrome nefrótico, lesión renal aguda y crónica.
+## Respuesta del glomérulo a la lesión
+- Engrosamiento de la membrana basal, hipercelularidad (proliferación mesangial o endotelial, infiltrado leucocitario), hialinosis y esclerosis glomerular.
+## Nefrítico vs nefrótico
+| Síndrome nefrítico ¦ Síndrome nefrótico
+| Hematuria (macro o microscópica) de inicio agudo ¦ Proteinuria masiva ≥ 3.5 g/día
+| Filtración glomerular reducida ¦ Hipoalbuminemia < 3 g/dL
+| Proteinuria leve a moderada ¦ Edema generalizado
+| Hipertensión arterial ¦ Hiperlipidemia y lipiduria
+- Nefrótico: por aumento de la permeabilidad de la pared glomerular a las proteínas. Causas: diabetes, amiloidosis, lupus, fármacos (naproxeno, ketorolaco, antibióticos), infecciones, cáncer.
+- Diagnóstico: examen general de orina (proteinuria, albuminuria, **eritrocitos dismórficos**, cilindros) y biopsia si hace falta.
+! **Corrección:** en tus notas dice «síndrome neurótico»: es síndrome **nefrótico**.
++ Paracetamol e ibuprofeno a dosis habituales son menos lesivos para el riñón que otros AINE, pero cualquier AINE puede causar lesión renal en deshidratación.
+## Lesión renal aguda y crónica
+~ Lesión renal aguda :: Caída rápida de la filtración glomerular con alteración hidroelectrolítica y retención de urea y creatinina (antes «insuficiencia renal aguda»).
+~ Enfermedad renal crónica :: Filtrado < 60 mL/min/1.73 m² o marcadores de daño (como albuminuria) durante al menos 3 meses.
+- Riesgo de ERC: proteinuria, hipertensión, diabetes, enfermedad cardiovascular, tabaquismo, obesidad, AINE crónicos, obstrucción urinaria.
+- Tratamiento: prevenir el avance (peso, dieta, control de dislipidemia y PA); en etapa terminal **hemodiálisis**, **diálisis peritoneal** o **trasplante**.
+% < 60 mL/min/1.73 m² :: por ≥ 3 meses define la enfermedad renal crónica
+! **Corrección:** basta el filtrado bajo **o** la albuminuria por 3 meses; no se necesitan los dos.
+? Proteinuria que define al síndrome nefrótico :: ≥ 3.5 g en 24 horas.
+? ¿Qué hallazgo urinario sugiere origen glomerular de la hematuria? :: Eritrocitos dismórficos y cilindros eritrocitarios.
+Q Niño con edema generalizado, albúmina 2.1 g/dL, colesterol alto y proteinuria de 5 g/día. Tiene… :: *Síndrome nefrótico :: Síndrome nefrítico :: Lesión renal aguda prerrenal :: Infección urinaria || Proteinuria masiva + hipoalbuminemia + edema + hiperlipidemia.
+Q Hematuria, hipertensión y edema leve tras una faringitis sugieren… :: *Síndrome nefrítico :: Síndrome nefrótico :: Litiasis renal :: Pielonefritis || Es el cuadro clásico de glomerulonefritis postestreptocócica.
+
+# Aparato digestivo
+> Acalasia, ERGE y Barrett, gastritis, enfermedad inflamatoria intestinal y Hirschsprung.
+## Esófago
+- **Acalasia**: el esfínter esofágico inferior no se relaja bien. La **enfermedad de Chagas** destruye los plexos mientéricos (altera la peristalsis) y la imita.
+- Tratamiento: nitratos, bloqueadores de calcio, toxina botulínica A, dilatación neumática; quirúrgico: miotomía con funduplicatura o miotomía endoscópica peroral (POEM).
+- **ERGE**: reflujo del contenido gástrico (la hernia hiatal y las maniobras de Valsalva lo favorecen). Síntomas: pirosis, regurgitación, disfagia, dolor torácico (confundible con cardiopatía).
+- Diferencial de ERGE: cardiopatía, neoplasias, úlcera péptica, vía biliar, esofagitis, acalasia, trastornos de motilidad.
+- Tratamiento: **inhibidores de bomba de protones** (omeprazol, esomeprazol).
+~ Esófago de Barrett :: Metaplasia del epitelio escamoso a columnar intestinal por reflujo crónico; es precursor de adenocarcinoma.
+## Estómago
+- **Gastritis aguda** (distinta de gastropatía, que es daño sin inflamación): dolor epigástrico, náusea, vómito, erosión y úlcera de la mucosa, hemorragia (hematemesis, melena).
+## Intestino
+| Enfermedad de Crohn ¦ Colitis ulcerosa (CUCI)
+| Cualquier parte del tubo digestivo (boca a ano), transmural, salteada ¦ Solo colon y recto, continua, mucosa
+| Diarrea crónica con dolor abdominal, fiebre, anorexia, pérdida de peso ¦ Diarrea con sangre
+| Abdomen doloroso a la palpación, † fístulas ¦ Dolor bajo tipo cólico que se alivia al defecar
+- **Enfermedad de Hirschsprung** (megacolon agangliónico): ausencia de neuronas entéricas en un segmento distal → no se emite el **meconio** en las primeras 48 h, estreñimiento, distensión, vómito, diarrea (enterocolitis) y perforación.
+? ¿Qué es la acalasia? :: Falta de relajación del esfínter esofágico inferior con pérdida de la peristalsis.
+? ¿Por qué el Barrett importa? :: Es metaplasia intestinal precursora de adenocarcinoma de esófago.
+? Diferencia clave entre Crohn y CUCI :: Crohn: cualquier segmento, transmural y salteado. CUCI: solo colon, continuo y de mucosa.
+Q Recién nacido que no expulsa meconio en 48 h y tiene distensión abdominal. Sospechas… :: *Enfermedad de Hirschsprung :: Acalasia :: Colitis ulcerosa :: Estenosis pilórica || Falta de células ganglionares en el colon distal.
+Q El tratamiento de primera línea de la ERGE es… :: *Inhibidor de la bomba de protones :: Toxina botulínica :: Miotomía :: Bloqueador de calcio || Omeprazol o esomeprazol; la cirugía (funduplicatura) es para casos seleccionados.

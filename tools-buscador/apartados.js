@@ -14,6 +14,7 @@ const PAGES={
  's1/guias/embriologia-genetica.html':'embriologia-genetica','s1/guias/simulacion-i.html':'simulacion-i',
  's2/guias/fisiologia.html':'fisiologia','s2/guias/biologia-celular.html':'biologia-celular','s2/guias/anatomia-humana-i.html':'anatomia-humana-i','s2/guias/simulacion-ii.html':'simulacion-ii',
  's3/farmacologia/index.html':'farmacologia','s3/anatomia/index.html':'anatomia',
+ 's3/fisiologia-clinica/index.html':'fisiologia-clinica','s3/microbiologia/index.html':'microbiologia','s3/simulacion-iii/index.html':'simulacion-iii','s3/propedeutica/index.html':'propedeutica',
  's4/apps/hematologia.html':'hematologia','s4/apps/farmacologia-ii.html':'farmacologia-ii','s4/apps/inmunologia.html':'inmunologia',
  's4/apps/simulacion-iv.html':'simulacion-iv','s4/apps/nutricion.html':'nutricion','s4/apps/cirugia.html':'cirugia-principios',
  's5/cirugia/index.html':'cirugia','s5/gastro/index.html':'gastro','s5/imagenologia/index.html':'imagenologia','s5/oftalmo/index.html':'oftalmo',

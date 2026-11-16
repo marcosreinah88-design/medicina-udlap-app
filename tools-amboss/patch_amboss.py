@@ -10,6 +10,8 @@ PAGES={
  's2/guias/anatomia-humana-i.html':'s2-anatomia-humana-i','s2/guias/biologia-celular.html':'s2-biologia-celular',
  's2/guias/fisiologia.html':'s2-fisiologia','s2/guias/simulacion-ii.html':'s2-simulacion-ii',
  's3/farmacologia/index.html':'s3-farmacologia','s3/anatomia/index.html':'s3-anatomia',
+ 's3/fisiologia-clinica/index.html':'s3-fisiologia-clinica','s3/microbiologia/index.html':'s3-microbiologia',
+ 's3/simulacion-iii/index.html':'s3-simulacion-iii','s3/propedeutica/index.html':'s3-propedeutica',
  's4/apps/cirugia.html':'s4-cirugia','s4/apps/farmacologia-ii.html':'s4-farmacologia-ii','s4/apps/hematologia.html':'s4-hematologia',
  's4/apps/inmunologia.html':'s4-inmunologia','s4/apps/nutricion.html':'s4-nutricion','s4/apps/simulacion-iv.html':'s4-simulacion-iv',
  's5/cirugia/index.html':'s5-cirugia','s5/esofago/index.html':'s5-tp','s5/gastro/index.html':'s5-tp','s5/hepatobiliar/index.html':'s5-tp',

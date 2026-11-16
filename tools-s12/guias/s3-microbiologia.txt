@@ -1,0 +1,332 @@
+@id microbiologia
+@sem 3
+@orden 4
+@title Microbiología y Parasitología
+@materia Microbiología y Parasitología
+@codigo MIC
+@color #6b3fa0
+@icon infecto
+@sub Generalidades · Transmisión · Epidemiología · Laboratorio y cultivos · Gram · Grampositivas · Gramnegativas · Virología · Parasitología
+@desc Tus clases y laboratorios de Notion más tus tarjetas de Anki: de Koch y las vías de transmisión a la vigilancia epidemiológica, cultivos y tinción de Gram, bacterias grampositivas y gramnegativas (E. coli y sus patotipos), virus por familia, ébola y parásitos.
+@nota Fuente: tus notas de Notion (Medicina › 3er semestre › Microbiología) y tus tarjetas de Anki de la materia. **Corrección** = estaba mal en tus notas; † = no venía y se agregó para completar el tema.
+@kw microbiologia parasitologia bacteriologia virologia micologia koch postulados transmision fomites vectores gotitas flugge wells salud publica epidemiologia vigilancia epidemiologica sinave nom 017 incidencia prevalencia morbilidad mortalidad bioseguridad rpbi medios de cultivo agar sangre macconkey ss sabouraud emb xld chocolate tioglicolato siembra estria colonias tincion de gram cristal violeta lugol safranina peptidoglucano acidos teicoicos lipopolisacarido cocos bacilos espiroquetas staphylococcus streptococcus enterococcus neumococo hemolisis listeria corynebacterium mycobacterium nocardia neisseria gonorrhoeae meningitidis enterobacterias escherichia coli enteropatogena enterotoxigenica enteroinvasiva enteroagregativa enterohemorragica shiga uropatogena shigella salmonella tifoidea klebsiella serratia yersinia pseudomonas acinetobacter chlamydia mycoplasma treponema virus capside envoltura baltimore papiloma adenovirus herpes varicela epstein barr citomegalovirus viruela mpox polio rinovirus coronavirus sarampion parotiditis influenza rabia ebola rotavirus dengue zika chikungunya rubeola vih hepatitis amiba entamoeba giardia trichomonas balantidium plasmodium paludismo toxoplasma trypanosoma chagas ascaris trichuris trichinella fasciola taenia cisticercosis
+
+# Generalidades de la microbiología
+> La microbiología estudia la clasificación, descripción, distribución y funcionamiento de los microorganismos.
+## Ramas
+- **Sanitaria**: microorganismos que contaminan alimentos y ponen en riesgo a quien los consume.
+- **Fitopatología**: enfermedades que bacterias, virus u hongos causan en las plantas.
+- **Médica**: microorganismos que causan enfermedad en el ser humano, su tratamiento y su transmisión.
+- **Agrícola**: bacterias y hongos de los cultivos y sus interacciones benéficas.
+| Rama de la microbiología médica ¦ Qué estudia
+| Bacteriología ¦ Bacterias y su interacción negativa con el humano
+| Virología ¦ Estructura viral e interacción con el hospedero (ensamblaje, transporte y liberación de partículas)
+| Micología ¦ Hongos (menos de 50 especies causan más del 50 % de las micosis)
+| Parasitología ¦ Protozoos y helmintos; muchas son «enfermedades tropicales» ligadas a falta de higiene
+## La célula bacteriana
+- Célula: unidad estructural y funcional de los seres vivos. **Procariotas**: arqueas y bacterias. **Eucariotas**: protistas, hongos, plantas y animales.
+- Formas: **cocos** (diplococos, tétradas, sarcinas, cadenas, racimos), **bacilos** (cortos o cocobacilos, curvos, esporulados, fusiformes, en empalizada o «letras chinas»), **vibrios**, **espirilos** y **espiroquetas**.
+~ Pleomorfismo :: Capacidad de una bacteria de adoptar distintas formas según las condiciones del medio (Corynebacterium diphtheriae, Mycoplasma).
+## Postulados de Koch
+| Clásicos ¦ Moleculares
+| El patógeno se aísla de animales enfermos, nunca de sanos ¦ El gen de virulencia está en las cepas que causan enfermedad y no en las no virulentas
+| Inoculado en un animal sano, produce la enfermedad ¦ Inactivar ese gen hace perder la patogenicidad
+| Se aísla en cultivo puro tras la infección intencional ¦ Introducir el gen clonado vuelve virulenta a una cepa que no lo era
+| Se vuelve a aislar puro del animal enfermo ¦ El gen se expresa durante la infección en el animal
+! **Corrección:** el 3.er postulado clásico es que el microorganismo **crezca en cultivo puro** a partir del enfermo, y el 4.º que se **reaísle** del animal infectado experimentalmente.
+? Cuatro ramas de la microbiología médica :: Bacteriología, virología, micología y parasitología.
+? ¿Qué es el pleomorfismo bacteriano? :: Que una bacteria adopte distintas formas según el medio (p. ej., Corynebacterium, Mycoplasma).
+Q Según los postulados moleculares de Koch, si se inactiva el gen asociado a virulencia… :: *La bacteria pierde su patogenicidad :: La bacteria se vuelve más virulenta :: No cambia nada :: La bacteria muere || Es la prueba de que ese gen causa la enfermedad.
+
+# Interacción parásito-hospedero y transmisión
+> El 90 % de las infecciones se transmite por las manos.
+## Transmisión directa
+- Mordedura (rabia), transplacentaria (toxoplasmosis), aérea, sexual (candidiasis, VIH), mucosas (mononucleosis, difteria), piel (impétigo, erisipela) y manos (heces, orina, secreción nasal: Salmonella, E. coli, Shigella, Acinetobacter, Pseudomonas).
+| Partícula aérea ¦ Tamaño y alcance ¦ Ejemplos
+| Gotitas de Flügge ¦ > 5 µm, caen a ~1 m ¦ Gripe común, faringoamigdalitis
+| Núcleos de Wells ¦ < 5 µm, flotan en el aire ¦ Tuberculosis, sarampión, varicela († en tus notas: neumonía e influenza)
+% 90 % :: de las infecciones se transmiten por contacto con las manos
+## Transmisión indirecta
+- **Suelo (polvo)**: bacterias esporuladas (tétanos, botulismo), parásitos (ascariasis, necatoriasis), micosis profundas (histoplasmosis, coccidioidomicosis).
+- **Agua**: contaminación de la red o mantos acuíferos con excremento, epidemias, y soporte para vectores (larvas de mosquito).
+- **Fómites**: objetos que transmiten infecciones por secreciones (herpesvirus, rinovirus, adenovirus, meningococo, neumococo, enterobacterias, estafilococo).
+- **Vectores** (artrópodos): **mecánico/pasivo** (transporta el agente sin que se multiplique) o **biológico/activo** (el agente se multiplica o cumple una fase de su ciclo en el vector).
+- Vías de entrada: digestiva, respiratoria, mucosas, cutánea y placentaria.
+? ¿Qué es un fómite? :: Objeto inanimado que transmite un agente infeccioso a través de secreciones de la fuente.
+? Vector biológico vs mecánico :: Biológico: el agente se multiplica o madura en el artrópodo. Mecánico: solo lo transporta.
+Q El tétanos y el botulismo se adquieren típicamente por… :: *Esporas del suelo :: Gotitas de Flügge :: Transmisión transplacentaria :: Vectores biológicos || Clostridium forma esporas muy resistentes que viven en el suelo y el polvo.
+
+# Salud pública y vigilancia epidemiológica
+> Epidemiología: distribución y determinantes de los eventos de salud y su aplicación al control de enfermedades (OMS).
+## Salud pública y epidemiología
+- **Salud pública**: protege la salud de la población con promoción de estilos de vida, campañas de concientización, educación e investigación. Depende de: asignación de recursos, acceso, políticas y evaluación.
+- Determinantes que se cruzan en las estadísticas: **grupo de edad**, **región geográfica** y **sexo**.
+- Qué hace la epidemiología: mide la frecuencia, describe la distribución (quién, dónde, cuándo), formula hipótesis, identifica determinantes (pobreza, desigualdad, inseguridad alimentaria) y diseña estudios (cohortes, casos y controles).
+## Vigilancia epidemiológica
+- Recolección **sistemática, continua, oportuna y confiable** de información sobre condiciones de salud.
+- Tipos: interna o externa; **oficial/operativa** (activa, pasiva, especializada) y **científica/técnica** (básica, aplicada, ambiental).
+- Se basa en: marco legal, sistema de información, análisis y toma de decisiones, supervisión y evaluación, capacitación y confirmación.
+- Objetivos: detectar riesgos a tiempo, conocer la tendencia de las enfermedades en un área, identificar grupos vulnerables y factores de riesgo, y elegir intervenciones.
+- **Inteligencia epidemiológica**: detectar, filtrar, verificar y analizar señales de amenaza. **Basada en indicadores** (sistemas de vigilancia) o **en eventos** (fuentes informales, en tiempo real) → alertas tempranas.
+## Sistemas de información en México
+- Requieren **entradas** (fuentes primarias: consultas; secundarias: expediente; terciarias: registro civil), **procesos** (depurar, analizar por sexo y edad, interpretar) y **salidas**.
+- **NOM-017-SSA2-2012**: vigilancia epidemiológica.
+- **SINAVE** (Sistema Nacional de Vigilancia Epidemiológica, creado en 1990): depende de la Dirección General de Epidemiología; su órgano rector es el **CONAVE**, con comités estatales (CEVE) y jurisdiccionales (COJUVE). Integra la información de todas las instituciones.
+- Niveles de atención: 1.º comunidad y consultorios (incluso los de farmacias), 2.º hospital general, 3.º alta especialidad.
+- **Estudio de caso** y **estudio de brote** (investigación de campo de los equipos locales).
+## Medidas de frecuencia
+~ Incidencia :: Casos nuevos de una enfermedad en una población durante un tiempo determinado (p. ej., un año).
+~ Prevalencia :: Total de personas con la enfermedad (nuevas y antiguas) en un momento o periodo.
+~ Morbilidad :: Cantidad de personas enfermas en un lugar y tiempo.
+~ Mortalidad :: Proporción de muertes en una población en un tiempo determinado.
+~ Carga de enfermedad :: Pérdida de salud por muertes prematuras y discapacidad (años de vida saludable perdidos).
+? ¿Qué NOM regula la vigilancia epidemiológica? :: La NOM-017-SSA2-2012.
+? ¿Quién es el órgano rector del SINAVE? :: El CONAVE (Comité Nacional para la Vigilancia Epidemiológica).
+Q Durante 2025 se diagnosticaron 300 casos nuevos de diabetes en un municipio. Ese dato es… :: *Incidencia :: Prevalencia :: Mortalidad :: Letalidad || Casos nuevos en un periodo = incidencia; todos los casos existentes = prevalencia.
+Q La vigilancia basada en eventos usa sobre todo… :: *Fuentes informales en tiempo real (noticias, redes, rumores) :: Expedientes clínicos :: Registro civil :: Encuestas nacionales || La basada en indicadores usa los datos formales del sistema de salud.
+
+# Laboratorio: bioseguridad, cultivos y siembra
+> Cultivar sirve para identificar, aislar, contar y amplificar microorganismos.
+## Bioseguridad
+- Barreras (bata cerrada, cubrebocas, guantes, lentes) y **lavado de manos siempre**.
+- No comer ni beber; limpiar y desinfectar antes y después; sin anillos, pulseras ni reloj; cabello recogido; zapato cerrado; nada de prácticas personales; avisar al profesor ante cualquier emergencia.
+| RPBI ¦ Contenedor
+| Punzocortantes ¦ Rígido rojo
+| No anatómicos y cultivos o cepas ¦ Bolsa roja
+| † Sangre líquida ¦ Recipiente hermético rojo
+| † Patológicos (piezas anatómicas) ¦ Bolsa amarilla
+## Medios de cultivo
+- Soporte para crecer microorganismos con nutrientes (fuente de carbono, nitrógeno, proteínas, lípidos, factores) y **agar** como gelificante (derivado de algas). Pueden ser sólidos, semisólidos o líquidos (caldos).
+| Tipo ¦ Para qué ¦ Ejemplos
+| Nutritivo (básico) ¦ Crecimiento general ¦ Caldo nutritivo, agar nutritivo
+| Enriquecido ¦ Nutrientes extra para bacterias exigentes ¦ Agar sangre, agar chocolate (Neisseria, Haemophilus)
+| De enriquecimiento ¦ Aumentar un microorganismo escaso antes de pasarlo a un selectivo ¦ † Caldo selenito (Salmonella)
+| Selectivo ¦ Deja crecer unos e inhibe otros ¦ Agar SS (Salmonella-Shigella), Sabouraud (hongos), MacConkey
+| Diferencial ¦ Distingue por metabolismo (cambio de color) ¦ XLD (xilosa-lisina-desoxicolato), EMB, MacConkey (fermenta o no lactosa)
+| Anaerobio ¦ Bacterias que no toleran O₂ ¦ Tioglicolato (gradiente de oxígeno), cámara de anaerobiosis (Clostridium, Bacteroides)
+| Celular ¦ Virus ¦ Influenza en células MDCK (riñón de perro)
+- Factores que afectan el crecimiento: **temperatura, pH, oxígeno y nutrientes**.
+% 37 °C :: incubación de bacterias (temperatura corporal)
+% 25 °C :: incubación de hongos
+- **Co-cultivo**: dos o más microorganismos creciendo juntos.
+## Técnicas de siembra
+- **Por extensión**: se reparte un volumen pequeño sobre la superficie con un asa de vidrio en «L» (parece escoba).
+- **Estriado masivo**: zigzag en toda la placa, se gira 90° y se repite.
+- **Estría cruzada**: zigzag en un tercio de la placa, se gira y se repite 3 veces (aislar colonias).
+- **Agotamiento**: estrías de inicio a fin sin girar.
+- **Vertido en placa**: se mezcla la muestra con agar fundido a ~45 °C y se homogeneiza.
+## Morfología de las colonias
+| Característica ¦ Opciones
+| Forma ¦ Puntiforme, circular, filamentosa, granular, rizoide, fusiforme
+| Elevación ¦ Plana, elevada, convexa, pulvinada, umbilicada
+| Borde ¦ Entero, ondulado, lobulado, dentado, filamentoso, rizado
+| Otras ¦ Tamaño, color, superficie, aspecto, luz reflejada y transmitida, pigmentos
+? ¿Qué medio se usa para Neisseria y Haemophilus? :: Agar chocolate (enriquecido).
+? Diferencia entre medio selectivo y diferencial :: Selectivo: inhibe a unos y deja crecer a otros. Diferencial: los distingue por su metabolismo (color).
+? ¿A qué temperatura se incuban bacterias y hongos? :: Bacterias a 37 °C; hongos a 25 °C.
+Q El agar MacConkey es… :: *Selectivo para gramnegativos y diferencial según fermenten lactosa :: Solo enriquecido :: Solo para hongos :: Para anaerobios || Las sales biliares y el cristal violeta inhiben a los grampositivos; los fermentadores de lactosa salen rosas.
+Q Para Clostridium y Bacteroides se usa… :: *Cámara de anaerobiosis o tioglicolato :: Agar Sabouraud :: Agar chocolate en CO₂ :: Células MDCK || Son anaerobios: no toleran el oxígeno.
+
+# Tinción de Gram y pared bacteriana
+> Clasifica por la pared: grampositivas moradas, gramnegativas rosas.
+## La técnica
+= Tinción de Gram (Hans Christian Gram) :: Cristal violeta (se une al peptidoglucano) → Lugol (fija el colorante, evita que salga) → Alcohol-acetona (decolora: deshidrata la pared y cierra los poros) → Safranina (contraste) → Grampositivas moradas, gramnegativas rosas
+- **Tinción simple**: forma, tamaño y agrupación. Diferencial (Gram, Ziehl-Neelsen) y de fondo (negativa).
+## Pared celular
+| ¦ Grampositivas ¦ Gramnegativas
+| Peptidoglucano ¦ Grueso (red de tubos) ¦ Delgado
+| Ácidos teicoicos ¦ Sí (las «columnas») ¦ No
+| Membrana externa con LPS ¦ No ¦ Sí
+| Color ¦ Morado ¦ Rosa
+- **Ácidos teicoicos**: antigenicidad, transporte de cationes (Mg²⁺) y adherencia a tejidos.
+- **Lipopolisacárido (LPS)**: inmunoestimulante, **endotoxina** muy potente y factor de adherencia.
++ El LPS liberado a la sangre desencadena fiebre, vasodilatación y choque séptico.
+## Bacterias que no se ven bien con Gram
+- **Mycobacterium**: ácidos micólicos → ácido-alcohol resistentes (Ziehl-Neelsen); resisten la desecación y muchos desinfectantes.
+- **Treponema** (espiroqueta): campo oscuro o serología. **Chlamydia** y **Rickettsia**: intracelulares obligadas. **Mycoplasma**: sin pared (no responde a betalactámicos).
+? ¿Qué hace el lugol en la tinción de Gram? :: Fija el cristal violeta (mordiente) para que no salga.
+? ¿Qué componente NO tienen los grampositivos? :: Lipopolisacárido (membrana externa).
+? ¿Qué componente NO tienen los gramnegativos? :: Ácidos teicoicos.
+Q Si se omite el alcohol en la tinción de Gram, las gramnegativas se verán… :: *Moradas :: Rosas :: Transparentes :: Verdes || Sin decolorar conservan el cristal violeta y parecen grampositivas.
+Q ¿Por qué Mycoplasma no responde a la penicilina? :: *No tiene pared celular :: Tiene LPS muy grueso :: Produce betalactamasa siempre :: Es un virus || Los betalactámicos actúan sobre la síntesis del peptidoglucano.
+
+# Bacterias grampositivas
+> Cocos en racimos o cadenas y bacilos con o sin esporas.
+## Cocos grampositivos
+| Bacteria ¦ Forma ¦ Clave
+| Staphylococcus ¦ Racimos ¦ S. aureus: β-hemólisis, coagulasa +
+| Streptococcus ¦ Cadenas o pares ¦ S. pyogenes y S. agalactiae: β-hemólisis
+| S. pneumoniae (neumococo) ¦ Diplococo lanceolado ¦ α-hemólisis; principal causa de neumonía adquirida en la comunidad
+| S. mutans ¦ Cadenas ¦ Principal bacteria de la caries
+| Enterococcus ¦ Pares o cadenas cortas ¦ Resistencia intrínseca a cefalosporinas; ERV (resistente a vancomicina)
+~ Hemólisis α :: Parcial: halo verde alrededor de la colonia (neumococo, viridans).
+~ Hemólisis β :: Completa: halo transparente (S. pyogenes, S. agalactiae, S. aureus).
+## Bacilos grampositivos
+- **Bacillus**: esporulados (B. anthracis). **Clostridium**: esporulados anaerobios (tétanos, botulismo, gangrena).
+- **Listeria**: cortos, no esporulados (lácteos sin pasteurizar; embarazadas y recién nacidos).
+- **Corynebacterium**: en empalizada o «letras chinas» (difteria).
+- **Nocardia** y **Actinomyces**: ramificados (antes se creían hongos); Nocardia es débilmente ácido-alcohol resistente y afecta a inmunosuprimidos.
+? ¿Qué bacteria produce colonias con halo verde (α-hemólisis)? :: Streptococcus pneumoniae y estreptococos viridans.
+? Bacilos grampositivos en «letras chinas» :: Corynebacterium.
+Q Cocos grampositivos en racimos, coagulasa positivos y β-hemolíticos :: *Staphylococcus aureus :: Streptococcus pyogenes :: Enterococcus faecalis :: Neisseria meningitidis || Racimos = estafilococo; la coagulasa distingue a S. aureus.
+Q Causa principal de neumonía adquirida en la comunidad :: *Streptococcus pneumoniae :: Klebsiella pneumoniae :: Haemophilus influenzae :: Mycoplasma pneumoniae || El neumococo es el más frecuente en todas las edades después del periodo neonatal.
+
+# Bacterias gramnegativas
+> Neisseria, enterobacterias (E. coli y sus patotipos, Shigella, Salmonella, Klebsiella, Serratia, Yersinia) y no fermentadores.
+## Neisseria
+- Cocos (diplococos en «grano de café»), 0.6–1 µm, sin esporas, con **pili** (adhesión, intercambio genético, antigenicidad).
+- **Capnofílicas**: crecen con 5–10 % de CO₂.
+| ¦ N. gonorrhoeae (gonococo) ¦ N. meningitidis (meningococo)
+| Descubrimiento ¦ Albert Neisser, 1879 ¦ —
+| Enfermedad ¦ Gonorrea, septicemia ¦ Meningitis en niños y adultos (deja secuelas o mata ~10 %)
+| Transmisión ¦ Sexual ¦ Saliva y gotitas (toser, estornudar, besar, juguetes)
+| Cultivo ¦ Difícil in vitro ¦ Exclusivamente humano
+! **Corrección:** en tus notas dice «microfílico»; el término es **capnofílico** (necesita CO₂) y microaerófilo.
+## Enterobacterias
+- Bacilos gramnegativos fermentadores de glucosa: ~40 géneros, 150 especies (unas 20 de importancia médica).
+% 30 % :: de las septicemias
+% 70 % :: de las infecciones urinarias
+% 90 % :: de las infecciones intestinales (según tus notas)
+- Se cultivan en medios enriquecidos (agar sangre) y selectivos (MacConkey).
+## Escherichia coli y sus patotipos
+- Descrita en 1885 por Theodor Escherich («Bacterium coli commune»). Bacilo gramnegativo, anaerobio facultativo, **comensal** más abundante del intestino; algunas clonas adquirieron genes de virulencia.
+| Patotipo ¦ Mecanismo ¦ Cuadro
+| EPEC (enteropatógena) ¦ Intimina: lesión de adhesión y borrado con «pedestales» ¦ Diarrea en lactantes
+| ETEC (enterotoxigénica) ¦ Toxinas LT (termolábil) y ST (termoestable): ↑ secreción de Cl⁻ ¦ Diarrea acuosa del viajero e infantil; incubación 14–50 h
+| EIEC (enteroinvasiva) ¦ Invade el epitelio del colon (como Shigella); inmóvil, no fermenta lactosa ¦ Diarrea con sangre y moco, dolor
+| EAEC (enteroagregativa) ¦ Fimbrias de agregación, «ladrillos apilados», toxinas ¦ Diarrea acuosa persistente (niños, VIH)
+| DAEC (adherencia difusa) ¦ Se adhiere a toda la superficie; citocinas proinflamatorias ¦ Diarrea en niños
+| EHEC/STEC (O157:H7) ¦ Toxina Shiga ¦ Colitis hemorrágica y síndrome urémico hemolítico (5–10 %)
+| UPEC (uropatógena) ¦ Fimbrias y factores en islas de patogenicidad ¦ > 80 % de las infecciones urinarias
+| E. coli de meningitis neonatal ¦ Cápsula K1 ¦ Meningitis del recién nacido
+! **Corrección:** en tus notas la ETEC «aumenta la secreción de calcio»: aumenta la de **cloro** (por AMPc/GMPc) e inhibe la absorción de NaCl. Y la EIEC no «libera calcio impidiendo la solidificación ósea»: invade y destruye el epitelio del colon (a veces se asocia a artritis reactiva).
+& SUH = anemia + plaquetas bajas + riñón :: Anemia hemolítica microangiopática, trombocitopenia y falla renal tras diarrea con sangre por EHEC.
++ No se dan antibióticos en la diarrea por EHEC: aumentan la liberación de toxina Shiga y el riesgo de SUH.
+## Shigella, Salmonella y otras
+- **Shigella** (Kiyoshi Shiga, 1898): bacilo inmóvil, anaerobio facultativo, fecal-oral con **inóculo muy pequeño**; invade colon, íleon y recto. Grupos de riesgo: preescolares y sus familias, sexo anal. **S. dysenteriae** produce toxina Shiga (detiene la síntesis de proteínas) → disentería: diarrea con sangre y moco, tenesmo, prolapso rectal.
+- **Salmonella** (Daniel Salmon, 1884): bacilo móvil (flagelos), intracelular facultativo; alimentos contaminados o fecal-oral. **S. Typhi** solo enferma al ser humano: fiebre tifoidea (agua y alimentos).
+- **Klebsiella** (Edwin Klebs): encapsulada, inmóvil, fermenta lactosa; microbiota de boca, piel e intestino. Cepas con **BLEE** y carbapenemasas. *K. pneumoniae*: neumonía nosocomial y por broncoaspiración en alcohólicos («jalea de grosella»), IVU, infección de herida. *K. oxytoca*: vía biliar y urinaria en hospitalizaciones largas.
+- **Serratia marcescens**: lugares húmedos; infecciones nosocomiales (heridas, IVU, meningitis, endocarditis); resistente a penicilinas.
+- **Yersinia pestis** (Alexandre Yersin, 1894): peste bubónica y neumónica; peste negra en Europa (1347–1351); reservorio en roedores, vector la pulga de la rata. **Y. enterocolitica**: cocobacilo móvil, síndrome diarreico.
+## No fermentadores y otros
+- **Pseudomonas, Acinetobacter baumannii** (aerobio estricto, nosocomial y muy resistente) y **Stenotrophomonas** (resistente a carbapenémicos).
+- **Haemophilus** y **Bordetella**: cocobacilos. La vacuna Hib está en el esquema infantil (no es anual). **Brucella**: lácteos sin pasteurizar (fiebre de Malta).
+- **Campylobacter jejuni**: curvo («en gaviota»), aves mal cocidas, asociado a Guillain-Barré. **Vibrio**: curvo (cólera).
+- **Chlamydia trachomatis**: causa bacteriana más común de ITS; también tracoma.
+? ¿Qué patotipo de E. coli causa más infecciones urinarias? :: UPEC (uropatógena), más del 80 %.
+? ¿Qué patotipo de E. coli causa diarrea del viajero? :: ETEC (enterotoxigénica), por las toxinas LT y ST.
+? Tríada del síndrome urémico hemolítico :: Anemia hemolítica, trombocitopenia y falla renal aguda.
+? ¿Qué significa BLEE? :: Betalactamasa de espectro extendido: inactiva penicilinas y cefalosporinas.
+Q Niño con diarrea con sangre tras comer hamburguesa mal cocida; a los 7 días tiene anemia, plaquetas bajas y creatinina alta. El agente es… :: *E. coli enterohemorrágica (O157:H7) :: E. coli enterotoxigénica :: Salmonella Typhi :: Vibrio cholerae || La toxina Shiga daña el endotelio renal → SUH.
+Q Diplococo gramnegativo intracelular en el LCR de un adolescente con petequias y rigidez de nuca :: *Neisseria meningitidis :: Neisseria gonorrhoeae :: Streptococcus pneumoniae :: Haemophilus influenzae || Meningitis con exantema petequial es típica del meningococo.
+Q Bacteria encapsulada asociada a neumonía en alcohólicos con esputo «en jalea de grosella» :: *Klebsiella pneumoniae :: Pseudomonas aeruginosa :: Serratia marcescens :: Yersinia pestis || La cápsula de polisacárido le da el esputo espeso y rojizo.
+
+# Virología
+> Virus: genes envueltos en una cápside; solo se replican dentro de células vivas.
+## Historia y estructura
+- 1892: virus del mosaico del tabaco. 1898: Martinus Beijerinck, primer tratado de virología. 1911: Peyton Rous relaciona virus y tumores.
+- «Virus» viene del latín *veneno*. Material genético **ADN o ARN**, de cadena sencilla o doble. Fuera de la célula se llaman **viriones**.
+- **Cápside** (proteínas) y, en algunos, **envoltura** lipídica (envueltos vs desnudos).
+= Ciclo de replicación viral :: Adsorción → Penetración → Desnudamiento → Eclipse → Replicación del genoma → Transcripción y traducción → Ensamble → Liberación (lisis o gemación)
+## Clasificación de Baltimore
+| Clase ¦ Genoma ¦ Ejemplos
+| I ¦ ADN de doble cadena ¦ Herpesvirus, adenovirus, papiloma
+| II ¦ ADN de cadena sencilla ¦ Parvovirus
+| III ¦ ARN de doble cadena ¦ Rotavirus
+| IV ¦ ARN de cadena sencilla (+) ¦ Poliovirus, hepatitis A, coronavirus, flavivirus
+| V ¦ ARN de cadena sencilla (−) ¦ Sarampión, parotiditis, influenza, rabia, ébola
+| VI ¦ ARN (+) con transcriptasa inversa ¦ VIH
+| † VII ¦ ADN de doble cadena con transcriptasa inversa ¦ Hepatitis B
+## Diagnóstico de laboratorio
+- Citología (rápido), microscopía electrónica, aislamiento y cultivo, detección de antígenos y enzimas, detección del genoma (**PCR**) y serología (antígeno-anticuerpo).
+- La **IgM** indica infección reciente (aguda); la IgG, infección pasada o inmunidad.
+! **Corrección:** tus notas dicen que la IgM son «anticuerpos inespecíficos»; la IgM es específica del agente, solo que es la **primera** en aparecer.
+## Virus ADN
+| Familia ¦ Virus ¦ Lo importante
+| Papillomaviridae ¦ VPH ¦ Verrugas genitales y orales; displasias y cáncer cervicouterino y de pene; latente; hay vacuna (también para hombres)
+| Adenoviridae ¦ Adenovirus ¦ Infecta adenoides: vías respiratorias, conjuntivitis, cistitis hemorrágica, gastroenteritis; gotas, contacto, fecal-oral
+| Herpesviridae (α) ¦ Herpes simple 1 y 2 ¦ Contacto con saliva o secreciones; latencia en neuronas; sin vacuna, hay tratamiento (aciclovir)
+| Herpesviridae (α) ¦ Varicela-zóster ¦ Respiratorio, viremia, piel; latencia en ganglios: herpes zóster al bajar la inmunidad
+| Herpesviridae (γ) ¦ Epstein-Barr ¦ «Enfermedad del beso»: mononucleosis; latencia en linfocitos B; neoplasias en inmunodeficientes
+| Herpesviridae (β) ¦ Citomegalovirus ¦ Sangre y fluidos; latencia en linfocitos T y macrófagos; riesgo congénito y en trasplantados
+| Poxviridae ¦ Viruela, mpox ¦ Los virus más grandes; viruela erradicada (OMS); mpox: brote global 2022, vacuna JYNNEOS
+- Son **8 herpesvirus humanos**.
+! **Corrección:** en tus notas el herpes simple dice «ARN de doble cadena»; todos los herpesvirus son **ADN de doble cadena**.
+## Virus ARN
+| Familia ¦ Virus ¦ Lo importante
+| Picornaviridae ¦ Enterovirus (polio, coxsackie) ¦ Bucofaringe y tejido linfático; SNC y mano-pie-boca; verano; vacuna oral o inactivada de polio
+| Picornaviridae ¦ Rinovirus ¦ Resfriado común, faringitis, otitis, sinusitis; invierno
+| Coronaviridae ¦ Coronavirus (SARS-CoV-2) ¦ ARN (+) con envoltura «en corona»; vías respiratorias altas (33–35 °C); vacunas ARNm, virus atenuado, vector
+| Paramyxoviridae ¦ Sarampión (morbillivirus) ¦ R0 de 12–18, de los más altos; aerosoles; manchas de Koplik
+| Paramyxoviridae ¦ Parotiditis ¦ Inflama las parótidas; incubación 12–25 días; vacuna triple viral (SRP) al año y refuerzo escolar
+| Pneumoviridae ¦ Virus sincitial respiratorio ¦ Vías altas y bajas; grave en bebés y ancianos
+| Orthomyxoviridae ¦ Influenza A, B, C ¦ ARN (−) con hemaglutinina y neuraminidasa; invierno; pandemias (AH1N1 pdm09); antivirales y vacuna anual
+| Rhabdoviridae ¦ Rabia (lyssavirus) ¦ Saliva por mordedura; se multiplica en músculo y sube al SNC en semanas o meses
+| Filoviridae ¦ Ébola ¦ Fiebre hemorrágica (ver abajo)
+| Reoviridae ¦ Rotavirus ¦ ARN doble cadena; fecal-oral; diarrea en niños; invierno y primavera
+| Flaviviridae ¦ Dengue, zika, fiebre amarilla, † hepatitis C ¦ Arbovirus (artrópodos); ARN (+) con envoltura
+| Togaviridae ¦ Chikungunya (alfavirus) ¦ Arbovirus
+| Matonaviridae ¦ Rubéola (rubivirus) ¦ Leve en niños; en el embarazo: aborto y rubéola congénita
+| Retroviridae ¦ VIH (lentivirus) ¦ Infecta linfocitos T CD4 y macrófagos; fluidos corporales; antirretrovirales
+! **Corrección:** la «lengua de fresa» no es del sarampión (es de la escarlatina y de Kawasaki); el signo típico del sarampión son las **manchas de Koplik**. Y el chikungunya es un alfavirus (Togaviridae), no un flavivirus.
+## Hepatitis virales
+| Virus ¦ Familia ¦ Transmisión ¦ Lo importante
+| A ¦ Picornavirus ¦ Fecal-oral ¦ Aguda, gravedad moderada; no se cronifica
+| B ¦ Hepadnavirus ¦ Sexual, parenteral, perinatal ¦ Puede cronificarse; hay vacuna
+| C ¦ Flavivirus ¦ Parenteral (sexual menos) ¦ Se cronifica en ~70 %; hoy es curable con antivirales
+| † D ¦ Deltavirus ¦ Parenteral ¦ Solo infecta si hay hepatitis B
+| † E ¦ Hepevirus ¦ Fecal-oral ¦ Grave en embarazadas
+## Ébola (Filoviridae)
+- ARN de cadena sencilla (−) con envoltura lipídica (sale por gemación); la glicoproteína se une al receptor **NPC1**.
+- Infecta macrófagos, células dendríticas y hepatocitos; viaja en células inmunes a hígado, timo y bazo.
+- Reservorio: murciélagos; contagio por fluidos corporales. Endémico en África; **mortalidad 25–90 %**.
+- Clínica: inicia como gripe (cefalea, artralgias), luego vómito y diarrea, coagulopatía con trombos y hemorragias múltiples, choque.
+- Diagnóstico: **PCR** y ELISA (el cultivo tarda demasiado y es peligroso).
+- Prevención: vacuna **rVSV-ZEBOV** (no disponible en México), aislamiento, EPP, desinfección y rastreo de contactos.
+- Tratamiento: anticuerpos monoclonales (**Inmazeb**, † Ebanga) y soporte (rehidratación, coagulopatía, hemodinamia).
+! **Corrección:** el remdesivir se probó en ébola pero fue **menos eficaz** que los anticuerpos monoclonales; Inmazeb no es un antiviral sino un cóctel de anticuerpos.
+? ¿Qué tipo de genoma tiene el VIH en Baltimore? :: Clase VI: ARN (+) con transcriptasa inversa.
+? ¿Dónde hace latencia el virus de Epstein-Barr? :: En linfocitos B de memoria.
+? Signo patognomónico del sarampión :: Manchas de Koplik (puntos blancos en la mucosa oral).
+? ¿Qué hepatitis se cronifica más? :: La C (~70 % de los infectados).
+Q ¿Cuál virus es de ADN? :: *Citomegalovirus :: Rotavirus :: Influenza :: Rabia || Todos los herpesvirus (incluido CMV) son ADN de doble cadena.
+Q Embarazada con exantema leve en el primer trimestre; preocupa el riesgo de malformaciones. El virus más probable es… :: *Rubéola :: Rinovirus :: Rotavirus :: Influenza B || La rubéola congénita causa cataratas, sordera y cardiopatía, y aborto.
+Q El receptor celular del virus del ébola es… :: *NPC1 :: CD4 :: ECA2 :: Ácido siálico || NPC1 está en los endosomas; CD4 es del VIH, ECA2 del SARS-CoV-2 y el ácido siálico de la influenza.
+
+# Parasitología
+> Protozoos intestinales, urogenitales y sanguíneos, y helmintos (nematodos, trematodos y cestodos).
+## Protozoos intestinales y urogenitales
+- Colonizan bucofaringe, duodeno y colon; vía **fecal-oral**; zonas tropicales y países en desarrollo. Mejorar la calidad de vida y el saneamiento es la medida más eficaz.
+| Parásito ¦ Grupo ¦ Formas ¦ Enfermedad
+| Entamoeba histolytica ¦ Ameba (seudópodos) ¦ Trofozoíto (activo) y quiste (infeccioso) ¦ Amebiasis: necrosis del colon (citotoxinas), † absceso hepático
+| Giardia lamblia ¦ Flagelado ¦ Quiste y trofozoíto ¦ Basta ingerir 10–25 quistes; se une a las vellosidades del duodeno: diarrea y malabsorción
+| Trichomonas vaginalis ¦ Flagelado ¦ Solo trofozoíto ¦ Transmisión sexual; vaginitis, uretritis, prostatitis
+| Balantidium coli ¦ Ciliado ¦ Trofozoíto y quiste ¦ Reservorio el cerdo; diarrea parecida a la amebiasis, úlceras
+## Protozoos de la sangre y los tejidos
+- **Plasmodium** (paludismo): *P. vivax* (el más común), *P. falciparum* (el más letal), *P. ovale* y *P. malariae*. Lo transmite el mosquito ***Anopheles*** (esporozoítos) o una transfusión. Fiebre en picos > 40 °C con escalofríos y sudoración nocturna; afectación del SNC (malaria cerebral).
+- **Toxoplasma gondii**: intracelular; el **gato** es el hospedero definitivo y elimina ooquistes en las heces. Benigno en la mayoría, grave en inmunocomprometidos y **teratógeno**.
+- **Trypanosoma**: *T. brucei* (enfermedad del sueño, mosca tsé-tsé, afecta el SNC hasta el coma) y ***T. cruzi*** (enfermedad de **Chagas**, chinche besucona): hepatoesplenomegalia, **miocarditis**, megaesófago y megacolon.
+! **Corrección:** el toxoplasma no se transmite al humano «en forma de esporas por vía respiratoria»; se adquiere al **ingerir** ooquistes (tierra, arena del gato, verduras mal lavadas) o quistes en carne mal cocida, y por vía transplacentaria.
+## Helmintos: nematodos
+- Gusanos redondos macroscópicos; adultos en el tubo digestivo.
+- **Ascaris lumbricoides**: 20–35 cm, rosado; agua y alimentos con huevos; las larvas atraviesan el duodeno y pasan por hígado, corazón y pulmón (ciclo de Loss) antes de volver al intestino; desnutrición.
+- **Trichuris trichiura**: vive en el ciego; los huevos en heces son infectantes; ligado a falta de saneamiento.
+- **Trichinella spiralis** (triquinosis): carne de cerdo con larvas enquistadas → gusanos adultos en el intestino → larvas viajan y se enquistan en el **músculo**.
+- † **Uncinarias** (Ancylostoma, Necator): penetran la piel desde el suelo y causan anemia ferropénica.
+## Trematodos y cestodos
+- **Fasciola hepatica**: gusano plano con ventosas; necesita un **caracol** como hospedero intermedio; del intestino pasa al hígado: hepatitis no viral, fibrosis y riesgo de cáncer.
+- **Cestodos**: planos en forma de cinta; cabeza (escólex) con órganos de fijación; hermafroditas; cada segmento es una **proglótide** y la cadena es el **estróbilo**.
+| ¦ Taenia solium ¦ Taenia saginata
+| Hospedero intermedio ¦ Cerdo ¦ Res
+| Escólex ¦ Con ganchos (rostelo armado) ¦ Sin ganchos
+| Tamaño ¦ 2–7 m ¦ Hasta 10 m
+| Riesgo especial ¦ **Cisticercosis**: si se ingieren huevos, los cisticercos se enquistan en músculo, cerebro, pulmón y ojo ¦ Solo teniasis intestinal
+! **Corrección:** en tus notas *T. saginata* aparece como «tenia solium» y con esparganosis; *T. saginata* es la tenia de la **res** y la esparganosis la causa otro cestodo (*Spirometra*).
++ † La **neurocisticercosis** es la principal causa de epilepsia adquirida en México y Latinoamérica.
+? ¿Qué Plasmodium es el más letal? :: Plasmodium falciparum.
+? ¿Quién transmite la enfermedad de Chagas? :: La chinche besucona (triatomino), con Trypanosoma cruzi.
+? Hospedero definitivo de Toxoplasma gondii :: El gato.
+? ¿Qué es una proglótide? :: Cada segmento del cuerpo de un cestodo; la cadena de proglótides es el estróbilo.
+Q Paciente con miocardiopatía dilatada y megaesófago que vivió en una casa de adobe en zona rural. Sospechas… :: *Enfermedad de Chagas :: Toxoplasmosis :: Paludismo :: Triquinosis || T. cruzi daña miocardio y plexos del tubo digestivo; la chinche vive en casas de adobe.
+Q La cisticercosis se adquiere al… :: *Ingerir huevos de Taenia solium :: Comer carne de res cruda :: Ser picado por Anopheles :: Caminar descalzo en tierra || Comer carne de cerdo con cisticercos da teniasis intestinal; los huevos (fecal-oral) dan cisticercosis.
+Q Protozoo que solo tiene forma de trofozoíto y se transmite por vía sexual :: *Trichomonas vaginalis :: Giardia lamblia :: Entamoeba histolytica :: Balantidium coli || No forma quistes, por eso necesita contacto directo.

@@ -1589,6 +1589,28 @@ Historia clínica y motivos de consulta por edad	eye examination
 Glosario de síntomas	eye examination
 Exploración: agudeza, campo, color y pupilas	visual acuity eye examination
 Pares craneales en la exploración	cranial nerves eye examination
+# dx-oftalmo:inicio (lo pone tools-oftalmo/patch_diag.py --amboss)
+Agudeza visual: cómo se mide y se anota	visual acuity
+Lámpara de hendidura (biomicroscopía)	slit lamp examination
+Tonometría y presión intraocular	tonometry intraocular pressure
+Oftalmoscopía directa e indirecta	ophthalmoscopy
+OCT y otros estudios de imagen	optical coherence tomography
+Ojo rojo: tabla comparativa	red eye
+Fármacos en oftalmología: dosis	ophthalmic drugs
+Casos clínicos	-
+Casos clínicos › Caso 1: Ojo rojo muy doloroso con halos y vómito	-
+Casos clínicos › Caso 2: Usuaria de lentes de contacto con dolor y mancha blanca	-
+Casos clínicos › Caso 3: Pérdida súbita de la visión, sin dolor	-
+Casos clínicos › Caso 4: Destellos, moscas volantes y una cortina	-
+Casos clínicos › Caso 5: Cefalea, mandíbula que se cansa y baja visual	-
+Casos clínicos › Caso 6: Ojo rojo con lagrimeo después de un catarro	-
+Casos clínicos › Caso 7: Recién nacido con mucho pus en los ojos	-
+Casos clínicos › Caso 8: Joven con lumbalgia y ojo rojo con fotofobia	-
+Casos clínicos › Caso 9: Diabético que nunca se ha revisado los ojos	-
+Casos clínicos › Caso 10: Niño con fiebre, ojo salido y dolor al moverlo	-
+Casos clínicos › Caso 11: Dolor y lagrimeo con una figura ramificada	-
+Casos clínicos › Caso 12: Salpicadura de cal en el ojo	-
+# dx-oftalmo:fin
 #
 # ===== 5º semestre · Otorrinolaringología =====
 Anatomía de cavidad oral, glándulas y faringe	oral cavity anatomy

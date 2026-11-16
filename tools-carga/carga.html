@@ -1,0 +1,38 @@
+<!--carga-->
+<style id="cargaCss">
+/* ===== pantalla de carga: tapa el negro mientras la portada termina de cargar (tools-carga) ===== */
+#carga{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;
+  padding:env(safe-area-inset-top) 16px env(safe-area-inset-bottom);color:#f3f8f5;
+  background:radial-gradient(120% 80% at 50% 36%,#0a6b4e 0%,#00543c 42%,#003b2a 100%);
+  font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;transition:opacity .42s ease,visibility 0s linear .42s}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) #carga{background:radial-gradient(120% 80% at 50% 36%,#0d5c44 0%,#00432f 40%,#002619 100%)}}
+:root[data-theme="dark"] #carga{background:radial-gradient(120% 80% at 50% 36%,#0d5c44 0%,#00432f 40%,#002619 100%)}
+#carga.fuera{opacity:0;visibility:hidden;pointer-events:none}
+#carga .cg{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;transform:translateY(-4%)}
+#carga .cg-sello{position:relative;width:132px;height:132px;margin-bottom:6px}
+#carga .cg-sello::before{content:"";position:absolute;inset:-12px;border-radius:50%;border:2px solid rgba(242,107,33,.55);
+  box-shadow:0 0 0 1px rgba(201,162,74,.25),0 0 42px rgba(242,107,33,.28);animation:cgLatido 1.6s ease-in-out infinite}
+#carga .cg-sello img{width:100%;height:100%;border-radius:50%;display:block;background:#fff;
+  box-shadow:0 14px 36px -12px rgba(0,0,0,.6)}
+#carga .cg-t{font-weight:800;font-size:clamp(22px,5.6vw,34px);letter-spacing:-.01em;line-height:1.05;margin:0}
+#carga .cg-t b{color:#f26b21;font-weight:800}
+#carga .cg-s{font-family:"EB Garamond",Georgia,"Times New Roman",serif;font-style:italic;font-size:clamp(14px,3.6vw,17px);color:#a8cbb9;margin:0}
+#carga .cg-ecg{width:220px;max-width:70vw;height:40px;margin-top:4px;overflow:visible}
+#carga .cg-ecg path{fill:none;stroke:#f26b21;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:520;stroke-dashoffset:520;animation:cgEcg 1.5s cubic-bezier(.5,0,.3,1) infinite;filter:drop-shadow(0 0 4px rgba(242,107,33,.55))}
+#carga .cg-l{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#a8cbb9;margin:0}
+@keyframes cgLatido{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.06);opacity:.45}}
+@keyframes cgEcg{0%{stroke-dashoffset:520;opacity:1}62%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+@media (prefers-reduced-motion:reduce){#carga{transition:none}#carga .cg-sello::before,#carga .cg-ecg path{animation:none}#carga .cg-ecg path{stroke-dashoffset:0}}
+</style>
+<div id="carga" role="status" aria-live="polite" aria-label="Cargando la Carrera de Medicina">
+  <div class="cg">
+    <div class="cg-sello"><img alt="" width="176" height="176" src="data:image/jpeg;base64,{{ESCUDO}}"></div>
+    <p class="cg-t">Carrera de <b>Medicina</b></p>
+    <p class="cg-s">Repositorio de Marcos David Reinah Guzmán</p>
+    <svg class="cg-ecg" viewBox="0 0 220 40" aria-hidden="true"><path d="M0 24H62l8-6 8 6h12l6 10 9-32 9 30 6-8h22l9-7 9 7H220"/></svg>
+    <p class="cg-l">Cargando…</p>
+  </div>
+</div>
+<script>/* se quita sola: al terminar de cargar la página, o 2 s después de tener el contenido, lo que pase primero */(function(){var c=document.getElementById("carga");if(!c)return;var ya=0;function quitar(){if(ya)return;ya=1;c.classList.add("fuera");setTimeout(function(){c.remove();var s=document.getElementById("cargaCss");if(s)s.remove()},480)}if(document.readyState==="complete")quitar();else{addEventListener("load",quitar);document.addEventListener("DOMContentLoaded",function(){setTimeout(quitar,2000)})}setTimeout(quitar,12000)})()</script>
+<!--/carga-->

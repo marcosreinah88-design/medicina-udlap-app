@@ -722,7 +722,9 @@ Todo en español de México, con guías mexicanas (GPC, NOM) cuando aplique. ${t
     /* si el contador está corriendo, que se vea la píldora aunque no abras Estudio */
     tickPomo();
   }
-  window.Estudio={open,close,anking,examMat:e=>examMat(e)};
+  window.Estudio={open,close,anking,examMat:e=>examMat(e),
+    /* para «Qué repasar hoy» (repaso.js): los mismos mazos por materia que la pestaña Tarjetas */
+    decks:()=>decks(),ready:()=>Promise.all([loadBank(),loadSRS()])};
   if(location.hash==="#mat-anking")anking();
   /* AnKing vive dentro de Estudio: en la app no hace falta su propio botón en la portada (el artefacto, sin Estudio, lo conserva) */
   {const ak=document.getElementById("akBtn");if(ak)ak.remove()}

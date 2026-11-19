@@ -193,3 +193,44 @@ P ¿Cuál es el diagnóstico y la prioridad del manejo?
 - Depresión con síntomas psicóticos :: La conciencia y la atención estarían conservadas.
 - Demencia por cuerpos de Lewy de novo :: No explica un inicio de horas tras una cirugía con infección.
 E CAM positivo con 1 + 2 + (3 o 4): inicio agudo y fluctuante, inatención, pensamiento desorganizado o alteración del nivel de conciencia. La demencia previa es de los mayores factores de riesgo.
+
+# Patologías en las adicciones: alcohol y cannabis
+## Dejó la marihuana hace 4 días
+C Mujer de 21 años, universitaria, que fuma cannabis a diario desde hace 2 años. Lo suspendió hace 4 días; a las 48 h empezó con irritabilidad, ansiedad, insomnio, menos apetito, inquietud, sudoración, cefalea, dolor abdominal y deseo intenso de volver a fumar. FC 98, TA 120/80.
+P ¿Cuál es el diagnóstico más probable?
+* Abstinencia de cannabis :: Consumo diario por meses + ≥3 síntomas en ≈1 semana tras suspender (criterios A y B), con malestar significativo.
+- Intoxicación por cannabis :: No hay consumo reciente; los síntomas aparecen al suspender.
+- Trastorno de ansiedad generalizada :: Requiere ≥6 meses de preocupación; aquí es un cuadro de días ligado a la suspensión.
+- Abstinencia de alcohol :: La sustancia suspendida es cannabis.
+- Trastorno psicótico inducido :: No hay delirios ni alucinaciones.
+E Caso de la presentación. Falta descartar otra enfermedad mental, afección médica o consumo de otra sustancia (criterio D).
+
+## Bebe más cada día
+C Hombre de 22 años que bebe diario desde hace 2 años y cada vez más. Ha intentado dejarlo sin éxito, tiene conflictos familiares y problemas de salud por el alcohol y aun así sigue. Necesita más para sentir el mismo efecto y, si no bebe, tiembla, suda, no duerme y se le antoja mucho. FC 108, TA 140/90.
+P ¿Cuál es el diagnóstico más completo?
+* Trastorno por consumo de alcohol grave, con abstinencia :: Cumple 7 criterios (≥6 = grave): más cantidad, intentos fallidos, craving, problemas interpersonales, sigue pese al daño, tolerancia y abstinencia.
+- Trastorno por consumo de alcohol moderado :: Moderado es 4–5 criterios; tiene 7.
+- Intoxicación por alcohol :: Describe un patrón de 2 años, no un episodio agudo.
+- Abuso de alcohol :: El DSM-5 fusionó abuso y dependencia en un solo trastorno con gravedad.
+- Trastorno por consumo de alcohol leve :: Leve es 2–3 criterios.
+E Caso de la presentación. Gravedad: leve 2–3, moderado 4–5, grave ≥6.
+
+## Insectos en la pared †
+C Hombre de 48 años, 2 días después de operarse de cadera, está tembloroso, sudoroso, agitado, FC 120, y dice ver insectos en la pared. Su familia refiere que bebe 1 litro de tequila diario. †
+P ¿Qué es lo más adecuado?
+* Abstinencia de alcohol: benzodiacepina y tiamina antes de glucosa :: Cese de consumo intenso + autonómicos, temblor, alucinaciones transitorias y agitación; el manejo de primera línea son benzodiacepinas †.
+- Haloperidol solo :: Baja el umbral convulsivo y no trata la causa †.
+- Intoxicación por cannabis :: No hay consumo de cannabis; el cuadro aparece al suspender alcohol.
+- Glucosa IV antes de la tiamina :: Puede precipitar encefalopatía de Wernicke †.
+- Esquizofrenia de inicio tardío :: Cuadro agudo con hiperactividad autonómica tras suspender alcohol.
+E Delirium tremens: 48–96 h tras el último trago, con desorientación; es la forma más grave †.
+
+## Vómito que mejora con agua caliente
+C Hombre de 24 años que fuma marihuana a diario desde hace 3 años. Es su tercera visita por episodios de vómito cíclico y dolor abdominal; dice que solo mejora con baños calientes. Endoscopia y laboratorios normales.
+P ¿Cuál es el diagnóstico?
+* Síndrome de hiperémesis cannabinoide :: Vómito cíclico y dolor abdominal en consumidor crónico, alivio con baños calientes; se resuelve solo al suspender.
+- Abstinencia de cannabis :: Sigue consumiendo; no hay suspensión.
+- Gastroparesia :: No hay diabetes ni alivio con baños calientes.
+- Intoxicación por cannabis :: Daría euforia, inyección conjuntival y ↑ apetito, no vómito cíclico.
+- Pancreatitis alcohólica :: Laboratorios normales y sin consumo de alcohol.
+E Tratamiento definitivo: suspender el cannabis.

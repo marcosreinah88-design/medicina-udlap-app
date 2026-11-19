@@ -51,7 +51,7 @@ var seen={};
 function query(title,ctx){
   var nt=norm(title),nc=norm(ctx),v=TAB[nc+" › "+nt];
   if(v==null)v=TAB[nt];
-  if(v==null&&TAB["* "+nt]!=null){var ce=TAB[nc];v=ce&&ce!=="-"?(ce+" "+TAB["* "+nt]).trim():null}
+  if(v==null&&TAB["* "+nt]!=null){var ce=TAB[nc],ge=TAB["* "+nt];v=ge==="-"?"-":ce&&ce!=="-"?(ce+" "+ge).trim():null}
   seen[nc+" › "+nt]=[title.trim(),ctx.trim(),v==null?0:1];
   if(v==null){var c2=TAB[nc];return c2&&c2!=="-"?c2:title.trim()}
   return v==="-"?"":v}

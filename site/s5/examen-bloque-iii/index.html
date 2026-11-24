@@ -1,0 +1,1357 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Examen Bloque III</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="../../fonts/gaa65f3420f.css">
+<style>
+/* Layout: hoja de laboratorio. Cabecera tipo reporte, una tarjeta de pregunta, banda de resultado al final. */
+:root {
+  --bg: #f3f5f2;
+  --paper: #ffffff;
+  --ink: #1b2620;
+  --muted: #5d6b63;
+  --line: #d8ded9;
+  --accent: #2c6a4c;       /* verde biliar */
+  --accent-soft: #e2efe7;
+  --bili: #b9800c;         /* ámbar bilirrubina */
+  --bili-soft: #fbf1db;
+  --ok: #1f7a4a;
+  --ok-soft: #e1f3e8;
+  --bad: #b23a2e;
+  --bad-soft: #fbe6e2;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121815; --paper: #1a221e; --ink: #e5ece7; --muted: #9aaba1; --line: #2c3832;
+  --accent: #6cc196; --accent-soft: #1f3329; --bili: #e2b04a; --bili-soft: #352a12;
+  --ok: #6fd39d; --ok-soft: #173325; --bad: #f08a7c; --bad-soft: #3a1f1b; color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --bg: #121815; --paper: #1a221e; --ink: #e5ece7; --muted: #9aaba1; --line: #2c3832;
+  --accent: #6cc196; --accent-soft: #1f3329; --bili: #e2b04a; --bili-soft: #352a12;
+  --ok: #6fd39d; --ok-soft: #173325; --bad: #f08a7c; --bad-soft: #3a1f1b; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.5; }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 20px; }
+h1, h2 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.1; letter-spacing: -0.01em; }
+h2 { font-size: 22px; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.ref { color: var(--muted); font-size: 15px; margin: 6px 0 0; }
+.ref em { font-style: italic; }
+
+/* Cabecera de reporte */
+.report { border-top: 3px solid var(--accent); padding-top: 14px; display: grid; gap: 10px; }
+.panel { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-family: var(--f-mono); font-size: 12px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); background: var(--paper); }
+
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 22px; display: grid; gap: 16px; min-width: 0; }
+
+/* Inicio */
+.start p { margin: 0; }
+.btns { display: flex; flex-wrap: wrap; gap: 10px; }
+button { font: inherit; cursor: pointer; }
+.btn { font-family: var(--f-body); font-weight: 600; font-size: 16px; padding: 11px 18px; border-radius: 8px; border: 1px solid var(--accent); background: var(--accent); color: var(--paper); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:disabled { opacity: .45; cursor: default; }
+.btn:focus-visible, .opt:focus-visible { outline: 3px solid var(--bili); outline-offset: 2px; }
+
+/* Barra de progreso */
+.progress { display: grid; gap: 6px; }
+.progress-top { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); flex-wrap: wrap; }
+.bar { display: grid; grid-template-columns: repeat(50, 1fr); gap: 2px; height: 8px; }
+.bar i { background: var(--line); border-radius: 1px; }
+.bar i.ok { background: var(--ok); }
+.bar i.bad { background: var(--bad); }
+.bar i.cur { background: var(--bili); }
+
+/* Pregunta */
+.qhead { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+.topic { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.qtext { font-size: 19px; font-weight: 600; margin: 0; }
+.opts { display: grid; gap: 10px; }
+.opt { display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; text-align: left; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); line-height: 1.4; }
+.opt:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.opt .k { font-family: var(--f-mono); font-size: 13px; width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; color: var(--muted); }
+.opt:disabled { cursor: default; }
+.opt.correct { border-color: var(--ok); background: var(--ok-soft); }
+.opt.correct .k { background: var(--ok); color: var(--paper); border-color: var(--ok); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .k { background: var(--bad); color: var(--paper); border-color: var(--bad); }
+.opt.dim { opacity: .6; }
+
+.explain { border-left: 3px solid var(--bili); background: var(--bili-soft); padding: 12px 14px; border-radius: 0 8px 8px 0; display: grid; gap: 6px; }
+.explain .verdict { font-weight: 600; }
+.explain .verdict.ok { color: var(--ok); }
+.explain .verdict.bad { color: var(--bad); }
+.explain p { margin: 0; }
+.explain .src { font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.navrow { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.hint { font-size: 13px; color: var(--muted); }
+
+/* Resultados */
+.score { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.score .big { font-family: var(--f-display); font-size: 64px; font-weight: 700; line-height: 1; }
+.score .of { font-family: var(--f-mono); color: var(--muted); }
+.grade { font-weight: 600; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { font-family: var(--f-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+td.n { font-family: var(--f-mono); text-align: right; white-space: nowrap; }
+.meter { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; min-width: 60px; }
+.meter b { display: block; height: 100%; background: var(--accent); }
+.meter b.low { background: var(--bad); }
+.meter b.mid { background: var(--bili); }
+.tablewrap { overflow-x: auto; }
+.review { display: grid; gap: 14px; }
+.ritem { border-top: 1px solid var(--line); padding-top: 12px; display: grid; gap: 6px; }
+.ritem p { margin: 0; }
+.ritem .yours { color: var(--bad); }
+.ritem .right { color: var(--ok); font-weight: 600; }
+.ritem .why { color: var(--muted); font-size: 15px; }
+footer { font-size: 13px; color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) { .card.enter { animation: rise .22s ease-out; } }
+@keyframes rise { from { transform: translateY(6px); opacity: .6; } to { transform: none; opacity: 1; } }
+@media (max-width: 480px) { .card { padding: 16px; } .qtext { font-size: 18px; } }
+
+/* Barra de herramientas: sonido + Pomodoro (fija arriba al hacer scroll) */
+.tools { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 8px 0; background: var(--bg); border-bottom: 1px solid var(--line); }
+.tool { font-family: var(--f-body); font-weight: 600; font-size: 14px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); min-height: 34px; }
+.tool:hover { border-color: var(--accent); }
+.tool.icon { padding: 6px 10px; }
+.tool:focus-visible { outline: 3px solid var(--bili); outline-offset: 2px; }
+.pomo { --p: 0; position: relative; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 3px 4px 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); overflow: hidden; }
+.pomo::after { content: ""; position: absolute; left: 0; bottom: 0; height: 3px; width: calc(var(--p) * 100%); background: var(--bad); transition: width .5s linear; }
+.pomo[data-mode="short"]::after, .pomo[data-mode="long"]::after { background: var(--ok); }
+.pomo-label { font-family: var(--f-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.pomo[data-mode="focus"] .pomo-label { color: var(--bad); }
+.pomo[data-mode="short"] .pomo-label, .pomo[data-mode="long"] .pomo-label { color: var(--ok); }
+.pomo-time { font-size: 20px; min-width: 62px; }
+.pomo-count { font-size: 13px; color: var(--muted); padding-right: 6px; }
+.pomo-aviso { flex-basis: 100%; font-size: 14px; font-weight: 600; color: var(--accent); }
+
+/* Juego */
+.btn.bili { background: var(--bili); border-color: var(--bili); color: var(--paper); }
+.game-promo { border-color: var(--bili); background: linear-gradient(135deg, var(--bili-soft), var(--paper) 70%); }
+.game-promo p { margin: 0; }
+.hud { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.hud > div { display: grid; gap: 2px; }
+.hud-t { text-align: right; }
+.hud-n { font-size: 28px; font-weight: 500; line-height: 1.1; }
+.mult { font-style: normal; font-size: 16px; color: var(--paper); background: var(--bili); padding: 1px 6px; border-radius: 4px; vertical-align: middle; }
+.tbar-wrap { position: relative; }
+.flash { position: absolute; left: 50%; top: -12px; transform: translateX(-50%); font-size: 24px; font-weight: 500; pointer-events: none; padding: 0 8px; border-radius: 6px; background: var(--paper); }
+.flash.ok { color: var(--ok); } .flash.bad { color: var(--bad); }
+.tbar { height: 10px; background: var(--line); border-radius: 5px; overflow: hidden; }
+.tbar b { display: block; height: 100%; background: var(--accent); border-radius: 5px; }
+.tbar b.hot { background: var(--bad); }
+@media (prefers-reduced-motion: no-preference) {
+  .flash { animation: floatup .65s ease-out forwards; }
+  .card.pulse-ok { animation: pulse .35s ease-out; }
+  .card.shake { animation: shake .35s ease-in-out; }
+  .tbar b.hot { animation: blink .6s ease-in-out infinite alternate; }
+}
+@keyframes floatup { from { opacity: 1; transform: translate(-50%, 6px); } to { opacity: 0; transform: translate(-50%, -18px); } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--ok); } 100% { box-shadow: 0 0 0 10px transparent; } }
+@keyframes shake { 0%,100% { transform: none; } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+@keyframes blink { to { opacity: .55; } }
+@media (max-width: 480px) { .hud-n { font-size: 22px; } }
+
+/* Modos de estudio */
+.modes { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.mode { display: grid; gap: 4px; text-align: left; padding: 14px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); }
+.mode b { font-family: var(--f-display); font-size: 18px; }
+.mode span { font-size: 14px; color: var(--muted); }
+.mode:hover { border-color: var(--accent); background: var(--accent-soft); }
+.mode.main { border-color: var(--accent); background: var(--accent-soft); }
+.mode:focus-visible, .btn.sm:focus-visible { outline: 3px solid var(--bili); outline-offset: 2px; }
+.btn.sm { font-size: 14px; padding: 5px 12px; }
+.tag { font-family: var(--f-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--bili); border: 1px solid var(--bili); border-radius: 4px; padding: 1px 6px; }
+</style>
+
+<div class="wrap">
+  <header class="report">
+    <div class="eyebrow">Gastro LMR3053 · 3er parcial · Examen de práctica</div>
+    <h1>Examen de práctica del Bloque III</h1>
+    <p class="ref">Hígado, vía biliar, páncreas y oncología digestiva, con énfasis en fisiopatología. Preguntas basadas en los artículos troncales del bloque: Kwo 2026, Castaneda 2021, Muratori 2023, Lleo 2020, Targher 2025, Villanueva 2025, Baveno VIII 2026, Lammert 2016, Tokio 2018 (Kiriyama y Miura), Mittal 2025 y el posicionamiento de la AMG 2026.</p>
+    <div class="panel" aria-label="Temas">
+      <span class="chip">PFH</span><span class="chip">Virales</span><span class="chip">HAI</span><span class="chip">CBP</span><span class="chip">MASLD</span><span class="chip">Cirrosis</span><span class="chip">Baveno</span><span class="chip">Litiasis</span><span class="chip">Colangitis</span><span class="chip">Páncreas</span><span class="chip">Onco</span>
+    </div>
+    <div class="tools" id="tools" aria-label="Sonido y temporizador"></div>
+  </header>
+  <main id="app"></main>
+  <footer>Cada explicación cita el artículo y la sección de donde sale; † marca lo que no viene de los artículos. Tu avance, tu récord y el Pomodoro se guardan en este navegador.</footer>
+</div>
+
+<script>
+// Sonido (WebAudio, sin archivos), música del juego y temporizador Pomodoro.
+const lsGet = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+
+const Snd = (() => {
+  let ctx = null, master = null, noise = null;
+  let muted = lsGet("qph-mute") === "1";
+  function ac() {
+    if (!ctx) {
+      const C = window.AudioContext || window.webkitAudioContext;
+      if (!C) return null;
+      ctx = new C();
+      master = ctx.createGain();
+      master.gain.value = muted ? 0 : 0.6;
+      master.connect(ctx.destination);
+    }
+    if (ctx.state === "suspended") ctx.resume();
+    return ctx;
+  }
+  // Nota simple con envolvente corta; `at` es tiempo absoluto del contexto.
+  function tone(f, dur, o = {}) {
+    const c = ac(); if (!c) return;
+    const t = o.at || c.currentTime, vol = o.vol ?? 0.2;
+    const osc = c.createOscillator(), g = c.createGain();
+    osc.type = o.type || "sine";
+    osc.frequency.setValueAtTime(f, t);
+    if (o.slide) osc.frequency.exponentialRampToValueAtTime(o.slide, t + dur);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + 0.005);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    osc.connect(g); g.connect(o.dest || master);
+    osc.start(t); osc.stop(t + dur + 0.02);
+  }
+  function hat(at, dest, vol = 0.05) {
+    const c = ac(); if (!c) return;
+    if (!noise) {
+      noise = c.createBuffer(1, c.sampleRate * 0.1, c.sampleRate);
+      const d = noise.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    }
+    const s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+    s.buffer = noise; f.type = "highpass"; f.frequency.value = 7000;
+    g.gain.setValueAtTime(vol, at); g.gain.exponentialRampToValueAtTime(0.0001, at + 0.05);
+    s.connect(f); f.connect(g); g.connect(dest || master);
+    s.start(at); s.stop(at + 0.06);
+  }
+  const seq = (notas, paso, o) => { const c = ac(); if (!c) return; notas.forEach((f, i) => tone(f, o.dur || paso * 1.6, { ...o, at: c.currentTime + i * paso })); };
+  return {
+    ac, tone, hat,
+    get master() { ac(); return master; },
+    click() { if (muted) return; tone(1250, 0.045, { type: "triangle", vol: 0.16, slide: 820 }); },
+    ok() { if (!muted) seq([660, 990], 0.07, { type: "sine", vol: 0.18 }); },
+    bad() { if (!muted) tone(220, 0.22, { type: "sawtooth", vol: 0.07, slide: 140 }); },
+    chime() { if (!muted) seq([784, 988, 1175, 1568], 0.16, { type: "sine", vol: 0.2, dur: 0.6 }); },
+    fin() { if (!muted) seq([523, 659, 784, 1047, 784, 1047], 0.11, { type: "square", vol: 0.06 }); },
+    get muted() { return muted; },
+    toggle() {
+      muted = !muted; lsSet("qph-mute", muted ? "1" : "0");
+      if (master) master.gain.setTargetAtTime(muted ? 0 : 0.6, ctx.currentTime, 0.02);
+      return muted;
+    },
+  };
+})();
+
+// Clic en cualquier botón de la página (también los que se crean después).
+document.addEventListener("click", (ev) => {
+  const b = ev.target.closest("button");
+  if (b && !b.disabled && !b.hasAttribute("data-mudo")) Snd.click();
+}, true);
+
+// Música de 8 bits para el juego: Lam–Fa–Do–Sol con arpegio, bajo y hi-hat.
+const Musica = (() => {
+  const PROG = [[57, 60, 64], [53, 57, 60], [48, 52, 55], [55, 59, 62]];
+  const ARP = [0, 1, 2, 1, 0, 2, 1, 2];
+  const mtof = (m) => 440 * Math.pow(2, (m - 69) / 12);
+  let timer = null, step = 0, next = 0, bpm = 120, bus = null;
+  let on = lsGet("qph-musica") !== "0";
+  function sched() {
+    const c = Snd.ac();
+    while (next < c.currentTime + 0.12) {
+      const dur = 60 / bpm / 2, ch = PROG[Math.floor(step / 8) % 4];
+      Snd.tone(mtof(ch[ARP[step % 8]] + 12), dur * 0.9, { type: "square", vol: 0.035, at: next, dest: bus });
+      if (step % 4 === 0) Snd.tone(mtof(ch[0] - 12), dur * 3, { type: "triangle", vol: 0.16, at: next, dest: bus });
+      if (step % 2 === 1) Snd.hat(next, bus, 0.03);
+      if (step % 8 === 4) Snd.tone(110, 0.12, { type: "sine", vol: 0.18, slide: 50, at: next, dest: bus });
+      step++; next += dur;
+    }
+  }
+  return {
+    get on() { return on; },
+    start() {
+      if (!on || timer) return;
+      const c = Snd.ac(); if (!c) return;
+      bus = c.createGain(); bus.gain.value = 1; bus.connect(Snd.master);
+      step = 0; next = c.currentTime + 0.05; bpm = 120;
+      timer = setInterval(sched, 25);
+    },
+    stop() {
+      if (!timer) return;
+      clearInterval(timer); timer = null;
+      const b = bus, c = Snd.ac();
+      b.gain.setTargetAtTime(0, c.currentTime, 0.05);
+      setTimeout(() => b.disconnect(), 400);
+    },
+    tempo(b) { bpm = b; },
+    toggle() { on = !on; lsSet("qph-musica", on ? "1" : "0"); if (!on) this.stop(); return on; },
+  };
+})();
+
+// Pomodoro: 25 min enfoque, 5 de descanso, 15 de descanso largo cada 4.
+const Pomodoro = (() => {
+  const KEY = "qph-pomodoro";
+  const MIN = { focus: 25, short: 5, long: 15 };
+  const NOMBRE = { focus: "Enfoque", short: "Descanso", long: "Descanso largo" };
+  const TITULO = document.title;
+  let P = null;
+  try { P = JSON.parse(lsGet(KEY)); } catch (e) {}
+  if (!P || !MIN[P.mode]) P = { mode: "focus", running: false, remain: MIN.focus * 60000, endAt: 0, count: 0 };
+  let el = null, aviso = "";
+
+  const save = () => lsSet(KEY, JSON.stringify(P));
+  const restante = () => (P.running ? Math.max(0, P.endAt - Date.now()) : P.remain);
+  const fmt = (ms) => { const s = Math.ceil(ms / 1000); return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`; };
+
+  function cambiar(mode) { P.mode = mode; P.running = false; P.remain = MIN[mode] * 60000; save(); }
+  function terminar() {
+    if (P.mode === "focus") {
+      P.count++;
+      cambiar(P.count % 4 === 0 ? "long" : "short");
+      aviso = "¡Pomodoro terminado! Toca descansar.";
+    } else {
+      cambiar("focus");
+      aviso = "Descanso terminado. A estudiar.";
+    }
+    Snd.chime();
+    pintar();
+  }
+  function tick() {
+    if (!el) return;
+    if (P.running && restante() <= 0) return terminar();
+    el.querySelector(".pomo-time").textContent = fmt(restante());
+    const total = MIN[P.mode] * 60000;
+    el.style.setProperty("--p", (1 - restante() / total).toFixed(4));
+    document.title = P.running ? `${fmt(restante())} ${NOMBRE[P.mode]} · ${TITULO}` : TITULO;
+  }
+  function pintar() {
+    el.dataset.mode = P.mode;
+    el.innerHTML = `
+      <span class="pomo-label">${NOMBRE[P.mode]}</span>
+      <span class="pomo-time mono" aria-live="off"></span>
+      <button class="tool" id="pomo-go">${P.running ? "Pausa" : "Iniciar"}</button>
+      <button class="tool icon" id="pomo-reset" title="Reiniciar" aria-label="Reiniciar">↺</button>
+      <button class="tool icon" id="pomo-skip" title="Saltar a la siguiente fase" aria-label="Saltar fase">⏭</button>
+      <span class="pomo-count mono" title="Pomodoros completados">🍅 ${P.count}</span>
+      ${aviso ? `<span class="pomo-aviso" role="status">${aviso}</span>` : ""}`;
+    el.querySelector("#pomo-go").onclick = () => {
+      aviso = "";
+      if (P.running) { P.remain = restante(); P.running = false; }
+      else { P.endAt = Date.now() + P.remain; P.running = true; }
+      save(); pintar();
+    };
+    el.querySelector("#pomo-reset").onclick = () => { aviso = ""; cambiar(P.mode); pintar(); };
+    el.querySelector("#pomo-skip").onclick = () => { aviso = ""; cambiar(P.mode === "focus" ? "short" : "focus"); pintar(); };
+    tick();
+  }
+  return {
+    montar(nodo) {
+      el = nodo;
+      if (P.running && restante() <= 0) terminar(); else pintar();
+      setInterval(tick, 500);
+    },
+  };
+})();
+
+</script>
+<script>
+// Examen de práctica, 3er parcial (Bloque III): hígado, vía biliar, páncreas y oncología digestiva.
+// Basado en los 12 artículos troncales extraídos en atlas-bloque-3/fuentes/ (01–11).
+// En cada pregunta la opción correcta es o[0]; la página baraja las opciones al mostrarlas.
+// "c": true marca un caso clínico. Lo que no viene de los artículos lleva †.
+const TEMAS = {
+  A: "Pruebas hepáticas alteradas",
+  B: "Hepatitis virales",
+  C: "Hepatitis autoinmune",
+  D: "Colangitis biliar primaria",
+  E: "MASLD",
+  F: "Cirrosis",
+  G: "Hipertensión portal (Baveno VIII)",
+  H: "Litiasis biliar",
+  I: "Colangitis aguda (TG18)",
+  J: "Pancreatitis aguda",
+  K: "Oncología digestiva (AMG)"
+};
+
+const FUENTES = {
+  A: "Kwo et al. Gastroenterology 2026",
+  B: "Castaneda et al. World J Gastroenterol 2021",
+  C: "Muratori et al. BMJ 2023",
+  D: "Lleo et al. Lancet 2020",
+  E: "Targher et al. N Engl J Med 2025",
+  F: "Villanueva et al. Nat Rev Gastroenterol Hepatol 2025",
+  G: "Baveno VIII, J Hepatol 2026",
+  H: "Lammert et al. Nat Rev Dis Primers 2016",
+  I: "Kiriyama y Miura, TG18, J Hepatobiliary Pancreat Sci 2018",
+  J: "Mittal et al. Diagnostics 2025",
+  K: "Remes-Troche et al. (AMG) Rev Gastroenterol Mex 2026"
+};
+
+const PREGUNTAS = [
+  // ───────────── A. Pruebas hepáticas ─────────────
+  { t: "A", c: true,
+    q: "Mujer de 34 años con malestar general. ALT 420 U/L (LSN 33), FA 140 U/L (LSN 120). ¿Qué patrón de lesión tiene?",
+    o: ["Hepatocelular: el factor R es ≈11", "Mixto: el factor R está entre 2 y 5", "Colestásico: el factor R es <2", "No se puede clasificar sin la bilirrubina"],
+    e: "Factor R = (ALT/LSN) ÷ (FA/LSN) = (420/33) ÷ (140/120) = 12.7 ÷ 1.17 ≈ 11. Un R >5 es hepatocelular, 2–5 mixto y <2 colestásico. La bilirrubina no entra en la fórmula.",
+    s: "Patrones de lesión, factor R" },
+  { t: "A", c: true,
+    q: "Hombre de 22 años al que, tras dos días de ayuno por gastroenteritis, le encuentran bilirrubina total 2.8 mg/dL con directa 0.3 mg/dL. BH, reticulocitos, ALT, AST y FA normales. ¿Qué sigue?",
+    o: ["Diagnosticar síndrome de Gilbert y tranquilizar al paciente, sin más estudios", "Pedir CPRM para descartar obstrucción biliar", "Pedir biopsia hepática", "Iniciar estudio de hemólisis con Coombs y frotis, porque la hiperbilirrubinemia indirecta siempre es hemolítica"],
+    e: "Hiperbilirrubinemia indirecta aislada (≤7 mg/dL) con PFH normales y sin hemólisis (BH y reticulocitos normales) es Gilbert; el ayuno la hace evidente. No necesita imagen ni biopsia: la vía biliar no participa en una elevación de bilirrubina no conjugada.",
+    s: "Bilirrubina" },
+  { t: "A", c: true,
+    q: "Adolescente de 16 años con hepatitis aguda, anemia hemolítica con Coombs negativo, AST 380 U/L, ALT 160 U/L y FA muy baja. ¿Qué diagnóstico debes descartar primero?",
+    o: ["Enfermedad de Wilson", "Hepatitis A", "Hepatitis autoinmune tipo 2", "Hepatotoxicidad por paracetamol"],
+    e: "La combinación de hepatitis aguda, hemólisis Coombs negativa, AST mayor que ALT y FA baja (cociente FA/bilirrubina bajo) es la firma de la enfermedad de Wilson fulminante. Pide ceruloplasmina, cobre en orina de 24 h y anillo de Kayser-Fleischer.",
+    s: "Aminotransferasas y fosfatasa alcalina" },
+  { t: "A", c: true,
+    q: "Hombre de 70 años hospitalizado por choque séptico. Al día siguiente: AST 4100 U/L, ALT 3200 U/L, DHL muy elevada; a las 72 h las aminotransferasas ya bajaron a la mitad. ¿Cuál es la causa más probable?",
+    o: ["Hepatitis isquémica", "Hepatitis viral aguda", "Colangitis por coledocolitiasis", "DILI por los antibióticos"],
+    e: "En hospitalizados, la hepatitis isquémica es la causa más frecuente de ALT o AST >1000 U/L (42.7 %). Es típico el ascenso brusco tras hipotensión, la DHL muy alta y el descenso rápido en pocos días. En la UCI tiene mortalidad cercana al 50 %, por la enfermedad de base.",
+    s: "Paciente hospitalizado y en UCI" },
+  { t: "A", c: true,
+    q: "Embarazada de 34 semanas, asintomática, con FA de 2× LSN, GGT normal, ALT y bilirrubina normales. ¿Qué haces?",
+    o: ["Nada más: es FA de origen placentario", "US hepático y CPRM por posible colestasis obstructiva", "AMA, porque la FA aislada sugiere colangitis biliar primaria", "Ácidos biliares séricos y adelantar el parto"],
+    e: "Una FA alta con GGT (o 5′-nucleotidasa) normal indica origen extrahepático: hueso o placenta. En el tercer trimestre la placenta duplica la FA de forma fisiológica. La colestasis intrahepática del embarazo da prurito y ácidos biliares altos, no una FA aislada.",
+    s: "Fosfatasa alcalina; embarazo" },
+
+  // ───────────── B. Hepatitis virales ─────────────
+  { t: "B",
+    q: "Un donador de sangre tiene HBsAg negativo, anti-HBc total positivo y anti-HBs positivo. ¿Cómo interpretas la serología?",
+    o: ["Infección pasada y resuelta", "Inmunidad solo por vacuna", "Infección crónica por VHB", "Periodo de ventana de una infección aguda"],
+    e: "Anti-HBs + anti-HBc = infección resuelta. La vacuna solo genera anti-HBs, porque contiene HBsAg y no el antígeno core. HBsAg positivo por más de 6 meses sería crónica, y la ventana es HBsAg y anti-HBs negativos con anti-HBc IgM positivo.",
+    s: "Serología del VHB" },
+  { t: "B", c: true,
+    q: "Hombre de 28 años con ictericia de 3 semanas, ALT 1450 U/L. HBsAg negativo, anti-HBs negativo, anti-HBc IgM positivo. IgM anti-VHA y anti-VHC negativos. ¿Qué tiene?",
+    o: ["Hepatitis B aguda en periodo de ventana", "Hepatitis B crónica reactivada", "Falso positivo: sin HBsAg no hay infección por VHB", "Hepatitis B resuelta"],
+    e: "En el periodo de ventana el HBsAg ya se depuró y el anti-HBs aún no aparece; el único marcador positivo es el anti-HBc IgM. Por eso el anti-HBc IgM es indispensable en el panel de hepatitis aguda.",
+    s: "Serología del VHB" },
+  { t: "B", c: true,
+    q: "Hombre de 24 años con HBsAg positivo desde hace 3 años, HBeAg positivo, DNA-VHB 10⁸ UI/mL y ALT persistentemente normal, sin fibrosis en elastografía. ¿En qué fase está?",
+    o: ["Inmunotolerante: se vigila con ALT y DNA periódicos", "Inmunoeliminación (HBeAg positivo activa): requiere tratamiento", "Portador inactivo: HBeAg positivo con DNA bajo", "Hepatitis B HBeAg negativa"],
+    e: "La fase inmunotolerante es HBeAg positiva, con DNA altísimo y ALT normal, típica de jóvenes infectados al nacer. La fase de inmunoeliminación se reconoce por ALT elevada (≥5× LSN en el artículo). En la inmunotolerante, sin fibrosis, se vigila; el tratamiento se valora si la ALT sube o hay fibrosis o antecedente familiar de CHC.",
+    s: "Historia natural del VHB" },
+  { t: "B",
+    q: "¿Cuál de estos fármacos NO es de primera línea para la hepatitis B crónica por su baja barrera genética a la resistencia?",
+    o: ["Lamivudina", "Entecavir", "Tenofovir disoproxil fumarato", "Tenofovir alafenamida"],
+    e: "Entecavir, TDF y TAF tienen alta barrera genética y son la primera línea. La lamivudina (y la telbivudina, el adefovir) selecciona resistencia con frecuencia y ya no se usa como monoterapia inicial.",
+    s: "Tratamiento del VHB" },
+  { t: "B", c: true,
+    q: "Mujer de 50 años con anti-VHC positivo en un tamizaje; el ARN-VHC es indetectable en dos determinaciones. ALT normal. ¿Qué significa?",
+    o: ["Infección resuelta (o falso positivo del anticuerpo): no requiere tratamiento", "Hepatitis C crónica: iniciar sofosbuvir/velpatasvir", "Hepatitis C aguda en fase temprana: repetir anticuerpo en 6 meses y tratar", "Infección oculta: pedir biopsia hepática"],
+    e: "El anticuerpo indica contacto, no infección activa. El diagnóstico de infección requiere ARN-VHC positivo. Con ARN negativo el virus se depuró (espontáneamente en 15–50 %) o el anticuerpo fue un falso positivo; el anti-VHC no protege de la reinfección.",
+    s: "Diagnóstico del VHC" },
+  { t: "B", c: true,
+    q: "Hombre con cirrosis por VHC genotipo 1, Child-Pugh B (8 puntos), con TFGe de 75 mL/min. ¿Qué esquema eliges?",
+    o: ["Sofosbuvir/velpatasvir", "Glecaprevir/pibrentasvir", "Interferón pegilado más ribavirina", "Esperar el trasplante sin tratar el virus por ahora"],
+    e: "Los inhibidores de la proteasa NS3/4A (glecaprevir, grazoprevir, voxilaprevir) están contraindicados en Child-Pugh B y C. Sofosbuvir/velpatasvir es pangenotípico y sirve en la cirrosis descompensada; el sofosbuvir se evita solo con TFGe <30. El interferón está contraindicado en descompensados.",
+    s: "Tratamiento del VHC" },
+  { t: "B", c: true,
+    q: "Usuario de drogas IV con hepatitis B crónica conocida y estable presenta una exacerbación grave con ictericia. Anti-VHD IgM positivo, anti-HBc IgM negativo. ¿Qué esperas?",
+    o: ["Sobreinfección por VHD, que suele cronificarse", "Coinfección VHB-VHD, que suele resolverse sola en semanas", "Seroconversión del HBeAg sin repercusión", "Que el VHD se depure al iniciar tenofovir o entecavir"],
+    e: "Si el VHD llega a alguien que ya tiene VHB crónico (anti-HBc IgM negativo) es sobreinfección: se cronifica en la mayoría y acelera la cirrosis. La coinfección simultánea (anti-HBc IgM positivo) suele resolverse. Los análogos de nucleós(t)idos no actúan contra el VHD; solo el interferón ha demostrado beneficio.",
+    s: "Hepatitis D" },
+  { t: "B", c: true,
+    q: "Receptor de trasplante renal con tacrolimus tiene ALT de 3× LSN desde hace 5 meses. ARN-VHE positivo en sangre y heces. ¿Qué es correcto?",
+    o: ["Es hepatitis E crónica: bajar la inmunosupresión y, si persiste, ribavirina", "La hepatitis E nunca se cronifica: repetir ARN y ALT en 6 meses", "Debe recibir sofosbuvir por 12 semanas, como en el VHC", "Es una infección aguda que se resolverá sola sin cambios"],
+    e: "En inmunocompetentes el VHE no se cronifica, pero en trasplantados los genotipos 3 y 4 (zoonóticos) pueden dar hepatitis crónica y cirrosis. El manejo es bajar la inmunosupresión y, si no basta, ribavirina.",
+    s: "Hepatitis E" },
+  { t: "B", c: true,
+    q: "Hombre de 30 años sano convive con su pareja, diagnosticada ayer con hepatitis A. Nunca se vacunó. ¿Qué profilaxis le das?",
+    o: ["Vacuna contra VHA lo antes posible (dentro de las 2 semanas de la exposición)", "Inmunoglobulina sola, porque la vacuna no sirve después de la exposición", "Nada: la hepatitis A en adultos es siempre leve", "Lamivudina por 4 semanas"],
+    e: "Para la profilaxis posexposición, la vacuna se recomienda de los 12 meses a los 40 años. La inmunoglobulina se prefiere en mayores de 40, menores de 12 meses, inmunosuprimidos o hepatópatas†. En adultos la hepatitis A suele ser más sintomática que en niños.",
+    s: "Hepatitis A" },
+
+  // ───────────── C. Hepatitis autoinmune ─────────────
+  { t: "C", c: true,
+    q: "Mujer de 45 años con ALT 8× LSN. ANA 1:160, IgG 1.2× LSN, biopsia compatible (no típica) con HAI, marcadores virales negativos. ¿Cuántos puntos tiene en el score simplificado y qué significa?",
+    o: ["7 puntos: HAI definitiva", "6 puntos: HAI probable", "8 puntos: HAI definitiva", "5 puntos: no es HAI"],
+    e: "ANA ≥1:80 = 2; IgG >1.1× LSN = 2; histología compatible = 1 (típica sería 2); ausencia de hepatitis viral = 2. Total 7 = HAI definitiva (≥6 es probable).",
+    s: "Score simplificado" },
+  { t: "C",
+    q: "En la inducción de la HAI con prednisolona 0.5 mg/kg/día, ¿cuándo se suele agregar la azatioprina?",
+    o: ["Unas 2 semanas después, a 50 mg/día y luego 1–2 mg/kg", "El mismo día, a dosis plena de 2 mg/kg", "Solo si no hay respuesta al esteroide a los 6 meses", "Nunca: la azatioprina se reserva para la recaída"],
+    e: "Diferir la azatioprina unas 2 semanas permite ver la respuesta al esteroide (lo que también apoya el diagnóstico) y distinguir una posible hepatotoxicidad por azatioprina de la propia hepatitis†. Se empieza con 50 mg/día y se sube a 1–2 mg/kg.",
+    s: "Tratamiento de inducción" },
+  { t: "C", c: true,
+    q: "Paciente con HAI que, tras 4 semanas de prednisolona, solo bajó su ALT 30 %. ¿Qué haces primero?",
+    o: ["Revisar diagnóstico y adherencia", "Subir la prednisolona a 2 mg/kg", "Suspender todo: no es HAI", "Esperar: la respuesta se evalúa hasta los 12 meses"],
+    e: "Para el IAIHG, un descenso de ALT ≤50 % a las 4 semanas es falta de respuesta. La HAI responde casi siempre al esteroide, así que primero se duda del diagnóstico (DILI, Wilson, sobreposición) y de que el paciente tome el fármaco.",
+    s: "Respuesta al tratamiento" },
+  { t: "C", c: true,
+    q: "Mujer de 29 años con HAI en remisión con micofenolato (no toleró la azatioprina) desea embarazarse. ¿Qué le recomiendas?",
+    o: ["Cambiar a otro inmunosupresor antes de concebir, porque el micofenolato es teratógeno", "Continuar el micofenolato, que es seguro en el embarazo", "Suspender toda la inmunosupresión durante el embarazo para proteger al feto", "Contraindicar el embarazo por el riesgo de descompensación"],
+    e: "El micofenolato es teratógeno y debe suspenderse antes de la concepción. La azatioprina se mantiene durante el embarazo. Suspender todo expone a una recaída, que es más peligrosa para la madre y el feto.",
+    s: "Situaciones especiales: embarazo" },
+  { t: "C", c: true,
+    q: "Mujer de 23 años con hepatitis aguda, ANA y SMA positivos, IgG alta, tras 3 meses de minociclina para acné. Responde al esteroide y, al retirarlo a los 6 meses, no recae. ¿Qué es más probable?",
+    o: ["DILI con rasgos autoinmunes", "HAI tipo 1 en remisión sostenida", "HAI tipo 2", "Sobreposición HAI-CBP"],
+    e: "La DILI con rasgos autoinmunes (nitrofurantoína, minociclina) se parece a la HAI, pero no recae al retirar el esteroide; la HAI verdadera recae en la mayoría al suspender el tratamiento.",
+    s: "Diagnóstico diferencial" },
+  { t: "C",
+    q: "¿Cuál de estas condiciones es necesaria para intentar suspender el tratamiento en la HAI?",
+    o: [">2 años de respuesta completa, ALT normal-baja e IgG <12 g/L", "ALT menor de 2× LSN de forma sostenida durante 6 meses", "Haber completado 1 año de tratamiento combinado sin efectos adversos", "Que los ANA y SMA se vuelvan negativos en dos determinaciones"],
+    e: "Se intenta suspender solo tras más de 2 años de respuesta completa (transaminasas e IgG normales, idealmente ALT en la mitad baja e IgG <12 g/L), en monoterapia. Aun así, solo 10–20 % logra quedarse sin inmunosupresión. Los ANA no se usan para seguir la enfermedad.",
+    s: "Suspensión del tratamiento" },
+
+  // ───────────── D. Colangitis biliar primaria ─────────────
+  { t: "D", c: true,
+    q: "Mujer de 52 años con prurito y fatiga. FA 3× LSN, GGT alta, aminotransferasas poco elevadas, AMA 1:320 y US con vía biliar normal. ¿Qué haces?",
+    o: ["Diagnosticar CBP e iniciar AUDC sin biopsia", "Biopsia hepática antes de tratar", "CPRE para descartar coledocolitiasis no vista en el US", "Iniciar prednisona más azatioprina por probable autoinmunidad"],
+    e: "FA elevada con AMA positivos (>1:40) y sin otra causa basta para el diagnóstico; la biopsia no es necesaria. El US normal descarta obstrucción, porque la CBP afecta conductos pequeños. El AUDC 13–15 mg/kg/d es el tratamiento de primera línea, de por vida.",
+    s: "Diagnóstico y tratamiento" },
+  { t: "D", c: true,
+    q: "Mujer de 48 años con colestasis crónica, US normal y AMA negativos. La inmunofluorescencia muestra ANA con patrón de anillo perinuclear. ¿Qué anticuerpo es y qué implica?",
+    o: ["Anti-gp210: apoya CBP y marca peor pronóstico", "Anti-sp100: descarta CBP y sugiere HAI", "Anti-LKM1: indica HAI tipo 2 del adulto", "Anti-SLA: indica HAI de mal pronóstico"],
+    e: "Cerca de 5–10 %† de las CBP son AMA negativas. Los ANA específicos son el anti-sp100 (puntos nucleares múltiples) y el anti-gp210 (anillo perinuclear); este último se asocia a progresión y peor pronóstico.",
+    s: "Autoanticuerpos" },
+  { t: "D", c: true,
+    q: "Mujer con CBP en AUDC a dosis correcta por 12 meses: FA 1.3× LSN, bilirrubina normal. ¿Qué haces?",
+    o: ["Continuar AUDC: es buena respuesta", "Agregar ácido obeticólico", "Agregar bezafibrato", "Suspender AUDC porque ya se normalizó"],
+    e: "La respuesta se evalúa al año. Una definición común de buena respuesta es FA <1.5× LSN con bilirrubina normal. El AUDC no se suspende nunca, ni después del trasplante. Los fármacos de segunda línea se agregan cuando la respuesta es insuficiente.",
+    s: "Respuesta al AUDC" },
+  { t: "D", c: true,
+    q: "Mujer con CBP y respuesta insuficiente al AUDC (FA 2.2× LSN) tiene además prurito intenso que no la deja dormir. ¿Qué segunda línea es más lógica?",
+    o: ["Bezafibrato, porque además mejora el prurito", "Ácido obeticólico, porque mejora el prurito", "Rifampicina sola en lugar del AUDC", "Prednisona"],
+    e: "El ácido obeticólico (agonista FXR) mejora la bioquímica pero empeora el prurito. El bezafibrato (pan-PPAR, 400 mg/d) mejora tanto la bioquímica como el prurito; vigila creatinina, mialgias y la interacción con estatinas.",
+    s: "Segunda línea" },
+  { t: "D",
+    q: "¿Cuál es el primer escalón para el prurito de la CBP?",
+    o: ["Colestiramina", "Rifampicina", "Naltrexona", "Sertralina"],
+    e: "La colestiramina (resina que secuestra ácidos biliares) es la primera opción; se separa del AUDC por unas 4 horas†. La rifampicina es la segunda, con vigilancia de hepatotoxicidad; los antagonistas opioides y la sertralina quedan después.",
+    s: "Síntomas: prurito" },
+  { t: "D", c: true,
+    q: "Mujer de 56 años con CBP y colesterol total de 290 mg/dL, HDL 95 mg/dL, sin otros factores de riesgo. Pregunta si su colesterol la pone en riesgo cardiovascular.",
+    o: ["No se considera aterogénica; las estatinas son seguras si hubiera otra indicación", "Tiene alto riesgo, pero las estatinas están contraindicadas en la CBP", "Debe iniciar estatina de alta intensidad por el colesterol total >240", "El colesterol alto indica cirrosis avanzada y debe ir a trasplante"],
+    e: "En la CBP la hipercolesterolemia se debe sobre todo a HDL y lipoproteína X, y no aumenta claramente el riesgo cardiovascular. Las estatinas son seguras cuando hay otra indicación.",
+    s: "Complicaciones: hiperlipidemia" },
+
+  // ───────────── E. MASLD ─────────────
+  { t: "E", c: true,
+    q: "Hombre de 50 años con esteatosis por US, IMC 31 y glucosa en ayuno de 112 mg/dL. Bebe 2 cervezas a la semana. ALT 58, AST 40 U/L, plaquetas 210 × 10⁹/L. FIB-4 = 1.9. ¿Qué sigue?",
+    o: ["Elastografía transitoria (VCTE)", "Tranquilizarlo: FIB-4 <2.67 descarta fibrosis", "Enviarlo directo a biopsia hepática", "Repetir FIB-4 en 3 años"],
+    e: "FIB-4 <1.30 es riesgo bajo; 1.30–2.67 indeterminado; >2.67 alto. Con valores indeterminados el siguiente paso es una segunda prueba, idealmente VCTE (o ELF). Cumple MASLD: esteatosis más al menos un rasgo cardiometabólico, sin alcohol significativo.",
+    s: "Estratificación de la fibrosis" },
+  { t: "E", c: true,
+    q: "Mujer de 71 años con MASLD y diabetes; FIB-4 = 1.8. ¿Cómo lo interpretas?",
+    o: ["Riesgo bajo: seguimiento en primer nivel", "Riesgo indeterminado: requiere VCTE", "Riesgo alto: enviar al hepatólogo", "El FIB-4 no se puede usar en diabéticos"],
+    e: "El FIB-4 incluye la edad, así que en mayores de 65 años da falsos positivos; por eso se usa 2.0 como corte bajo en ese grupo. Con 1.8 es riesgo bajo, aunque la diabetes amerita manejo metabólico intenso y reevaluación.",
+    s: "Estratificación de la fibrosis" },
+  { t: "E", c: true,
+    q: "Paciente con MASLD, FIB-4 de 2.1 y VCTE de 9.4 kPa. ¿Qué indica?",
+    o: ["Riesgo alto: enviar al hepatólogo", "Riesgo bajo: control anual en atención primaria", "Es cirrosis confirmada: iniciar escrutinio de várices", "Riesgo indeterminado: repetir la VCTE en 3 años"],
+    e: "Una VCTE ≥8.0 kPa (o MRE ≥3.1 kPa, o ELF ≥10.5) define riesgo alto y obliga a referir al hepatólogo. No equivale a cirrosis; sugiere MASH en riesgo (≥F2), que es la población candidata a tratamiento farmacológico.",
+    s: "Estratificación de la fibrosis" },
+  { t: "E", c: true,
+    q: "Hombre con MASH y fibrosis F3 pregunta cuánto peso debe perder para mejorar la fibrosis.",
+    o: ["Al menos 10 % de su peso", "3 % basta para revertir la fibrosis", "5 %", "La fibrosis no mejora con la pérdida de peso"],
+    e: "≥5 % mejora la esteatosis, 7–10 % la inflamación (resolución de MASH) y ≥10 % la fibrosis. El estadio de fibrosis es el mejor predictor de mortalidad y eventos hepáticos.",
+    s: "Tratamiento: estilo de vida" },
+  { t: "E", c: true,
+    q: "Paciente con cirrosis compensada por MASH (F4) pregunta si puede usar resmetirom. ¿Qué le dices?",
+    o: ["No: está aprobado para MASH F2–F3 sin cirrosis", "Sí: está aprobado para cualquier estadio de MASLD", "Sí: es la primera línea en cirrosis descompensada", "No, porque solo se usa en mujeres"],
+    e: "El resmetirom (agonista THR-β, oral) fue el primer fármaco aprobado por la FDA (marzo de 2024) para MASH no cirrótica con fibrosis moderada a avanzada (F2–F3). Su efecto en cirrosis está en estudio.",
+    s: "Tratamiento farmacológico" },
+  { t: "E", c: true,
+    q: "Mujer de 55 años con MASH F2, diabetes tipo 2 e IMC 36. ¿Qué fármaco aporta beneficio hepático y además pérdida de peso?",
+    o: ["Semaglutida 2.4 mg semanal", "Pioglitazona", "Lanifibranor", "Resmetirom, porque baja de peso"],
+    e: "En ESSENCE, la semaglutida 2.4 mg/semana logró resolución de MASH en 62.9 % (vs 34.3 %) y mejoría de fibrosis en 37.0 % (vs 22.4 %), y baja de peso. La pioglitazona y el lanifibranor suben de peso; el resmetirom es neutral en el peso.",
+    s: "Tratamiento farmacológico" },
+
+  // ───────────── F. Cirrosis ─────────────
+  { t: "F",
+    q: "¿Qué valor del gradiente de presión venosa hepática (GPVH) define la hipertensión portal clínicamente significativa?",
+    o: ["≥10 mmHg", "≥5 mmHg", "≥12 mmHg", "≥20 mmHg"],
+    e: "El GPVH normal es <5 mmHg; 5 a <10 es hipertensión portal leve (subclínica); ≥10 es HPCS, el umbral a partir del cual aparecen várices y descompensación. ≥12 es el umbral clásico de sangrado variceal† y ≥16 marca mayor mortalidad.",
+    s: "Hipertensión portal" },
+  { t: "F",
+    q: "¿Cuál es la secuencia fisiopatológica de la hipertensión portal en la cirrosis?",
+    o: ["Primero sube la resistencia intrahepática; después la vasodilatación esplácnica aumenta el flujo portal", "Primero aumenta el flujo esplácnico por exceso de NO y después sube la resistencia intrahepática", "Se debe solo a la fibrosis fija, sin componente vascular dinámico ni esplácnico", "Se debe a trombosis de la vena porta, que aparece desde las etapas tempranas"],
+    e: "El inicio es la resistencia intrahepática (fibrosis, nódulos y un componente dinámico por falta de óxido nítrico en el sinusoide). Después, el exceso de NO esplácnico produce vasodilatación y circulación hiperdinámica, que aumenta el flujo portal y sostiene la hipertensión. Los BBNS actúan sobre este segundo componente.",
+    s: "Fisiopatología" },
+  { t: "F", c: true,
+    q: "Hombre de 60 años con cirrosis compensada por alcohol, ahora en abstinencia. Rigidez hepática 27 kPa, plaquetas 98 × 10⁹/L, TA 125/80. Sin ascitis. ¿Qué haces?",
+    o: ["Iniciar carvedilol (hasta 12.5 mg/día): tiene HPCS y el BBNS previene la descompensación", "Ligadura endoscópica profiláctica de todas las várices antes de cualquier fármaco", "Nada hasta que tenga ascitis", "Propranolol solo si la endoscopia muestra várices grandes"],
+    e: "Rigidez ≥25 kPa confirma HPCS. En compensados con HPCS los BBNS reducen la descompensación o muerte a la mitad (PREDESCI, SHR 0.51), sobre todo por menos ascitis. El carvedilol es el preferido y no hace falta endoscopia de escrutinio si ya recibe betabloqueador.",
+    s: "Prevención de la descompensación" },
+  { t: "F",
+    q: "¿Cuál es la primera descompensación más frecuente de la cirrosis?",
+    o: ["Ascitis", "Hemorragia variceal", "Encefalopatía hepática", "Ictericia"],
+    e: "La ascitis tiene una incidencia acumulada de 25 % a 5 años como primera descompensación, contra ~5 % de hemorragia variceal y ~3 % de encefalopatía manifiesta. Por eso el efecto de los BBNS en PREDESCI se debió sobre todo a menos ascitis.",
+    s: "Historia natural" },
+  { t: "F", c: true,
+    q: "Mujer de 58 años con cirrosis compensada por MASLD e hipertensión arterial, ya en carvedilol 12.5 mg/día con TA 150/95. ¿Qué es correcto?",
+    o: ["Puede subir el carvedilol a 25 mg/día", "El carvedilol nunca debe pasar de 6.25 mg/día", "Debe cambiarse a propranolol a dosis altas", "Debe suspenderse el carvedilol y agregar un IECA"],
+    e: "El carvedilol hasta 12.5 mg/día baja la presión portal casi sin hipotensión. Solo en compensados con hipertensión arterial se acepta subir a 25 mg/día.",
+    s: "Betabloqueadores no selectivos" },
+  { t: "F", c: true,
+    q: "Paciente con cirrosis compensada pregunta qué analgésico puede tomar para una lumbalgia. ¿Qué le recomiendas?",
+    o: ["Paracetamol, hasta 2 g al día", "Ibuprofeno, por ser de venta libre", "Naproxeno a dosis bajas", "Ningún analgésico está permitido"],
+    e: "Dentro del enfoque TESLA (tratar la causa, estilo de vida seguro, evitar riesgos), el paracetamol hasta 2 g/día es seguro. Los AINE se evitan porque favorecen lesión renal, ascitis refractaria y sangrado†.",
+    s: "Medidas generales (TESLA)" },
+  { t: "F",
+    q: "Después de iniciar un BBNS en un paciente compensado, ¿qué cambio del GPVH se considera respuesta hemodinámica?",
+    o: ["Descenso >10 % o a <10 mmHg", "Descenso >50 %", "Descenso a <5 mmHg", "Cualquier descenso de la frecuencia cardiaca a <55 lpm"],
+    e: "En compensados, la respuesta es un descenso >10 % o llegar a <10 mmHg; en descompensados se exige >20 % o <12 mmHg. Con carvedilol, cerca del 70 % alcanza la meta. La frecuencia cardiaca no predice la respuesta portal.",
+    s: "Respuesta hemodinámica" },
+
+  // ───────────── G. Hipertensión portal (Baveno VIII) ─────────────
+  { t: "G", c: true,
+    q: "Hombre con cirrosis llega con hematemesis, TA 95/60, FC 110, Hb 6.8 g/dL. ¿Cuál es el paquete inicial correcto?",
+    o: ["Vasoactivo, ceftriaxona, Hb meta 7–8 g/dL y endoscopia en ≤12 h", "Vasoactivo, transfundir hasta Hb 10 g/dL y plasma para corregir el INR", "Ácido tranexámico, factor VII recombinante y endoscopia en ≤12 h", "Vasoactivo, ceftriaxona y endoscopia diferida a 48 h para estabilizarlo"],
+    e: "Ante sospecha de hemorragia variceal: vasoactivo lo antes posible (2–5 días), cefalosporina de tercera generación, transfusión restrictiva (umbral 7, meta 7–8 g/dL) y endoscopia en las primeras 12 h. No se recomiendan plasma, plaquetas, factor VIIa ni ácido tranexámico de rutina; transfundir de más sube la presión portal.",
+    s: "Hemorragia variceal aguda" },
+  { t: "G",
+    q: "¿Qué se recomienda administrar 30–90 minutos antes de la endoscopia en la hemorragia variceal, si no hay contraindicación?",
+    o: ["Eritromicina 250 mg IV", "Metoclopramida 10 mg IV", "Omeprazol 80 mg IV en bolo como tratamiento de las várices", "Ácido tranexámico 1 g IV"],
+    e: "La eritromicina IV (procinético) vacía el estómago de sangre y mejora la visibilidad. Baveno VIII la recomienda 30–90 min antes de la endoscopia, salvo QT prolongado.",
+    s: "Hemorragia variceal aguda" },
+  { t: "G", c: true,
+    q: "Paciente con hemorragia por várices esofágicas controlada con ligadura. Es Child-Pugh C, 11 puntos. ¿Qué sigue?",
+    o: ["TIPS preventivo en ≤72 h", "Solo BBNS y ligadura programada", "Cirugía de derivación portosistémica urgente", "Sonda de balón por 48 h"],
+    e: "El TIPS preventivo (p-TIPS) está indicado en Child C 10–13, en Child B >7 con sangrado activo en la endoscopia, o con GPVH ≥20 mmHg. Se coloca en ≤72 h y mejora la supervivencia. Child C 14–15 se considera fútil†.",
+    s: "TIPS preventivo" },
+  { t: "G",
+    q: "En la hemorragia variceal aguda, ¿para qué se da lactulosa?",
+    o: ["Para prevenir la encefalopatía al eliminar la sangre del intestino", "Para disminuir la presión portal al reducir el flujo esplácnico", "Como profilaxis de la peritonitis bacteriana espontánea, en lugar de ceftriaxona", "Para corregir la coagulopatía por déficit de vitamina K"],
+    e: "La sangre en el tubo digestivo es una carga proteica que precipita encefalopatía. Baveno VIII recomienda lactulosa oral o en enemas para prevenirla o tratarla. La profilaxis de infecciones es con ceftriaxona.",
+    s: "Hemorragia variceal aguda" },
+  { t: "G", c: true,
+    q: "Hombre con hepatopatía crónica por VHB tratada. Elastografía en ayuno de 8 kPa, sin ascitis, esplenomegalia ni colaterales. ¿Qué concluyes?",
+    o: ["Descarta cACLD", "Tiene cACLD con HPCS probable", "Necesita endoscopia de escrutinio de várices", "Debe iniciar carvedilol"],
+    e: "Una rigidez <10 kPa descarta cACLD (riesgo de descompensación a 3 años ≤1 %); 10–15 la sugiere y >15 la sugiere mucho. Debe medirse en ayuno y confirmarse.",
+    s: "Diagnóstico no invasivo" },
+  { t: "G", c: true,
+    q: "Paciente con cACLD: rigidez 13 kPa y plaquetas 180 × 10⁹/L. ¿Qué indica Baveno VIII?",
+    o: ["Descarta HPCS: no necesita betabloqueador", "Sugiere HPCS: iniciar carvedilol y hacer endoscopia", "Es zona gris: indica TIPS si tiene várices", "Es zona gris: indica medir el GPVH de inmediato"],
+    e: "Rigidez ≤15 kPa con plaquetas ≥150 × 10⁹/L descarta HPCS (VPN >90 %). Sin HPCS no se da betabloqueador. La HPCS se confirma con rigidez ≥25 kPa, ANTICIPATE/NICER ≥75 % o rigidez esplénica >55 kPa.",
+    s: "Diagnóstico no invasivo" },
+  { t: "G", c: true,
+    q: "Paciente con cirrosis y ascitis desarrolla lesión renal aguda que no mejora tras retirar diuréticos y dar albúmina; se diagnostica SHR-LRA. ¿Qué tratamiento prefiere Baveno VIII?",
+    o: ["Terlipresina en infusión continua más albúmina", "Furosemida en dosis alta para forzar la diuresis", "Paracentesis de gran volumen sin albúmina", "Continuar el betabloqueador a la misma dosis"],
+    e: "El SHR-LRA se trata con vasoconstrictor más albúmina; Baveno VIII prefiere la terlipresina en infusión continua iniciando con 2–3 mg/24 h (la norepinefrina es alternativa). El betabloqueador se reduce o suspende en SHR-LRA, PAS <90 o PAM <65.",
+    s: "Ascitis y lesión renal" },
+  { t: "G",
+    q: "¿Cuál de estos hallazgos NO cuenta como evento de descompensación de la cirrosis?",
+    o: ["Encefalopatía grado I", "Ascitis clínicamente evidente", "Hemorragia variceal", "Encefalopatía manifiesta (West Haven ≥II)"],
+    e: "Para Baveno VIII, la encefalopatía grado I, la ascitis visible solo por imagen y el sangrado oculto por gastropatía no se consideran descompensación. Descompensación = ascitis manifiesta, hemorragia variceal o encefalopatía manifiesta.",
+    s: "Definiciones" },
+
+  // ───────────── H. Litiasis biliar ─────────────
+  { t: "H", c: true,
+    q: "Mujer de 45 años con litos vesiculares encontrados en un US hecho por otra razón. Nunca ha tenido dolor. Vesícula de pared delgada, sin calcificación. ¿Qué le recomiendas?",
+    o: ["Observación, sin cirugía", "Colecistectomía laparoscópica programada", "AUDC para disolver los cálculos", "CPRE con esfinterotomía"],
+    e: "Solo 1–4 % por año de los asintomáticos desarrolla síntomas, así que no se opera la litiasis asintomática. La excepción clásica es la vesícula en porcelana.",
+    s: "Tratamiento: asintomáticos" },
+  { t: "H", c: true,
+    q: "Niño de 12 años con esferocitosis hereditaria y cólicos biliares. ¿Qué tipo de cálculo esperas?",
+    o: ["Pigmento negro", "Colesterol", "Pigmento café por infección", "Cálculos de oxalato"],
+    e: "Los cálculos de pigmento negro se forman en la vesícula por exceso de bilirrubina no conjugada en la hemólisis crónica (esferocitosis, anemia de células falciformes) o la cirrosis†. Los de pigmento café se forman en los conductos por estasis e infección (E. coli). Más de 90 % de los cálculos en general son de colesterol.",
+    s: "Tipos de cálculos" },
+  { t: "H", c: true,
+    q: "Hombre de 58 años con dolor en hipocondrio derecho e ictericia. US: colédoco de 10 mm con un cálculo visible en su interior. ¿Qué sigue?",
+    o: ["CPRE directa con extracción del cálculo", "CPRM para confirmar antes de cualquier procedimiento", "Colecistectomía y exploración de la vía biliar sin estudio previo", "Observar porque los cálculos del colédoco suelen pasar solos"],
+    e: "Colangitis, ictericia y cálculo visible en el colédoco por US son predictores fuertes de coledocolitiasis: se va directo a CPRE terapéutica. Con probabilidad intermedia se confirma primero con USE o CPRM (la USE es mejor para cálculos <5 mm).",
+    s: "Coledocolitiasis" },
+  { t: "H", c: true,
+    q: "A un paciente le extrajeron un cálculo del colédoco por CPRE; tiene además colelitiasis. ¿Cuándo debe operarse la vesícula?",
+    o: ["En las primeras 72 h", "En 6–8 semanas, cuando baje la inflamación", "Solo si vuelve a tener síntomas", "Nunca: la esfinterotomía basta"],
+    e: "Después de la CPRE por coledocolitiasis la colecistectomía debe hacerse en ≤72 h. Diferirla 6–8 semanas se asoció a 36 % de eventos biliares recurrentes.",
+    s: "Coledocolitiasis" },
+  { t: "H", c: true,
+    q: "Mujer de 40 años con pancreatitis biliar leve que ya se resolvió. Bilirrubina normal, sin colangitis. ¿Cuál es la conducta?",
+    o: ["Colecistectomía en el mismo internamiento", "CPRE de rutina antes del alta", "Colecistectomía en 3 meses", "Dieta baja en grasa y cirugía solo si recurre"],
+    e: "En la pancreatitis biliar leve, operar en la misma hospitalización reduce la recurrencia de eventos biliares (17 % → 5 %). Sin colangitis ni obstrucción persistente no se necesita CPRE.",
+    s: "Pancreatitis biliar" },
+  { t: "H", c: true,
+    q: "Paciente operada de manga gástrica, con vesícula sana, va a perder mucho peso rápidamente. ¿Qué previene la litiasis?",
+    o: ["AUDC ≥500 mg/día hasta que el peso se estabilice", "Colecistectomía profiláctica en la misma cirugía", "Ezetimiba", "Dieta muy baja en grasa"],
+    e: "La pérdida rápida de peso favorece la litiasis por colesterol. El AUDC (≥500 mg/día) hasta estabilizar el peso la previene; no se recomienda la colecistectomía profiláctica durante la bariátrica.",
+    s: "Prevención" },
+  { t: "H", c: true,
+    q: "Mujer de 32 años con cálculos intrahepáticos y cólicos biliares que reaparecieron después de una colecistectomía. ¿Qué sospechas y cómo se trata?",
+    o: ["Litiasis asociada a bajo fosfolípido (LPAC, mutación ABCB4); se trata con AUDC", "Colangitis esclerosante primaria; se trata con prednisona", "Síndrome de Mirizzi; se trata con cirugía", "Lesión de la vía biliar de la colecistectomía; se trata con hepaticoyeyunoanastomosis"],
+    e: "El síndrome LPAC (ABCB4/MDR3) se sospecha en menores de 40 años con cálculos intrahepáticos y síntomas que vuelven tras la colecistectomía. El AUDC es el tratamiento.",
+    s: "Genética" },
+  { t: "H", c: true,
+    q: "Paciente en terapia intensiva con fiebre y sospecha de colecistitis complicada (posible perforación). ¿Qué estudio de imagen indica la revisión?",
+    o: ["TC abdominal", "Colecistografía oral", "Radiografía simple de abdomen", "Solo exploración del signo de Murphy"],
+    e: "El signo de Murphy tiene sensibilidad de 65 % y especificidad de 87 %, y el US 82 % y 81 % para colecistitis. En el paciente grave, la TC (sensibilidad 94 %) es útil para identificar complicaciones como perforación.",
+    s: "Colecistitis aguda" },
+
+  // ───────────── I. Colangitis aguda (TG18) ─────────────
+  { t: "I", c: true,
+    q: "Mujer de 60 años con fiebre de 38.6 °C, leucocitos 14,500, bilirrubina total 3.1 mg/dL y US con colédoco dilatado. ¿Qué diagnóstico establece TG18?",
+    o: ["Colangitis aguda definitiva (A + B + C)", "Colangitis aguda sospechosa (A + B)", "No cumple criterios porque no tiene dolor abdominal", "No cumple porque falta la triada de Charcot completa"],
+    e: "A = inflamación sistémica (fiebre >38 °C o leucocitos >10,000); B = colestasis (BT ≥2 mg/dL); C = imagen (dilatación biliar). A + B + C = definitiva; A + B o A + C = sospechosa. El dolor abdominal se quitó de los criterios porque daba falsos positivos por colecistitis.",
+    s: "Criterios diagnósticos" },
+  { t: "I", c: true,
+    q: "Hombre de 78 años con colangitis definitiva: fiebre de 39.3 °C, leucocitos 13,000, BT 3.0 mg/dL, albúmina normal. TA, conciencia, creatinina, INR y plaquetas normales. ¿Qué grado tiene y qué requiere?",
+    o: ["Grado II: antibiótico y drenaje biliar temprano", "Grado I: solo antibiótico", "Grado III: soporte orgánico y drenaje urgente", "No se puede graduar sin hemocultivos"],
+    e: "Sin disfunción orgánica no es grado III. Tiene 3 factores de grado II (fiebre ≥39 °C, edad ≥75 años, leucocitos >12,000); basta con 2. El grado II requiere drenaje temprano; en este grado, drenar en <24 h bajó la mortalidad a 30 días (1.7 % vs 3.4 %).",
+    s: "Gravedad y manejo" },
+  { t: "I", c: true,
+    q: "Mujer de 55 años con colangitis definitiva, consciente, TA normal, creatinina 1.0, plaquetas 210,000, pero INR 1.8 sin anticoagulantes. ¿Qué grado tiene?",
+    o: ["Grado III", "Grado I", "No es posible graduar con un solo parámetro", "Grado II"],
+    e: "El grado III requiere una sola disfunción orgánica: cardiovascular (dopamina ≥5 µg/kg/min o cualquier norepinefrina), neurológica, respiratoria (PaO2/FiO2 <300), renal (oliguria o Cr >2.0), hepática (INR >1.5) o hematológica (plaquetas <100,000).",
+    s: "Gravedad" },
+  { t: "I", c: true,
+    q: "Paciente con colangitis grado I tratado con antibiótico. A las 24 h sigue con fiebre y la bilirrubina sube. ¿Qué haces?",
+    o: ["Drenaje biliar", "Cambiar a un antibiótico de mayor espectro y esperar otras 72 h", "Colecistectomía urgente", "Agregar esteroide"],
+    e: "En el grado I el antibiótico suele bastar, pero si no hay respuesta en 24 h (o hay un cálculo en el colédoco que tratar) se drena. La descompresión de elección es endoscópica (CPRE); la cirugía abierta de la vía biliar no se usa para drenar.",
+    s: "Manejo según gravedad" },
+  { t: "I",
+    q: "¿Por qué la triada de Charcot ya no se usa como criterio diagnóstico de colangitis?",
+    o: ["Es muy específica pero poco sensible", "Es muy sensible pero inespecífica", "Porque la fiebre ya no se considera parte de la colangitis", "Porque solo aplica a la colangitis por tumores malignos de la vía biliar"],
+    e: "La triada (fiebre, ictericia y dolor en hipocondrio derecho) casi no da falsos positivos, pero deja sin diagnosticar a la mayoría. Con los criterios TG13/TG18 la tasa diagnóstica sube a 90 % (contra 79.4 % con TG07).",
+    s: "Criterios diagnósticos" },
+  { t: "I",
+    q: "Antes de iniciar el antibiótico en una colangitis aguda, ¿qué muestra debe tomarse?, y ¿qué se cultiva en todo drenaje?",
+    o: ["Hemocultivos antes del antibiótico; bilis en todo drenaje", "Urocultivo; heces en todo drenaje", "Ninguno: el tratamiento es empírico y no se cultiva", "Solo cultivo de bilis, sin hemocultivos"],
+    e: "TG18 recomienda hemocultivos antes del antibiótico (sobre todo en grado II y III) y cultivo de la bilis en todo drenaje, para ajustar el antibiótico al germen.",
+    s: "Manejo inicial" },
+
+  // ───────────── J. Pancreatitis aguda ─────────────
+  { t: "J", c: true,
+    q: "Hombre de 45 años con dolor epigástrico intenso irradiado a la espalda de 3 días. Lipasa 2× LSN. TC: páncreas edematoso con estriación de la grasa peripancreática. ¿Cumple criterios de pancreatitis aguda?",
+    o: ["Sí: cumple 2 de 3 criterios", "No: la lipasa debe ser ≥3× LSN", "No: se necesitan los 3 criterios", "Solo si la amilasa también está elevada"],
+    e: "El diagnóstico requiere 2 de 3: dolor típico, lipasa o amilasa ≥3× LSN, e imagen compatible. La lipasa puede bajar si el paciente llega tarde; aquí bastan dolor e imagen.",
+    s: "Diagnóstico" },
+  { t: "J", c: true,
+    q: "Mujer con pancreatitis aguda biliar que presenta lesión renal (creatinina 2.3 mg/dL) a las 12 h; con líquidos se normaliza a las 36 h. Sin complicaciones locales. Según Atlanta revisada, ¿qué gravedad tiene?",
+    o: ["Moderadamente grave", "Leve", "Grave", "Crítica"],
+    e: "Leve: sin falla orgánica ni complicaciones. Moderadamente grave: falla orgánica transitoria (<48 h) y/o complicaciones locales o sistémicas. Grave: falla orgánica persistente (>48 h).",
+    s: "Clasificación de Atlanta" },
+  { t: "J", c: true,
+    q: "Hombre con pancreatitis aguda y hipoxemia que persiste al día 4 pese al tratamiento. ¿Qué gravedad tiene?",
+    o: ["Grave", "Moderadamente grave", "Leve", "No se clasifica hasta tener la TC contrastada"],
+    e: "La falla orgánica que dura más de 48 h define la pancreatitis grave (~10 % de los casos), la de mayor mortalidad. La clasificación es clínica; no requiere TC.",
+    s: "Clasificación de Atlanta" },
+  { t: "J", c: true,
+    q: "Paciente con pancreatitis aguda en urgencias, sin falla cardiaca ni renal. ¿Cómo indicas los líquidos?",
+    o: ["Ringer lactato guiado por metas (FC <120, uresis >0.5 mL/kg/h), evitando la sobrecarga", "Solución salina 0.9 % a 20 mL/kg/h por 72 h, sin importar la respuesta", "Restringir líquidos a 1 L/día para no aumentar el edema pancreático", "Coloides (almidones) como primera elección para expandir más rápido"],
+    e: "La reanimación en las primeras 24 h reduce SIRS y falla orgánica. Se prefiere Ringer lactato y se ajusta a metas clínicas; la sobrecarga de volumen aumenta las complicaciones, por eso el enfoque actual es moderado y guiado por metas.",
+    s: "Líquidos IV" },
+  { t: "J", c: true,
+    q: "Paciente con pancreatitis aguda leve, sin náusea, con hambre al día 1. ¿Cuándo inicia la vía oral?",
+    o: ["De inmediato, en cuanto la tolere", "Cuando la lipasa se normalice", "Después de 5 días de ayuno", "Solo con nutrición parenteral"],
+    e: "La alimentación oral temprana es segura y protege la barrera intestinal. Si no se tolera, se usa enteral en las primeras 48 h; la parenteral queda para quien no tolera la enteral†. La lipasa no guía la realimentación.",
+    s: "Nutrición" },
+  { t: "J", c: true,
+    q: "Hombre de 38 años con pancreatitis aguda, sin litos en el US, que no bebe alcohol. Suero lechoso, triglicéridos de 2,400 mg/dL. ¿Qué es correcto?",
+    o: ["Es hipertrigliceridemia grave (>1000 mg/dL), tercera causa de pancreatitis", "Los triglicéridos están elevados por la pancreatitis, no son la causa", "Debe hacerse CPRE porque es idiopática", "La hipertrigliceridemia solo causa pancreatitis por encima de 5000 mg/dL"],
+    e: "Triglicéridos >1000 mg/dL = hipertrigliceridemia grave; es la tercera causa (≈9 %), después de los litos (~50 %) y el alcohol (~33 %). Cada 100 mg/dL arriba de 1000 aumenta ~4 % la incidencia. Por eso se pide perfil de lípidos al ingreso.",
+    s: "Etiología" },
+  { t: "J", c: true,
+    q: "Al día 30 de una pancreatitis necrosante, el paciente tiene fiebre y gas en la colección necrótica encapsulada en la TC. ¿Cuál es el manejo?",
+    o: ["Antibiótico y abordaje escalonado (step-up)", "Necrosectomía abierta inmediata", "Solo antibiótico; el drenaje está contraindicado", "Pancreatectomía total"],
+    e: "La necrosis infectada (gas en la TC) se trata con antibiótico y step-up: drenaje primero y, si no basta, necrosectomía endoscópica o mínimamente invasiva. El abordaje escalonado redujo morbilidad y mortalidad frente a la necrosectomía abierta.",
+    s: "Complicaciones locales" },
+  { t: "J", c: true,
+    q: "Paciente que tuvo pancreatitis necrosante extensa presenta esteatorrea y elastasa fecal de 80 µg/g. ¿Qué dosis de pancrelipasa indicas?",
+    o: ["50,000 U de lipasa con cada comida y 25,000 U con cada colación", "5,000 U una vez al día", "50,000 U solo en ayuno, por la mañana", "No se trata: la insuficiencia exocrina se resuelve sola"],
+    e: "La elastasa fecal normal es >200 µg/g; 80 µg/g indica insuficiencia exocrina. La dosis es 50,000 U con cada comida y 25,000 U con colaciones. La necrosis >50 % obliga a dar enzimas.",
+    s: "Secuelas" },
+
+  // ───────────── K. Oncología digestiva (AMG) ─────────────
+  { t: "K", c: true,
+    q: "Hombre de 64 años con disfagia a sólidos que progresa desde hace 6 semanas y pérdida de peso no intencionada; aún tolera líquidos. ¿Qué nivel de referencia corresponde según la AMG?",
+    o: ["Prioritaria (≤2 semanas) para endoscopia", "Electiva (≤4–6 semanas)", "Urgente (<24 h)", "No requiere referencia: iniciar IBP y revalorar en 8 semanas"],
+    e: "La disfagia progresiva, la pérdida de peso no intencionada, el vómito persistente y la HTDA son datos de alarma que ameritan referencia prioritaria. La referencia urgente (<24 h) se reserva para intolerancia a la vía oral o HTDA con inestabilidad.",
+    s: "Cáncer de esófago: referencia" },
+  { t: "K", c: true,
+    q: "Mujer de 66 años con acalasia diagnosticada hace 25 años presenta disfagia que empeora. ¿Qué cáncer debes buscar?",
+    o: ["Carcinoma epidermoide de esófago (riesgo ~50 veces mayor)", "Adenocarcinoma de unión esofagogástrica por Barrett", "Linfoma MALT", "Tumor del estroma gastrointestinal"],
+    e: "La acalasia aumenta unas 50 veces el riesgo de carcinoma escamoso, que aparece 20–25 años después de los síntomas, por estasis e irritación crónica de la mucosa.",
+    s: "Cáncer de esófago: población de riesgo" },
+  { t: "K",
+    q: "¿Cuál de estos es dato de alarma de cáncer gástrico que obliga a referencia inmediata?",
+    o: ["Ganglio supraclavicular izquierdo (Virchow) palpable", "Dispepsia aislada de 3 meses en una mujer de 30 años", "Pirosis que responde a IBP", "Distensión posprandial que mejora con evacuar"],
+    e: "El ganglio de Virchow y el nódulo de la hermana María José sugieren enfermedad avanzada y ameritan referencia inmediata. La dispepsia aislada no es dato de alarma.",
+    s: "Cáncer gástrico: alarma" },
+  { t: "K",
+    q: "Según el protocolo de Sídney modificado, ¿cuántas biopsias gástricas se toman y de dónde?",
+    o: ["5: 2 antro, 2 cuerpo, 1 incisura", "2: una de antro y una de cuerpo", "4: 2 de antro y 2 de fondo", "6: una por cada cara del estómago"],
+    e: "Sídney modificado: 2 antro + 2 cuerpo + 1 incisura = 5 biopsias. Permiten estadificar gastritis atrófica y metaplasia intestinal (OLGA/OLGIM) para definir el riesgo de cáncer gástrico.",
+    s: "Cáncer gástrico: endoscopia" },
+  { t: "K", c: true,
+    q: "Un médico pide ACE y CA 19-9 para \"descartar\" cáncer gástrico en un paciente con pérdida de peso. ¿Qué es correcto?",
+    o: ["No sirven para diagnosticar ni descartar", "Si ambos son normales, descartan cáncer gástrico", "El CA 19-9 es el marcador de elección para cáncer gástrico temprano", "Son útiles como tamizaje poblacional en mayores de 50"],
+    e: "Los marcadores tumorales tienen sensibilidad <50 % y no sirven para diagnosticar ni descartar cáncer gástrico. El diagnóstico es endoscópico con biopsia.",
+    s: "Cáncer gástrico: diagnóstico" },
+  { t: "K",
+    q: "¿Cuál de estos es un indicador de calidad de la colonoscopia según el posicionamiento?",
+    o: ["Tiempo de retirada >8 minutos", "Tasa de detección de adenomas >15 %", "Escala de Boston total ≥3 puntos", "Llegar al ángulo hepático en >95 %"],
+    e: "Indicadores: Boston >2 por segmento, intubación cecal documentada, retirada >8 min, tasa de detección de adenomas >35 % (>40 % en hombres) y de lesiones serradas >6 %. Cada 1 % de aumento en la TDA reduce ~3 % el cáncer de intervalo.",
+    s: "Cáncer colorrectal: colonoscopia de calidad" },
+  { t: "K", c: true,
+    q: "Hombre de 55 años asintomático, sin antecedentes familiares, quiere \"checarse el colon\" en un programa de tamizaje poblacional. Según la AMG, ¿cuál es la estrategia?",
+    o: ["FIT y colonoscopia si es positiva", "Colonoscopia directa a toda la población", "ACE sérico anual como prueba de tamizaje", "Colon por enema con doble contraste"],
+    e: "En la detección poblacional se usan pruebas no invasivas como la FIT, y la colonoscopia se reserva como estudio confirmatorio tras un resultado positivo. Ante sospecha clínica (sangrado, anemia, cambio en el hábito) se va directo a colonoscopia.",
+    s: "Cáncer colorrectal: tamizaje" },
+  { t: "K", c: true,
+    q: "Paciente de 70 años con anemia ferropénica sin causa aparente y trombocitosis de 520,000/µL. ¿Qué haces?",
+    o: ["Endoscopia y colonoscopia", "Hierro oral y control en 6 meses, sin estudios", "Solo frotis de sangre periférica para descartar mieloproliferativo", "Repetir BH en 1 año"],
+    e: "La anemia ferropénica es un dato de alarma general de neoplasia digestiva en adultos mayores, y la trombocitosis >450,000/µL inexplicada también obliga a buscar cáncer.",
+    s: "Datos de alarma" }
+];
+
+// Fisiología de las pruebas hepáticas (Kwo et al. Gastroenterology 2026).
+// La opción correcta es o[0].
+PREGUNTAS.push(
+  {"t":"A","f":true,"q":"Según Kwo y cols., ¿qué reacción catalizan la ALT y la AST?","o":["Transfieren grupos α-amino para formar piruvato y oxaloacetato","Hidrolizan ésteres de fosfato en la membrana canalicular","Conjugan la bilirrubina con ácido glucurónico en el retículo","Transfieren grupos γ-glutamilo entre péptidos y aminoácidos"],"e":"Kwo y cols. dicen que estas enzimas *\"catalyze the transfer of α-amino groups of alanine and aspartate to form pyruvate and oxaloacetate, respectively\"*. La hidrólisis de ésteres de fosfato es la función de la FA.","s":"Aminotransferasas"},
+  {"t":"A","f":true,"q":"¿Por qué la AST es menos específica que la ALT para enfermedad hepática?","o":["Está también en corazón, músculo, riñón y cerebro","Solo está en el citosol del hepatocito periportal","Tiene una vida media más larga, de unas 47 horas","Se sintetiza en el epitelio de los conductos biliares"],"e":"Kwo y cols. dicen que la AST *\"is more widely distributed within the liver as well as in cardiac, skeletal, kidney, and brain tissue, with a shorter serum half-life of 17 hours due to more rapid clearance. Therefore, AST is less specific than ALT for liver disease\"*.","s":"Aminotransferasas"},
+  {"t":"A","f":true,"q":"¿Qué explica el cociente AST/ALT >2 en la enfermedad hepática por alcohol?","o":["Déficit de piridoxina, que deprime más la ALT","Mayor síntesis de AST inducida por el etanol","Destrucción de músculo esquelético por miopatía alcohólica","Colestasis intrahepática por el alcohol"],"e":"Kwo y cols. dicen que un cociente >2 sugiere ALD, *\"which is explained by a deficiency of pyridoxine, with depression of ALT levels to a greater degree than AST\"*. Una AST >400 U/L es poco probable en ALD.","s":"Aminotransferasas"},
+  {"t":"A","f":true,"q":"¿A qué se atribuye el aumento del cociente AST/ALT en la cirrosis?","o":["Menor depuración de AST y menor síntesis de ALT","Mayor síntesis de ALT por los nódulos regenerativos","Hemólisis secundaria al hiperesplenismo","Deficiencia de vitamina K por colestasis crónica"],"e":"Kwo y cols. dicen que este patrón *\"has been attributed to reduced hepatic clearance of AST, possible mitochondrial injury, and reduced ALT synthesis\"*.","s":"Aminotransferasas"},
+  {"t":"A","f":true,"q":"Un paciente tiene AST aislada elevada con ALT, CK y todo lo demás normal. ¿Qué artefacto describen Kwo y cols.?","o":["Macro-AST: complejos de AST con inmunoglobulinas","Hemólisis in vitro de la muestra por definición","Hepatitis isquémica","Déficit de piridoxina"],"e":"Kwo y cols. dicen: *\"An isolated elevated AST level may represent an artifact due to complexes of AST with immunoglobulins (macro-AST)\"*.","s":"Aminotransferasas"},
+  {"t":"A","f":true,"q":"¿Dónde se encuentra principalmente la fosfatasa alcalina hepática?","o":["En la membrana canalicular del hepatocito","En el citosol del hepatocito periportal","En las mitocondrias","En las células de Kupffer"],"e":"Kwo y cols. dicen que la FA es *\"a family of 4 isoenzymes that catalyze hydrolysis of phosphate esters that are found primarily in the canalicular membrane of hepatocytes, as well as in bone, placenta, intestine, and kidney\"*.","s":"Fosfatasa alcalina"},
+  {"t":"A","f":true,"q":"En la colestasis, ¿por qué sube la fosfatasa alcalina sérica?","o":["Mayor síntesis canalicular y paso basolateral al suero","Necrosis de hepatocitos que liberan la enzima del citosol","Menor depuración renal de la enzima por la bilirrubina","Fuga de la isoenzima ósea por resorción aumentada"],"e":"Kwo y cols. dicen que en la colestasis el aumento de FA *\"is related to increased synthesis in the canalicular membrane, with translocation of the enzyme to the basal lateral surface of the hepatocyte and release into the serum\"*. Por eso tarda más en subir que las aminotransferasas.","s":"Fosfatasa alcalina"},
+  {"t":"A","f":true,"q":"¿Por qué puede elevarse la FA sin que suba la bilirrubina?","o":["Sube aun con alteraciones menores del flujo biliar","Porque la FA solo se eleva cuando hay hemólisis","Porque la bilirrubina se elimina por completo por el riñón","Porque la FA es una prueba de función y no de lesión"],"e":"Kwo y cols. dicen: *\"The elevation in alkaline phosphatase may occur even if the impairment to bile flow is minor and insufficient to increase serum bilirubin levels\"*.","s":"Fosfatasa alcalina"},
+  {"t":"A","f":true,"q":"En la obstrucción aguda por un cálculo, ¿qué patrón temporal de las pruebas describen Kwo y cols.?","o":["Aminotransferasas bruscas; FA y bilirrubina graduales","FA aislada muy alta desde el primer minuto del dolor","Bilirrubina indirecta aislada sin cambio en enzimas","Descenso de todas las pruebas en las primeras horas"],"e":"Kwo y cols. describen la colestasis aguda por cálculo retenido o colangitis *\"in which there is an abrupt elevation in aminotransferase levels with gradual elevations in alkaline phosphatase and bilirubin\"*.","s":"Fosfatasa alcalina"},
+  {"t":"A","f":true,"q":"¿Cuál es la vida media de la albúmina y por qué no sirve en la falla aguda?","o":["≈18 días, y se acorta en la enfermedad aguda","≈17 horas; cambia demasiado rápido para medirla","≈47 horas; por eso refleja lesión y no función","≈7 días; depende de la vitamina K como el TP"],"e":"Kwo y cols. dicen que la albúmina es *\"synthesized by the liver with a half-life of approximately 18 days; any acute illness may reduce its half-life\"*. Se correlaciona con la gravedad de la enfermedad crónica.","s":"Pruebas de función"},
+  {"t":"A","f":true,"q":"¿Por qué el TP refleja la función hepática con más sensibilidad que la albúmina?","o":["Incorpora los factores I, II, V, VII y X","Porque mide el número y la función de las plaquetas","Porque no se modifica por la vitamina K ni los anticoagulantes","Porque se correlaciona con la bilirrubina sérica"],"e":"Kwo y cols. dicen que el TP *\"is a more sensitive reflection of liver function than albumin and assesses hemostasis, incorporating factors I, II, V, VII, and X\"*. También se prolonga por déficit de vitamina K o anticoagulantes.","s":"Pruebas de función"},
+  {"t":"A","f":true,"q":"En la cirrosis, ¿qué significa un INR prolongado?","o":["No protege de trombosis ni predice sangrado","Protege contra la trombosis de la vena porta","Predice el sangrado después de procedimientos","Obliga a transfundir plasma antes de procedimientos"],"e":"Kwo y cols. dicen: *\"A prolonged INR in the setting of cirrhosis does not reduce the risk of developing thrombosis, nor does a prolonged INR predict bleeding complications in the setting of cirrhosis\"*. En la cirrosis hay un reequilibrio de pro- y anticoagulantes†.","s":"Pruebas de función"},
+  {"t":"A","f":true,"q":"¿Por qué se eleva la bilirrubina conjugada tanto en la lesión hepatocelular como en la colestasis?","o":["Menor excreción canalicular o fuga desde el hepatocito","Por hemólisis intravascular y exceso de producción","Por exceso de conjugación en el retículo endoplásmico","Por déficit de albúmina que la transporte"],"e":"Kwo y cols. dicen que la bilirrubina conjugada elevada *\"may reflect decreased excretion of bilirubin across the canalicular membrane or leakage of bilirubin from hepatocytes into the serum\"*.","s":"Pruebas de función"},
+  {"t":"A","f":true,"q":"¿Cómo circula la mayor parte de la bilirrubina en el suero?","o":["No conjugada y unida a albúmina","Conjugada y libre en el plasma","Unida a la haptoglobina","Dentro de los eritrocitos"],"e":"Kwo y cols. dicen que la bilirrubina *\"is the breakdown product of hemoglobin, with the majority of bilirubin occurring in an unconjugated form and circulating bound to albumin\"*.","s":"Pruebas de función"},
+  {"t":"A","f":true,"q":"En la rabdomiólisis, ¿qué patrón de aminotransferasas esperas?","o":["AST > ALT (≥2:1) con CK muy alta","ALT mayor que AST con CK normal","Solo FA elevada con GGT normal","Aminotransferasas normales con LDH alta"],"e":"Kwo y cols. dicen que como ALT y AST están en el músculo, la rabdomiólisis eleva las aminotransferasas *\"with AST initially exceeding ALT in a ratio usually of at least 2:1\"*, y se distingue por CK muy elevada.","s":"Causas extrahepáticas"},
+  {"t":"A","f":true,"q":"¿Qué mecanismos proponen Kwo y cols. para las PFH alteradas en el hipertiroidismo?","o":["Estrés oxidativo, colestasis y más actividad osteoblástica","Depósito de amiloide en el espacio de Disse por la tirotoxicosis","Hemólisis autoinmune con elevación de la bilirrubina indirecta","Hepatitis viral asociada a la tiroiditis subaguda"],"e":"Kwo y cols. dicen que el hipertiroidismo altera las PFH en 55–60 % y que *\"proposed mechanisms include oxidative stress, cholestasis, and enhanced osteoblastic activity\"*. En el hipotiroidismo, se debe en parte a más MASLD.","s":"Causas extrahepáticas"},
+  {"t":"A","f":true,"q":"En la hepatopatía congestiva por insuficiencia cardiaca derecha, ¿qué patrón es típico?","o":["Aminotransferasas 2–3× LSN, bilirrubina ≤3 e INR alto","Aminotransferasas >10,000 U/L en las primeras horas","FA aislada mayor de 10 veces el límite superior","Bilirrubina indirecta aislada mayor de 10 mg/dL"],"e":"Kwo y cols. dicen que en la hepatopatía congestiva *\"aminotransferase levels are moderately elevated at 2–3 times the ULN; the total bilirubin is elevated, although rarely more than 3 mg/dL; the alkaline phosphatase is mildly elevated; and the INR is increased\"*.","s":"Causas extrahepáticas"},
+  {"t":"A","f":true,"q":"¿Qué tres pruebas reflejan función hepática y cuáles pueden alterarse por factores extrahepáticos?","o":["Bilirrubina, TP y albúmina","ALT, AST y fosfatasa alcalina","GGT, FA y 5′-nucleotidasa","ALT, GGT y tiempo de protrombina"],"e":"Kwo y cols. dicen que bilirrubina, TP y albúmina evalúan función y *\"may be affected by extrahepatic factors (ie, hemolysis, vitamin K deficiency, and nutritional deficiencies)\"*; las demás pruebas reflejan lesión.","s":"Pruebas de función"}
+);
+
+// Fisiopatología y datos clave, estilo segundo parcial. Castaneda et al. WJG 2021.
+// La opción correcta es o[0].
+PREGUNTAS.push(
+  {"t":"B","f":true,"q":"Según Castaneda y cols., ¿cómo llega el virus de la hepatitis A al hígado?","o":["Cruza la mucosa del delgado y llega por la vena porta","Por vía linfática desde el colon y el conducto torácico","Por diseminación hematógena desde los pulmones","Asciende por el colédoco desde el duodeno"],"e":"Castaneda y cols. dicen que *\"the dissemination of the HAV into the liver occurs via the portal vein after the virus traverses the mucosa of the small intestinal wall\"*.","s":"VHA, patogenia"},
+  {"t":"B","f":true,"q":"Según Castaneda y cols., ¿qué mantiene el ciclo enterohepático del VHA?","o":["Su secreción a la bilis y reexcreción hasta que hay anticuerpos","Su integración al núcleo del hepatocito como cccDNA","La destrucción del virus por la bilis y su salida por orina","Su replicación en el epitelio biliar y no en el hepatocito"],"e":"Castaneda y cols. dicen que las partículas *\"are secreted into the biliary canaliculi, reaching back to the small intestine through the bile ducts and being re-excreted in the feces. Until the body responds with appropriate immune reaction in antibodies, the HAV enterohepatic cycle continues\"*.","s":"VHA, patogenia"},
+  {"t":"B","f":true,"q":"En la hepatitis A, ¿qué células se implican en la destrucción de los hepatocitos infectados?","o":["Linfocitos T CD8+ y células NK","Anticuerpos IgM que activan el complemento","Eosinófilos reclutados por IL-5","Linfocitos B productores de IgA secretora"],"e":"Castaneda y cols. dicen que *\"human leukocyte antigen-restricted, HAV-specific CD8+ T lymphocytes and natural killer cells have been implicated in the damage and destruction of infected hepatocytes\"*. El daño es inmunomediado, no por citotoxicidad directa del virus.","s":"VHA, patogenia"},
+  {"t":"B","f":true,"q":"Según Castaneda y cols., ¿cuál es el predictor más fuerte de mortalidad en la falla hepática aguda por VHA?","o":["Creatinina >2 mg/dL","Bilirrubina total >9.6 mg/dL","Albúmina baja","ALT >1000 U/L"],"e":"Castaneda y cols. dicen que *\"higher mortality has been associated with creatinine > 2 mg/dL (strongest predictor) total bilirubin > 9.6 mg/dL and albumin < 2.5\"*.","s":"VHA, presentación clínica"},
+  {"t":"B","f":true,"q":"¿Por qué los adultos mayores con VHA tienen formas más graves, según Castaneda y cols.?","o":["Menor regeneración hepática y una inmunidad más débil","Mayor carga viral por menor acidez gástrica","Porque en ellos el VHA suele cronificarse","Por coinfección obligada con el virus de la hepatitis E"],"e":"Castaneda y cols. lo atribuyen a *\"an impaired regeneration capacity of the liver and a relatively weaker immune system in the older population\"*.","s":"VHA, presentación clínica"},
+  {"t":"B","f":true,"q":"Según Castaneda y cols., ¿qué explica la posibilidad de reactivación del VHB en la enfermedad crónica inactiva?","o":["La persistencia del cccDNA en el núcleo","La mutación del HBsAg que evade a los anticuerpos","La integración del virus en linfocitos B de memoria","La persistencia de anticuerpos anti-HBc de tipo IgG"],"e":"Castaneda y cols. dicen que el ADN *\"integrates to the host nucleus as a covalently closed circular DNA (cccDNA) that can persist indefinitely in the hepatocytes; this explains the possibility of HBV reactivation in chronic inactive disease\"*.","s":"VHB, patogenia"},
+  {"t":"B","f":true,"q":"En la hepatitis B, el daño hepático se debe principalmente a:","o":["La respuesta inmune contra antígenos virales","La citotoxicidad directa del virus sobre el hepatocito","El depósito de complejos inmunes en el sinusoide","La esteatosis inducida por la proteína core"],"e":"Castaneda y cols. dicen que el proceso *\"leads to immune-mediated liver injury as antigens are recognized by the immunologic system, with a lesser effect from direct viral cytotoxicity\"*.","s":"VHB, patogenia"},
+  {"t":"B","f":true,"q":"¿Qué enzima viral se usa para ensamblar nuevas partículas del VHB a partir del cccDNA?","o":["Transcriptasa reversa","ARN polimerasa dependiente de ARN","Proteasa NS3/4A","Integrasa"],"e":"Castaneda y cols. dicen que *\"through a process driven by reverse transcriptase, new viral molecules are assembled from the cccDNA and are released by exocytosis\"*. Por eso los análogos de nucleós(t)idos (inhibidores de la transcriptasa reversa) suprimen el virus, pero no eliminan el cccDNA.","s":"VHB, patogenia"},
+  {"t":"B","f":true,"q":"Según Castaneda y cols., ¿qué caracteriza a la cuarta fase (inmune activa) de la hepatitis B crónica?","o":["Subida de ALT y DNA por VHD o inmunosupresión","HBeAg positivo con ALT normal y DNA altísimo","Seroconversión a anti-HBe con DNA indetectable","Desaparición del HBsAg con anti-HBs positivo"],"e":"Castaneda y cols. dicen que la cuarta fase *\"is characterized by ALT and HBV DNA elevation due to triggers such as hepatitis D virus (HDV) superinfection or immunosuppression\"* y que la enfermedad puede fluctuar entre la tercera y la cuarta fase.","s":"VHB, fases"},
+  {"t":"B","f":true,"q":"¿Qué tienen en común la exposición a edad temprana y la infección aguda asintomática por VHB?","o":["Favorecen la cronicidad","Protegen contra la cronicidad","Producen hepatitis fulminante","Se asocian solo al genotipo A"],"e":"Castaneda y cols. dicen que el VHB crónico *\"may develop in patients exposed at a younger age, with genetic predisposition or in those that did not develop symptoms when acute HBV infection occurred\"*. Una respuesta inmune débil (sin síntomas) no depura el virus.","s":"VHB, presentación clínica"},
+  {"t":"B","f":true,"q":"Según Castaneda y cols., ¿cuáles son los factores del huésped que facilitan la entrada del VHC?","o":["SR-BI, ocludina, claudina-1 y CD81","NTCP y proteoglicanos de heparán sulfato","CD4 y correceptor CCR5","Receptor de transferrina y ACE2"],"e":"Castaneda y cols. dicen que *\"there are 4 host-derived factors that facilitate the entry of HCV into the bloodstream: Scavenger receptor class B type I, Occludin, Claudin-I and CD81\"*; el CD81 se une a la proteína E2 de la envoltura.","s":"VHC, patogenia"},
+  {"t":"B","f":true,"q":"Aunque el VHC no es citopático, ¿cómo produce necrosis del hepatocito?","o":["Citólisis inmune e inflamación por esteatosis y estrés oxidativo","Lisis directa del hepatocito cuando se liberan los nuevos viriones","Obstrucción de los canalículos biliares por partículas virales","Isquemia sinusoidal por trombosis microvascular inducida por E2"],"e":"Castaneda y cols. dicen que el VHC *\"causes cell necrosis via immune-mediated cytolysis (innate immunity and adaptive immunity) and metabolism-mediated inflammation (hepatic steatosis, oxidative stress, and insulin resistance)\"*.","s":"VHC, patogenia"},
+  {"t":"B","f":true,"q":"¿Qué hace la proteína NS5A del VHC para permitir la replicación viral?","o":["Inactiva la PKR e inhibe la apoptosis","Integra el genoma viral al núcleo del hepatocito","Bloquea al CD81 para impedir la sobreinfección","Activa la transcriptasa reversa del virus"],"e":"Castaneda y cols. dicen que *\"NS5A inactivates RNA dependent protein kinase (PKR) in hepatocytes, inhibiting the apoptotic pathway and inducing anti-inflammatory interleukin secretion, allowing for viral replication\"*. Por eso es blanco de fármacos (velpatasvir, pibrentasvir).","s":"VHC, patogenia"},
+  {"t":"B","f":true,"q":"¿Por qué mecanismo la proteína core del VHC produce resistencia a la insulina?","o":["Efecto directo en el receptor o más TNF-α","Destrucción autoinmune de las células β pancreáticas","Aumento de la secreción de glucagón por los islotes","Bloqueo de GLUT-2 en el enterocito y el hepatocito"],"e":"Castaneda y cols. dicen que *\"HCV core proteins leads to insulin resistance by direct receptor effect or through increased secretion of tumor necrosis factor-alpha; this leads to further hepatic steatosis, inflammation, and fibrosis\"*.","s":"VHC, patogenia"},
+  {"t":"B","f":true,"q":"Según Castaneda y cols., ¿cómo causa esteatosis el VHC?","o":["Menor secreción y oxidación de lípidos, más ácidos grasos","Aumento de la secreción de VLDL desde el hepatocito infectado","Inhibición completa de la lipogénesis de novo en el hígado","Bloqueo de la captación hepática de remanentes de quilomicrones"],"e":"Castaneda y cols. dicen que *\"HCV causes steatosis through impaired secretion of lipids from liver cells, increased production of free fatty acids, and impaired fatty acid breakdown\"*.","s":"VHC, patogenia"},
+  {"t":"B","f":true,"q":"¿Qué genotipo del VHC parece tener un curso más agresivo según Castaneda y cols.?","o":["1b","2a","3","5"],"e":"Castaneda y cols. dicen que *\"genotype 1b seems to have a more aggressive course, as it has been more associated to cirrhosis progression and liver disease decompensation requiring transplantation\"*.","s":"VHC, patogenia"},
+  {"t":"B","f":true,"q":"¿Qué polimorfismo se asocia a mayor depuración espontánea del VHC (≈50 %)?","o":["IL-28B C/C","IL-28B T/T","HLA-B27 positivo","PNPLA3 I148M"],"e":"Castaneda y cols. dicen que *\"a C/C type allele polymorphism in the chromosomal locus close to interleukin-28B has been associated with higher spontaneous clearance (50%) compared to the 15% rate of spontaneous viral clearance seen with the T/T allele\"*.","s":"VHC, complicaciones"},
+  {"t":"B","f":true,"q":"Según Castaneda y cols., ¿qué NO se correlaciona con el riesgo de progresión a cirrosis en el VHC crónico?","o":["La carga viral","El consumo de alcohol","La edad >40 años","La coinfección por VIH"],"e":"Castaneda y cols. dicen que *\"the viral load has not correlated with risk of progression to cirrhosis\"*. Sí progresan más con edad >40, alcohol, coinfección VHB o VIH, obesidad, diabetes y tabaquismo.","s":"VHC, complicaciones"},
+  {"t":"B","f":true,"q":"En el VHC crónico, ¿cómo es la relación entre las aminotransferasas y la histología?","o":["Hay poca correlación: 1 de cada 3 tiene ALT normal","La ALT predice con exactitud el grado de fibrosis","La ALT siempre está >10× LSN","La AST/ALT >2 es típica del VHC"],"e":"Castaneda y cols. dicen que *\"one in three patients have a normal ALT\"* y que *\"there is little correlation between aminotransferase levels and liver histologic findings\"*.","s":"VHC, presentación clínica"},
+  {"t":"B","f":true,"q":"¿Por qué se considera al VHD un virus defectuoso?","o":["Requiere al VHB para replicarse","No tiene genoma propio","Solo infecta a inmunosuprimidos","Solo se replica en el epitelio intestinal"],"e":"Castaneda y cols. dicen que el VHD *\"is a single-stranded RNA virus, considered a defective virus that requires the existence of HBV for full expression and replication\"*. Por eso la vacuna contra VHB también previene el VHD.","s":"VHD, patogenia"},
+  {"t":"B","f":true,"q":"¿Qué genotipos del VHE pueden infectar a humanos y animales (zoonóticos)?","o":["3 y 4","1 y 2","Solo el 1","Todos los genotipos son exclusivamente humanos"],"e":"Castaneda y cols. dicen que *\"genotypes 1 and 2 being confined to humans, while genotypes 3 and 4 can infect humans and animals largely via the fecal-oral route\"*. Los genotipos 3 y 4 son los que causan hepatitis E crónica en inmunosuprimidos.","s":"VHE, patogenia"},
+  {"t":"B","f":true,"q":"Según Castaneda y cols., ¿qué pacientes con VHE agudo tienen más riesgo de falla hepática aguda?","o":["Embarazadas, desnutridos o hepatópatas","Niños menores de 5 años sanos","Pacientes con hepatitis C ya curada","Personas vacunadas contra hepatitis A"],"e":"Castaneda y cols. dicen que *\"less than 5% of acutely infected HEV patients will progress to acute liver failure and those patients are more likely to be pregnant, malnourished, or have a preexisting liver condition\"*.","s":"VHE, presentación clínica"},
+  {"t":"B","f":true,"q":"¿Qué hallazgo bioquímico es típico de la hepatitis A aguda según Castaneda y cols.?","o":["ALT >1000, mayor que AST, con FA <400","AST/ALT >2 con fosfatasa alcalina muy alta","Bilirrubina indirecta aislada con PFH normales","FA >1000 con aminotransferasas normales"],"e":"Castaneda y cols. dicen que *\"serum aminotransferases above 1000 U/dL are usually noted, with total bilirubin typically ≤ 10 mg/dL, and alkaline phosphatase below 400 U/L. Usually the serum alanine aminotransferase (ALT) is higher than the aspartate aminotransferase (AST)\"*.","s":"VHA, presentación clínica"}
+);
+
+// Fisiopatología HAI (Muratori, BMJ 2023) y CBP (Lleo, Lancet 2020), estilo segundo parcial.
+// La opción correcta es o[0].
+PREGUNTAS.push(
+  {"t":"C","f":true,"q":"Según Muratori y cols., ¿qué alelos HLA predisponen con más fuerza a la hepatitis autoinmune?","o":["HLA-DR3 y HLA-DR4","HLA-B27 y HLA-B51","HLA-DQ2 y HLA-DQ8","HLA-A1 y HLA-B8 exclusivamente"],"e":"Muratori y cols. dicen: *\"The prominent predisposing role of HLA alleles, especially HLA-DR3 and HLA-DR4, has been reported extensively\"*, aunque los genes pueden variar según la etnia y la región. HLA-DQ2/DQ8 corresponden a la enfermedad celíaca.","s":"HAI, patogenia"},
+  {"t":"C","f":true,"q":"En la hepatitis autoinmune, ¿qué alteración de los linfocitos T reguladores describen Muratori y cols.?","o":["Están disminuidos y son disfuncionales","Están aumentados y suprimen a los linfocitos B","Son normales; el defecto está en los neutrófilos","Se transforman en células plasmáticas productoras de IgG"],"e":"Muratori y cols. dicen que *\"the number of regulatory T cells is reduced and their function is impaired, a scenario in which cytotoxic cells such as Th17 are let loose to initiate and perpetuate liver injury without proper control\"*.","s":"HAI, regulación inmune"},
+  {"t":"C","f":true,"q":"¿Por qué mecanismo se cree que los desencadenantes ambientales (virus, fármacos) inician la HAI?","o":["Mimetismo molecular","Toxicidad directa sobre el hepatocito","Formación de complejos inmunes circulantes","Activación del complemento por vía de las lectinas"],"e":"Muratori y cols. dicen que la exposición a factores externos *\"is considered necessary to trigger the autoimmune reaction against liver structures, supposedly via a molecular mimicry based mechanism\"*. Virus de hepatitis, sarampión, CMV, VEB y varicela zóster son posibles desencadenantes.","s":"HAI, factores ambientales"},
+  {"t":"C","f":true,"q":"Según Muratori y cols., ¿qué fármacos se han asociado históricamente con la inducción de hepatitis autoinmune?","o":["Nitrofurantoína y minociclina","Paracetamol y ácido acetilsalicílico","Omeprazol y metformina de liberación prolongada","Amoxicilina con clavulanato y azitromicina"],"e":"Muratori y cols. dicen: *\"Historically, nitrofurantoin and minocycline have been associated with induction of autoimmune hepatitis\"*. También mencionan metildopa, diclofenaco, interferón, atorvastatina e inhibidores de TNF.","s":"HAI, factores ambientales"},
+  {"t":"C","f":true,"q":"¿Cómo describen Muratori y cols. el ambiente inmunológico intrahepático en la HAI?","o":["Proinflamatorio, con la regulación silenciada","Predominantemente tolerogénico y antiinflamatorio","Dominado por eosinófilos y mastocitos","Sin infiltrado celular; el daño es solo por anticuerpos"],"e":"Muratori y cols. dicen que *\"the intrahepatic environment seems to be particularly skewed toward a pro-inflammatory milieu that favors recruitment and activation of inflammatory and potentially autoreactive T cells, whereas the regulatory components of the immune system are largely silenced\"*.","s":"HAI, regulación inmune"},
+  {"t":"C","f":true,"q":"Según Muratori y cols., ¿qué micro-ARN circulantes se correlacionan con la inflamación hepática en la HAI?","o":["miR-21 y miR-122","miR-506 y miR-155","miR-33 y miR-34a","Ninguno; los micro-ARN no se han estudiado"],"e":"Muratori y cols. dicen que *\"the circulating micro-ribonucleic acids miR-21 and miR-122 correlate with laboratory and histological features of liver inflammation\"*. El miR-506 es el de la CBP.","s":"HAI, epigenética"},
+  {"t":"C","f":true,"q":"¿Cuál de estos es un factor de mal pronóstico en la HAI según el Recuadro 2 de Muratori y cols.?","o":["Cirrosis al inicio","Sexo femenino","Presentación con ANA positivos","Respuesta rápida al esteroide"],"e":"El Recuadro 2 enumera cirrosis al inicio, edad joven al inicio, recaídas repetidas al retirar el tratamiento, síndromes variantes (HAI-CEP, HAI-CBP), MASLD concomitante, raza negra y deficiencia de vitamina D.","s":"HAI, pronóstico"},
+  {"t":"C","f":true,"q":"En la HAI, ¿qué cambios del microbioma intestinal describen Muratori y cols.?","o":["Aumento relativo de Veillonella y disminución de Bifidobacterium","Aumento de Bifidobacterium y Lactobacillus como protectores","Ausencia de cambios","Sobrecrecimiento exclusivo de Clostridioides difficile"],"e":"Muratori y cols. dicen que Veillonella, Klebsiella, Streptococcus y Lactobacillus aumentan, y que *\"a disease specific decline in the relative abundance of Bifidobacterium was also observed\"*. La activación inmune por señales microbianas sería a través del eje intestino-hígado.","s":"HAI, microbioma"},
+  {"t":"D","f":true,"q":"Según Lleo y cols., la CBP se caracteriza por pérdida de tolerancia inmune a:","o":["PDC-E2 mitocondrial","Actina del músculo liso","Citocromo P450 2D6","Transglutaminasa tisular"],"e":"Lleo y cols. dicen que la enfermedad *\"is characterised by an HLA-DR-associated loss of immune tolerance to a crucial enzyme of oxidative phosphorylation, the E2 component of the pyruvate dehydrogenase complex (PDC-E2)\"*. El CYP2D6 es el antígeno del anti-LKM1 (HAI tipo 2).","s":"CBP, patogenia"},
+  {"t":"D","f":true,"q":"¿Qué citocinas impulsan la colangitis linfocítica de la CBP según Lleo y cols.?","o":["IL-12 e IFN-γ","IL-4 e IL-13","IL-5 y eotaxina","TGF-β e IL-10"],"e":"Lleo y cols. dicen que *\"an interleukin-12 (IL-12) and IFNγ driven immune-mediated lymphocytic cholangitis with consequent destructive chronic injury to the biliary epithelial cells (BECs), senescence, and apoptosis define disease\"*.","s":"CBP, patogenia"},
+  {"t":"D","f":true,"q":"¿Cuál es el evento inmunológico más temprano en la CBP, que ocurre antes de la enfermedad clínica?","o":["La pérdida de tolerancia a PDC-E2","La fibrosis portal","La elevación de la bilirrubina","La formación de granulomas"],"e":"Lleo y cols. dicen que los modelos murinos *\"indicate a loss of tolerance to PDC-E2, the major mitochondrial autoantigen, as the earliest immunological event that occurs before clinical disease manifests\"*. Por eso los AMA pueden preceder años a la colestasis.","s":"CBP, patogenia"},
+  {"t":"D","f":true,"q":"¿Qué población celular predomina en el infiltrado inmune de la CBP?","o":["Linfocitos T CD4+","Linfocitos T CD8+","Neutrófilos","Eosinófilos"],"e":"Lleo y cols. dicen que *\"the immune infiltrate is predominantly comprised of CD4+ T cells, with fewer increases in cytotoxic (CD8+) T cells\"*. Las células biliares de la CBP expresan MHC clase II, que presenta antígenos a los CD4+.","s":"CBP, inmunología"},
+  {"t":"D","f":true,"q":"¿Qué es el \"paraguas de bicarbonato\" del epitelio biliar?","o":["Bicarbonato biliar que desprotona los ácidos biliares hidrofóbicos","Una capa de moco que recubre el epitelio del colédoco","El bicarbonato pancreático que neutraliza el ácido duodenal","Un sistema de transporte de bilirrubina conjugada al canalículo"],"e":"Lleo y cols. dicen que *\"the bicarbonate umbrella deprotonates apolar hydrophobic bile acids, rendering them unable to permeate membranes in an uncontrolled manner\"*. Depende del transportador AE2 y del canal CFTR.","s":"CBP, célula epitelial biliar"},
+  {"t":"D","f":true,"q":"En la CBP, ¿qué transportador del colangiocito está disminuido, lo que expone a la célula a la toxicidad de los ácidos biliares?","o":["AE2","NTCP","BSEP (ABCB11)","MRP2"],"e":"Lleo y cols. dicen: *\"In patients with primary biliary cholangitis, reduced AE2 expression in BECs has been shown, supporting evidence for toxicity from bile acids entering the BECs\"*. Además, la disminución de AE2 sensibiliza a la apoptosis por activar la adenilato ciclasa soluble.","s":"CBP, célula epitelial biliar"},
+  {"t":"D","f":true,"q":"Según Lleo y cols., ¿qué micro-ARN (codificado en el cromosoma X) está aumentado en la CBP y regula negativamente al AE2?","o":["miR-506","miR-122","miR-21","miR-33"],"e":"Lleo y cols. dicen que *\"the expression of hsa-mir-506 (encoded on the X-chromosome) is increased in patients with primary biliary cholangitis, and hsa-mir-506 might have a role in negatively regulating expression of AE2 and ITPR3\"*. Esto ayudaría a explicar el predominio en mujeres.","s":"CBP, célula epitelial biliar"},
+  {"t":"D","f":true,"q":"¿Cómo suprimen los ácidos biliares hidrofóbicos la expresión de AE2?","o":["Por estrés oxidativo","Bloqueando el receptor FXR","Activando el receptor de vitamina D","Por depósito de cobre"],"e":"Lleo y cols. dicen: *\"Hydrophobic bile acids suppress expression of AE2 by induction of reactive oxidative stress\"*; además, el ácido glicoquenodesoxicólico aumenta HLA-DR y CD40 en el colangiocito, volviéndolo blanco inmune.","s":"CBP, célula epitelial biliar"},
+  {"t":"D","f":true,"q":"En la CBP, el fenotipo secretor asociado a la senescencia del colangiocito produce CCL20. ¿Qué consecuencia tiene?","o":["Acumulación portal de células Th17 lesivas","Regeneración de los conductos biliares pequeños","Aumento de linfocitos T reguladores protectores","Disolución de los granulomas portales"],"e":"Lleo y cols. dicen que el estrés oxidativo y el fenotipo de senescencia incluyen *\"chemokine (eg, CCL20) production, with resultant portal accumulation of Th17 cells that are presumed to be injurious\"*.","s":"CBP, célula epitelial biliar"},
+  {"t":"D","f":true,"q":"¿Qué indica la recurrencia frecuente de la CBP después del trasplante hepático?","o":["Que participan la inmunidad adaptativa y la innata","Que la CBP es una enfermedad infecciosa transmisible","Que el AUDC administrado causa la enfermedad","Que el injerto siempre es rechazado de forma crónica"],"e":"Lleo y cols. dicen que *\"the frequent recurrence of primary biliary cholangitis after liver transplantation indicates that disease activity includes both adaptive and innate immune mechanisms\"*.","s":"CBP, patogenia"},
+  {"t":"D","f":true,"q":"¿Cuál es la concordancia de la CBP en gemelos idénticos, según Lleo y cols.?","o":["≈60 %","≈5 %","≈20 %","100 %"],"e":"Lleo y cols. dicen que *\"the concordance rate of primary biliary cholangitis in identical twins is approximately 60%\"*. Que no sea 100 % indica que además de la genética se requiere un desencadenante ambiental.","s":"CBP, patogenia"},
+  {"t":"D","f":true,"q":"¿Cómo actúa el ácido obeticólico según Lleo y cols.?","o":["Agonista selectivo de FXR, con producción de FGF19","Agonista pan-PPAR que reduce la síntesis de ácidos biliares","Resina que secuestra ácidos biliares en el intestino","Inhibidor del transportador ileal de ácidos biliares"],"e":"Lleo y cols. dicen que el ácido obeticólico (6α-etil-quenodesoxicólico) *\"is a selective FXR agonist, with anti-inflammatory, antifibrotic, and choleretic properties; pharmacological effect is a result of engagement with the FXR receptor in the bowel and liver, and the consequences of FGF19 production (an enterokine)\"*.","s":"CBP, tratamiento"},
+  {"t":"D","f":true,"q":"¿Dónde se localizan los anticuerpos antimitocondriales en la CBP y con qué se asocian?","o":["En la superficie apical del epitelio biliar, asociados a apoptosis","En el citoplasma del hepatocito periportal, asociados a necrosis","En el endotelio sinusoidal","En las células de Kupffer"],"e":"Lleo y cols. dicen que *\"autoantibodies against mitochondria are densely localised to the apical surface of BECs and associated with apoptosis\"*; el mismo patrón se ve en el epitelio salival de quienes tienen síndrome seco.","s":"CBP, patogenia"}
+);
+
+// Fisiopatología MASLD (Targher, NEJM 2025) y cirrosis/hipertensión portal (Villanueva, NRGH 2025).
+// La opción correcta es o[0].
+PREGUNTAS.push(
+  {"t":"E","f":true,"q":"Según Targher y cols., ¿cuál es el sello distintivo de la MASLD?","o":["Gotas lipídicas intracelulares","Fibrosis perisinusoidal desde el inicio","Necrosis centrolobulillar","Depósito de hierro en los hepatocitos"],"e":"Targher y cols. dicen: *\"The hallmark of MASLD is the accumulation of intracellular lipid droplets, organelles able to store both inert lipids and toxic lipids that may trigger the activation of stress pathways\"*. Por eso la MASLD puede verse como un trastorno del metabolismo lipídico hepático.","s":"MASLD, fisiopatología"},
+  {"t":"E","f":true,"q":"¿Cuáles son las tres fuentes principales de ácidos grasos para la síntesis de lípidos intrahepáticos en la MASLD?","o":["Lipólisis del tejido adiposo, lipogénesis hepática y quilomicrones","Secreción de VLDL, oxidación mitocondrial y lipólisis hepática","Síntesis de colesterol, de bilis y de ácidos biliares","Glucogenólisis, gluconeogénesis y cetogénesis hepáticas"],"e":"Targher y cols. dicen: *\"Increases in the flux of free fatty acid into the liver (resulting from insulin resistance in adipose tissue), in hepatic lipogenesis, and in lipid uptake from dietary chylomicrons are the three main sources of fatty acids for intrahepatic lipid synthesis\"*.","s":"MASLD, fisiopatología"},
+  {"t":"E","f":true,"q":"En la MASLD, ¿qué consecuencia tiene la remodelación alterada de las gotas lipídicas?","o":["Menos secreción de VLDL y menos oxidación mitocondrial","Más secreción de VLDL, lo que protege al hepatocito de la lipotoxicidad","Más β-oxidación mitocondrial, lo que reduce la esteatosis","Ninguna; la remodelación no se relaciona con la progresión"],"e":"Targher y cols. dicen: *\"Impaired lipid-droplet remodeling reduces very-low-density lipoprotein secretion and impairs lipid oxidation by mitochondria, thus contributing to the progression of liver disease, cell death with inflammation, activation of fibrogenesis, and carcinogenesis\"*.","s":"MASLD, fisiopatología"},
+  {"t":"E","f":true,"q":"¿Qué porcentaje de la variabilidad de la MASLD explica la heredabilidad?","o":["≈50 %","≈5 %","≈25 %","≈90 %"],"e":"Targher y cols. dicen: *\"Heritability accounts for approximately 50% of MASLD variability\"*. Los determinantes genéticos (PNPLA3, TM6SF2) actúan interfiriendo con la remodelación de lípidos y gotas lipídicas.","s":"MASLD, genética"},
+  {"t":"E","f":true,"q":"Según Targher y cols., ¿qué demuestran las variantes de PNPLA3 sobre el papel de la grasa hepática?","o":["Que la grasa hepática es el motor principal del daño","Que la grasa hepática protege contra la fibrosis","Que la MASLD es solo una consecuencia de la diabetes","Que la esteatosis simple nunca progresa a cirrosis"],"e":"Las variantes de PNPLA3 aumentan grasa, MASH, fibrosis, cirrosis y CHC, *\"thus highlighting the fact that lipid-droplet accumulation is not simply an innocent bystander but is the main driver of liver disease and an important therapeutic target\"*.","s":"MASLD, genética"},
+  {"t":"E","f":true,"q":"¿En qué proporción de personas con MASLD aparecen efectos lipotóxicos con daño hepatocelular e inflamación lobulillar (MASH)?","o":["≈30 %","≈5 %","≈70 %","100 %"],"e":"Targher y cols. dicen: *\"In approximately 30% of persons with MASLD, disease progression is characterized by the development of lipotoxic effects leading to hepatocellular damage and lobular inflammation\"*; la MASH es el principal motor de la progresión de la fibrosis.","s":"MASLD, historia natural"},
+  {"t":"E","f":true,"q":"¿Qué factor hormonal se considera protector frente a la MASLD en la Figura 2 de Targher y cols.?","o":["Sexo femenino y estrógenos","Hipotiroidismo primario","Hipercortisolismo","Testosterona baja en mujeres"],"e":"En la Figura 2, el sexo femenino y los estrógenos aparecen como protectores, mientras que el hipotiroidismo primario, la fructosa, las grasas saturadas, el alcohol y la resistencia a la insulina favorecen la MASLD.","s":"MASLD, historia natural"},
+  {"t":"E","f":true,"q":"Según Targher y cols., ¿cuáles son los dos desenlaces hepáticos aceptados por las agencias para la aprobación condicional de un fármaco para MASH?","o":["Resolver la MASH o mejorar un estadio de fibrosis, sin empeorar lo otro","Normalizar la ALT y bajar los triglicéridos a menos de 150 mg/dL en 1 año","Perder al menos 10 % del peso y lograr una HbA1c menor de 7 % sostenida","Desaparición de la esteatosis en el US y de la ALT elevada a las 72 semanas"],"e":"Targher y cols. dicen que *\"MASH resolution without worsening of liver fibrosis and reduction (improvement) in fibrosis by at least one stage without worsening of MASH are the two primary liver-associated end points\"*.","s":"MASLD, historia natural"},
+  {"t":"F","f":true,"q":"Según Villanueva y cols., ¿qué le pasa a la célula endotelial sinusoidal en la disfunción endotelial de la cirrosis?","o":["Menos NO y más vasoconstrictores","Más NO y vasodilatación sinusoidal","Aumento del número de fenestraciones","Se transdiferencia en hepatocito"],"e":"Villanueva y cols. describen la disfunción endotelial sinusoidal *\"with decreased production of nitric oxide (NO) and increased release of vasoconstrictive factors (such as endothelins, cysteinyl leukotrienes, thromboxane A2, angiotensin 2 and adrenergic tone)\"*, que aumenta el tono vascular hepático.","s":"Cirrosis, mecanismos"},
+  {"t":"F","f":true,"q":"¿Qué es la \"capilarización\" del sinusoide hepático?","o":["Matriz sobre el endotelio sinusoidal y pérdida de fenestraciones","Formación de nuevos capilares en el bazo impulsada por VEGF","Dilatación de los sinusoides por congestión venosa crónica","Trombosis de los capilares de las vénulas portales pequeñas"],"e":"Villanueva y cols. dicen: *\"An early structural abnormality is the deposition of extracellular matrix (ECM) over the LESCs, resulting in loss of their fenestrations in a process known as 'capillarization', contributing to impaired liver function\"*.","s":"Cirrosis, mecanismos"},
+  {"t":"F","f":true,"q":"Según Villanueva y cols., ¿qué dos factores se combinan para que se formen cortocircuitos portosistémicos al llegar el GPVH a ~10 mmHg?","o":["Presión portal alta y angiogénesis por VEGF","Hipoalbuminemia e hiponatremia dilucional","Trombosis portal y esplenomegalia masiva","Vasoconstricción esplácnica y bradicardia"],"e":"Villanueva y cols. dicen que los cortocircuitos se forman *\"due to the combined effect of increased portal pressure and vascular endothelial growth factor (VEGF)-driven angiogenesis\"*.","s":"Cirrosis, mecanismos"},
+  {"t":"F","f":true,"q":"¿Qué inicia y qué mantiene la vasodilatación esplácnica en la hipertensión portal?","o":["La inicia el VEGF y la mantiene el NO","La inicia la endotelina y la mantiene la angiotensina II","La inicia la noradrenalina y la mantiene la vasopresina","La inicia la trombosis y la mantiene la fibrosis"],"e":"Villanueva y cols. dicen: *\"Splanchnic vasodilation is initially driven by VEGF and maintained by enhanced NO release in splanchnic resistance vessels and angiogenesis\"*. El mayor flujo de entrada al sistema porta agrava la hipertensión portal.","s":"Cirrosis, mecanismos"},
+  {"t":"F","f":true,"q":"En la cirrosis, ¿cómo lleva la vasodilatación esplácnica a la ascitis?","o":["Hipovolemia efectiva con retención renal de sodio","Aumento de la presión oncótica del plasma","Disminución de la producción de linfa hepática","Vasoconstricción renal directa causada por el NO"],"e":"Villanueva y cols. dicen que la vasodilatación esplácnica marcada *\"results in low systemic resistance, with effective hypovolaemia and activation of vasoactive neurohumoral factors; these aim to sustain arterial blood pressure but cause renal sodium retention\"*, lo que expande el volumen extracelular y produce ascitis y edema.","s":"Cirrosis, mecanismos"},
+  {"t":"F","f":true,"q":"¿Por qué la formación de colaterales aumenta el flujo esplácnico?","o":["Baja la perfusión portal del hígado y sube, en compensación, el flujo esplácnico","Porque las colaterales secretan VEGF y NO hacia toda la circulación sistémica","Porque las colaterales aumentan la resistencia intrahepática al flujo portal","No lo aumentan: las colaterales disminuyen el flujo esplácnico y la presión"],"e":"Villanueva y cols. dicen que la formación de colaterales *\"reduces the portal blood flow perfusing the liver, which is not entirely compensated by the hepatic arterial vasodilatory ('buffer') response. This leads to a homeostatic increase in blood flow to splanchnic organs\"*.","s":"Cirrosis, mecanismos"},
+  {"t":"F","f":true,"q":"Según Villanueva y cols., ¿qué promueve la inflamación sistémica en la cirrosis?","o":["Traslocación bacteriana intestinal (LPS, DAMPs)","La hiperglucemia por resistencia a la insulina","Los anticuerpos antimitocondriales circulantes","La deficiencia de vitamina K por colestasis"],"e":"Villanueva y cols. dicen que la inflamación sistémica es promovida por *\"reduced intestinal vascular barrier function due to portal hypertension and increased adrenergic tone, resulting in the translocation of intestinal bacteria and bacterial products (including lipopolysaccharide and damage-associated molecular patterns (DAMPs))\"*.","s":"Cirrosis, mecanismos"},
+  {"t":"F","f":true,"q":"¿Cuándo se rompe una várice según Villanueva y cols.?","o":["Cuando la tensión de su pared supera el límite elástico","Cuando la presión arterial sistólica supera los 140 mmHg","Cuando el INR es mayor de 1.5 o las plaquetas <50,000","Cuando aparece trombosis aguda del tronco de la porta"],"e":"Villanueva y cols. dicen que el aumento de presión y de flujo colateral distiende y adelgaza la pared, y que *\"a varix will rupture at the point at which the tension at its wall exceeds the elastic limit of the vessel\"*.","s":"Cirrosis, descompensación"},
+  {"t":"F","f":true,"q":"En la encefalopatía hepática, ¿qué mecanismos mencionan Villanueva y cols.?","o":["Hiperamonemia y osmolitos en los astrocitos","Depósito de cobre en los ganglios basales","Hipoglucemia por exceso de insulina portal","Desmielinización por déficit de vitamina B12"],"e":"Villanueva y cols. dicen que los cortocircuitos y la falla hepática producen disfunción cognitiva *\"mediated partly by hyperammonaemia and by the accumulation of osmolytes in astrocytes, which may cause cerebral oedema and increased intracranial pressure\"*.","s":"Cirrosis, descompensación"},
+  {"t":"F","f":true,"q":"¿Por qué la sarcopenia empeora la encefalopatía en la cirrosis?","o":["Agrava la hiperamonemia","El músculo produce amonio en exceso","Baja la presión portal","No tiene relación con la encefalopatía"],"e":"Villanueva y cols. dicen que la sarcopenia *\"worsens hyperammonaemia, increases systemic inflammation, decreases the immune response, aggravates the liver disease\"*. El músculo esquelético es una vía alterna de detoxificación del amonio (como glutamina)†.","s":"Cirrosis, descompensación"},
+  {"t":"F","f":true,"q":"¿Cómo bajan la presión portal los betabloqueadores no selectivos clásicos (propranolol, nadolol)?","o":["β1: menos gasto; β2: vasoconstricción esplácnica","Bloqueo de receptores α1 en el sinusoide hepático","Aumento del óxido nítrico intrahepático","Diuresis por bloqueo de la aldosterona renal"],"e":"Villanueva y cols. dicen que los BBNS actúan *\"by inducing β1-adrenergic blockade (reducing heart rate and cardiac output) and β2-adrenergic blockade (causing splanchnic vasoconstriction by unopposed α-adrenergic tone), thus reducing portal–collateral blood flow\"*.","s":"Cirrosis, BBNS"},
+  {"t":"F","f":true,"q":"¿Qué tiene el carvedilol además del bloqueo β no selectivo?","o":["Acción anti-α1 y más NO intrahepático","Efecto diurético por bloqueo de la aldosterona","Efecto agonista sobre los receptores β2","Inhibición directa del VEGF esplácnico"],"e":"Villanueva y cols. dicen que el carvedilol *\"decreases intrahepatic vascular resistance by an intrinsic anti-α1-adrenergic activity and by enhancing intrahepatic NO release\"*. Por eso es más eficaz cuando predomina la resistencia intrahepática, como en la cirrosis compensada.","s":"Cirrosis, carvedilol"},
+  {"t":"F","f":true,"q":"¿Por qué los BBNS son mucho menos eficaces en pacientes sin hipertensión portal clínicamente significativa?","o":["Aún no hay circulación hiperdinámica sobre la cual actuar","Porque sin HPCS el hígado no expresa receptores β","Porque en esa etapa se metabolizan más rápido","Porque sin HPCS aumentan la resistencia intrahepática"],"e":"Villanueva y cols. dicen que los BBNS *\"are effective in patients with CSPH, once hyperdynamic circulation is already established, but are much less effective in patients without CSPH\"*; por eso fallaron en el ensayo de timolol, que incluyó pacientes sin várices y 40 % sin HPCS.","s":"Cirrosis, BBNS"},
+  {"t":"F","f":true,"q":"Según Villanueva y cols., ¿qué hace la estatina sobre el tono vascular hepático?","o":["Aumenta la actividad de la eNOS","Bloquea los receptores de endotelina","Inhibe la fosfodiesterasa 5","Bloquea los receptores α1"],"e":"En el Recuadro 3 de Villanueva y cols., las estatinas actúan contra la *\"decreased endothelial NO synthase (eNOS) activity\"* y además se listan como antifibróticas.","s":"Cirrosis, nuevos tratamientos"},
+  {"t":"F","f":true,"q":"¿Qué cambio hemodinámico sistémico comienza cuando el GPVH llega a ≥10 mmHg?","o":["Circulación hiperdinámica","Hipertensión arterial sistémica","Bradicardia con gasto bajo","Vasoconstricción generalizada"],"e":"Villanueva y cols. dicen que con HPCS *\"hyperdynamic systemic circulation begins (with increased blood volume and cardiac output, and decreased splanchnic and peripheral resistance)\"*.","s":"Cirrosis, historia natural"},
+  {"t":"F","f":true,"q":"¿Qué complicación pulmonar de la cirrosis se debe a vasodilatación, según la Figura 2 de Villanueva y cols.?","o":["Síndrome hepatopulmonar","Hipertensión portopulmonar","Tromboembolia pulmonar","Neumonía por aspiración"],"e":"La vasodilatación sistémica puede causar alteración ventilación-perfusión y síndrome hepatopulmonar; en cambio, la hipertensión portopulmonar se caracteriza por vasoconstricción pulmonar.","s":"Cirrosis, mecanismos"}
+);
+
+// Baveno VIII (J Hepatol 2026): fundamentos fisiopatológicos de las recomendaciones.
+// La opción correcta es o[0].
+PREGUNTAS.push(
+  {"t":"G","f":true,"q":"Según Baveno VIII, ¿por qué no se recomienda transfundir plasma fresco congelado en la hemorragia variceal aguda?","o":["No corrige la coagulopatía y aumenta la presión portal","Porque transmite hepatitis virales con mucha frecuencia","Porque baja demasiado la presión portal y causa choque","Porque produce trombosis portal en las primeras horas"],"e":"Baveno VIII dice que el plasma *\"is not routinely recommended, as it does not correct coagulopathy and may lead to volume overload and worsening of portal hypertension\"*.","s":"Hemorragia variceal aguda"},
+  {"t":"G","f":true,"q":"En la hemorragia variceal, ¿qué dice Baveno VIII sobre las plaquetas y el fibrinógeno?","o":["No predicen el fallo del control; no se transfunden de rutina","Deben corregirse a >100,000 y 200 mg/dL antes de la endoscopia","Su descenso es la causa principal del sangrado variceal","Deben transfundirse siempre junto con plasma fresco"],"e":"Baveno VIII dice que *\"platelet count and fibrinogen levels do not correlate with the risk of failure to control bleeding or rebleeding and their transfusion is not routinely recommended\"*. Se pueden considerar si falla el control del sangrado.","s":"Hemorragia variceal aguda"},
+  {"t":"G","f":true,"q":"¿Cómo ayuda la eritromicina antes de la endoscopia en la hemorragia variceal?","o":["Mejora el vaciamiento gástrico y la visibilidad endoscópica","Baja la presión portal","Previene la peritonitis bacteriana espontánea","Contrae el esfínter esofágico inferior para detener el sangrado"],"e":"Baveno VIII dice que una dosis IV de eritromicina (250 mg, 30–90 min antes) *\"may improve gastric clearance, enhance endoscopic visualization\"*. Se evita si hay QT prolongado.","s":"Hemorragia variceal aguda"},
+  {"t":"G","f":true,"q":"¿Por qué la sangre en el tubo digestivo precipita encefalopatía, y qué hace la lactulosa?","o":["Es carga proteica que genera amonio; la lactulosa la elimina","La sangre baja el amonio y la lactulosa lo eleva","La sangre causa hipoglucemia y la lactulosa aporta glucosa","La sangre produce hiponatremia y la lactulosa la corrige"],"e":"Baveno VIII recomienda lactulosa *\"to prevent or to treat OHE by accelerating blood elimination from the gastrointestinal tract\"*. La digestión de la sangre por bacterias produce amonio†.","s":"Hemorragia variceal aguda"},
+  {"t":"G","f":true,"q":"¿Por qué Baveno VIII pide precaución con la manipulación de la vía aérea y la sonda nasogástrica en la hemorragia variceal?","o":["Riesgo de aspiración e infección pulmonar","Porque rompen las várices esofágicas","Porque suben la presión portal de forma refleja","Porque precipitan encefalopatía hepática"],"e":"Baveno VIII dice que deben hacerse con precaución *\"because of the risk of aspiration and pulmonary infection\"*. La intubación orotraqueal se indica si hay hematemesis o alteración de la conciencia.","s":"Hemorragia variceal aguda"},
+  {"t":"G","f":true,"q":"Si se iniciaron IBP antes de la endoscopia y se confirma sangrado por hipertensión portal, ¿qué recomienda Baveno VIII?","o":["Suspenderlos, salvo una indicación fuerte","Continuarlos a dosis doble por 8 semanas","Cambiarlos a bloqueadores H2","Agregar sucralfato por 4 semanas"],"e":"Baveno VIII dice que los IBP iniciados antes de la endoscopia *\"should be discontinued after portal hypertension-related bleeding has been confirmed, unless there is a strong indication to continue them\"*. El sangrado variceal no es ácido-péptico.","s":"Hemorragia variceal aguda"},
+  {"t":"G","f":true,"q":"Según Baveno VIII, ¿qué antibiótico se prefiere como profilaxis en la hemorragia variceal y quién podría no necesitarlo?","o":["Cefalosporina de 3.ª; en Child A puede acortarse u omitirse","Quinolona oral por 14 días; los Child C no la necesitan","Vancomicina IV, solo si el paciente tiene fiebre al ingreso","Metronidazol, solo si hay encefalopatía o ascitis tensa"],"e":"Baveno VIII prefiere cefalosporinas de tercera generación y dice que la duración se individualiza *\"as Child–Pugh A patients may only require a shorter course or no therapy\"*.","s":"Hemorragia variceal aguda"},
+  {"t":"G","f":true,"q":"¿Qué indica Baveno VIII sobre los anticoagulantes en un paciente que presenta hemorragia variceal?","o":["Suspenderlos hasta controlar el sangrado","Mantenerlos sin cambios de dosis","Suspenderlos de forma definitiva","Revertirlos siempre con plasma fresco"],"e":"Baveno VIII dice que *\"anticoagulation should be temporarily discontinued until bleeding is controlled. Timing of re-initiation should be individualized\"* según la fuerza de la indicación.","s":"Hemorragia variceal aguda"},
+  {"t":"G","f":true,"q":"¿Cuál es el tratamiento de elección si el paciente resangra pese a BBNS (o carvedilol) más ligadura?","o":["TIPS","Escleroterapia con etanolamina","Duplicar la dosis de carvedilol","Cirugía de Sugiura"],"e":"Baveno VIII dice: *\"TIPS is the treatment of choice in patients who rebleed despite traditional NSBBs or carvedilol and EVL\"*.","s":"Prevención secundaria"},
+  {"t":"G","f":true,"q":"Según Baveno VIII, ¿cuándo está indicada la albúmina por tiempo corto?","o":["PBE, LRA >1A, paracentesis grande y SHR-LRA","En toda hipoalbuminemia menor de 3 g/dL","Para prevenir la encefalopatía hepática","Solo durante la hemorragia variceal aguda"],"e":"Baveno VIII dice: *\"Short-term albumin administration is indicated for spontaneous bacterial peritonitis (SBP), acute kidney injury (AKI) >stage 1A, large-volume paracentesis and combined with terlipressin for hepatorenal syndrome (HRS)-AKI\"*.","s":"Ascitis y lesión renal"},
+  {"t":"G","f":true,"q":"¿Por qué hay que distinguir la gastropatía hipertensiva portal de la ectasia vascular antral (GAVE)?","o":["Porque sus tratamientos son diferentes","Porque la GAVE nunca sangra","Porque la gastropatía solo se ve en el antro","Porque ambas se tratan con IBP"],"e":"Baveno VIII dice: *\"PHG has to be distinguished from gastric antral vascular ectasia because treatments are different\"*. La gastropatía responde a medidas que bajan la presión portal; la GAVE no†.","s":"Gastropatía portal"},
+  {"t":"G","f":true,"q":"En la trombosis de la vena porta en cirrosis, ¿por qué Baveno VIII no recomienda en general la heparina no fraccionada?","o":["Por mayor riesgo de trombocitopenia inducida por heparina","Porque no cruza al sistema porta","Porque produce encefalopatía","Porque está contraindicada en la insuficiencia renal"],"e":"Baveno VIII dice: *\"Because of the increased risk of heparin-induced thrombocytopenia, the use of unfractionated heparin is generally not recommended\"*; se reserva para TFG <30 mL/min o procedimientos invasivos pendientes.","s":"Trombosis venosa portal"},
+  {"t":"G","f":true,"q":"Con pruebas no invasivas en zona indeterminada para HPCS en cACLD, ¿qué estrategia prefiere Baveno VIII?","o":["Reevaluar a los 12 meses","Biopsia hepática inmediata","Iniciar TIPS","Iniciar carvedilol en todos"],"e":"Baveno VIII dice que en cACLD con pruebas no invasivas indeterminadas *\"re-evaluation at 12 months may be the preferred management strategy\"*.","s":"Diagnóstico no invasivo"},
+  {"t":"G","f":true,"q":"¿Qué herramienta se usa para estimar la probabilidad de HPCS en un paciente con MASLD y obesidad (IMC ≥30)?","o":["ANTICIPATE-NASH","FIB-4 ajustado a la edad","MELD-Na","Child-Pugh"],"e":"Baveno VIII recomienda *\"ANTICIPATE (ANTICIPATE-NASH for people with MASLD and obesity [≥30 kg/m²])\"* o NICER para estimar la probabilidad de HPCS en cACLD. En obesos, la rigidez sobreestima la presión portal†.","s":"Diagnóstico no invasivo"},
+  {"t":"G","f":true,"q":"En pacientes con hemorragia variceal y desnutrición, ¿qué dice Baveno VIII?","o":["Empeora el pronóstico; dar nutrición oral","Protege contra el resangrado temprano","Indica ayuno absoluto por 7 días","Obliga a nutrición parenteral total"],"e":"Baveno VIII dice: *\"Malnutrition increases the risk of adverse outcomes in patients with cirrhosis and AVB\"*, por lo que se recomienda la nutrición oral.","s":"Hemorragia variceal aguda"},
+  {"t":"G","f":true,"q":"¿Qué terapia endoscópica NO es de primera línea en la hemorragia variceal según Baveno VIII?","o":["Clips, hemostáticos tópicos o fibrina","Ligadura con bandas","Cianoacrilato en várices gástricas seleccionadas","Ninguna; todas son de primera línea"],"e":"Baveno VIII dice que *\"the use of haemoclips, over-the-scope-clips, topical haemostatic agents and fibrin is not recommended as first-line endoscopic therapy for AVB\"*. En las várices esofágicas, la primera línea es la ligadura.","s":"Hemorragia variceal aguda"}
+);
+
+// Fisiopatología de la litiasis biliar (Lammert et al. Nat Rev Dis Primers 2016).
+// La opción correcta es o[0].
+PREGUNTAS.push(
+  {"t":"H","f":true,"q":"Según Lammert y cols., ¿cuáles son las tres especies lipídicas principales de la bilis?","o":["Colesterol, fosfolípidos y sales biliares","Triglicéridos, colesterol y bilirrubina","Ácidos grasos libres, fosfolípidos y mucina","Colesterol, ésteres de colesterol y lecitina únicamente"],"e":"Lammert y cols. dicen que la bilis contiene más de 90 % de agua y que *\"cholesterol, phospholipids and bile salts are the three main lipid species in bile\"*. El equilibrio entre ellos determina la solubilidad del colesterol.","s":"Litiasis, fisiopatología"},
+  {"t":"H","f":true,"q":"¿Cómo promueve la resistencia a la insulina la secreción biliar de colesterol?","o":["Induce ABCG5/ABCG8 vía FOXO1","Disminuye la síntesis hepática de colesterol","Aumenta la síntesis de sales biliares por CYP7A1","Estimula la contracción vesicular por CCK"],"e":"Lammert y cols. dicen: *\"Insulin resistance promotes biliary cholesterol secretion by inducing ABCG5 and ABCG8 through the dysregulation of the transcription factor forkhead box protein O1 (FOXO1) in hepatocytes\"*. Esto explicaría la alta prevalencia de cálculos en diabéticos.","s":"Litiasis, hipersecreción de colesterol"},
+  {"t":"H","f":true,"q":"¿Por qué los estrógenos favorecen la formación de cálculos de colesterol?","o":["Más colesterol biliar y menos sales biliares","Aumentan la contracción de la vesícula biliar","Aumentan los fosfolípidos que solubilizan la bilis","Disminuyen la absorción intestinal de colesterol"],"e":"Lammert y cols. dicen que el estrógeno *\"increases gallstone formation by enhancing hepatic synthesis and secretion of cholesterol, as well as reducing bile salt synthesis\"*, mediante el receptor de estrógeno 1 y GPR30. Explica en parte el predominio en mujeres.","s":"Litiasis, hipersecreción de colesterol"},
+  {"t":"H","f":true,"q":"Según Lammert y cols., ¿qué efecto tiene la activación de LXR sobre la bilis?","o":["Más secreción de colesterol (ABCG5/G8)","Más síntesis de sales biliares","Menos secreción de colesterol biliar","Contracción de la vesícula biliar"],"e":"Lammert y cols. dicen: *\"Activation of LXR promotes biliary cholesterol secretion by upregulating hepatic ABCG5 and ABCG8\"*. En cambio, la represión de FXR reduce la solubilidad del colesterol al bajar CYP7A1 y la síntesis de sales biliares.","s":"Litiasis, receptores nucleares"},
+  {"t":"H","f":true,"q":"¿Qué función tiene el FGF19 en la homeostasis biliar?","o":["Hormona del enterocito que regula sales biliares y rellenado vesicular","Enzima hepática que conjuga la bilirrubina con ácido glucurónico","Transportador canalicular que lleva fosfolípidos hacia la bilis","Péptido duodenal que contrae el esfínter de Oddi tras la comida"],"e":"Lammert y cols. dicen que el FGF19, *\"which is produced by enterocytes and functions as a hormone, regulates bile salt synthesis and glucose metabolism, as well as gallbladder refilling\"*.","s":"Litiasis, receptores nucleares"},
+  {"t":"H","f":true,"q":"¿Cuáles son las tres situaciones que producen bilis sobresaturada de colesterol, según Lammert y cols.?","o":["Más colesterol, menos sales/fosfolípidos, o ambas","Exceso de bilirrubina conjugada, infección y estasis","Hipermotilidad vesicular, ayuno y dieta alta en fibra","Exceso de mucina, de calcio y de cobre en la bilis"],"e":"Lammert y cols. dicen que la bilis sobresaturada resulta de *\"(i) excessive hepatic cholesterol secretion; (ii) decreased hepatic secretion of biliary bile salts or phospholipids with relatively normal cholesterol secretion; or (iii) a combination\"*.","s":"Litiasis, bilis sobresaturada"},
+  {"t":"H","f":true,"q":"¿Qué distingue a la bilis litogénica de quien tiene cálculos de la bilis sobresaturada de quien no los tiene?","o":["Cristalización rápida por más mucinas","Presencia de bilirrubina conjugada","Un pH biliar más alcalino","Ausencia total de fosfolípidos"],"e":"Lammert y cols. dicen que la cristalización rápida *\"discriminates lithogenic bile of patients with gallstones from supersaturated bile of individuals without gallstones. This is attributable mainly to increased concentrations of mucins and perhaps other heterogeneous pro-nucleating agents\"*.","s":"Litiasis, bilis sobresaturada"},
+  {"t":"H","f":true,"q":"¿Por qué está alterado el vaciamiento vesicular desde etapas tempranas de la litiasis por colesterol?","o":["El colesterol absorbido endurece el músculo y altera la señal de CCK","Por obstrucción mecánica temprana del conducto cístico por el barro","Por denervación vagal secundaria a la inflamación de la pared","Por exceso de colecistocinina circulante que agota al músculo liso"],"e":"Lammert y cols. dicen que el colesterol absorbido *\"is then converted to cholesteryl esters and stored in the mucosa and lamina propria, which stiffens the sarcolemmal membrane of smooth muscle cells, disrupts cholecystokinin 1 receptor signalling cascade\"*.","s":"Litiasis, hipomotilidad vesicular"},
+  {"t":"H","f":true,"q":"¿Cómo contribuye la hipomotilidad vesicular al aumento de desoxicolato?","o":["Más bilis llega al intestino y las bacterias forman desoxicolato","Disminuye la flora intestinal que degrada las sales biliares","Inhibe la 7α-deshidroxilación bacteriana en el colon","Aumenta la absorción ileal de sales biliares primarias"],"e":"Lammert y cols. dicen que la hipomotilidad *\"leads to more secreted bile being diverted to the intestine. This leads to increased bacterial catabolism of bile salts and increased levels of biliary deoxycholate (a hydrophobic bile salt), which in turn promotes hepatic cholesterol hypersecretion and cholesterol crystallization\"*.","s":"Litiasis, factores intestinales"},
+  {"t":"H","f":true,"q":"¿Por qué la enfermedad de Crohn o la resección ileal favorecen cálculos de colesterol?","o":["Se pierden sales biliares y baja la solubilidad del colesterol","Aumenta la absorción ileal del colesterol que viene de la dieta","Aumenta la contracción de la vesícula biliar después de comer","Disminuye la producción hepática de bilirrubina y de fosfolípidos"],"e":"Lammert y cols. dicen que en estos pacientes *\"the enterohepatic circulation of bile salts is often impaired so that hepatic secretion of biliary bile salts is greatly reduced and the solubilization of cholesterol in bile is decreased, leading to supersaturated bile\"*. La enfermedad ileal también favorece cálculos de pigmento negro.","s":"Litiasis, factores intestinales"},
+  {"t":"H","f":true,"q":"¿Por qué inhibir la absorción intestinal de colesterol (ezetimiba) tiene un papel menor en la prevención de cálculos en humanos?","o":["Los litiásicos absorben menos y sintetizan más colesterol","Porque la ezetimiba produce cálculos de pigmento","Porque el colesterol biliar proviene solo de la dieta","Porque los cálculos en humanos son casi todos de pigmento"],"e":"Lammert y cols. dicen que *\"patients with gallstones have lower rates of intestinal cholesterol absorption and higher rates of cholesterol synthesis than controls\"*, fenotipo compartido con la diabetes tipo 2.","s":"Litiasis, factores intestinales"},
+  {"t":"H","f":true,"q":"¿Qué tienen en exceso los pacientes con cálculos de pigmento negro o café?","o":["Bilirrubina no conjugada en la bilis","Colesterol sobresaturado en la bilis","Sales biliares secundarias en la bilis","Bilirrubina conjugada en la sangre"],"e":"Lammert y cols. dicen: *\"Pigment stones result from abnormal bilirubin metabolism; bile of patients with black or brown pigment stones contains excess amounts of unconjugated bilirubin\"*.","s":"Litiasis, cálculos de pigmento"},
+  {"t":"H","f":true,"q":"¿Dónde se forman los cálculos de pigmento negro y en qué situaciones?","o":["En vesículas estériles, con más bilirrubina sistémica","En conductos biliares infectados por E. coli y con estasis","Solo en el colédoco de pacientes ya colecistectomizados","En la vesícula de personas con dieta alta en grasa saturada"],"e":"Lammert y cols. dicen que los cálculos de pigmento negro *\"are formed in uninfected gallbladders, particularly in patients with conditions that increase the concentration of systemic bilirubin, including chronic haemolytic anaemias, ineffective erythropoiesis, ileal diseases, extended ileal resections or liver cirrhosis\"*.","s":"Litiasis, cálculos de pigmento"},
+  {"t":"H","f":true,"q":"¿Cuáles son las dos condiciones esenciales para formar cálculos de pigmento café?","o":["Estasis biliar e infección (E. coli)","Hemólisis crónica y cirrosis hepática","Ayuno prolongado y nutrición parenteral","Obesidad y resistencia a la insulina"],"e":"Lammert y cols. dicen que en los cálculos café *\"bile stasis due to obstruction of the bile duct and biliary infection, especially with Escherichia coli, are two essential conditions\"*. Se forman en cualquier parte de la vía biliar, sobre todo en los conductos.","s":"Litiasis, cálculos de pigmento"},
+  {"t":"H","f":true,"q":"¿Qué enzima bacteriana de E. coli genera la bilirrubina no conjugada que forma los cálculos de pigmento café?","o":["β-glucuronidasa","Ureasa","Coagulasa","Lipasa pancreática"],"e":"Lammert y cols. dicen que *\"E. coli produce β-glucuronidase, phospholipase A1 and conjugated bile acid hydrolase, leading to the production of unconjugated bilirubin from bilirubin glucuronide\"*. La bilirrubina no conjugada es insoluble y se une al calcio (bilirrubinato de calcio).","s":"Litiasis, cálculos de pigmento"},
+  {"t":"H","f":true,"q":"¿Qué fármacos aparecen en el Recuadro 1 de Lammert y cols. como factores de riesgo de cálculos de colesterol?","o":["Estrógenos, octreotida, fibratos e inhibidores de calcineurina","Estatinas, ácido ursodesoxicólico y metformina de liberación prolongada","Inhibidores de bomba de protones, AINE y paracetamol a dosis altas","Betabloqueadores no selectivos, diuréticos tiazídicos e IECA"],"e":"El Recuadro 1 lista como fármacos litogénicos la terapia hormonal de reemplazo, la octreotida, los fibratos y los inhibidores de calcineurina. La octreotida inhibe la contracción vesicular†.","s":"Litiasis, factores de riesgo"},
+  {"t":"H","f":true,"q":"¿Por qué la pérdida rápida de peso, el ayuno prolongado y la nutrición parenteral total favorecen la litiasis?","o":["Producen hipomotilidad de la vesícula","Aumentan la síntesis de sales biliares","Producen hemólisis","Infectan la vía biliar"],"e":"En el Recuadro 1 de Lammert y cols. aparecen como *\"factors causing gallbladder hypomotility\"*: ayuno prolongado, pérdida rápida de peso o cirugía bariátrica, ciclos de peso, NPT prolongada, lesión medular y gastrectomía.","s":"Litiasis, factores de riesgo"},
+  {"t":"H","f":true,"q":"Además de la sobresaturación, ¿qué otro evento temprano de la pared vesicular describen Lammert y cols. en la litiasis?","o":["Inflamación crónica de la pared, con fibrosis","Hiperplasia muscular que acelera el vaciamiento","Atrofia de la mucosa con pérdida de mucina","Calcificación de la pared desde el inicio"],"e":"Lammert y cols. dicen: *\"Another early event is chronic inflammation of the gallbladder wall in response to lithogenic bile\"*; se asocia a fibrosis y ambas alteran la contracción, lo que alarga el tiempo de residencia de la bilis sobresaturada.","s":"Litiasis, hipomotilidad vesicular"}
+);
+
+// Fisiopatología de colangitis (TG18, Kiriyama) y pancreatitis aguda (Mittal, Diagnostics 2025).
+// La opción correcta es o[0].
+PREGUNTAS.push(
+  {"t":"I","f":true,"q":"Según Kiriyama y cols. (TG18), ¿qué produce la respuesta inflamatoria sistémica en la colangitis aguda?","o":["La presión biliar alta empuja bacterias y endotoxinas a la sangre","La invasión directa del hepatocito por bacterias anaerobias de la bilis","La liberación de enzimas pancreáticas activadas hacia la circulación","La hemólisis causada por la bilirrubina conjugada muy elevada"],"e":"Kiriyama y cols. dicen que la estenosis u obstrucción *\"elevates pressure within the biliary system and flushes the microorganisms or endotoxins from the infected bile into systemic circulation, inducing a systemic inflammatory response\"*.","s":"Colangitis, fisiopatología"},
+  {"t":"I","f":true,"q":"¿Qué dos condiciones se requieren para que haya colangitis aguda?","o":["Colestasis e infección biliar","Hemólisis y fiebre","Pancreatitis y obstrucción del cístico","Cirrosis e hipertensión portal"],"e":"Kiriyama y cols. dicen que la colangitis *\"occurs when biliary stenosis, due to various benign causes (often bile duct stones) or the presence of a tumor, results in cholestasis and biliary infection\"*.","s":"Colangitis, fisiopatología"},
+  {"t":"I","f":true,"q":"Por su mecanismo, ¿por qué el antibiótico solo no basta en la colangitis grave?","o":["Sin bajar la presión biliar siguen pasando bacterias a la sangre","Porque las bacterias biliares son resistentes a todos los antibióticos","Porque los antibióticos no alcanzan concentraciones en el hígado","Porque la colangitis no es una enfermedad infecciosa sino química"],"e":"Kiriyama y cols. dicen: *\"Mortality risk is high if the condition is not treated with antibiotic therapy and biliary pressure is not immediately reduced using appropriate methods\"*. Por eso el drenaje (descompresión) es la base del tratamiento en los grados II y III.","s":"Colangitis, fisiopatología"},
+  {"t":"I","f":true,"q":"¿Qué marcador sérico de septicemia se ha relacionado con la gravedad de la colangitis en TG18?","o":["Procalcitonina","CA 19-9","Amilasa sérica","Ferritina"],"e":"Kiriyama y cols. dicen que *\"measurement of serum procalcitonin, a serum marker for septicemia, can provide a simpler and faster method to assess the severity of AC\"*; tres series encontraron niveles más altos en colangitis grave, aunque son estudios pequeños.","s":"Colangitis, gravedad"},
+  {"t":"I","f":true,"q":"¿Por qué los criterios TG07 de gravedad resultaron poco útiles?","o":["\"Moderada\" dependía de no responder al tratamiento inicial","Solo incluían la pentada de Reynolds como criterio de gravedad","Se basaban en la biopsia hepática y en el cultivo de bilis","No consideraban la falla orgánica ni la edad del paciente"],"e":"Kiriyama y cols. dicen que los criterios TG07 *\"were found to be of limited use due to the ambiguous definition of moderate cholangitis as 'not responding to initial treatment' and the lack of methodologies allowing clinicians to carry out rapid assessment at the time of diagnosis\"*.","s":"Colangitis, gravedad"},
+  {"t":"I","f":true,"q":"Según TG18, ¿cuál es el papel de la imagen (US o TC) en el diagnóstico de colangitis?","o":["Ver dilatación biliar (hallazgo indirecto) y buscar la causa","Confirmar la infección bacteriana de la bilis en el colédoco","Medir directamente la presión dentro del colédoco dilatado","Sustituir a los criterios clínicos y de laboratorio del grado"],"e":"TG18 recomienda US o TC para identificar la causa y demostrar la estenosis biliar; la dilatación biliar es un hallazgo indirecto que apoya el diagnóstico, porque la imagen rara vez muestra directamente la estenosis o la obstrucción.","s":"Colangitis, imagen"},
+  {"t":"I","f":true,"q":"¿Por qué los opioides deben usarse con precaución en la colangitis según Miura y cols. (TG18)?","o":["Pueden subir la presión biliar","Causan hepatitis colestásica","Bajan la presión biliar en exceso","Interfieren con los hemocultivos"],"e":"Miura y cols. advierten que los analgésicos opioides *\"may elevate biliary pressure, and must therefore be administered with caution\"*; aun así, no debe retrasarse la analgesia.","s":"Colangitis, manejo inicial"},
+  {"t":"J","f":true,"q":"Según Mittal y cols., ¿cuál es el mecanismo inicial de lesión de la célula acinar en la pancreatitis aguda?","o":["Alteración de la señal de calcio intracelular","Infección bacteriana directa del páncreas","Isquemia por trombosis de la arteria esplénica","Autoanticuerpos dirigidos contra la lipasa"],"e":"Mittal y cols. dicen: *\"The trigger event will induce an injury to pancreatic acinar and ductal cells by disrupting normal intracellular calcium signaling, hence affecting stimulus–secretion coupling\"*.","s":"Pancreatitis, fisiopatología"},
+  {"t":"J","f":true,"q":"Ante una exposición tóxica intensa, ¿qué secuencia ocurre en la célula acinar según Mittal y cols.?","o":["Cae el ATP, falla la autofagia, se activa el inflamasoma y hay necrosis","Aumenta el ATP y se acelera la secreción de zimógenos al conducto","Apoptosis ordenada de los acinos, sin respuesta inflamatoria","Proliferación acinar inmediata seguida de fibrosis reparadora"],"e":"Mittal y cols. dicen que se dañan las células *\"diminishing ATP production. This results in defective autophagy, the localization of endolysosomes, inflammasome activation, cytokine release, and cellular necrosis\"*.","s":"Pancreatitis, fisiopatología"},
+  {"t":"J","f":true,"q":"¿Qué citocinas exacerban la lesión pancreática inicial según Mittal y cols.?","o":["TNF-α, IL-1, IL-6 e IL-18","IL-4, IL-5, IL-13 y eotaxina","IL-10, TGF-β y IL-35","Interferón α, interferón β e IL-2"],"e":"Mittal y cols. dicen que *\"multiple cytokines mediate a powerful pro-inflammatory immune response, such as tumor necrosis factor-alpha (TNF-a) and interleukins 1a, 1b, 6, and 18, exacerbating the initial pancreatic injury\"*.","s":"Pancreatitis, fisiopatología"},
+  {"t":"J","f":true,"q":"¿Cómo llega la inflamación pancreática a producir falla multiorgánica?","o":["Las citocinas se diseminan por vía linfática y sistémica","Por diseminación de bacterias desde el páncreas en todos los casos","Por obstrucción biliar secundaria al edema de la cabeza","Por la hiperglucemia secundaria a la lesión de los islotes"],"e":"Mittal y cols. dicen que la cascada *\"extends the inflammatory cascade via lymphatic and systemic circulation into the liver, lungs, heart, kidneys, and gastrointestinal (GI) tract, leading to multi-organ injury\"*, que se manifiesta como SIRS.","s":"Pancreatitis, fisiopatología"},
+  {"t":"J","f":true,"q":"¿Qué familia bacteriana de traslocación intestinal se asocia con más frecuencia a pancreatitis grave?","o":["Enterococcidae","Enterobacteriaceae","Bacteroidaceae","Lactobacillaceae"],"e":"Mittal y cols. dicen que el daño intestinal lleva a traslocación bacteriana y que *\"the species of bacteria involved are a predictive factor of disease severity, with Enterococcidae most frequently being associated with severe disease\"*.","s":"Pancreatitis, fisiopatología"},
+  {"t":"J","f":true,"q":"¿Por qué la obesidad empeora la pancreatitis aguda?","o":["Por lipólisis del tejido adiposo","Porque aumenta la secreción de bicarbonato","Porque disminuye los triglicéridos","Porque protege de la traslocación"],"e":"Mittal y cols. dicen que la obesidad es predictor de gravedad y que tiene efectos deletéreos *\"through adipocyte lipolysis in the pancreas and adipose tissue\"*. Los ácidos grasos liberados son tóxicos para el acino†.","s":"Pancreatitis, fisiopatología"},
+  {"t":"J","f":true,"q":"¿Cuál es la causa de la pancreatitis tras cirugía de derivación cardiopulmonar?","o":["Isquemia","Hipercalcemia por las transfusiones","Litos que migran durante la cirugía","Toxicidad por heparina"],"e":"Mittal y cols. dicen: *\"In cases of cardiac-bypass-surgery-associated pancreatitis, the pathophysiology is thought to be ischemic, and these cases almost always improve once cardiac function improves\"*.","s":"Pancreatitis, etiología"},
+  {"t":"J","f":true,"q":"Según Mittal y cols., ¿por qué el consumo bajo de alcohol podría proteger a no fumadores del primer episodio de pancreatitis?","o":["Porque estimula la secreción ductal pancreática","Porque baja los triglicéridos séricos en ayuno","Porque inhibe la activación de la tripsina acinar","Porque disuelve los microlitos de la vesícula"],"e":"Mittal y cols. dicen que el consumo bajo de alcohol *\"may protect non-smokers from the first episode of pancreatitis, but not subsequent episodes of acute pancreatitis, by stimulating pancreatic ductal secretion\"*.","s":"Pancreatitis, etiología"},
+  {"t":"J","f":true,"q":"¿Qué pacientes tienen más riesgo de pancreatitis post-CPRE?","o":["Mujeres jóvenes con colédoco delgado y disfunción del Oddi","Hombres mayores con colédoco dilatado por litos grandes","Pacientes con pancreatitis crónica calcificada y esteatorrea","Pacientes con colangitis grave grado III que requieren drenaje"],"e":"Mittal y cols. dicen que *\"the patients at the greatest risk are young women with small bile ducts and sphincter of Oddi dysfunction\"*; también aumentan el riesgo los intentos múltiples de canulación y la canulación del conducto pancreático.","s":"Pancreatitis, etiología"},
+  {"t":"J","f":true,"q":"¿Por qué aparece intolerancia a la glucosa después de episodios repetidos de pancreatitis aguda?","o":["Cicatrización del parénquima que reduce la producción de insulina","Exceso de glucagón por hiperplasia de las células α de los islotes","Aporte de glucosa en las soluciones IV durante el internamiento","Destrucción autoinmune de las células β mediada por anticuerpos anti-GAD"],"e":"Mittal y cols. dicen que *\"the scarring of pancreas parenchyma takes place, affecting insulin production capacity\"*; la probabilidad de intolerancia a la glucosa es ≈60 % a 5 años del primer ataque, y mayor tras necrosectomía.","s":"Pancreatitis, secuelas"},
+  {"t":"J","f":true,"q":"¿Cuántas unidades de lipasa secreta al día un páncreas adulto normal, según Mittal y cols.?","o":["1 a 2 millones de unidades","10,000 a 20,000 unidades","50,000 unidades","100 millones de unidades"],"e":"Mittal y cols. dicen que *\"the normal human adult pancreas secretes between 1 and 2 million units of lipase daily\"*. Por eso las dosis de reemplazo (50,000 U por comida) solo aportan una fracción, suficiente para evitar la esteatorrea†.","s":"Pancreatitis, secuelas"},
+  {"t":"J","f":true,"q":"¿Qué porcentaje de pacientes tiene insuficiencia pancreática exocrina después de un episodio de pancreatitis aguda?","o":[">50 %, y disminuye después","<5 %, y es transitoria","Exactamente 20 % de los casos","100 %, y es permanente"],"e":"Mittal y cols. dicen: *\"Pancreatic exocrine insufficiency can be seen after acute pancreatitis episodes in >50% patients, but the frequency falls in subsequent months\"*.","s":"Pancreatitis, secuelas"},
+  {"t":"J","f":true,"q":"Según Mittal y cols., ¿qué proporción de las pancreatitis biliares ocurre en mujeres?","o":["66 %","20 %","50 %","90 %"],"e":"Mittal y cols. dicen que hay mayor prevalencia de litos en mujeres, *\"accounting for 66% of the cases of biliary pancreatitis\"*.","s":"Pancreatitis, etiología"}
+);
+
+// Oncología digestiva (Remes-Troche et al., posicionamiento AMG, Rev Gastroenterol Mex 2026).
+// La opción correcta es o[0].
+PREGUNTAS.push(
+  {"t":"K","f":true,"q":"Según el posicionamiento de la AMG, ¿con qué se ha vinculado el adenocarcinoma de esófago?","o":["ERGE crónico, Barrett, obesidad, tabaco y sexo masculino","Mala salud bucal, bebidas muy calientes y alcohol","Infección por VPH, tilosis y acalasia de larga evolución","Ingesta de cáusticos y radioterapia mediastinal previa"],"e":"La AMG dice: *\"El adenocarcinoma se ha vinculado con el reflujo gastroesofágico crónico, esófago de Barrett, obesidad, tabaquismo y sexo masculino\"*, mientras que el escamoso se asocia a tabaco, alcohol, mala salud oral y agentes térmicos o químicos.","s":"Cáncer de esófago, factores de riesgo"},
+  {"t":"K","f":true,"q":"¿Qué factor explica la mayor proporción de casos de carcinoma escamoso de esófago según la AMG?","o":["Mala salud bucal (37 %)","Tabaquismo solo (18 %)","Alcohol solo (12 %)","Bebidas muy calientes (16 %)"],"e":"La AMG estima la fracción atribuible: tabaquismo 18 %, alcohol 12 %, tabaco y alcohol combinados 18 %, hidrocarburos aromáticos policíclicos 12 %, alimentos y bebidas muy calientes 16 % y *\"mala salud bucal (37%)\"*; frutas y verduras protegen (−12 %).","s":"Cáncer de esófago, factores de riesgo"},
+  {"t":"K","f":true,"q":"¿Qué grado de reducción de la luz esofágica suele haber cuando aparece disfagia por cáncer?","o":["50 % a 75 %","10 % a 20 %","25 %","Más de 95 %"],"e":"La AMG dice que la disfagia de progresión rápida *\"suele indicar la presencia de una obstrucción significativa del lumen esofágico, estimada entre el 50% y el 75% de reducción de la luz esofágica, y refleja enfermedad localmente avanzada\"*. Por eso solo 1 de cada 8 se diagnostica temprano.","s":"Cáncer de esófago, síntomas"},
+  {"t":"K","f":true,"q":"¿Por qué una estrategia de tamizaje de adenocarcinoma esofágico basada solo en ERGE podría no ser suficiente?","o":["≈40 % de los casos no tiene antecedente de reflujo","Porque el ERGE protege contra el adenocarcinoma","Porque el Barrett solo ocurre en mujeres jóvenes","Porque el adenocarcinoma no se relaciona con Barrett"],"e":"La AMG dice que *\"aproximadamente el 40% de los pacientes con ACE no tienen antecedentes de reflujo\"*, y que la prevalencia de Barrett en personas sin ERGE es cercana a 4.9 %.","s":"Cáncer de esófago, población de riesgo"},
+  {"t":"K","f":true,"q":"¿Cuál es la prevalencia de carcinoma escamoso en pacientes con acalasia según la AMG?","o":["26 por cada 1,000","4 por cada 1,000","1 por cada 100,000","50 por cada 100"],"e":"La AMG dice: *\"La prevalencia del CEE en pacientes con acalasia esofágica es de 26 por cada 1,000 casos, mientras que la prevalencia del ACE es de 4 por cada 1,000\"*; el riesgo de escamoso es 50 veces mayor. La estasis crónica irrita la mucosa†.","s":"Cáncer de esófago, población de riesgo"},
+  {"t":"K","f":true,"q":"¿Qué secuencia describe la cascada de Correa del cáncer gástrico?","o":["Gastritis, atrofia, metaplasia, displasia, cáncer","Metaplasia, gastritis, atrofia, displasia, cáncer","Displasia, metaplasia, atrofia, gastritis, cáncer","Úlcera péptica, cicatrización, displasia, cáncer"],"e":"La AMG menciona *\"la progresión a lo largo de la cascada de Correa (gastritis crónica, atrofia, metaplasia intestinal, displasia y cáncer)\"*, impulsada sobre todo por la infección crónica por H. pylori.","s":"Cáncer gástrico, patogenia"},
+  {"t":"K","f":true,"q":"¿Por qué la edad es un factor de riesgo importante de cáncer gástrico según la AMG?","o":["Refleja la exposición acumulada a H. pylori y la cascada de Correa","Porque con la edad disminuye la secreción de gastrina y de pepsinógeno","Porque con la edad aumenta mucho la producción de ácido clorhídrico","Porque en los adultos mayores el H. pylori se vuelve más virulento"],"e":"La AMG dice que la edad es un factor de riesgo *\"ya que refleja la exposición acumulada y prolongada a factores carcinogénicos, particularmente la infección crónica por Helicobacter pylori y la progresión a lo largo de la cascada de Correa\"*.","s":"Cáncer gástrico, patogenia"},
+  {"t":"K","f":true,"q":"Según la AMG, ¿cuál de estos define riesgo ALTO de cáncer gástrico (en >50 años)?","o":["OLGA/OLGIM III/IV","H. pylori sin lesiones premalignas","Tabaquismo activo","Dieta alta en sal y nitritos"],"e":"En la AMG, el riesgo alto incluye familiar con cáncer gástrico <50 años, lesiones premalignas extensas OLGA/OLGIM III/IV, H. pylori con esas lesiones, anemia perniciosa, Ménétrier, linfoma MALT y síndromes hereditarios (CDH1/Lynch). H. pylori sin lesiones, tabaco, alcohol, sal y nitritos y obesidad son riesgo moderado.","s":"Cáncer gástrico, población de riesgo"},
+  {"t":"K","f":true,"q":"¿Qué tumores asociados a obesidad están aumentando en adultos jóvenes según la AMG?","o":["Colorrectal, páncreas y vesícula biliar","Escamoso de esófago y carcinoma anal","GIST gástrico y tumores carcinoides","Linfoma MALT gástrico y hepatoblastoma"],"e":"La AMG describe *\"el aumento de la incidencia de neoplasias gastrointestinales en adultos jóvenes, especialmente en los tumores asociados a obesidad, como el cáncer colorrectal, pancreático y de vesícula biliar\"*; el gástrico distal aumenta 1.3 % al año en menores de 50.","s":"Epidemiología"},
+  {"t":"K","f":true,"q":"Según la AMG, ¿qué define riesgo ALTO de cáncer colorrectal?","o":["EII de larga evolución","Edad >50 años con sedentarismo","Dieta rica en carnes rojas","Síndrome metabólico"],"e":"La AMG define riesgo alto por antecedente personal de CCR o lesiones premalignas, familiares de primer grado con CCR, Lynch o PAF, EII de larga evolución y radiación pélvica. La edad >50 con un factor de estilo de vida (carne roja, poca fibra, sedentarismo, tabaco, alcohol, síndrome metabólico) es riesgo moderado.","s":"Cáncer colorrectal, población de riesgo"},
+  {"t":"K","f":true,"q":"¿Qué hallazgo de laboratorio inexplicado ha emergido como marcador de malignidad oculta según la AMG?","o":["Trombocitosis >450,000/µL","Leucopenia <4,000/µL persistente","Hipoglucemia en ayuno","Hipercalemia con creatinina normal"],"e":"La AMG dice: *\"La trombocitosis inexplicada (> 450,000/µl) ha emergido como un marcador paraclínico de malignidad oculta\"*, asociada a mayor riesgo de cáncer en atención primaria.","s":"Datos de alarma"},
+  {"t":"K","f":true,"q":"Según la AMG, ¿qué otras condiciones se asocian al carcinoma escamoso de esófago?","o":["VPH, acalasia, tilosis o cáusticos","Esófago de Barrett y obesidad central","H. pylori y anemia perniciosa","Colitis ulcerosa y colangitis esclerosante"],"e":"La AMG dice: *\"Otros factores relacionados con CEE son la infección por virus de papiloma humano, la acalasia, la tilosis y la historia personal de ingesta de cáusticos o radioterapia\"*.","s":"Cáncer de esófago, factores de riesgo"},
+  {"t":"K","f":true,"q":"¿Para qué sirven la magnificación y la cromoendoscopia digital (NBI, FICE, i-Scan) en el estómago?","o":["Ver la metaplasia y tomar biopsias dirigidas","Sustituir a todas las biopsias sistemáticas","Medir la acidez gástrica durante el estudio","Erradicar el H. pylori durante la endoscopia"],"e":"La AMG dice que la metaplasia es tradicionalmente no visible, pero estas técnicas *\"permiten la identificación macroscópica de las áreas de metaplasia, por lo que las biopsias sistemáticas pueden complementarse con biopsias dirigidas de las áreas sospechosas\"*.","s":"Cáncer gástrico, endoscopia"},
+  {"t":"K","f":true,"q":"¿Qué manifestaciones considera la AMG datos de alarma generales de neoplasia digestiva, aunque inespecíficos para cáncer de esófago?","o":["Anemia ferropénica y ascitis","Pirosis y regurgitación que responden a IBP","Diarrea aguda y fiebre de menos de 7 días","Ictericia y prurito con colestasis"],"e":"La AMG dice: *\"La anemia ferropénica y la ascitis son consideradas manifestaciones de alarma generales para neoplasias gastrointestinales, aunque carecen de especificidad diagnóstica para cáncer de esófago\"*.","s":"Datos de alarma"}
+);
+
+</script>
+<script>
+(function () {
+  const KEY = "examen-bloque-3-v1";
+  const LETRAS = ["A", "B", "C", "D"];
+  const app = document.getElementById("app");
+  let S = null; // { ids, perms, ans, cur, done }
+  let G = null; // juego Contrarreloj en curso
+
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
+  const load = () => { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } };
+  const clear = () => { try { localStorage.removeItem(KEY); } catch (e) {} };
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  // Explicaciones: escapa y convierte *cita textual* en cursiva.
+  const fmt = (s) => esc(s).replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+  // Simulacro: reparte n preguntas entre todos los temas (al menos 1 por tema) y llena el resto al azar.
+  function simulacro(n) {
+    const porTema = {};
+    shuffle(PREGUNTAS.map((_, i) => i)).forEach((i) => { (porTema[PREGUNTAS[i].t] = porTema[PREGUNTAS[i].t] || []).push(i); });
+    const elegidas = [];
+    Object.keys(porTema).forEach((t) => elegidas.push(porTema[t].shift()));
+    const resto = shuffle([].concat(...Object.values(porTema)));
+    return elegidas.concat(resto).slice(0, n);
+  }
+
+  function nuevo(ids, aleatorio) {
+    const orden = aleatorio ? shuffle(ids) : ids.slice();
+    S = { ids: orden, perms: orden.map((id) => shuffle(PREGUNTAS[id].o.map((_, i) => i))), ans: orden.map(() => null), cur: 0, done: false };
+    save(); render();
+  }
+
+  function render() {
+    if (G) return renderJuego();
+    if (!S) return renderInicio();
+    if (S.done) return renderResultados();
+    renderPregunta();
+  }
+
+  function renderInicio() {
+    const prev = load();
+    const nF = PREGUNTAS.filter((p) => p.f).length;
+    const conteo = {};
+    PREGUNTAS.forEach((p) => { conteo[p.t] = (conteo[p.t] || 0) + 1; });
+    app.innerHTML = `
+      <section class="card start enter">
+        <h2>Elige cómo estudiar</h2>
+        <p>${PREGUNTAS.length} preguntas de opción múltiple sacadas de los artículos troncales del Bloque III: ${nF} de fisiopatología y datos clave al estilo del parcial («Según … y cols.»), y ${PREGUNTAS.length - nF} de casos clínicos y conceptos. Al responder ves si acertaste y la explicación con la cita textual del artículo, para que vayas aprendiendo mientras contestas. Lo marcado con † no viene de los artículos.</p>
+        <div class="modes">
+          ${prev && !prev.done && prev.ans.some((a) => a !== null) ? `<button class="mode" id="seguir"><b>Continuar donde me quedé</b><span>${prev.ans.filter((a) => a !== null).length} de ${prev.ids.length} respondidas</span></button>` : ""}
+          <button class="mode main" id="simu"><b>Simulacro de parcial</b><span>40 preguntas al azar de todos los temas, como el segundo parcial</span></button>
+          <button class="mode" id="fisio"><b>Fisiopatología al estilo del parcial</b><span>Las ${nF} preguntas «Según … y cols.», en orden aleatorio</span></button>
+          <button class="mode" id="casos"><b>Casos clínicos y conceptos</b><span>Las ${PREGUNTAS.length - nF} preguntas de casos, en orden aleatorio</span></button>
+          <button class="mode" id="azar"><b>Examen completo</b><span>Las ${PREGUNTAS.length} preguntas en orden aleatorio</span></button>
+        </div>
+        <h2 style="font-size:18px">O practica un tema</h2>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Tema</th><th style="text-align:right">Preguntas</th><th></th></tr></thead>
+          <tbody>${Object.keys(TEMAS).map((k) => `<tr><td>${TEMAS[k]}</td><td class="n">${conteo[k] || 0}</td><td style="text-align:right"><button class="btn ghost sm" data-tema="${k}">Practicar</button></td></tr>`).join("")}</tbody>
+        </table></div>
+        <p class="hint">Atajos: teclas 1–4 o A–D para responder, Enter para avanzar.</p>
+      </section>
+      <section class="card game-promo enter">
+        <div class="eyebrow">Juego · con música</div>
+        <h2>Contrarreloj del Bloque III</h2>
+        <p>60 segundos con las mismas ${PREGUNTAS.length} preguntas. Cada acierto suma puntos y +2 s; las rachas multiplican (×2, ×3, ×4). Cada error resta 4 s y te enseña la respuesta.${mejor() ? ` Tu récord: <strong class="mono">${mejor()}</strong> pts.` : ""}</p>
+        <div class="btns"><button class="btn bili" id="jugar">Jugar Contrarreloj</button></div>
+      </section>`;
+    const todos = PREGUNTAS.map((_, i) => i);
+    document.getElementById("azar").onclick = () => nuevo(todos, true);
+    document.getElementById("simu").onclick = () => nuevo(simulacro(40), true);
+    document.getElementById("fisio").onclick = () => nuevo(todos.filter((i) => PREGUNTAS[i].f), true);
+    document.getElementById("casos").onclick = () => nuevo(todos.filter((i) => !PREGUNTAS[i].f), true);
+    app.querySelectorAll("[data-tema]").forEach((b) => b.onclick = () => nuevo(todos.filter((i) => PREGUNTAS[i].t === b.dataset.tema), true));
+    document.getElementById("jugar").onclick = iniciarJuego;
+    const s = document.getElementById("seguir");
+    if (s) s.onclick = () => { S = prev; render(); };
+  }
+
+  function renderPregunta() {
+    const i = S.cur, id = S.ids[i], p = PREGUNTAS[id], perm = S.perms[i], elegido = S.ans[i];
+    const n = S.ids.length;
+    const aciertos = S.ans.filter((a, k) => a === 0).length;
+    const respondidas = S.ans.filter((a) => a !== null).length;
+    const bar = S.ids.map((_, k) => {
+      const a = S.ans[k];
+      const c = k === i ? "cur" : a === null ? "" : a === 0 ? "ok" : "bad";
+      return `<i class="${c}"></i>`;
+    }).join("");
+    let html = `
+      <section class="progress" aria-label="Progreso">
+        <div class="progress-top"><span class="mono">Pregunta ${i + 1} / ${n}</span><span class="mono">Aciertos ${aciertos} / ${respondidas}</span></div>
+        <div class="bar" style="grid-template-columns:repeat(${n},1fr)">${bar}</div>
+      </section>
+      <section class="card enter">
+        <div class="qhead"><span class="topic">${esc(TEMAS[p.t])}</span>${p.c ? `<span class="tag">Caso clínico</span>` : ""}</div>
+        <p class="qtext">${esc(p.q)}</p>
+        <div class="opts" role="group" aria-label="Opciones">
+          ${perm.map((orig, k) => {
+            let cls = "";
+            if (elegido !== null) {
+              if (orig === 0) cls = "correct";
+              else if (orig === elegido) cls = "wrong";
+              else cls = "dim";
+            }
+            return `<button class="opt ${cls}" data-o="${orig}" ${elegido !== null ? "disabled" : ""}><span class="k">${LETRAS[k]}</span><span>${esc(p.o[orig])}</span></button>`;
+          }).join("")}
+        </div>`;
+    if (elegido !== null) {
+      const ok = elegido === 0;
+      const letraOk = LETRAS[perm.indexOf(0)];
+      html += `
+        <div class="explain" aria-live="polite">
+          <p class="verdict ${ok ? "ok" : "bad"}">${ok ? "Correcto." : `Incorrecto. La respuesta es la ${letraOk}.`}</p>
+          <p>${fmt(p.e)}</p>
+          <p class="src">${esc(FUENTES[p.t])} · ${esc(p.s)}</p>
+        </div>`;
+    }
+    html += `
+        <div class="navrow">
+          <button class="btn ghost" id="prev" ${i === 0 ? "disabled" : ""}>Anterior</button>
+          ${elegido !== null ? `<button class="btn" id="next">${i === n - 1 ? "Ver resultados" : "Siguiente"}</button>` : `<span class="hint">Elige una opción</span>`}
+        </div>
+      </section>
+      <div class="btns"><button class="btn ghost" id="salir">Volver al inicio</button></div>`;
+    app.innerHTML = html;
+    app.querySelectorAll(".opt").forEach((b) => b.onclick = () => responder(+b.dataset.o));
+    document.getElementById("prev").onclick = () => { S.cur--; save(); render(); };
+    const nx = document.getElementById("next");
+    if (nx) { nx.onclick = avanzar; nx.focus({ preventScroll: true }); }
+    document.getElementById("salir").onclick = () => { S = null; render(); };
+  }
+
+  function responder(orig) {
+    if (S.ans[S.cur] !== null) return;
+    S.ans[S.cur] = orig; save();
+    orig === 0 ? Snd.ok() : Snd.bad();
+    render();
+  }
+  function avanzar() {
+    if (S.ans[S.cur] === null) return;
+    if (S.cur < S.ids.length - 1) { S.cur++; save(); render(); window.scrollTo({ top: 0 }); }
+    else {
+      const pend = S.ans.findIndex((a) => a === null);
+      if (pend >= 0) { S.cur = pend; save(); render(); return; }
+      S.done = true; save(); Snd.fin(); render(); window.scrollTo({ top: 0 });
+    }
+  }
+
+  function renderResultados() {
+    const n = S.ids.length;
+    const ok = S.ans.filter((a) => a === 0).length;
+    const pct = Math.round((ok / n) * 100);
+    const nota = (ok / n) * 10;
+    const juicio = pct >= 90 ? "Vas listo para el parcial." : pct >= 80 ? "Muy bien; repasa los temas en ámbar o rojo." : pct >= 60 ? "Vas bien, pero hay huecos importantes." : "Conviene repasar los artículos de los temas en rojo antes del examen.";
+    const porTema = {};
+    S.ids.forEach((id, k) => {
+      const t = PREGUNTAS[id].t;
+      porTema[t] = porTema[t] || { ok: 0, n: 0 };
+      porTema[t].n++; if (S.ans[k] === 0) porTema[t].ok++;
+    });
+    const errores = S.ids.map((id, k) => ({ id, k })).filter((x) => S.ans[x.k] !== 0);
+    app.innerHTML = `
+      <section class="card enter">
+        <div class="eyebrow">Resultado</div>
+        <div class="score"><span class="big mono">${ok}</span><span class="of">/ ${n} · ${pct}% · calificación ${nota.toFixed(1)}</span></div>
+        <p class="grade">${juicio}</p>
+        <div class="tablewrap"><table>
+          <thead><tr><th>Tema</th><th style="text-align:right">Aciertos</th><th></th></tr></thead>
+          <tbody>${Object.keys(TEMAS).filter((t) => porTema[t]).map((t) => {
+            const r = porTema[t], p = r.ok / r.n;
+            return `<tr><td>${TEMAS[t]}</td><td class="n">${r.ok}/${r.n}</td><td style="width:30%"><div class="meter"><b class="${p < 0.6 ? "low" : p < 0.8 ? "mid" : ""}" style="width:${Math.round(p * 100)}%"></b></div></td></tr>`;
+          }).join("")}</tbody>
+        </table></div>
+        <div class="btns">
+          ${errores.length ? `<button class="btn" id="fallos">Repetir solo las ${errores.length} falladas</button>` : ""}
+          <button class="btn ${errores.length ? "ghost" : ""}" id="otra">Nuevo examen completo (${PREGUNTAS.length})</button>
+          <button class="btn ghost" id="inicio">Volver al inicio</button>
+        </div>
+      </section>
+      ${errores.length ? `<section class="card">
+        <h2>Repaso de errores</h2>
+        <div class="review">${errores.map(({ id, k }) => {
+          const p = PREGUNTAS[id];
+          return `<div class="ritem">
+            <span class="topic">${esc(TEMAS[p.t])}</span>
+            <p><strong>${esc(p.q)}</strong></p>
+            <p class="yours">Elegiste: ${esc(p.o[S.ans[k]])}</p>
+            <p class="right">Correcta: ${esc(p.o[0])}</p>
+            <p class="why">${fmt(p.e)} <span class="mono" style="font-size:12px">(${esc(FUENTES[p.t])} · ${esc(p.s)})</span></p>
+          </div>`;
+        }).join("")}</div>
+      </section>` : ""}`;
+    const f = document.getElementById("fallos");
+    if (f) f.onclick = () => nuevo(errores.map((x) => x.id), true);
+    document.getElementById("otra").onclick = () => nuevo(PREGUNTAS.map((_, i) => i), true);
+    document.getElementById("inicio").onclick = () => { S = null; clear(); render(); };
+  }
+
+  // ---------- Juego Contrarreloj ----------
+  const DURACION = 60000;
+  const mejor = () => +(lsGet("eb3-record") || 0);
+  const mult = (racha) => Math.min(4, 1 + Math.floor(racha / 3));
+
+  function iniciarJuego() {
+    G = { pool: shuffle(PREGUNTAS.map((_, i) => i)), k: 0, pts: 0, racha: 0, maxRacha: 0, ok: 0, n: 0,
+          endAt: Date.now() + DURACION, lock: false, over: false, fallos: [], raf: 0, rapido: false };
+    nuevaPreguntaJuego();
+    Musica.start();
+    render(); window.scrollTo({ top: 0 });
+    bucleJuego();
+  }
+  function nuevaPreguntaJuego() {
+    if (G.k >= G.pool.length) { G.pool = shuffle(G.pool); G.k = 0; }
+    const id = G.pool[G.k++];
+    G.cur = { id, perm: shuffle([0, 1, 2, 3]), elegido: null };
+  }
+  function bucleJuego() {
+    cancelAnimationFrame(G.raf);
+    const paso = () => {
+      if (!G || G.over) return;
+      const resta = G.endAt - Date.now();
+      if (resta <= 0) return terminarJuego();
+      const t = document.getElementById("g-time"), b = document.getElementById("g-bar");
+      if (t) t.textContent = (resta / 1000).toFixed(1);
+      if (b) { b.style.width = `${Math.min(100, (resta / DURACION) * 100)}%`; b.classList.toggle("hot", resta < 15000); }
+      if (resta < 15000 && !G.rapido) { G.rapido = true; Musica.tempo(150); }
+      if (resta >= 15000 && G.rapido) { G.rapido = false; Musica.tempo(120); }
+      G.raf = requestAnimationFrame(paso);
+    };
+    G.raf = requestAnimationFrame(paso);
+  }
+  function responderJuego(orig) {
+    if (!G || G.lock || G.over) return;
+    G.lock = true; G.cur.elegido = orig; G.n++;
+    const p = PREGUNTAS[G.cur.id];
+    let delta;
+    if (orig === 0) {
+      G.racha++; G.maxRacha = Math.max(G.maxRacha, G.racha); G.ok++;
+      delta = 10 * mult(G.racha); G.pts += delta; G.endAt += 2000;
+      Snd.ok();
+    } else {
+      G.racha = 0; G.endAt -= 4000; G.fallos.push(G.cur.id);
+      Snd.bad();
+    }
+    renderJuego(orig === 0 ? `+${delta}` : "−4 s");
+    setTimeout(() => {
+      if (!G || G.over) return;
+      if (G.endAt - Date.now() <= 0) return terminarJuego();
+      G.lock = false; nuevaPreguntaJuego(); renderJuego();
+    }, orig === 0 ? 650 : 1700);
+  }
+  function terminarJuego() {
+    G.over = true; cancelAnimationFrame(G.raf);
+    Musica.stop(); Snd.fin();
+    G.record = G.pts > mejor();
+    if (G.record) lsSet("eb3-record", String(G.pts));
+    renderJuego();
+  }
+  function salirJuego() { if (G) { cancelAnimationFrame(G.raf); Musica.stop(); } G = null; render(); }
+
+  function renderJuego(flash) {
+    if (G.over) return renderFinJuego();
+    const p = PREGUNTAS[G.cur.id], el = G.cur.elegido, resta = Math.max(0, G.endAt - Date.now());
+    app.innerHTML = `
+      <section class="card game ${flash ? (el === 0 ? "pulse-ok" : "shake") : "enter"}">
+        <div class="hud">
+          <div><span class="eyebrow">Puntos</span><span class="hud-n mono">${G.pts}</span></div>
+          <div><span class="eyebrow">Racha</span><span class="hud-n mono">${G.racha}${mult(G.racha) > 1 ? ` <em class="mult">×${mult(G.racha)}</em>` : ""}</span></div>
+          <div class="hud-t"><span class="eyebrow">Tiempo</span><span class="hud-n mono" id="g-time">${(resta / 1000).toFixed(1)}</span></div>
+        </div>
+        <div class="tbar-wrap">
+          <div class="tbar"><b id="g-bar" class="${resta < 15000 ? "hot" : ""}" style="width:${Math.min(100, (resta / DURACION) * 100)}%"></b></div>
+          ${flash ? `<span class="flash ${el === 0 ? "ok" : "bad"} mono">${flash}</span>` : ""}
+        </div>
+        <span class="topic">${esc(TEMAS[p.t])}</span>
+        <p class="qtext">${esc(p.q)}</p>
+        <div class="opts">
+          ${G.cur.perm.map((orig, k) => {
+            const cls = el === null ? "" : orig === 0 ? "correct" : orig === el ? "wrong" : "dim";
+            return `<button class="opt ${cls}" data-o="${orig}" ${el !== null ? "disabled" : ""}><span class="k">${LETRAS[k]}</span><span>${esc(p.o[orig])}</span></button>`;
+          }).join("")}
+        </div>
+        <div class="navrow">
+          <button class="btn ghost" id="g-salir">Salir del juego</button>
+          <button class="btn ghost" id="g-musica" data-mudo aria-pressed="${Musica.on}">Música: ${Musica.on ? "sí" : "no"}</button>
+        </div>
+      </section>`;
+    app.querySelectorAll(".opt").forEach((b) => b.onclick = () => responderJuego(+b.dataset.o));
+    document.getElementById("g-salir").onclick = salirJuego;
+    document.getElementById("g-musica").onclick = () => { Snd.click(); if (Musica.toggle()) Musica.start(); renderJuego(); };
+  }
+  function renderFinJuego() {
+    const unicos = [...new Set(G.fallos)];
+    app.innerHTML = `
+      <section class="card enter">
+        <div class="eyebrow">Fin del Contrarreloj</div>
+        <div class="score"><span class="big mono">${G.pts}</span><span class="of">pts · ${G.ok}/${G.n} aciertos · mejor racha ${G.maxRacha}</span></div>
+        <p class="grade">${G.record ? "¡Nuevo récord!" : `Récord: ${mejor()} pts.`}</p>
+        <div class="btns">
+          <button class="btn bili" id="g-otra">Jugar otra vez</button>
+          <button class="btn ghost" id="g-inicio">Volver al inicio</button>
+        </div>
+      </section>
+      ${unicos.length ? `<section class="card">
+        <h2>Lo que fallaste</h2>
+        <div class="review">${unicos.map((id) => {
+          const p = PREGUNTAS[id];
+          return `<div class="ritem">
+            <span class="topic">${esc(TEMAS[p.t])}</span>
+            <p><strong>${esc(p.q)}</strong></p>
+            <p class="right">Correcta: ${esc(p.o[0])}</p>
+            <p class="why">${fmt(p.e)} <span class="mono" style="font-size:12px">(${esc(FUENTES[p.t])} · ${esc(p.s)})</span></p>
+          </div>`;
+        }).join("")}</div>
+      </section>` : ""}`;
+    document.getElementById("g-otra").onclick = iniciarJuego;
+    document.getElementById("g-inicio").onclick = salirJuego;
+  }
+
+  // ---------- Barra de herramientas ----------
+  const tools = document.getElementById("tools");
+  tools.innerHTML = `<button class="tool" id="snd" data-mudo aria-pressed="${!Snd.muted}"></button><div class="pomo" id="pomo"></div>`;
+  const sndBtn = document.getElementById("snd");
+  const pintaSnd = () => { sndBtn.textContent = Snd.muted ? "🔇 Sonido: no" : "🔊 Sonido: sí"; sndBtn.setAttribute("aria-pressed", !Snd.muted); };
+  sndBtn.onclick = () => { Snd.toggle(); Snd.click(); pintaSnd(); };
+  pintaSnd();
+  Pomodoro.montar(document.getElementById("pomo"));
+
+  document.addEventListener("keydown", (ev) => {
+    if (ev.metaKey || ev.ctrlKey || ev.altKey) return;
+    if (G && !G.over) {
+      const k = ev.key.toUpperCase();
+      let idx = "1234".indexOf(k); if (idx < 0) idx = "ABCD".indexOf(k);
+      if (idx >= 0 && k.length === 1 && !G.lock) responderJuego(G.cur.perm[idx]);
+      return;
+    }
+    if (G || !S || S.done) return;
+    const k = ev.key.toUpperCase();
+    let idx = "1234".indexOf(k); if (idx < 0) idx = "ABCD".indexOf(k);
+    if (idx >= 0 && k.length === 1 && S.ans[S.cur] === null) {
+      const orig = S.perms[S.cur][idx];
+      if (orig !== undefined) responder(orig);
+    } else if (ev.key === "Enter" && S.ans[S.cur] !== null && document.activeElement?.id !== "prev") {
+      ev.preventDefault(); avanzar();
+    }
+  });
+
+  render();
+})();
+
+</script>
+
+</body></html>

@@ -57,7 +57,10 @@ module.exports=function(file){
   const lits=literals(scripts);IDS={};lits.forEach(v=>ids(v));for(const v of lits)walk(v,{t:''},res);
   // quiz de pruebas hepáticas: la primera opción es la correcta (la guía las revuelve) y "t" es la letra de la sección
   if(/const PREGUNTAS\s*=/.test(scripts)){const secs={};for(const x of scripts.matchAll(/\b([A-Z]):\s*"([^"]{3,80})"/g))secs[x[1]]=x[2];
-    const i=scripts.indexOf('[',scripts.search(/const PREGUNTAS\s*=/));const arr=literals(scripts.slice(i))[0]||[];
+    // si el arreglo crece con PREGUNTAS.push(...) (examen del Bloque III), se evalúa solo su <script> (son puros datos) y los temas salen de TEMAS
+    let arr=null;const blk=[...html.matchAll(/<script(?![^>]*src)[^>]*>([\s\S]*?)<\/script>/g)].map(m=>m[1]).find(b=>/const PREGUNTAS\s*=/.test(b));
+    if(blk&&/PREGUNTAS\.push\(/.test(blk)){try{const r=vm.runInNewContext(blk+';({P:PREGUNTAS,T:typeof TEMAS==="object"?TEMAS:null})',{},{timeout:2000});arr=r.P;if(r.T)Object.assign(secs,r.T)}catch(e){arr=null}}
+    if(!arr){const i=scripts.indexOf('[',scripts.search(/const PREGUNTAS\s*=/));arr=literals(scripts.slice(i))[0]||[];}
     for(const o of arr)if(o&&S(o.q)&&Array.isArray(o.o))res.q.push({t:secs[o.t]||'',q:strip(o.q),o:o.o.map(strip),a:0,e:strip(o.e||'')});}
   const seen=new Set();for(const k of ['q','c'])res[k]=res[k].filter(x=>{const h=(x.q||x.f)+'|'+(x.b||x.o.join());if(seen.has(h))return false;seen.add(h);return true});
   return res;

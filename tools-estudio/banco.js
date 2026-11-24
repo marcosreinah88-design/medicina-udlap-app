@@ -31,6 +31,7 @@ const GUIAS=[
   ['esofago','s5/esofago/index.html','Gastroenterología',5],
   ['hepatobiliar','s5/hepatobiliar/index.html','Gastroenterología',5],
   ['quiz-hepatico','s5/quiz-hepatico/index.html','Gastroenterología',5],
+  ['examen-bloque-iii','s5/examen-bloque-iii/index.html','Gastroenterología',5],
   ['cirugia','s5/cirugia/index.html','Cirugía',5],
   ['oftalmo','s5/oftalmo/index.html','Oftalmología',5],
   ['otorrino','s5/otorrino/index.html','Otorrinolaringología',5],

@@ -87,6 +87,8 @@ for fn in sorted(glob.glob(os.path.join(here, "casos_nuevos", "tanda*.py")), key
     casos += mod.CASOS
 ids = [c["id"] for c in casos]
 assert len(ids) == len(set(ids)), "ids repetidos"
+tts = [c["t"] for c in casos]
+assert len(tts) == len(set(tts)), "títulos repetidos"
 for c in casos:
     assert c["b"] in ("ee", "int", "hbp") and c["dif"] in (1, 2, 3), c["id"]
     for st in c["pasos"]:

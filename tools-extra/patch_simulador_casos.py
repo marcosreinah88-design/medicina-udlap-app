@@ -97,6 +97,8 @@ for c in casos:
         assert len({o[0] for o in st["o"]}) == len(st["o"]), (c["id"], st["q"])
 page = simulador_lineal.motor(page)
 page, casos = simulador_lineal.monitor(page, casos)  # signos y ECG acordes a cada paciente
+import simulador_memoria
+page = simulador_memoria.memoria(page)  # contestados / fallados / dominados y práctica inteligente
 
 # ---- página ----
 dstdir = os.path.join(site, "s5", ID)

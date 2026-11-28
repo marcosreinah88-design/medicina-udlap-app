@@ -306,3 +306,69 @@ def motor(page):
     assert page.count("<h3>Resultados</h3>") == 2
     page = page.replace("<h3>Resultados</h3>", "<h3>Tu camino</h3>")
     return page
+
+
+# ---- monitor acorde a cada paciente (pedido del usuario, 28 nov 2026) ----
+# Ritmo del ECG: sinusal, taquicardia sinusal (>100) o bradicardia sinusal (<60) según la FC del
+# caso; fibrilación auricular solo donde el caso la trae (stdb2). El trazo usa la FC real del
+# paciente (130 px = 1 s), variación latido a latido propia de cada caso, FA irregular sin onda P
+# con ondas f, y el encabezado dice edad y sexo del paciente. En escolares (<12 años) la
+# taquicardia y la alarma empiezan arriba de 120. No inventa hallazgos.
+RITMOS = {"stdb2": "fa"}
+
+MONITOR = r"""function monitor(el, fc, ritmo, seed) {
+  const tr = el.querySelector('.mon-trace');
+  let h = 7; for (const ch of String(seed || 'monitor')) h = (Math.imul(h, 31) + ch.charCodeAt(0)) >>> 0;
+  const rnd = () => { h = (Math.imul(h, 1103515245) + 12345) >>> 0; return h / 4294967296; };
+  const fa = ritmo === 'fa', n = fa ? 9 : 4, base = Math.max(46, 60 / fc * 130);
+  let rr = []; for (let i = 0; i < n; i++) rr.push(base * (fa ? 0.6 + rnd() * 0.8 : 0.97 + rnd() * 0.06));
+  const k = n * base / rr.reduce((a, b) => a + b, 0); rr = rr.map(x => x * k);
+  const L = n * base, amp = 0.85 + rnd() * 0.25, tH = 0.15 + rnd() * 0.09, pH = 0.07 + rnd() * 0.04;
+  const fw = []; for (let i = 0; i < 97; i++) fw.push(rnd() - .5);
+  const draw = () => {
+    const W = tr.clientWidth, H = tr.clientHeight; if (!W || !H) return;
+    const y0 = H * .62, A = H * .42 * amp;
+    let pts = [], x = 0, i = 0, j = 0;
+    const fib = (a, b) => { for (let s = a; s < b; s += 5) pts.push([x + s, fw[j++ % fw.length] * .08 * A]); };
+    while (x < W + L * 2) {
+      const P = rr[i % n];
+      if (fa) fib(0, .25 * P); else pts.push([x,0],[x+.10*P,0],[x+.14*P,-pH*A],[x+.18*P,0],[x+.25*P,0]);
+      pts.push([x+.27*P,.10*A],[x+.30*P,-A],[x+.33*P,.26*A],[x+.36*P,0],[x+.46*P,0],[x+.53*P,-tH*A],[x+.62*P,0]);
+      if (fa) fib(.66 * P, P); else pts.push([x+P,0]);
+      x += P; i++;
+      if (i % n === 0) j = 0;
+    }
+    const d = 'M' + pts.map(p => p[0].toFixed(1) + ' ' + (y0 + p[1]).toFixed(1)).join(' L');
+    tr.querySelector('svg').innerHTML = `<g class="sweep" style="--p:${L.toFixed(1)}px;animation:sweep ${(L / 130).toFixed(3)}s linear infinite"><path d="${d}" fill="none" stroke="var(--trace)" stroke-width="2.2" stroke-linejoin="round"/></g>`;
+  };
+  const ro = new ResizeObserver(draw); ro.observe(tr); observers.push(ro); draw();
+}
+const RITMO = {rs:'Ritmo sinusal', ts:'Taquicardia sinusal', bs:'Bradicardia sinusal', fa:'Fibrilación auricular'};
+const ritmoDe = c => c.sv.ritmo || (c.sv.fc > (c.sv.fcmax || 100) ? 'ts' : c.sv.fc < 60 ? 'bs' : 'rs');
+const quien = c => (c.pac.match(/^(Hombre|Mujer|Niña|Niño) de \d+ años/) || [c.pac.split(/,| con /)[0]])[0];
+"""
+
+MON_REPL = [
+    ("sv.fc > 100 || sv.fc < 50", "sv.fc > (sv.fcmax || 100) || sv.fc < 50"),
+    ("  monitor(document.getElementById('hm'), 72);", "  monitor(document.getElementById('hm'), 72, 'rs', 'inicio');"),
+    ("  monitor(document.getElementById('cm'), c.sv.fc);", "  monitor(document.getElementById('cm'), c.sv.fc, ritmoDe(c), c.id);"),
+    ("<span class=\"mon-lab\">II · ${esc(c.pac.split(/,| con /)[0])}</span>", "<span class=\"mon-lab\">II · ${esc(quien(c))}</span>"),
+    ("${c.sv.imc ? `<div class=\"mon-row\"><span>IMC ${c.sv.imc}</span></div>` : ''}",
+     "<div class=\"mon-row\"><span>${RITMO[ritmoDe(c)]}</span>${c.sv.imc ? `<span>IMC ${c.sv.imc}</span>` : ''}</div>"),
+]
+
+
+def monitor(page, casos):
+    import re
+    for c in casos:
+        if c["id"] in RITMOS:
+            c["sv"]["ritmo"] = RITMOS[c["id"]]
+        m = re.match(r"(Niña|Niño) de (\d+) años", c["pac"])
+        if m and int(m.group(2)) < 12:  # en escolares la FC normal llega a ~120
+            c["sv"]["fcmax"] = 120
+    a = page.index("function monitor(el, fc) {"); b = page.index("\nconst st = document.createElement('style');")
+    page = page[:a] + MONITOR + page[b:]
+    for x, y in MON_REPL:
+        assert page.count(x) == 1, x
+        page = page.replace(x, y)
+    return page, casos

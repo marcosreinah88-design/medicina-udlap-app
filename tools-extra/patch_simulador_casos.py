@@ -78,6 +78,7 @@ sys.path.insert(0, here)
 import simulador_lineal
 casos = simulador_lineal.linealizar(casos)
 page = simulador_lineal.motor(page)
+page, casos = simulador_lineal.monitor(page, casos)  # signos y ECG acordes a cada paciente
 
 # ---- página ----
 dstdir = os.path.join(site, "s5", ID)

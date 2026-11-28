@@ -89,6 +89,16 @@ ids = [c["id"] for c in casos]
 assert len(ids) == len(set(ids)), "ids repetidos"
 tts = [c["t"] for c in casos]
 assert len(tts) == len(set(tts)), "títulos repetidos"
+# ---- explicaciones ampliadas para el análisis del caso (28 nov 2026) ----
+# casos_nuevos/explicaciones_N.py: E = {"id|paso|opción": "texto"}; se marcan con † (redacción nueva).
+BYID = {c["id"]: c for c in casos}
+for fn in sorted(glob.glob(os.path.join(here, "casos_nuevos", "explicaciones_*.py"))):
+    spec = importlib.util.spec_from_file_location(os.path.basename(fn)[:-3], fn)
+    mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+    for k, txt in mod.E.items():
+        cid, si, oi = k.split("|")
+        o = BYID[cid]["pasos"][int(si)]["o"][int(oi)]
+        o[2] = txt.rstrip("†") + "†"
 for c in casos:
     assert c["b"] in ("ee", "int", "hbp") and c["dif"] in (1, 2, 3), c["id"]
     for st in c["pasos"]:

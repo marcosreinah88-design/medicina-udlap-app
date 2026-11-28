@@ -150,6 +150,7 @@ h1,h2,h3{font-family:"Barlow Condensed",Inter,sans-serif;letter-spacing:-.01em;l
 .opt.y{border-color:var(--mid);background:var(--midbg)}.opt.y .mk{color:var(--mid)}
 .opt.n{opacity:.72}
 .opt.lock{cursor:default}
+.rev{border:1.5px dashed var(--line);background:var(--soft);color:var(--mute);border-radius:99px;padding:3px 12px;font-size:14px;font-weight:600;min-height:32px}.rev:hover{border-color:var(--scrub2);color:var(--ink)}.dxv{color:var(--mute);font-weight:500}
 .act{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin-top:16px}
 .act .pts{font:700 15px "JetBrains Mono",monospace}
 .luego{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--soft);border-left:4px solid var(--scrub2);font-size:15.5px}
@@ -349,7 +350,7 @@ function home() {
         <h3>${esc(c.t)}</h3>
         <span class="score-tag ${cls(s)}">${s == null ? 'Nuevo' : s + ' pts'}</span>
         <span class="pt">${esc(c.pac)}</span>
-        <span class="tm"><span>${esc(c.tema)}</span><span>${DIF[c.dif]}</span></span>
+        <span class="tm"><span>${s != null || S.f.tema !== 'all' ? esc(c.tema) : 'Diagnóstico oculto'}</span><span>${DIF[c.dif]}</span></span>
       </button>`; }).join('')}</div>` : '<div class="empty">No hay casos con este filtro.</div>'}
     <p style="color:var(--mute);font-size:13.5px;margin-top:18px">68 casos escritos a partir de los artículos troncales de los tres bloques. Lo marcado con † es conocimiento general que no viene en el artículo. Tu progreso se guarda solo en este navegador.</p>
   </div></section>`;
@@ -403,7 +404,7 @@ function caseView() {
         ${c.sv.imc ? `<div class="mon-row"><span>IMC ${c.sv.imc}</span></div>` : ''}
       </div>
       <div class="paper">
-        <div class="who"><span>${esc(c.pac)}</span><span style="color:var(--mute);font-weight:500">${esc(c.tema)}</span></div>
+        <div class="who"><span>${esc(c.pac)}</span>${dxShown(c) ? `<span class="dxv">${esc(c.tema)}</span>` : `<button class="rev" id="rev" data-rev>Revelar diagnóstico</button>`}</div>
         <p class="mc">Motivo: ${esc(c.mc)}</p>
         <p class="hx">${md(c.hx)}</p>
       </div>
@@ -413,7 +414,14 @@ function caseView() {
     <div class="paper res-m"><h3>Resultados</h3><ul class="res">${resList}</ul></div>
   </div></div>`;
   monitor(document.getElementById('cm'), c.sv.fc);
+  const rv = document.getElementById('rev');
+  if (rv) rv.onclick = () => { S.cur.rev = true; rv.outerHTML = `<span class="dxv">${esc(c.tema)}</span>`; };
   bindStep(c);
+}
+
+function dxShown(c) {
+  const cur = S.cur, k = c.pasos.findIndex(p => p.f === 'dx');
+  return cur.rev || S.f.tema !== 'all' || cur.step >= c.pasos.length || (k >= 0 && (k < cur.step || (k === cur.step && cur.done)));
 }
 
 function stepBox(c) {

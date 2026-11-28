@@ -7,6 +7,7 @@ Uso:
   (claude.ai/artifact/BU7D323awy9cYsXa3FvGAw). 68 casos de los tres bloques de Gastro
   (esófago y estómago, intestino, hígado/vía biliar/páncreas/onco): estudios, diagnóstico,
   tratamiento y evolución, cada paso calificado y explicado con el artículo del curso.
+  El diagnóstico (tema) queda oculto hasta revelarlo (ver «diagnóstico oculto» abajo).
   Son casos por pasos (cada pregunta depende de la historia del paciente), así que no se
   agregan a tools-estudio/banco.js.
 - Escribe <sitio>/s5/simulador-casos-gastro/{index.html,casos.json}. En el repo las fuentes
@@ -29,6 +30,47 @@ page = open(os.path.join(src, "index.html"), encoding="utf-8").read()
 casos = json.load(open(os.path.join(src, "casos.json"), encoding="utf-8"))
 assert "fetch('casos.json')" in page
 
+# ---- diagnóstico oculto (pedido del usuario, 28 nov 2026) ----
+# El tema del caso es el diagnóstico: en la ficha del paciente sale un botón «Revelar diagnóstico»
+# y se muestra solo al tocarlo, al calificar el paso de diagnóstico o al terminar el caso. En el
+# censo sale «Diagnóstico oculto» hasta que el caso ya se atendió (o si se filtró por ese tema).
+# Títulos que decían la respuesta se cambian por el motivo de consulta.
+TITULOS = {
+    "acal2": "Disfagia que avanzó demasiado rápido",
+    "cuci4": "CUCI con fosfatasa alcalina alta",
+    "pan3": "Dolor a la espalda, fiebre e ictericia",
+    "col2": "Confundido, con fiebre e ictericia",
+}
+for c in casos:
+    if c["id"] in TITULOS:
+        c["t"] = TITULOS[c["id"]]
+assert sum(c["id"] in TITULOS for c in casos) == len(TITULOS)
+
+REV = [
+    (".opt.lock{cursor:default}",
+     ".opt.lock{cursor:default}\n"
+     ".rev{border:1.5px dashed var(--line);background:var(--soft);color:var(--mute);border-radius:99px;"
+     "padding:3px 12px;font-size:14px;font-weight:600;min-height:32px}.rev:hover{border-color:var(--scrub2);color:var(--ink)}"
+     ".dxv{color:var(--mute);font-weight:500}"),
+    ('<span class="tm"><span>${esc(c.tema)}</span>',
+     '<span class="tm"><span>${s != null || S.f.tema !== \'all\' ? esc(c.tema) : \'Diagnóstico oculto\'}</span>'),
+    ('<span style="color:var(--mute);font-weight:500">${esc(c.tema)}</span>',
+     '${dxShown(c) ? `<span class="dxv">${esc(c.tema)}</span>` : `<button class="rev" id="rev" data-rev>Revelar diagnóstico</button>`}'),
+    ("  monitor(document.getElementById('cm'), c.sv.fc);\n  bindStep(c);",
+     "  monitor(document.getElementById('cm'), c.sv.fc);\n"
+     "  const rv = document.getElementById('rev');\n"
+     "  if (rv) rv.onclick = () => { S.cur.rev = true; rv.outerHTML = `<span class=\"dxv\">${esc(c.tema)}</span>`; };\n"
+     "  bindStep(c);"),
+    ("function stepBox(c) {",
+     "function dxShown(c) {\n"
+     "  const cur = S.cur, k = c.pasos.findIndex(p => p.f === 'dx');\n"
+     "  return cur.rev || S.f.tema !== 'all' || cur.step >= c.pasos.length || (k >= 0 && (k < cur.step || (k === cur.step && cur.done)));\n"
+     "}\n\nfunction stepBox(c) {"),
+]
+for a, b in REV:
+    assert page.count(a) == 1, a
+    page = page.replace(a, b)
+
 # ---- página ----
 dstdir = os.path.join(site, "s5", ID)
 os.makedirs(dstdir, exist_ok=True)
@@ -46,7 +88,7 @@ if not artefacto:
             shutil.copy(os.path.join(tmp, "fonts", f), os.path.join(site, "fonts", f))
     shutil.rmtree(tmp)
 open(os.path.join(dstdir, "index.html"), "w", encoding="utf-8").write(page)
-shutil.copy(os.path.join(src, "casos.json"), os.path.join(dstdir, "casos.json"))
+json.dump(casos, open(os.path.join(dstdir, "casos.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 nc = len(casos)
 npasos = sum(len(c["pasos"]) for c in casos)
 nt = len({c["tema"] for c in casos})

@@ -99,6 +99,8 @@ page = simulador_lineal.motor(page)
 page, casos = simulador_lineal.monitor(page, casos)  # signos y ECG acordes a cada paciente
 import simulador_memoria
 page = simulador_memoria.memoria(page)  # contestados / fallados / dominados y práctica inteligente
+import simulador_analisis
+page = simulador_analisis.analisis(page)  # análisis paso por paso al terminar cada caso
 
 # ---- página ----
 dstdir = os.path.join(site, "s5", ID)

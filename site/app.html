@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 <link rel="manifest" href="app.webmanifest">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -3658,3 +3658,57 @@ if(location.hash.startsWith("#mat-")&&location.hash!=="#mat-anking")OtrosLib.ope
 <script src="applinks.js"></script>
 <script src="assistant.js"></script>
 <script src="pwa.js"></script>
+<style id="movil">
+/* ===== cel (iPhone): márgenes seguros, nada tapado ni descuadrado (tools-movil) ===== */
+body{margin:0}
+/* app instalada: la barra de estado/isla tapaba la fila de botones de arriba
+   (--mv-top = 0 en la copia del artefacto, porque claude.ai ya deja ese espacio) */
+:root{--mv-top:env(safe-area-inset-top,0px)}
+.topbtns{top:calc(14px + var(--mv-top))}
+.hero{padding-top:calc(46px + var(--mv-top))}
+@media (max-width:900px){.hero{padding-top:calc(70px + var(--mv-top))}}
+/* en el cel el aro del escudo ya no se corta en la orilla */
+@media (max-width:560px){.hero{padding-top:calc(34px + var(--mv-top))}.seal{margin-left:6px}}
+/* visor de semestres y guías: lo de abajo no queda bajo la rayita de inicio ni bajo la cámara en horizontal */
+.frames{margin:0 env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+.vfind{bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+/* «Tu día»: en pantallas angostas el texto pasa a 2 renglones en vez de cortarse con «…» */
+@media (max-width:480px){
+  .ch-k small,.ch-k em{white-space:normal;text-overflow:clip;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+  .ch-k small{line-height:1.25}
+  .ch-k{align-items:center}
+}
+@media (max-width:359px){.ch-kpis,.hd-k{grid-template-columns:minmax(0,1fr)}}
+/* botones táctiles más fáciles de tocar en el cel */
+@media (pointer:coarse){.vbtn{min-height:36px;min-width:36px;justify-content:center}}
+</style>
+<script id="movil-js">
+/* cel: dentro de las guías, deja espacio al final para que los botones flotantes (Anki, Casos clínicos) no tapen lo último (tools-movil) */
+(function(){
+  var CSS="#movil-sp{display:none;height:88px}@media (max-width:560px){#movil-sp{display:block}}";
+  function fix(f){
+    var d;try{d=f.contentDocument}catch(e){return}
+    if(!d||!d.body||d.__movil)return;d.__movil=1;
+    try{
+      var st=d.createElement("style");st.textContent=CSS;(d.head||d.body).appendChild(st);
+      var add=function(){
+        if(d.getElementById("movil-sp")||!d.querySelector(".ak-fab,.cc-fab"))return;
+        var v=d.defaultView,cs=v&&v.getComputedStyle(d.body);
+        if(!cs||cs.display!=="block")return;
+        var s=d.createElement("div");s.id="movil-sp";s.setAttribute("aria-hidden","true");d.body.appendChild(s)};
+      add();setTimeout(add,1500);setTimeout(add,5000);
+      watch(d);
+    }catch(e){}
+  }
+  function hook(f){f.addEventListener("load",function(){fix(f)});try{if(f.contentDocument&&f.contentDocument.readyState==="complete")fix(f)}catch(e){}}
+  function watch(root){
+    try{
+      [].forEach.call(root.querySelectorAll("iframe"),hook);
+      new MutationObserver(function(ms){ms.forEach(function(m){[].forEach.call(m.addedNodes,function(n){
+        if(n.tagName==="IFRAME")hook(n);else if(n.querySelectorAll)[].forEach.call(n.querySelectorAll("iframe"),hook)})})})
+        .observe(root.documentElement||root,{childList:true,subtree:true});
+    }catch(e){}
+  }
+  var fr=document.getElementById("frames");if(fr)watch(document);
+})();
+</script>

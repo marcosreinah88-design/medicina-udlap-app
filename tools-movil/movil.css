@@ -1,0 +1,22 @@
+/* ===== cel (iPhone): márgenes seguros, nada tapado ni descuadrado (tools-movil) ===== */
+body{margin:0}
+/* app instalada: la barra de estado/isla tapaba la fila de botones de arriba
+   (--mv-top = 0 en la copia del artefacto, porque claude.ai ya deja ese espacio) */
+:root{--mv-top:env(safe-area-inset-top,0px)}
+.topbtns{top:calc(14px + var(--mv-top))}
+.hero{padding-top:calc(46px + var(--mv-top))}
+@media (max-width:900px){.hero{padding-top:calc(70px + var(--mv-top))}}
+/* en el cel el aro del escudo ya no se corta en la orilla */
+@media (max-width:560px){.hero{padding-top:calc(34px + var(--mv-top))}.seal{margin-left:6px}}
+/* visor de semestres y guías: lo de abajo no queda bajo la rayita de inicio ni bajo la cámara en horizontal */
+.frames{margin:0 env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+.vfind{bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+/* «Tu día»: en pantallas angostas el texto pasa a 2 renglones en vez de cortarse con «…» */
+@media (max-width:480px){
+  .ch-k small,.ch-k em{white-space:normal;text-overflow:clip;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+  .ch-k small{line-height:1.25}
+  .ch-k{align-items:center}
+}
+@media (max-width:359px){.ch-kpis,.hd-k{grid-template-columns:minmax(0,1fr)}}
+/* botones táctiles más fáciles de tocar en el cel */
+@media (pointer:coarse){.vbtn{min-height:36px;min-width:36px;justify-content:center}}

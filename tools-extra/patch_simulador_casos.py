@@ -8,6 +8,8 @@ Uso:
   (esófago y estómago, intestino, hígado/vía biliar/páncreas/onco): estudios, diagnóstico,
   tratamiento y evolución, cada paso calificado y explicado con el artículo del curso.
   El diagnóstico (tema) queda oculto hasta revelarlo (ver «diagnóstico oculto» abajo).
+  Los casos se pasan a formato lineal (una sola respuesta correcta por paso) con
+  tools-extra/simulador_lineal.py.
   Son casos por pasos (cada pregunta depende de la historia del paciente), así que no se
   agregan a tools-estudio/banco.js.
 - Escribe <sitio>/s5/simulador-casos-gastro/{index.html,casos.json}. En el repo las fuentes
@@ -71,6 +73,12 @@ for a, b in REV:
     assert page.count(a) == 1, a
     page = page.replace(a, b)
 
+# ---- casos lineales (pedido del usuario, 28 nov 2026): una sola respuesta correcta por paso ----
+sys.path.insert(0, here)
+import simulador_lineal
+casos = simulador_lineal.linealizar(casos)
+page = simulador_lineal.motor(page)
+
 # ---- página ----
 dstdir = os.path.join(site, "s5", ID)
 os.makedirs(dstdir, exist_ok=True)
@@ -115,9 +123,9 @@ text = " ".join(strings(casos)) + " simulador casos clinicos guardia gastroenter
 words = " ".join(sorted(set(re.findall(r"[a-z]{4,}", fold(text)))))
 
 # ---- estante de 5º: Material extra ----
-DESC = (f"{nc} casos clínicos de los tres bloques de Gastro: recibes al paciente con su monitor, pides estudios, "
-        "haces el diagnóstico y decides el tratamiento y la evolución. Cada paso se califica y se explica con el "
-        "artículo del curso: ERGE, acalasia, Barrett, úlcera y H. pylori, sangrados, diarreas, celiaquía, Crohn, CUCI, "
+DESC = (f"{nc} casos clínicos de los tres bloques de Gastro, lineales como un diagrama de flujo: en cada paso "
+        "eliges una sola opción (estudio, diagnóstico, tratamiento, evolución), ves el resultado y lo que no va se "
+        "descarta con su explicación del artículo del curso: ERGE, acalasia, Barrett, úlcera y H. pylori, sangrados, diarreas, celiaquía, Crohn, CUCI, "
         "Roma V, hepatitis, cirrosis y Baveno VIII, litiasis, colangitis, pancreatitis y oncología digestiva.")
 TAGS = ("simulador casos clinicos guardia paciente estudios diagnostico tratamiento evolucion gastro esofago estomago "
         "erge acalasia barrett ulcera pylori dispepsia gastroparesia stda stdb intestino diarrea celiaca crohn cuci "
@@ -125,14 +133,16 @@ TAGS = ("simulador casos clinicos guardia paciente estudios diagnostico tratamie
         "tokio pancreatitis oncologia")
 s5p = os.path.join(site, "s5", "index.html")
 s = open(s5p, encoding="utf-8").read()
-if f'id:"{ID}"' not in s:
-    entry = (f',\n  {{id:"{ID}",title:"{TITLE}",desc:"{DESC}",'
-             f'stats:[["{nc}","casos"],["{npasos}","decisiones"],["{nt}","temas"]],tags:"{TAGS}"}}')
+entry = (f'{{id:"{ID}",title:"{TITLE}",desc:"{DESC}",'
+         f'stats:[["{nc}","casos"],["{npasos}","pasos"],["{nt}","temas"]],tags:"{TAGS}"}}')
+if f'id:"{ID}"' in s:  # ya estaba: se actualiza la descripción
+    s = re.sub(rf'\{{id:"{ID}",title:[^\n]*\}}', lambda m: entry, s)
+else:
     m = re.search(rf'\{{id:"{AFTER}"[^\n]*\}}', s)
     assert m, "no encontré la entrada anterior en EXTRA"
-    s = s[:m.end()] + entry + s[m.end():]
-    open(s5p, "w", encoding="utf-8").write(s)
-    print("EXTRA de 5º:", s5p)
+    s = s[:m.end()] + ",\n  " + entry + s[m.end():]
+open(s5p, "w", encoding="utf-8").write(s)
+print("EXTRA de 5º:", s5p)
 
 # ---- hub: lista de guías, buscador y Otros materiales ----
 G = f' {{id:"{ID}",sem:5,color:"#0f4a3f",area:"Gastroenterología",title:"{TITLE}",temas:{nt},stats:[],feat:[],toc:[]}}'

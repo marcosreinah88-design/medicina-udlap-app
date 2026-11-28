@@ -10,3 +10,4 @@ seed-cto.json
 .env
 .env.*
 tools-oftalmo/__pycache__/
+__pycache__/

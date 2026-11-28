@@ -313,7 +313,7 @@ function home() {
   <section class="band gut"><div class="band-in">
     <div class="b-t">
       <h1>Simulador de casos clínicos</h1>
-      <p class="lead">Gastroenterología, examen final. Recibes al paciente, pides estudios, haces el diagnóstico y decides el tratamiento. Cada paso se califica y se explica con el artículo del curso.</p>
+      <p class="lead">Gastroenterología, examen final. Como un diagrama de flujo: en cada paso eliges una sola opción, ves el resultado y sigues; lo que no va se descarta con su explicación del artículo del curso.</p>
     </div>
     <div class="b-c">
       <div class="flabel">Bloque</div>
@@ -388,7 +388,7 @@ function caseView() {
   const c = BYID[S.cur.id], cur = S.cur, sh = S.shift;
   const fin = cur.step >= c.pasos.length;
   const track = c.pasos.map((p, i) => `<span class="${i < cur.step || (i === cur.step && cur.done) ? 'done' : i === cur.step ? 'on' : ''}">${i + 1}. ${FASE[p.f]}</span>`).join('');
-  const resList = cur.results.length ? cur.results.map(r => `<li class="${r.miss ? 'miss' : ''}"><b>${esc(r.n)}${r.miss ? ' · no lo pediste, pero era clave' : ''}</b>${md(r.r)}</li>`).join('') : '<li class="none">Aún no hay resultados. Pide estudios para verlos aquí.</li>';
+  const resList = cur.results.length ? cur.results.map(r => `<li class="${r.miss ? 'miss' : ''}"><b>${esc(r.n)}${r.miss ? ' · aquí te equivocaste' : ''}</b>${md(r.r)}</li>`).join('') : '<li class="none">Aquí se va armando tu camino, paso a paso.</li>';
   app.innerHTML = `
   <section class="case-top gut"><div class="wrap">
     <span class="tagb" style="background:${B[c.b].c};color:#fff">${esc(B[c.b].s || B[c.b].n)}</span>
@@ -408,10 +408,10 @@ function caseView() {
         <p class="mc">Motivo: ${esc(c.mc)}</p>
         <p class="hx">${md(c.hx)}</p>
       </div>
-      <div class="paper res-d"><h3>Resultados</h3><ul class="res">${resList}</ul></div>
+      <div class="paper res-d"><h3>Tu camino</h3><ul class="res">${resList}</ul></div>
     </aside>
     <section id="stepbox">${fin ? resultBox(c) : stepBox(c)}</section>
-    <div class="paper res-m"><h3>Resultados</h3><ul class="res">${resList}</ul></div>
+    <div class="paper res-m"><h3>Tu camino</h3><ul class="res">${resList}</ul></div>
   </div></div>`;
   monitor(document.getElementById('cm'), c.sv.fc);
   const rv = document.getElementById('rev');
@@ -425,44 +425,32 @@ function dxShown(c) {
 }
 
 function stepBox(c) {
-  const cur = S.cur, p = c.pasos[cur.step], multi = p.tipo !== 'una';
-  const hint = p.tipo === 'est' ? 'Elige todos los estudios que pedirías. Pedir de más o pedir algo contraproducente resta puntos.' : multi ? 'Marca todas las que apliquen.' : 'Elige una opción.';
+  const cur = S.cur, p = c.pasos[cur.step];
   const opts = cur.order[cur.step].map(i => {
-    const o = p.o[i], picked = cur.picks.includes(i);
+    const o = p.o[i], picked = cur.picks[0] === i;
     let cl = '', mk = '', extra = '';
     if (cur.done) {
       cl = 'lock ';
-      if (p.tipo === 'est') {
-        const v = o[1];
-        if (picked) { cl += v === 2 ? 'g' : v === 1 ? 'g' : v === 0 ? 'y' : 'r'; mk = {2:'Clave', 1:'Razonable', 0:'Innecesario', '-1':'Contraproducente'}[v]; }
-        else if (v === 2) { cl += 'y'; mk = 'Te faltó: era clave'; }
-        else { cl += 'n'; mk = v === 1 ? 'Razonable (opcional)' : v === -1 ? 'Bien que no lo pediste' : 'Bien que no lo pediste'; }
-        if (picked || v === 2) extra += `<span class="rs">${md(o[2])}</span>`;
-        extra += `<span class="fb">${md(o[3])}</span>`;
-      } else {
-        if (o[1] && picked) { cl += 'g'; mk = 'Correcto'; }
-        else if (o[1]) { cl += 'y'; mk = multi ? 'También era correcta' : 'Esta era la correcta'; }
-        else if (picked) { cl += 'r'; mk = 'Incorrecto'; }
-        else cl += 'n';
-        extra = `<span class="fb">${md(o[2])}</span>`;
-      }
-    } else if (picked) cl = 'picked';
-    return `<label class="opt ${cl}"><input type="${multi ? 'checkbox' : 'radio'}" name="o" value="${i}" ${picked ? 'checked' : ''} ${cur.done ? 'disabled' : ''}>
+      if (o[1] && picked) { cl += 'g'; mk = 'Correcto'; }
+      else if (o[1]) { cl += 'y'; mk = 'Este era el camino'; }
+      else if (picked) { cl += 'r'; mk = 'Se descarta'; }
+      else { cl += 'n'; mk = 'Se descarta'; }
+      extra = `<span class="fb">${md(o[2])}</span>`;
+    }
+    return `<label class="opt ${cl}"><input type="radio" name="o" value="${i}" ${picked ? 'checked' : ''} ${cur.done ? 'disabled' : ''}>
       <span class="ot">${md(o[0])}</span>${mk ? `<span class="mk">${mk}</span>` : ''}${extra}</label>`;
   }).join('');
-  const sc = cur.done ? cur.scores[cur.step] : null;
+  const ok = cur.done ? cur.scores[cur.step] === 100 : null;
   const last = cur.step === c.pasos.length - 1;
+  const luego = cur.done && (p.r || p.add) ? `<div class="luego">${p.r ? `<b>Resultado:</b> ${md(p.r)}` : ''}${p.add ? `<div${p.r ? ' style="margin-top:8px"' : ''}><b>Además:</b> ${md(p.add)}</div>` : ''}</div>` : '';
   return `<div class="step">
     <div class="kind">Paso ${cur.step + 1} de ${c.pasos.length} · ${FASE[p.f]}</div>
     <h2>${md(p.q)}</h2>
-    <p class="hint">${hint}</p>
+    <p class="hint">${cur.done ? (ok ? 'Bien. Así sigue el caso:' : 'Esa opción se descarta. Sigue por el camino correcto:') : 'Elige una opción. Solo una es correcta.'}</p>
     <div class="opts">${opts}</div>
-    <div class="act">
-      ${cur.done ? `<span class="pts ${cls(sc)}" style="padding:4px 10px;border-radius:8px">${sc} / 100</span>
-        <button class="btn btn-acc" id="next">${last ? 'Ver resultado del caso' : 'Siguiente paso'} →</button>`
-      : `<span style="color:var(--mute);font-size:14px">${cur.picks.length ? cur.picks.length + ' seleccionada' + (cur.picks.length > 1 ? 's' : '') : 'Nada seleccionado'}</span>
-        <button class="btn btn-acc" id="ok" ${cur.picks.length ? '' : 'disabled'}>Confirmar</button>`}
-    </div>
+    ${luego}
+    ${cur.done ? `<div class="act"><span class="pts ${ok ? 's-hi' : 's-lo'}" style="padding:4px 10px;border-radius:8px">${ok ? '✓ Correcto' : '✗ Incorrecto'}</span>
+        <button class="btn btn-acc" id="next">${last ? 'Ver resultado del caso' : 'Siguiente paso'} →</button></div>` : ''}
   </div>`;
 }
 
@@ -490,8 +478,7 @@ function resultBox(c) {
 }
 
 function bindStep(c) {
-  const box = document.getElementById('stepbox'), cur = S.cur;
-  const rer = () => { box.innerHTML = cur.step >= c.pasos.length ? resultBox(c) : stepBox(c); bindStep(c); };
+  const cur = S.cur;
   if (cur.step >= c.pasos.length) {
     const g = id => document.getElementById(id);
     g('again').onclick = () => openCase(c.id);
@@ -501,20 +488,16 @@ function bindStep(c) {
     return;
   }
   const p = c.pasos[cur.step];
-  box.querySelectorAll('input[name=o]').forEach(inp => inp.onchange = () => {
-    const i = +inp.value;
-    if (p.tipo === 'una') cur.picks = [i];
-    else cur.picks = inp.checked ? [...new Set([...cur.picks, i])] : cur.picks.filter(x => x !== i);
-    tone([420], .04, 'sine', .03); rer();
-  });
-  const ok = document.getElementById('ok');
-  if (ok) ok.onclick = () => {
-    const sc = evaluate(p, cur.picks); cur.scores[cur.step] = sc; cur.done = true;
-    if (p.tipo === 'est') p.o.forEach((o, i) => { if (cur.picks.includes(i) || o[1] === 2) cur.results.push({n:o[0], r:o[2], miss:!cur.picks.includes(i)}); });
-    sc >= 85 ? sOk() : sc >= 50 ? sMid() : sBad();
+  document.getElementById('stepbox').querySelectorAll('input[name=o]').forEach(inp => inp.onchange = () => {
+    if (cur.done) return;
+    const i = +inp.value, ok = !!p.o[i][1];
+    cur.picks = [i]; cur.scores[cur.step] = ok ? 100 : 0; cur.done = true;
+    const k = p.o.findIndex(o => o[1]);
+    cur.results.push({n: p.o[k][0], r: p.r || '', miss: !ok});
+    ok ? sOk() : sBad();
     caseView();
     const b = document.getElementById('stepbox'); if (b && window.innerWidth < 900) b.scrollIntoView({block:'start', behavior:'smooth'});
-  };
+  });
   const nx = document.getElementById('next');
   if (nx) nx.onclick = () => {
     cur.step++; cur.done = false; cur.picks = [];

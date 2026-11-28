@@ -1,0 +1,24 @@
+/*xmat*/
+/* Otros materiales: tarjeta que junta materiales parecidos */
+.ogrp{cursor:default}
+.ogrp:hover{transform:none}
+.ogrp .ot-art{aspect-ratio:auto;height:112px}
+.ot-art em{position:absolute;right:12px;top:12px;font:800 .66rem var(--f-mono);font-style:normal;letter-spacing:.06em;padding:3px 8px;border-radius:6px;background:rgba(0,0,0,.28);color:#fff}
+.og-list{display:flex;flex-direction:column;gap:6px;padding:0 10px 12px}
+.og-it{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;background:color-mix(in srgb,var(--c) 7%,var(--paper));border:1px solid color-mix(in srgb,var(--c) 18%,transparent);text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s;min-width:0}
+.og-it:hover{border-color:var(--c);transform:translateX(2px)}
+.og-ic{flex:none;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;color:#fff;background:linear-gradient(160deg,var(--c) 0%,color-mix(in srgb,var(--c) 65%,#000) 100%)}
+.og-ic svg{width:22px;height:22px}
+.og-it>span:last-child{display:flex;flex-direction:column;min-width:0}
+.og-it b{font-weight:700;font-size:.88rem;line-height:1.2;overflow-wrap:anywhere}
+.og-it small{color:var(--muted);font-size:.72rem;line-height:1.2}
+@media (min-width:561px){.ogrp.big{grid-column:span 2}.ogrp.big .og-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.ogrp{grid-column:1/-1}}
+/* buscador: etiqueta de tipo en los resultados que son material extra */
+.xmat-b{display:inline-flex;align-items:center;gap:5px;margin-left:8px;padding:2px 8px 2px 5px;border-radius:999px;font-size:.92em;letter-spacing:.02em;text-transform:none;color:var(--xc);background:color-mix(in srgb,var(--xc) 12%,transparent);vertical-align:middle;white-space:nowrap}
+.xmat-b svg{width:14px;height:14px;flex:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .xmat-b{color:color-mix(in srgb,var(--xc) 45%,#fff)}}
+:root[data-theme="dark"] .xmat-b{color:color-mix(in srgb,var(--xc) 45%,#fff)}
+/* biblioteca CTO: copia o versión repetida del mismo manual */
+.cb-dup{position:absolute;left:18px;top:38px;z-index:2;border:0;border-radius:999px;padding:3px 9px;font:700 .66rem/1.2 var(--f-mono,ui-monospace,monospace);letter-spacing:.03em;background:rgba(255,255,255,.92);color:#123;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.cb-dup:hover{background:#fff}

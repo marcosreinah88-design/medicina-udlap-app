@@ -77,6 +77,22 @@ for a, b in REV:
 sys.path.insert(0, here)
 import simulador_lineal
 casos = simulador_lineal.linealizar(casos)
+# ---- casos nuevos (pedido del usuario, 28 nov 2026: «agrega más casos, muchos más») ----
+# Cada tanda en casos_nuevos/tandaN.py ya viene lineal: una sola respuesta correcta por paso.
+import glob, importlib.util
+sys.path.insert(0, os.path.join(here, "casos_nuevos"))
+for fn in sorted(glob.glob(os.path.join(here, "casos_nuevos", "tanda*.py")), key=lambda f: int(re.sub(r"\D", "", os.path.basename(f)))):
+    spec = importlib.util.spec_from_file_location(os.path.basename(fn)[:-3], fn)
+    mod = importlib.util.module_from_spec(spec); spec.loader.exec_module(mod)
+    casos += mod.CASOS
+ids = [c["id"] for c in casos]
+assert len(ids) == len(set(ids)), "ids repetidos"
+for c in casos:
+    assert c["b"] in ("ee", "int", "hbp") and c["dif"] in (1, 2, 3), c["id"]
+    for st in c["pasos"]:
+        assert st["f"] in ("est", "dx", "tx", "evo"), c["id"]
+        assert sum(o[1] for o in st["o"]) == 1 and len(st["o"]) >= 3, (c["id"], st["q"])
+        assert len({o[0] for o in st["o"]}) == len(st["o"]), (c["id"], st["q"])
 page = simulador_lineal.motor(page)
 page, casos = simulador_lineal.monitor(page, casos)  # signos y ECG acordes a cada paciente
 
